@@ -6,10 +6,13 @@ import { ProcessSection } from "@/components/process-section";
 import { SystemsSection } from "@/components/systems-section";
 import { CTASection } from "@/components/cta-section";
 import { Footer } from "@/components/footer";
+import { SEOHead } from "@/components/seo-head";
+import { pageSEOData } from "@/data/seo-pages";
 
 export default function Home() {
   return (
     <div className="min-h-screen">
+      <SEOHead seo={pageSEOData.home} pageSlug="" />
       <Navigation />
       <HeroSection />
       <ProblemSection />

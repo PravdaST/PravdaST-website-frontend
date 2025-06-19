@@ -5,6 +5,8 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { ArrowRight, Search, Users, Bot } from "lucide-react";
 import { Link } from "wouter";
+import { SEOHead } from "@/components/seo-head";
+import { pageSEOData } from "@/data/seo-pages";
 
 const services = [
   {
@@ -39,6 +41,7 @@ const services = [
 export default function Services() {
   return (
     <div className="min-h-screen">
+      <SEOHead seo={pageSEOData.services} pageSlug="services" />
       <Navigation />
       
       {/* Hero Section */}
