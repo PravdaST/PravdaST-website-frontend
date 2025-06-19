@@ -1,0 +1,41 @@
+[15:36:45.616] Running build in Washington, D.C., USA (East) – iad1
+[15:36:45.617] Build machine configuration: 2 cores, 8 GB
+[15:36:45.631] Cloning github.com/PravdaST/PravdaST-website-frontend (Branch: main, Commit: 1bf7066)
+[15:36:45.639] Skipping build cache, deployment was triggered without cache.
+[15:36:46.281] Cloning completed: 649.000ms
+[15:36:46.661] Running "vercel build"
+[15:36:47.122] Vercel CLI 43.1.0
+[15:36:47.722] Installing dependencies...
+[15:36:52.308] npm warn deprecated @esbuild-kit/esm-loader@2.6.5: Merged into tsx: https://tsx.is
+[15:36:52.324] npm warn deprecated @esbuild-kit/core-utils@3.3.2: Merged into tsx: https://tsx.is
+[15:36:57.107] 
+[15:36:57.107] added 481 packages in 9s
+[15:36:57.108] 
+[15:36:57.108] 64 packages are looking for funding
+[15:36:57.108]   run `npm fund` for details
+[15:36:57.164] Running "npm run build"
+[15:36:57.544] 
+[15:36:57.545] > rest-express@1.0.0 build
+[15:36:57.545] > NODE_ENV=production vite build
+[15:36:57.545] 
+[15:36:58.627] [36mvite v5.4.14 [32mbuilding for production...[36m[39m
+[15:36:58.699] transforming...
+[15:36:58.951] Browserslist: browsers data (caniuse-lite) is 8 months old. Please run:
+[15:36:58.952]   npx update-browserslist-db@latest
+[15:36:58.952]   Why you should do it regularly: https://github.com/browserslist/update-db#readme
+[15:37:03.673] [32m✓[39m 2020 modules transformed.
+[15:37:04.033] rendering chunks...
+[15:37:04.045] computing gzip size...
+[15:37:04.062] [2m../../dist/[22m[32mindex.html                 [39m[1m[2m  0.63 kB[22m[1m[22m[2m │ gzip:   0.38 kB[22m
+[15:37:04.063] [2m../../dist/[22m[2massets/[22m[35mindex-D2gy2EbD.css  [39m[1m[2m 64.70 kB[22m[1m[22m[2m │ gzip:  11.41 kB[22m
+[15:37:04.063] [2m../../dist/[22m[2massets/[22m[36mindex-BPaYFPDW.js   [39m[1m[33m530.88 kB[39m[22m[2m │ gzip: 156.83 kB[22m
+[15:37:04.063] [33m
+[15:37:04.064] (!) Some chunks are larger than 500 kB after minification. Consider:
+[15:37:04.064] - Using dynamic import() to code-split the application
+[15:37:04.064] - Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+[15:37:04.064] - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.[39m
+[15:37:04.064] [32m✓ built in 5.41s[39m
+[15:37:04.104] Error: No Output Directory named "dist" found after the Build completed. You can configure the Output Directory in your Project Settings.
+[15:37:04.105] Learn More: https://vercel.link/missing-public-directory
+[15:37:04.304] 
+[15:37:06.822] Exiting build container
