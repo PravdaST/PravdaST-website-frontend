@@ -78,7 +78,8 @@ export const Navigation = () => {
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
           <motion.div
-            className="md:hidden mt-4 pb-4 border-t border-[var(--pravdast-yellow)]/20"
+            className="md:hidden mt-4 pb-4 border-t border-[var(--pravdast-yellow)]/20 backdrop-blur-sm"
+            style={{ background: '#0000007d' }}
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
