@@ -23,7 +23,7 @@ export async function setupVite(app: Express, server: Server) {
   const serverOptions = {
     middlewareMode: true,
     hmr: { server },
-    // allowedHosts: true, // КОМЕНТИРАХМЕ ТОЗИ РЕД, ЗА ДА ОПРАВИМ ГРЕШКАТА ВЪВ VERCEL
+    allowedHosts: "all",
   };
 
   const vite = await createViteServer({
