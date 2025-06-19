@@ -8,7 +8,5 @@
       "@assets/*": ["../attached_assets/*"]
     }
   },
-  "include": [
-    "src/**/*"
-  ]
+  "include": ["src/**/*"]
 }
