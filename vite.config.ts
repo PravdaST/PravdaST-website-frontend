@@ -4,36 +4,18 @@ import path from "path";
 import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
 
 export default defineConfig({
-  plugins: [
-    react(),
-    runtimeErrorOverlay(),
-    ...(process.env.NODE_ENV !== "production" &&
-    process.env.REPL_ID !== undefined
-      ? [
-          await import("@replit/vite-plugin-cartographer").then((m) =>
-            m.cartographer(),
-          ),
-        ]
-      : []),
-  ],
+  plugins: [react(), runtimeErrorOverlay()],
   resolve: {
     alias: {
-      "@": path.resolve(import.meta.dirname, "client", "src"),
-      "@shared": path.resolve(import.meta.dirname, "shared"),
-      "@assets": path.resolve(import.meta.dirname, "attached_assets"),
+      // Дефинираме изрично, че "@" сочи към папката "client/src"
+      "@": path.resolve(__dirname, "./client/src"),
+      "@shared": path.resolve(__dirname, "./shared"),
+      "@assets": path.resolve(__dirname, "./attached_assets"),
     },
   },
   build: {
+    // Казваме на Vite да създаде готовата версия в папка "dist"
     outDir: "dist",
     emptyOutDir: true,
-  },
-  server: {
-    host: "0.0.0.0",
-    port: 5173,
-    allowedHosts: "all",
-    fs: {
-      strict: true,
-      deny: ["**/.*"],
-    },
   },
 });
