@@ -41,8 +41,14 @@ class StrapiAPI {
   private apiToken: string;
 
   constructor() {
-    this.baseURL = import.meta.env.VITE_STRAPI_API_URL || 'http://localhost:1337';
-    this.apiToken = import.meta.env.VITE_STRAPI_API_TOKEN || '';
+    // For development, use process.env on backend or import.meta.env on frontend
+    this.baseURL = typeof window !== 'undefined' 
+      ? import.meta.env.VITE_STRAPI_API_URL || 'https://talented-oasis-899b2552b2.strapiapp.com'
+      : process.env.STRAPI_API_URL || 'https://talented-oasis-899b2552b2.strapiapp.com';
+    
+    this.apiToken = typeof window !== 'undefined'
+      ? import.meta.env.VITE_STRAPI_API_TOKEN || ''
+      : process.env.STRAPI_API_TOKEN || '';
   }
 
   private async request<T>(endpoint: string): Promise<T> {
@@ -65,6 +71,24 @@ class StrapiAPI {
     } catch (error) {
       console.warn('Strapi API не е достъпен, използваме локални данни:', error);
       throw error;
+    }
+  }
+
+  // Тестваме връзката с Strapi
+  async testConnection(): Promise<boolean> {
+    try {
+      const response = await fetch(`${this.baseURL}/api`, {
+        headers: {
+          'Authorization': `Bearer ${this.apiToken}`,
+          'Content-Type': 'application/json',
+        },
+      });
+      
+      // Дори да получим 404, това означава че Strapi отговаря
+      return response.status === 404 || response.ok;
+    } catch (error) {
+      console.warn('Strapi connection test failed:', error);
+      return false;
     }
   }
 
