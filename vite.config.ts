@@ -1,18 +1,15 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import path from "path";
+import tsconfigPaths from "vite-tsconfig-paths"; // 1. Импортираме новия пакет
 import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
 
 export default defineConfig({
-  plugins: [react(), runtimeErrorOverlay()],
-  resolve: {
-    alias: {
-      // Дефинираме изрично, че "@" сочи към папката "client/src"
-      "@": path.resolve(__dirname, "./client/src"),
-      "@shared": path.resolve(__dirname, "./shared"),
-      "@assets": path.resolve(__dirname, "./attached_assets"),
-    },
-  },
+  plugins: [
+    react(),
+    tsconfigPaths(), // 2. Добавяме го тук, за да чете автоматично пътеките
+    runtimeErrorOverlay(),
+  ],
+  // 3. Цялата секция resolve: { alias: { ... } } вече не е нужна и е премахната
   build: {
     // Казваме на Vite да създаде готовата версия в папка "dist"
     outDir: "dist",
