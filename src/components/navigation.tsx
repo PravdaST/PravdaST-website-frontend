@@ -23,7 +23,7 @@ export const Navigation = () => {
     { href: "/services", label: "Услуги" },
     { href: "/case-studies", label: "Резултати" },
     { href: "/about", label: "За нас" },
-    { href: "/contact", label: "Контакти" }
+    { href: "/contact", label: "Контакти" },
   ];
 
   return (
@@ -58,7 +58,9 @@ export const Navigation = () => {
             ))}
             <Button
               className="bg-[var(--pravdast-yellow)] text-[var(--pravdast-dark)] hover:bg-yellow-400 font-semibold"
-              onClick={() => window.open("https://form.typeform.com/to/GXLaGY98", "_blank")}
+              onClick={() =>
+                window.open("https://form.typeform.com/to/GXLaGY98", "_blank")
+              }
             >
               ЗАПОЧНЕТЕ СЕГА
             </Button>
@@ -78,8 +80,7 @@ export const Navigation = () => {
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
           <motion.div
-            className="md:hidden mt-4 pb-4 border-t border-[var(--pravdast-yellow)]/20 backdrop-blur-sm"
-            style={{ background: '#0000007d' }}
+            className="md:hidden mt-4 pb-4 border-t border-[var(--pravdast-yellow)]/20"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
@@ -103,7 +104,10 @@ export const Navigation = () => {
               <Button
                 className="bg-[var(--pravdast-yellow)] text-[var(--pravdast-dark)] hover:bg-yellow-400 font-semibold w-full"
                 onClick={() => {
-                  window.open("https://form.typeform.com/to/GXLaGY98", "_blank");
+                  window.open(
+                    "https://form.typeform.com/to/GXLaGY98",
+                    "_blank",
+                  );
                   setIsMobileMenuOpen(false);
                 }}
               >
