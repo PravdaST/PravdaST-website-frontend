@@ -28,7 +28,7 @@
   --pravdast-dark: hsl(0, 0%, 10%);
   --pravdast-dark-gray: hsl(0, 0%, 20%);
   --pravdast-medium-gray: hsl(0, 0%, 27%);
-  --pravdast-yellow: hsl(50, 100%, 50%);
+  --pravdast-yellow: #ECB628;
 }
 
 .dark {

@@ -104,7 +104,7 @@ export default function Services() {
                     
                     <Link href={`/services/${service.slug}`} className="mt-auto">
                       <Button 
-                        className="w-full bg-[var(--pravdast-yellow)] text-[var(--pravdast-dark)] hover:bg-yellow-400 font-semibold"
+                        className="w-full bg-[var(--pravdast-yellow)] text-[var(--pravdast-dark)] hover:bg-[#d4a426] font-semibold"
                       >
                         Научете повече
                         <ArrowRight className="ml-2" size={16} />

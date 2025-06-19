@@ -44,7 +44,7 @@ export const HeroSection = () => {
             >
               <Button
                 size="lg"
-                className="bg-[var(--pravdast-yellow)] text-[var(--pravdast-dark)] hover:bg-yellow-400 text-lg font-semibold px-8 py-4 hover:shadow-lg hover:shadow-[var(--pravdast-yellow)]/20 transition-all duration-300 hover:-translate-y-1"
+                className="bg-[var(--pravdast-yellow)] text-[var(--pravdast-dark)] hover:bg-[#d4a426] text-lg font-semibold px-8 py-4 hover:shadow-lg hover:shadow-[var(--pravdast-yellow)]/20 transition-all duration-300 hover:-translate-y-1"
                 onClick={() => window.open("https://form.typeform.com/to/GXLaGY98", "_blank")}
               >
                 Заявете експертна диагностика

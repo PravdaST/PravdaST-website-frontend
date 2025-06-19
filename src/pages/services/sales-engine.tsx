@@ -97,7 +97,7 @@ export default function SalesEngine() {
             >
               <Button
                 size="lg"
-                className="bg-[var(--pravdast-yellow)] text-[var(--pravdast-dark)] hover:bg-yellow-400 text-lg font-semibold px-8 py-4"
+                className="bg-[var(--pravdast-yellow)] text-[var(--pravdast-dark)] hover:bg-[#d4a426] text-lg font-semibold px-8 py-4"
                 onClick={() => window.open("https://form.typeform.com/to/GXLaGY98", "_blank")}
               >
                 Заявете диагностика сега
@@ -310,7 +310,7 @@ export default function SalesEngine() {
                   
                   <Button
                     size="lg"
-                    className="bg-[var(--pravdast-yellow)] text-[var(--pravdast-dark)] hover:bg-yellow-400 text-lg font-semibold px-8 py-4"
+                    className="bg-[var(--pravdast-yellow)] text-[var(--pravdast-dark)] hover:bg-[#d4a426] text-lg font-semibold px-8 py-4"
                     onClick={() => window.open("https://form.typeform.com/to/GXLaGY98", "_blank")}
                   >
                     Започнете сега

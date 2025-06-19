@@ -196,7 +196,7 @@ export const SystemsSection = () => {
                         
                         <Link href={activeSystem.link}>
                           <Button 
-                            className="mt-8 bg-[var(--pravdast-yellow)] text-[var(--pravdast-dark)] hover:bg-yellow-400 font-semibold px-8 py-3"
+                            className="mt-8 bg-[var(--pravdast-yellow)] text-[var(--pravdast-dark)] hover:bg-[#d4a426] font-semibold px-8 py-3"
                           >
                             Разгледай системата
                           </Button>

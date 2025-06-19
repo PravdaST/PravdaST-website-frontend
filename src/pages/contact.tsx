@@ -227,7 +227,7 @@ export default function Contact() {
                       <Button
                         type="submit"
                         disabled={contactMutation.isPending}
-                        className="w-full bg-[var(--pravdast-yellow)] text-[var(--pravdast-dark)] hover:bg-yellow-400 font-semibold py-3"
+                        className="w-full bg-[var(--pravdast-yellow)] text-[var(--pravdast-dark)] hover:bg-[#d4a426] font-semibold py-3"
                       >
                         {contactMutation.isPending ? "Изпращане..." : "Изпратете съобщението"}
                       </Button>
@@ -282,7 +282,7 @@ export default function Contact() {
                       Заявете директно онлайн консултация с нашия екип.
                     </p>
                     <Button
-                      className="bg-[var(--pravdast-yellow)] text-[var(--pravdast-dark)] hover:bg-yellow-400 font-semibold"
+                      className="bg-[var(--pravdast-yellow)] text-[var(--pravdast-dark)] hover:bg-[#d4a426] font-semibold"
                       onClick={() => window.open("https://form.typeform.com/to/GXLaGY98", "_blank")}
                     >
                       Запази консултация

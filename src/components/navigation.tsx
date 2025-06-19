@@ -57,7 +57,7 @@ export const Navigation = () => {
               </Link>
             ))}
             <Button
-              className="bg-[var(--pravdast-yellow)] text-[var(--pravdast-dark)] hover:bg-yellow-400 font-semibold"
+              className="bg-[var(--pravdast-yellow)] text-[var(--pravdast-dark)] hover:bg-[#d4a426] font-semibold"
               onClick={() =>
                 window.open("https://form.typeform.com/to/GXLaGY98", "_blank")
               }
@@ -102,7 +102,7 @@ export const Navigation = () => {
                 </Link>
               ))}
               <Button
-                className="bg-[var(--pravdast-yellow)] text-[var(--pravdast-dark)] hover:bg-yellow-400 font-semibold w-full"
+                className="bg-[var(--pravdast-yellow)] text-[var(--pravdast-dark)] hover:bg-[#d4a426] font-semibold w-full"
                 onClick={() => {
                   window.open(
                     "https://form.typeform.com/to/GXLaGY98",

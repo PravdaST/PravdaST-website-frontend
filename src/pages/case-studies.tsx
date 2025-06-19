@@ -167,7 +167,7 @@ export default function CaseStudies() {
                         </blockquote>
 
                         <Button 
-                          className="bg-[var(--pravdast-yellow)] text-[var(--pravdast-dark)] hover:bg-yellow-400 font-semibold group"
+                          className="bg-[var(--pravdast-yellow)] text-[var(--pravdast-dark)] hover:bg-[#d4a426] font-semibold group"
                           onClick={() => window.open("https://form.typeform.com/to/GXLaGY98", "_blank")}
                         >
                           Искам подобни резултати
