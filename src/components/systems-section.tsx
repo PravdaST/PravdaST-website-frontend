@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Search, Users, Bot, Eye, Edit, Globe, Repeat, MessageCircle, Coins, Magnet, Filter, BarChart, Cog } from "lucide-react";
+import { Link } from "wouter";
 
 const systems = [
   {
@@ -13,6 +14,7 @@ const systems = [
     price: "от 1980 лв. / месец",
     period: "минимален период на договор – 3 месеца",
     icon: Search,
+    link: "/services/seo-struktor",
     features: [
       {
         icon: Eye,
@@ -39,6 +41,7 @@ const systems = [
     price: "от 1350 лв. / месец",
     period: "минимален период на договор – 3 месеца",
     icon: Users,
+    link: "/services/clientomat",
     features: [
       {
         icon: Repeat,
@@ -65,6 +68,7 @@ const systems = [
     price: "от 2250 лв. / месец",
     period: "минимален период на договор – 3 месеца",
     icon: Bot,
+    link: "/services/sales-engine",
     features: [
       {
         icon: Magnet,
@@ -190,12 +194,13 @@ export const SystemsSection = () => {
                           ))}
                         </div>
                         
-                        <Button 
-                          className="mt-8 bg-[var(--pravdast-yellow)] text-[var(--pravdast-dark)] hover:bg-yellow-400 font-semibold px-8 py-3"
-                          onClick={() => window.open("https://form.typeform.com/to/GXLaGY98", "_blank")}
-                        >
-                          Разгледай системата
-                        </Button>
+                        <Link href={activeSystem.link}>
+                          <Button 
+                            className="mt-8 bg-[var(--pravdast-yellow)] text-[var(--pravdast-dark)] hover:bg-yellow-400 font-semibold px-8 py-3"
+                          >
+                            Разгледай системата
+                          </Button>
+                        </Link>
                       </CardContent>
                     </Card>
                   </motion.div>
