@@ -90,8 +90,11 @@ User-agent: YandexBot
 Allow: /
 Crawl-delay: 3
 
-# XML Sitemaps
+# XML Sitemaps за Google Search Console
 Sitemap: ${this.baseUrl}/sitemap.xml
+Sitemap: ${this.baseUrl}/sitemap-index.xml
+Sitemap: ${this.baseUrl}/blog-sitemap.xml
+Sitemap: ${this.baseUrl}/services-sitemap.xml
 
 # Хост директива
 Host: ${this.baseUrl.replace('https://', '').replace('http://', '')}
@@ -100,6 +103,7 @@ Host: ${this.baseUrl.replace('https://', '').replace('http://', '')}
 Disallow: /admin/
 Disallow: /api/
 Disallow: /strapi-test
+Disallow: /seo-monitor
 
 # Allow important pages
 Allow: /
@@ -107,6 +111,7 @@ Allow: /services
 Allow: /case-studies
 Allow: /about
 Allow: /contact
+Allow: /blog
 
 # Crawl delay
 Crawl-delay: 1`;

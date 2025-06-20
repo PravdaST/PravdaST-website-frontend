@@ -28,5 +28,37 @@
   ],
   "categories": ["business", "productivity", "utilities"],
   "lang": "bg-BG",
-  "dir": "ltr"
+  "dir": "ltr",
+  "shortcuts": [
+    {
+      "name": "Услуги",
+      "short_name": "Услуги",
+      "description": "Преглед на бизнес инженеринг услуги",
+      "url": "/services",
+      "icons": [{ "src": "/favicon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Контакт",
+      "short_name": "Контакт", 
+      "description": "Свържете се с нас",
+      "url": "/contact",
+      "icons": [{ "src": "/favicon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Блог",
+      "short_name": "Блог",
+      "description": "Експертни статии за бизнес растеж",
+      "url": "/blog",
+      "icons": [{ "src": "/favicon-192.png", "sizes": "192x192" }]
+    }
+  ],
+  "share_target": {
+    "action": "/contact",
+    "method": "GET",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url"
+    }
+  }
 }

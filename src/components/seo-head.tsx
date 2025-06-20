@@ -100,6 +100,12 @@ export function SEOHead({ seo, pageSlug }: SEOHeadProps) {
     updateMetaTag('msapplication-TileImage', '/icon-512.png');
     updateMetaTag('msapplication-config', 'none');
 
+    // Google Search Console verification
+    const googleVerification = import.meta.env.VITE_GOOGLE_SITE_VERIFICATION;
+    if (googleVerification) {
+      updateMetaTag('google-site-verification', googleVerification);
+    }
+
     // Open Graph тагове
     updateMetaTag('og:title', ogTitle, true);
     updateMetaTag('og:description', ogDescription, true);
