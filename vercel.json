@@ -1,16 +1,5 @@
 {
   "buildCommand": "vite build",
   "outputDirectory": "dist",
-  "installCommand": "npm install",
-  "functions": {
-    "api/contacts.js": {
-      "runtime": "@vercel/node"
-    }
-  },
-  "rewrites": [
-    {
-      "source": "/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt|.*\\.).*)",
-      "destination": "/index.html"
-    }
-  ]
+  "installCommand": "npm install"
 }
