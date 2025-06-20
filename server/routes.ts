@@ -3,7 +3,8 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertContactSchema } from "@shared/schema";
 import { z } from "zod";
-import { SitemapGenerator } from "./lib/sitemap-generator"; // Assuming SitemapGenerator is in this path
+import { seoGenerator } from "./lib/seo-generator";
+
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Contact form submission
@@ -51,10 +52,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // XML Sitemap endpoint
   app.get("/sitemap.xml", async (req: Request, res: Response) => {
     try {
-      const generator = new SitemapGenerator();
-      generator.generateStaticPages();
-
-      const xmlContent = generator.generateXML();
+      const xmlContent = seoGenerator.generateSitemap();
 
       res.setHeader('Content-Type', 'application/xml');
       res.setHeader('Cache-Control', 'public, max-age=86400'); // Cache for 24 hours
@@ -68,8 +66,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Robots.txt endpoint
   app.get("/robots.txt", async (req: Request, res: Response) => {
     try {
-      const generator = new SitemapGenerator();
-      const robotsContent = generator.generateRobotsTxt();
+      const robotsContent = seoGenerator.generateRobotsTxt();
 
       res.setHeader('Content-Type', 'text/plain');
       res.setHeader('Cache-Control', 'public, max-age=86400'); // Cache for 24 hours
@@ -77,6 +74,32 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error('Robots.txt generation error:', error);
       res.status(500).send('Error generating robots.txt');
+    }
+  });
+
+  // Schema.org JSON-LD endpoint за организацията
+  app.get("/api/schema/organization", async (req: Request, res: Response) => {
+    try {
+      const schema = seoGenerator.generateOrganizationSchema();
+      res.setHeader('Content-Type', 'application/ld+json');
+      res.setHeader('Cache-Control', 'public, max-age=86400');
+      res.json(schema);
+    } catch (error) {
+      console.error('Schema generation error:', error);
+      res.status(500).json({ error: 'Error generating schema' });
+    }
+  });
+
+  // Schema.org JSON-LD endpoint за уеб сайта
+  app.get("/api/schema/website", async (req: Request, res: Response) => {
+    try {
+      const schema = seoGenerator.generateWebsiteSchema();
+      res.setHeader('Content-Type', 'application/ld+json');
+      res.setHeader('Cache-Control', 'public, max-age=86400');
+      res.json(schema);
+    } catch (error) {
+      console.error('Website schema generation error:', error);
+      res.status(500).json({ error: 'Error generating website schema' });
     }
   });
 
