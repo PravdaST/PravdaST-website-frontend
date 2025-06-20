@@ -10,7 +10,22 @@ const app = express();
 // Trust proxy for rate limiting
 app.set('trust proxy', 1);
 
-// Security middleware
+// Sitemap route ПРЕДИ security middleware
+app.get("/sitemap.xml", async (req, res) => {
+  try {
+    const { seoGenerator } = await import("./lib/seo-generator");
+    const xmlContent = seoGenerator.generateSitemap();
+    
+    res.setHeader('Content-Type', 'text/xml; charset=utf-8');
+    res.setHeader('Cache-Control', 'public, max-age=86400');
+    res.send(xmlContent);
+  } catch (error) {
+    console.error('Sitemap generation error:', error);
+    res.status(500).send('Error generating sitemap');
+  }
+});
+
+// Security middleware (след sitemap route)
 app.use(helmet({
   contentSecurityPolicy: {
     directives: {

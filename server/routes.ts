@@ -85,19 +85,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     res.json({ status: "ok", timestamp: new Date().toISOString() });
   });
 
-  // XML Sitemap endpoint
-  app.get("/sitemap.xml", async (req: Request, res: Response) => {
-    try {
-      const xmlContent = seoGenerator.generateSitemap();
-
-      res.setHeader('Content-Type', 'application/xml');
-      res.setHeader('Cache-Control', 'public, max-age=86400'); // Cache for 24 hours
-      res.send(xmlContent);
-    } catch (error) {
-      console.error('Sitemap generation error:', error);
-      res.status(500).send('Error generating sitemap');
-    }
-  });
+  // XML Sitemap endpoint премествен в index.ts преди security middleware
 
   // Robots.txt endpoint
   app.get("/robots.txt", async (req: Request, res: Response) => {
