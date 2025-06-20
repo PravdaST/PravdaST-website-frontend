@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { Link, useLocation } from "wouter";
 import { Menu, X } from "lucide-react";
+import { trackCTAClick } from "@/lib/analytics";
 
 export const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -59,9 +60,10 @@ export const Navigation = () => {
             ))}
             <Button
               className="bg-[var(--pravdast-yellow)] text-[var(--pravdast-dark)] hover:bg-[#d4a426] font-semibold"
-              onClick={() =>
-                window.open("https://form.typeform.com/to/GXLaGY98", "_blank")
-              }
+              onClick={() => {
+                trackCTAClick('nav_start_now', window.location.href);
+                window.open("https://form.typeform.com/to/GXLaGY98", "_blank");
+              }}
             >
               ЗАПОЧНЕТЕ СЕГА
             </Button>

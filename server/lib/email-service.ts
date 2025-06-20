@@ -154,8 +154,8 @@ ${data.message}
 
     try {
       const msg = {
-        to: 'contact@pravdast.agency',
-        from: 'contact@pravdast.agency', // Трябва да е верифициран в SendGrid
+        to: 'contact@pravdast.agency', // TO адрес - къде стигат съобщенията
+        from: 'website@pravdagency.eu', // FROM адрес - технически sender
         subject: `🎯 Ново запитване от ${data.name} - ${data.website}`,
         text: this.generateContactEmailText(data),
         html: this.generateContactEmailHTML(data),
@@ -165,8 +165,11 @@ ${data.message}
       await this.mailService.send(msg);
       console.log('Имейл изпратен успешно до contact@pravdast.agency');
       return true;
-    } catch (error) {
+    } catch (error: any) {
       console.error('Грешка при изпращане на имейл:', error);
+      if (error.response?.body?.errors) {
+        console.error('SendGrid грешки:', JSON.stringify(error.response.body.errors, null, 2));
+      }
       return false;
     }
   }

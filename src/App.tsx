@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ScrollToTop } from "@/components/scroll-to-top";
 import { SpeedInsights } from "@vercel/speed-insights/react";
+import { GoogleAnalytics } from "@/components/google-analytics";
 import { lazy } from "react";
 import Home from "@/pages/home";
 import Services from "@/pages/services";
@@ -41,6 +42,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
+        <GoogleAnalytics trackingId={import.meta.env.VITE_GA_TRACKING_ID || "G-XXXXXXXXXX"} />
         <ScrollToTop />
         <Toaster />
         <Router />

@@ -10,6 +10,7 @@ import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
+import { trackFormSubmission, trackConversion, trackLead } from "@/lib/analytics";
 import { Mail, Phone, MapPin, Clock } from "lucide-react";
 import { z } from "zod";
 
@@ -41,6 +42,11 @@ export default function Contact() {
       return await apiRequest("/api/contacts", "POST", data);
     },
     onSuccess: () => {
+      // Analytics проследяване на успешна форма
+      trackFormSubmission('contact_form', true);
+      trackConversion('contact_lead');
+      trackLead('website_contact_form', 100);
+      
       toast({
         title: "Успешно изпратено!",
         description: "Ще се свържем с вас в най-скоро време.",
@@ -50,6 +56,9 @@ export default function Contact() {
       queryClient.invalidateQueries({ queryKey: ["/api/contacts"] });
     },
     onError: (error: any) => {
+      // Analytics проследяване на неуспешна форма
+      trackFormSubmission('contact_form', false);
+      
       toast({
         title: "Грешка",
         description: "Възникна проблем при изпращането. Моля, опитайте отново.",
