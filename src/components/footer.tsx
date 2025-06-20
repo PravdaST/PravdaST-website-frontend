@@ -11,6 +11,7 @@ export const Footer = () => {
     company: [
       { href: "/about", label: "За нас" },
       { href: "/case-studies", label: "Резултати" },
+      { href: "/faq", label: "Въпроси" },
       { href: "/contact", label: "Контакти" }
     ],
     contact: [

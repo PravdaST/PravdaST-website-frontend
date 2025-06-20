@@ -117,33 +117,59 @@ Allow: /blog
 Crawl-delay: 1`;
   }
 
-  // Генерира JSON-LD schema за организация
+  // Генерира JSON-LD schema за организация с локален бизнес markup
   generateOrganizationSchema(): object {
     return {
       "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "Pravda ST",
-      "description": "Business Engineering консултантска компания за предсказуем растеж и системен подход към бизнеса в България",
+      "@type": ["Organization", "LocalBusiness", "ProfessionalService"],
+      "name": "Pravdast",
+      "alternateName": "Pravda Agency",
+      "description": "Бизнес инженеринг платформа за предсказуем растеж на B2B компании в България. Специализирани услуги: SEO Struktor™, Clientomat™, Sales Engine™.",
       "url": this.baseUrl,
       "logo": {
         "@type": "ImageObject",
-        "url": `${this.baseUrl}/pravda-st-logo.png`
+        "url": `${this.baseUrl}/favicon-192x192.png`,
+        "width": 192,
+        "height": 192
       },
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "telephone": "+359-XXX-XXX-XXX",
-        "contactType": "customer service",
-        "availableLanguage": "Bulgarian"
-      },
+      "image": `${this.baseUrl}/og-images/home.svg`,
+      "foundingDate": "2024",
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "telephone": "+359-879-282-299",
+          "contactType": "customer service",
+          "email": "contact@pravdast.agency",
+          "availableLanguage": ["Bulgarian", "English"],
+          "areaServed": "BG"
+        }
+      ],
       "address": {
         "@type": "PostalAddress",
-        "addressCountry": "BG",
-        "addressRegion": "София",
-        "addressLocality": "София"
+        "streetAddress": "ул. Дебър №58",
+        "addressLocality": "Варна",
+        "postalCode": "9000",
+        "addressRegion": "Варна",
+        "addressCountry": "BG"
       },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "43.2141",
+        "longitude": "27.9147"
+      },
+      "serviceArea": {
+        "@type": "Country",
+        "name": "Bulgaria"
+      },
+      "priceRange": "$$",
+      "paymentAccepted": ["Cash", "Credit Card", "Bank Transfer"],
+      "currenciesAccepted": "BGN",
+      "openingHours": "Mo-Fr 09:00-18:00",
       "sameAs": [
-        "https://www.linkedin.com/company/pravda-st",
-        "https://www.facebook.com/pravdast"
+        "https://www.facebook.com/pravdagency",
+        "https://www.youtube.com/@pravdagency",
+        "https://www.instagram.com/pravdagency",
+        "https://www.linkedin.com/company/pravdagency"
       ],
       "offers": [
         {

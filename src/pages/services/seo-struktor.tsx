@@ -2,6 +2,7 @@ import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Breadcrumbs } from "@/components/breadcrumbs";
 import { motion } from "framer-motion";
 import { Search, Eye, Edit, Globe, ArrowRight, CheckCircle } from "lucide-react";
 
@@ -56,6 +57,11 @@ export default function SeoStruktor() {
   return (
     <div className="min-h-screen">
       <Navigation />
+      
+      {/* Breadcrumbs */}
+      <div className="container mx-auto px-6 pt-24">
+        <Breadcrumbs />
+      </div>
       
       {/* Hero Section */}
       <section className="pt-24 pb-16 bg-gradient-to-br from-[var(--pravdast-dark)] to-[var(--pravdast-dark-gray)]">

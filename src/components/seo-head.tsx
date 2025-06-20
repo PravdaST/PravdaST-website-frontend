@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { SEOData, defaultSEOConfig } from "../../shared/seo-types";
+import { ogImageGenerator } from "@/lib/og-generator";
 
 interface SEOHeadProps {
   seo?: Partial<SEOData>;
@@ -13,7 +14,8 @@ export function SEOHead({ seo, pageSlug }: SEOHeadProps) {
   const canonical = seo?.canonical || `${defaultSEOConfig.siteUrl}${pageSlug ? `/${pageSlug}` : ''}`;
   const ogTitle = seo?.ogTitle || title;
   const ogDescription = seo?.ogDescription || description;
-  const ogImage = seo?.ogImage || `${defaultSEOConfig.siteUrl}${defaultSEOConfig.defaultImage}`;
+  // Генериране на динамично OG изображение за страницата
+  const ogImage = seo?.ogImage || ogImageGenerator.getStaticOGImageUrl(pageSlug || '/');
   const ogType = seo?.ogType || 'website';
   const twitterCard = seo?.twitterCard || 'summary_large_image';
   const twitterTitle = seo?.twitterTitle || ogTitle;
