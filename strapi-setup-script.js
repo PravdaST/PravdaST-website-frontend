@@ -1,7 +1,7 @@
 // Script за автоматично създаване на Content Types в локален Strapi
 // Изпълни с: node strapi-setup-script.js
 
-const STRAPI_URL = 'http://localhost:1337';
+const STRAPI_URL = 'http://127.0.0.1:1337';
 const API_TOKEN = '076d680706abf17d1baeb8c86597c6f006aa82537b94726eb219d12caa056b729554866dc5408827d6d027a8bc7330a125788f8048574eaa38daea1a586ecf5f728bb6d294509d68c26b3c8574811c7c632b32d90096d2250d55e1da7fbcb1f75f92d4ba6b07e3121078003fa7cfe982b79965ddb074c001591714ed7057ea7b';
 
 async function makeRequest(endpoint, method = 'GET', data = null) {

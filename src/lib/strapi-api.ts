@@ -48,7 +48,7 @@ class StrapiAPI {
       // Frontend environment
       this.baseURL = isProduction 
         ? import.meta.env.VITE_STRAPI_API_URL || 'https://talented-oasis-899b2552b2.strapiapp.com'
-        : 'http://localhost:1337';
+        : 'http://127.0.0.1:1337';
       this.apiToken = isProduction
         ? import.meta.env.VITE_STRAPI_API_TOKEN || ''
         : import.meta.env.VITE_STRAPI_LOCAL_API_TOKEN || '';
@@ -56,7 +56,7 @@ class StrapiAPI {
       // Backend environment
       this.baseURL = isProduction
         ? process.env.STRAPI_API_URL || 'https://talented-oasis-899b2552b2.strapiapp.com'
-        : 'http://localhost:1337';
+        : 'http://127.0.0.1:1337';
       this.apiToken = isProduction
         ? process.env.STRAPI_API_TOKEN || ''
         : process.env.STRAPI_LOCAL_API_TOKEN || '';
