@@ -4,6 +4,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ScrollToTop } from "@/components/scroll-to-top";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 import { lazy } from "react";
 import Home from "@/pages/home";
 import Services from "@/pages/services";
@@ -39,6 +40,7 @@ function App() {
         <ScrollToTop />
         <Toaster />
         <Router />
+        <SpeedInsights />
       </TooltipProvider>
     </QueryClientProvider>
   );
