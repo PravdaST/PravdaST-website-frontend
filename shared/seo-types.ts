@@ -47,7 +47,7 @@ export type BlogPost = z.infer<typeof blogPostSchema>;
 // SEO данни за всички страници
 export const defaultSEOConfig = {
   siteName: "Pravdast",
-  siteUrl: "https://pravdast.com",
+  siteUrl: "https://www.pravdagency.eu",
   defaultTitle: "Pravdast - Business Engineering Platform",
   defaultDescription: "Преобразуваме хаоса в предсказуем растеж. Инженерни системи за B2B бизнес развитие.",
   defaultImage: "/og-image.png",

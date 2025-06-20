@@ -42,7 +42,7 @@ app.use(helmet({
 
 app.use(cors({
   origin: process.env.NODE_ENV === 'production' 
-    ? ['https://pravdast.vercel.app', 'https://www.pravdast.vercel.app']
+    ? ['https://www.pravdagency.eu', 'https://pravdagency.eu', 'https://pravdast.vercel.app']
     : ['http://localhost:5000', 'http://127.0.0.1:5000', 'http://localhost:1337', 'http://127.0.0.1:1337'],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],

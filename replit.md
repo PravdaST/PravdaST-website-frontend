@@ -120,6 +120,9 @@ Changelog:
 - June 20, 2025. Implemented comprehensive security system with rate limiting (5 contacts/hour, 100 requests/15min), CORS protection, helmet security headers, XSS protection, and input sanitization middleware
 - June 20, 2025. Created custom 404 error page with brand-consistent design, animations, and helpful navigation links for better user experience
 - June 20, 2025. Integrated Vercel Speed Insights for performance monitoring and Core Web Vitals tracking
+- June 20, 2025. Fixed sitemap.xml XML parsing errors by removing CSP headers and positioning sitemap route before security middleware
+- June 20, 2025. Updated all URLs from pravdast.vercel.app to production domain https://www.pravdagency.eu for proper deployment configuration
+- June 20, 2025. Enhanced CORS settings to include production domain (www.pravdagency.eu) for secure cross-origin requests
 
 ## User Preferences
 

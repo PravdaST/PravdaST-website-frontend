@@ -2,7 +2,7 @@
 export class SEOGenerator {
   private baseUrl: string;
   
-  constructor(baseUrl: string = 'https://pravdast.vercel.app') {
+  constructor(baseUrl: string = 'https://www.pravdagency.eu') {
     this.baseUrl = baseUrl;
   }
 
