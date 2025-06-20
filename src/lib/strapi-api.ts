@@ -41,14 +41,26 @@ class StrapiAPI {
   private apiToken: string;
 
   constructor() {
-    // For development, use process.env on backend or import.meta.env on frontend
-    this.baseURL = typeof window !== 'undefined' 
-      ? import.meta.env.VITE_STRAPI_API_URL || 'https://talented-oasis-899b2552b2.strapiapp.com'
-      : process.env.STRAPI_API_URL || 'https://talented-oasis-899b2552b2.strapiapp.com';
+    // Използваме локален Strapi за development, Cloud за production
+    const isProduction = process.env.NODE_ENV === 'production';
     
-    this.apiToken = typeof window !== 'undefined'
-      ? import.meta.env.VITE_STRAPI_API_TOKEN || ''
-      : process.env.STRAPI_API_TOKEN || '';
+    if (typeof window !== 'undefined') {
+      // Frontend environment
+      this.baseURL = isProduction 
+        ? import.meta.env.VITE_STRAPI_API_URL || 'https://talented-oasis-899b2552b2.strapiapp.com'
+        : 'http://localhost:1337';
+      this.apiToken = isProduction
+        ? import.meta.env.VITE_STRAPI_API_TOKEN || ''
+        : import.meta.env.VITE_STRAPI_LOCAL_API_TOKEN || '';
+    } else {
+      // Backend environment
+      this.baseURL = isProduction
+        ? process.env.STRAPI_API_URL || 'https://talented-oasis-899b2552b2.strapiapp.com'
+        : 'http://localhost:1337';
+      this.apiToken = isProduction
+        ? process.env.STRAPI_API_TOKEN || ''
+        : process.env.STRAPI_LOCAL_API_TOKEN || '';
+    }
   }
 
   private async request<T>(endpoint: string): Promise<T> {

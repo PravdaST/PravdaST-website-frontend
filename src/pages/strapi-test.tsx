@@ -90,7 +90,7 @@ export default function StrapiTest() {
               {connectionStatus === 'connected' && (
                 <div className="space-y-4">
                   <div className="text-sm text-gray-400">
-                    <strong>Strapi URL:</strong> https://talented-oasis-899b2552b2.strapiapp.com
+                    <strong>Strapi URL:</strong> {process.env.NODE_ENV === 'production' ? 'Cloud Strapi' : 'http://localhost:1337 (Local)'}
                   </div>
                   
                   <div className="grid gap-4">
