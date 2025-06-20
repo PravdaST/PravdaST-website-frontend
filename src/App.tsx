@@ -66,7 +66,6 @@ function App() {
         <ScrollToTop />
         <Toaster />
         <Router />
-        <MobileBottomNavigation />
         <AccessibilityPanel />
         <SpeedInsights />
       </TooltipProvider>
