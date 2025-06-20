@@ -8,6 +8,41 @@ import { sanitizeInput, validateContentType } from "./middleware/security";
 
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Списък с валидни routes
+  const validRoutes = [
+    '/',
+    '/services',
+    '/services/seo-struktor',
+    '/services/clientomat', 
+    '/services/sales-engine',
+    '/case-studies',
+    '/about',
+    '/contact',
+    '/strapi-test'
+  ];
+
+  // Middleware за проверка на валидни routes - трябва да е ПРЕДИ Vite middleware
+  app.use((req, res, next) => {
+    // Пропускаме API заявки и статични файлове
+    if (req.path.startsWith('/api/') || 
+        req.path.startsWith('/src/') ||
+        req.path.startsWith('/node_modules/') ||
+        req.path.startsWith('/@') ||
+        req.path.includes('.')) {
+      return next();
+    }
+
+    // Проверяваме дали е валиден route
+    const isValidRoute = validRoutes.includes(req.path);
+    
+    // Ако не е валиден route, задаваме 404 статус но позволяваме на React да се зареди
+    if (!isValidRoute) {
+      res.status(404);
+    }
+    
+    next();
+  });
+
   // Contact form submission with security middleware
   app.post("/api/contacts", sanitizeInput, validateContentType, async (req, res) => {
     try {
