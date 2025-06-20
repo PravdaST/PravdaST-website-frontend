@@ -1,10 +1,62 @@
 import express, { type Request, Response, NextFunction } from "express";
+import rateLimit from "express-rate-limit";
+import helmet from "helmet";
+import cors from "cors";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 
 const app = express();
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+
+// Trust proxy for rate limiting
+app.set('trust proxy', 1);
+
+// Security middleware
+app.use(helmet({
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
+      fontSrc: ["'self'", "https://fonts.gstatic.com"],
+      imgSrc: ["'self'", "data:", "https:"],
+      scriptSrc: ["'self'", "'unsafe-inline'"],
+      connectSrc: ["'self'", "https:", "http://localhost:*", "http://127.0.0.1:*"],
+    },
+  },
+  crossOriginEmbedderPolicy: false,
+}));
+
+app.use(cors({
+  origin: process.env.NODE_ENV === 'production' 
+    ? ['https://pravdast.vercel.app', 'https://www.pravdast.vercel.app']
+    : ['http://localhost:5000', 'http://127.0.0.1:5000', 'http://localhost:1337', 'http://127.0.0.1:1337'],
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+}));
+
+// Rate limiting
+const generalLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 минути
+  max: 100, // 100 заявки на IP
+  message: { error: "Твърде много заявки. Опитайте отново след 15 минути." },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
+const contactLimiter = rateLimit({
+  windowMs: 60 * 60 * 1000, // 1 час
+  max: 5, // 5 съобщения на час
+  message: { error: "Твърде много съобщения. Опитайте отново след 1 час." },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
+app.use(generalLimiter);
+app.use('/api/contacts', contactLimiter);
+
+// Body parsing with limits
+app.use(express.json({ limit: '10mb' }));
+app.use(express.urlencoded({ extended: false, limit: '10mb' }));
 
 app.use((req, res, next) => {
   const start = Date.now();

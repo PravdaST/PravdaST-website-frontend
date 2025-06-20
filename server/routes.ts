@@ -4,11 +4,12 @@ import { storage } from "./storage";
 import { insertContactSchema } from "@shared/schema";
 import { z } from "zod";
 import { seoGenerator } from "./lib/seo-generator";
+import { sanitizeInput, validateContentType } from "./middleware/security";
 
 
 export async function registerRoutes(app: Express): Promise<Server> {
-  // Contact form submission
-  app.post("/api/contacts", async (req, res) => {
+  // Contact form submission with security middleware
+  app.post("/api/contacts", sanitizeInput, validateContentType, async (req, res) => {
     try {
       const validatedData = insertContactSchema.parse(req.body);
       const contact = await storage.createContact(validatedData);
