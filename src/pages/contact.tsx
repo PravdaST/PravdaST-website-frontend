@@ -16,6 +16,7 @@ import { z } from "zod";
 const contactSchema = z.object({
   name: z.string().min(2, "Името трябва да съдържа поне 2 символа"),
   email: z.string().email("Невалиден имейл адрес"),
+  website: z.string().url("Моля въведете валиден URL (напр. https://example.com)"),
   company: z.string().optional(),
   message: z.string().min(10, "Съобщението трябва да съдържа поне 10 символа")
 });
@@ -26,6 +27,7 @@ export default function Contact() {
   const [formData, setFormData] = useState<ContactFormData>({
     name: "",
     email: "",
+    website: "",
     company: "",
     message: ""
   });
@@ -43,7 +45,7 @@ export default function Contact() {
         title: "Успешно изпратено!",
         description: "Ще се свържем с вас в най-скоро време.",
       });
-      setFormData({ name: "", email: "", company: "", message: "" });
+      setFormData({ name: "", email: "", website: "", company: "", message: "" });
       setErrors({});
       queryClient.invalidateQueries({ queryKey: ["/api/contacts"] });
     },
@@ -87,9 +89,9 @@ export default function Contact() {
     {
       icon: Mail,
       title: "Имейл",
-      info: "contact@pravda.agency",
+      info: "contact@pravdast.agency",
       description: "Отговаряме в рамките на 24 часа",
-      link: "mailto:contact@pravda.agency"
+      link: "mailto:contact@pravdast.agency"
     },
     {
       icon: Phone,
@@ -192,6 +194,23 @@ export default function Contact() {
                         />
                         {errors.email && (
                           <p className="text-red-400 text-sm mt-1">{errors.email}</p>
+                        )}
+                      </div>
+
+                      <div>
+                        <Label htmlFor="website" className="text-sm font-medium">
+                          Сайт *
+                        </Label>
+                        <Input
+                          id="website"
+                          type="url"
+                          value={formData.website}
+                          onChange={(e) => handleInputChange("website", e.target.value)}
+                          className="mt-1 bg-[var(--pravdast-dark)] border-[var(--pravdast-medium-gray)] text-white"
+                          placeholder="https://вашия-сайт.com"
+                        />
+                        {errors.website && (
+                          <p className="text-red-400 text-sm mt-1">{errors.website}</p>
                         )}
                       </div>
 

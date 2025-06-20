@@ -34,7 +34,7 @@ export const pageSEOData: Record<string, Partial<SEOData>> = {
       "contactPoint": {
         "@type": "ContactPoint",
         "telephone": "+359 879 282 299",
-        "email": "contact@pravda.agency",
+        "email": "contact@pravdast.agency",
         "contactType": "customer service",
         "availableLanguage": "Bulgarian"
       },
@@ -334,7 +334,7 @@ export const pageSEOData: Record<string, Partial<SEOData>> = {
         "contactPoint": {
           "@type": "ContactPoint",
           "telephone": "+359 879 282 299",
-          "email": "contact@pravda.agency",
+          "email": "contact@pravdast.agency",
           "contactType": "customer support",
           "availableLanguage": "Bulgarian",
           "areaServed": "BG"

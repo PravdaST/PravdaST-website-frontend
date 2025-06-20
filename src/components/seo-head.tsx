@@ -133,7 +133,7 @@ export function SEOHead({ seo, pageSlug }: SEOHeadProps) {
         "contactPoint": {
           "@type": "ContactPoint",
           "telephone": "+359 879 282 299",
-          "email": "contact@pravda.agency",
+          "email": "contact@pravdast.agency",
           "contactType": "Customer Service",
           "areaServed": "BG",
           "availableLanguage": "Bulgarian"

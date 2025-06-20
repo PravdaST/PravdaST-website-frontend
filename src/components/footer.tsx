@@ -14,7 +14,7 @@ export const Footer = () => {
       { href: "/contact", label: "Контакти" }
     ],
     contact: [
-      { icon: Mail, info: "contact@pravda.agency" },
+      { icon: Mail, info: "contact@pravdast.agency" },
       { icon: Phone, info: "+359 879 282 299" },
       { icon: MapPin, info: "гр.Варна ул. Дебър №58" }
     ]

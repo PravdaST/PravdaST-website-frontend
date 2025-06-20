@@ -128,6 +128,9 @@ Changelog:
 - June 20, 2025. Created comprehensive robots.txt with bot-specific crawl delays and strategic allow/disallow rules for optimal indexing
 - June 20, 2025. Integrated real Pravda Agency contact data: office in Varna (ул. Дебър №58), contact@pravda.agency, +359 879 282 299, Viber chat, and social media links (Facebook, YouTube, Instagram, LinkedIn)
 - June 20, 2025. Updated all SEO structured data, Footer component, and Contact page with authentic business information for production deployment
+- June 20, 2025. Added mandatory website field to contact form and updated all email addresses to contact@pravdast.agency throughout the system
+- June 20, 2025. Implemented SendGrid email service for automatic contact form notifications with beautiful HTML/text formatting sent to contact@pravdast.agency
+- June 20, 2025. Updated database schema to include website field, enhanced contact form validation, and created professional email templates for lead notifications
 
 ## User Preferences
 

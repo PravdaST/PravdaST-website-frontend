@@ -71,7 +71,7 @@ export const defaultSEOConfig = {
   // Реални контактни данни Pravda Agency
   contactInfo: {
     address: "гр.Варна ул. Дебър №58",
-    email: "contact@pravda.agency",
+    email: "contact@pravdast.agency",
     phone: "+359 879 282 299",
     viber: "+359 879 282 299",
     facebook: "https://www.facebook.com/pravdast.agency/",

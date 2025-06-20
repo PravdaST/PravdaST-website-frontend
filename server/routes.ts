@@ -5,6 +5,7 @@ import { insertContactSchema } from "@shared/schema";
 import { z } from "zod";
 import { seoGenerator } from "./lib/seo-generator";
 import { sanitizeInput, validateContentType } from "./middleware/security";
+import { emailService } from "./lib/email-service";
 
 
 export async function registerRoutes(app: Express): Promise<Server> {
@@ -48,6 +49,19 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const validatedData = insertContactSchema.parse(req.body);
       const contact = await storage.createContact(validatedData);
+      
+      // Изпращане на имейл до contact@pravdast.agency
+      const emailData = {
+        ...validatedData,
+        company: validatedData.company || undefined
+      };
+      const emailSent = await emailService.sendContactNotification(emailData);
+      
+      if (emailSent) {
+        console.log('Имейл изпратен успешно до contact@pravdast.agency');
+      } else {
+        console.log('Имейлът не беше изпратен, но контактът е запазен в базата данни');
+      }
 
       res.json({ 
         success: true, 
