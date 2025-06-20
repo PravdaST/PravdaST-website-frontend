@@ -14,6 +14,12 @@ export function SEOHead({ seo, pageSlug }: SEOHeadProps) {
   const ogTitle = seo?.ogTitle || title;
   const ogDescription = seo?.ogDescription || description;
   const ogImage = seo?.ogImage || `${defaultSEOConfig.siteUrl}${defaultSEOConfig.defaultImage}`;
+  const ogType = seo?.ogType || 'website';
+  const twitterCard = seo?.twitterCard || 'summary_large_image';
+  const twitterTitle = seo?.twitterTitle || ogTitle;
+  const twitterDescription = seo?.twitterDescription || ogDescription;
+  const twitterImage = seo?.twitterImage || ogImage;
+  const robots = seo?.robots || 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1';
   const noIndex = seo?.noIndex || false;
 
   useEffect(() => {
@@ -43,7 +49,7 @@ export function SEOHead({ seo, pageSlug }: SEOHeadProps) {
     if (noIndex) {
       updateMetaTag('robots', 'noindex, nofollow');
     } else {
-      updateMetaTag('robots', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1');
+      updateMetaTag('robots', robots);
     }
     
     // Допълнителни SEO тагове
@@ -71,16 +77,16 @@ export function SEOHead({ seo, pageSlug }: SEOHeadProps) {
     updateMetaTag('og:description', ogDescription, true);
     updateMetaTag('og:image', ogImage, true);
     updateMetaTag('og:url', canonical, true);
-    updateMetaTag('og:type', 'website', true);
+    updateMetaTag('og:type', ogType, true);
     updateMetaTag('og:site_name', defaultSEOConfig.siteName, true);
     updateMetaTag('og:locale', defaultSEOConfig.locale, true);
 
     // Twitter Card тагове
-    updateMetaTag('twitter:card', 'summary_large_image');
+    updateMetaTag('twitter:card', twitterCard);
     updateMetaTag('twitter:site', defaultSEOConfig.twitterHandle);
-    updateMetaTag('twitter:title', ogTitle);
-    updateMetaTag('twitter:description', ogDescription);
-    updateMetaTag('twitter:image', ogImage);
+    updateMetaTag('twitter:title', twitterTitle);
+    updateMetaTag('twitter:description', twitterDescription);
+    updateMetaTag('twitter:image', twitterImage);
 
     // Canonical URL
     let canonicalLink = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
@@ -95,130 +101,74 @@ export function SEOHead({ seo, pageSlug }: SEOHeadProps) {
     const existingSchemas = document.querySelectorAll('script[type="application/ld+json"]');
     existingSchemas.forEach(script => script.remove());
 
-    // Основна организация schema
-    const organizationSchema = {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": defaultSEOConfig.siteName,
-      "url": defaultSEOConfig.siteUrl,
-      "logo": {
-        "@type": "ImageObject",
-        "url": `${defaultSEOConfig.siteUrl}/logo.png`,
-        "width": 300,
-        "height": 100
-      },
-      "description": description,
-      "foundingDate": "2024",
-      "address": {
-        "@type": "PostalAddress",
-        "addressCountry": "BG",
-        "addressLocality": "София"
-      },
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "telephone": "+359-xxx-xxx-xxx",
-        "contactType": "Customer Service",
-        "areaServed": "BG",
-        "availableLanguage": "Bulgarian"
-      },
-      "sameAs": [
-        "https://www.linkedin.com/company/pravdast",
-        "https://github.com/pravdast"
-      ],
-      "hasOfferCatalog": {
-        "@type": "OfferCatalog",
-        "name": "B2B Business Growth Services",
-        "itemListElement": [
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "SEO Struktor™",
-              "description": "Професионална SEO система за органичен растеж"
-            }
-          },
-          {
-            "@type": "Offer", 
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Sales Engine™",
-              "description": "Автоматизирана продажбена система"
-            }
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service", 
-              "name": "Clientomat™",
-              "description": "Система за привличане и задържане на клиенти"
-            }
-          }
-        ]
-      }
-    };
-
-    // Website schema
-    const websiteSchema = {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": defaultSEOConfig.siteName,
-      "url": defaultSEOConfig.siteUrl,
-      "description": description,
-      "inLanguage": "bg-BG",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": {
-          "@type": "EntryPoint",
-          "urlTemplate": `${defaultSEOConfig.siteUrl}/search?q={search_term_string}`
-        },
-        "query-input": "required name=search_term_string"
-      }
-    };
-
-    // Специфична schema за услугите
-    let serviceSchema = null;
-    if (pageSlug?.includes('services/')) {
-      const serviceName = pageSlug.split('/')[1];
-      const serviceNames = {
-        'seo-struktor': 'SEO Struktor™',
-        'sales-engine': 'Sales Engine™', 
-        'clientomat': 'Clientomat™'
-      };
-      
-      if (serviceNames[serviceName as keyof typeof serviceNames]) {
-        serviceSchema = {
-          "@context": "https://schema.org",
-          "@type": "Service",
-          "name": serviceNames[serviceName as keyof typeof serviceNames],
-          "description": description,
-          "provider": {
-            "@type": "Organization",
-            "name": defaultSEOConfig.siteName,
-            "url": defaultSEOConfig.siteUrl
-          },
-          "areaServed": {
-            "@type": "Country",
-            "name": "Bulgaria"
-          },
-          "serviceType": "Business Consulting",
-          "category": "B2B Growth Systems"
-        };
-      }
-    }
-
-    // Добавяне на всички schemas
-    const schemas = [organizationSchema, websiteSchema];
-    if (serviceSchema) schemas.push(serviceSchema);
-
-    schemas.forEach((schema, index) => {
+    // Използване на персонализирани структурирани данни ако са налични
+    if (seo?.structuredData) {
       const script = document.createElement('script');
       script.type = 'application/ld+json';
-      script.textContent = JSON.stringify(schema);
-      script.setAttribute('data-schema-type', schema['@type']);
+      script.textContent = JSON.stringify(seo.structuredData);
+      script.setAttribute('data-schema-type', 'custom');
       document.head.appendChild(script);
-    });
+    } else {
+      // Основна организация schema като fallback
+      const organizationSchema = {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": defaultSEOConfig.siteName,
+        "url": defaultSEOConfig.siteUrl,
+        "logo": {
+          "@type": "ImageObject",
+          "url": `${defaultSEOConfig.siteUrl}/logo.png`,
+          "width": 300,
+          "height": 100
+        },
+        "description": description,
+        "foundingDate": "2020",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "BG",
+          "addressLocality": "София"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "Customer Service",
+          "areaServed": "BG",
+          "availableLanguage": "Bulgarian"
+        },
+        "sameAs": [
+          "https://www.linkedin.com/company/pravdast",
+          "https://www.facebook.com/pravdast"
+        ]
+      };
 
-  }, [title, description, keywords, canonical, ogTitle, ogDescription, ogImage, noIndex]);
+      // Website schema
+      const websiteSchema = {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": defaultSEOConfig.siteName,
+        "url": defaultSEOConfig.siteUrl,
+        "description": description,
+        "inLanguage": "bg-BG",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": `${defaultSEOConfig.siteUrl}/search?q={search_term_string}`
+          },
+          "query-input": "required name=search_term_string"
+        }
+      };
+
+      // Добавяне на основните schemas
+      [organizationSchema, websiteSchema].forEach((schema, index) => {
+        const script = document.createElement('script');
+        script.type = 'application/ld+json';
+        script.textContent = JSON.stringify(schema);
+        script.setAttribute('data-schema-type', schema['@type']);
+        document.head.appendChild(script);
+      });
+    }
+
+  }, [title, description, keywords, canonical, ogTitle, ogDescription, ogImage, ogType, twitterCard, twitterTitle, twitterDescription, twitterImage, robots, noIndex, seo?.structuredData]);
 
   return null; // Този компонент не рендира нищо визуално
 }

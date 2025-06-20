@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-// Schema за SEO данни на страница
+// Разширена SEO схема за безупречна Google оптимизация
 export const seoDataSchema = z.object({
   title: z.string().min(1).max(60),
   description: z.string().min(1).max(160),
@@ -9,7 +9,22 @@ export const seoDataSchema = z.object({
   ogTitle: z.string().optional(),
   ogDescription: z.string().optional(),
   ogImage: z.string().url().optional(),
+  ogType: z.string().optional(),
+  twitterCard: z.string().optional(),
+  twitterTitle: z.string().optional(),
+  twitterDescription: z.string().optional(),
+  twitterImage: z.string().url().optional(),
+  robots: z.string().optional(),
+  structuredData: z.any().optional(),
   noIndex: z.boolean().optional(),
+  author: z.string().optional(),
+  publishedTime: z.string().optional(),
+  modifiedTime: z.string().optional(),
+  locale: z.string().optional(),
+  alternateUrls: z.array(z.object({
+    hreflang: z.string(),
+    href: z.string().url()
+  })).optional(),
 });
 
 // Schema за страница със SEO данни

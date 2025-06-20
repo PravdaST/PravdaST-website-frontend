@@ -6,31 +6,45 @@ export class SEOGenerator {
     this.baseUrl = baseUrl;
   }
 
-  // Генерира XML sitemap
+  // Генерира Google-оптимизиран XML sitemap
   generateSitemap(): string {
     const pages = [
-      { url: '/', priority: '1.0', changefreq: 'weekly' },
-      { url: '/services', priority: '0.9', changefreq: 'weekly' },
-      { url: '/services/seo-struktor', priority: '0.8', changefreq: 'monthly' },
-      { url: '/services/clientomat', priority: '0.8', changefreq: 'monthly' },
-      { url: '/services/sales-engine', priority: '0.8', changefreq: 'monthly' },
-      { url: '/case-studies', priority: '0.7', changefreq: 'monthly' },
-      { url: '/about', priority: '0.6', changefreq: 'monthly' },
-      { url: '/contact', priority: '0.8', changefreq: 'monthly' }
+      // Главна страница - най-висок приоритет
+      { url: '/', priority: '1.0', changefreq: 'weekly', lastmod: '2025-06-20' },
+      
+      // Услуги - висок приоритет за конверсии
+      { url: '/services', priority: '0.9', changefreq: 'weekly', lastmod: '2025-06-20' },
+      { url: '/services/seo-struktor', priority: '0.9', changefreq: 'monthly', lastmod: '2025-06-20' },
+      { url: '/services/sales-engine', priority: '0.9', changefreq: 'monthly', lastmod: '2025-06-20' },
+      { url: '/services/clientomat', priority: '0.9', changefreq: 'monthly', lastmod: '2025-06-20' },
+      
+      // Контакти - висок приоритет за lead generation
+      { url: '/contact', priority: '0.8', changefreq: 'monthly', lastmod: '2025-06-20' },
+      
+      // Казуси - доказателства за резултати
+      { url: '/case-studies', priority: '0.7', changefreq: 'monthly', lastmod: '2025-06-20' },
+      
+      // За нас - брандинг и доверие
+      { url: '/about', priority: '0.6', changefreq: 'monthly', lastmod: '2025-06-20' }
     ];
 
-    const currentDate = new Date().toISOString().split('T')[0];
-
+    // XML sitemap с Google изисквания
     let sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`;
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:news="http://www.google.com/schemas/sitemap-news/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">`;
 
     pages.forEach(page => {
       sitemap += `
   <url>
     <loc>${this.baseUrl}${page.url}</loc>
-    <lastmod>${currentDate}</lastmod>
+    <lastmod>${page.lastmod}</lastmod>
     <changefreq>${page.changefreq}</changefreq>
     <priority>${page.priority}</priority>
+    <mobile:mobile/>
   </url>`;
     });
 
@@ -40,13 +54,47 @@ export class SEOGenerator {
     return sitemap;
   }
 
-  // Генерира robots.txt
+  // Генерира Google-оптимизиран robots.txt
   generateRobotsTxt(): string {
-    return `User-agent: *
-Allow: /
+    return `# Robots.txt за Pravdast Business Engineering Platform
+# Генериран автоматично на ${new Date().toISOString().split('T')[0]}
 
-# Sitemap
+# Разрешаване на всички бот агенти за основното съдържание
+User-agent: *
+Allow: /
+Allow: /services/
+Allow: /case-studies
+Allow: /about
+Allow: /contact
+
+# Блокиране на административни файлове
+Disallow: /admin/
+Disallow: /api/
+Disallow: /.well-known/
+Disallow: /private/
+Disallow: /temp/
+Disallow: /node_modules/
+Disallow: /*.json$
+Disallow: /*.log$
+
+# Специални правила за различни бот агенти
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot  
+Allow: /
+Crawl-delay: 2
+
+User-agent: YandexBot
+Allow: /
+Crawl-delay: 3
+
+# XML Sitemaps
 Sitemap: ${this.baseUrl}/sitemap.xml
+
+# Хост директива
+Host: ${this.baseUrl.replace('https://', '').replace('http://', '')}
 
 # Disallow admin and development paths
 Disallow: /admin/
