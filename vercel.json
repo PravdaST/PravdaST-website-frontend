@@ -3,14 +3,14 @@
   "outputDirectory": "dist",
   "installCommand": "npm install",
   "functions": {
-    "api/contacts.ts": {
+    "api/contacts.js": {
       "runtime": "@vercel/node"
     }
   },
   "rewrites": [
     {
-      "source": "/api/contacts",
-      "destination": "/api/contacts"
+      "source": "/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt|.*\\.).*)",
+      "destination": "/index.html"
     }
   ]
 }
