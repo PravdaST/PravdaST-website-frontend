@@ -125,18 +125,24 @@ export function SEOHead({ seo, pageSlug }: SEOHeadProps) {
         "foundingDate": "2020",
         "address": {
           "@type": "PostalAddress",
+          "streetAddress": "ул. Дебър №58",
           "addressCountry": "BG",
-          "addressLocality": "София"
+          "addressRegion": "Варна",
+          "addressLocality": "Варна"
         },
         "contactPoint": {
           "@type": "ContactPoint",
+          "telephone": "+359 879 282 299",
+          "email": "contact@pravda.agency",
           "contactType": "Customer Service",
           "areaServed": "BG",
           "availableLanguage": "Bulgarian"
         },
         "sameAs": [
-          "https://www.linkedin.com/company/pravdast",
-          "https://www.facebook.com/pravdast"
+          "https://www.facebook.com/pravdast.agency/",
+          "https://www.youtube.com/@PravdaST",
+          "https://www.instagram.com/pravdast.agency/",
+          "https://www.linkedin.com/company/pravda-st/"
         ]
       };
 

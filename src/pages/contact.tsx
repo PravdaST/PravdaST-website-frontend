@@ -87,19 +87,21 @@ export default function Contact() {
     {
       icon: Mail,
       title: "Имейл",
-      info: "hello@pravdast.agency",
-      description: "Отговаряме в рамките на 24 часа"
+      info: "contact@pravda.agency",
+      description: "Отговаряме в рамките на 24 часа",
+      link: "mailto:contact@pravda.agency"
     },
     {
       icon: Phone,
-      title: "Телефон",
-      info: "+359 XX XXX XXXX",
-      description: "Работни дни 9:00 - 18:00"
+      title: "Телефон / Viber",
+      info: "+359 879 282 299",
+      description: "Работни дни 9:00 - 18:00 или Viber чат",
+      link: "viber://chat?number=%2B359879282299"
     },
     {
       icon: MapPin,
       title: "Локация",
-      info: "София, България",
+      info: "гр.Варна ул. Дебър №58",
       description: "Работим с клиенти от цяла България"
     },
     {
@@ -266,7 +268,16 @@ export default function Contact() {
                         </div>
                         <div>
                           <h3 className="font-semibold text-lg mb-1">{info.title}</h3>
-                          <p className="text-[var(--pravdast-yellow)] font-medium mb-1">{info.info}</p>
+                          {info.link ? (
+                            <a 
+                              href={info.link}
+                              className="text-[var(--pravdast-yellow)] font-medium mb-1 hover:underline cursor-pointer block"
+                            >
+                              {info.info}
+                            </a>
+                          ) : (
+                            <p className="text-[var(--pravdast-yellow)] font-medium mb-1">{info.info}</p>
+                          )}
                           <p className="text-gray-400 text-sm">{info.description}</p>
                         </div>
                       </motion.div>

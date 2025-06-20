@@ -26,18 +26,23 @@ export const pageSEOData: Record<string, Partial<SEOData>> = {
       "description": "Бизнес инженерни системи за предсказуем растеж на B2B компании в България",
       "address": {
         "@type": "PostalAddress",
+        "streetAddress": "ул. Дебър №58",
         "addressCountry": "BG",
-        "addressRegion": "София",
-        "addressLocality": "София"
+        "addressRegion": "Варна",
+        "addressLocality": "Варна"
       },
       "contactPoint": {
         "@type": "ContactPoint",
+        "telephone": "+359 879 282 299",
+        "email": "contact@pravda.agency",
         "contactType": "customer service",
         "availableLanguage": "Bulgarian"
       },
       "sameAs": [
-        "https://www.linkedin.com/company/pravdast",
-        "https://www.facebook.com/pravdast"
+        "https://www.facebook.com/pravdast.agency/",
+        "https://www.youtube.com/@PravdaST",
+        "https://www.instagram.com/pravdast.agency/",
+        "https://www.linkedin.com/company/pravda-st/"
       ],
       "offers": [
         {
@@ -328,15 +333,18 @@ export const pageSEOData: Record<string, Partial<SEOData>> = {
         "name": "Pravdast",
         "contactPoint": {
           "@type": "ContactPoint",
+          "telephone": "+359 879 282 299",
+          "email": "contact@pravda.agency",
           "contactType": "customer support",
           "availableLanguage": "Bulgarian",
           "areaServed": "BG"
         },
         "address": {
           "@type": "PostalAddress",
+          "streetAddress": "ул. Дебър №58",
           "addressCountry": "BG",
-          "addressRegion": "София",
-          "addressLocality": "София"
+          "addressRegion": "Варна",
+          "addressLocality": "Варна"
         }
       }
     }
