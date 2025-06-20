@@ -39,9 +39,11 @@ export default function Contact() {
 
   const contactMutation = useMutation({
     mutationFn: async (data: ContactFormData) => {
+      console.log('Изпращане на данни:', data);
       return await apiRequest("/api/contacts", "POST", data);
     },
-    onSuccess: () => {
+    onSuccess: (response) => {
+      console.log('Успешен отговор:', response);
       // Analytics проследяване на успешна форма
       trackFormSubmission('contact_form', true);
       trackConversion('contact_lead');
@@ -56,12 +58,22 @@ export default function Contact() {
       queryClient.invalidateQueries({ queryKey: ["/api/contacts"] });
     },
     onError: (error: any) => {
+      console.error('Грешка при изпращане:', error);
       // Analytics проследяване на неуспешна форма
       trackFormSubmission('contact_form', false);
       
+      // По-детайлно съобщение за грешка
+      let errorMessage = "Възникна проблем при изпращането. Моля, опитайте отново.";
+      
+      if (error?.response?.data?.error) {
+        errorMessage = error.response.data.error;
+      } else if (error?.message) {
+        errorMessage = error.message;
+      }
+      
       toast({
         title: "Грешка",
-        description: "Възникна проблем при изпращането. Моля, опитайте отново.",
+        description: errorMessage,
         variant: "destructive",
       });
     },
