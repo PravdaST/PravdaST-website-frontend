@@ -12,6 +12,8 @@ import SeoStruktor from "@/pages/services/seo-struktor";
 import Clientomat from "@/pages/services/clientomat";
 import SalesEngine from "@/pages/services/sales-engine";
 import CaseStudies from "@/pages/case-studies";
+import Blog from "@/pages/blog";
+import BlogPost from "@/pages/blog-post";
 import About from "@/pages/about";
 import Contact from "@/pages/contact";
 import NotFound from "@/pages/not-found";
@@ -25,6 +27,8 @@ function Router() {
       <Route path="/services/clientomat" component={Clientomat} />
       <Route path="/services/sales-engine" component={SalesEngine} />
       <Route path="/case-studies" component={CaseStudies} />
+      <Route path="/blog" component={Blog} />
+      <Route path="/blog/:slug" component={BlogPost} />
       <Route path="/about" component={About} />
       <Route path="/contact" component={Contact} />
       <Route path="/strapi-test" component={lazy(() => import("@/pages/strapi-test"))} />

@@ -349,4 +349,104 @@ export const pageSEOData: Record<string, Partial<SEOData>> = {
       }
     }
   },
+
+  blog: {
+    title: "📚 Блог | Pravdast - Експертни съвети за бизнес инженерство",
+    description: "🚀 Научете най-новите стратегии за B2B растеж, SEO оптимизация и автоматизация на продажбите. Експертни съвети от водещите консултанти в България.",
+    keywords: "блог, бизнес инженерство, B2B растеж, SEO съвети, автоматизация продажби, маркетинг стратегии, България",
+    canonical: "https://www.pravdagency.eu/blog",
+    ogTitle: "Pravdast Блог - Експертни Съвети за Бизнес Растеж",
+    ogDescription: "Научете проверени стратегии за предсказуем B2B растеж от водещите експерти в България.",
+    ogImage: "https://www.pravdagency.eu/og-blog.jpg",
+    ogType: "website",
+    twitterCard: "summary_large_image",
+    twitterTitle: "Pravdast Блог - Бизнес Инженерство и Растеж",
+    twitterDescription: "Експертни съвети за B2B компании: SEO, автоматизация, продажбени системи.",
+    twitterImage: "https://www.pravdagency.eu/twitter-blog.jpg",
+    robots: "index, follow, max-snippet:-1, max-image-preview:large",
+    structuredData: {
+      "@context": "https://schema.org",
+      "@type": "Blog",
+      "name": "Pravdast Блог",
+      "description": "Експертни съвети за бизнес инженерство и B2B растеж",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Pravdast",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.pravdagency.eu/logo.png"
+        }
+      },
+      "author": {
+        "@type": "Organization",
+        "name": "Pravdast"
+      }
+    }
+  },
+
+  "blog/predskazuem-rastezh-b2b-kompanii": {
+    title: "Как да създадете предсказуем растеж в B2B компанията си | Pravdast",
+    description: "🎯 Откройте тайните на системния подход към бизнес растежа. Научете как водещите компании строят устойчиви системи за генериране на клиенти.",
+    keywords: "предсказуем растеж, B2B компании, бизнес системи, растеж стратегии, клиенти генериране",
+    canonical: "https://www.pravdagency.eu/blog/predskazuem-rastezh-b2b-kompanii",
+    ogTitle: "Предсказуем Растеж в B2B - Системен Подход",
+    ogDescription: "Научете как да превърнете хаоса в предсказуеми резултати със системния инженерен подход.",
+    ogImage: "https://www.pravdagency.eu/og-blog-growth.jpg",
+    ogType: "article",
+    twitterCard: "summary_large_image",
+    twitterTitle: "Предсказуем B2B Растеж - Системен Подход",
+    twitterDescription: "Тайните на устойчивия бизнес растеж от експертите на Pravdast.",
+    twitterImage: "https://www.pravdagency.eu/twitter-blog-growth.jpg",
+    robots: "index, follow, max-snippet:-1, max-image-preview:large",
+    structuredData: {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Как да създадете предсказуем растеж в B2B компанията си",
+      "description": "Откройте тайните на системния подход към бизнес растежа",
+      "author": {
+        "@type": "Organization",
+        "name": "Pravdast"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Pravdast"
+      },
+      "datePublished": "2024-12-15",
+      "dateModified": "2024-12-15",
+      "mainEntityOfPage": "https://www.pravdagency.eu/blog/predskazuem-rastezh-b2b-kompanii"
+    }
+  },
+
+  "blog/seo-struktor-revolutsionen-podhod": {
+    title: "SEO Struktor™: Революционен подход към търсещата оптимизация | Pravdast",
+    description: "🔍 Разберете как нашата собствена методология SEO Struktor™ помага на клиентите ни да достигнат топ позиции в Google за ключови думи с висок търсещ обем.",
+    keywords: "SEO Struktor, търсеща оптимизация, Google SEO, органичен трафик, методология SEO",
+    canonical: "https://www.pravdagency.eu/blog/seo-struktor-revolutsionen-podhod",
+    ogTitle: "SEO Struktor™ - Революционна SEO Методология",
+    ogDescription: "Научете как нашата патентована методология постига топ позиции в Google.",
+    ogImage: "https://www.pravdagency.eu/og-blog-seo.jpg",
+    ogType: "article",
+    twitterCard: "summary_large_image",
+    twitterTitle: "SEO Struktor™ - Революционен SEO Подход",
+    twitterDescription: "Патентована методология за топ позиции в Google от Pravdast.",
+    twitterImage: "https://www.pravdagency.eu/twitter-blog-seo.jpg",
+    robots: "index, follow, max-snippet:-1, max-image-preview:large",
+    structuredData: {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "SEO Struktor™: Революционен подход към търсещата оптимизация",
+      "description": "Разберете как нашата собствена методология SEO Struktor™ помага на клиентите",
+      "author": {
+        "@type": "Organization",
+        "name": "Pravdast"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Pravdast"
+      },
+      "datePublished": "2024-12-10",
+      "dateModified": "2024-12-10",
+      "mainEntityOfPage": "https://www.pravdagency.eu/blog/seo-struktor-revolutsionen-podhod"
+    }
+  },
 };

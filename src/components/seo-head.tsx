@@ -72,6 +72,34 @@ export function SEOHead({ seo, pageSlug }: SEOHeadProps) {
     updateMetaTag('theme-color', '#ECB628');
     updateMetaTag('msapplication-TileColor', '#ECB628');
 
+    // Favicon и app icons
+    const updateLinkTag = (rel: string, href: string, sizes?: string, type?: string) => {
+      let link = document.querySelector(`link[rel="${rel}"]`) as HTMLLinkElement;
+      if (!link) {
+        link = document.createElement('link');
+        link.setAttribute('rel', rel);
+        document.head.appendChild(link);
+      }
+      link.setAttribute('href', href);
+      if (sizes) link.setAttribute('sizes', sizes);
+      if (type) link.setAttribute('type', type);
+    };
+
+    // Standard favicon
+    updateLinkTag('icon', '/favicon-192.png', '192x192', 'image/png');
+    updateLinkTag('shortcut icon', '/favicon-192.png');
+    
+    // Apple touch icons
+    updateLinkTag('apple-touch-icon', '/apple-touch-icon.png', '180x180');
+    updateLinkTag('apple-touch-icon-precomposed', '/apple-touch-icon.png');
+    
+    // Manifest for PWA
+    updateLinkTag('manifest', '/manifest.json');
+    
+    // Microsoft tiles
+    updateMetaTag('msapplication-TileImage', '/icon-512.png');
+    updateMetaTag('msapplication-config', 'none');
+
     // Open Graph тагове
     updateMetaTag('og:title', ogTitle, true);
     updateMetaTag('og:description', ogDescription, true);

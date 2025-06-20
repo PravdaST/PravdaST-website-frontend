@@ -22,6 +22,7 @@ export const Navigation = () => {
     { href: "/", label: "Начало" },
     { href: "/services", label: "Услуги" },
     { href: "/case-studies", label: "Резултати" },
+    { href: "/blog", label: "Блог" },
     { href: "/about", label: "За нас" },
     { href: "/contact", label: "Контакти" },
   ];
