@@ -1,94 +1,158 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Home, Search, ArrowLeft } from "lucide-react";
+import { Home, Search, ArrowLeft, Target, Wrench } from "lucide-react";
 import { Link } from "wouter";
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[var(--pravdast-dark)] to-[var(--pravdast-dark-gray)] flex items-center justify-center relative overflow-hidden">
-      {/* Background Pattern */}
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center relative overflow-hidden">
+      {/* Modern Background Pattern */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `radial-gradient(circle at 25% 25%, #ECB628 0%, transparent 50%),
+                           radial-gradient(circle at 75% 75%, #ECB628 0%, transparent 50%),
+                           linear-gradient(45deg, transparent 40%, rgba(236, 182, 40, 0.1) 50%, transparent 60%)`,
+          backgroundSize: '200px 200px, 150px 150px, 100px 100px'
+        }} />
+      </div>
+
+      {/* Engineering Grid Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{
-          backgroundImage: `radial-gradient(circle at 25% 25%, var(--pravdast-yellow) 0%, transparent 50%),
-                           radial-gradient(circle at 75% 75%, var(--pravdast-yellow) 0%, transparent 50%)`,
-          backgroundSize: '100px 100px'
+          backgroundImage: `linear-gradient(rgba(236, 182, 40, 0.3) 1px, transparent 1px),
+                           linear-gradient(90deg, rgba(236, 182, 40, 0.3) 1px, transparent 1px)`,
+          backgroundSize: '50px 50px'
         }} />
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
-        <div className="max-w-2xl mx-auto text-center">
+        <div className="max-w-3xl mx-auto text-center">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="mb-8"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="mb-12"
           >
-            <div className="text-[var(--pravdast-yellow)] text-8xl md:text-9xl font-bold mb-4">
-              404
+            {/* Engineering-style 404 with borders */}
+            <div className="relative mb-8">
+              <div className="text-[#ECB628] text-9xl md:text-[12rem] font-black mb-4 relative">
+                404
+                <div className="absolute -top-4 -left-4 w-8 h-8 border-t-4 border-l-4 border-[#ECB628] opacity-60"></div>
+                <div className="absolute -bottom-4 -right-4 w-8 h-8 border-b-4 border-r-4 border-[#ECB628] opacity-60"></div>
+              </div>
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              Страницата не е намерена
-            </h1>
-            <p className="text-xl text-gray-300 mb-8 leading-relaxed">
-              Търсената от вас страница не съществува или е била премествана. 
-              Но не се притеснявайте - можете да се върнете обратно към нашите системи за растеж.
+            
+            <div className="relative inline-block">
+              <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 tracking-tight">
+                Системата не може да локализира
+              </h1>
+              <div className="absolute -top-2 -left-2 w-4 h-4 bg-[#ECB628] opacity-40"></div>
+              <div className="absolute -bottom-2 -right-2 w-4 h-4 bg-[#ECB628] opacity-40"></div>
+            </div>
+            
+            <p className="text-xl md:text-2xl text-slate-300 mb-8 leading-relaxed max-w-2xl mx-auto">
+              Търсената страница не е намерена в нашата система. 
+              <span className="text-[#ECB628] font-semibold"> Но имаме решение</span> - 
+              нашите системи за предсказуем растеж са на една клик разстояние.
             </p>
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center"
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="flex flex-col sm:flex-row gap-6 justify-center mb-12"
           >
             <Link href="/">
-              <Button size="lg" className="bg-[var(--pravdast-yellow)] text-[var(--pravdast-dark)] hover:bg-[var(--pravdast-yellow)]/90 font-semibold">
-                <Home className="w-5 h-5 mr-2" />
+              <Button 
+                size="lg" 
+                className="bg-[#ECB628] text-slate-900 hover:bg-[#ECB628]/90 font-bold text-lg px-8 py-4 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
+              >
+                <Home className="w-6 h-6 mr-3" />
                 Начална страница
               </Button>
             </Link>
             
             <Link href="/services">
-              <Button size="lg" variant="outline" className="border-[var(--pravdast-yellow)] text-[var(--pravdast-yellow)] hover:bg-[var(--pravdast-yellow)] hover:text-[var(--pravdast-dark)] font-semibold">
-                <Search className="w-5 h-5 mr-2" />
-                Нашите услуги
+              <Button 
+                size="lg" 
+                variant="outline" 
+                className="border-2 border-[#ECB628] text-[#ECB628] hover:bg-[#ECB628] hover:text-slate-900 font-bold text-lg px-8 py-4 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
+              >
+                <Target className="w-6 h-6 mr-3" />
+                Системи за растеж
               </Button>
             </Link>
+          </motion.div>
+
+          {/* Engineering-style divider */}
+          <motion.div
+            initial={{ opacity: 0, scaleX: 0 }}
+            animate={{ opacity: 1, scaleX: 1 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+            className="relative mb-12"
+          >
+            <div className="h-px bg-gradient-to-r from-transparent via-[#ECB628] to-transparent"></div>
+            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-slate-800 px-6">
+              <Wrench className="w-6 h-6 text-[#ECB628]" />
+            </div>
           </motion.div>
 
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="mt-12 pt-8 border-t border-gray-700"
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-8 border border-slate-700"
           >
-            <p className="text-gray-400 text-sm mb-4">
-              Често търсени страници:
+            <p className="text-slate-400 text-lg mb-6 font-semibold">
+              Инженерни решения за бизнес растеж:
             </p>
-            <div className="flex flex-wrap justify-center gap-4 text-sm">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-base">
               <Link href="/services/seo-struktor">
-                <span className="text-[var(--pravdast-yellow)] hover:underline cursor-pointer">
-                  SEO Struktor™
-                </span>
+                <div className="group p-4 rounded-xl border border-slate-600 hover:border-[#ECB628] transition-all duration-200 cursor-pointer hover:bg-slate-700/50">
+                  <div className="text-[#ECB628] font-bold group-hover:text-white transition-colors">
+                    SEO Struktor™
+                  </div>
+                  <div className="text-slate-400 text-sm mt-1">
+                    Органичен трафик система
+                  </div>
+                </div>
               </Link>
               <Link href="/services/clientomat">
-                <span className="text-[var(--pravdast-yellow)] hover:underline cursor-pointer">
-                  Clientomat™
-                </span>
+                <div className="group p-4 rounded-xl border border-slate-600 hover:border-[#ECB628] transition-all duration-200 cursor-pointer hover:bg-slate-700/50">
+                  <div className="text-[#ECB628] font-bold group-hover:text-white transition-colors">
+                    Clientomat™
+                  </div>
+                  <div className="text-slate-400 text-sm mt-1">
+                    Автоматизация на клиенти
+                  </div>
+                </div>
               </Link>
               <Link href="/services/sales-engine">
-                <span className="text-[var(--pravdast-yellow)] hover:underline cursor-pointer">
-                  Sales Engine™
-                </span>
+                <div className="group p-4 rounded-xl border border-slate-600 hover:border-[#ECB628] transition-all duration-200 cursor-pointer hover:bg-slate-700/50">
+                  <div className="text-[#ECB628] font-bold group-hover:text-white transition-colors">
+                    Sales Engine™
+                  </div>
+                  <div className="text-slate-400 text-sm mt-1">
+                    Продажбена система
+                  </div>
+                </div>
               </Link>
+            </div>
+            <div className="flex justify-center gap-8 mt-8 text-sm">
               <Link href="/case-studies">
-                <span className="text-[var(--pravdast-yellow)] hover:underline cursor-pointer">
-                  Казуси
+                <span className="text-slate-400 hover:text-[#ECB628] cursor-pointer transition-colors font-medium">
+                  Казуси за успех
                 </span>
               </Link>
               <Link href="/contact">
-                <span className="text-[var(--pravdast-yellow)] hover:underline cursor-pointer">
-                  Контакти
+                <span className="text-slate-400 hover:text-[#ECB628] cursor-pointer transition-colors font-medium">
+                  Свързване
+                </span>
+              </Link>
+              <Link href="/about">
+                <span className="text-slate-400 hover:text-[#ECB628] cursor-pointer transition-colors font-medium">
+                  За нас
                 </span>
               </Link>
             </div>
