@@ -154,6 +154,7 @@ Changelog:
 - June 21, 2025. Optimized robots.txt following modern best practices: removed outdated crawl-delay, eliminated redundant Allow rules, simplified to essential Disallow directives only
 - June 21, 2025. Enhanced sitemap.xml with realistic lastmod dates reflecting actual page update history for better Google indexing signals
 - June 21, 2025. Configured Google Analytics 4 integration with measurement ID G-JQ8F0NZDX0, ready for activation via VITE_GA_MEASUREMENT_ID environment variable in Vercel deployment
+- June 21, 2025. Implemented react-ga4 integration with usePageTracking hook for proper SPA pageview tracking across all route changes without page reloads
 
 ## User Preferences
 
