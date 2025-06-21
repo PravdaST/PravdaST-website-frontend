@@ -54,7 +54,7 @@ export default function NotFound() {
             <Link href="/">
               <Button 
                 size="lg" 
-                className="bg-[#ECB628] text-gray-900 hover:bg-[#ECB628]/90 font-bold text-lg px-8 py-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-200"
+                className="!bg-[#ECB628] !text-black hover:!bg-[#d4a422] hover:!text-black font-bold text-lg px-8 py-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-200"
               >
                 <Home className="w-5 h-5 mr-2" />
                 Начална страница
@@ -65,7 +65,7 @@ export default function NotFound() {
               <Button 
                 size="lg" 
                 variant="outline" 
-                className="border-2 border-[#ECB628] text-[#ECB628] hover:bg-[#ECB628] hover:text-gray-900 font-bold text-lg px-8 py-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-200"
+                className="!border-2 !border-[#ECB628] !text-[#ECB628] hover:!bg-[#ECB628] hover:!text-black !bg-transparent font-bold text-lg px-8 py-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-200"
               >
                 <Target className="w-5 h-5 mr-2" />
                 Системи за растеж
