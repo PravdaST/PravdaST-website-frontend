@@ -4,6 +4,10 @@
   "installCommand": "npm install",
   "rewrites": [
     {
+      "source": "/sitemap.xml",
+      "destination": "/api/sitemap.xml"
+    },
+    {
       "source": "/((?!api|_next|_static|_vercel|favicon.ico|robots.txt|sitemap.xml|manifest.json|.*\\.).*)",
       "destination": "/index.html"
     }
