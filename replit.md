@@ -144,6 +144,7 @@ Changelog:
 - June 20, 2025. Fixed contact form for Vercel deployment by creating serverless function api/contacts.ts with SendGrid integration, proper CORS handling, and HTML email templates for production use
 - June 21, 2025. Successfully migrated project from Replit Agent to standard Replit environment with PostgreSQL database, all packages installed, and workflow running correctly
 - June 21, 2025. Reviewed Vercel documentation and confirmed project structure follows best practices: proper serverless functions, environment variables usage, security compliance, and deployment-ready architecture
+- June 21, 2025. Fixed SPA routing 404 issue on Vercel by adding rewrites configuration to serve index.html for all non-API, non-static file routes
 
 ## User Preferences
 
