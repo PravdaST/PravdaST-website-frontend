@@ -5,13 +5,13 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ScrollToTop } from "@/components/scroll-to-top";
 import { SpeedInsights } from "@vercel/speed-insights/react";
-import { GoogleAnalytics } from "@/components/google-analytics";
 import { registerServiceWorker, preloadCriticalResources } from "@/lib/performance";
 import { MobileBottomNavigation } from "@/components/mobile-navigation";
 import { AccessibilityPanel, SkipToMainContent } from "@/components/accessibility-panel";
 import { ErrorBoundary, PageErrorBoundary } from "@/components/error-boundary";
 import { lazy, useEffect, Suspense } from "react";
 import { FullPageLoading } from "@/components/loading-states";
+import usePageTracking from "./hooks/usePageTracking";
 import Home from "@/pages/home";
 import Services from "@/pages/services";
 import SeoStruktor from "@/pages/services/seo-struktor";
@@ -52,6 +52,8 @@ function Router() {
 }
 
 function App() {
+  usePageTracking(); // Activate page tracking here
+
   useEffect(() => {
     // Инициализация на performance оптимизации
     registerServiceWorker();
@@ -62,11 +64,11 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <SkipToMainContent />
-        <GoogleAnalytics trackingId={import.meta.env.VITE_GA_MEASUREMENT_ID || "G-XXXXXXXXXX"} />
         <ScrollToTop />
         <Toaster />
         <Router />
         <AccessibilityPanel />
+        <MobileBottomNavigation />
         <SpeedInsights />
       </TooltipProvider>
     </QueryClientProvider>
