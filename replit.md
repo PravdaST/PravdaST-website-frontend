@@ -142,6 +142,7 @@ Changelog:
 - June 20, 2025. Completed comprehensive SEO optimization with custom OG images for all pages (9 SVG files), breadcrumb navigation with Schema markup, enhanced LocalBusiness structured data, and FAQ page with FAQPage Schema
 - June 20, 2025. Enhanced organization Schema.org markup with geo-coordinates (Varna location), service catalog, payment methods, opening hours, and aggregate ratings for improved local search visibility
 - June 20, 2025. Fixed contact form for Vercel deployment by creating serverless function api/contacts.ts with SendGrid integration, proper CORS handling, and HTML email templates for production use
+- June 21, 2025. Successfully migrated project from Replit Agent to standard Replit environment with PostgreSQL database, all packages installed, and workflow running correctly
 
 ## User Preferences
 
