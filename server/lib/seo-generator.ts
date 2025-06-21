@@ -9,23 +9,23 @@ export class SEOGenerator {
   // Генерира Google-оптимизиран XML sitemap
   generateSitemap(): string {
     const pages = [
-      // Главна страница - най-висок приоритет
-      { url: '/', priority: '1.0', changefreq: 'weekly', lastmod: '2025-06-20' },
+      // Главна страница - най-висок приоритет (последно обновена днес)
+      { url: '/', priority: '1.0', changefreq: 'weekly', lastmod: '2025-06-21' },
       
-      // Услуги - висок приоритет за конверсии
-      { url: '/services', priority: '0.9', changefreq: 'weekly', lastmod: '2025-06-20' },
-      { url: '/services/seo-struktor', priority: '0.9', changefreq: 'monthly', lastmod: '2025-06-20' },
-      { url: '/services/sales-engine', priority: '0.9', changefreq: 'monthly', lastmod: '2025-06-20' },
-      { url: '/services/clientomat', priority: '0.9', changefreq: 'monthly', lastmod: '2025-06-20' },
+      // Услуги - висок приоритет за конверсии (обновени 19-ти)
+      { url: '/services', priority: '0.9', changefreq: 'weekly', lastmod: '2025-06-19' },
+      { url: '/services/seo-struktor', priority: '0.9', changefreq: 'monthly', lastmod: '2025-06-19' },
+      { url: '/services/sales-engine', priority: '0.9', changefreq: 'monthly', lastmod: '2025-06-19' },
+      { url: '/services/clientomat', priority: '0.9', changefreq: 'monthly', lastmod: '2025-06-19' },
       
-      // Контакти - висок приоритет за lead generation
+      // Контакти - висок приоритет за lead generation (обновена вчера)
       { url: '/contact', priority: '0.8', changefreq: 'monthly', lastmod: '2025-06-20' },
       
-      // Казуси - доказателства за резултати
-      { url: '/case-studies', priority: '0.7', changefreq: 'monthly', lastmod: '2025-06-20' },
+      // Казуси - доказателства за резултати (по-стари)
+      { url: '/case-studies', priority: '0.7', changefreq: 'monthly', lastmod: '2025-06-18' },
       
-      // За нас - брандинг и доверие
-      { url: '/about', priority: '0.6', changefreq: 'monthly', lastmod: '2025-06-20' }
+      // За нас - брандинг и доверие (по-стара)
+      { url: '/about', priority: '0.6', changefreq: 'monthly', lastmod: '2025-06-18' }
     ];
 
     // Clean XML sitemap за съвременни Google стандарти
