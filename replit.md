@@ -147,6 +147,7 @@ Changelog:
 - June 21, 2025. Fixed SPA routing 404 issue on Vercel by adding rewrites configuration to serve index.html for all non-API, non-static file routes
 - June 21, 2025. Enhanced contact form email templates with premium design including gradient backgrounds, priority badges, interactive elements, and mobile-responsive styling for professional client notifications
 - June 21, 2025. Updated 404 error page with modern engineering-themed design using brand colors (#ECB628), interactive service cards, grid patterns, and enhanced user experience consistent with main site design
+- June 21, 2025. Cleaned sitemap.xml generation to meet modern Google standards by removing outdated mobile namespaces and tags, keeping only the core sitemap schema for better indexing compatibility
 
 ## User Preferences
 
