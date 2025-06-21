@@ -6,7 +6,7 @@ declare global {
   }
 }
 
-export const GA_TRACKING_ID = import.meta.env.VITE_GA_TRACKING_ID || 'G-XXXXXXXXXX';
+export const GA_TRACKING_ID = import.meta.env.VITE_GA_MEASUREMENT_ID || 'G-XXXXXXXXXX';
 
 // Инициализация на Google Analytics
 export const initGA = () => {

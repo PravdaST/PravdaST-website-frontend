@@ -62,7 +62,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <SkipToMainContent />
-        <GoogleAnalytics trackingId={import.meta.env.VITE_GA_TRACKING_ID || "G-XXXXXXXXXX"} />
+        <GoogleAnalytics trackingId={import.meta.env.VITE_GA_MEASUREMENT_ID || "G-XXXXXXXXXX"} />
         <ScrollToTop />
         <Toaster />
         <Router />
