@@ -29,7 +29,7 @@ export function MobileStickyNav() {
   if (!isVisible) return null;
 
   return (
-    <div className="lg:hidden fixed bottom-0 left-0 right-0 z-50 transition-transform duration-300 translate-y-0">
+    <div className="md:hidden fixed bottom-0 left-0 right-0 z-50 transition-transform duration-300 translate-y-0">
       <div className="bg-slate-900/95 backdrop-blur-md border-t border-[var(--pravdast-yellow)]/20 p-4">
         <div className="flex gap-3">
           {/* Primary CTA */}
