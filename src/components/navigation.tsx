@@ -58,15 +58,18 @@ export const Navigation = () => {
                 </span>
               </Link>
             ))}
-            <Button
-              className="bg-[var(--pravdast-yellow)] text-[var(--pravdast-dark)] hover:bg-[#d4a426] font-semibold"
-              onClick={() => {
-                trackCTAClick('nav_start_now', window.location.href);
-                window.open("https://form.typeform.com/to/GXLaGY98", "_blank");
-              }}
-            >
-              ЗАПОЧНЕТЕ СЕГА
-            </Button>
+            <div className="relative group">
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-[var(--pravdast-yellow)] via-amber-400 to-[var(--pravdast-yellow)] rounded-md opacity-0 group-hover:opacity-100 transition-all duration-300 blur-sm"></div>
+              <Button
+                className="relative bg-[var(--pravdast-yellow)] text-[var(--pravdast-dark)] hover:bg-[#d4a426] font-semibold border border-[var(--pravdast-yellow)] transition-all duration-300"
+                onClick={() => {
+                  trackCTAClick('nav_start_now', window.location.href);
+                  window.open("https://form.typeform.com/to/GXLaGY98", "_blank");
+                }}
+              >
+                ЗАПОЧНЕТЕ СЕГА
+              </Button>
+            </div>
           </div>
 
           {/* Mobile Menu Button */}

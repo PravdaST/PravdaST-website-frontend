@@ -16,11 +16,25 @@ export const HeroSection = () => {
         
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
+            {/* Status Badge */}
+            <motion.div 
+              className="inline-flex items-center gap-2 mb-8 px-4 py-2 rounded-full bg-gradient-to-r from-slate-800/80 to-slate-700/60 border border-slate-600/30 backdrop-blur-sm"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="relative">
+                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                <div className="absolute inset-0 w-2 h-2 bg-green-400 rounded-full animate-ping opacity-75"></div>
+              </div>
+              <span className="text-sm text-gray-300 font-medium">Приемаме проекти</span>
+            </motion.div>
+
             <motion.h1
               className="text-5xl md:text-7xl font-bold mb-8 leading-tight"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: 0.8, delay: 0.1 }}
             >
               Престанете да залагате на маркетинг.{" "}
               <span className="text-[var(--pravdast-yellow)]">
@@ -41,10 +55,12 @@ export const HeroSection = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
+              className="relative group"
             >
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-[var(--pravdast-yellow)] via-amber-400 to-[var(--pravdast-yellow)] rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300 blur-sm"></div>
               <Button
                 size="lg"
-                className="bg-[var(--pravdast-yellow)] text-[var(--pravdast-dark)] hover:bg-[#d4a426] text-lg font-semibold px-8 py-4 hover:shadow-lg hover:shadow-[var(--pravdast-yellow)]/20 transition-all duration-300 hover:-translate-y-1"
+                className="relative bg-[var(--pravdast-yellow)] text-[var(--pravdast-dark)] hover:bg-[#d4a426] text-lg font-semibold px-8 py-4 transition-all duration-300 hover:-translate-y-1 border border-[var(--pravdast-yellow)]"
                 onClick={() => window.open("https://form.typeform.com/to/GXLaGY98", "_blank")}
               >
                 Заявете експертна диагностика

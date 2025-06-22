@@ -163,6 +163,7 @@ Changelog:
 - June 22, 2025. Removed mobile sticky CTA navigation completely due to background rendering issues - reverted to clean mobile experience without bottom navigation
 - June 22, 2025. Reverted header navigation back to clean dark design (bg-slate-900) after gradient experiment didn't work well with current layout
 - June 22, 2025. Fixed footer alignment issue by adding items-center to footer links container for proper vertical centering
+- June 22, 2025. Added premium status badge above H1 with animated green dot and "Приемаме проекти" text, plus gradient glow effects on CTA buttons inspired by modern design trends
 
 ## User Preferences
 
