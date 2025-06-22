@@ -6,7 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { ScrollToTop } from "@/components/scroll-to-top";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import { registerServiceWorker, preloadCriticalResources } from "@/lib/performance";
-import { MobileBottomNavigation } from "@/components/mobile-navigation";
+
 import { AccessibilityPanel, SkipToMainContent } from "@/components/accessibility-panel";
 import { ErrorBoundary, PageErrorBoundary } from "@/components/error-boundary";
 import { lazy, useEffect, Suspense } from "react";
@@ -68,7 +68,7 @@ function App() {
         <Toaster />
         <Router />
         <AccessibilityPanel />
-        <MobileBottomNavigation />
+
         <SpeedInsights />
       </TooltipProvider>
     </QueryClientProvider>
