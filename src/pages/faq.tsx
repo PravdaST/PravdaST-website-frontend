@@ -1,6 +1,5 @@
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
-import { Breadcrumbs } from "@/components/breadcrumbs";
 import { SEOHead } from "@/components/seo-head";
 import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
@@ -126,27 +125,36 @@ export default function FAQ() {
       />
       
       <Navigation />
-      
-      {/* Breadcrumbs */}
-      <div className="container mx-auto px-6 pt-24">
-        <Breadcrumbs />
-      </div>
 
       {/* Hero Section */}
-      <section className="pt-12 pb-16">
-        <div className="container mx-auto px-6">
+      <section className="pt-24 pb-16 bg-gradient-to-br from-[var(--pravdast-dark)] to-[var(--pravdast-dark-gray)]">
+        <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
+            {/* Status Badge */}
+            <motion.div 
+              className="inline-flex items-center gap-2 mb-8 px-4 py-2 rounded-full bg-gradient-to-r from-slate-800/80 to-slate-700/60 border border-slate-600/30 backdrop-blur-sm"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="relative">
+                <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                <div className="absolute inset-0 w-2 h-2 bg-blue-400 rounded-full animate-ping opacity-75"></div>
+              </div>
+              <span className="text-sm text-gray-300 font-medium">Отговаряме в рамките на 24 часа</span>
+            </motion.div>
+
             <motion.div
-              className="w-20 h-20 mx-auto mb-8 bg-[var(--pravdast-yellow)]/10 rounded-full flex items-center justify-center"
+              className="w-20 h-20 mx-auto mb-8 bg-gradient-to-br from-[var(--pravdast-yellow)]/20 to-[var(--pravdast-yellow)]/5 rounded-full flex items-center justify-center border border-[var(--pravdast-yellow)]/20"
               initial={{ opacity: 0, scale: 0.5 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: 0.8, delay: 0.1 }}
             >
               <HelpCircle className="text-[var(--pravdast-yellow)]" size={40} />
             </motion.div>
             
             <motion.h1
-              className="text-4xl md:text-5xl font-bold mb-6"
+              className="text-5xl md:text-7xl font-bold mb-8 leading-tight"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
@@ -155,28 +163,33 @@ export default function FAQ() {
             </motion.h1>
             
             <motion.p
-              className="text-xl text-gray-300 mb-8"
+              className="text-xl md:text-2xl text-gray-300 mb-12 leading-relaxed max-w-3xl mx-auto"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
             >
-              Отговори на най-честите въпроси за нашите бизнес инженеринг услуги
+              Отговори на най-честите въпроси за нашите бизнес инженеринг услуги. Всичко което трябва да знаете за системния подход към растеж.
             </motion.p>
           </div>
         </div>
       </section>
 
       {/* Category Filter */}
-      <section className="pb-8">
+      <section className="pb-8 bg-slate-900">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">
-            <div className="flex flex-wrap gap-4 justify-center mb-8">
+            <motion.div 
+              className="flex flex-wrap gap-4 justify-center mb-8"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
               <button
                 onClick={() => setSelectedCategory("Всички")}
-                className={`px-6 py-2 rounded-full transition-colors ${
+                className={`px-6 py-3 rounded-full transition-all duration-300 font-medium ${
                   selectedCategory === "Всички"
-                    ? "bg-[var(--pravdast-yellow)] text-black"
-                    : "bg-gray-800 text-gray-300 hover:bg-gray-700"
+                    ? "bg-[var(--pravdast-yellow)] text-black shadow-lg shadow-[var(--pravdast-yellow)]/20"
+                    : "bg-slate-800/80 text-gray-300 hover:bg-slate-700/80 border border-slate-700"
                 }`}
               >
                 Всички
@@ -185,51 +198,64 @@ export default function FAQ() {
                 <button
                   key={category}
                   onClick={() => setSelectedCategory(category)}
-                  className={`px-6 py-2 rounded-full transition-colors ${
+                  className={`px-6 py-3 rounded-full transition-all duration-300 font-medium ${
                     selectedCategory === category
-                      ? "bg-[var(--pravdast-yellow)] text-black"
-                      : "bg-gray-800 text-gray-300 hover:bg-gray-700"
+                      ? "bg-[var(--pravdast-yellow)] text-black shadow-lg shadow-[var(--pravdast-yellow)]/20"
+                      : "bg-slate-800/80 text-gray-300 hover:bg-slate-700/80 border border-slate-700"
                   }`}
                 >
                   {category}
                 </button>
               ))}
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
 
       {/* FAQ Items */}
-      <section className="pb-16">
+      <section className="pb-16 bg-slate-900">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">
-            <div className="space-y-4">
+            <div className="space-y-6">
               {filteredFAQ.map((item, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  transition={{ duration: 0.5, delay: index * 0.05 }}
                 >
-                  <Card className="bg-gray-900/50 border-gray-800 hover:border-[var(--pravdast-yellow)]/30 transition-colors">
+                  <Card className="bg-slate-800/60 border-slate-700/50 hover:border-[var(--pravdast-yellow)]/40 hover:shadow-lg hover:shadow-[var(--pravdast-yellow)]/5 transition-all duration-300 backdrop-blur-sm">
                     <CardContent className="p-0">
                       <button
                         onClick={() => toggleItem(index)}
-                        className="w-full p-6 text-left flex items-center justify-between hover:bg-gray-800/30 transition-colors"
+                        className="w-full p-8 text-left flex items-center justify-between hover:bg-slate-700/30 transition-colors group"
                       >
-                        <div>
-                          <div className="text-sm text-[var(--pravdast-yellow)] mb-2">
-                            {item.category}
+                        <div className="flex-1">
+                          <div className="flex items-center gap-3 mb-3">
+                            <div className="w-2 h-2 bg-[var(--pravdast-yellow)] rounded-full"></div>
+                            <span className="text-sm text-[var(--pravdast-yellow)] font-medium uppercase tracking-wider">
+                              {item.category}
+                            </span>
                           </div>
-                          <h3 className="text-lg font-semibold text-white">
+                          <h3 className="text-xl font-bold text-white group-hover:text-[var(--pravdast-yellow)] transition-colors leading-tight">
                             {item.question}
                           </h3>
                         </div>
-                        <ChevronDown 
-                          className={`w-5 h-5 text-gray-400 transition-transform ${
-                            openItems.includes(index) ? 'rotate-180' : ''
-                          }`}
-                        />
+                        <div className="ml-6 flex-shrink-0">
+                          <div className={`w-10 h-10 rounded-full border-2 border-slate-600 flex items-center justify-center transition-all duration-300 ${
+                            openItems.includes(index) 
+                              ? 'border-[var(--pravdast-yellow)] bg-[var(--pravdast-yellow)]/10' 
+                              : 'group-hover:border-[var(--pravdast-yellow)]/50'
+                          }`}>
+                            <ChevronDown 
+                              className={`w-5 h-5 transition-all duration-300 ${
+                                openItems.includes(index) 
+                                  ? 'rotate-180 text-[var(--pravdast-yellow)]' 
+                                  : 'text-gray-400 group-hover:text-[var(--pravdast-yellow)]'
+                              }`}
+                            />
+                          </div>
+                        </div>
                       </button>
                       
                       {openItems.includes(index) && (
@@ -238,10 +264,10 @@ export default function FAQ() {
                           animate={{ opacity: 1, height: "auto" }}
                           exit={{ opacity: 0, height: 0 }}
                           transition={{ duration: 0.3 }}
-                          className="px-6 pb-6"
+                          className="px-8 pb-8"
                         >
-                          <div className="pt-4 border-t border-gray-800">
-                            <p className="text-gray-300 leading-relaxed">
+                          <div className="pt-6 border-t border-slate-700/50">
+                            <p className="text-gray-300 leading-relaxed text-lg">
                               {item.answer}
                             </p>
                           </div>
@@ -257,22 +283,55 @@ export default function FAQ() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-gradient-to-r from-[var(--pravdast-yellow)]/10 to-[var(--pravdast-yellow)]/5">
-        <div className="container mx-auto px-6 text-center">
-          <h2 className="text-3xl font-bold mb-4">
-            Не намерихте отговор на въпроса си?
-          </h2>
-          <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-            Свържете се с нас за персонализирана консултация и отговори на всички ваши въпроси.
-          </p>
-          <motion.a
-            href="/contact"
-            className="inline-flex items-center px-8 py-4 bg-[var(--pravdast-yellow)] text-black font-semibold rounded-lg hover:bg-[var(--pravdast-yellow)]/90 transition-colors"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+      <section className="py-20 bg-gradient-to-br from-[var(--pravdast-dark)] to-[var(--pravdast-dark-gray)] relative overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="grid grid-cols-8 gap-4 transform rotate-12 scale-150">
+            {Array.from({ length: 64 }).map((_, i) => (
+              <div key={i} className="w-4 h-4 border border-[var(--pravdast-yellow)] rounded"></div>
+            ))}
+          </div>
+        </div>
+        
+        <div className="container mx-auto px-6 text-center relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="max-w-3xl mx-auto"
           >
-            Свържете се с нас
-          </motion.a>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+              Не намерихте отговор на <span className="text-[var(--pravdast-yellow)]">въпроса си?</span>
+            </h2>
+            <p className="text-xl md:text-2xl text-gray-300 mb-12 leading-relaxed">
+              Свържете се с нас за персонализирана консултация и отговори на всички ваши въпроси. Експертите ни са на разположение.
+            </p>
+            
+            <motion.div
+              className="relative group inline-block"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <div className="absolute -inset-1 bg-gradient-to-r from-[var(--pravdast-yellow)] via-amber-400 to-[var(--pravdast-yellow)] rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-300 blur-sm"></div>
+              <a
+                href="/contact"
+                className="relative inline-flex items-center px-10 py-5 bg-[var(--pravdast-yellow)] text-black font-bold rounded-xl transition-all duration-300 text-lg border border-[var(--pravdast-yellow)]"
+              >
+                Заявете безплатна консултация
+              </a>
+            </motion.div>
+            
+            <div className="mt-8 flex items-center justify-center gap-8 text-sm text-gray-400">
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                <span>Отговаряме в рамките на 24 часа</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                <span>Безплатна консултация</span>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 

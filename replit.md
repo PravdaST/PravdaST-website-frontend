@@ -164,6 +164,7 @@ Changelog:
 - June 22, 2025. Reverted header navigation back to clean dark design (bg-slate-900) after gradient experiment didn't work well with current layout
 - June 22, 2025. Fixed footer alignment issue by adding items-center to footer links container for proper vertical centering
 - June 22, 2025. Added premium status badge above H1 with animated green dot and "Приемаме проекти" text, plus gradient glow effects on CTA buttons inspired by modern design trends
+- June 22, 2025. Redesigned FAQ page with project styling: removed breadcrumbs, added gradient hero, enhanced FAQ cards with interactive elements, improved CTA section with background patterns
 
 ## User Preferences
 
