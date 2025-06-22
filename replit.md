@@ -160,6 +160,7 @@ Changelog:
 - June 22, 2025. Created mobile sticky CTA navigation inspired by Stripe design, visible only on phones (md:hidden) with primary/secondary buttons and scroll-triggered appearance
 - June 22, 2025. Removed sticky positioning from header navigation for all devices - now positioned statically at top without following on scroll
 - June 22, 2025. Fixed spacing issue by removing mt-16 from yellow business engineering header banner in hero section
+- June 22, 2025. Optimized mobile sticky CTA navigation with smaller buttons (h-10, text-xs), compact spacing, and dark gray blurred background for better mobile UX
 
 ## User Preferences
 
