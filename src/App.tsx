@@ -9,6 +9,7 @@ import { registerServiceWorker, preloadCriticalResources } from "@/lib/performan
 
 import { AccessibilityPanel, SkipToMainContent } from "@/components/accessibility-panel";
 import { ErrorBoundary, PageErrorBoundary } from "@/components/error-boundary";
+import { MobileStickyNav } from "@/components/mobile-sticky-cta";
 import { lazy, useEffect, Suspense } from "react";
 import { FullPageLoading } from "@/components/loading-states";
 import usePageTracking from "./hooks/usePageTracking";
@@ -68,7 +69,7 @@ function App() {
         <Toaster />
         <Router />
         <AccessibilityPanel />
-
+        <MobileStickyNav />
         <SpeedInsights />
       </TooltipProvider>
     </QueryClientProvider>
