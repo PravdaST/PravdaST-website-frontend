@@ -113,7 +113,7 @@ export const Footer = () => {
             <div className="text-gray-500 text-xs mb-4 md:mb-0">
               Изградено с инженерна прецизност за предвидими резултати
             </div>
-            <div className="flex space-x-6">
+            <div className="flex items-center space-x-6">
               <Link href="/contact">
                 <span className="text-gray-400 hover:text-[var(--pravdast-yellow)] transition-colors cursor-pointer text-xs">
                   Заявете консултация

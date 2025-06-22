@@ -162,6 +162,7 @@ Changelog:
 - June 22, 2025. Fixed spacing issue by removing mt-16 from yellow business engineering header banner in hero section
 - June 22, 2025. Removed mobile sticky CTA navigation completely due to background rendering issues - reverted to clean mobile experience without bottom navigation
 - June 22, 2025. Reverted header navigation back to clean dark design (bg-slate-900) after gradient experiment didn't work well with current layout
+- June 22, 2025. Fixed footer alignment issue by adding items-center to footer links container for proper vertical centering
 
 ## User Preferences
 
