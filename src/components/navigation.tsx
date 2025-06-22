@@ -30,7 +30,7 @@ export const Navigation = () => {
 
   return (
     <motion.nav
-      className="fixed top-0 w-full bg-slate-900/98 backdrop-blur-md border-b border-[var(--pravdast-yellow)]/20 z-50"
+      className="fixed top-0 w-full bg-slate-900/80 backdrop-blur-md border-b border-[var(--pravdast-yellow)]/20 z-50"
       initial={{ y: 0 }}
       animate={{ y: isScrolled ? 0 : 0 }}
       transition={{ duration: 0.3 }}
