@@ -30,7 +30,10 @@ export const Navigation = () => {
 
   return (
     <motion.nav
-      className="w-full bg-slate-900 border-b border-[var(--pravdast-yellow)]/20"
+      className="w-full bg-gradient-to-b from-slate-800 to-slate-800/40 rounded-none md:rounded-[40px] md:mx-4 md:mt-4 border border-[var(--pravdast-yellow)]/20"
+      style={{
+        background: 'linear-gradient(180deg, rgb(33, 33, 33) 0%, rgba(33, 33, 33, 0.4) 100%)'
+      }}
       initial={{ y: 0 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.3 }}
@@ -83,7 +86,7 @@ export const Navigation = () => {
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
           <motion.div
-            className="md:hidden mt-4 pb-4 border-t border-[var(--pravdast-yellow)]/20"
+            className="md:hidden mt-4 pb-4 border-t border-[var(--pravdast-yellow)]/20 mx-4 rounded-2xl bg-slate-900/90 backdrop-blur-sm"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
