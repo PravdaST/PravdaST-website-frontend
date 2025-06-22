@@ -159,6 +159,7 @@ Changelog:
 - June 22, 2025. Removed mobile bottom navigation from footer and adjusted header background to semi-transparent dark with proper backdrop blur effect for glass appearance
 - June 22, 2025. Created mobile sticky CTA navigation inspired by Stripe design, visible only on phones (md:hidden) with primary/secondary buttons and scroll-triggered appearance
 - June 22, 2025. Removed sticky positioning from header navigation for all devices - now positioned statically at top without following on scroll
+- June 22, 2025. Fixed spacing issue by removing mt-16 from yellow business engineering header banner in hero section
 
 ## User Preferences
 

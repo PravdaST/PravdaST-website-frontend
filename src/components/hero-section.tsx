@@ -6,7 +6,7 @@ export const HeroSection = () => {
   return (
     <>
       {/* Business Engineering Header */}
-      <div className="bg-[var(--pravdast-yellow)] text-[var(--pravdast-dark)] text-center py-3 mt-16">
+      <div className="bg-[var(--pravdast-yellow)] text-[var(--pravdast-dark)] text-center py-3">
         <p className="text-sm font-medium">Бизнес инженеринг за предвидим растеж</p>
       </div>
 
