@@ -78,16 +78,7 @@ const faqData: FAQItem[] = [
 const categories = Array.from(new Set(faqData.map(item => item.category)));
 
 export default function FAQ() {
-  const [openItems, setOpenItems] = useState<number[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>("Всички");
-
-  const toggleItem = (index: number) => {
-    setOpenItems(prev => 
-      prev.includes(index) 
-        ? prev.filter(i => i !== index)
-        : [...prev, index]
-    );
-  };
 
   const filteredFAQ = selectedCategory === "Всички" 
     ? faqData 
@@ -215,64 +206,34 @@ export default function FAQ() {
       {/* FAQ Items */}
       <section className="pb-16 bg-slate-900">
         <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto">
-            <div className="space-y-6">
+          <div className="max-w-7xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredFAQ.map((item, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.05 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="h-full"
                 >
-                  <Card className="bg-slate-800/60 border-slate-700/50 hover:border-[var(--pravdast-yellow)]/40 hover:shadow-lg hover:shadow-[var(--pravdast-yellow)]/5 transition-all duration-300 backdrop-blur-sm">
-                    <CardContent className="p-0">
-                      <button
-                        onClick={() => toggleItem(index)}
-                        className="w-full p-8 text-left flex items-center justify-between hover:bg-slate-700/30 transition-colors group"
-                      >
-                        <div className="flex-1">
-                          <div className="flex items-center gap-3 mb-3">
-                            <div className="w-2 h-2 bg-[var(--pravdast-yellow)] rounded-full"></div>
-                            <span className="text-sm text-[var(--pravdast-yellow)] font-medium uppercase tracking-wider">
-                              {item.category}
-                            </span>
-                          </div>
-                          <h3 className="text-xl font-bold text-white group-hover:text-[var(--pravdast-yellow)] transition-colors leading-tight">
-                            {item.question}
-                          </h3>
-                        </div>
-                        <div className="ml-6 flex-shrink-0">
-                          <div className={`w-10 h-10 rounded-full border-2 border-slate-600 flex items-center justify-center transition-all duration-300 ${
-                            openItems.includes(index) 
-                              ? 'border-[var(--pravdast-yellow)] bg-[var(--pravdast-yellow)]/10' 
-                              : 'group-hover:border-[var(--pravdast-yellow)]/50'
-                          }`}>
-                            <ChevronDown 
-                              className={`w-5 h-5 transition-all duration-300 ${
-                                openItems.includes(index) 
-                                  ? 'rotate-180 text-[var(--pravdast-yellow)]' 
-                                  : 'text-gray-400 group-hover:text-[var(--pravdast-yellow)]'
-                              }`}
-                            />
-                          </div>
-                        </div>
-                      </button>
+                  <Card className="bg-slate-800/60 border-slate-700/50 hover:border-[var(--pravdast-yellow)]/40 hover:shadow-lg hover:shadow-[var(--pravdast-yellow)]/5 transition-all duration-300 backdrop-blur-sm h-full flex flex-col">
+                    <CardContent className="p-6 flex flex-col h-full">
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="w-2 h-2 bg-[var(--pravdast-yellow)] rounded-full"></div>
+                        <span className="text-xs text-[var(--pravdast-yellow)] font-medium uppercase tracking-wider">
+                          {item.category}
+                        </span>
+                      </div>
                       
-                      {openItems.includes(index) && (
-                        <motion.div
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: "auto" }}
-                          exit={{ opacity: 0, height: 0 }}
-                          transition={{ duration: 0.3 }}
-                          className="px-8 pb-8"
-                        >
-                          <div className="pt-6 border-t border-slate-700/50">
-                            <p className="text-gray-300 leading-relaxed text-lg">
-                              {item.answer}
-                            </p>
-                          </div>
-                        </motion.div>
-                      )}
+                      <h3 className="text-lg font-bold text-white mb-4 leading-tight">
+                        {item.question}
+                      </h3>
+                      
+                      <div className="flex-1">
+                        <p className="text-gray-300 leading-relaxed text-sm">
+                          {item.answer}
+                        </p>
+                      </div>
                     </CardContent>
                   </Card>
                 </motion.div>
@@ -283,17 +244,9 @@ export default function FAQ() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-br from-[var(--pravdast-dark)] to-[var(--pravdast-dark-gray)] relative overflow-hidden">
-        {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-5">
-          <div className="grid grid-cols-8 gap-4 transform rotate-12 scale-150">
-            {Array.from({ length: 64 }).map((_, i) => (
-              <div key={i} className="w-4 h-4 border border-[var(--pravdast-yellow)] rounded"></div>
-            ))}
-          </div>
-        </div>
+      <section className="py-20 bg-gradient-to-br from-[var(--pravdast-dark)] to-[var(--pravdast-dark-gray)]">
         
-        <div className="container mx-auto px-6 text-center relative z-10">
+        <div className="container mx-auto px-6 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
