@@ -30,9 +30,9 @@ export const Navigation = () => {
 
   return (
     <motion.nav
-      className="fixed top-0 w-full bg-slate-900/80 backdrop-blur-md border-b border-[var(--pravdast-yellow)]/20 z-50"
+      className="w-full bg-slate-900 border-b border-[var(--pravdast-yellow)]/20"
       initial={{ y: 0 }}
-      animate={{ y: isScrolled ? 0 : 0 }}
+      animate={{ y: 0 }}
       transition={{ duration: 0.3 }}
     >
       <div className="container mx-auto px-6 py-4">
