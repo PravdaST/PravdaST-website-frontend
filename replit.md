@@ -173,6 +173,7 @@ Changelog:
 - June 22, 2025. Improved case studies slider design with consistent brand colors, proper card styling, and navigation elements matching site theme
 - June 22, 2025. Integrated Klaviyo email marketing platform with frontend tracking script and backend API integration for automatic profile creation from contact form submissions
 - June 22, 2025. Highlighted "Ново" word in hero section status badge with brand yellow color for visual emphasis
+- June 22, 2025. Added Inter font integration via Google Fonts import to resolve 404 font loading errors and improved typography consistency
 
 ## User Preferences
 
