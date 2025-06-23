@@ -180,6 +180,7 @@ Changelog:
 - June 23, 2025. Created completely unique tech background systems for each service: SEO Struktor™ with radar search system (radial grid + rotating sweep + search blips), Clientomat™ with client network hub (linear grid + central hub + 6 connection lines + data particles), Sales Engine™ with pipeline flow system (track gradient + 5 vertical stages + processing nodes + flowing particles) - each visually distinct from homepage and other services
 - June 23, 2025. Replaced complex parallax effects with simple, elegant animated backgrounds for all service pages - SEO Struktor™ (blueprint grid with network nodes), Clientomat™ (curved data streams with traveling circles), Sales Engine™ (rotating gears with flowing particles) - all with low opacity for better text readability
 - June 23, 2025. Updated CTA section with complete rewrite following user specifications: "Приемаме до 3 нови партньори за следващото тримесечие" headline, detailed explanation about limited capacity, objections handling section with 3 cards answering common concerns, dual CTA buttons with specific messaging about 48-hour response and 5-minute process
+- June 23, 2025. Restored original yellow background (bg-[var(--pravdast-yellow)]) and exact user-provided text content in CTA section with modern layout design while maintaining all original messaging and structure
 
 ## User Preferences
 
