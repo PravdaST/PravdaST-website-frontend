@@ -185,7 +185,7 @@ export default function Contact() {
                     
                     <form onSubmit={handleSubmit} className="space-y-6">
                       <div>
-                        <Label htmlFor="name" className="text-sm font-medium">
+                        <Label htmlFor="name" className="text-sm font-medium text-white">
                           Име *
                         </Label>
                         <Input
@@ -202,7 +202,7 @@ export default function Contact() {
                       </div>
 
                       <div>
-                        <Label htmlFor="email" className="text-sm font-medium">
+                        <Label htmlFor="email" className="text-sm font-medium text-white">
                           Имейл *
                         </Label>
                         <Input
@@ -219,7 +219,7 @@ export default function Contact() {
                       </div>
 
                       <div>
-                        <Label htmlFor="website" className="text-sm font-medium">
+                        <Label htmlFor="website" className="text-sm font-medium text-white">
                           Сайт *
                         </Label>
                         <Input
@@ -236,7 +236,7 @@ export default function Contact() {
                       </div>
 
                       <div>
-                        <Label htmlFor="company" className="text-sm font-medium">
+                        <Label htmlFor="company" className="text-sm font-medium text-white">
                           Компания
                         </Label>
                         <Input
@@ -250,7 +250,7 @@ export default function Contact() {
                       </div>
 
                       <div>
-                        <Label htmlFor="message" className="text-sm font-medium">
+                        <Label htmlFor="message" className="text-sm font-medium text-white">
                           Съобщение *
                         </Label>
                         <Textarea

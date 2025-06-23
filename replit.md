@@ -169,6 +169,7 @@ Changelog:
 - June 22, 2025. Replaced dual dots with Framer-style radar effect in hero status badge: core dot with pulsing outer ring for professional online indicator
 - June 22, 2025. Added interactive case studies slider to homepage with 4 real client cases, smooth animations, navigation controls, and results metrics display
 - June 22, 2025. Applied global white color styling to all headings (H1-H6) across the entire website for consistent text visibility
+- June 22, 2025. Fixed contact form label colors to white for better visibility against dark background
 
 ## User Preferences
 
