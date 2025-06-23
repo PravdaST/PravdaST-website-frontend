@@ -183,6 +183,8 @@ Changelog:
 - June 23, 2025. Restored original yellow background (bg-[var(--pravdast-yellow)]) and exact user-provided text content in CTA section with modern layout design while maintaining all original messaging and structure
 - June 23, 2025. Created modern partners carousel component with animated sliding logos of major platforms (Google, Meta, HubSpot, Klaviyo, WordPress) and placed it after hero section on homepage for trust building
 - June 23, 2025. Redesigned CTA section with highly engaging layout: urgency badge, oversized "3" with animation, two-column layout (text left, sticky CTA card right), hover effects, floating elements, and improved visual hierarchy to maximize button clicks
+- June 23, 2025. Moved Partners carousel section above Case Studies section and removed borders from logo containers while making logos fit properly in their containers
+- June 23, 2025. Simplified CTA section design with clean layout: clear headline with emphasized "3", description in card format, focused CTA button section with proper text hierarchy and green status indicator
 
 ## User Preferences
 
