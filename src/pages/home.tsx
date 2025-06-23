@@ -1,5 +1,6 @@
 import { Navigation } from "@/components/navigation";
 import { HeroSection } from "@/components/hero-section";
+import { PartnersCarousel } from "@/components/partners-carousel";
 import { ProblemSection } from "@/components/problem-section";
 import { SolutionSection } from "@/components/solution-section";
 import { ProcessSection } from "@/components/process-section";
@@ -16,6 +17,7 @@ export default function Home() {
       <SEOHead seo={pageSEOData.home} pageSlug="" />
       <Navigation />
       <HeroSection />
+      <PartnersCarousel />
       <ProblemSection />
       <SolutionSection />
       <ProcessSection />
