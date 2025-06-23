@@ -165,6 +165,7 @@ Changelog:
 - June 22, 2025. Fixed footer alignment issue by adding items-center to footer links container for proper vertical centering
 - June 22, 2025. Added premium status badge above H1 with animated green dot and "Приемаме проекти" text, plus gradient glow effects on CTA buttons inspired by modern design trends
 - June 22, 2025. Redesigned FAQ page with project styling: removed breadcrumbs, added gradient hero, converted FAQ to modern card grid layout (3 columns), removed expand/collapse for cleaner presentation
+- June 22, 2025. Optimized all title tags to 50-60 characters for better SEO performance and created comprehensive link building strategy for 2025
 
 ## User Preferences
 
