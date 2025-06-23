@@ -78,7 +78,7 @@ export const CaseStudiesSlider = () => {
   const currentCase = caseStudies[currentSlide];
 
   return (
-    <section className="py-20 bg-slate-900">
+    <section className="py-20 bg-[var(--pravdast-dark)]">
       <div className="container mx-auto px-6">
         {/* Header */}
         <motion.div 
@@ -88,7 +88,7 @@ export const CaseStudiesSlider = () => {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
             Реални <span className="text-[var(--pravdast-yellow)]">резултати</span>
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
@@ -106,7 +106,7 @@ export const CaseStudiesSlider = () => {
               exit={{ opacity: 0, x: -100 }}
               transition={{ duration: 0.5 }}
             >
-              <Card className="bg-slate-800/60 border-slate-700/50 backdrop-blur-sm">
+              <Card className="bg-[var(--pravdast-dark-gray)] border-[var(--pravdast-yellow)]/20">
                 <CardContent className="p-8 md:p-12">
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                     {/* Left Content */}
@@ -150,18 +150,18 @@ export const CaseStudiesSlider = () => {
 
                     {/* Right Content - Results */}
                     <div>
-                      <div className="grid grid-cols-1 gap-6">
+                      <div className="grid grid-cols-1 gap-4">
                         {currentCase.results.map((result, index) => (
                           <motion.div
                             key={index}
-                            className="bg-slate-700/30 border border-slate-600/30 rounded-lg p-6 text-center"
+                            className="bg-[var(--pravdast-dark)]/50 border border-[var(--pravdast-yellow)]/20 rounded-lg p-6 text-center"
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: index * 0.1 }}
                           >
                             <div className="flex items-center justify-center mb-3">
                               <TrendingUp className="text-[var(--pravdast-yellow)] w-6 h-6 mr-2" />
-                              <span className="text-3xl md:text-4xl font-bold text-[var(--pravdast-yellow)]">
+                              <span className="text-2xl md:text-3xl font-bold text-[var(--pravdast-yellow)]">
                                 {result.metric}
                               </span>
                             </div>
@@ -184,7 +184,7 @@ export const CaseStudiesSlider = () => {
               variant="outline"
               size="icon"
               onClick={prevSlide}
-              className="w-12 h-12 rounded-full bg-slate-800/80 border-slate-600 hover:bg-slate-700 hover:border-[var(--pravdast-yellow)]"
+              className="w-12 h-12 rounded-full bg-[var(--pravdast-dark-gray)] border-[var(--pravdast-yellow)]/30 hover:bg-[var(--pravdast-yellow)]/10 hover:border-[var(--pravdast-yellow)] text-white"
             >
               <ChevronLeft className="w-6 h-6" />
             </Button>
@@ -198,7 +198,7 @@ export const CaseStudiesSlider = () => {
                   className={`w-3 h-3 rounded-full transition-all duration-300 ${
                     index === currentSlide 
                       ? 'bg-[var(--pravdast-yellow)] scale-125' 
-                      : 'bg-slate-600 hover:bg-slate-500'
+                      : 'bg-gray-600 hover:bg-gray-500'
                   }`}
                 />
               ))}
@@ -208,7 +208,7 @@ export const CaseStudiesSlider = () => {
               variant="outline"
               size="icon"
               onClick={nextSlide}
-              className="w-12 h-12 rounded-full bg-slate-800/80 border-slate-600 hover:bg-slate-700 hover:border-[var(--pravdast-yellow)]"
+              className="w-12 h-12 rounded-full bg-[var(--pravdast-dark-gray)] border-[var(--pravdast-yellow)]/30 hover:bg-[var(--pravdast-yellow)]/10 hover:border-[var(--pravdast-yellow)] text-white"
             >
               <ChevronRight className="w-6 h-6" />
             </Button>
@@ -219,7 +219,7 @@ export const CaseStudiesSlider = () => {
             <Link href="/case-studies">
               <Button 
                 size="lg"
-                className="bg-[var(--pravdast-yellow)] text-black hover:bg-[var(--pravdast-yellow)]/90 font-semibold"
+                className="bg-[var(--pravdast-yellow)] text-[var(--pravdast-dark)] hover:bg-[#d4a426] font-semibold px-8 py-3"
               >
                 Вижте всички казуси
                 <ArrowRight className="ml-2 w-5 h-5" />
