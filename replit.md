@@ -167,6 +167,7 @@ Changelog:
 - June 22, 2025. Redesigned FAQ page with project styling: removed breadcrumbs, added gradient hero, converted FAQ to modern card grid layout (3 columns), removed expand/collapse for cleaner presentation
 - June 22, 2025. Optimized all title tags to 50-60 characters for better SEO performance and created comprehensive link building strategy for 2025
 - June 22, 2025. Replaced dual dots with Framer-style radar effect in hero status badge: core dot with pulsing outer ring for professional online indicator
+- June 22, 2025. Added interactive case studies slider to homepage with 4 real client cases, smooth animations, navigation controls, and results metrics display
 
 ## User Preferences
 
