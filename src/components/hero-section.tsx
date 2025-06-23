@@ -17,8 +17,7 @@ export const HeroSection = () => {
             transition={{ duration: 0.6 }}
           >
             <span className="text-sm text-gray-300 font-medium">
-              <span className="text-sm text-gray-300 font-medium">Ново</span>
-              Бизнес инженеринг за предвидим растеж
+              Ново Бизнес инженеринг за предвидим растеж
             </span>
           </motion.div>
 

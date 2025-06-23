@@ -10,11 +10,11 @@ Klaviyo е интегриран за email маркетинг и автомат�
 
 ### Frontend Variables (VITE_ префикс)
 ```
-VITE_KLAVIYO_PUBLIC_API_KEY=xxxxxx
+VITE_KLAVIYO_COMPANY_ID=UTqrCz
 ```
-- Това е публичният API ключ от Klaviyo (обикновено 6 символа)
+- Това е Company ID от Klaviyo onsite JavaScript
 - Безопасен за използване във frontend кода
-- Намира се в Settings -> API Keys в Klaviyo dashboard
+- Намира се в Klaviyo dashboard -> Settings -> Klaviyo onsite JavaScript
 
 ### Backend Variables (Serverless функции)
 ```
@@ -26,10 +26,16 @@ KLAVIYO_PRIVATE_API_KEY=pk_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
 ## Как да получите ключовете от Klaviyo
 
+### За Frontend (Company ID):
 1. Влезте в klaviyo.com акаунта си
-2. Отидете в Settings -> API Keys
-3. **Публичен ключ**: Копирайте "Public API Key" (6 символа)
-4. **Частен ключ**: Натиснете "Create Private API Key", дайте име "Vercel Backend Integration"
+2. Отидете в Settings -> Klaviyo onsite JavaScript
+3. Копирайте company_id от JavaScript кода (напр. UTqrCz)
+
+### За Backend (Private API Key):
+1. Отидете в Settings -> API Keys
+2. Натиснете "Create Private API Key"
+3. Дайте име "Vercel Backend Integration"
+4. Копирайте ключа (започва с pk_)
 
 ## Функционалност
 
