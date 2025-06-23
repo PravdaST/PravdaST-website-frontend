@@ -88,14 +88,14 @@ export const PartnersCarousel = () => {
               {partners.map((partner, index) => (
                 <div
                   key={`first-${index}`}
-                  className="flex-shrink-0 bg-white rounded-lg p-6 shadow-sm border border-slate-200 hover:shadow-md transition-shadow duration-300"
+                  className="flex-shrink-0 bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow duration-300"
                   style={{ width: "160px", height: "80px" }}
                 >
                   <div className="w-full h-full flex items-center justify-center">
                     <img
                       src={partner.logo}
                       alt={partner.name}
-                      className="max-w-full max-h-full object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
+                      className="w-full h-full object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
                       loading="lazy"
                     />
                   </div>
@@ -106,14 +106,14 @@ export const PartnersCarousel = () => {
               {partners.map((partner, index) => (
                 <div
                   key={`second-${index}`}
-                  className="flex-shrink-0 bg-white rounded-lg p-6 shadow-sm border border-slate-200 hover:shadow-md transition-shadow duration-300"
+                  className="flex-shrink-0 bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow duration-300"
                   style={{ width: "160px", height: "80px" }}
                 >
                   <div className="w-full h-full flex items-center justify-center">
                     <img
                       src={partner.logo}
                       alt={partner.name}
-                      className="max-w-full max-h-full object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
+                      className="w-full h-full object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
                       loading="lazy"
                     />
                   </div>
@@ -124,14 +124,14 @@ export const PartnersCarousel = () => {
               {partners.map((partner, index) => (
                 <div
                   key={`third-${index}`}
-                  className="flex-shrink-0 bg-white rounded-lg p-6 shadow-sm border border-slate-200 hover:shadow-md transition-shadow duration-300"
+                  className="flex-shrink-0 bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow duration-300"
                   style={{ width: "160px", height: "80px" }}
                 >
                   <div className="w-full h-full flex items-center justify-center">
                     <img
                       src={partner.logo}
                       alt={partner.name}
-                      className="max-w-full max-h-full object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
+                      className="w-full h-full object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
                       loading="lazy"
                     />
                   </div>
