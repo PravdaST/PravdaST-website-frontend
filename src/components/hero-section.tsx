@@ -19,13 +19,9 @@ export const HeroSection = () => {
             <div
               className="relative w-4 h-4 flex items-center justify-center"
               aria-hidden="true" // По-добра достъпност за декоративни елементи
-            >
-              {/* Radar outer ring */}
-              <div className="absolute inset-0 w-4 h-4 bg-green-500/30 rounded-full animate-ping"></div>
-              {/* Core dot */}
-              <div className="w-2.5 h-2.5 bg-green-500 rounded-full"></div>
-            </div>
+            ></div>
             <span className="text-sm text-gray-300 font-medium">
+              <span className="text-sm text-gray-300 font-medium">Ново</span>{" "}
               Бизнес инженеринг за предвидим растеж
             </span>
           </motion.div>
