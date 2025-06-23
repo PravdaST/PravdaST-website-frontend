@@ -23,19 +23,15 @@ export const HeroSection = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <div className="relative">
+              <div className="relative w-3 h-3 flex items-center justify-center">
+                {/* Radar outer ring */}
+                <div className="absolute inset-0 w-3 h-3 bg-green-500/30 rounded-full animate-ping opacity-80"></div>
+                {/* Core dot */}
                 <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                <div className="absolute inset-0 w-2 h-2 bg-green-400 rounded-full animate-ping opacity-75"></div>
               </div>
-              <div className="flex items-center gap-2">
-                <span className="text-sm text-gray-300 font-medium">
-                  Бизнес инженеринг за предвидим растеж
-                </span>
-                <div className="relative">
-                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                  <div className="absolute inset-0 w-2 h-2 bg-green-400 rounded-full animate-ping opacity-75"></div>
-                </div>
-              </div>
+              <span className="text-sm text-gray-300 font-medium">
+                Бизнес инженеринг за предвидим растеж
+              </span>
             </motion.div>
 
             <motion.h1
