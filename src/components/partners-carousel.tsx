@@ -29,27 +29,32 @@ const partners = [
 
 export const PartnersCarousel = () => {
   return (
-    <section className="py-12 bg-slate-900 overflow-hidden">
+    <section className="py-16 bg-slate-900 overflow-hidden">
       <div className="container mx-auto px-6">
+        {/* Header Text */}
+        <div className="text-center mb-12">
+          <p className="text-slate-400 text-sm font-medium tracking-wide">
+            Our core technologies
+          </p>
+        </div>
 
         {/* Logo Carousel */}
         <div className="relative">
           <div
             className="flex items-center justify-center overflow-hidden"
             style={{
-              maskImage:
-                "linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 10%, rgb(0, 0, 0) 90%, rgba(0, 0, 0, 0) 100%)",
+              maskImage: "linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 10%, rgb(0, 0, 0) 90%, rgba(0, 0, 0, 0) 100%)"
             }}
           >
             <motion.div
-              className="flex items-center gap-16 whitespace-nowrap"
+              className="flex items-center gap-20 whitespace-nowrap"
               animate={{
-                x: [0, -1400],
+                x: [0, -100 * partners.length * 20] // Dynamic based on partners length
               }}
               transition={{
-                duration: 25,
+                duration: 30,
                 ease: "linear",
-                repeat: Infinity,
+                repeat: Infinity
               }}
             >
               {/* First set of logos */}
@@ -57,12 +62,12 @@ export const PartnersCarousel = () => {
                 <div
                   key={`first-${index}`}
                   className="flex-shrink-0 flex items-center justify-center"
-                  style={{ width: "140px", height: "40px" }}
+                  style={{ width: "160px", height: "60px" }}
                 >
                   <img
                     src={partner.logo}
                     alt={partner.name}
-                    className="max-w-full h-8 object-contain filter grayscale brightness-75 opacity-60 hover:opacity-80 transition-all duration-300"
+                    className="max-w-full h-10 object-contain filter grayscale brightness-[0.5] opacity-70"
                     loading="lazy"
                   />
                 </div>
@@ -73,12 +78,12 @@ export const PartnersCarousel = () => {
                 <div
                   key={`second-${index}`}
                   className="flex-shrink-0 flex items-center justify-center"
-                  style={{ width: "140px", height: "40px" }}
+                  style={{ width: "160px", height: "60px" }}
                 >
                   <img
                     src={partner.logo}
                     alt={partner.name}
-                    className="max-w-full h-8 object-contain filter grayscale brightness-75 opacity-60 hover:opacity-80 transition-all duration-300"
+                    className="max-w-full h-10 object-contain filter grayscale brightness-[0.5] opacity-70"
                     loading="lazy"
                   />
                 </div>
@@ -89,12 +94,28 @@ export const PartnersCarousel = () => {
                 <div
                   key={`third-${index}`}
                   className="flex-shrink-0 flex items-center justify-center"
-                  style={{ width: "140px", height: "40px" }}
+                  style={{ width: "160px", height: "60px" }}
                 >
                   <img
                     src={partner.logo}
                     alt={partner.name}
-                    className="max-w-full h-8 object-contain filter grayscale brightness-75 opacity-60 hover:opacity-80 transition-all duration-300"
+                    className="max-w-full h-10 object-contain filter grayscale brightness-[0.5] opacity-70"
+                    loading="lazy"
+                  />
+                </div>
+              ))}
+
+              {/* Fourth set for perfect seamless loop */}
+              {partners.map((partner, index) => (
+                <div
+                  key={`fourth-${index}`}
+                  className="flex-shrink-0 flex items-center justify-center"
+                  style={{ width: "160px", height: "60px" }}
+                >
+                  <img
+                    src={partner.logo}
+                    alt={partner.name}
+                    className="max-w-full h-10 object-contain filter grayscale brightness-[0.5] opacity-70"
                     loading="lazy"
                   />
                 </div>
