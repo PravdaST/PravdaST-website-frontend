@@ -1,41 +1,29 @@
+// 1. Слагаме правилния списък с лога от Framer
 const partners = [
   {
-    name: "n8n",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/2/25/N8n-logo.svg",
+    name: "Partner 1", // <-- Не забравяйте да смените имената
+    logo: "https://framerusercontent.com/images/m2Ee8qVNaUq1p30JNXzf87wtGZ4.png",
   },
   {
-    name: "Make",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/a/a4/Make_com_logo.svg",
+    name: "Partner 2", // <-- Не забравяйте да смените имената
+    logo: "https://framerusercontent.com/images/n3QeCgxiERZtWGL7E7mRbFJGPU.png",
   },
   {
-    name: "OpenAI",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/4/4d/OpenAI_Logo.svg",
+    name: "Partner 3", // <-- Не забравяйте да смените имената
+    logo: "https://framerusercontent.com/images/Bcly3ML9TcmNxDC5rKCRKuvqODI.png",
   },
   {
-    name: "Klaviyo",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/8/8e/Klaviyo_logo.svg",
+    name: "Partner 4", // <-- Не забравяйте да смените имената
+    logo: "https://framerusercontent.com/images/o3i1Dnx2WxItzPkcePIqvEQOFU.png",
   },
   {
-    name: "Gemini",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/6/6a/Google_Gemini_logo.svg",
-  },
-  {
-    name: "Slack",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/d/d5/Slack_icon_2019.svg",
-  },
-  {
-    name: "Google",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg",
-  },
-  {
-    name: "Airtable",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/9/94/Airtable_logo.svg",
+    name: "Partner 5", // <-- Не забравяйте да смените имената
+    logo: "https://framerusercontent.com/images/aEfuAatqNA9OPAwEZa6f4GuCgU.png",
   },
 ];
 
 export const PartnersCarousel = () => {
-  // Създаваме един масив, който съдържа логата ДВА пъти.
-  // Това е ключово за плавния, безкраен ефект.
+  // Създаваме удължен масив за безшевния ефект
   const extendedPartners = [...partners, ...partners];
 
   return (
@@ -48,19 +36,16 @@ export const PartnersCarousel = () => {
         </div>
 
         <div
-          className="w-full overflow-hidden"
+          className="w-full inline-flex flex-nowrap overflow-hidden"
           style={{
             maskImage:
               "linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)",
           }}
         >
-          {/* Анимацията се прилага на този вътрешен div */}
+          {/* 2. Използваме надеждната CSS анимация от tailwind.config.js */}
           <div className="flex w-max animate-infinite-scroll-reworked">
-            {/* Мапваме през удължения масив, за да създадем дългата лента */}
             {extendedPartners.map((partner, index) => (
               <div key={index} className="mx-8 flex-shrink-0">
-                {" "}
-                {/* mx-8 създава разстоянието */}
                 <img
                   src={partner.logo}
                   alt={partner.name}
