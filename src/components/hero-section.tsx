@@ -27,9 +27,15 @@ export const HeroSection = () => {
                 <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                 <div className="absolute inset-0 w-2 h-2 bg-green-400 rounded-full animate-ping opacity-75"></div>
               </div>
-              <span className="text-sm text-gray-300 font-medium">
-                Бизнес инженеринг за предвидим растеж
-              </span>
+              <div className="flex items-center gap-2">
+                <span className="text-sm text-gray-300 font-medium">
+                  Бизнес инженеринг за предвидим растеж
+                </span>
+                <div className="relative">
+                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                  <div className="absolute inset-0 w-2 h-2 bg-green-400 rounded-full animate-ping opacity-75"></div>
+                </div>
+              </div>
             </motion.div>
 
             <motion.h1
