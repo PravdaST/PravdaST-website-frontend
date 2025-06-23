@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 
-// Данните си остават същите
 const partners = [
   {
     name: "Google",
@@ -29,57 +28,46 @@ const partners = [
 ];
 
 export const PartnersCarousel = () => {
-  // 1. Дублираме партньорите само веднъж, за да създадем илюзията за безкрайност.
-  // Това е много по-ефективно от повтарянето на .map() 4 пъти.
+  // Дублираме партньорите два пъти за перфектен безкраен цикъл
   const duplicatedPartners = [...partners, ...partners];
 
   return (
-    <section className="py-16 bg-slate-900 overflow-hidden">
+    <section className="py-16 bg-slate-900">
       <div className="container mx-auto px-6">
         <div className="text-center mb-12">
-          <p className="text-slate-400 text-sm font-medium tracking-wide">
-            Our core technologies
+          <p className="text-slate-400 text-sm font-medium tracking-wide uppercase">
+            Our Core Technologies
           </p>
         </div>
 
         <div
-          className="relative h-20" // Даваме фиксирана височина на контейнера
-          // Стилът с маската за плавно изчезване в краищата е запазен - отличен е!
+          className="relative h-20 overflow-hidden" // overflow-hidden е важен
           style={{
             maskImage:
               "linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)",
           }}
         >
           <motion.div
-            className="flex items-center gap-20 absolute left-0" // Използваме absolute позициониране
-            // 2. Променяме анимацията, за да е напълно безшевна.
-            // Анимираме от 0 до -100% от ширината на контейнера.
-            // Когато анимацията се повтори, тя мигновено се връща на 0, но понеже имаме дублиран списък,
-            // потребителят не вижда "прескачане".
-            animate={{
-              x: ["0%", "-100%"],
-            }}
+            className="flex items-center gap-20 absolute left-0 top-0 h-full"
+            animate={{ x: ["0%", "-100%"] }}
             transition={{
-              // 3. Увеличаваме времетраенето на 40 секунди за по-бавна скорост.
-              duration: 40,
+              duration: 40, // По-бавна скорост
               ease: "linear",
               repeat: Infinity,
             }}
           >
-            {/* 4. Рендираме дублирания масив само веднъж */}
+            {/* Рендираме дублирания масив само веднъж */}
             {duplicatedPartners.map((partner, index) => (
               <div
-                key={index} // Вече не са нужни сложни key-ове
-                className="flex-shrink-0"
-                style={{ width: "160px" }}
+                key={index}
+                className="flex-shrink-0 w-40 h-full flex items-center justify-center" // w-40 = 160px
               >
                 <img
                   src={partner.logo}
-                  alt={partner.name}
-                  // 5. Подобрени стилове за логата - напълно черно-бели, леко затъмнени.
-                  // Добавен е и transition и hover ефект, за да "светват" при посочване с мишка.
-                  className="h-10 w-full object-contain filter grayscale brightness-75 opacity-60 transition-all duration-300 hover:filter-none hover:opacity-100"
+                  alt={partner.name} // Запазваме alt тага за по-добро SEO и достъпност
                   loading="lazy"
+                  // Ето я и магията за "сивичкото"
+                  className="h-10 object-contain filter grayscale brightness-[0.7] opacity-50 transition-all duration-300 hover:grayscale-0 hover:brightness-100 hover:opacity-100"
                 />
               </div>
             ))}
