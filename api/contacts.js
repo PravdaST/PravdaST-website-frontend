@@ -1,3 +1,41 @@
+async function identifyInKlaviyo(data) {
+  const KLAVIYO_PRIVATE_KEY = process.env.KLAVIYO_PRIVATE_API_KEY;
+  if (!KLAVIYO_PRIVATE_KEY) return; // Не прави нищо, ако няма ключ
+
+  const options = {
+    method: 'POST',
+    headers: {
+      accept: 'application/json',
+      revision: '2024-05-15',
+      'content-type': 'application/json',
+      Authorization: `Klaviyo-API-Key ${KLAVIYO_PRIVATE_KEY}`
+    },
+    body: JSON.stringify({
+      data: {
+        type: 'profile',
+        attributes: {
+          email: data.email,
+          first_name: data.name,
+          properties: {
+            company: data.company,
+            website: data.website,
+            source: 'Pravda Agency Contact Form'
+          }
+        }
+      }
+    })
+  };
+
+  try {
+    const response = await fetch('https://a.klaviyo.com/api/profiles/', options);
+    if (!response.ok) {
+      console.error('Klaviyo API error:', await response.json());
+    }
+  } catch (error) {
+    console.error('Failed to send profile to Klaviyo:', error);
+  }
+}
+
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', 'https://www.pravdagency.eu');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
@@ -48,6 +86,9 @@ export default async function handler(req, res) {
     });
 
     if (sgResponse.ok) {
+      // Имейлът е изпратен, сега изпращаме данните към Klaviyo
+      await identifyInKlaviyo({ name, email, website, company, message });
+
       return res.status(200).json({ 
         success: true, 
         message: 'Съобщението е изпратено успешно!' 

@@ -171,6 +171,7 @@ Changelog:
 - June 22, 2025. Applied global white color styling to all headings (H1-H6) across the entire website for consistent text visibility
 - June 22, 2025. Fixed contact form label colors to white for better visibility against dark background
 - June 22, 2025. Improved case studies slider design with consistent brand colors, proper card styling, and navigation elements matching site theme
+- June 22, 2025. Integrated Klaviyo email marketing platform with frontend tracking script and backend API integration for automatic profile creation from contact form submissions
 
 ## User Preferences
 
