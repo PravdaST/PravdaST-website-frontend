@@ -1,11 +1,14 @@
 import { Helmet } from "react-helmet-async";
 
 const KlaviyoSetup = () => {
-  const KLAVIYO_COMPANY_ID = import.meta.env.VITE_KLAVIYO_COMPANY_ID;
+  const KLAVIYO_COMPANY_ID = import.meta.env.VITE_KLAVIYO_COMPANY_ID || "UTqrCz";
 
   if (!KLAVIYO_COMPANY_ID) {
-    return null; // Не прави нищо, ако company ID не е настроено
+    console.log("Klaviyo: Company ID not found");
+    return null;
   }
+
+  console.log("Klaviyo: Loading with Company ID:", KLAVIYO_COMPANY_ID);
 
   return (
     <Helmet>
