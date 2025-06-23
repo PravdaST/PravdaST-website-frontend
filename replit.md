@@ -181,6 +181,8 @@ Changelog:
 - June 23, 2025. Replaced complex parallax effects with simple, elegant animated backgrounds for all service pages - SEO Struktor™ (blueprint grid with network nodes), Clientomat™ (curved data streams with traveling circles), Sales Engine™ (rotating gears with flowing particles) - all with low opacity for better text readability
 - June 23, 2025. Updated CTA section with complete rewrite following user specifications: "Приемаме до 3 нови партньори за следващото тримесечие" headline, detailed explanation about limited capacity, objections handling section with 3 cards answering common concerns, dual CTA buttons with specific messaging about 48-hour response and 5-minute process
 - June 23, 2025. Restored original yellow background (bg-[var(--pravdast-yellow)]) and exact user-provided text content in CTA section with modern layout design while maintaining all original messaging and structure
+- June 23, 2025. Created modern partners carousel component with animated sliding logos of major platforms (Google, Meta, HubSpot, Klaviyo, WordPress) and placed it after hero section on homepage for trust building
+- June 23, 2025. Redesigned CTA section with highly engaging layout: urgency badge, oversized "3" with animation, two-column layout (text left, sticky CTA card right), hover effects, floating elements, and improved visual hierarchy to maximize button clicks
 
 ## User Preferences
 
