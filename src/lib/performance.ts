@@ -165,20 +165,8 @@ export function setupLazyLoading() {
 
 // Preload critical resources
 export function preloadCriticalResources() {
-  const criticalFonts = [
-    '/fonts/inter-regular.woff2',
-    '/fonts/inter-semibold.woff2'
-  ];
-
-  criticalFonts.forEach((font) => {
-    const link = document.createElement('link');
-    link.rel = 'preload';
-    link.as = 'font';
-    link.type = 'font/woff2';
-    link.crossOrigin = 'anonymous';
-    link.href = font;
-    document.head.appendChild(link);
-  });
+  // Google Fonts are already optimized and don't need manual preloading
+  // Inter fonts are loaded via CSS import from Google Fonts CDN
 }
 
 // Critical CSS inlining

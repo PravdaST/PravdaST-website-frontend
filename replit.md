@@ -174,6 +174,7 @@ Changelog:
 - June 22, 2025. Integrated Klaviyo email marketing platform with frontend tracking script and backend API integration for automatic profile creation from contact form submissions
 - June 22, 2025. Highlighted "Ново" word in hero section status badge with brand yellow color for visual emphasis
 - June 22, 2025. Added Inter font integration via Google Fonts import to resolve 404 font loading errors and improved typography consistency
+- June 22, 2025. Removed local font preloading from performance.ts that was causing 404 errors for inter-regular.woff2 and inter-semibold.woff2
 
 ## User Preferences
 
