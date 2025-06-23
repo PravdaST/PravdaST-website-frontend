@@ -16,12 +16,8 @@ export const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <div
-              className="relative w-4 h-4 flex items-center justify-center"
-              aria-hidden="true" // По-добра достъпност за декоративни елементи
-            ></div>
             <span className="text-sm text-gray-300 font-medium">
-              <span className="text-sm text-gray-300 font-medium">Ново</span>{" "}
+              <span className="text-sm text-gray-300 font-medium">Ново</span>
               Бизнес инженеринг за предвидим растеж
             </span>
           </motion.div>
