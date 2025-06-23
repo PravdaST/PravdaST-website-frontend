@@ -187,6 +187,7 @@ Changelog:
 - June 23, 2025. Simplified CTA section design with clean layout: clear headline with emphasized "3", description in card format, focused CTA button section with proper text hierarchy and green status indicator
 - June 23, 2025. Restored Partners carousel to original position (after hero section) and redesigned with dark background (slate-900), uniform logo height (h-8), grayscale styling with reduced opacity for clean minimal appearance matching user requirements
 - June 23, 2025. Updated all service information across the website with new content: replaced Sales Engine™ with Clickstarter™ and Trendlab™, updated all descriptions, subtitles, and feature lists to match user-provided specifications in systems-section.tsx and services.tsx
+- June 23, 2025. Redesigned partners carousel with premium UX/UI: added motion animations, gradient backgrounds, rounded cards with hover effects, yellow accent badges, Bulgarian headings, and proper brand consistency with site design
 
 ## User Preferences
 
