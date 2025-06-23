@@ -59,159 +59,97 @@ export default function Clientomat() {
       
       {/* Hero Section */}
       <section className="pt-24 pb-16 bg-gradient-to-br from-[var(--pravdast-dark)] to-[var(--pravdast-dark-gray)] relative overflow-hidden">
-        {/* Client Network Connection System */}
+        {/* Client Retention Network Tech Background */}
         <div className="absolute inset-0 overflow-hidden">
-          {/* Central hub - company */}
-          <motion.div
-            className="absolute top-1/2 left-1/2 w-16 h-16 border-2 border-[var(--pravdast-yellow)]/60 rounded-lg -translate-x-1/2 -translate-y-1/2"
-            animate={{ 
-              scale: [1, 1.1, 1],
-              opacity: [0.6, 1, 0.6]
-            }}
-            transition={{
-              duration: 3,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          />
-          
-          {/* Client nodes around the hub */}
-          <motion.div
-            className="absolute top-1/4 left-1/4 w-8 h-8 bg-[var(--pravdast-yellow)]/40 rounded-full"
-            animate={{ 
-              scale: [1, 1.3, 1],
-              opacity: [0.4, 0.8, 0.4]
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 0.5
-            }}
-          />
-          <motion.div
-            className="absolute top-1/4 right-1/4 w-6 h-6 bg-[var(--pravdast-yellow)]/50 rounded-full"
-            animate={{ 
-              scale: [1, 1.2, 1],
-              opacity: [0.5, 0.9, 0.5]
-            }}
-            transition={{
-              duration: 2.5,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 1
-            }}
-          />
-          <motion.div
-            className="absolute bottom-1/4 left-1/3 w-7 h-7 bg-[var(--pravdast-yellow)]/45 rounded-full"
-            animate={{ 
-              scale: [1, 1.4, 1],
-              opacity: [0.45, 0.85, 0.45]
-            }}
-            transition={{
-              duration: 2.2,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 1.5
-            }}
-          />
-          <motion.div
-            className="absolute bottom-1/4 right-1/3 w-5 h-5 bg-[var(--pravdast-yellow)]/55 rounded-full"
-            animate={{ 
-              scale: [1, 1.25, 1],
-              opacity: [0.55, 0.95, 0.55]
-            }}
-            transition={{
-              duration: 1.8,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 2
-            }}
-          />
-          
-          {/* Connection lines between hub and clients */}
-          <motion.div
-            className="absolute top-1/2 left-1/2 w-32 h-0.5 bg-gradient-to-r from-[var(--pravdast-yellow)]/60 to-transparent origin-left -translate-y-1/2 -rotate-45"
-            animate={{ 
-              scaleX: [0, 1, 0],
-              opacity: [0, 0.8, 0]
-            }}
-            transition={{
-              duration: 3,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 0.5
-            }}
-          />
-          <motion.div
-            className="absolute top-1/2 left-1/2 w-28 h-0.5 bg-gradient-to-r from-[var(--pravdast-yellow)]/60 to-transparent origin-left -translate-y-1/2 rotate-45"
-            animate={{ 
-              scaleX: [0, 1, 0],
-              opacity: [0, 0.8, 0]
-            }}
-            transition={{
-              duration: 3,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 1
-            }}
-          />
-          <motion.div
-            className="absolute top-1/2 left-1/2 w-30 h-0.5 bg-gradient-to-r from-[var(--pravdast-yellow)]/60 to-transparent origin-left -translate-y-1/2 rotate-135"
-            animate={{ 
-              scaleX: [0, 1, 0],
-              opacity: [0, 0.8, 0]
-            }}
-            transition={{
-              duration: 3,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 1.5
-            }}
-          />
-          <motion.div
-            className="absolute top-1/2 left-1/2 w-26 h-0.5 bg-gradient-to-r from-[var(--pravdast-yellow)]/60 to-transparent origin-left -translate-y-1/2 -rotate-135"
-            animate={{ 
-              scaleX: [0, 1, 0],
-              opacity: [0, 0.8, 0]
-            }}
-            transition={{
-              duration: 3,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 2
-            }}
-          />
-          
-          {/* Data flow particles */}
-          <motion.div
-            className="absolute top-1/3 left-1/6 w-1 h-1 bg-[var(--pravdast-yellow)] rounded-full"
-            animate={{ 
-              x: [0, 200, 400],
-              y: [0, 50, 100],
-              opacity: [0, 1, 0]
-            }}
-            transition={{
-              duration: 4,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 1
-            }}
-          />
-          <motion.div
-            className="absolute bottom-1/3 right-1/6 w-1 h-1 bg-[var(--pravdast-yellow)] rounded-full"
-            animate={{ 
-              x: [0, -150, -300],
-              y: [0, -30, -60],
-              opacity: [0, 1, 0]
-            }}
-            transition={{
-              duration: 3.5,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 2.5
-            }}
-          />
+          <div className="tech-grid-bg absolute inset-0"></div>
+          <div className="tech-lines">
+            {/* Client connection web pattern */}
+            <motion.div
+              className="tech-line"
+              style={{ top: "18%", width: "320px", transform: "rotate(35deg)" }}
+              initial={{ x: "-100%" }}
+              animate={{ x: "100vw" }}
+              transition={{
+                duration: 7,
+                repeat: Infinity,
+                ease: "linear",
+                delay: 0,
+              }}
+            />
+            <motion.div
+              className="tech-line"
+              style={{ top: "38%", width: "260px", transform: "rotate(-25deg)" }}
+              initial={{ x: "-100%" }}
+              animate={{ x: "100vw" }}
+              transition={{
+                duration: 6,
+                repeat: Infinity,
+                ease: "linear",
+                delay: 2,
+              }}
+            />
+            <motion.div
+              className="tech-line"
+              style={{ top: "58%", width: "380px", transform: "rotate(18deg)" }}
+              initial={{ x: "-100%" }}
+              animate={{ x: "100vw" }}
+              transition={{
+                duration: 8,
+                repeat: Infinity,
+                ease: "linear",
+                delay: 4,
+              }}
+            />
+            <motion.div
+              className="tech-line"
+              style={{ top: "78%", width: "220px", transform: "rotate(-40deg)" }}
+              initial={{ x: "-100%" }}
+              animate={{ x: "100vw" }}
+              transition={{
+                duration: 5,
+                repeat: Infinity,
+                ease: "linear",
+                delay: 6,
+              }}
+            />
+            {/* Additional network connection lines */}
+            <motion.div
+              className="tech-line"
+              style={{ top: "28%", width: "280px", transform: "rotate(45deg)" }}
+              initial={{ x: "-100%" }}
+              animate={{ x: "100vw" }}
+              transition={{
+                duration: 9,
+                repeat: Infinity,
+                ease: "linear",
+                delay: 1,
+              }}
+            />
+            <motion.div
+              className="tech-line"
+              style={{ top: "48%", width: "340px", transform: "rotate(-15deg)" }}
+              initial={{ x: "-100%" }}
+              animate={{ x: "100vw" }}
+              transition={{
+                duration: 6.5,
+                repeat: Infinity,
+                ease: "linear",
+                delay: 3,
+              }}
+            />
+            <motion.div
+              className="tech-line"
+              style={{ top: "68%", width: "200px", transform: "rotate(30deg)" }}
+              initial={{ x: "-100%" }}
+              animate={{ x: "100vw" }}
+              transition={{
+                duration: 7.5,
+                repeat: Infinity,
+                ease: "linear",
+                delay: 5,
+              }}
+            />
+          </div>
         </div>
         
         <div className="container mx-auto px-6 relative z-10">

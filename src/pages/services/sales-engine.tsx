@@ -59,193 +59,108 @@ export default function SalesEngine() {
       
       {/* Hero Section */}
       <section className="pt-24 pb-16 bg-gradient-to-br from-[var(--pravdast-dark)] to-[var(--pravdast-dark-gray)] relative overflow-hidden">
-        {/* Sales Pipeline Flow System */}
+        {/* Sales Automation Engine Tech Background */}
         <div className="absolute inset-0 overflow-hidden">
-          {/* Pipeline stages - vertical flow */}
-          <div className="absolute left-1/6 top-16 bottom-16 w-0.5 bg-gradient-to-b from-transparent via-[var(--pravdast-yellow)]/40 to-transparent"></div>
-          <div className="absolute left-2/6 top-20 bottom-20 w-0.5 bg-gradient-to-b from-transparent via-[var(--pravdast-yellow)]/50 to-transparent"></div>
-          <div className="absolute left-3/6 top-12 bottom-12 w-0.5 bg-gradient-to-b from-transparent via-[var(--pravdast-yellow)]/60 to-transparent"></div>
-          <div className="absolute left-4/6 top-24 bottom-24 w-0.5 bg-gradient-to-b from-transparent via-[var(--pravdast-yellow)]/45 to-transparent"></div>
-          <div className="absolute left-5/6 top-16 bottom-16 w-0.5 bg-gradient-to-b from-transparent via-[var(--pravdast-yellow)]/35 to-transparent"></div>
-          
-          {/* Lead processing nodes */}
-          <motion.div
-            className="absolute top-1/4 left-1/6 w-10 h-10 border border-[var(--pravdast-yellow)]/60 rounded-lg -translate-x-1/2 -translate-y-1/2"
-            animate={{ 
-              scale: [1, 1.2, 1],
-              opacity: [0.6, 1, 0.6]
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          />
-          <motion.div
-            className="absolute top-2/4 left-2/6 w-8 h-8 bg-[var(--pravdast-yellow)]/50 rounded-full -translate-x-1/2 -translate-y-1/2"
-            animate={{ 
-              scale: [1, 1.3, 1],
-              opacity: [0.5, 0.9, 0.5]
-            }}
-            transition={{
-              duration: 2.5,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 0.5
-            }}
-          />
-          <motion.div
-            className="absolute top-3/4 left-3/6 w-12 h-12 border-2 border-[var(--pravdast-yellow)]/70 rounded-lg -translate-x-1/2 -translate-y-1/2"
-            animate={{ 
-              scale: [1, 1.1, 1],
-              opacity: [0.7, 1, 0.7]
-            }}
-            transition={{
-              duration: 3,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 1
-            }}
-          />
-          <motion.div
-            className="absolute top-1/3 left-4/6 w-6 h-6 bg-[var(--pravdast-yellow)]/40 rounded-sm -translate-x-1/2 -translate-y-1/2"
-            animate={{ 
-              scale: [1, 1.4, 1],
-              rotate: [0, 45, 0],
-              opacity: [0.4, 0.8, 0.4]
-            }}
-            transition={{
-              duration: 2.2,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 1.5
-            }}
-          />
-          <motion.div
-            className="absolute top-2/3 left-5/6 w-7 h-7 border border-[var(--pravdast-yellow)]/35 rounded-full -translate-x-1/2 -translate-y-1/2"
-            animate={{ 
-              scale: [1, 1.25, 1],
-              opacity: [0.35, 0.75, 0.35]
-            }}
-            transition={{
-              duration: 1.8,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 2
-            }}
-          />
-          
-          {/* Data flow arrows between stages */}
-          <motion.div
-            className="absolute top-1/4 left-1/6 w-16 h-0.5 bg-gradient-to-r from-[var(--pravdast-yellow)]/60 to-transparent"
-            animate={{ 
-              scaleX: [0, 1, 0],
-              opacity: [0, 0.8, 0]
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 0.3
-            }}
-          />
-          <motion.div
-            className="absolute top-2/4 left-2/6 w-14 h-0.5 bg-gradient-to-r from-[var(--pravdast-yellow)]/60 to-transparent"
-            animate={{ 
-              scaleX: [0, 1, 0],
-              opacity: [0, 0.8, 0]
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 0.8
-            }}
-          />
-          <motion.div
-            className="absolute top-3/4 left-3/6 w-18 h-0.5 bg-gradient-to-r from-[var(--pravdast-yellow)]/60 to-transparent"
-            animate={{ 
-              scaleX: [0, 1, 0],
-              opacity: [0, 0.8, 0]
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 1.3
-            }}
-          />
-          <motion.div
-            className="absolute top-1/3 left-4/6 w-12 h-0.5 bg-gradient-to-r from-[var(--pravdast-yellow)]/60 to-transparent"
-            animate={{ 
-              scaleX: [0, 1, 0],
-              opacity: [0, 0.8, 0]
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 1.8
-            }}
-          />
-          
-          {/* Revenue indicator */}
-          <motion.div
-            className="absolute bottom-1/4 right-1/6 w-20 h-3 bg-gradient-to-r from-transparent via-[var(--pravdast-yellow)]/80 to-[var(--pravdast-yellow)]/20 rounded-full"
-            animate={{ 
-              scaleX: [0.5, 1, 0.5],
-              opacity: [0.5, 1, 0.5]
-            }}
-            transition={{
-              duration: 4,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          />
-          
-          {/* Processing particles */}
-          <motion.div
-            className="absolute top-1/5 left-1/8 w-1 h-1 bg-[var(--pravdast-yellow)] rounded-full"
-            animate={{ 
-              x: [0, 300, 600],
-              y: [0, 20, 40],
-              opacity: [0, 1, 0]
-            }}
-            transition={{
-              duration: 6,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 0.5
-            }}
-          />
-          <motion.div
-            className="absolute top-2/5 left-1/10 w-1 h-1 bg-[var(--pravdast-yellow)] rounded-full"
-            animate={{ 
-              x: [0, 250, 500],
-              y: [0, -15, -30],
-              opacity: [0, 1, 0]
-            }}
-            transition={{
-              duration: 5,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 2
-            }}
-          />
-          <motion.div
-            className="absolute top-3/5 left-1/12 w-1 h-1 bg-[var(--pravdast-yellow)] rounded-full"
-            animate={{ 
-              x: [0, 400, 800],
-              y: [0, 30, 60],
-              opacity: [0, 1, 0]
-            }}
-            transition={{
-              duration: 7,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 3.5
-            }}
-          />
+          <div className="tech-grid-bg absolute inset-0"></div>
+          <div className="tech-lines">
+            {/* Sales engine flow lines - high intensity */}
+            <motion.div
+              className="tech-line"
+              style={{ top: "12%", width: "400px", transform: "rotate(5deg)" }}
+              initial={{ x: "-100%" }}
+              animate={{ x: "100vw" }}
+              transition={{
+                duration: 5,
+                repeat: Infinity,
+                ease: "linear",
+                delay: 0,
+              }}
+            />
+            <motion.div
+              className="tech-line"
+              style={{ top: "22%", width: "300px", transform: "rotate(-8deg)" }}
+              initial={{ x: "-100%" }}
+              animate={{ x: "100vw" }}
+              transition={{
+                duration: 6,
+                repeat: Infinity,
+                ease: "linear",
+                delay: 1,
+              }}
+            />
+            <motion.div
+              className="tech-line"
+              style={{ top: "32%", width: "450px", transform: "rotate(12deg)" }}
+              initial={{ x: "-100%" }}
+              animate={{ x: "100vw" }}
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                ease: "linear",
+                delay: 2,
+              }}
+            />
+            <motion.div
+              className="tech-line"
+              style={{ top: "42%", width: "350px", transform: "rotate(-15deg)" }}
+              initial={{ x: "-100%" }}
+              animate={{ x: "100vw" }}
+              transition={{
+                duration: 7,
+                repeat: Infinity,
+                ease: "linear",
+                delay: 3,
+              }}
+            />
+            <motion.div
+              className="tech-line"
+              style={{ top: "52%", width: "280px", transform: "rotate(20deg)" }}
+              initial={{ x: "-100%" }}
+              animate={{ x: "100vw" }}
+              transition={{
+                duration: 5.5,
+                repeat: Infinity,
+                ease: "linear",
+                delay: 4,
+              }}
+            />
+            <motion.div
+              className="tech-line"
+              style={{ top: "62%", width: "380px", transform: "rotate(-10deg)" }}
+              initial={{ x: "-100%" }}
+              animate={{ x: "100vw" }}
+              transition={{
+                duration: 6.5,
+                repeat: Infinity,
+                ease: "linear",
+                delay: 5,
+              }}
+            />
+            <motion.div
+              className="tech-line"
+              style={{ top: "72%", width: "250px", transform: "rotate(18deg)" }}
+              initial={{ x: "-100%" }}
+              animate={{ x: "100vw" }}
+              transition={{
+                duration: 8,
+                repeat: Infinity,
+                ease: "linear",
+                delay: 6,
+              }}
+            />
+            <motion.div
+              className="tech-line"
+              style={{ top: "82%", width: "320px", transform: "rotate(-22deg)" }}
+              initial={{ x: "-100%" }}
+              animate={{ x: "100vw" }}
+              transition={{
+                duration: 4.5,
+                repeat: Infinity,
+                ease: "linear",
+                delay: 7,
+              }}
+            />
+          </div>
         </div>
         
         <div className="container mx-auto px-6 relative z-10">
