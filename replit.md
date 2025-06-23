@@ -185,6 +185,7 @@ Changelog:
 - June 23, 2025. Redesigned CTA section with highly engaging layout: urgency badge, oversized "3" with animation, two-column layout (text left, sticky CTA card right), hover effects, floating elements, and improved visual hierarchy to maximize button clicks
 - June 23, 2025. Moved Partners carousel section above Case Studies section and removed borders from logo containers while making logos fit properly in their containers
 - June 23, 2025. Simplified CTA section design with clean layout: clear headline with emphasized "3", description in card format, focused CTA button section with proper text hierarchy and green status indicator
+- June 23, 2025. Restored Partners carousel to original position (after hero section) and redesigned with dark background (slate-900), uniform logo height (h-8), grayscale styling with reduced opacity for clean minimal appearance matching user requirements
 
 ## User Preferences
 

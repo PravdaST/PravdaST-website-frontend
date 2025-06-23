@@ -17,11 +17,11 @@ export default function Home() {
       <SEOHead seo={pageSEOData.home} pageSlug="" />
       <Navigation />
       <HeroSection />
+      <PartnersCarousel />
       <ProblemSection />
       <SolutionSection />
       <ProcessSection />
       <SystemsSection />
-      <PartnersCarousel />
       <CaseStudiesSlider />
       <CTASection />
       <Footer />
