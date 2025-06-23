@@ -2,7 +2,12 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, ChevronRight, ArrowRight, TrendingUp } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  ArrowRight,
+  TrendingUp,
+} from "lucide-react";
 import { Link } from "wouter";
 
 const caseStudies = [
@@ -11,57 +16,71 @@ const caseStudies = [
     company: "Бачо Илия",
     industry: "Млечна индустрия",
     tagline: "Познат вкус. Нова слава.",
-    description: "Традиционен млечен производител с богата история, който се нуждаеше от модерна дигитална присъствие за достигане до нови аудитории.",
+    description:
+      "Традиционен млечен производител с богата история, който се нуждаеше от модерна дигитална присъствие за достигане до нови аудитории.",
     results: [
       { metric: "+243%", description: "ръст на месечна бранд аудитория" },
-      { metric: "80 бр.", description: "от клиентите се върнаха за втора консултация" },
-      { metric: "500 000", description: "гледания в първия месец" }
+      {
+        metric: "80 бр.",
+        description: "от клиентите се върнаха за втора консултация",
+      },
+      { metric: "500 000", description: "гледания в първия месец" },
     ],
     systems: ["Trendlab™", "SEO Struktor™"],
-    testimonial: "Pravdast ни помогна да превърнем традиционния ни бизнес в модерен бранд, без да загубим автентичността си."
+    testimonial:
+      "Pravdast ни помогна да превърнем традиционния ни бизнес в модерен бранд, без да загубим автентичността си.",
   },
   {
     id: "euphoria-beauty",
     company: "Euphoria Beauty",
     industry: "Козметични услуги",
     tagline: "Салон с репутация. Без дигитална визия.",
-    description: "Успешен козметичен салон във Варна с отлична репутация сред съществуващите клиенти, но липса на онлайн присъствие.",
+    description:
+      "Успешен козметичен салон във Варна с отлична репутация сред съществуващите клиенти, но липса на онлайн присъствие.",
     results: [
       { metric: "+280%", description: "повече запитвания онлайн" },
       { metric: "+137%", description: "нови клиенти от Google" },
-      { metric: "+42%", description: "разпознаваемост на бранд" }
+      { metric: "+42%", description: "разпознаваемост на бранд" },
     ],
     systems: ["SEO Struktor™", "Clientomat™"],
-    testimonial: "За първи път имаме постоянен поток от нови клиенти, които ни намират онлайн. Системата работи сама."
+    testimonial:
+      "За първи път имаме постоянен поток от нови клиенти, които ни намират онлайн. Системата работи сама.",
   },
   {
     id: "ice-tub-co",
     company: "Ice Tub Co.",
     industry: "Фитнес оборудване",
     tagline: "От нулева SEO стратегия до 1.1M оборот.",
-    description: "Британска компания за ледени вани, която търсеше систематичен подход за навлизане на европейския пазар.",
+    description:
+      "Британска компания за ледени вани, която търсеше систематичен подход за навлизане на европейския пазар.",
     results: [
       { metric: "13.9K", description: "месечни посещения (от 2.3K)" },
       { metric: "£1.5M", description: "месечен приход (от £400K)" },
-      { metric: "+27%", description: "поръчки с Clientomat™" }
+      { metric: "+27%", description: "поръчки с Clientomat™" },
     ],
     systems: ["SEO Struktor™", "Sales Engine™", "Clientomat™"],
-    testimonial: "Pravdast ни помогна да изградим предсказуема система за растеж. Резултатите превъзхождат очакванията ни."
+    testimonial:
+      "Pravdast ни помогна да изградим предсказуема система за растеж. Резултатите превъзхождат очакванията ни.",
   },
   {
     id: "dejavu-gym",
     company: "DeJaVu Gym",
     industry: "Фитнес",
     tagline: "Популярен фитнес. Никаква система.",
-    description: "Установен фитнес център с лоялни членове, но без система за привличане на нови клиенти и задържане на съществуващите.",
+    description:
+      "Установен фитнес център с лоялни членове, но без система за привличане на нови клиенти и задържане на съществуващите.",
     results: [
       { metric: "+41%", description: "повече активни абонаменти" },
       { metric: "+66%", description: "повече препоръки" },
-      { metric: "53.13%", description: "96,000 лв. → 147,000 лв. ръст на оборота" }
+      {
+        metric: "53.13%",
+        description: "96,000 лв. → 147,000 лв. ръст на оборота",
+      },
     ],
     systems: ["Clientomat™", "Trendlab™"],
-    testimonial: "Сега имаме ясна система, която работи автоматично. Членовете остават по-дълго и препоръчват повече приятели."
-  }
+    testimonial:
+      "Сега имаме ясна система, която работи автоматично. Членовете остават по-дълго и препоръчват повече приятели.",
+  },
 ];
 
 export const CaseStudiesSlider = () => {
@@ -72,7 +91,9 @@ export const CaseStudiesSlider = () => {
   };
 
   const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + caseStudies.length) % caseStudies.length);
+    setCurrentSlide(
+      (prev) => (prev - 1 + caseStudies.length) % caseStudies.length,
+    );
   };
 
   const currentCase = caseStudies[currentSlide];
@@ -81,7 +102,7 @@ export const CaseStudiesSlider = () => {
     <section className="py-20 bg-[var(--pravdast-dark)]">
       <div className="container mx-auto px-6">
         {/* Header */}
-        <motion.div 
+        <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -89,10 +110,12 @@ export const CaseStudiesSlider = () => {
           viewport={{ once: true }}
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
-            Реални <span className="text-[var(--pravdast-yellow)]">резултати</span>
+            Реални{" "}
+            <span className="text-[var(--pravdast-yellow)]">резултати</span>
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Вижте как компании превърнаха хаоса в предсказуем растеж с нашите инженерни системи
+            Вижте как компании превърнаха хаоса в предсказуем растеж с нашите
+            инженерни системи
           </p>
         </motion.div>
 
@@ -117,15 +140,15 @@ export const CaseStudiesSlider = () => {
                           {currentCase.industry}
                         </span>
                       </div>
-                      
+
                       <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
                         {currentCase.company}
                       </h3>
-                      
+
                       <p className="text-lg text-[var(--pravdast-yellow)] mb-6 font-medium">
                         {currentCase.tagline}
                       </p>
-                      
+
                       <p className="text-gray-300 mb-8 leading-relaxed">
                         {currentCase.description}
                       </p>
@@ -133,7 +156,7 @@ export const CaseStudiesSlider = () => {
                       {/* Systems Used */}
                       <div className="flex flex-wrap gap-3 mb-8">
                         {currentCase.systems.map((system, index) => (
-                          <span 
+                          <span
                             key={index}
                             className="px-4 py-2 bg-[var(--pravdast-yellow)]/10 border border-[var(--pravdast-yellow)]/30 rounded-full text-sm text-[var(--pravdast-yellow)] font-medium"
                           >
@@ -196,9 +219,9 @@ export const CaseStudiesSlider = () => {
                   key={index}
                   onClick={() => setCurrentSlide(index)}
                   className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                    index === currentSlide 
-                      ? 'bg-[var(--pravdast-yellow)] scale-125' 
-                      : 'bg-gray-600 hover:bg-gray-500'
+                    index === currentSlide
+                      ? "bg-[var(--pravdast-yellow)] scale-125"
+                      : "bg-gray-600 hover:bg-gray-500"
                   }`}
                 />
               ))}
@@ -215,9 +238,9 @@ export const CaseStudiesSlider = () => {
           </div>
 
           {/* CTA */}
-          <div className="text-center mt-12">
+          <div className="text-center mt-8">
             <Link href="/case-studies">
-              <Button 
+              <Button
                 size="lg"
                 className="bg-[var(--pravdast-yellow)] text-[var(--pravdast-dark)] hover:bg-[#d4a426] font-semibold px-8 py-3"
               >
