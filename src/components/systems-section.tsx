@@ -104,6 +104,9 @@ export const SystemsSection = () => {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
+          <span className="text-sm text-gray-300 font-medium mb-4 block">
+            <span className="text-[var(--pravdast-yellow)]"><b>Проверени</b></span> системи за устойчив растеж
+          </span>
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
             Нашите системи за растеж:
           </h2>

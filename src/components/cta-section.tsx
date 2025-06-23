@@ -5,15 +5,19 @@ export const CTASection = () => {
   return (
     <section className="py-20 bg-[var(--pravdast-yellow)] text-[var(--pravdast-dark)]">
       <div className="container mx-auto px-6 text-center">
-        <motion.h2
-          className="text-4xl md:text-5xl font-bold mb-8"
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          Спрете да залагате. Време е за система.
-        </motion.h2>
+          <span className="text-sm text-[var(--pravdast-dark)]/70 font-medium mb-4 block">
+            <span className="text-[var(--pravdast-dark)]"><b>Безплатна</b></span> диагностика за вашия бизнес
+          </span>
+          <h2 className="text-4xl md:text-5xl font-bold mb-8">
+            Спрете да залагате. Време е за система.
+          </h2>
+        </motion.div>
         
         <motion.p
           className="text-xl mb-12 max-w-3xl mx-auto"

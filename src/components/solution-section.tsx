@@ -12,6 +12,9 @@ export const SolutionSection = () => {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
+          <span className="text-sm text-gray-300 font-medium mb-4 block">
+            <span className="text-[var(--pravdast-yellow)]"><b>Инженерен</b></span> подход към бизнеса
+          </span>
           <h2 className="text-4xl md:text-5xl font-bold mb-8">
             Спрете да залагате. Време е за система
           </h2>

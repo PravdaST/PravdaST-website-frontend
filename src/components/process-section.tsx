@@ -32,6 +32,9 @@ export const ProcessSection = () => {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
+          <span className="text-sm text-gray-300 font-medium mb-4 block">
+            <span className="text-[var(--pravdast-yellow)]"><b>Контролиран</b></span> процес за предвидим растеж
+          </span>
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
             Прозрачен процес. Предвидими резултати.
           </h2>

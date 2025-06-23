@@ -109,6 +109,9 @@ export const CaseStudiesSlider = () => {
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
+          <span className="text-sm text-gray-300 font-medium mb-4 block">
+            <span className="text-[var(--pravdast-yellow)]"><b>Проследими</b></span> резултати от реални клиенти
+          </span>
           <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
             Реални{" "}
             <span className="text-[var(--pravdast-yellow)]">резултати</span>
