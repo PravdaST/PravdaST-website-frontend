@@ -58,8 +58,50 @@ export default function SalesEngine() {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="pt-24 pb-16 bg-gradient-to-br from-[var(--pravdast-dark)] to-[var(--pravdast-dark-gray)]">
-        <div className="container mx-auto px-6">
+      <section className="pt-24 pb-16 bg-gradient-to-br from-[var(--pravdast-dark)] to-[var(--pravdast-dark-gray)] relative overflow-hidden">
+        {/* Parallax Background Elements */}
+        <div className="absolute inset-0 opacity-10">
+          <motion.div 
+            className="absolute top-12 left-12 w-36 h-36 border border-[var(--pravdast-yellow)]/25 rounded-lg rotate-12"
+            animate={{ 
+              rotate: [12, 372],
+              y: [0, -30, 0]
+            }}
+            transition={{ 
+              duration: 12,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+          <motion.div 
+            className="absolute top-28 right-8 w-22 h-22 bg-[var(--pravdast-yellow)]/20 rounded-full"
+            animate={{ 
+              scale: [1, 1.3, 1],
+              x: [0, -15, 0]
+            }}
+            transition={{ 
+              duration: 8,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 1
+            }}
+          />
+          <motion.div 
+            className="absolute bottom-16 left-1/3 w-18 h-18 border-2 border-[var(--pravdast-yellow)]/35 rotate-45"
+            animate={{ 
+              rotate: [45, 405, 45],
+              scale: [1, 0.8, 1]
+            }}
+            transition={{ 
+              duration: 10,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 3
+            }}
+          />
+        </div>
+        
+        <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <motion.div
               className="w-20 h-20 mx-auto mb-8 bg-[var(--pravdast-yellow)]/10 rounded-full flex items-center justify-center"

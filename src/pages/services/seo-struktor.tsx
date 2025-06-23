@@ -2,7 +2,7 @@ import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Breadcrumbs } from "@/components/breadcrumbs";
+
 import { motion } from "framer-motion";
 import { Search, Eye, Edit, Globe, ArrowRight, CheckCircle } from "lucide-react";
 
@@ -58,14 +58,51 @@ export default function SeoStruktor() {
     <div className="min-h-screen">
       <Navigation />
       
-      {/* Breadcrumbs */}
-      <div className="container mx-auto px-6 pt-24">
-        <Breadcrumbs />
-      </div>
-      
       {/* Hero Section */}
-      <section className="pt-24 pb-16 bg-gradient-to-br from-[var(--pravdast-dark)] to-[var(--pravdast-dark-gray)]">
-        <div className="container mx-auto px-6">
+      <section className="pt-24 pb-16 bg-gradient-to-br from-[var(--pravdast-dark)] to-[var(--pravdast-dark-gray)] relative overflow-hidden">
+        {/* Parallax Background Elements */}
+        <div className="absolute inset-0 opacity-10">
+          <motion.div 
+            className="absolute top-20 left-10 w-32 h-32 border border-[var(--pravdast-yellow)]/30 rounded-full"
+            animate={{ 
+              y: [0, -20, 0],
+              rotate: [0, 180, 360]
+            }}
+            transition={{ 
+              duration: 8,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+          <motion.div 
+            className="absolute top-40 right-20 w-20 h-20 bg-[var(--pravdast-yellow)]/20 rounded-lg"
+            animate={{ 
+              y: [0, 15, 0],
+              x: [0, 10, 0]
+            }}
+            transition={{ 
+              duration: 6,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 1
+            }}
+          />
+          <motion.div 
+            className="absolute bottom-20 left-1/4 w-16 h-16 border-2 border-[var(--pravdast-yellow)]/40 rotate-45"
+            animate={{ 
+              rotate: [45, 225, 45],
+              scale: [1, 1.2, 1]
+            }}
+            transition={{ 
+              duration: 10,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 2
+            }}
+          />
+        </div>
+        
+        <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <motion.div
               className="w-20 h-20 mx-auto mb-8 bg-[var(--pravdast-yellow)]/10 rounded-full flex items-center justify-center"

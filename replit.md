@@ -175,6 +175,8 @@ Changelog:
 - June 22, 2025. Highlighted "Ново" word in hero section status badge with brand yellow color for visual emphasis
 - June 22, 2025. Added Inter font integration via Google Fonts import to resolve 404 font loading errors and improved typography consistency
 - June 22, 2025. Removed local font preloading from performance.ts that was causing 404 errors for inter-regular.woff2 and inter-semibold.woff2
+- June 23, 2025. Enhanced all homepage sections with animated yellow accent badges (Системна, Инженерен, Контролиран, Проверени, Безплатна, Проследими) using motion.div with gradient backgrounds and smooth animations for professional branding consistency
+- June 23, 2025. Removed breadcrumb navigation from all service pages (SEO Struktor™, Clientomat™, Sales Engine™) and implemented unique parallax background animations in hero sections with floating geometric elements for enhanced visual engagement
 
 ## User Preferences
 

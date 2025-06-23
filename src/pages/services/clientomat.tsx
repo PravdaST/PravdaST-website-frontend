@@ -58,8 +58,50 @@ export default function Clientomat() {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="pt-24 pb-16 bg-gradient-to-br from-[var(--pravdast-dark)] to-[var(--pravdast-dark-gray)]">
-        <div className="container mx-auto px-6">
+      <section className="pt-24 pb-16 bg-gradient-to-br from-[var(--pravdast-dark)] to-[var(--pravdast-dark-gray)] relative overflow-hidden">
+        {/* Parallax Background Elements */}
+        <div className="absolute inset-0 opacity-10">
+          <motion.div 
+            className="absolute top-16 right-10 w-28 h-28 border-2 border-[var(--pravdast-yellow)]/30 rounded-full"
+            animate={{ 
+              y: [0, -25, 0],
+              x: [0, 15, 0]
+            }}
+            transition={{ 
+              duration: 7,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+          <motion.div 
+            className="absolute top-32 left-16 w-24 h-24 bg-[var(--pravdast-yellow)]/15 rounded-xl"
+            animate={{ 
+              rotate: [0, 360],
+              scale: [1, 1.1, 1]
+            }}
+            transition={{ 
+              duration: 9,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 1.5
+            }}
+          />
+          <motion.div 
+            className="absolute bottom-24 right-1/3 w-20 h-20 border border-[var(--pravdast-yellow)]/40 rotate-12"
+            animate={{ 
+              rotate: [12, 192, 12],
+              y: [0, 20, 0]
+            }}
+            transition={{ 
+              duration: 11,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 2.5
+            }}
+          />
+        </div>
+        
+        <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <motion.div
               className="w-20 h-20 mx-auto mb-8 bg-[var(--pravdast-yellow)]/10 rounded-full flex items-center justify-center"
