@@ -59,44 +59,110 @@ export default function SalesEngine() {
       
       {/* Hero Section */}
       <section className="pt-24 pb-16 bg-gradient-to-br from-[var(--pravdast-dark)] to-[var(--pravdast-dark-gray)] relative overflow-hidden">
-        {/* Parallax Background Elements */}
-        <div className="absolute inset-0 opacity-10">
-          <motion.div 
-            className="absolute top-12 left-12 w-36 h-36 border border-[var(--pravdast-yellow)]/25 rounded-lg rotate-12"
+        {/* Tech Background - Sales Automation Engine */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="tech-grid-bg absolute inset-0 opacity-20"></div>
+          <div className="tech-lines">
+            {/* Sales pipeline flow lines */}
+            <motion.div
+              className="tech-line"
+              style={{ top: "12%", width: "400px" }}
+              initial={{ x: "-100%" }}
+              animate={{ x: "100vw" }}
+              transition={{
+                duration: 9,
+                repeat: Infinity,
+                ease: "linear",
+                delay: 0,
+              }}
+            />
+            <motion.div
+              className="tech-line"
+              style={{ top: "32%", width: "300px" }}
+              initial={{ x: "-100%" }}
+              animate={{ x: "100vw" }}
+              transition={{
+                duration: 6,
+                repeat: Infinity,
+                ease: "linear",
+                delay: 1.5,
+              }}
+            />
+            <motion.div
+              className="tech-line"
+              style={{ top: "52%", width: "450px" }}
+              initial={{ x: "-100%" }}
+              animate={{ x: "100vw" }}
+              transition={{
+                duration: 8,
+                repeat: Infinity,
+                ease: "linear",
+                delay: 3.5,
+              }}
+            />
+            <motion.div
+              className="tech-line"
+              style={{ top: "72%", width: "250px" }}
+              initial={{ x: "-100%" }}
+              animate={{ x: "100vw" }}
+              transition={{
+                duration: 7,
+                repeat: Infinity,
+                ease: "linear",
+                delay: 5,
+              }}
+            />
+            <motion.div
+              className="tech-line"
+              style={{ top: "88%", width: "180px" }}
+              initial={{ x: "-100%" }}
+              animate={{ x: "100vw" }}
+              transition={{
+                duration: 5,
+                repeat: Infinity,
+                ease: "linear",
+                delay: 7,
+              }}
+            />
+          </div>
+          {/* Sales engine processing nodes */}
+          <motion.div
+            className="absolute top-16 right-12 w-6 h-6 border-2 border-[var(--pravdast-yellow)]/50 rounded-sm rotate-45"
             animate={{ 
-              rotate: [12, 372],
-              y: [0, -30, 0]
+              rotate: [45, 405, 45],
+              scale: [1, 1.2, 1],
+              opacity: [0.5, 1, 0.5]
             }}
             transition={{ 
-              duration: 12,
+              duration: 4,
               repeat: Infinity,
               ease: "easeInOut"
             }}
           />
-          <motion.div 
-            className="absolute top-28 right-8 w-22 h-22 bg-[var(--pravdast-yellow)]/20 rounded-full"
+          <motion.div
+            className="absolute bottom-32 left-16 w-3 h-3 bg-[var(--pravdast-yellow)]/60 rounded-full"
             animate={{ 
-              scale: [1, 1.3, 1],
-              x: [0, -15, 0]
+              scale: [1, 1.5, 1],
+              opacity: [0.6, 1, 0.6]
             }}
             transition={{ 
-              duration: 8,
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 2
+            }}
+          />
+          <motion.div
+            className="absolute top-40 left-1/3 w-4 h-4 border border-[var(--pravdast-yellow)]/40"
+            animate={{ 
+              rotate: [0, 180, 360],
+              opacity: [0.4, 0.7, 0.4]
+            }}
+            transition={{ 
+              duration: 6,
               repeat: Infinity,
               ease: "easeInOut",
               delay: 1
-            }}
-          />
-          <motion.div 
-            className="absolute bottom-16 left-1/3 w-18 h-18 border-2 border-[var(--pravdast-yellow)]/35 rotate-45"
-            animate={{ 
-              rotate: [45, 405, 45],
-              scale: [1, 0.8, 1]
-            }}
-            transition={{ 
-              duration: 10,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 3
             }}
           />
         </div>

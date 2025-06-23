@@ -60,44 +60,84 @@ export default function SeoStruktor() {
       
       {/* Hero Section */}
       <section className="pt-24 pb-16 bg-gradient-to-br from-[var(--pravdast-dark)] to-[var(--pravdast-dark-gray)] relative overflow-hidden">
-        {/* Parallax Background Elements */}
-        <div className="absolute inset-0 opacity-10">
-          <motion.div 
-            className="absolute top-20 left-10 w-32 h-32 border border-[var(--pravdast-yellow)]/30 rounded-full"
+        {/* Tech Background - SEO Search Pattern */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="tech-grid-bg absolute inset-0 opacity-20"></div>
+          <div className="tech-lines">
+            {/* Search radar scanning lines */}
+            <motion.div
+              className="tech-line"
+              style={{ top: "15%", width: "350px" }}
+              initial={{ x: "-100%" }}
+              animate={{ x: "100vw" }}
+              transition={{
+                duration: 6,
+                repeat: Infinity,
+                ease: "linear",
+                delay: 0,
+              }}
+            />
+            <motion.div
+              className="tech-line"
+              style={{ top: "35%", width: "280px" }}
+              initial={{ x: "-100%" }}
+              animate={{ x: "100vw" }}
+              transition={{
+                duration: 7,
+                repeat: Infinity,
+                ease: "linear",
+                delay: 1.5,
+              }}
+            />
+            <motion.div
+              className="tech-line"
+              style={{ top: "55%", width: "420px" }}
+              initial={{ x: "-100%" }}
+              animate={{ x: "100vw" }}
+              transition={{
+                duration: 8,
+                repeat: Infinity,
+                ease: "linear",
+                delay: 3,
+              }}
+            />
+            <motion.div
+              className="tech-line"
+              style={{ top: "75%", width: "180px" }}
+              initial={{ x: "-100%" }}
+              animate={{ x: "100vw" }}
+              transition={{
+                duration: 5,
+                repeat: Infinity,
+                ease: "linear",
+                delay: 4.5,
+              }}
+            />
+          </div>
+          {/* SEO Search Icons */}
+          <motion.div
+            className="absolute top-20 right-16 w-6 h-6 border border-[var(--pravdast-yellow)]/40 rounded-full"
             animate={{ 
-              y: [0, -20, 0],
-              rotate: [0, 180, 360]
+              scale: [1, 1.5, 1],
+              opacity: [0.4, 0.8, 0.4]
             }}
             transition={{ 
-              duration: 8,
+              duration: 3,
               repeat: Infinity,
               ease: "easeInOut"
             }}
           />
-          <motion.div 
-            className="absolute top-40 right-20 w-20 h-20 bg-[var(--pravdast-yellow)]/20 rounded-lg"
+          <motion.div
+            className="absolute bottom-24 left-20 w-4 h-4 bg-[var(--pravdast-yellow)]/30 rounded-sm"
             animate={{ 
-              y: [0, 15, 0],
-              x: [0, 10, 0]
+              rotate: [0, 90, 0],
+              opacity: [0.3, 0.7, 0.3]
             }}
             transition={{ 
-              duration: 6,
+              duration: 4,
               repeat: Infinity,
               ease: "easeInOut",
               delay: 1
-            }}
-          />
-          <motion.div 
-            className="absolute bottom-20 left-1/4 w-16 h-16 border-2 border-[var(--pravdast-yellow)]/40 rotate-45"
-            animate={{ 
-              rotate: [45, 225, 45],
-              scale: [1, 1.2, 1]
-            }}
-            transition={{ 
-              duration: 10,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 2
             }}
           />
         </div>

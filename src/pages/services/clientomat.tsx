@@ -59,44 +59,84 @@ export default function Clientomat() {
       
       {/* Hero Section */}
       <section className="pt-24 pb-16 bg-gradient-to-br from-[var(--pravdast-dark)] to-[var(--pravdast-dark-gray)] relative overflow-hidden">
-        {/* Parallax Background Elements */}
-        <div className="absolute inset-0 opacity-10">
-          <motion.div 
-            className="absolute top-16 right-10 w-28 h-28 border-2 border-[var(--pravdast-yellow)]/30 rounded-full"
+        {/* Tech Background - Client Retention System */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="tech-grid-bg absolute inset-0 opacity-20"></div>
+          <div className="tech-lines">
+            {/* Client flow connection lines */}
+            <motion.div
+              className="tech-line"
+              style={{ top: "18%", width: "320px" }}
+              initial={{ x: "-100%" }}
+              animate={{ x: "100vw" }}
+              transition={{
+                duration: 7,
+                repeat: Infinity,
+                ease: "linear",
+                delay: 0,
+              }}
+            />
+            <motion.div
+              className="tech-line"
+              style={{ top: "38%", width: "260px" }}
+              initial={{ x: "-100%" }}
+              animate={{ x: "100vw" }}
+              transition={{
+                duration: 6,
+                repeat: Infinity,
+                ease: "linear",
+                delay: 2,
+              }}
+            />
+            <motion.div
+              className="tech-line"
+              style={{ top: "58%", width: "380px" }}
+              initial={{ x: "-100%" }}
+              animate={{ x: "100vw" }}
+              transition={{
+                duration: 8,
+                repeat: Infinity,
+                ease: "linear",
+                delay: 4,
+              }}
+            />
+            <motion.div
+              className="tech-line"
+              style={{ top: "78%", width: "220px" }}
+              initial={{ x: "-100%" }}
+              animate={{ x: "100vw" }}
+              transition={{
+                duration: 5,
+                repeat: Infinity,
+                ease: "linear",
+                delay: 6,
+              }}
+            />
+          </div>
+          {/* Client connection nodes */}
+          <motion.div
+            className="absolute top-24 left-20 w-5 h-5 bg-[var(--pravdast-yellow)]/50 rounded-full"
             animate={{ 
-              y: [0, -25, 0],
-              x: [0, 15, 0]
+              scale: [1, 1.3, 1],
+              opacity: [0.5, 0.9, 0.5]
             }}
             transition={{ 
-              duration: 7,
+              duration: 2.5,
               repeat: Infinity,
               ease: "easeInOut"
             }}
           />
-          <motion.div 
-            className="absolute top-32 left-16 w-24 h-24 bg-[var(--pravdast-yellow)]/15 rounded-xl"
+          <motion.div
+            className="absolute bottom-20 right-24 w-4 h-4 border-2 border-[var(--pravdast-yellow)]/40 rounded-full"
             animate={{ 
-              rotate: [0, 360],
-              scale: [1, 1.1, 1]
+              scale: [1, 1.4, 1],
+              opacity: [0.4, 0.8, 0.4]
             }}
             transition={{ 
-              duration: 9,
+              duration: 3.5,
               repeat: Infinity,
               ease: "easeInOut",
               delay: 1.5
-            }}
-          />
-          <motion.div 
-            className="absolute bottom-24 right-1/3 w-20 h-20 border border-[var(--pravdast-yellow)]/40 rotate-12"
-            animate={{ 
-              rotate: [12, 192, 12],
-              y: [0, 20, 0]
-            }}
-            transition={{ 
-              duration: 11,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 2.5
             }}
           />
         </div>
