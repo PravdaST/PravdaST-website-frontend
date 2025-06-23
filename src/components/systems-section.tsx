@@ -104,9 +104,19 @@ export const SystemsSection = () => {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <span className="text-sm text-gray-300 font-medium mb-4 block">
-            <span className="text-[var(--pravdast-yellow)]"><b>Проверени</b></span> системи за устойчив растеж
-          </span>
+          <motion.div
+            className="inline-flex items-center gap-2 mb-8 px-4 py-2 rounded-full bg-gradient-to-r from-slate-800/80 to-slate-700/60 border border-slate-600/30 backdrop-blur-sm"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <span className="text-sm text-gray-300 font-medium">
+              <span className="text-[var(--pravdast-yellow)]">
+                <b>Проверени</b>
+              </span>{" "}
+              системи за устойчив растеж
+            </span>
+          </motion.div>
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
             Нашите системи за растеж:
           </h2>
