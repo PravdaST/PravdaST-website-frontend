@@ -607,9 +607,12 @@ const FinalCTASection = () => {
             <Button
               size="lg"
               className="bg-[var(--pravdast-yellow)] text-black hover:bg-[var(--pravdast-yellow)]/90 px-12 py-6 text-xl font-semibold shadow-xl hover:shadow-2xl transition-all duration-300"
+              asChild
             >
-              Кандидатствайте за диагностика
-              <ArrowRight className="ml-3 h-6 w-6" />
+              <a href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu" target="_blank" rel="noopener noreferrer">
+                Кандидатствайте за диагностика
+                <ArrowRight className="ml-3 h-6 w-6" />
+              </a>
             </Button>
             <p className="text-sm text-gray-400 mt-4">
               Ще се свържем с вас в рамките на 48 часа, ако имаме свободен капацитет за този месец.
