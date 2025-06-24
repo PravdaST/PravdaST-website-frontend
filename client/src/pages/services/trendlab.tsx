@@ -4,8 +4,8 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight, BookOpen, Users, Clock, Handshake, Magnet, Microscope, FileText, Camera, Megaphone, CheckCircle, ArrowLeft } from "lucide-react";
-import Navigation from "@/components/navigation";
-import Footer from "@/components/footer";
+import { Navigation } from "@/components/navigation";
+import { Footer } from "@/components/footer";
 
 // Animated Background Component
 const TrendlabBackground = () => {
