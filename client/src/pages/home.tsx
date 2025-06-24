@@ -13,7 +13,7 @@ import { pageSEOData } from "@/data/seo-pages";
 
 export default function Home() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-slate-900">
       <SEOHead seo={pageSEOData.home} pageSlug="" />
       <Navigation />
       <HeroSection />

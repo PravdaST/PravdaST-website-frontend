@@ -141,8 +141,49 @@ export const SystemsSection = () => {
   const activeSystem = systems.find((system) => system.id === activeTab);
 
   return (
-    <section className="py-20 bg-[var(--pravdast-dark)]">
-      <div className="container mx-auto px-6">
+    <section className="py-20 bg-slate-900 relative overflow-hidden">
+      {/* Animated Tech Background */}
+      <div className="absolute inset-0 opacity-15">
+        <div className="absolute inset-0">
+          {/* Systems Grid Pattern */}
+          <div className="absolute inset-0" style={{
+            backgroundImage: `
+              linear-gradient(rgba(236, 182, 40, 0.1) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(236, 182, 40, 0.1) 1px, transparent 1px)
+            `,
+            backgroundSize: '50px 50px'
+          }}></div>
+          
+          {/* Connection Nodes */}
+          {[...Array(6)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-2 h-2 bg-[#ECB629] rounded-full"
+              style={{
+                left: `${15 + i * 15}%`,
+                top: `${25 + (i % 3) * 25}%`,
+              }}
+              animate={{
+                scale: [1, 1.5, 1],
+                opacity: [0.5, 1, 0.5],
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                delay: i * 0.3,
+              }}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Background Elements */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-[#ECB629] rounded-full blur-3xl"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-48 h-48 bg-blue-500 rounded-full blur-3xl"></div>
+      </div>
+
+      <div className="container mx-auto px-6 relative z-10">
         <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 30 }}
@@ -151,21 +192,52 @@ export const SystemsSection = () => {
           viewport={{ once: true }}
         >
           <motion.div
-            className="inline-flex items-center gap-2 mb-8 px-4 py-2 rounded-full bg-gradient-to-r from-slate-800/80 to-slate-700/60 border border-slate-600/30 backdrop-blur-sm"
+            className="inline-flex items-center gap-3 mb-8 px-6 py-3 rounded-full bg-gradient-to-r from-slate-800/80 to-slate-700/60 border border-slate-600/30 backdrop-blur-sm"
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
           >
-            <span className="text-sm text-gray-300 font-medium">
-              <span className="text-[var(--pravdast-yellow)]">
-                <b>Проверени</b>
-              </span>{" "}
-              системи за устойчив растеж
-            </span>
+            <div className="flex items-center gap-2">
+              <div className="relative">
+                <div className="w-2 h-2 bg-[#ECB629] rounded-full"></div>
+                <div className="absolute inset-0 bg-[#ECB629] rounded-full animate-ping opacity-75"></div>
+              </div>
+              <span className="text-sm text-gray-300 font-medium">
+                <span className="text-[#ECB629] font-bold">Проверени</span> системи за устойчив растеж
+              </span>
+            </div>
           </motion.div>
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Нашите системи за растеж:
-          </h2>
+
+          <motion.h2 
+            className="text-4xl md:text-5xl font-bold mb-6 text-white"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            Нашите системи за <br />
+            <span className="text-[#ECB629] relative">
+              растеж:
+              <motion.div
+                className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-[#ECB629] to-[#ECB629]/50 rounded-full"
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                transition={{ duration: 1, delay: 0.6 }}
+                viewport={{ once: true }}
+              />
+            </span>
+          </motion.h2>
+
+          <motion.p 
+            className="text-xl text-gray-300 max-w-3xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            viewport={{ once: true }}
+          >
+            Всяка система е проектирана да решава конкретен проблем във вашия бизнес и да генерира измерим растеж.
+          </motion.p>
         </motion.div>
 
         <div className="max-w-6xl mx-auto">
@@ -176,19 +248,24 @@ export const SystemsSection = () => {
                 {systems.map((system) => (
                   <motion.button
                     key={system.id}
-                    className={`w-full text-left p-6 rounded-xl transition-all duration-300 ${
+                    className={`w-full text-left p-6 rounded-xl transition-all duration-300 relative overflow-hidden group ${
                       activeTab === system.id
-                        ? "bg-[var(--pravdast-dark-gray)] border border-[var(--pravdast-yellow)] text-[var(--pravdast-yellow)]"
-                        : "bg-[var(--pravdast-dark-gray)] border border-[var(--pravdast-medium-gray)] text-gray-300 hover:bg-[var(--pravdast-yellow)]/10 hover:border-[var(--pravdast-yellow)] hover:text-[var(--pravdast-yellow)]"
+                        ? "bg-slate-800/50 border border-[#ECB629] text-[#ECB629]"
+                        : "bg-slate-800/30 border border-slate-700 text-gray-300 hover:bg-slate-700/50 hover:border-[#ECB629]/50 hover:text-[#ECB629]"
                     }`}
                     onClick={() => setActiveTab(system.id)}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
-                    <h3 className="text-xl font-semibold mb-2">
-                      {system.title}
-                    </h3>
-                    <p className="text-sm text-gray-400">{system.subtitle}</p>
+                    {/* Hover Glow Effect */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-[#ECB629]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    
+                    <div className="relative z-10">
+                      <h3 className="text-xl font-semibold mb-2">
+                        {system.title}
+                      </h3>
+                      <p className="text-sm text-gray-400">{system.subtitle}</p>
+                    </div>
                   </motion.button>
                 ))}
               </div>
@@ -205,83 +282,162 @@ export const SystemsSection = () => {
                     exit={{ opacity: 0, y: -20 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <Card className="bg-[var(--pravdast-dark-gray)] border-[var(--pravdast-yellow)]">
-                      <CardContent className="p-8">
+                    <Card className="bg-slate-800/50 border-[#ECB629] hover:border-[#ECB629]/70 transition-all duration-300 group overflow-hidden">
+                      {/* Hover Glow Effect */}
+                      <div className="absolute inset-0 bg-gradient-to-r from-[#ECB629]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                      
+                      <CardContent className="p-8 relative z-10">
                         {/* Engineering Visual */}
-                        <div className="w-full h-64 mb-8 bg-gradient-to-r from-[var(--pravdast-dark)] to-[var(--pravdast-medium-gray)] rounded-lg flex items-center justify-center border border-[var(--pravdast-yellow)]/30">
-                          <div className="text-center">
-                            <activeSystem.icon
-                              className="text-[var(--pravdast-yellow)] text-6xl mb-4 mx-auto"
-                              size={96}
-                            />
+                        <div className="w-full h-64 mb-8 bg-gradient-to-r from-slate-800 to-slate-700 rounded-lg flex items-center justify-center border border-[#ECB629]/30 relative overflow-hidden">
+                          {/* Animated Background Pattern */}
+                          <div className="absolute inset-0 opacity-10">
+                            <div className="absolute inset-0" style={{
+                              backgroundImage: `
+                                linear-gradient(45deg, rgba(236, 182, 40, 0.1) 25%, transparent 25%),
+                                linear-gradient(-45deg, rgba(236, 182, 40, 0.1) 25%, transparent 25%)
+                              `,
+                              backgroundSize: '20px 20px'
+                            }}></div>
+                          </div>
+                          
+                          <div className="text-center relative z-10">
+                            <motion.div
+                              className="relative"
+                              whileHover={{ scale: 1.1 }}
+                              transition={{ duration: 0.3 }}
+                            >
+                              <activeSystem.icon
+                                className="text-[#ECB629] text-6xl mb-4 mx-auto"
+                                size={96}
+                              />
+                              <motion.div
+                                className="absolute inset-0 bg-[#ECB629] rounded-full opacity-20 scale-150"
+                                animate={{ scale: [1.5, 1.8, 1.5] }}
+                                transition={{ duration: 2, repeat: Infinity }}
+                              />
+                            </motion.div>
+                            
                             <div className="flex items-center justify-center space-x-4">
-                              <div className="w-12 h-12 bg-[var(--pravdast-yellow)] rounded-full flex items-center justify-center">
-                                <Edit
-                                  className="text-[var(--pravdast-dark)]"
-                                  size={20}
-                                />
-                              </div>
-                              <div className="w-8 h-1 bg-[var(--pravdast-yellow)]"></div>
-                              <div className="w-12 h-12 bg-[var(--pravdast-yellow)] rounded-full flex items-center justify-center">
-                                <Cog
-                                  className="text-[var(--pravdast-dark)]"
-                                  size={20}
-                                />
-                              </div>
-                              <div className="w-8 h-1 bg-[var(--pravdast-yellow)]"></div>
-                              <div className="w-12 h-12 bg-[var(--pravdast-yellow)] rounded-full flex items-center justify-center">
-                                <BarChart
-                                  className="text-[var(--pravdast-dark)]"
-                                  size={20}
-                                />
-                              </div>
+                              <motion.div 
+                                className="w-12 h-12 bg-[#ECB629] rounded-full flex items-center justify-center"
+                                whileHover={{ scale: 1.1 }}
+                              >
+                                <Edit className="text-black" size={20} />
+                              </motion.div>
+                              <motion.div 
+                                className="w-8 h-1 bg-[#ECB629]"
+                                animate={{ scaleX: [1, 1.2, 1] }}
+                                transition={{ duration: 2, repeat: Infinity }}
+                              ></motion.div>
+                              <motion.div 
+                                className="w-12 h-12 bg-[#ECB629] rounded-full flex items-center justify-center"
+                                whileHover={{ scale: 1.1 }}
+                              >
+                                <Cog className="text-black" size={20} />
+                              </motion.div>
+                              <motion.div 
+                                className="w-8 h-1 bg-[#ECB629]"
+                                animate={{ scaleX: [1, 1.2, 1] }}
+                                transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
+                              ></motion.div>
+                              <motion.div 
+                                className="w-12 h-12 bg-[#ECB629] rounded-full flex items-center justify-center"
+                                whileHover={{ scale: 1.1 }}
+                              >
+                                <BarChart className="text-black" size={20} />
+                              </motion.div>
                             </div>
                           </div>
                         </div>
 
-                        <h3 className="text-3xl font-bold mb-4 text-[var(--pravdast-yellow)]">
+                        <motion.h3 
+                          className="text-3xl font-bold mb-4 text-white group-hover:text-[#ECB629] transition-colors"
+                          initial={{ opacity: 0, y: 10 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.6 }}
+                          viewport={{ once: true }}
+                        >
                           {activeSystem.title}
-                        </h3>
-                        <p className="text-lg text-gray-300 mb-6">
+                        </motion.h3>
+                        
+                        <motion.p 
+                          className="text-lg text-gray-300 mb-6"
+                          initial={{ opacity: 0, y: 10 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.6, delay: 0.1 }}
+                          viewport={{ once: true }}
+                        >
                           {activeSystem.description}
-                        </p>
+                        </motion.p>
 
-                        <div className="text-2xl font-bold text-[var(--pravdast-yellow)] mb-6">
-                          {activeSystem.price}
-                        </div>
-                        <p className="text-sm text-gray-400 mb-8">
+                        <motion.div 
+                          className="flex items-center justify-between mb-6"
+                          initial={{ opacity: 0, y: 10 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.6, delay: 0.2 }}
+                          viewport={{ once: true }}
+                        >
+                          <div className="text-2xl font-bold text-[#ECB629]">
+                            {activeSystem.price}
+                          </div>
+                          <div className="text-sm text-gray-400">
+                            Без ангажименти
+                          </div>
+                        </motion.div>
+                        
+                        <motion.p 
+                          className="text-sm text-gray-400 mb-8"
+                          initial={{ opacity: 0, y: 10 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.6, delay: 0.3 }}
+                          viewport={{ once: true }}
+                        >
                           {activeSystem.period}
-                        </p>
+                        </motion.p>
 
                         <div className="space-y-6">
                           {activeSystem.features.map((feature, index) => (
-                            <div
+                            <motion.div
                               key={index}
-                              className="flex items-start space-x-4"
+                              className="flex items-start space-x-4 group/feature"
+                              initial={{ opacity: 0, x: -20 }}
+                              whileInView={{ opacity: 1, x: 0 }}
+                              transition={{ duration: 0.6, delay: 0.4 + index * 0.1 }}
+                              viewport={{ once: true }}
+                              whileHover={{ x: 5 }}
                             >
-                              <div className="w-8 h-8 bg-[var(--pravdast-yellow)] rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                                <feature.icon
-                                  className="text-[var(--pravdast-dark)] text-sm"
-                                  size={16}
-                                />
+                              <div className="w-8 h-8 bg-[#ECB629] rounded-full flex items-center justify-center flex-shrink-0 mt-1 group-hover/feature:scale-110 transition-transform duration-300">
+                                <feature.icon className="text-black text-sm" size={16} />
                               </div>
                               <div>
-                                <h4 className="font-semibold text-lg mb-2">
+                                <h4 className="font-semibold text-lg mb-2 text-white group-hover/feature:text-[#ECB629] transition-colors">
                                   {feature.title}
                                 </h4>
                                 <p className="text-gray-300">
                                   {feature.description}
                                 </p>
                               </div>
-                            </div>
+                            </motion.div>
                           ))}
                         </div>
 
-                        <Link href={activeSystem.link}>
-                          <Button className="mt-8 bg-[var(--pravdast-yellow)] text-[var(--pravdast-dark)] hover:bg-[#d4a426] font-semibold px-8 py-3">
-                            Разгледай системата
-                          </Button>
-                        </Link>
+                        <motion.div
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.6, delay: 0.8 }}
+                          viewport={{ once: true }}
+                        >
+                          <Link href={activeSystem.link}>
+                            <Button className="mt-8 bg-[#ECB629] text-black hover:bg-[#ECB629]/90 font-semibold px-8 py-3 relative overflow-hidden group">
+                              <motion.div
+                                className="absolute inset-0 bg-gradient-to-r from-[#ECB629] via-white to-[#ECB629] opacity-0 group-hover:opacity-20"
+                                animate={{ x: ['-100%', '100%'] }}
+                                transition={{ duration: 1.5, repeat: Infinity, repeatType: 'loop' }}
+                              />
+                              <span className="relative z-10">Разгледай системата</span>
+                            </Button>
+                          </Link>
+                        </motion.div>
                       </CardContent>
                     </Card>
                   </motion.div>
