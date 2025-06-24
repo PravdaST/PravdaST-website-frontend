@@ -2,8 +2,6 @@ import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { SeoStruktorBackground } from "@/components/SeoStruktorBackground";
-
 import { motion } from "framer-motion";
 import { Search, Eye, Edit, Globe, ArrowRight, CheckCircle } from "lucide-react";
 
@@ -60,10 +58,8 @@ export default function SeoStruktor() {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="pt-24 pb-16 bg-gradient-to-br from-[var(--pravdast-dark)] to-[var(--pravdast-dark-gray)] relative overflow-hidden">
-        <SeoStruktorBackground />
-        
-        <div className="container mx-auto px-6 relative z-10">
+      <section className="pt-24 pb-16 bg-gradient-to-br from-[var(--pravdast-dark)] to-[var(--pravdast-dark-gray)]">
+        <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center">
             <motion.div
               className="w-20 h-20 mx-auto mb-8 bg-[var(--pravdast-yellow)]/10 rounded-full flex items-center justify-center"
@@ -101,7 +97,7 @@ export default function SeoStruktor() {
             >
               <Button
                 size="lg"
-                className="bg-[var(--pravdast-yellow)] text-[var(--pravdast-dark)] hover:bg-[#d4a426] text-lg font-semibold px-8 py-4"
+                className="bg-[var(--pravdast-yellow)] text-[var(--pravdast-dark)] hover:bg-yellow-400 text-lg font-semibold px-8 py-4"
                 onClick={() => window.open("https://form.typeform.com/to/GXLaGY98", "_blank")}
               >
                 Заявете диагностика сега
@@ -277,7 +273,7 @@ export default function SeoStruktor() {
                   
                   <Button
                     size="lg"
-                    className="bg-[var(--pravdast-yellow)] text-[var(--pravdast-dark)] hover:bg-[#d4a426] text-lg font-semibold px-8 py-4"
+                    className="bg-[var(--pravdast-yellow)] text-[var(--pravdast-dark)] hover:bg-yellow-400 text-lg font-semibold px-8 py-4"
                     onClick={() => window.open("https://form.typeform.com/to/GXLaGY98", "_blank")}
                   >
                     Започнете сега

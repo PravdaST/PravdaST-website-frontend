@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { Link, useLocation } from "wouter";
 import { Menu, X } from "lucide-react";
-import { trackCTAClick } from "@/lib/analytics";
 
 export const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -23,16 +22,15 @@ export const Navigation = () => {
     { href: "/", label: "Начало" },
     { href: "/services", label: "Услуги" },
     { href: "/case-studies", label: "Резултати" },
-    { href: "/blog", label: "Блог" },
     { href: "/about", label: "За нас" },
-    { href: "/contact", label: "Контакти" },
+    { href: "/contact", label: "Контакти" }
   ];
 
   return (
     <motion.nav
-      className="w-full bg-slate-900 border-b border-[var(--pravdast-yellow)]/20"
+      className="fixed top-0 w-full bg-[var(--pravdast-dark)]/95 backdrop-blur-sm border-b border-[var(--pravdast-yellow)]/20 z-50"
       initial={{ y: 0 }}
-      animate={{ y: 0 }}
+      animate={{ y: isScrolled ? 0 : 0 }}
       transition={{ duration: 0.3 }}
     >
       <div className="container mx-auto px-6 py-4">
@@ -58,18 +56,12 @@ export const Navigation = () => {
                 </span>
               </Link>
             ))}
-            <div className="relative group">
-              <div className="absolute -inset-0.5 bg-gradient-to-r from-[var(--pravdast-yellow)] via-amber-400 to-[var(--pravdast-yellow)] rounded-md opacity-0 group-hover:opacity-100 transition-all duration-300 blur-sm"></div>
-              <Button
-                className="relative bg-[var(--pravdast-yellow)] text-[var(--pravdast-dark)] hover:bg-[#d4a426] font-semibold border border-[var(--pravdast-yellow)] transition-all duration-300"
-                onClick={() => {
-                  trackCTAClick('nav_start_now', window.location.href);
-                  window.open("https://form.typeform.com/to/GXLaGY98", "_blank");
-                }}
-              >
-                ЗАПОЧНЕТЕ СЕГА
-              </Button>
-            </div>
+            <Button
+              className="bg-[var(--pravdast-yellow)] text-[var(--pravdast-dark)] hover:bg-yellow-400 font-semibold"
+              onClick={() => window.open("https://form.typeform.com/to/GXLaGY98", "_blank")}
+            >
+              ЗАПОЧНЕТЕ СЕГА
+            </Button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -108,12 +100,9 @@ export const Navigation = () => {
                 </Link>
               ))}
               <Button
-                className="bg-[var(--pravdast-yellow)] text-[var(--pravdast-dark)] hover:bg-[#d4a426] font-semibold w-full"
+                className="bg-[var(--pravdast-yellow)] text-[var(--pravdast-dark)] hover:bg-yellow-400 font-semibold w-full"
                 onClick={() => {
-                  window.open(
-                    "https://form.typeform.com/to/GXLaGY98",
-                    "_blank",
-                  );
+                  window.open("https://form.typeform.com/to/GXLaGY98", "_blank");
                   setIsMobileMenuOpen(false);
                 }}
               >

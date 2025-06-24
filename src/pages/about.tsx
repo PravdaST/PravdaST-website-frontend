@@ -91,7 +91,7 @@ export default function About() {
                   Нашата цел е да превърнем вашите разходи за растеж от хазарт в сигурна инвестиция с ясна възвръщаемост.
                 </p>
                 <Button 
-                  className="bg-[var(--pravdast-yellow)] text-[var(--pravdast-dark)] hover:bg-[#d4a426] font-semibold"
+                  className="bg-[var(--pravdast-yellow)] text-[var(--pravdast-dark)] hover:bg-yellow-400 font-semibold"
                   onClick={() => window.open("https://form.typeform.com/to/GXLaGY98", "_blank")}
                 >
                   Започнете сега

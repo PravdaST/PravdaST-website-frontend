@@ -5,52 +5,40 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { ArrowRight, Search, Users, Bot } from "lucide-react";
 import { Link } from "wouter";
-import { SEOHead } from "@/components/seo-head";
-import { pageSEOData } from "@/data/seo-pages";
 
 const services = [
   {
     id: "seo-struktor",
     title: "SEO Struktor™",
-    subtitle: "Нашата система за онлайн доминация",
-    description: "Ние изграждаме вашето онлайн присъствие като крепост. Чрез прецизна структура на сайта и съдържание, което отговаря на въпросите на клиентите ви, ние ви превръщаме в авторитета, който Google показва на първо място.",
+    subtitle: "Система за онлайн доминация",
+    description: "Спрете да се скривате в Google. Изграждаме система, която ви прави видими точно когато клиентите ви търсят.",
     price: "от 1980 лв. / месец",
     icon: Search,
     slug: "seo-struktor"
   },
   {
-    id: "trendlab",
-    title: "Trendlab™",
-    subtitle: "Нашата система за създаване на въздействащо съдържание",
-    description: "Ние създаваме горивото за вашия растеж. Продуцираме видеа, статии и визуални материали, които не просто изглеждат добре, а разказват вашата история, демонстрират експертизата ви и изграждат общност около вашия бранд.",
-    price: "от 1350 лв. / месец",
-    icon: Users,
-    slug: "trendlab"
-  },
-  {
-    id: "clickstarter",
-    title: "Clickstarter™",
-    subtitle: "Нашата система за ускорен растеж",
-    description: "Когато имате нужда от бързи и предвидими резултати, тази система използва платени канали, за да постави вашето послание директно пред идеалните ви клиенти – в точния момент, когато те са готови да купят.",
-    price: "от 2250 лв. / месец",
-    icon: Bot,
-    slug: "clickstarter"
-  },
-  {
     id: "clientomat",
     title: "Clientomat™",
-    subtitle: "Нашата система за автоматизирани връзки с клиенти",
-    description: "Тази система създава автоматизиран процес, който превръща заинтересования посетител в лоялен клиент. Тя поддържа връзката, отговаря на въпроси и насочва към продажба, без да изисква вашето време.",
+    subtitle: "Система за задържане на клиенти",
+    description: "Спрете да губите клиенти след първата покупка. Превръщаме еднократните купувачи в редовни приходи.",
     price: "от 1350 лв. / месец",
     icon: Users,
     slug: "clientomat"
+  },
+  {
+    id: "sales-engine",
+    title: "Sales Engine™",
+    subtitle: "Система за автоматизирани продажби",
+    description: "Спрете да чакате клиенти да ви намерят. Изграждаме система, която работи 24/7 за вас.",
+    price: "от 2250 лв. / месец",
+    icon: Bot,
+    slug: "sales-engine"
   }
 ];
 
 export default function Services() {
   return (
     <div className="min-h-screen">
-      <SEOHead seo={pageSEOData.services} pageSlug="services" />
       <Navigation />
       
       {/* Hero Section */}
@@ -113,7 +101,7 @@ export default function Services() {
                     
                     <Link href={`/services/${service.slug}`} className="mt-auto">
                       <Button 
-                        className="w-full bg-[var(--pravdast-yellow)] text-[var(--pravdast-dark)] hover:bg-[#d4a426] font-semibold"
+                        className="w-full bg-[var(--pravdast-yellow)] text-[var(--pravdast-dark)] hover:bg-yellow-400 font-semibold"
                       >
                         Научете повече
                         <ArrowRight className="ml-2" size={16} />
