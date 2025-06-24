@@ -1,9 +1,9 @@
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
-import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { motion } from "framer-motion";
-import { Target, Shield, Zap, Users, Award, TrendingUp } from "lucide-react";
+import { motion, useInView } from "framer-motion";
+import { Target, Shield, Zap, Users, Award, TrendingUp, ArrowRight } from "lucide-react";
+import { useRef } from "react";
 
 const values = [
   {
@@ -23,15 +23,6 @@ const values = [
   }
 ];
 
-const teamMembers = [
-  {
-    name: "Екипът на Pravdast",
-    role: "Консултанти по системи за растеж",
-    description: "Специалисти с над 10 години опит в изграждането на автоматизирани системи за растеж в различни индустрии.",
-    expertise: ["Бизнес инженеринг", "Системна автоматизация", "Данни и анализи", "Процесна оптимизация"]
-  }
-];
-
 const stats = [
   { number: "50+", label: "Успешни проекта" },
   { number: "300%", label: "Средно подобрение" },
@@ -40,310 +31,281 @@ const stats = [
 ];
 
 export default function About() {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.3 });
+
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
       <Navigation />
       
-      {/* Hero Section */}
-      <section className="pt-24 pb-16 bg-gradient-to-br from-[var(--pravdast-dark)] to-[var(--pravdast-dark-gray)]">
-        <div className="container mx-auto px-6">
+      {/* Modern Hero Section */}
+      <section ref={ref} className="pt-32 pb-24 relative overflow-hidden">
+        {/* Enhanced Technical Background */}
+        <div className="absolute inset-0 opacity-5">
+          <svg className="w-full h-full" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="about-hero-pattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+                <circle cx="20" cy="20" r="2" fill="var(--pravdast-yellow)" opacity="0.4"/>
+                <path d="M0,20 L40,20 M20,0 L20,40" stroke="var(--pravdast-yellow)" strokeWidth="0.5" opacity="0.3"/>
+                <circle cx="5" cy="5" r="0.5" fill="var(--pravdast-yellow)" opacity="0.6"/>
+                <circle cx="35" cy="35" r="0.5" fill="var(--pravdast-yellow)" opacity="0.6"/>
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#about-hero-pattern)" />
+          </svg>
+        </div>
+
+        {/* Floating Elements */}
+        <div className="absolute inset-0">
+          <div className="absolute top-20 left-10 w-32 h-32 bg-[var(--pravdast-yellow)]/10 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-20 right-10 w-40 h-40 bg-[var(--pravdast-yellow)]/10 rounded-full blur-3xl animate-pulse"></div>
+        </div>
+
+        <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
+            {/* Status badge */}
+            <motion.div
+              className="inline-flex items-center gap-3 mb-8 px-6 py-3 bg-slate-800/60 backdrop-blur-sm rounded-full border border-[var(--pravdast-yellow)]/20"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="relative">
+                <div className="w-3 h-3 bg-[var(--pravdast-yellow)] rounded-full"></div>
+                <div className="absolute inset-0 w-3 h-3 bg-[var(--pravdast-yellow)] rounded-full animate-ping opacity-30"></div>
+              </div>
+              <span className="text-gray-300 text-sm font-medium">
+                <span className="text-[var(--pravdast-yellow)] font-semibold">Експерти</span> - Над 10 години опит
+              </span>
+            </motion.div>
+
             <motion.h1
-              className="text-4xl md:text-6xl font-bold mb-6"
+              className="text-4xl md:text-6xl font-bold mb-8 text-white leading-tight"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              Спрете да залагате.{" "}
-              <span className="text-[var(--pravdast-yellow)]">Време е за система</span>
+              За нас и нашия подход
             </motion.h1>
             <motion.p
-              className="text-xl text-gray-300 mb-8"
+              className="text-xl text-gray-300 mb-12 max-w-3xl mx-auto"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              Правдаст изгражда системи за предвидим растеж. Помагаме на собственици на утвърдени фирми да получат контрол над приходите си, вместо да разчитат на случайности.
+              Ние не сме обикновена агенция. Ние сме инженери на бизнес системи, които превръщат хаоса в предвидими резултати.
             </motion.p>
-          </div>
-        </div>
-      </section>
 
-      {/* Mission Section */}
-      <section className="py-20 bg-[var(--pravdast-dark)]">
-        <div className="container mx-auto px-6">
-          <div className="max-w-6xl mx-auto">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* CTA Button */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            >
               <motion.div
-                initial={{ opacity: 0, x: -50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8 }}
-                viewport={{ once: true }}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
               >
-                <h2 className="text-4xl font-bold mb-6">
-                  Не сме поредната{" "}
-                  <span className="text-[var(--pravdast-yellow)]">маркетинг агенция</span>
-                </h2>
-                <p className="text-lg text-gray-300 mb-6">
-                  Ние прилагаме системна, инженерна мисъл, за да решаваме бизнес проблеми. Вместо да разчитаме на креативност и интуиция, ние изграждаме структури, които работят автоматично и носят предвидими резултати.
-                </p>
-                <p className="text-lg text-gray-300 mb-8">
-                  Нашата цел е да превърнем вашите разходи за растеж от хазарт в сигурна инвестиция с ясна възвръщаемост.
-                </p>
-                <Button 
-                  className="bg-[var(--pravdast-yellow)] text-[var(--pravdast-dark)] hover:bg-[#d4a426] font-semibold"
-                  onClick={() => window.open("https://form.typeform.com/to/GXLaGY98", "_blank")}
+                <Button
+                  asChild
+                  className="bg-[var(--pravdast-yellow)] text-black hover:bg-[var(--pravdast-yellow)]/90 px-8 py-4 text-lg font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 relative overflow-hidden group"
                 >
-                  Започнете сега
+                  <a href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu" target="_blank" rel="noopener noreferrer">
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 group-hover:animate-pulse"></div>
+                    <span className="relative z-10 flex items-center gap-2">
+                      Започнете диагностиката
+                      <ArrowRight className="w-5 h-5" />
+                    </span>
+                  </a>
                 </Button>
               </motion.div>
-
-              <motion.div
-                className="bg-gradient-to-br from-[var(--pravdast-dark-gray)] to-[var(--pravdast-medium-gray)] p-8 rounded-xl"
-                initial={{ opacity: 0, x: 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                viewport={{ once: true }}
-              >
-                <div className="text-center">
-                  <Target className="text-[var(--pravdast-yellow)] text-6xl mb-6 mx-auto" size={96} />
-                  <h3 className="text-2xl font-bold mb-4">Нашата мисия</h3>
-                  <p className="text-gray-300">
-                    Да помогнем на 1000 български бизнеса да постигнат предвидим растеж чрез системи, а не чрез късмет.
-                  </p>
-                </div>
-              </motion.div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Values Section */}
-      <section className="py-20 bg-[var(--pravdast-dark-gray)]">
-        <div className="container mx-auto px-6">
-          <motion.div
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl font-bold mb-4">Нашите принципи</h2>
-            <p className="text-xl text-gray-300">
-              Това, което ни прави различни от останалите агенции
-            </p>
-          </motion.div>
-          
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {values.map((value, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
-                viewport={{ once: true }}
-              >
-                <Card className="bg-[var(--pravdast-dark)] border-[var(--pravdast-medium-gray)] hover:border-[var(--pravdast-yellow)]/50 transition-all duration-300 hover:shadow-lg hover:shadow-[var(--pravdast-yellow)]/10 hover:-translate-y-1 h-full">
-                  <CardContent className="p-8 text-center">
-                    <div className="w-16 h-16 mx-auto mb-6 bg-[var(--pravdast-yellow)]/10 rounded-full flex items-center justify-center">
-                      <value.icon className="text-[var(--pravdast-yellow)] text-2xl" size={32} />
-                    </div>
-                    <h3 className="text-xl font-semibold mb-4 text-[var(--pravdast-yellow)]">
-                      {value.title}
-                    </h3>
-                    <p className="text-gray-300">
-                      {value.description}
-                    </p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
+            </motion.div>
           </div>
         </div>
       </section>
 
       {/* Stats Section */}
-      <section className="py-20 bg-[var(--pravdast-dark)]">
-        <div className="container mx-auto px-6">
-          <motion.div
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl font-bold mb-4">Резултати, които говорят</h2>
-            <p className="text-xl text-gray-300">
-              Цифрите показват ефективността на нашия подход
-            </p>
-          </motion.div>
-          
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 max-w-4xl mx-auto">
+      <section className="py-24 relative overflow-hidden">
+        {/* Connection line from hero */}
+        <motion.div
+          className="w-0.5 h-16 bg-gradient-to-b from-[var(--pravdast-yellow)] to-slate-600 mx-auto mb-16"
+          initial={{ scaleY: 0 }}
+          animate={isInView ? { scaleY: 1 } : {}}
+          transition={{ duration: 0.8 }}
+        />
+
+        <div className="container mx-auto px-6 relative z-10">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
             {stats.map((stat, index) => (
               <motion.div
                 key={index}
-                className="text-center"
+                className="text-center p-6 bg-slate-800/40 backdrop-blur-sm rounded-2xl border border-slate-600/30"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                transition={{ duration: 0.8, delay: index * 0.1 }}
                 viewport={{ once: true }}
               >
-                <div className="text-4xl md:text-5xl font-bold text-[var(--pravdast-yellow)] mb-2">
-                  {stat.number}
-                </div>
-                <div className="text-gray-400 text-sm md:text-base">{stat.label}</div>
+                <div className="text-4xl font-bold text-[var(--pravdast-yellow)] mb-2">{stat.number}</div>
+                <div className="text-gray-300 text-sm">{stat.label}</div>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Approach Section */}
-      <section className="py-20 bg-[var(--pravdast-dark-gray)]">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto">
-            <motion.div
-              className="text-center mb-16"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="text-4xl font-bold mb-4">Нашият подход</h2>
-              <p className="text-xl text-gray-300">
-                Как превръщаме хаоса в предвидими резултати
-              </p>
-            </motion.div>
-
-            <div className="space-y-8">
-              {[
-                {
-                  title: "Без предположения - само данни",
-                  description: "Всяко решение е базирано на конкретни метрики и анализи. Не гадаем - измерваме."
-                },
-                {
-                  title: "Системи, не кампании",
-                  description: "Изграждаме автоматизирани процеси, които работят дългосрочно, а не еднократни промоции."
-                },
-                {
-                  title: "Прозрачност във всичко",
-                  description: "Знаете точно къде отиват парите ви и какви резултати получавате за всеки лев."
-                },
-                {
-                  title: "Фокус върху възвръщаемостта",
-                  description: "Целим се не просто в резултати, а в такива, които носят повече приходи от инвестицията."
-                }
-              ].map((point, index) => (
-                <motion.div
-                  key={index}
-                  className="flex items-start space-x-4"
-                  initial={{ opacity: 0, x: -30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                >
-                  <div className="w-8 h-8 bg-[var(--pravdast-yellow)] rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                    <span className="text-[var(--pravdast-dark)] font-bold text-sm">{index + 1}</span>
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-semibold mb-2 text-[var(--pravdast-yellow)]">{point.title}</h3>
-                    <p className="text-gray-300">{point.description}</p>
-                  </div>
-                </motion.div>
-              ))}
+      {/* Values Section */}
+      <section className="py-24 relative overflow-hidden">
+        <div className="container mx-auto px-6 relative z-10">
+          <motion.div
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <div className="inline-block px-6 py-3 bg-[var(--pravdast-yellow)]/10 rounded-full border border-[var(--pravdast-yellow)]/20 mb-8">
+              <span className="text-[var(--pravdast-yellow)] text-sm font-semibold tracking-wider">НАШИТЕ ПРИНЦИПИ</span>
             </div>
+            <h2 className="text-4xl md:text-5xl font-bold mb-8 text-white">
+              Как работим
+            </h2>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              Три принципа, които ръководят всяко наше решение
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {values.map((value, index) => (
+              <motion.div
+                key={index}
+                className="relative p-8 bg-slate-800/40 backdrop-blur-sm rounded-2xl border border-slate-600/30 overflow-hidden group"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: index * 0.2 }}
+                viewport={{ once: true }}
+                whileHover={{ scale: 1.02 }}
+              >
+                {/* Animated background elements */}
+                <div className="absolute inset-0 bg-gradient-to-br from-[var(--pravdast-yellow)]/10 to-[var(--pravdast-yellow)]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="absolute top-0 right-0 w-24 h-24 bg-[var(--pravdast-yellow)]/10 rounded-full -translate-y-12 translate-x-12"></div>
+                
+                <div className="relative z-10 text-center">
+                  <div className="w-16 h-16 mx-auto mb-6 bg-[var(--pravdast-yellow)]/20 rounded-full flex items-center justify-center">
+                    <value.icon className="w-8 h-8 text-[var(--pravdast-yellow)]" />
+                  </div>
+                  <h3 className="text-xl font-bold mb-4 text-white">
+                    {value.title}
+                  </h3>
+                  <p className="text-gray-300 leading-relaxed">{value.description}</p>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Team Section */}
-      <section className="py-20 bg-[var(--pravdast-dark)]">
-        <div className="container mx-auto px-6">
+      <section className="py-24 relative overflow-hidden">
+        <div className="container mx-auto px-6 relative z-10">
           <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl font-bold mb-4">Екипът зад системите</h2>
-            <p className="text-xl text-gray-300">
-              Специалисти с доказан опит в бизнес инженеринга
-            </p>
+            <div className="inline-block px-6 py-3 bg-[var(--pravdast-yellow)]/10 rounded-full border border-[var(--pravdast-yellow)]/20 mb-8">
+              <span className="text-[var(--pravdast-yellow)] text-sm font-semibold tracking-wider">ЕКИПЪТ</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold mb-8 text-white">
+              Кой стои зад системите
+            </h2>
           </motion.div>
-          
-          <div className="max-w-4xl mx-auto">
-            {teamMembers.map((member, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
-              >
-                <Card className="bg-[var(--pravdast-dark-gray)] border-[var(--pravdast-yellow)]">
-                  <CardContent className="p-12 text-center">
-                    <div className="w-24 h-24 mx-auto mb-6 bg-[var(--pravdast-yellow)] rounded-full flex items-center justify-center">
-                      <Users className="text-[var(--pravdast-dark)] text-3xl" size={48} />
+
+          <motion.div
+            className="max-w-4xl mx-auto"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <div className="relative p-8 bg-slate-800/40 backdrop-blur-sm rounded-3xl border border-slate-600/30 overflow-hidden">
+              {/* Animated background elements */}
+              <div className="absolute inset-0 bg-gradient-to-br from-[var(--pravdast-yellow)]/10 to-[var(--pravdast-yellow)]/5 opacity-50"></div>
+              <div className="absolute top-0 right-0 w-32 h-32 bg-[var(--pravdast-yellow)]/10 rounded-full -translate-y-16 translate-x-16"></div>
+              
+              <div className="relative z-10 text-center">
+                <h3 className="text-2xl font-bold text-white mb-4">Екипът на Pravdast</h3>
+                <p className="text-[var(--pravdast-yellow)] font-semibold mb-6">Консултанти по системи за растеж</p>
+                <p className="text-gray-300 mb-8 leading-relaxed">
+                  Специалисти с над 10 години опит в изграждането на автоматизирани системи за растеж в различни индустрии.
+                </p>
+                
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  {["Бизнес инженеринг", "Системна автоматизация", "Данни и анализи", "Процесна оптимизация"].map((expertise, index) => (
+                    <div key={index} className="flex items-center gap-2 justify-center p-3 bg-slate-700/30 rounded-lg">
+                      <div className="w-2 h-2 bg-[var(--pravdast-yellow)] rounded-full"></div>
+                      <span className="text-gray-300 text-sm">{expertise}</span>
                     </div>
-                    <h3 className="text-2xl font-bold mb-2">{member.name}</h3>
-                    <p className="text-[var(--pravdast-yellow)] text-lg mb-6">{member.role}</p>
-                    <p className="text-gray-300 mb-8 max-w-2xl mx-auto">{member.description}</p>
-                    
-                    <div className="flex flex-wrap justify-center gap-3">
-                      {member.expertise.map((skill, skillIndex) => (
-                        <span
-                          key={skillIndex}
-                          className="text-sm bg-[var(--pravdast-dark)] text-[var(--pravdast-yellow)] px-4 py-2 rounded-full border border-[var(--pravdast-yellow)]"
-                        >
-                          {skill}
-                        </span>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-[var(--pravdast-yellow)] text-[var(--pravdast-dark)]">
-        <div className="container mx-auto px-6 text-center">
-          <motion.h2
-            className="text-4xl md:text-5xl font-bold mb-8"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            Готови да работим заедно?
-          </motion.h2>
-          
-          <motion.p
-            className="text-xl mb-12 max-w-3xl mx-auto"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
-            Започнете с безплатна диагностика на вашия бизнес и вижте как можем да изградим система за предвидим растеж.
-          </motion.p>
-          
+      <section className="py-24 relative overflow-hidden">
+        <div className="container mx-auto px-6 relative z-10">
           <motion.div
+            className="max-w-4xl mx-auto text-center"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
+            transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <Button
-              size="lg"
-              className="bg-[var(--pravdast-dark)] text-[var(--pravdast-yellow)] hover:bg-[var(--pravdast-dark-gray)] text-lg font-semibold px-8 py-4 hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
-              onClick={() => window.open("https://form.typeform.com/to/GXLaGY98", "_blank")}
-            >
-              Заявете диагностика
-            </Button>
+            <div className="relative p-12 bg-slate-800/40 backdrop-blur-sm rounded-3xl border border-[var(--pravdast-yellow)]/30 overflow-hidden">
+              {/* Animated background elements */}
+              <div className="absolute inset-0 bg-gradient-to-br from-[var(--pravdast-yellow)]/10 to-[var(--pravdast-yellow)]/5 opacity-50"></div>
+              
+              <div className="relative z-10">
+                <h2 className="text-4xl md:text-5xl font-bold mb-8 text-white">
+                  Готови за системен подход?
+                </h2>
+                <p className="text-xl text-gray-300 mb-12">
+                  Заявете безплатна диагностика и открийте къде точно губите потенциал за растеж
+                </p>
+                
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <motion.div
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <Button
+                      asChild
+                      className="bg-[var(--pravdast-yellow)] text-black hover:bg-[var(--pravdast-yellow)]/90 px-8 py-4 text-lg font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 relative overflow-hidden group"
+                    >
+                      <a href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu" target="_blank" rel="noopener noreferrer">
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 group-hover:animate-pulse"></div>
+                        <span className="relative z-10 flex items-center gap-2">
+                          Започнете диагностиката
+                          <ArrowRight className="w-5 h-5" />
+                        </span>
+                      </a>
+                    </Button>
+                  </motion.div>
+                  
+                  <Button
+                    asChild
+                    variant="outline"
+                    className="border-[var(--pravdast-yellow)] text-[var(--pravdast-yellow)] hover:bg-[var(--pravdast-yellow)]/10 px-8 py-4 text-lg font-semibold transition-all duration-300"
+                  >
+                    <a href="/contact">Свържете се с нас</a>
+                  </Button>
+                </div>
+              </div>
+            </div>
           </motion.div>
         </div>
       </section>
