@@ -55,55 +55,67 @@ const ProcessSection = () => {
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
-        <div div
+        <div 
           className="text-center mb-16"
-          <div div
+        >
+          <div
             className="inline-flex items-center gap-3 mb-8 px-6 py-3 rounded-full bg-gradient-to-r from-slate-800/80 to-slate-700/60 border border-slate-600/30 backdrop-blur-sm"
+          >
             <div className="flex items-center gap-2">
               <div className="relative">
                 <div className="w-2 h-2 bg-[#ECB629] rounded-full"></div>
-                <div div
-                  className="absolute inset-0 w-2 h-2 bg-[#ECB629] rounded-full opacity-20"
+                <div
+                  className="absolute inset-0 w-2 h-2 bg-[#ECB629] rounded-full opacity-20 animate-ping"
                 />
               </div>
               <span className="text-sm text-gray-300 font-medium">
                 <span className="text-[#ECB629] font-bold">Контролиран</span> процес за предвидим растеж
               </span>
             </div>
-          </div div>
+          </div>
 
-          <div h2 
+          <h2 
             className="text-4xl md:text-5xl font-bold mb-6 text-white"
+          >
             Прозрачен процес. <br />
             <span className="text-[#ECB629] relative">
               Предвидими резултати.
-              <div div
+              <div
                 className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-[#ECB629] to-[#ECB629]/50 rounded-full"
               />
             </span>
-          </div h2>
+          </h2>
 
-          <div p 
+          <p 
             className="text-xl text-gray-300 max-w-4xl mx-auto"
+          >
             Ние не работим с предположения. Следваме строго дефиниран инженерен процес в 3 стъпки, който гарантира, че всяко решение е базирано на данни.
-          </div p>
-        </div div>
+          </p>
+        </div>
         
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {steps.map((step, index) => (
-            <div div
+            <motion.div
               key={index}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.2 }}
+            >
+              <Card className="bg-slate-800/50 backdrop-blur-sm border-slate-700/50 hover:border-[#ECB629]/30 transition-all duration-300 h-full relative group">
                 {/* Hover Glow Effect */}
+                <div className="absolute inset-0 bg-[#ECB629]/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 
                 <CardContent className="p-8 text-center relative z-10">
                   <div className="relative mb-6">
+                    <div className="w-16 h-16 bg-[#ECB629] rounded-full flex items-center justify-center mx-auto relative">
                       <step.icon className="text-black text-2xl" size={32} />
                     </div>
-                    <div div
+                    <div
                       className="absolute inset-0 bg-[#ECB629] rounded-full opacity-5"
                     />
                   </div>
                   
+                  <h3 className="text-xl font-semibold text-white mb-4">
                     {step.title}
                   </h3>
                   <p className="text-gray-300">
@@ -116,7 +128,7 @@ const ProcessSection = () => {
                   </div>
                 </CardContent>
               </Card>
-            </div div>
+            </motion.div>
           ))}
         </div>
       </div>

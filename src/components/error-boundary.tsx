@@ -35,8 +35,9 @@ export class ErrorBoundary extends Component<Props, State> {
       error,
       errorId: Math.random().toString(36).substr(2, 9)
     };
+  }
 
-  componentDidCatch(error: Error, errorInfo: ErrorInfo) {
+  componentDidCatch(error, errorInfo) {
     this.setState({
       error,
       errorInfo,

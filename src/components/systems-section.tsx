@@ -154,13 +154,14 @@ export const SystemsSection = () => {
           
           {/* Connection Nodes */}
           {[...Array(6)].map((_, i) => (
-            <div div
+            <div
               key={i}
-              className="absolute w-2 h-2 bg-[#ECB629] rounded-full"
+              className="absolute w-2 h-2 bg-[#ECB629] rounded-full animate-pulse"
               style={{
                 left: `${15 + i * 15}%`,
                 top: `${25 + (i % 3) * 25}%`,
-                y: [0, -5, 0],
+                animationDelay: `${i * 0.5}s`
+              }}
             />
           ))}
         </div>
@@ -173,39 +174,43 @@ export const SystemsSection = () => {
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
-        <div div
+        <div 
           className="text-center mb-16"
-          <div div
+        >
+          <div
             className="inline-flex items-center gap-3 mb-8 px-6 py-3 rounded-full bg-gradient-to-r from-slate-800/80 to-slate-700/60 border border-slate-600/30 backdrop-blur-sm"
+          >
             <div className="flex items-center gap-2">
               <div className="relative">
                 <div className="w-2 h-2 bg-[#ECB629] rounded-full"></div>
-                <div div
-                  className="absolute inset-0 w-2 h-2 bg-[#ECB629] rounded-full opacity-20"
+                <div
+                  className="absolute inset-0 w-2 h-2 bg-[#ECB629] rounded-full opacity-20 animate-ping"
                 />
               </div>
               <span className="text-sm text-gray-300 font-medium">
                 <span className="text-[#ECB629] font-bold">Проверени</span> системи за устойчив растеж
               </span>
             </div>
-          </div div>
+          </div>
 
-          <div h2 
+          <h2 
             className="text-4xl md:text-5xl font-bold mb-6 text-white"
+          >
             Нашите системи за <br />
             <span className="text-[#ECB629] relative">
               растеж:
-              <div div
+              <div
                 className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-[#ECB629] to-[#ECB629]/50 rounded-full"
               />
             </span>
-          </div h2>
+          </h2>
 
-          <div p 
+          <p 
             className="text-xl text-gray-300 max-w-3xl mx-auto"
+          >
             Всяка система е проектирана да решава конкретен проблем във вашия бизнес и да генерира измерим растеж.
-          </div p>
-        </div div>
+          </p>
+        </div>
 
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col lg:flex-row gap-8">
@@ -213,14 +218,20 @@ export const SystemsSection = () => {
             <div className="lg:w-1/3">
               <div className="space-y-3">
                 {systems.map((system, index) => (
-                  <div div
+                  <motion.div
                     key={system.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                  >
                     <button
+                      className={`w-full p-6 rounded-xl backdrop-blur-sm transition-all duration-300 relative group ${
                         activeTab === system.id
                           ? "bg-gradient-to-r from-slate-800/80 to-slate-700/60 border border-[#ECB629] text-white shadow-lg shadow-[#ECB629]/10"
                           : "bg-slate-800/30 border border-slate-700/50 text-gray-300 hover:bg-slate-700/40 hover:border-[#ECB629]/30 hover:text-white"
                       }`}
                       onClick={() => setActiveTab(system.id)}
+                    >
                       {/* Active Tab Glow */}
                       {activeTab === system.id && (
                         <div div

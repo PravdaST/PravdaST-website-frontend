@@ -77,33 +77,42 @@ const ProblemSection = () => {
             Още ли залагате на <br />
             <span className="text-[#ECB629] relative">
               маркетинг?
-              <div div
+              <div
                 className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-[#ECB629] to-[#ECB629]/50 rounded-full"
               />
             </span>
-          </div h2>
+          </h2>
 
-          <div p 
+          <p 
             className="text-xl text-gray-300 max-w-3xl mx-auto"
+          >
             Повечето компании губят време и пари, защото разчитат на случайни тактики вместо на системи.
-          </div p>
-        </div div>
+          </p>
+        </div>
         
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {problems.map((problem, index) => (
-            <div div
+            <motion.div
               key={index}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1 }}
+            >
+              <Card className="bg-slate-800/50 backdrop-blur-sm border-slate-700/50 hover:border-red-500/30 transition-all duration-300 h-full relative group">
                 {/* Hover Glow Effect */}
+                <div className="absolute inset-0 bg-red-500/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 
                 <CardContent className="p-8 text-center relative z-10">
                   <div className="relative mb-6">
+                    <div className="w-16 h-16 bg-slate-700/50 rounded-full flex items-center justify-center mx-auto relative">
                       <problem.icon className="w-8 h-8 text-red-500" />
                     </div>
-                    <div div
+                    <div
                       className="absolute inset-0 bg-red-500 rounded-full opacity-5"
                     />
                   </div>
                   
+                  <h3 className="text-xl font-semibold text-white mb-4">
                     {problem.title}
                   </h3>
                   <p className="text-gray-300 leading-relaxed">
@@ -116,7 +125,7 @@ const ProblemSection = () => {
                   </div>
                 </CardContent>
               </Card>
-            </div div>
+            </motion.div>
           ))}
         </div>
       </div>
