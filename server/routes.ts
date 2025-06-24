@@ -1,14 +1,22 @@
 import type { Express, Request, Response } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertContactSchema } from "@shared/schema";
+import { insertContactSchema } from "../shared/schema";
 import { z } from "zod";
 import { seoGenerator } from "./lib/seo-generator";
 import { sanitizeInput, validateContentType } from "./middleware/security";
 import { emailService } from "./lib/email-service";
+import { registerAdminRoutes } from "./admin-routes";
+import { setupDefaultAdmin } from "./admin-setup";
 
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Setup default admin user on startup
+  setupDefaultAdmin();
+  
+  // Register admin routes
+  registerAdminRoutes(app);
+  
   // Списък с валидни routes
   const validRoutes = [
     '/',
@@ -19,6 +27,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     '/case-studies',
     '/about',
     '/contact',
+    '/admin',
     '/strapi-test'
   ];
 
@@ -83,14 +92,37 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Get all contacts (for admin purposes)
-  app.get("/api/contacts", async (req, res) => {
+  // Public blog routes
+  app.get('/api/blog/posts', async (req, res) => {
     try {
-      const contacts = await storage.getAllContacts();
-      res.json(contacts);
+      const posts = await storage.getBlogPosts(true);
+      res.json(posts);
     } catch (error) {
-      console.error("Get contacts error:", error);
-      res.status(500).json({ error: "Възникна грешка при зареждането на съобщенията" });
+      console.error('Error fetching published posts:', error);
+      res.status(500).json({ message: 'Failed to fetch posts' });
+    }
+  });
+
+  app.get('/api/blog/posts/:slug', async (req, res) => {
+    try {
+      const post = await storage.getBlogPost(req.params.slug);
+      if (!post || !post.published) {
+        return res.status(404).json({ message: 'Post not found' });
+      }
+      res.json(post);
+    } catch (error) {
+      console.error('Error fetching post:', error);
+      res.status(500).json({ message: 'Failed to fetch post' });
+    }
+  });
+
+  app.get('/api/categories', async (req, res) => {
+    try {
+      const categories = await storage.getCategories();
+      res.json(categories);
+    } catch (error) {
+      console.error('Error fetching categories:', error);
+      res.status(500).json({ message: 'Failed to fetch categories' });
     }
   });
 

@@ -106,11 +106,10 @@ export class DatabaseStorage implements IStorage {
 
   // Blog post operations
   async getBlogPosts(published?: boolean): Promise<BlogPost[]> {
-    let query = db.select().from(blogPosts);
     if (published !== undefined) {
-      query = query.where(eq(blogPosts.published, published));
+      return await db.select().from(blogPosts).where(eq(blogPosts.published, published)).orderBy(desc(blogPosts.createdAt));
     }
-    return await query.orderBy(desc(blogPosts.createdAt));
+    return await db.select().from(blogPosts).orderBy(desc(blogPosts.createdAt));
   }
 
   async getBlogPost(slug: string): Promise<BlogPost | undefined> {
@@ -119,15 +118,20 @@ export class DatabaseStorage implements IStorage {
   }
 
   async createBlogPost(post: InsertBlogPost): Promise<BlogPost> {
-    const [newPost] = await db.insert(blogPosts).values(post).returning();
+    const postData = {
+      ...post,
+      readTime: post.readTime || 5,
+    };
+    const [newPost] = await db.insert(blogPosts).values(postData as any).returning();
     return newPost;
   }
 
   async updateBlogPost(id: number, post: Partial<InsertBlogPost>): Promise<BlogPost> {
-    const [updated] = await db.update(blogPosts).set({
+    const updateData: any = {
       ...post,
       updatedAt: new Date(),
-    }).where(eq(blogPosts.id, id)).returning();
+    };
+    const [updated] = await db.update(blogPosts).set(updateData).where(eq(blogPosts.id, id)).returning();
     return updated;
   }
 

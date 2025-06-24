@@ -38,7 +38,7 @@ export const blogPosts = pgTable("blog_posts", {
   categoryId: serial("category_id").references(() => categories.id),
   authorId: serial("author_id").references(() => users.id).notNull(),
   tags: jsonb("tags").$type<string[]>().default([]),
-  readTime: serial("read_time").default(5),
+  readTime: serial("read_time"),
   published: boolean("published").default(false),
   publishedAt: timestamp("published_at"),
   createdAt: timestamp("created_at").defaultNow(),
