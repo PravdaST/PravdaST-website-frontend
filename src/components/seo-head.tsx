@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { SEOData, defaultSEOConfig } from "../../shared/seo-types";
+import type { SEOData } from "../types/seo-types";
 import { ogImageGenerator } from "@/lib/og-generator";
 
 interface SEOHeadProps {
