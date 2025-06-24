@@ -40,11 +40,7 @@ export default function AdminLogin({ onLogin }: LoginProps) {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!credentials.username || !credentials.password) {
-      toast({
-        title: "Грешка",
-        description: "Моля въведете потребителско име и парола",
-        variant: "destructive",
-      });
+      alert("Моля въведете потребителско име и парола");
       return;
     }
     loginMutation.mutate(credentials);
