@@ -35,18 +35,6 @@ export const CTASection = () => {
             ease: "easeInOut"
           }}
         />
-        <motion.div
-          className="absolute top-1/2 right-10 w-16 h-16 border border-[var(--pravdast-yellow)]/30 rounded-full"
-          animate={{
-            rotate: [0, -360],
-            scale: [1, 1.1, 1]
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "linear"
-          }}
-        />
         
         {/* Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-transparent to-slate-900/90"></div>
@@ -104,18 +92,6 @@ export const CTASection = () => {
                     ease: "easeInOut"
                   }}
                 />
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-[var(--pravdast-yellow)] to-amber-400 rounded-xl blur-xl opacity-20"
-                  animate={{
-                    rotate: [0, 360],
-                    scale: [0.9, 1.1, 0.9]
-                  }}
-                  transition={{
-                    duration: 4,
-                    repeat: Infinity,
-                    ease: "linear"
-                  }}
-                />
                 
                 {/* Success Badge */}
                 <motion.div
@@ -127,112 +103,108 @@ export const CTASection = () => {
                 >
                   <CheckCircle className="w-5 h-5 text-white" />
                 </motion.div>
-
-                {/* Floating Sparkles */}
-                {[...Array(6)].map((_, i) => (
-                  <motion.div
-                    key={i}
-                    className="absolute w-2 h-2 bg-[var(--pravdast-yellow)] rounded-full"
-                    style={{
-                      top: `${Math.random() * 100}%`,
-                      left: `${Math.random() * 100}%`,
-                    }}
-                    animate={{
-                      y: [0, -20, 0],
-                      opacity: [0, 1, 0],
-                      scale: [0, 1, 0]
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      delay: i * 0.3,
-                      ease: "easeInOut"
-                    }}
-                  />
-                ))}
               </motion.span>{" "}
               нови партньори за следващото тримесечие.
             </h2>
           </motion.div>
 
-          {/* Two-Column Advanced Layout */}
-          <div className="grid lg:grid-cols-5 gap-12 items-start">
+          {/* Two-Column Clean Layout */}
+          <div className="grid lg:grid-cols-2 gap-16 items-center max-w-5xl mx-auto">
             {/* Left: Description and Trust Elements */}
             <motion.div
-              className="lg:col-span-3 space-y-8"
+              className="space-y-8"
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
               viewport={{ once: true }}
             >
-              {/* Main Description Card */}
-              <div className="relative">
-                <div className="absolute -inset-1 bg-gradient-to-r from-slate-600/50 to-slate-700/50 rounded-3xl blur"></div>
-                <div className="relative bg-gradient-to-br from-slate-800/90 to-slate-900/90 rounded-3xl p-10 border border-slate-600/30 backdrop-blur-sm">
-                  <p className="text-2xl text-gray-200 leading-relaxed font-medium">
-                    Нашият инженерен подход изисква пълна отдаденост и дълбок фокус върху бизнеса на всеки наш клиент. Затова работим с ограничен брой компании едновременно, за да гарантираме реални резултати. Разберете дали вашият бизнес е подходящ за нашата система.
-                  </p>
-                </div>
+              {/* Main Description */}
+              <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-8 border border-slate-700/50">
+                <p className="text-xl text-gray-200 leading-relaxed">
+                  Нашият инженерен подход изисква пълна отдаденост и дълбок фокус върху бизнеса на всеки наш клиент. Затова работим с ограничен брой компании едновременно, за да гарантираме реални резултати. Разберете дали вашият бизнес е подходящ за нашата система.
+                </p>
               </div>
 
-              {/* Trust Indicators Grid */}
-              <div className="grid grid-cols-2 gap-6">
+              {/* Trust Indicators List */}
+              <div className="space-y-4">
                 <motion.div 
-                  className="bg-gradient-to-br from-slate-800/60 to-slate-900/60 rounded-2xl p-6 border border-slate-700/40 backdrop-blur-sm"
-                  whileHover={{ scale: 1.02, y: -2 }}
-                  transition={{ duration: 0.2 }}
+                  className="flex items-center gap-4"
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: 0.4 }}
+                  viewport={{ once: true }}
                 >
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-[var(--pravdast-yellow)]/20 rounded-xl flex items-center justify-center">
-                      <Clock className="w-6 h-6 text-[var(--pravdast-yellow)]" />
-                    </div>
-                    <div>
-                      <p className="text-sm text-gray-400 uppercase tracking-wide">Отговор в</p>
-                      <p className="text-xl font-bold text-[var(--pravdast-yellow)]">48 часа</p>
-                    </div>
-                  </div>
+                  <CheckCircle className="w-6 h-6 text-green-400 flex-shrink-0" />
+                  <span className="text-lg text-gray-300">Безплатна консултация</span>
                 </motion.div>
                 
                 <motion.div 
-                  className="bg-gradient-to-br from-slate-800/60 to-slate-900/60 rounded-2xl p-6 border border-slate-700/40 backdrop-blur-sm"
-                  whileHover={{ scale: 1.02, y: -2 }}
-                  transition={{ duration: 0.2 }}
+                  className="flex items-center gap-4"
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: 0.5 }}
+                  viewport={{ once: true }}
                 >
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center">
-                      <CheckCircle className="w-6 h-6 text-green-400" />
-                    </div>
-                    <div>
-                      <p className="text-sm text-gray-400 uppercase tracking-wide">Процес само</p>
-                      <p className="text-xl font-bold text-green-400">5 минути</p>
-                    </div>
-                  </div>
+                  <CheckCircle className="w-6 h-6 text-green-400 flex-shrink-0" />
+                  <span className="text-lg text-gray-300">Без ангажименти</span>
+                </motion.div>
+                
+                <motion.div 
+                  className="flex items-center gap-4"
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: 0.6 }}
+                  viewport={{ once: true }}
+                >
+                  <CheckCircle className="w-6 h-6 text-green-400 flex-shrink-0" />
+                  <span className="text-lg text-gray-300">100% поверителност</span>
+                </motion.div>
+                
+                <motion.div 
+                  className="flex items-center gap-4"
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: 0.7 }}
+                  viewport={{ once: true }}
+                >
+                  <Clock className="w-6 h-6 text-[var(--pravdast-yellow)] flex-shrink-0" />
+                  <span className="text-lg text-gray-300">Отговор в <span className="text-[var(--pravdast-yellow)] font-semibold">48 часа</span></span>
+                </motion.div>
+                
+                <motion.div 
+                  className="flex items-center gap-4"
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: 0.8 }}
+                  viewport={{ once: true }}
+                >
+                  <CheckCircle className="w-6 h-6 text-green-400 flex-shrink-0" />
+                  <span className="text-lg text-gray-300">Процес само <span className="text-green-400 font-semibold">5 минути</span></span>
                 </motion.div>
               </div>
             </motion.div>
 
-            {/* Right: Premium CTA Card */}
+            {/* Right: Premium CTA Button */}
             <motion.div
-              className="lg:col-span-2 relative"
+              className="flex justify-center lg:justify-end"
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
               viewport={{ once: true }}
             >
-              {/* Multi-Layer Glow Effect */}
-              <div className="absolute -inset-2 bg-gradient-to-r from-[var(--pravdast-yellow)] via-amber-400 to-[var(--pravdast-yellow)] rounded-4xl blur-xl opacity-25"></div>
-              <div className="absolute -inset-1 bg-gradient-to-r from-[var(--pravdast-yellow)]/40 to-amber-400/40 rounded-3xl blur opacity-50"></div>
-              
-              <div className="relative bg-gradient-to-br from-slate-800 via-slate-850 to-slate-900 rounded-3xl p-10 border border-[var(--pravdast-yellow)]/20 backdrop-blur-sm shadow-2xl">
-                {/* Premium CTA Button */}
+              <div className="relative">
+                {/* Multi-Layer Glow Effect */}
+                <div className="absolute -inset-4 bg-gradient-to-r from-[var(--pravdast-yellow)] via-amber-400 to-[var(--pravdast-yellow)] rounded-3xl blur-2xl opacity-30"></div>
+                <div className="absolute -inset-2 bg-gradient-to-r from-[var(--pravdast-yellow)]/50 to-amber-400/50 rounded-2xl blur-lg opacity-40"></div>
+                
                 <motion.div
-                  className="mb-8"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ duration: 0.2 }}
                 >
                   <Button
                     size="lg"
-                    className="w-full bg-gradient-to-r from-[var(--pravdast-yellow)] via-amber-400 to-[var(--pravdast-yellow)] text-slate-900 hover:from-amber-400 hover:via-[var(--pravdast-yellow)] hover:to-amber-400 text-2xl font-bold py-8 px-8 rounded-2xl shadow-2xl hover:shadow-[0_0_60px_rgba(236,182,40,0.4)] transition-all duration-500 relative overflow-hidden group border-0"
+                    className="relative bg-gradient-to-r from-[var(--pravdast-yellow)] via-amber-400 to-[var(--pravdast-yellow)] text-slate-900 hover:from-amber-400 hover:via-[var(--pravdast-yellow)] hover:to-amber-400 text-2xl font-bold py-8 px-12 rounded-2xl shadow-2xl hover:shadow-[0_0_80px_rgba(236,182,40,0.5)] transition-all duration-500 relative overflow-hidden group border-0 min-w-[320px]"
                     onClick={() => window.open("https://form.typeform.com/to/GXLaGY98", "_blank")}
                   >
                     <span className="relative z-10 flex items-center justify-center gap-4">
@@ -263,42 +235,6 @@ export const CTASection = () => {
                     />
                   </Button>
                 </motion.div>
-                
-                {/* Status and Guarantees */}
-                <div className="text-center space-y-6">
-                  {/* Primary Status */}
-                  <div className="flex items-center justify-center gap-3">
-                    <motion.div 
-                      className="w-4 h-4 bg-green-400 rounded-full"
-                      animate={{ scale: [1, 1.2, 1] }}
-                      transition={{ duration: 1.5, repeat: Infinity }}
-                    />
-                    <p className="text-[var(--pravdast-yellow)] font-bold text-lg">
-                      Ще се свържем с вас в рамките на 48 часа,
-                    </p>
-                  </div>
-                  
-                  {/* Secondary Info */}
-                  <p className="text-gray-300 text-base">
-                    целият процес отнема само 5 минути
-                  </p>
-                  
-                  {/* Security and Trust Badges */}
-                  <div className="pt-6 border-t border-slate-700/50 space-y-3">
-                    <div className="flex items-center justify-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-green-400" />
-                      <span className="text-sm text-gray-400">Безплатна консултация</span>
-                    </div>
-                    <div className="flex items-center justify-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-green-400" />
-                      <span className="text-sm text-gray-400">Без ангажименти</span>
-                    </div>
-                    <div className="flex items-center justify-center gap-2">
-                      <CheckCircle className="w-4 h-4 text-green-400" />
-                      <span className="text-sm text-gray-400">100% поверителност</span>
-                    </div>
-                  </div>
-                </div>
               </div>
             </motion.div>
           </div>
