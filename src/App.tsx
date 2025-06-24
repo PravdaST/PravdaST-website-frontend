@@ -18,7 +18,7 @@ import { ErrorBoundary, PageErrorBoundary } from "@/components/error-boundary";
 import { lazy, useEffect, Suspense } from "react";
 import { FullPageLoading } from "@/components/loading-states";
 import usePageTracking from "./hooks/usePageTracking";
-import KlaviyoSetup from "@/components/klaviyo-setup";
+
 import Home from "@/pages/home";
 import Services from "@/pages/services";
 import SeoStruktor from "@/pages/services/seo-struktor";
@@ -81,7 +81,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        <KlaviyoSetup />
+
         <SkipToMainContent />
         <ScrollToTop />
         <Toaster />
