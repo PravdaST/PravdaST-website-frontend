@@ -23,8 +23,8 @@ import Home from "@/pages/home";
 import Services from "@/pages/services";
 import SeoStruktor from "@/pages/services/seo-struktor";
 import Clientomat from "@/pages/services/clientomat";
-import SalesEngine from "@/pages/services/sales-engine";
 import Trendlab from "@/pages/services/trendlab";
+import SalesEngine from "@/pages/services/sales-engine";
 import CaseStudies from "@/pages/case-studies";
 import Blog from "@/pages/blog";
 import BlogPost from "@/pages/blog-post";
@@ -42,6 +42,7 @@ function Router() {
           <Route path="/services" component={Services} />
           <Route path="/services/seo-struktor" component={SeoStruktor} />
           <Route path="/services/clientomat" component={Clientomat} />
+          <Route path="/services/trendlab" component={Trendlab} />
           <Route path="/services/sales-engine" component={SalesEngine} />
           <Route path="/case-studies" component={CaseStudies} />
           <Route path="/blog" component={Blog} />
