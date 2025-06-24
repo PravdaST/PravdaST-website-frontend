@@ -27,6 +27,7 @@ import Trendlab from "@/pages/services/trendlab";
 import SalesEngine from "@/pages/services/sales-engine";
 import CaseStudies from "@/pages/case-studies";
 import BlogPage from "@/pages/blog";
+import BlogPost from "@/pages/blog-post";
 import FAQ from "@/pages/faq";
 import About from "@/pages/about";
 import Contact from "@/pages/contact";
@@ -45,6 +46,7 @@ function Router() {
           <Route path="/services/sales-engine" component={SalesEngine} />
           <Route path="/case-studies" component={CaseStudies} />
           <Route path="/blog" component={BlogPage} />
+          <Route path="/blog/:slug" component={BlogPost} />
           <Route path="/faq" component={FAQ} />
           <Route path="/about" component={About} />
           <Route path="/contact" component={Contact} />
