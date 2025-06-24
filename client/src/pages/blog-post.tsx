@@ -459,7 +459,7 @@ export default function BlogPost() {
                 ref={contentRef}
                 className="prose prose-lg prose-invert max-w-none"
                 initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
               >
                 <Card className="bg-slate-800/30 border-slate-600/30 p-8 backdrop-blur-sm">
@@ -598,7 +598,7 @@ export default function BlogPost() {
 
             {/* Sidebar */}
             <div className="lg:col-span-1">
-              <div className="sticky top-24 space-y-8">
+              <div className="space-y-8">
                 {/* Most Read Posts */}
                 <motion.div
                   initial={{ opacity: 0, x: 30 }}
