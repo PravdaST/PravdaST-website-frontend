@@ -1,12 +1,93 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vite App</title>
-</head>
-<body>
-  <div id="root"></div>
-  <script type="module" src="./src/main.tsx"></script>
-</body>
+<html lang="bg">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pravdast - Business Engineering Platform</title>
+    <meta name="description" content="Професионална бизнес инженерна платформа за предсказуем растеж и системни решения в България." />
+    
+    <!-- Preload critical fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json">
+    
+    <!-- Meta tags for SEO -->
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Pravdast Agency">
+    <meta name="keywords" content="бизнес инженеринг, растеж, системи, SEO, маркетинг, България">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.pravdagency.eu/">
+    <meta property="og:title" content="Pravdast - Business Engineering Platform">
+    <meta property="og:description" content="Професионална бизнес инженерна платформа за предсказуем растеж и системни решения в България.">
+    <meta property="og:image" content="https://www.pravdagency.eu/og-images/homepage.png">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.pravdagency.eu/">
+    <meta property="twitter:title" content="Pravdast - Business Engineering Platform">
+    <meta property="twitter:description" content="Професионална бизнес инженерна платформа за предсказуем растеж и системни решения в България.">
+    <meta property="twitter:image" content="https://www.pravdagency.eu/og-images/homepage.png">
+    
+    <!-- Google Site Verification -->
+    <meta name="google-site-verification" content="your-verification-code">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.pravdagency.eu/">
+    
+    <!-- Structured Data for Organization -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Pravdast Agency",
+      "url": "https://www.pravdagency.eu",
+      "logo": "https://www.pravdagency.eu/favicon-192.png",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+359-879-282-299",
+        "contactType": "Customer Service",
+        "email": "contact@pravdast.agency"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "ул. Дебър №58",
+        "addressLocality": "Варна",
+        "addressCountry": "BG"
+      },
+      "sameAs": [
+        "https://www.facebook.com/pravdagency",
+        "https://www.linkedin.com/company/pravdagency"
+      ]
+    }
+    </script>
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JQ8F0NZDX0"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-JQ8F0NZDX0');
+    </script>
+    
+    <!-- Klaviyo -->
+    <script async type="text/javascript" src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=XCwGcP"></script>
+    
+    <!-- SEO Fixer -->
+    <script async src="https://seo-fixer.writesonic.com/js/seo-fixer.js" data-site-id="pravdagency.eu"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>
