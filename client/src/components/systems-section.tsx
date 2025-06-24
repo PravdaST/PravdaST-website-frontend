@@ -164,13 +164,14 @@ export const SystemsSection = () => {
                 top: `${25 + (i % 3) * 25}%`,
               }}
               animate={{
-                scale: [1, 1.5, 1],
-                opacity: [0.5, 1, 0.5],
+                y: [0, -5, 0],
+                opacity: [0.3, 0.7, 0.3],
               }}
               transition={{
-                duration: 2,
+                duration: 4,
                 repeat: Infinity,
-                delay: i * 0.3,
+                delay: i * 0.5,
+                ease: "easeInOut"
               }}
             />
           ))}
@@ -201,7 +202,11 @@ export const SystemsSection = () => {
             <div className="flex items-center gap-2">
               <div className="relative">
                 <div className="w-2 h-2 bg-[#ECB629] rounded-full"></div>
-                <div className="absolute inset-0 bg-[#ECB629] rounded-full animate-ping opacity-75"></div>
+                <motion.div
+                  className="absolute inset-0 w-2 h-2 bg-[#ECB629] rounded-full opacity-20"
+                  animate={{ scale: [1, 1.3, 1] }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                />
               </div>
               <span className="text-sm text-gray-300 font-medium">
                 <span className="text-[#ECB629] font-bold">Проверени</span> системи за устойчив растеж
@@ -244,29 +249,68 @@ export const SystemsSection = () => {
           <div className="flex flex-col lg:flex-row gap-8">
             {/* Tab Navigation */}
             <div className="lg:w-1/3">
-              <div className="space-y-4">
-                {systems.map((system) => (
-                  <motion.button
+              <div className="space-y-3">
+                {systems.map((system, index) => (
+                  <motion.div
                     key={system.id}
-                    className={`w-full text-left p-6 rounded-xl transition-all duration-300 relative overflow-hidden group ${
-                      activeTab === system.id
-                        ? "bg-slate-800/50 border border-[#ECB629] text-[#ECB629]"
-                        : "bg-slate-800/30 border border-slate-700 text-gray-300 hover:bg-slate-700/50 hover:border-[#ECB629]/50 hover:text-[#ECB629]"
-                    }`}
-                    onClick={() => setActiveTab(system.id)}
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                    viewport={{ once: true }}
                   >
-                    {/* Hover Glow Effect */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-[#ECB629]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    
-                    <div className="relative z-10">
-                      <h3 className="text-xl font-semibold mb-2">
-                        {system.title}
-                      </h3>
-                      <p className="text-sm text-gray-400">{system.subtitle}</p>
-                    </div>
-                  </motion.button>
+                    <button
+                      className={`w-full text-left p-6 rounded-xl transition-all duration-300 relative overflow-hidden group cursor-pointer ${
+                        activeTab === system.id
+                          ? "bg-gradient-to-r from-slate-800/80 to-slate-700/60 border border-[#ECB629] text-white shadow-lg shadow-[#ECB629]/10"
+                          : "bg-slate-800/30 border border-slate-700/50 text-gray-300 hover:bg-slate-700/40 hover:border-[#ECB629]/30 hover:text-white"
+                      }`}
+                      onClick={() => setActiveTab(system.id)}
+                    >
+                      {/* Active Tab Glow */}
+                      {activeTab === system.id && (
+                        <motion.div
+                          className="absolute inset-0 bg-gradient-to-r from-[#ECB629]/10 to-transparent rounded-xl"
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          transition={{ duration: 0.3 }}
+                        />
+                      )}
+                      
+                      {/* Hover Glow Effect */}
+                      <div className="absolute inset-0 bg-gradient-to-r from-[#ECB629]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl"></div>
+                      
+                      <div className="relative z-10 flex items-center">
+                        <div className="mr-4">
+                          <div className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 ${
+                            activeTab === system.id 
+                              ? "bg-[#ECB629] text-black" 
+                              : "bg-slate-700 text-gray-400 group-hover:bg-[#ECB629]/20 group-hover:text-[#ECB629]"
+                          }`}>
+                            <system.icon size={24} />
+                          </div>
+                        </div>
+                        
+                        <div className="flex-1">
+                          <h3 className={`text-lg font-semibold mb-1 transition-colors ${
+                            activeTab === system.id ? "text-[#ECB629]" : "text-current"
+                          }`}>
+                            {system.title}
+                          </h3>
+                          <p className="text-sm text-gray-400 line-clamp-2">{system.subtitle}</p>
+                        </div>
+                        
+                        {/* Active Indicator */}
+                        {activeTab === system.id && (
+                          <motion.div
+                            className="w-1 h-8 bg-[#ECB629] rounded-full ml-3"
+                            initial={{ scaleY: 0 }}
+                            animate={{ scaleY: 1 }}
+                            transition={{ duration: 0.3 }}
+                          />
+                        )}
+                      </div>
+                    </button>
+                  </motion.div>
                 ))}
               </div>
             </div>
@@ -311,9 +355,9 @@ export const SystemsSection = () => {
                                 size={96}
                               />
                               <motion.div
-                                className="absolute inset-0 bg-[#ECB629] rounded-full opacity-20 scale-150"
-                                animate={{ scale: [1.5, 1.8, 1.5] }}
-                                transition={{ duration: 2, repeat: Infinity }}
+                                className="absolute inset-0 bg-[#ECB629] rounded-full opacity-10"
+                                animate={{ scale: [1.2, 1.4, 1.2] }}
+                                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
                               />
                             </motion.div>
                             

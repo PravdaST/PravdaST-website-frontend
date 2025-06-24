@@ -83,7 +83,11 @@ const ProcessSection = () => {
             <div className="flex items-center gap-2">
               <div className="relative">
                 <div className="w-2 h-2 bg-[#ECB629] rounded-full"></div>
-                <div className="absolute inset-0 bg-[#ECB629] rounded-full animate-ping opacity-75"></div>
+                <motion.div
+                  className="absolute inset-0 w-2 h-2 bg-[#ECB629] rounded-full opacity-20"
+                  animate={{ scale: [1, 1.3, 1] }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                />
               </div>
               <span className="text-sm text-gray-300 font-medium">
                 <span className="text-[#ECB629] font-bold">Контролиран</span> процес за предвидим растеж
@@ -141,9 +145,9 @@ const ProcessSection = () => {
                       <step.icon className="text-black text-2xl" size={32} />
                     </div>
                     <motion.div
-                      className="absolute inset-0 bg-[#ECB629] rounded-full opacity-20 scale-150"
-                      animate={{ scale: [1.5, 1.8, 1.5] }}
-                      transition={{ duration: 2, repeat: Infinity, delay: index * 0.5 }}
+                      className="absolute inset-0 bg-[#ECB629] rounded-full opacity-5"
+                      animate={{ scale: [1.2, 1.4, 1.2] }}
+                      transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: index * 1 }}
                     />
                   </div>
                   
