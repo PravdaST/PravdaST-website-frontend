@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import { Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, MapPin, Facebook, Youtube, Instagram, Linkedin } from "lucide-react";
 
 export const Footer = () => {
   const footerLinks = {
@@ -11,12 +11,13 @@ export const Footer = () => {
     company: [
       { href: "/about", label: "За нас" },
       { href: "/case-studies", label: "Резултати" },
+      { href: "/faq", label: "Въпроси" },
       { href: "/contact", label: "Контакти" }
     ],
     contact: [
-      { icon: Mail, info: "hello@pravdast.agency" },
-      { icon: Phone, info: "+359 XX XXX XXXX" },
-      { icon: MapPin, info: "София, България" }
+      { icon: Mail, info: "contact@pravdast.agency" },
+      { icon: Phone, info: "+359 879 282 299" },
+      { icon: MapPin, info: "гр.Варна ул. Дебър №58" }
     ]
   };
 
@@ -34,6 +35,27 @@ export const Footer = () => {
             <p className="text-gray-400 text-sm mb-6">
               Консултантска компания за бизнес инженеринг. Изграждаме системи за предвидим растеж.
             </p>
+            
+            {/* Социални мрежи */}
+            <div className="flex space-x-4 mb-6">
+              <a href="https://www.facebook.com/pravdast.agency/" target="_blank" rel="noopener noreferrer" 
+                 className="text-gray-400 hover:text-[var(--pravdast-yellow)] transition-colors">
+                <Facebook size={20} />
+              </a>
+              <a href="https://www.youtube.com/@PravdaST" target="_blank" rel="noopener noreferrer"
+                 className="text-gray-400 hover:text-[var(--pravdast-yellow)] transition-colors">
+                <Youtube size={20} />
+              </a>
+              <a href="https://www.instagram.com/pravdast.agency/" target="_blank" rel="noopener noreferrer"
+                 className="text-gray-400 hover:text-[var(--pravdast-yellow)] transition-colors">
+                <Instagram size={20} />
+              </a>
+              <a href="https://www.linkedin.com/company/pravda-st/" target="_blank" rel="noopener noreferrer"
+                 className="text-gray-400 hover:text-[var(--pravdast-yellow)] transition-colors">
+                <Linkedin size={20} />
+              </a>
+            </div>
+            
             <div className="text-xs text-gray-500">
               © 2025 Pravda ST. Всички права запазени.
             </div>
@@ -91,7 +113,7 @@ export const Footer = () => {
             <div className="text-gray-500 text-xs mb-4 md:mb-0">
               Изградено с инженерна прецизност за предвидими резултати
             </div>
-            <div className="flex space-x-6">
+            <div className="flex items-center space-x-6">
               <Link href="/contact">
                 <span className="text-gray-400 hover:text-[var(--pravdast-yellow)] transition-colors cursor-pointer text-xs">
                   Заявете консултация

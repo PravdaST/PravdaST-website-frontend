@@ -10,12 +10,14 @@ import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
+import { trackFormSubmission, trackConversion, trackLead } from "@/lib/analytics";
 import { Mail, Phone, MapPin, Clock } from "lucide-react";
 import { z } from "zod";
 
 const contactSchema = z.object({
   name: z.string().min(2, "Името трябва да съдържа поне 2 символа"),
   email: z.string().email("Невалиден имейл адрес"),
+  website: z.string().url("Моля въведете валиден URL (напр. https://example.com)"),
   company: z.string().optional(),
   message: z.string().min(10, "Съобщението трябва да съдържа поне 10 символа")
 });
@@ -26,6 +28,7 @@ export default function Contact() {
   const [formData, setFormData] = useState<ContactFormData>({
     name: "",
     email: "",
+    website: "",
     company: "",
     message: ""
   });
@@ -36,21 +39,41 @@ export default function Contact() {
 
   const contactMutation = useMutation({
     mutationFn: async (data: ContactFormData) => {
+      console.log('Изпращане на данни:', data);
       return await apiRequest("/api/contacts", "POST", data);
     },
-    onSuccess: () => {
+    onSuccess: (response) => {
+      console.log('Успешен отговор:', response);
+      // Analytics проследяване на успешна форма
+      trackFormSubmission('contact_form', true);
+      trackConversion('contact_lead');
+      trackLead('website_contact_form', 100);
+      
       toast({
         title: "Успешно изпратено!",
         description: "Ще се свържем с вас в най-скоро време.",
       });
-      setFormData({ name: "", email: "", company: "", message: "" });
+      setFormData({ name: "", email: "", website: "", company: "", message: "" });
       setErrors({});
       queryClient.invalidateQueries({ queryKey: ["/api/contacts"] });
     },
     onError: (error: any) => {
+      console.error('Грешка при изпращане:', error);
+      // Analytics проследяване на неуспешна форма
+      trackFormSubmission('contact_form', false);
+      
+      // По-детайлно съобщение за грешка
+      let errorMessage = "Възникна проблем при изпращането. Моля, опитайте отново.";
+      
+      if (error?.response?.data?.error) {
+        errorMessage = error.response.data.error;
+      } else if (error?.message) {
+        errorMessage = error.message;
+      }
+      
       toast({
         title: "Грешка",
-        description: "Възникна проблем при изпращането. Моля, опитайте отново.",
+        description: errorMessage,
         variant: "destructive",
       });
     },
@@ -87,19 +110,21 @@ export default function Contact() {
     {
       icon: Mail,
       title: "Имейл",
-      info: "hello@pravdast.agency",
-      description: "Отговаряме в рамките на 24 часа"
+      info: "contact@pravdast.agency",
+      description: "Отговаряме в рамките на 24 часа",
+      link: "mailto:contact@pravdast.agency"
     },
     {
       icon: Phone,
-      title: "Телефон",
-      info: "+359 XX XXX XXXX",
-      description: "Работни дни 9:00 - 18:00"
+      title: "Телефон / Viber",
+      info: "+359 879 282 299",
+      description: "Работни дни 9:00 - 18:00 или Viber чат",
+      link: "viber://chat?number=%2B359879282299"
     },
     {
       icon: MapPin,
       title: "Локация",
-      info: "София, България",
+      info: "гр.Варна ул. Дебър №58",
       description: "Работим с клиенти от цяла България"
     },
     {
@@ -160,7 +185,7 @@ export default function Contact() {
                     
                     <form onSubmit={handleSubmit} className="space-y-6">
                       <div>
-                        <Label htmlFor="name" className="text-sm font-medium">
+                        <Label htmlFor="name" className="text-sm font-medium text-white">
                           Име *
                         </Label>
                         <Input
@@ -177,7 +202,7 @@ export default function Contact() {
                       </div>
 
                       <div>
-                        <Label htmlFor="email" className="text-sm font-medium">
+                        <Label htmlFor="email" className="text-sm font-medium text-white">
                           Имейл *
                         </Label>
                         <Input
@@ -194,7 +219,24 @@ export default function Contact() {
                       </div>
 
                       <div>
-                        <Label htmlFor="company" className="text-sm font-medium">
+                        <Label htmlFor="website" className="text-sm font-medium text-white">
+                          Сайт *
+                        </Label>
+                        <Input
+                          id="website"
+                          type="url"
+                          value={formData.website}
+                          onChange={(e) => handleInputChange("website", e.target.value)}
+                          className="mt-1 bg-[var(--pravdast-dark)] border-[var(--pravdast-medium-gray)] text-white"
+                          placeholder="https://вашия-сайт.com"
+                        />
+                        {errors.website && (
+                          <p className="text-red-400 text-sm mt-1">{errors.website}</p>
+                        )}
+                      </div>
+
+                      <div>
+                        <Label htmlFor="company" className="text-sm font-medium text-white">
                           Компания
                         </Label>
                         <Input
@@ -208,7 +250,7 @@ export default function Contact() {
                       </div>
 
                       <div>
-                        <Label htmlFor="message" className="text-sm font-medium">
+                        <Label htmlFor="message" className="text-sm font-medium text-white">
                           Съобщение *
                         </Label>
                         <Textarea
@@ -227,7 +269,7 @@ export default function Contact() {
                       <Button
                         type="submit"
                         disabled={contactMutation.isPending}
-                        className="w-full bg-[var(--pravdast-yellow)] text-[var(--pravdast-dark)] hover:bg-yellow-400 font-semibold py-3"
+                        className="w-full bg-[var(--pravdast-yellow)] text-[var(--pravdast-dark)] hover:bg-[#d4a426] font-semibold py-3"
                       >
                         {contactMutation.isPending ? "Изпращане..." : "Изпратете съобщението"}
                       </Button>
@@ -266,7 +308,16 @@ export default function Contact() {
                         </div>
                         <div>
                           <h3 className="font-semibold text-lg mb-1">{info.title}</h3>
-                          <p className="text-[var(--pravdast-yellow)] font-medium mb-1">{info.info}</p>
+                          {info.link ? (
+                            <a 
+                              href={info.link}
+                              className="text-[var(--pravdast-yellow)] font-medium mb-1 hover:underline cursor-pointer block"
+                            >
+                              {info.info}
+                            </a>
+                          ) : (
+                            <p className="text-[var(--pravdast-yellow)] font-medium mb-1">{info.info}</p>
+                          )}
                           <p className="text-gray-400 text-sm">{info.description}</p>
                         </div>
                       </motion.div>
@@ -282,7 +333,7 @@ export default function Contact() {
                       Заявете директно онлайн консултация с нашия екип.
                     </p>
                     <Button
-                      className="bg-[var(--pravdast-yellow)] text-[var(--pravdast-dark)] hover:bg-yellow-400 font-semibold"
+                      className="bg-[var(--pravdast-yellow)] text-[var(--pravdast-dark)] hover:bg-[#d4a426] font-semibold"
                       onClick={() => window.open("https://form.typeform.com/to/GXLaGY98", "_blank")}
                     >
                       Запази консултация

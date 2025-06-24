@@ -200,10 +200,6 @@ Changelog:
 - June 24, 2025. Completely redesigned CTA section with modern design following best practices: urgency indicators, prominent number emphasis with glow effects, two-column layout, trust signals, gradient buttons with shimmer effects, animated background elements, proper visual hierarchy for maximum conversion
 - June 24, 2025. Simplified CTA section to clean two-column layout per user request: left side with main text and trust indicators list (безплатна консултация, без ангажименти, 100% поверителност, отговор в 48 часа, процес 5 минути), right side with single prominent CTA button with glow effects and animations
 - June 24, 2025. Refactored CTA section with proper visual hierarchy: two-column layout (text left-aligned, buttons center-aligned), primary button (black background, yellow text), secondary outline button (transparent with black border), responsive single-column on mobile, preserved yellow background and existing content
-- June 24, 2025. Created new SEO Struktor™ page (/seo-structor-new) following detailed structure: hero section with engineering blueprint background, philosophy section with chaotic vs structured visualization, 4-phase engineering process timeline, expected results with benefits grid, investment structure with pricing principles, final CTA section maintaining brand consistency
-- June 24, 2025. Cleaned up project structure by removing duplicate src/ directory that was conflicting with client/src/, resolved Vercel build errors, maintained proper Vite + Express architecture with client/server separation
-- June 24, 2025. Confirmed project is fully ready for Vercel deployment: all critical files preserved (vercel.json, api/ functions, package.json scripts), build system working correctly, proper SPA routing configuration, security headers configured, no missing components
-- June 24, 2025. Restored complete Klaviyo integration: frontend tracking component, backend API profile creation in contacts.js, proper CSP headers, requires VITE_KLAVIYO_COMPANY_ID and KLAVIYO_PRIVATE_API_KEY environment variables
 
 ## User Preferences
 
