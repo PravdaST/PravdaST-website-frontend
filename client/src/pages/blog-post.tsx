@@ -1,337 +1,174 @@
-import { useParams } from "wouter";
-import { useState, useEffect, useRef } from "react";
-import { motion, useInView } from "framer-motion";
-import { Navigation } from "@/components/navigation";
-import { Footer } from "@/components/footer";
-import { SEOHead } from "@/components/seo-head";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import {
-  Clock,
-  User,
-  Tag,
-  ArrowLeft,
-  Share2,
-  Facebook,
-  Twitter,
-  Linkedin,
-  Copy,
-  MessageCircle,
-  Send,
-  Heart,
-  Eye,
-  BookOpen,
-  TrendingUp,
-} from "lucide-react";
-import { Link } from "wouter";
+import { useRoute } from 'wouter';
+import { Navigation } from '@/components/navigation';
+import { Footer } from '@/components/footer';
+import { SEOHead } from '@/components/seo-head';
+import { Card, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { Calendar, Clock, User, ArrowLeft, Share2, BookOpen } from 'lucide-react';
+import { motion } from 'framer-motion';
 
-interface BlogPost {
-  id: string;
-  title: string;
-  excerpt: string;
-  content: string;
-  author: string;
-  publishedAt: string;
-  readTime: number;
-  category: string;
-  slug: string;
-  tags: string[];
-  featuredImage?: string;
-  views?: number;
-}
+// Blog post data
+const blogPosts: { [key: string]: any } = {
+  'optimizatsia-na-biznes-protsesi': {
+    title: 'Защо Вашият Бизнес Се Нуждае от Инженеринг, а не от Маркетинг',
+    excerpt: 'Спрете да губите пари от неефективни процеси. Научете как нашата система за оптимизация на бизнес процеси и автоматизация може да донесе предвидими приходи и контрол.',
+    author: 'Pravdast Team',
+    publishedAt: '2025-06-24',
+    readTime: 8,
+    category: 'Бизнес Процеси',
+    tags: ['бизнес процеси', 'автоматизация', 'оптимизация', 'продажби', 'clientomat'],
+    content: `
+# Защо Вашият Бизнес Се Нуждае от Инженеринг, а не от Маркетинг
 
-interface Comment {
-  id: number;
-  authorName: string;
-  authorEmail: string;
-  content: string;
-  createdAt: string;
-}
+Ако сте собственик на утвърден български бизнес, вие сте неговият централен стълб. Всичко зависи от вас. Вашата експертиза е в производството, логистиката или търговията, но хроничната липса на време ви превръща в основната пречка пред растежа.
 
-// Blog Background Component
-const BlogBackground = () => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+Много собственици се сблъскват с т.нар. „Ресурсна трилема": постоянна борба между недостига на експертиза, високите разходи за продукция и дефицита на време. Опитите за вътрешнофирмено решение често водят до пасивност и пропуснати възможности.
 
-  useEffect(() => {
-    const updateMousePosition = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-    window.addEventListener("mousemove", updateMousePosition);
-    return () => window.removeEventListener("mousemove", updateMousePosition);
-  }, []);
+> Вие губите пари от неефективни процеси.
 
-  return (
-    <div className="absolute inset-0 overflow-hidden opacity-10">
-      {/* Blog Grid */}
-      <svg
-        className="absolute inset-0 w-full h-full"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <defs>
-          <pattern
-            id="blog-grid"
-            width="60"
-            height="60"
-            patternUnits="userSpaceOnUse"
-          >
-            <path
-              d="M 60 0 L 0 0 0 60"
-              fill="none"
-              stroke="#ECB629"
-              strokeWidth="0.5"
-              opacity="0.3"
-            />
-            <circle cx="30" cy="30" r="1.5" fill="#ECB629" opacity="0.4" />
-          </pattern>
-        </defs>
-        <rect width="100%" height="100%" fill="url(#blog-grid)" />
-      </svg>
+Това не е явен разход в счетоводния ви отчет. Това е бавен, тих теч, който ежедневно пречи на **увеличаването на продажбите**. Това е пропуснатият експортен клиент, чието запитване е потънало в обща пощенска кутия. Това е проследяването, което никога не се е случило, защото никой не помни кой кога е бил контактуван. Това е загубената възможност за партньорство, защото системата ви е неспособна да проследи интереса на потенциалния партньор.
 
-      {/* Floating Content Keywords */}
-      {[
-        "CONTENT",
-        "INSIGHTS",
-        "KNOWLEDGE",
-        "EXPERTISE",
-        "STORIES",
-        "GROWTH",
-      ].map((keyword, i) => (
-        <motion.div
-          key={keyword}
-          className="absolute text-[#ECB629] font-mono text-xs opacity-20"
-          style={{
-            left: `${15 + i * 12}%`,
-            top: `${20 + (i % 3) * 25}%`,
-          }}
-          animate={{
-            x: mousePosition.x * 0.01 * (i % 2 === 0 ? 1 : -1),
-            y: mousePosition.y * 0.01 * (i % 2 === 0 ? -1 : 1),
-            opacity: [0.2, 0.4, 0.2],
-          }}
-          transition={{
-            type: "spring",
-            stiffness: 30,
-            damping: 10,
-            opacity: { duration: 3, repeat: Infinity },
-          }}
-        >
-          {keyword}
-        </motion.div>
-      ))}
-    </div>
-  );
+В българската бизнес среда, белязана от скептицизъм и недоверие, мнозина ще ви предложат "повече маркетинг". Ние смятаме това за грешен подход. Да инвестирате в реклама без система е като да наливате вода в пробита кофа. Решението е по-добър **бизнес инженеринг**.
+
+Това е планът, с който да спрете течовете. План за система, която работи за **привличане на клиенти**. Автоматично. Това е истинската **оптимизация на бизнес процеси**.
+
+---
+
+## ЧАСТ 1: ДИАГНОСТИКА НА ПРОЦЕСИТЕ
+
+### Къде и как губите пари, клиенти и възможности?
+
+Преди да строим, намираме слабите места. Един бизнес инженер трябва да бъде безкомпромисен в диагностиката си.
+
+**1. Течът при първия контакт: Цената на забавянето**
+
+- **Сценарий:** Производствена фирма получава запитване за експорт от Германия през контактната си форма. То попада в общия info@ имейл. Видяно е два дни по-късно. Междувременно, потенциалният клиент вече е получил три оферти от полски конкуренти, които са отговорили автоматично в рамките на 10 минути.
+- **Инженерният въпрос:** Какво се случва с всеки нов контакт? Улавя ли се мигновено в **система за управление на клиенти**? Или чака в претрупана поща? В B2B, всеки час забавяне е загубена възможност за продажба.
+
+**2. Течът при проследяването: Зависимост от човешкия фактор**
+
+- **Сценарий:** Водещ търговец в логистична компания напуска. Всичките му потенциални клиенти, с които е говорил през последните 6 месеца, са записани в личния му тефтер и в главата му. С напускането му, цялата тази потенциална стойност изчезва. Няма система. Няма история.
+- **Инженерният въпрос:** Имате ли **автоматизация на процеси** за проследяване? Или разчитате на спорадична, ръчна работа, която е уязвима към текучество и човешки грешки? Липсата на система за проследяване е гаранция за загубени бъдещи приходи.
+
+**3. Течът при измерването: Хазарт с висок залог**
+
+- **Сценарий:** Фирма инвестира значителна сума в телевизионна реклама. Излъчването на 30-секунден клип в праймтайм може да надхвърли 21 000 лв. Месец по-късно, собственикът вижда леко покачване в продажбите, но не може да каже дали то се дължи на рекламата, на сезонността или на промяна в пазарните условия.
+- **Инженерният въпрос:** Можете ли да изчислите точния **Мултипликатор на инвестицията** за всеки лев, похарчен за привличане на клиенти? Или просто се надявате на възвръщаемост? Без точни данни, вие не управлявате, а рискувате.
+
+---
+
+## ЧАСТ 2: ИНЖЕНЕРНИЯТ ПЛАН ЗА АВТОМАТИЗАЦИЯ
+
+### Как се изгражда система за продажби, която работи сама (Процесът Clientomat™)
+
+Това не е „фуния". Това е дисциплиниран, инженерен процес за **автоматизация на продажбите**, който превръща хаоса в предвидим ред.
+
+**Стъпка 1: Централизирайте входящите данни.**
+Първият принцип на всяка система е единният контролен пункт. Всички запитвания – от контактни форми, през API интеграции със социални мрежи, до ръчно въведени контакти от събития – се вливат в една-единствена CRM система. Това незабавно създава пълен регистър на всеки потенциален клиент, заедно с източника на контакта и времето на първия контакт.
+
+**Стъпка 2: Автоматизирайте първия отговор и сегментация.**
+Системата задейства незабавен, автоматизиран отговор. Той е персонализиран и предоставя релевантна стойност. Например, ако запитването е за конкретен продукт, системата може да изпрати PDF с техническите му спецификации. Ако е общо, може да изпрати линк към най-популярния казус от вашата индустрия. Същевременно, системата автоматично сегментира контакта в подходящ работен поток.
+
+**Стъпка 3: Изградете „Архитектура на Авторитет и Доверие".**
+За контакти, които не са готови да купят, изграждаме автоматизирана поредица от комуникации. В среда на ниско доверие, "Trust Capital" е най-ценният актив. Съдържанието не продава, а изгражда **пазарен авторитет**:
+
+- **Технически статии**, които обясняват как решавате сложни проблеми.
+- **Видео демонстрации** на вашите продукти или процеси.
+- **Казуси и клиентски препоръки**, които предоставят социално доказателство.
+- **Покани за ексклузивни уебинари** или събития.
+
+**Стъпка 4: Внедрете „умни тригери" за търговския екип.**
+**Автоматизацията на процеси** не замества хората; тя ги прави в пъти по-ефективни. Системата следи поведението на потребителите. Когато потенциален клиент свали два казуса и посети три пъти страницата с цени, системата незабавно уведомява търговския представител с пълна история на взаимодействията. Това не е студен обаждане – това е топла връзка с висока вероятност за продажба.
+
+### Сравнение: Традиционна реклама срещу Бизнес инженеринг
+
+| Метрика | Традиционна Реклама | Бизнес Инженеринг (Clientomat™) |
+|---------|-------------------|----------------------------------|
+| **Първоначален разход** | Много висок, фиксиран | Нисък до висок, напълно мащабируем |
+| **Прецизност** | Ниска (масова аудитория) | Много висока (демографска, поведенческа) |
+| **Измеримост на ROI** | Много ниска (непряка) | Висока (директно проследяване) |
+| **Обратна връзка** | Много бавна (седмици/месеци) | Незабавна (в реално време) |
+
+---
+
+## ЧАСТ 3: ДОКАЗАТЕЛСТВОТО В ДЕЙСТВИЕ
+
+### Един реален пример струва повече от 1000 обещания
+
+В пазар, движен от скептицизъм, чуждестранните примери са безполезни. Доказателството трябва да е локално и релевантно. Такъв е случаят с **„Бачо Илия"**.
+
+**Проблемът:** Традиционен B2B производител на млечни продукти с обичан вкус, но с нулева дигитална връзка с крайни потребители и търговски партньори.
+
+**Инженерното решение: Моделът "Nostalgia-Fueled Authority"**
+Вместо стандартна реклама, приложихме инженерен подход към емоциите. Системно свързахме продукта с мощното културно усещане за носталгия по „истинската храна от едно време". Това изгради огромен **пазарен авторитет** и създаде директен канал за комуникация със съществуващи и потенциални клиенти.
+
+**Измеримите резултати:**
+Системата доведе до реално **увеличаване на продажбите** и партньорствата.
+
+- **+243% ръст** на месечната бранд аудитория. Това означава изграждане на общност и директен канал за комуникация, заобикаляйки традиционните ритейлъри.
+- **~70% ръст** на запитванията от дистрибутори и партньори. За B2B производител това означава пълен производствен капацитет и по-силни позиции при преговори.
+
+---
+
+## ЧАСТ 4: ПРИЛОЖЕНИЕ В РАЗЛИЧНИ СЕКТОРИ
+
+### Производство и логистика
+За производствени компании, системата се фокусира върху техническата експертиза и надеждността. Автоматизираните последователности включват:
+- Детайлни технически спецификации
+- Видеа от производствения процес
+- Сертификати и качествени стандарти
+- Казуси на успешни доставки
+
+### Услуги и консултиране
+За консултантски фирми, акцентът е върху доказаните резултати и методологиите:
+- Безплатни диагностични инструменти
+- Уебинари с практически съвети
+- Детайлни казуси с конкретни резултати
+- Директен достъп до експерти
+
+### Търговия и дистрибуция
+За търговски компании, системата подчертава асортимента и логистичните възможности:
+- Каталози с цени в реално време
+- Калкулатори за доставка
+- Информация за наличности
+- Програми за лоялност
+
+---
+
+## ЗАКЛЮЧЕНИЕ: БЪДЕЩЕТО Е В СИСТЕМИТЕ
+
+Бизнес инженерингът не е алтернатива на маркетинга – той е неговата еволюция. В свят, където потребителите са презаситени с реклами и обещания, системите за изграждане на доверие и авторитет стават решаващи.
+
+**Оптимизацията на бизнес процеси** не е еднократна дейност, а непрекъснат процес на подобрение. Всеки елемент от системата се измерва, анализира и оптимизира за максимална ефективност.
+
+Започнете с диагностика. Намерете течовете. Изградете система. Измерете резултатите. Това е пътят към предвидим растеж в непредвидим пазар.
+
+---
+
+*Искате да научите повече за това как можем да приложим тези принципи в конкретно във вашия бизнес? [Свържете се с нас](/contact) за безплатна диагностика на вашите бизнес процеси.*
+    `
+  }
 };
 
-const blogPosts: BlogPost[] = [
-  {
-    id: "1",
-    title: "Как да създадете предсказуем растеж в B2B компанията си",
-    excerpt:
-      "Откройте тайните на системния подход към бизнес растежа. Научете как водещите компании строят устойчиви системи за генериране на клиенти.",
-    content: `
-В днешния конкурентен бизнес свят, много компании разчитат на случайността и късмета за растежа си. Това е рискован подход, който води до нестабилни резултати и стрес за собствениците.
-
-## Проблемът с традиционния подход
-
-Повечето B2B компании използват интуиция вместо данни, което води до:
-
-- **Непредсказуеми продажби** - месечните резултати варират драстично
-- **Неефективен маркетинг** - парите се харчат без ясна ROI метрика
-- **Липса на системи** - всичко зависи от конкретни хора
-- **Бавен растеж** - компанията не може да скалира ефективно
-
-## Системният подход към растежа
-
-В Pravdast вярваме в инженерния подход към бизнеса. Това означава:
-
-### 1. Анализ на данните
-Започваме със задълбочен анализ на текущото състояние:
-- Анализ на клиентската база
-- Проучване на пазарни възможности
-- Оценка на конкурентите
-
-### 2. Проектиране на системи
-Изграждаме специализирани системи за:
-- Генериране на качествени leads
-- Автоматизиране на продажбите
-- Задържане и развитие на клиенти
-
-### 3. Измерване и оптимизация
-Всичко се мери и се подобрява непрекъснато:
-- KPI проследяване в реално време
-- A/B тестване на всички процеси
-- Месечни ревюта и корекции
-
-## Практически стъпки
-
-Ето как можете да започнете трансформацията:
-
-**Стъпка 1: Одит на текущото състояние**
-Направете честна оценка на:
-- Текущи резултати и тенденции
-- Силни и слаби страни
-- Възможности за подобрение
-
-**Стъпка 2: Дефиниране на цели**
-Поставете SMART цели за:
-- Ръст на приходите
-- Увеличение на клиентската база
-- Подобряване на конверсиите
-
-**Стъпка 3: Внедряване на системи**
-Започнете с най-критичните области:
-- CRM система за проследяване на клиенти
-- Маркетинг автоматизация
-- Процеси за продажби
-
-## Заключение
-
-Предсказуемият растеж не е случайност - той е резултат от правилно проектирани и внедрени системи. Спрете да разчитате на късмета и започнете да строите устойчив бизнес още днес.
-
-**Готови за трансформация?** Свържете се с нас за безплатна консултация и научете как можем да помогнем на вашата компания да постигне предсказуем растеж.
-    `,
-    author: "Екипът на Pravdast",
-    publishedAt: "2024-12-15",
-    readTime: 8,
-    category: "Бизнес стратегия",
-    slug: "predskazuem-rastezh-b2b-kompanii",
-    tags: ["растеж", "B2B", "системи", "стратегия"],
-    views: 2847,
-  },
-  {
-    id: "2",
-    title: "SEO Struktor™: Революционен подход към търсещата оптимизация",
-    excerpt:
-      "Разберете как нашата собствена методология SEO Struktor™ помага на клиентите ни да достигнат топ позиции в Google за ключови думи с висок търсещ обем.",
-    content: `SEO Struktor™ е собствената ни методология...`,
-    author: "SEO Експерти",
-    publishedAt: "2024-12-10",
-    readTime: 12,
-    category: "SEO",
-    slug: "seo-struktor-revolutsionen-podhod",
-    tags: ["SEO", "органичен трафик", "Google", "оптимизация"],
-    views: 1923,
-  },
-  {
-    id: "3",
-    title: "Clientomat™: Автоматизиране на процеса за генериране на клиенти",
-    excerpt:
-      "Научете как системата Clientomat™ помага на компаниите да автоматизират процеса си за привличане и задържане на клиенти, като същевременно увеличават конверсиите.",
-    content: `Clientomat™ е иновативна система...`,
-    author: "Automation Team",
-    publishedAt: "2024-12-05",
-    readTime: 10,
-    category: "Автоматизация",
-    slug: "clientomat-avtomatiziran-sistem",
-    tags: ["автоматизация", "CRM", "продажби", "клиенти"],
-    views: 1456,
-  },
-];
-
-// Most read posts (top 3)
-const mostReadPosts = blogPosts
-  .sort((a, b) => (b.views || 0) - (a.views || 0))
-  .slice(0, 3);
-
-// Sample comments data
-const sampleComments: Comment[] = [
-  {
-    id: "1",
-    author: "Иван Петров",
-    content:
-      "Много полезна статия! Вече започнахме да прилагаме някои от съветите във фирмата.",
-    publishedAt: "2024-12-16",
-  },
-  {
-    id: "2",
-    author: "Мария Георгиева",
-    content:
-      "Отлично обяснение на системния подход. Искам да науча повече за автоматизацията.",
-    publishedAt: "2024-12-15",
-  },
-];
-
 export default function BlogPost() {
-  const { slug } = useParams();
-  const [post, setPost] = useState<BlogPost | null>(null);
-  const [comments, setComments] = useState<Comment[]>(sampleComments);
-  const [newComment, setNewComment] = useState("");
-  const [newCommentAuthor, setNewCommentAuthor] = useState("");
-  const [showShareMenu, setShowShareMenu] = useState(false);
-  const [liked, setLiked] = useState(false);
-  const contentRef = useRef(null);
-  const isInView = useInView(contentRef);
+  const [, params] = useRoute('/blog/:slug');
+  const slug = params?.slug;
 
-  useEffect(() => {
-    const foundPost = blogPosts.find((p) => p.slug === slug);
-    setPost(foundPost || null);
-  }, [slug]);
-
-  const handleShare = (platform: string) => {
-    if (!post) return;
-
-    const url = `https://www.pravdagency.eu/blog/${post.slug}`;
-    const text = `${post.title} - ${post.excerpt}`;
-
-    switch (platform) {
-      case "facebook":
-        window.open(
-          `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
-          "_blank",
-        );
-        break;
-      case "twitter":
-        window.open(
-          `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`,
-          "_blank",
-        );
-        break;
-      case "linkedin":
-        window.open(
-          `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`,
-          "_blank",
-        );
-        break;
-      case "copy":
-        navigator.clipboard.writeText(url);
-        alert("Линкът е копиран!");
-        break;
-    }
-    setShowShareMenu(false);
-  };
-
-  const handleAddComment = () => {
-    if (!newComment.trim() || !newCommentAuthor.trim()) return;
-
-    const comment: Comment = {
-      id: Date.now().toString(),
-      author: newCommentAuthor,
-      content: newComment,
-      publishedAt: new Date().toISOString().split("T")[0],
-    };
-
-    setComments([comment, ...comments]);
-    setNewComment("");
-    setNewCommentAuthor("");
-  };
-
-  if (!post) {
+  if (!slug || !blogPosts[slug]) {
     return (
-      <div className="min-h-screen bg-slate-900">
+      <div className="min-h-screen bg-slate-900 text-white">
         <Navigation />
-        <div className="min-h-screen flex items-center justify-center">
-          <div className="text-center">
-            <h1 className="text-2xl font-bold text-white mb-4">
-              Статията не е намерена
-            </h1>
-            <Link href="/blog">
-              <Button
-                variant="outline"
-                className="text-white border-white hover:bg-white hover:text-slate-900"
-              >
+        <div className="container mx-auto px-6 py-20">
+          <div className="max-w-2xl mx-auto text-center">
+            <h1 className="text-4xl font-bold mb-4">Блог постът не е намерен</h1>
+            <p className="text-gray-400 mb-8">Търсеният блог пост не съществува.</p>
+            <Button asChild>
+              <a href="/blog">
+                <ArrowLeft className="h-4 w-4 mr-2" />
                 Обратно към блога
-              </Button>
-            </Link>
+              </a>
+            </Button>
           </div>
         </div>
         <Footer />
@@ -339,427 +176,187 @@ export default function BlogPost() {
     );
   }
 
+  const post = blogPosts[slug];
+
   return (
-    <div className="min-h-screen bg-slate-900">
-      <SEOHead
-        seo={{
-          title: post.title,
-          description: post.excerpt,
-          keywords: post.tags.join(", "),
-          ogTitle: post.title,
-          ogDescription: post.excerpt,
-          ogImage: post.featuredImage || "/og-blog-default.jpg",
-        }}
-        pageSlug={`blog/${post.slug}`}
+    <div className="min-h-screen bg-slate-900 text-white">
+      <SEOHead 
+        title={`${post.title} | Pravdast Blog`}
+        description={post.excerpt}
+        ogType="article"
       />
+      
       <Navigation />
-
+      
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 pt-20 pb-12">
-        <BlogBackground />
-
-        <div className="container mx-auto px-6 relative z-10">
-          <div className="max-w-4xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
+      <section className="pt-20 pb-12 bg-gradient-to-b from-slate-900 to-slate-800">
+        <div className="container mx-auto px-6">
+          <motion.div
+            className="max-w-4xl mx-auto"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            {/* Back Button */}
+            <Button 
+              variant="ghost" 
+              className="mb-8 text-gray-400 hover:text-white"
+              asChild
             >
-              <Link href="/blog">
-                <Button
-                  variant="ghost"
-                  className="text-white hover:text-[#ECB629] mb-6 group"
+              <a href="/blog">
+                <ArrowLeft className="h-4 w-4 mr-2" />
+                Обратно към блога
+              </a>
+            </Button>
+
+            {/* Category Badge */}
+            <Badge className="bg-[#ECB629] text-black font-semibold mb-6">
+              <BookOpen className="h-3 w-3 mr-1" />
+              {post.category}
+            </Badge>
+
+            {/* Title */}
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+              {post.title}
+            </h1>
+
+            {/* Meta Info */}
+            <div className="flex flex-wrap items-center gap-6 text-gray-400 mb-8">
+              <div className="flex items-center gap-2">
+                <User className="h-4 w-4" />
+                <span>{post.author}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Calendar className="h-4 w-4" />
+                <span>{new Date(post.publishedAt).toLocaleDateString('bg-BG', { 
+                  year: 'numeric', 
+                  month: 'long', 
+                  day: 'numeric' 
+                })}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Clock className="h-4 w-4" />
+                <span>{post.readTime} мин четене</span>
+              </div>
+            </div>
+
+            {/* Tags */}
+            <div className="flex flex-wrap gap-2 mb-8">
+              {post.tags.map((tag: string, index: number) => (
+                <Badge 
+                  key={index} 
+                  variant="outline" 
+                  className="text-gray-300 border-gray-600"
                 >
-                  <ArrowLeft className="mr-2 h-4 w-4 group-hover:translate-x-[-4px] transition-transform" />
-                  Обратно към блога
-                </Button>
-              </Link>
+                  {tag}
+                </Badge>
+              ))}
+            </div>
 
-              <div className="mb-6">
-                <span className="inline-flex items-center gap-2 px-4 py-2 text-sm bg-[#ECB629]/20 text-[#ECB629] rounded-full border border-[#ECB629]/30 backdrop-blur-sm">
-                  <BookOpen className="h-4 w-4" />
-                  {post.category}
-                </span>
-              </div>
-
-              <h1 className="text-4xl md:text-6xl font-bold text-white mb-8 leading-tight">
-                {post.title}
-              </h1>
-
-              <div className="flex flex-wrap items-center gap-6 text-gray-300 mb-8">
-                <div className="flex items-center gap-2">
-                  <User className="h-5 w-5 text-[#ECB629]" />
-                  <span className="font-medium">{post.author}</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Clock className="h-5 w-5 text-[#ECB629]" />
-                  <span>{post.readTime} мин четене</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Eye className="h-5 w-5 text-[#ECB629]" />
-                  <span>{post.views || 0} прегледа</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Tag className="h-5 w-5 text-[#ECB629]" />
-                  <span>
-                    {new Date(post.publishedAt).toLocaleDateString("bg-BG")}
-                  </span>
-                </div>
-              </div>
-
-              {/* Social Share & Like */}
-              <div className="flex items-center gap-4 mb-8">
-                <div className="relative">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => setShowShareMenu(!showShareMenu)}
-                    className="border-[#ECB629]/30 text-[#ECB629] hover:bg-[#ECB629]/10"
-                  >
-                    <Share2 className="h-4 w-4 mr-2" />
-                    Споделяне
-                  </Button>
-
-                  {showShareMenu && (
-                    <motion.div
-                      className="absolute top-full mt-2 left-0 bg-slate-800 border border-slate-600 rounded-lg p-3 shadow-xl z-50 min-w-48"
-                      initial={{ opacity: 0, y: -10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <div className="grid grid-cols-2 gap-2">
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={() => handleShare("facebook")}
-                          className="justify-start hover:bg-blue-600/20 hover:text-blue-400"
-                        >
-                          <Facebook className="h-4 w-4 mr-2" />
-                          Facebook
-                        </Button>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={() => handleShare("twitter")}
-                          className="justify-start hover:bg-sky-600/20 hover:text-sky-400"
-                        >
-                          <Twitter className="h-4 w-4 mr-2" />
-                          Twitter
-                        </Button>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={() => handleShare("linkedin")}
-                          className="justify-start hover:bg-blue-700/20 hover:text-blue-300"
-                        >
-                          <Linkedin className="h-4 w-4 mr-2" />
-                          LinkedIn
-                        </Button>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={() => handleShare("copy")}
-                          className="justify-start hover:bg-gray-600/20 hover:text-gray-300"
-                        >
-                          <Copy className="h-4 w-4 mr-2" />
-                          Копирай
-                        </Button>
-                      </div>
-                    </motion.div>
-                  )}
-                </div>
-
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setLiked(!liked)}
-                  className={`border-[#ECB629]/30 ${liked ? "bg-[#ECB629]/20 text-[#ECB629]" : "text-[#ECB629] hover:bg-[#ECB629]/10"}`}
-                >
-                  <Heart
-                    className={`h-4 w-4 mr-2 ${liked ? "fill-current" : ""}`}
-                  />
-                  {liked ? "Харесано" : "Харесай"}
-                </Button>
-              </div>
-
-              <div className="flex flex-wrap gap-3">
-                {post.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="px-3 py-1 text-sm bg-slate-800/50 text-gray-300 rounded-full border border-slate-700/50 backdrop-blur-sm"
-                  >
-                    #{tag}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
-          </div>
+            {/* Share Button */}
+            <Button 
+              variant="outline" 
+              className="border-gray-600 text-gray-300 hover:bg-gray-800"
+            >
+              <Share2 className="h-4 w-4 mr-2" />
+              Сподели
+            </Button>
+          </motion.div>
         </div>
       </section>
 
-      <main className="pb-16">
+      {/* Content Section */}
+      <section className="py-16">
         <div className="container mx-auto px-6">
-          <div className="mt-8 grid lg:grid-cols-4 gap-12 max-w-7xl mx-auto">
-            {/* Main Content */}
-            <div className="lg:col-span-3">
-              <motion.div
-                ref={contentRef}
-                className="prose prose-lg prose-invert max-w-none"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-              >
-                <Card className="bg-slate-800/30 border-slate-600/30 p-8 backdrop-blur-sm">
-                  <div className="text-gray-300 leading-relaxed prose prose-lg prose-invert max-w-none">
-                    {post.content.split("\n\n").map((paragraph, index) => {
-                      // Skip empty paragraphs
-                      if (!paragraph.trim()) return null;
-
-                      // Handle H2 headers
-                      if (paragraph.startsWith("## ")) {
-                        return (
-                          <h2
-                            key={index}
-                            className="text-white font-bold text-2xl mb-6 mt-8"
-                          >
-                            {paragraph.replace("## ", "")}
-                          </h2>
-                        );
-                      }
-
-                      // Handle H3 headers
-                      if (paragraph.startsWith("### ")) {
-                        return (
-                          <h3
-                            key={index}
-                            className="text-white font-semibold text-xl mb-4 mt-6"
-                          >
-                            {paragraph.replace("### ", "")}
-                          </h3>
-                        );
-                      }
-
-                      // Handle lists
-                      if (paragraph.includes("- ")) {
-                        const items = paragraph
-                          .split("\n")
-                          .filter((line) => line.trim().startsWith("- "));
-                        return (
-                          <ul
-                            key={index}
-                            className="list-disc list-inside space-y-2 ml-4 my-6"
-                          >
-                            {items.map((item, itemIndex) => (
-                              <li key={itemIndex} className="mb-2">
-                                <span
-                                  dangerouslySetInnerHTML={{
-                                    __html: item
-                                      .replace("- ", "")
-                                      .replace(
-                                        /\*\*(.*?)\*\*/g,
-                                        '<strong class="text-[#ECB629] font-semibold">$1</strong>',
-                                      ),
-                                  }}
-                                />
-                              </li>
-                            ))}
-                          </ul>
-                        );
-                      }
-
-                      // Handle regular paragraphs
-                      return (
-                        <p key={index} className="mb-6">
-                          <span
-                            dangerouslySetInnerHTML={{
-                              __html: paragraph.replace(
-                                /\*\*(.*?)\*\*/g,
-                                '<strong class="text-[#ECB629] font-semibold">$1</strong>',
-                              ),
-                            }}
-                          />
-                        </p>
-                      );
-                    })}
-                  </div>
-                </Card>
-              </motion.div>
-
-              {/* Comments Section */}
-              <motion.div
-                className="mt-12"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                viewport={{ once: true }}
-              >
-                <Card className="bg-slate-800/30 border-slate-600/30 p-8 backdrop-blur-sm">
-                  <div className="flex items-center gap-3 mb-8">
-                    <MessageCircle className="h-6 w-6 text-[#ECB629]" />
-                    <h3 className="text-2xl font-bold text-white">
-                      Коментари ({comments.length})
-                    </h3>
-                  </div>
-
-                  {/* Add Comment Form */}
-                  <div className="mb-8 p-6 bg-slate-700/30 rounded-lg border border-slate-600/30">
-                    <h4 className="text-lg font-semibold text-white mb-4">
-                      Оставете коментар
-                    </h4>
-                    <div className="space-y-4">
-                      <div>
-                        <label className="block text-sm font-medium text-gray-300 mb-2">
-                          Вашето име
-                        </label>
-                        <input
-                          type="text"
-                          value={newCommentAuthor}
-                          onChange={(e) => setNewCommentAuthor(e.target.value)}
-                          className="w-full px-4 py-3 bg-slate-800 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:border-[#ECB629] focus:outline-none"
-                          placeholder="Въведете вашето име"
-                        />
-                      </div>
-                      <div>
-                        <label className="block text-sm font-medium text-gray-300 mb-2">
-                          Коментар
-                        </label>
-                        <textarea
-                          value={newComment}
-                          onChange={(e) => setNewComment(e.target.value)}
-                          rows={4}
-                          className="w-full px-4 py-3 bg-slate-800 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:border-[#ECB629] focus:outline-none resize-none"
-                          placeholder="Споделете вашето мнение..."
-                        />
-                      </div>
-                      <Button
-                        onClick={handleAddComment}
-                        disabled={
-                          !newComment.trim() || !newCommentAuthor.trim()
-                        }
-                        className="bg-[#ECB629] text-black hover:bg-[#ECB629]/90 font-semibold"
-                      >
-                        <Send className="h-4 w-4 mr-2" />
-                        Публикувай коментар
-                      </Button>
-                    </div>
-                  </div>
-
-                  {/* Comments List */}
-                  <div className="space-y-6">
-                    {comments.map((comment) => (
-                      <div
-                        key={comment.id}
-                        className="p-6 bg-slate-700/20 rounded-lg border border-slate-600/20"
-                      >
-                        <div className="flex items-center gap-3 mb-3">
-                          <div className="w-10 h-10 bg-[#ECB629]/20 rounded-full flex items-center justify-center">
-                            <User className="h-5 w-5 text-[#ECB629]" />
-                          </div>
-                          <div>
-                            <p className="font-semibold text-white">
-                              {comment.author}
-                            </p>
-                            <p className="text-sm text-gray-400">
-                              {new Date(comment.publishedAt).toLocaleDateString(
-                                "bg-BG",
-                              )}
-                            </p>
-                          </div>
-                        </div>
-                        <p className="text-gray-300 leading-relaxed">
-                          {comment.content}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                </Card>
-              </motion.div>
-            </div>
-
-            {/* Sidebar */}
-            <div className="lg:col-span-1">
-              <div className="space-y-8">
-                {/* Most Read Posts */}
-                <motion.div
-                  initial={{ opacity: 0, x: 30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.8 }}
-                  viewport={{ once: true }}
-                >
-                  <Card className="bg-slate-800/30 border-slate-600/30 p-6 backdrop-blur-sm">
-                    <div className="flex items-center gap-3 mb-6">
-                      <TrendingUp className="h-5 w-5 text-[#ECB629]" />
-                      <h3 className="text-lg font-bold text-white">
-                        Най-четени
-                      </h3>
-                    </div>
-
-                    <div className="space-y-4">
-                      {mostReadPosts.map((readPost, index) => (
-                        <Link key={readPost.id} href={`/blog/${readPost.slug}`}>
-                          <div className="group p-4 bg-slate-700/20 hover:bg-slate-700/40 rounded-lg border border-slate-600/20 hover:border-[#ECB629]/30 transition-all duration-300 cursor-pointer">
-                            <div className="flex items-start gap-3">
-                              <span className="flex-shrink-0 w-6 h-6 bg-[#ECB629] text-black text-sm font-bold rounded-full flex items-center justify-center">
-                                {index + 1}
-                              </span>
-                              <div className="flex-1 min-w-0">
-                                <h4 className="text-sm font-semibold text-white group-hover:text-[#ECB629] transition-colors line-clamp-2 mb-2">
-                                  {readPost.title}
-                                </h4>
-                                <div className="flex items-center gap-3 text-xs text-gray-400">
-                                  <div className="flex items-center gap-1">
-                                    <Eye className="h-3 w-3" />
-                                    <span>{readPost.views}</span>
-                                  </div>
-                                  <div className="flex items-center gap-1">
-                                    <Clock className="h-3 w-3" />
-                                    <span>{readPost.readTime} мин</span>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </Link>
-                      ))}
-                    </div>
-                  </Card>
-                </motion.div>
-
-                {/* CTA Card */}
-                <motion.div
-                  initial={{ opacity: 0, x: 30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                  viewport={{ once: true }}
-                >
-                  <Card className="bg-gradient-to-br from-[#ECB629]/90 to-[#ECB629]/70 border-[#ECB629]/50 p-6 backdrop-blur-sm">
-                    <h3 className="text-lg font-bold text-black mb-4">
-                      Готови за трансформация?
-                    </h3>
-                    <p className="text-black/80 text-sm mb-6 leading-relaxed">
-                      Свържете се с нас за безплатна консултация и научете как
-                      можем да помогнем на вашата компания.
-                    </p>
-                    <Button
-                      size="sm"
-                      className="w-full bg-black text-[#ECB629] hover:bg-black/90 font-semibold border border-black/20"
-                      asChild
-                    >
-                      <a
-                        href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        Безплатна консултация
-                      </a>
-                    </Button>
-                  </Card>
-                </motion.div>
-              </div>
-            </div>
-          </div>
+          <motion.div
+            className="max-w-4xl mx-auto"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <Card className="bg-slate-800/50 border-slate-700">
+              <CardContent className="p-8 md:p-12">
+                <div 
+                  className="prose prose-lg prose-invert max-w-none
+                    prose-headings:text-white prose-headings:font-bold
+                    prose-h1:text-3xl prose-h1:mb-8 prose-h1:mt-12
+                    prose-h2:text-2xl prose-h2:mb-6 prose-h2:mt-10
+                    prose-h3:text-xl prose-h3:mb-4 prose-h3:mt-8
+                    prose-p:text-gray-300 prose-p:leading-relaxed prose-p:mb-6
+                    prose-strong:text-[#ECB629] prose-strong:font-semibold
+                    prose-blockquote:border-l-4 prose-blockquote:border-[#ECB629] 
+                    prose-blockquote:bg-slate-700/30 prose-blockquote:p-6 
+                    prose-blockquote:my-8 prose-blockquote:text-gray-200
+                    prose-ul:text-gray-300 prose-li:mb-2
+                    prose-table:text-gray-300 prose-th:text-[#ECB629] 
+                    prose-th:border-slate-600 prose-td:border-slate-600"
+                  dangerouslySetInnerHTML={{ 
+                    __html: post.content
+                      .replace(/\n### /g, '\n<h3>')
+                      .replace(/\n## /g, '\n<h2>')
+                      .replace(/\n# /g, '\n<h1>')
+                      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                      .replace(/> (.*?)$/gm, '<blockquote>$1</blockquote>')
+                      .replace(/\n- (.*?)$/gm, '\n<li>$1</li>')
+                      .replace(/(\n<li>.*?<\/li>)+/g, '<ul>$&</ul>')
+                      .replace(/\n<li>/g, '<li>')
+                      .replace(/<\/li>\n/g, '</li>')
+                      .replace(/\n\n/g, '</p><p>')
+                      .replace(/^\s*/, '<p>')
+                      .replace(/\s*$/, '</p>')
+                      .replace(/---/g, '<hr class="border-slate-600 my-12" />')
+                      .replace(/\| (.*?) \|/g, (match, content) => {
+                        const cells = content.split(' | ');
+                        return '<tr>' + cells.map((cell: string) => `<td class="border border-slate-600 px-4 py-2">${cell}</td>`).join('') + '</tr>';
+                      })
+                      .replace(/(\<tr\>.*?<\/tr\>)+/g, '<table class="w-full border-collapse border border-slate-600 my-8">$&</table>')
+                  }}
+                />
+              </CardContent>
+            </Card>
+          </motion.div>
         </div>
-      </main>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-16 bg-slate-800">
+        <div className="container mx-auto px-6">
+          <motion.div
+            className="max-w-3xl mx-auto text-center"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            <h2 className="text-3xl font-bold mb-6">
+              Готови ли сте да приложите тези принципи във вашия бизнес?
+            </h2>
+            <p className="text-gray-300 mb-8 text-lg">
+              Свържете се с нас за безплатна диагностика на вашите бизнес процеси и открийте възможностите за оптимизация.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button 
+                size="lg"
+                className="bg-[#ECB629] text-black hover:bg-[#ECB629]/90 font-semibold"
+                asChild
+              >
+                <a href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu" target="_blank" rel="noopener noreferrer">
+                  Заявете безплатна диагностика
+                </a>
+              </Button>
+              <Button 
+                variant="outline" 
+                size="lg"
+                className="border-gray-600 text-gray-300 hover:bg-gray-800"
+                asChild
+              >
+                <a href="/blog">
+                  Още блог статии
+                </a>
+              </Button>
+            </div>
+          </motion.div>
+        </div>
+      </section>
 
       <Footer />
     </div>
