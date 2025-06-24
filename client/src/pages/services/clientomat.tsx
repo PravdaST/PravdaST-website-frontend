@@ -2,6 +2,8 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Navigation } from "@/components/navigation";
+import { Footer } from "@/components/footer";
 import { 
   Network, 
   User, 
@@ -15,7 +17,8 @@ import {
   BarChart3, 
   Target,
   Power,
-  CheckCircle
+  CheckCircle,
+  ArrowRight
 } from "lucide-react";
 import { Link } from "wouter";
 
@@ -25,6 +28,7 @@ const ClientomatPage = () => {
 
   return (
     <div className="min-h-screen bg-slate-900">
+      <Navigation />
       {/* Hero Section */}
       <section className="min-h-screen flex items-center relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
         {/* Animated Background */}
@@ -164,19 +168,19 @@ const ClientomatPage = () => {
 
             {/* Visual Network Representation */}
             <motion.div
-              className="w-full max-w-2xl mx-auto h-64 bg-gradient-to-r from-slate-800/50 to-slate-700/30 rounded-2xl flex items-center justify-center border border-[#ECB629]/20 relative overflow-hidden"
+              className="w-full max-w-2xl mx-auto h-64 bg-gradient-to-r from-slate-800/50 to-slate-700/30 rounded-2xl border border-[#ECB629]/20 relative overflow-hidden flex items-center justify-center"
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.8 }}
             >
               {/* Central Network Hub */}
-              <div className="relative">
+              <div className="relative flex items-center justify-center">
                 <motion.div
-                  className="w-20 h-20 bg-[#ECB629] rounded-full flex items-center justify-center"
+                  className="w-20 h-20 bg-[#ECB629] rounded-full flex items-center justify-center relative z-10"
                   animate={{ scale: [1, 1.1, 1] }}
                   transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                 >
-                  <Network className="text-black text-2xl" size={40} />
+                  <Network className="text-black" size={40} />
                 </motion.div>
                 
                 {/* Surrounding Connection Points */}
@@ -191,8 +195,8 @@ const ClientomatPage = () => {
                       key={i}
                       className="absolute w-8 h-8 bg-[#ECB629]/30 rounded-full flex items-center justify-center"
                       style={{
-                        left: x,
-                        top: y,
+                        left: `${x}px`,
+                        top: `${y}px`,
                         transform: 'translate(-50%, -50%)'
                       }}
                       animate={{
@@ -243,102 +247,185 @@ const ClientomatPage = () => {
             </h2>
           </motion.div>
 
-          {/* Transformation Animation */}
-          <div className="max-w-4xl mx-auto mb-16">
+          {/* Enhanced Transformation Animation */}
+          <div className="max-w-6xl mx-auto mb-16">
             <motion.div
               className="bg-slate-800/60 rounded-2xl p-8 border border-slate-600/30 relative overflow-hidden"
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <div className="flex items-center justify-center">
-                <div className="text-center">
-                  {/* Human Factor */}
-                  <motion.div
-                    className="mb-8"
-                    initial={{ opacity: 0, x: -50 }}
-                    animate={isInView ? { opacity: 1, x: 0 } : {}}
-                    transition={{ duration: 0.8, delay: 0.4 }}
-                  >
-                    <div className="flex items-center justify-center mb-4">
-                      <div className="w-16 h-16 bg-red-500/20 rounded-full flex items-center justify-center border border-red-500/30">
-                        <User className="text-red-400" size={32} />
-                      </div>
-                    </div>
-                    
-                    {/* Chaotic Lines */}
-                    <div className="relative h-16 flex items-center justify-center">
-                      {[...Array(4)].map((_, i) => (
-                        <motion.div
-                          key={i}
-                          className="absolute h-px bg-red-400"
-                          style={{
-                            width: `${20 + i * 10}px`,
-                            transform: `rotate(${i * 45 - 45}deg) translateX(${i * 5}px)`,
-                          }}
-                          animate={{
-                            opacity: [0.3, 0.8, 0.3],
-                            scaleX: [0.8, 1.2, 0.8],
-                          }}
-                          transition={{
-                            duration: 2,
-                            repeat: Infinity,
-                            delay: i * 0.2,
-                            ease: "easeInOut"
-                          }}
-                        />
-                      ))}
-                    </div>
-                  </motion.div>
+              {/* Background Pattern */}
+              <div className="absolute inset-0 opacity-5">
+                <div className="absolute inset-0" style={{
+                  backgroundImage: `
+                    linear-gradient(45deg, rgba(236, 182, 40, 0.1) 25%, transparent 25%),
+                    linear-gradient(-45deg, rgba(236, 182, 40, 0.1) 25%, transparent 25%)
+                  `,
+                  backgroundSize: '20px 20px'
+                }}></div>
+              </div>
 
-                  {/* Arrow */}
-                  <motion.div
-                    className="mb-8 flex justify-center"
-                    initial={{ opacity: 0 }}
-                    animate={isInView ? { opacity: 1 } : {}}
-                    transition={{ duration: 0.8, delay: 0.6 }}
-                  >
-                    <div className="w-12 h-1 bg-[#ECB629] rounded-full relative">
-                      <div className="absolute right-0 top-1/2 transform -translate-y-1/2 w-0 h-0 border-l-4 border-l-[#ECB629] border-t-2 border-b-2 border-t-transparent border-b-transparent"></div>
+              <div className="grid md:grid-cols-3 gap-12 items-center relative z-10">
+                {/* Human Factor Side */}
+                <motion.div
+                  className="text-center"
+                  initial={{ opacity: 0, x: -50 }}
+                  animate={isInView ? { opacity: 1, x: 0 } : {}}
+                  transition={{ duration: 0.8, delay: 0.4 }}
+                >
+                  <div className="mb-6">
+                    <div className="w-20 h-20 mx-auto bg-red-500/20 rounded-full flex items-center justify-center border border-red-500/30 mb-4 relative">
+                      <User className="text-red-400" size={40} />
+                      <motion.div
+                        className="absolute inset-0 bg-red-500 rounded-full opacity-10"
+                        animate={{ scale: [1.1, 1.3, 1.1] }}
+                        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                      />
                     </div>
-                  </motion.div>
-
-                  {/* System Process */}
-                  <motion.div
-                    initial={{ opacity: 0, x: 50 }}
-                    animate={isInView ? { opacity: 1, x: 0 } : {}}
-                    transition={{ duration: 0.8, delay: 0.8 }}
-                  >
-                    <div className="flex items-center justify-center mb-4">
-                      <div className="w-16 h-16 bg-[#ECB629]/20 rounded-full flex items-center justify-center border border-[#ECB629]/30">
-                        <Settings className="text-[#ECB629]" size={32} />
-                      </div>
-                    </div>
+                    <h3 className="text-lg font-bold text-red-300 mb-3">Човешки фактор</h3>
+                  </div>
+                  
+                  {/* Chaotic Communication Lines */}
+                  <div className="relative h-24 flex items-center justify-center mb-4">
+                    {[...Array(5)].map((_, i) => (
+                      <motion.div
+                        key={i}
+                        className="absolute bg-red-400 rounded-full"
+                        style={{
+                          width: `${2 + i * 2}px`,
+                          height: '2px',
+                          transform: `rotate(${i * 36 - 72}deg) translateX(${15 + i * 8}px)`,
+                        }}
+                        animate={{
+                          opacity: [0.2, 0.8, 0.2],
+                          scaleX: [0.5, 1.5, 0.5],
+                        }}
+                        transition={{
+                          duration: 2 + i * 0.3,
+                          repeat: Infinity,
+                          delay: i * 0.2,
+                          ease: "easeInOut"
+                        }}
+                      />
+                    ))}
                     
-                    {/* Organized Lines */}
-                    <div className="relative h-16 flex items-center justify-center">
-                      {[...Array(3)].map((_, i) => (
-                        <motion.div
-                          key={i}
-                          className="absolute h-px bg-[#ECB629] opacity-70"
-                          style={{
-                            width: '60px',
-                            top: `${i * 8}px`,
-                          }}
-                          animate={{
-                            opacity: [0.4, 0.8, 0.4],
-                          }}
-                          transition={{
-                            duration: 3,
-                            repeat: Infinity,
-                            delay: i * 0.3,
-                            ease: "easeInOut"
-                          }}
-                        />
-                      ))}
+                    {/* Center chaos indicator */}
+                    <motion.div
+                      className="w-4 h-4 bg-red-500 rounded-full opacity-60"
+                      animate={{ scale: [1, 1.3, 1] }}
+                      transition={{ duration: 1.5, repeat: Infinity }}
+                    />
+                  </div>
+
+                  <div className="space-y-2 text-sm text-gray-400">
+                    <p>• Непоследователни отговори</p>
+                    <p>• Забравени запитвания</p>
+                    <p>• Различно качество</p>
+                  </div>
+                </motion.div>
+
+                {/* Transformation Arrow */}
+                <motion.div
+                  className="flex justify-center"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                  transition={{ duration: 0.8, delay: 0.6 }}
+                >
+                  <div className="relative">
+                    <motion.div
+                      className="w-16 h-16 bg-[#ECB629] rounded-full flex items-center justify-center relative"
+                      animate={{ rotate: 360 }}
+                      transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                    >
+                      <ArrowRight className="text-black" size={32} />
+                    </motion.div>
+                    
+                    {/* Transformation rings */}
+                    {[...Array(3)].map((_, i) => (
+                      <motion.div
+                        key={i}
+                        className="absolute inset-0 border-2 border-[#ECB629] rounded-full"
+                        style={{ 
+                          transform: `scale(${1.2 + i * 0.3})`,
+                          opacity: 0.3 - i * 0.1
+                        }}
+                        animate={{ rotate: -360 }}
+                        transition={{ 
+                          duration: 6 + i * 2, 
+                          repeat: Infinity, 
+                          ease: "linear",
+                          delay: i * 0.5 
+                        }}
+                      />
+                    ))}
+                  </div>
+                </motion.div>
+
+                {/* System Process Side */}
+                <motion.div
+                  className="text-center"
+                  initial={{ opacity: 0, x: 50 }}
+                  animate={isInView ? { opacity: 1, x: 0 } : {}}
+                  transition={{ duration: 0.8, delay: 0.8 }}
+                >
+                  <div className="mb-6">
+                    <div className="w-20 h-20 mx-auto bg-[#ECB629]/20 rounded-full flex items-center justify-center border border-[#ECB629]/30 mb-4 relative">
+                      <Settings className="text-[#ECB629]" size={40} />
+                      <motion.div
+                        className="absolute inset-0 bg-[#ECB629] rounded-full opacity-10"
+                        animate={{ scale: [1.1, 1.3, 1.1] }}
+                        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                      />
                     </div>
-                  </motion.div>
-                </div>
+                    <h3 className="text-lg font-bold text-[#ECB629] mb-3">Системен процес</h3>
+                  </div>
+                  
+                  {/* Organized Communication Lines */}
+                  <div className="relative h-24 flex items-center justify-center mb-4">
+                    {[...Array(4)].map((_, i) => (
+                      <motion.div
+                        key={i}
+                        className="absolute bg-[#ECB629] rounded-full"
+                        style={{
+                          width: '40px',
+                          height: '2px',
+                          top: `${i * 6}px`,
+                        }}
+                        animate={{
+                          opacity: [0.4, 0.9, 0.4],
+                          scaleX: [0.8, 1, 0.8],
+                        }}
+                        transition={{
+                          duration: 3,
+                          repeat: Infinity,
+                          delay: i * 0.2,
+                          ease: "easeInOut"
+                        }}
+                      />
+                    ))}
+                    
+                    {/* System flow indicators */}
+                    <motion.div
+                      className="absolute right-0 w-2 h-2 bg-[#ECB629] rounded-full"
+                      animate={{ 
+                        x: [-50, 0, -50],
+                        opacity: [0, 1, 0] 
+                      }}
+                      transition={{ 
+                        duration: 2, 
+                        repeat: Infinity,
+                        ease: "easeInOut"
+                      }}
+                    />
+                  </div>
+
+                  <div className="space-y-2 text-sm text-gray-300">
+                    <p>• Еднакво високо качество</p>
+                    <p>• 24/7 достъпност</p>
+                    <p>• Автоматизиран отговор</p>
+                  </div>
+                </motion.div>
               </div>
             </motion.div>
           </div>
@@ -743,6 +830,8 @@ const ClientomatPage = () => {
           </div>
         </div>
       </section>
+
+      <Footer />
     </div>
   );
 };
