@@ -199,24 +199,11 @@ export default function Trendlab() {
               </span>
             </motion.div>
 
-            {/* Animated Badge */}
-            <motion.div
-              className="inline-block mb-6"
-              initial={{ opacity: 0, y: 20 }}
-              animate={heroInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.4 }}
-            >
-              <Badge className="bg-gradient-to-r from-[#ECB629] to-[#F59E0B] text-black font-semibold px-4 py-2 text-sm">
-                <BookOpen className="h-4 w-4 mr-2" />
-                Системен подход към съдържанието
-              </Badge>
-            </motion.div>
-
             <motion.h1
               className="text-5xl md:text-7xl font-bold mb-8 leading-tight"
               initial={{ opacity: 0, y: 30 }}
               animate={heroInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.6 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
             >
               Най-убедителната история е{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ECB629] to-[#F59E0B]">
@@ -229,7 +216,7 @@ export default function Trendlab() {
               className="text-xl md:text-2xl text-gray-300 mb-12 max-w-4xl mx-auto leading-relaxed"
               initial={{ opacity: 0, y: 30 }}
               animate={heroInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.8 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
             >
               Вие притежавате безценна експертиза и опит. Нашата система Trendlab™ превръща тези ваши знания в автентично съдържание, което изгражда доверие, създава общност и ви превръща в безспорния авторитет във вашата сфера.
             </motion.p>
@@ -238,7 +225,7 @@ export default function Trendlab() {
               className="flex flex-col sm:flex-row gap-6 justify-center items-center"
               initial={{ opacity: 0, y: 30 }}
               animate={heroInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 1.0 }}
+              transition={{ duration: 0.8, delay: 0.8 }}
             >
               <Button
                 size="lg"
@@ -266,9 +253,6 @@ export default function Trendlab() {
             transition={{ duration: 0.8 }}
           >
             <div className="text-center mb-16">
-              <Badge className="bg-gradient-to-r from-[#ECB629] to-[#F59E0B] text-black font-semibold px-4 py-2 mb-6">
-                Философията
-              </Badge>
               <h2 className="text-4xl md:text-5xl font-bold mb-6">
                 Вашата експертиза не е просто информация.{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ECB629] to-[#F59E0B]">
@@ -450,9 +434,6 @@ export default function Trendlab() {
             transition={{ duration: 0.8 }}
           >
             <div className="text-center mb-16">
-              <Badge className="bg-gradient-to-r from-[#ECB629] to-[#F59E0B] text-black font-semibold px-4 py-2 mb-6">
-                Процесът
-              </Badge>
               <h2 className="text-4xl md:text-5xl font-bold mb-6">
                 Нашата поточна линия за съдържание:{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ECB629] to-[#F59E0B]">
@@ -618,9 +599,6 @@ export default function Trendlab() {
             transition={{ duration: 0.8 }}
           >
             <div className="text-center mb-16">
-              <Badge className="bg-gradient-to-r from-[#ECB629] to-[#F59E0B] text-black font-semibold px-4 py-2 mb-6">
-                Резултатите
-              </Badge>
               <h2 className="text-4xl md:text-5xl font-bold mb-6">
                 Спрете да преследвате клиенти.{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ECB629] to-[#F59E0B]">
@@ -696,9 +674,7 @@ export default function Trendlab() {
             animate={investmentInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8 }}
           >
-            <Badge className="bg-gradient-to-r from-[#ECB629] to-[#F59E0B] text-black font-semibold px-4 py-2 mb-6">
-              Инвестицията
-            </Badge>
+
             <h2 className="text-4xl md:text-5xl font-bold mb-8">
               Структура на{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ECB629] to-[#F59E0B]">
