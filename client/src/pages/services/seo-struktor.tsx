@@ -399,7 +399,7 @@ const EngineeringProcessSection = () => {
                 {/* Connection Line */}
                 {index < phases.length - 1 && (
                   <motion.div
-                    className="absolute left-6 md:left-10 top-20 w-0.5 h-16 bg-gradient-to-b from-[var(--pravdast-yellow)] to-slate-600 z-0"
+                    className="absolute left-6 md:left-10 top-24 w-0.5 h-20 bg-gradient-to-b from-[var(--pravdast-yellow)] to-slate-600 z-0"
                     initial={{ scaleY: 0 }}
                     animate={isInView ? { scaleY: 1 } : {}}
                     transition={{ duration: 0.8, delay: index * 0.15 + 0.5 }}
@@ -407,9 +407,7 @@ const EngineeringProcessSection = () => {
                 )}
 
                 <motion.div
-                  className="bg-slate-800/60 backdrop-blur-sm rounded-2xl border border-slate-600/30 overflow-hidden group hover:border-[var(--pravdast-yellow)]/40 transition-all duration-500"
-                  whileHover={{ scale: 1.01, y: -2 }}
-                  transition={{ type: "spring", stiffness: 300 }}
+                  className="bg-slate-800/60 backdrop-blur-sm rounded-2xl border border-slate-600/30 overflow-hidden transition-all duration-300"
                 >
                   <div className="p-6 md:p-8">
                     <div className="flex flex-col md:flex-row md:items-start gap-6">
@@ -417,24 +415,20 @@ const EngineeringProcessSection = () => {
                       {/* Phase Number Circle */}
                       <motion.div
                         className="flex-shrink-0"
-                        whileHover={{ scale: 1.1, rotate: 5 }}
-                        transition={{ type: "spring", stiffness: 400 }}
                       >
                         <div className="relative">
-                          <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-[var(--pravdast-yellow)] to-yellow-600 rounded-full flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300">
+                          <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-[var(--pravdast-yellow)] to-yellow-600 rounded-full flex items-center justify-center shadow-lg">
                             <span className="text-black font-bold text-xl md:text-2xl">
                               {phase.number}
                             </span>
                           </div>
-                          {/* Pulsing ring effect */}
-                          <div className="absolute inset-0 w-12 h-12 md:w-16 md:h-16 bg-[var(--pravdast-yellow)]/20 rounded-full animate-ping opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                         </div>
                       </motion.div>
 
                       {/* Content */}
                       <div className="flex-1 space-y-4">
                         <div>
-                          <h3 className="text-xl md:text-2xl font-bold text-white mb-2 group-hover:text-[var(--pravdast-yellow)] transition-colors duration-300">
+                          <h3 className="text-xl md:text-2xl font-bold text-white mb-2">
                             {phase.title}
                           </h3>
                           <p className="text-gray-300 leading-relaxed text-sm md:text-base">
@@ -476,11 +470,7 @@ const EngineeringProcessSection = () => {
                     </div>
                   </div>
 
-                  {/* Hover effect gradient overlay */}
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-[var(--pravdast-yellow)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-                    initial={false}
-                  />
+
                 </motion.div>
               </motion.div>
             ))}
@@ -488,27 +478,37 @@ const EngineeringProcessSection = () => {
 
           {/* Bottom CTA */}
           <motion.div
-            className="text-center mt-16 p-8 bg-slate-800/40 rounded-2xl border border-[var(--pravdast-yellow)]/20"
+            className="text-center mt-16"
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 1.2 }}
           >
-            <h3 className="text-2xl font-bold text-white mb-4">
-              Започнете инженерния процес днес
-            </h3>
-            <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
-              Всеки ден на изчакване е изгубена възможност. Вашите конкуренти не спят.
-            </p>
-            <Button
-              size="lg"
-              className="bg-[var(--pravdast-yellow)] text-black hover:bg-[var(--pravdast-yellow)]/90 px-6 md:px-8 py-4 text-base md:text-lg font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 w-full md:w-auto"
-              asChild
-            >
-              <a href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu" target="_blank" rel="noopener noreferrer">
-                Започнете диагностиката
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </a>
-            </Button>
+            {/* Connection line from last phase */}
+            <motion.div
+              className="w-0.5 h-16 bg-gradient-to-b from-[var(--pravdast-yellow)] to-slate-600 mx-auto mb-8"
+              initial={{ scaleY: 0 }}
+              animate={isInView ? { scaleY: 1 } : {}}
+              transition={{ duration: 0.8, delay: 1 }}
+            />
+            
+            <div className="p-8 bg-slate-800/40 rounded-2xl border border-[var(--pravdast-yellow)]/20">
+              <h3 className="text-2xl font-bold text-white mb-4">
+                Започнете инженерния процес днес
+              </h3>
+              <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
+                Всеки ден на изчакване е изгубена възможност. Вашите конкуренти не спят.
+              </p>
+              <Button
+                size="lg"
+                className="bg-[var(--pravdast-yellow)] text-black hover:bg-[var(--pravdast-yellow)]/90 px-6 md:px-8 py-4 text-base md:text-lg font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 w-full md:w-auto"
+                asChild
+              >
+                <a href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu" target="_blank" rel="noopener noreferrer">
+                  Започнете диагностиката
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </a>
+              </Button>
+            </div>
           </motion.div>
         </div>
       </div>
@@ -604,26 +604,20 @@ const ResultsSection = () => {
                 transition={{ duration: 0.8, delay: index * 0.15 }}
               >
                 <motion.div
-                  className="bg-slate-800/70 backdrop-blur-sm p-8 rounded-3xl border border-slate-600/30 h-full group-hover:border-[var(--pravdast-yellow)]/50 transition-all duration-500 overflow-hidden relative"
-                  whileHover={{ scale: 1.02, y: -5 }}
-                  transition={{ type: "spring", stiffness: 300 }}
+                  className="bg-slate-800/70 backdrop-blur-sm p-8 rounded-3xl border border-slate-600/30 h-full transition-all duration-300 overflow-hidden relative"
                 >
                   {/* Floating elements background */}
-                  <div className="absolute top-0 right-0 w-20 h-20 bg-[var(--pravdast-yellow)]/5 rounded-full -translate-y-10 translate-x-10 group-hover:scale-150 transition-transform duration-700" />
+                  <div className="absolute top-0 right-0 w-20 h-20 bg-[var(--pravdast-yellow)]/5 rounded-full -translate-y-10 translate-x-10" />
                   
                   <div className="relative z-10">
                     {/* Icon with enhanced styling */}
                     <motion.div
                       className="relative mb-6"
-                      whileHover={{ scale: 1.1, rotate: 5 }}
-                      transition={{ type: "spring", stiffness: 400 }}
                     >
                       <div className="w-16 h-16 bg-gradient-to-br from-[var(--pravdast-yellow)] to-yellow-600 rounded-2xl flex items-center justify-center shadow-lg relative">
                         <div className="text-black">
                           {benefit.icon}
                         </div>
-                        {/* Pulsing ring effect */}
-                        <div className="absolute inset-0 bg-[var(--pravdast-yellow)]/30 rounded-2xl animate-ping opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                       </div>
                     </motion.div>
                     
@@ -639,7 +633,7 @@ const ResultsSection = () => {
                       </span>
                     </motion.div>
 
-                    <h3 className="text-xl md:text-2xl font-bold text-white mb-4 group-hover:text-[var(--pravdast-yellow)] transition-colors duration-300 leading-tight">
+                    <h3 className="text-xl md:text-2xl font-bold text-white mb-4 leading-tight">
                       {benefit.title}
                     </h3>
                     <p className="text-gray-300 leading-relaxed text-sm md:text-base">
@@ -671,11 +665,7 @@ const ResultsSection = () => {
                     </motion.div>
                   </div>
 
-                  {/* Hover gradient overlay */}
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-br from-[var(--pravdast-yellow)]/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-                    initial={false}
-                  />
+
                 </motion.div>
               </motion.div>
             ))}
@@ -755,27 +745,16 @@ const InvestmentSection = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <motion.div
-              className="inline-block p-8 bg-slate-800/60 backdrop-blur-sm rounded-3xl border border-slate-600/30 relative overflow-hidden group"
-              onHoverStart={() => setIsHovered(true)}
-              onHoverEnd={() => setIsHovered(false)}
-              whileHover={{ scale: 1.02 }}
-              transition={{ type: "spring", stiffness: 300 }}
+              className="inline-block p-8 bg-slate-800/60 backdrop-blur-sm rounded-3xl border border-slate-600/30 relative overflow-hidden"
             >
-              {/* Animated background elements */}
-              <div className="absolute inset-0 bg-gradient-to-r from-[var(--pravdast-yellow)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              
               <div className="relative z-10">
                 <div className="text-sm text-[var(--pravdast-yellow)] font-semibold mb-2 tracking-wider">
                   ЗАПОЧВА ОТ
                 </div>
-                <motion.div
-                  className="text-5xl md:text-6xl font-bold mb-2"
-                  animate={isHovered ? { scale: 1.05 } : { scale: 1 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 10 }}
-                >
+                <div className="text-5xl md:text-6xl font-bold mb-2">
                   <span className="text-[var(--pravdast-yellow)]">1980 лв.</span>
                   <span className="text-white text-3xl">/месечно</span>
-                </motion.div>
+                </div>
                 <div className="text-gray-400 text-sm">
                   *Финалната цена се определя след техническа диагностика
                 </div>
@@ -797,14 +776,10 @@ const InvestmentSection = () => {
                   className={`flex flex-col md:flex-row items-center gap-8 ${
                     index % 2 === 1 ? 'md:flex-row-reverse' : ''
                   }`}
-                  whileHover={{ scale: 1.01 }}
-                  transition={{ type: "spring", stiffness: 300 }}
                 >
                   {/* Number Circle */}
                   <motion.div
                     className="flex-shrink-0"
-                    whileHover={{ scale: 1.1, rotate: 10 }}
-                    transition={{ type: "spring", stiffness: 400 }}
                   >
                     <div className="relative">
                       <div className="w-20 h-20 bg-gradient-to-br from-[var(--pravdast-yellow)] to-yellow-600 rounded-full flex items-center justify-center shadow-xl">
@@ -827,13 +802,11 @@ const InvestmentSection = () => {
                   {/* Content Card */}
                   <div className="flex-1 w-full">
                     <motion.div
-                      className="bg-slate-800/60 backdrop-blur-sm p-8 rounded-2xl border border-slate-600/30 group hover:border-[var(--pravdast-yellow)]/40 transition-all duration-500"
-                      whileHover={{ y: -3 }}
-                      transition={{ type: "spring", stiffness: 300 }}
+                      className="bg-slate-800/60 backdrop-blur-sm p-8 rounded-2xl border border-slate-600/30 transition-all duration-300"
                     >
                       <div className="flex items-center gap-4 mb-4">
                         <div className="text-2xl">{principle.icon}</div>
-                        <h3 className="text-xl md:text-2xl font-bold text-white group-hover:text-[var(--pravdast-yellow)] transition-colors duration-300">
+                        <h3 className="text-xl md:text-2xl font-bold text-white">
                           {principle.title}
                         </h3>
                       </div>
@@ -864,27 +837,37 @@ const InvestmentSection = () => {
 
           {/* Bottom CTA */}
           <motion.div
-            className="text-center mt-16 p-8 bg-slate-800/40 rounded-3xl border border-[var(--pravdast-yellow)]/20"
+            className="text-center mt-16"
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 1 }}
           >
-            <h3 className="text-2xl font-bold text-white mb-4">
-              Готови за персонализирана оферта?
-            </h3>
-            <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
-              Всяка инвестиция започва с безплатна техническа диагностика и детайлно планиране.
-            </p>
-            <Button
-              size="lg"
-              className="bg-[var(--pravdast-yellow)] text-black hover:bg-[var(--pravdast-yellow)]/90 px-6 md:px-12 py-4 md:py-6 text-base md:text-xl font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 w-full md:w-auto"
-              asChild
-            >
-              <a href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu" target="_blank" rel="noopener noreferrer">
-                Получете персонализирана оферта
-                <ArrowRight className="ml-2 md:ml-3 h-5 w-5 md:h-6 md:w-6" />
-              </a>
-            </Button>
+            {/* Connection line from last principle */}
+            <motion.div
+              className="w-0.5 h-16 bg-gradient-to-b from-[var(--pravdast-yellow)] to-slate-600 mx-auto mb-8"
+              initial={{ scaleY: 0 }}
+              animate={isInView ? { scaleY: 1 } : {}}
+              transition={{ duration: 0.8, delay: 1.5 }}
+            />
+            
+            <div className="p-8 bg-slate-800/40 rounded-3xl border border-[var(--pravdast-yellow)]/20">
+              <h3 className="text-2xl font-bold text-white mb-4">
+                Готови за персонализирана оферта?
+              </h3>
+              <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
+                Всяка инвестиция започва с безплатна техническа диагностика и детайлно планиране.
+              </p>
+              <Button
+                size="lg"
+                className="bg-[var(--pravdast-yellow)] text-black hover:bg-[var(--pravdast-yellow)]/90 px-6 md:px-12 py-4 md:py-6 text-base md:text-xl font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 w-full md:w-auto"
+                asChild
+              >
+                <a href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu" target="_blank" rel="noopener noreferrer">
+                  Получете персонализирана оферта
+                  <ArrowRight className="ml-2 md:ml-3 h-5 w-5 md:h-6 md:w-6" />
+                </a>
+              </Button>
+            </div>
           </motion.div>
         </div>
       </div>
