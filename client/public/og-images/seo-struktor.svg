@@ -1,0 +1,48 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f0f23;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1a1a2e;stop-opacity:1" />
+    </linearGradient>
+    <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
+      <path d="M 50 0 L 0 0 0 50" fill="none" stroke="rgba(236,182,40,0.1)" stroke-width="1"/>
+    </pattern>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bgGradient)"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  
+  <!-- Logo -->
+  <rect x="80" y="80" width="60" height="60" fill="#ECB628"/>
+  <text x="110" y="120" font-family="Arial, sans-serif" font-size="36" font-weight="bold" text-anchor="middle" fill="#0f0f23">P</text>
+  
+  <!-- Category Badge -->
+  <rect x="80" y="180" width="180" height="40" fill="#ECB628"/>
+  <text x="90" y="205" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#0f0f23">SEO СИСТЕМА</text>
+  
+  <!-- Main Title -->
+  <text x="80" y="280" font-family="Arial, sans-serif" font-size="56" font-weight="bold" fill="#ECB628">SEO Struktor™</text>
+  
+  <!-- SEO Icon -->
+  <circle cx="600" cy="350" r="80" fill="rgba(236,182,40,0.2)" stroke="#ECB628" stroke-width="3"/>
+  <text x="600" y="360" font-family="Arial, sans-serif" font-size="48" font-weight="bold" text-anchor="middle" fill="#ECB628">⚡</text>
+  
+  <!-- Description -->
+  <text x="80" y="380" font-family="Arial, sans-serif" font-size="28" fill="#ffffff">Системен подход към SEO</text>
+  <text x="80" y="420" font-family="Arial, sans-serif" font-size="24" fill="#cccccc">за устойчив органичен растеж</text>
+  <text x="80" y="460" font-family="Arial, sans-serif" font-size="24" fill="#cccccc">и дългосрочни резултати</text>
+  
+  <!-- Features -->
+  <rect x="80" y="500" width="12" height="12" fill="#ECB628"/>
+  <text x="105" y="511" font-family="Arial, sans-serif" font-size="16" fill="#cccccc">Техническа оптимизация</text>
+  
+  <rect x="300" y="500" width="12" height="12" fill="#ECB628"/>
+  <text x="325" y="511" font-family="Arial, sans-serif" font-size="16" fill="#cccccc">Съдържание стратегия</text>
+  
+  <rect x="520" y="500" width="12" height="12" fill="#ECB628"/>
+  <text x="545" y="511" font-family="Arial, sans-serif" font-size="16" fill="#cccccc">Link building</text>
+  
+  <!-- Brand URL -->
+  <text x="1120" y="580" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="end" fill="#ECB628">pravdagency.eu</text>
+</svg>
