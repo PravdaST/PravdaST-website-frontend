@@ -41,11 +41,11 @@ interface BlogPost {
 }
 
 interface Comment {
-  id: string;
-  author: string;
+  id: number;
+  authorName: string;
+  authorEmail: string;
   content: string;
-  publishedAt: string;
-  replies?: Comment[];
+  createdAt: string;
 }
 
 // Blog Background Component
