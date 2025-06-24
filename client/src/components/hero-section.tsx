@@ -16,6 +16,22 @@ export const HeroSection = () => {
         
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
+            {/* Status Badge */}
+            <motion.div
+              className="inline-flex items-center gap-3 mb-8 px-6 py-3 rounded-full bg-gradient-to-r from-slate-800/80 to-slate-700/60 border border-slate-600/30 backdrop-blur-sm"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="relative">
+                <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                <div className="absolute inset-0 w-3 h-3 bg-green-500 rounded-full animate-ping opacity-75"></div>
+              </div>
+              <span className="text-sm text-gray-300 font-medium">
+                <span className="text-[var(--pravdast-yellow)]">Ново:</span> Приемаме проекти
+              </span>
+            </motion.div>
+
             <motion.h1
               className="text-5xl md:text-7xl font-bold mb-8 leading-tight"
               initial={{ opacity: 0, y: 30 }}
