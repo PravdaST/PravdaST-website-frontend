@@ -1,148 +1,117 @@
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Card, CardContent } from "@/components/ui/card";
+import { useState, useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import {
-  Search,
-  Users,
-  Bot,
-  Eye,
-  Edit,
-  Globe,
-  Repeat,
-  MessageCircle,
-  Coins,
-  Magnet,
-  Filter,
-  BarChart,
-  Cog,
-} from "lucide-react";
+import { ArrowRight, CheckCircle } from "lucide-react";
 import { Link } from "wouter";
 
 const systems = [
   {
     id: "seo",
     title: "SEO Struktor™",
-    subtitle: "Нашата система за онлайн доминация",
+    subtitle: "Система за онлайн доминация",
     description:
-      "Ние изграждаме вашето онлайн присъствие като крепост. Чрез прецизна структура на сайта и съдържание, което отговаря на въпросите на клиентите ви, ние ви превръщаме в авторитета, който Google показва на първо място.",
+      "Изграждаме вашето онлайн присъствие като инженерно съоръжение. Прецизна структура и съдържание, което отговаря на клиентските нужди - за доминация в Google.",
     price: "от 1980 лв. / месец",
-    period: "минимален период на договор – 3 месеца",
-    icon: Search,
+    period: "минимален период 3 месеца",
+    gradient: "from-blue-500/20 to-cyan-500/20",
+    borderColor: "border-blue-500/30",
     link: "/services/seo-struktor",
     features: [
-      {
-        icon: Eye,
-        title: "Технически изрядна основа",
-        description: "която Google разбира и харесва.",
-      },
-      {
-        icon: Edit,
-        title: "Съдържание, което изгражда доверие",
-        description: "на реални клиентски въпроси и изгражда доверие.",
-      },
-      {
-        icon: Globe,
-        title: "Постоянна оптимизация",
-        description: "за дългосрочно и стабилно присъствие на челни позиции.",
-      },
+      "Технически изрядна основа",
+      "Съдържание за доверие", 
+      "Постоянна оптимизация"
     ],
   },
   {
     id: "trendlab",
     title: "Trendlab™",
-    subtitle: "Нашата система за създаване на въздействащо съдържание",
+    subtitle: "Система за въздействащо съдържание",
     description:
-      "Ние създаваме горивото за вашия растеж. Продуцираме видеа, статии и визуални материали, които не просто изглеждат добре, а разказват вашата история, демонстрират експертизата ви и изграждат общност около вашия бранд.",
+      "Създаваме горивото за растежа ви. Видеа, статии и визуални материали, които разказват историята ви, демонстрират експертизата и изграждат общност.",
     price: "от 1350 лв. / месец",
-    period: "минимален период на договор – 3 месеца",
-    icon: Edit,
-    link: "/services/trendlab",
+    period: "минимален период 3 месеца",
+    gradient: "from-purple-500/20 to-pink-500/20",
+    borderColor: "border-purple-500/30",
+    link: "/services/sales-engine",
     features: [
-      {
-        icon: Eye,
-        title: "Видео съдържание",
-        description: "което ангажира и образова.",
-      },
-      {
-        icon: MessageCircle,
-        title: "Управление на социални канали",
-        description: "което ви позиционира като експерт.",
-      },
-      {
-        icon: Globe,
-        title: "Съдържание, което продава",
-        description: "вашата уникална история.",
-      },
+      "Видео съдържание за ангажираност",
+      "Социални канали управление",
+      "Съдържание което продава"
     ],
   },
   {
     id: "clickstarter",
     title: "Clickstarter™",
-    subtitle: "Нашата система за ускорен растеж",
+    subtitle: "Система за ускорен растеж",
     description:
-      "Когато имате нужда от бързи и предвидими резултати, тази система използва платени канали, за да постави вашето послание директно пред идеалните ви клиенти – в точния момент, когато те са готови да купят.",
+      "За бързи и предвидими резултати. Платени канали поставят посланието ви директно пред идеалните клиенти - в точния момент за покупка.",
     price: "от 2250 лв. / месец",
-    period: "минимален период на договор – 3 месеца",
-    icon: BarChart,
-    link: "/services/clickstarter",
+    period: "минимален период 3 месеца",
+    gradient: "from-orange-500/20 to-red-500/20",
+    borderColor: "border-orange-500/30",
+    link: "/services/sales-engine",
     features: [
-      {
-        icon: Filter,
-        title: "Прецизно насочване",
-        description:
-          "Прецизно насочване към точната аудитория, без излишен разход.",
-      },
-      {
-        icon: Coins,
-        title: "Ясно измерване на възвръщаемостта",
-        description: "от всеки лев, вложен в реклама.",
-      },
-      {
-        icon: Magnet,
-        title: "Бързо валидиране",
-        description: "на оферти и пазарни хипотези.",
-      },
+      "Прецизно насочване към аудитория",
+      "Ясно измерване на ROI",
+      "Оптимизация за конверсии"
     ],
   },
   {
     id: "clientomat",
     title: "Clientomat™",
-    subtitle: "Нашата система за автоматизирани връзки с клиенти",
+    subtitle: "Система за клиентско задържане",
     description:
-      "Тази система създава автоматизиран процес, който превръща заинтересования посетител в лоялен клиент. Тя поддържа връзката, отговаря на въпроси и насочва към продажба, без да изисква вашето време.",
-    price: "от 1350 лв. / месец",
-    period: "минимален период на договор – 3 месеца",
-    icon: Users,
+      "Превръщаме еднократните купувачи в лоялни клиенти. Интелигентни последователности, персонализирани препоръки и автоматизирани процеси за максимални приходи.",
+    price: "от 1650 лв. / месец",
+    period: "минимален период 3 месеца",
+    gradient: "from-green-500/20 to-emerald-500/20",
+    borderColor: "border-green-500/30",
     link: "/services/clientomat",
     features: [
-      {
-        icon: Cog,
-        title: "Автоматизиране на комуникацията",
-        description: "задачи в комуникацията с клиенти.",
-      },
-      {
-        icon: MessageCircle,
-        title: "Персонализиран път за клиента",
-        description: "който увеличава продажбите.",
-      },
-      {
-        icon: Repeat,
-        title: "Спестяване на време",
-        description: "за да се фокусирате върху важните бизнес решения.",
-      },
+      "Система за връщащи се клиенти",
+      "Автоматизирани продажби",
+      "Максимизиране на приходите"
     ],
   },
 ];
 
 export const SystemsSection = () => {
-  const [activeTab, setActiveTab] = useState("seo");
-
-  const activeSystem = systems.find((system) => system.id === activeTab);
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.3 });
 
   return (
-    <section className="py-20 bg-[var(--pravdast-dark)]">
-      <div className="container mx-auto px-6">
+    <section ref={ref} id="systems" className="py-24 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 relative overflow-hidden">
+      {/* Enhanced Technical Background */}
+      <div className="absolute inset-0 opacity-5">
+        <svg className="w-full h-full" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="systems-pattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+              <circle cx="20" cy="20" r="2" fill="var(--pravdast-yellow)" opacity="0.4"/>
+              <path d="M0,20 L40,20 M20,0 L20,40" stroke="var(--pravdast-yellow)" strokeWidth="0.5" opacity="0.3"/>
+              <circle cx="5" cy="5" r="0.5" fill="var(--pravdast-yellow)" opacity="0.6"/>
+              <circle cx="35" cy="35" r="0.5" fill="var(--pravdast-yellow)" opacity="0.6"/>
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#systems-pattern)" />
+        </svg>
+      </div>
+
+      {/* Floating Elements */}
+      <div className="absolute inset-0">
+        <div className="absolute top-20 left-10 w-32 h-32 bg-[var(--pravdast-yellow)]/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-20 right-10 w-40 h-40 bg-[var(--pravdast-yellow)]/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-[var(--pravdast-yellow)]/5 rounded-full blur-3xl"></div>
+      </div>
+
+      <div className="container mx-auto px-6 relative z-10">
+        {/* Connection line from previous section */}
+        <motion.div
+          className="w-0.5 h-16 bg-gradient-to-b from-[var(--pravdast-yellow)] to-slate-600 mx-auto mb-16"
+          initial={{ scaleY: 0 }}
+          animate={isInView ? { scaleY: 1 } : {}}
+          transition={{ duration: 0.8 }}
+        />
+
         <motion.div
           className="text-center mb-16"
           initial={{ opacity: 0, y: 30 }}
@@ -150,145 +119,85 @@ export const SystemsSection = () => {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <motion.div
-            className="inline-flex items-center gap-2 mb-8 px-4 py-2 rounded-full bg-gradient-to-r from-slate-800/80 to-slate-700/60 border border-slate-600/30 backdrop-blur-sm"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <span className="text-sm text-gray-300 font-medium">
-              <span className="text-[var(--pravdast-yellow)]">
-                <b>Проверени</b>
-              </span>{" "}
-              системи за устойчив растеж
-            </span>
-          </motion.div>
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Нашите системи за растеж:
+          <div className="inline-block px-6 py-3 bg-[var(--pravdast-yellow)]/10 rounded-full border border-[var(--pravdast-yellow)]/20 mb-8">
+            <span className="text-[var(--pravdast-yellow)] text-sm font-semibold tracking-wider">ПРОВЕРЕНИ СИСТЕМИ</span>
+          </div>
+          
+          <h2 className="text-4xl md:text-6xl font-bold mb-8 text-white leading-tight">
+            Бизнес инженеринг системи
           </h2>
+          
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            Всяка система решава конкретен проблем и носи измерими резултати. 
+            Избирате само това, което ви трябва.
+          </p>
         </motion.div>
 
-        <div className="max-w-6xl mx-auto">
-          <div className="flex flex-col lg:flex-row gap-8">
-            {/* Tab Navigation */}
-            <div className="lg:w-1/3">
-              <div className="space-y-4">
-                {systems.map((system) => (
-                  <motion.button
-                    key={system.id}
-                    className={`w-full text-left p-6 rounded-xl transition-all duration-300 ${
-                      activeTab === system.id
-                        ? "bg-[var(--pravdast-dark-gray)] border border-[var(--pravdast-yellow)] text-[var(--pravdast-yellow)]"
-                        : "bg-[var(--pravdast-dark-gray)] border border-[var(--pravdast-medium-gray)] text-gray-300 hover:bg-[var(--pravdast-yellow)]/10 hover:border-[var(--pravdast-yellow)] hover:text-[var(--pravdast-yellow)]"
-                    }`}
-                    onClick={() => setActiveTab(system.id)}
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
+        {/* Modern System Grid */}
+        <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+          {systems.map((system, index) => (
+            <motion.div
+              key={system.id}
+              className="relative p-8 bg-slate-800/40 backdrop-blur-sm rounded-3xl border border-slate-600/30 overflow-hidden group hover:border-[var(--pravdast-yellow)]/50 transition-all duration-300"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: index * 0.2 }}
+              viewport={{ once: true }}
+              whileHover={{ scale: 1.02 }}
+            >
+              {/* Animated background elements */}
+              <div className={`absolute inset-0 bg-gradient-to-br ${system.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
+              <div className="absolute top-0 right-0 w-32 h-32 bg-[var(--pravdast-yellow)]/10 rounded-full -translate-y-16 translate-x-16"></div>
+              
+              <div className="relative z-10">
+                {/* System header */}
+                <div className="flex items-start justify-between mb-6">
+                  <div>
+                    <div className="inline-block px-3 py-1 bg-[var(--pravdast-yellow)]/20 border border-[var(--pravdast-yellow)]/40 rounded-full mb-3">
+                      <span className="text-[var(--pravdast-yellow)] text-xs font-semibold">{system.subtitle.toUpperCase()}</span>
+                    </div>
+                    <h3 className="text-2xl font-bold text-white mb-2">{system.title}</h3>
+                  </div>
+                  <div className="text-right">
+                    <div className="text-2xl font-bold text-[var(--pravdast-yellow)] mb-1">{system.price}</div>
+                    <div className="text-xs text-gray-400">{system.period}</div>
+                  </div>
+                </div>
+
+                {/* Description */}
+                <p className="text-gray-300 mb-6 leading-relaxed">{system.description}</p>
+
+                {/* Features */}
+                <div className="space-y-3 mb-8">
+                  {system.features.map((feature, idx) => (
+                    <div key={idx} className="flex items-center gap-3">
+                      <CheckCircle className="w-4 h-4 text-[var(--pravdast-yellow)] flex-shrink-0" />
+                      <span className="text-gray-300 text-sm">{feature}</span>
+                    </div>
+                  ))}
+                </div>
+
+                {/* CTA Button */}
+                <motion.div
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <Button
+                    asChild
+                    className="w-full bg-[var(--pravdast-yellow)] text-black hover:bg-[var(--pravdast-yellow)]/90 font-semibold py-3 rounded-xl transition-all duration-300 relative overflow-hidden group"
                   >
-                    <h3 className="text-xl font-semibold mb-2">
-                      {system.title}
-                    </h3>
-                    <p className="text-sm text-gray-400">{system.subtitle}</p>
-                  </motion.button>
-                ))}
+                    <Link href={system.link}>
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 group-hover:animate-pulse"></div>
+                      <span className="relative z-10 flex items-center justify-center gap-2">
+                        Научете повече
+                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                      </span>
+                    </Link>
+                  </Button>
+                </motion.div>
               </div>
-            </div>
-
-            {/* Tab Content */}
-            <div className="lg:w-2/3">
-              <AnimatePresence mode="wait">
-                {activeSystem && (
-                  <motion.div
-                    key={activeSystem.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <Card className="bg-[var(--pravdast-dark-gray)] border-[var(--pravdast-yellow)]">
-                      <CardContent className="p-8">
-                        {/* Engineering Visual */}
-                        <div className="w-full h-64 mb-8 bg-gradient-to-r from-[var(--pravdast-dark)] to-[var(--pravdast-medium-gray)] rounded-lg flex items-center justify-center border border-[var(--pravdast-yellow)]/30">
-                          <div className="text-center">
-                            <activeSystem.icon
-                              className="text-[var(--pravdast-yellow)] text-6xl mb-4 mx-auto"
-                              size={96}
-                            />
-                            <div className="flex items-center justify-center space-x-4">
-                              <div className="w-12 h-12 bg-[var(--pravdast-yellow)] rounded-full flex items-center justify-center">
-                                <Edit
-                                  className="text-[var(--pravdast-dark)]"
-                                  size={20}
-                                />
-                              </div>
-                              <div className="w-8 h-1 bg-[var(--pravdast-yellow)]"></div>
-                              <div className="w-12 h-12 bg-[var(--pravdast-yellow)] rounded-full flex items-center justify-center">
-                                <Cog
-                                  className="text-[var(--pravdast-dark)]"
-                                  size={20}
-                                />
-                              </div>
-                              <div className="w-8 h-1 bg-[var(--pravdast-yellow)]"></div>
-                              <div className="w-12 h-12 bg-[var(--pravdast-yellow)] rounded-full flex items-center justify-center">
-                                <BarChart
-                                  className="text-[var(--pravdast-dark)]"
-                                  size={20}
-                                />
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-
-                        <h3 className="text-3xl font-bold mb-4 text-[var(--pravdast-yellow)]">
-                          {activeSystem.title}
-                        </h3>
-                        <p className="text-lg text-gray-300 mb-6">
-                          {activeSystem.description}
-                        </p>
-
-                        <div className="text-2xl font-bold text-[var(--pravdast-yellow)] mb-6">
-                          {activeSystem.price}
-                        </div>
-                        <p className="text-sm text-gray-400 mb-8">
-                          {activeSystem.period}
-                        </p>
-
-                        <div className="space-y-6">
-                          {activeSystem.features.map((feature, index) => (
-                            <div
-                              key={index}
-                              className="flex items-start space-x-4"
-                            >
-                              <div className="w-8 h-8 bg-[var(--pravdast-yellow)] rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                                <feature.icon
-                                  className="text-[var(--pravdast-dark)] text-sm"
-                                  size={16}
-                                />
-                              </div>
-                              <div>
-                                <h4 className="font-semibold text-lg mb-2">
-                                  {feature.title}
-                                </h4>
-                                <p className="text-gray-300">
-                                  {feature.description}
-                                </p>
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-
-                        <Link href={activeSystem.link}>
-                          <Button className="mt-8 bg-[var(--pravdast-yellow)] text-[var(--pravdast-dark)] hover:bg-[#d4a426] font-semibold px-8 py-3">
-                            Разгледай системата
-                          </Button>
-                        </Link>
-                      </CardContent>
-                    </Card>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-          </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
