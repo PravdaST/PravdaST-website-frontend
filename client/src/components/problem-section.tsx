@@ -26,12 +26,13 @@ const ProblemSection = () => {
       {/* Animated Tech Background */}
       <div className="absolute inset-0 opacity-15">
         <div className="absolute inset-0">
-          {/* Problem Alert Pattern */}
+          {/* Problem Grid Pattern */}
           <div className="absolute inset-0" style={{
             backgroundImage: `
-              radial-gradient(circle at 3px 3px, rgba(239, 68, 68, 0.2) 1px, transparent 0)
+              linear-gradient(rgba(239, 68, 68, 0.1) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(239, 68, 68, 0.1) 1px, transparent 1px)
             `,
-            backgroundSize: '30px 30px'
+            backgroundSize: '40px 40px'
           }}></div>
           
           {/* Warning Lines */}
@@ -82,7 +83,11 @@ const ProblemSection = () => {
             <div className="flex items-center gap-2">
               <div className="relative">
                 <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                <div className="absolute inset-0 bg-red-500 rounded-full animate-ping opacity-75"></div>
+                <motion.div
+                  className="absolute inset-0 w-2 h-2 bg-red-500 rounded-full opacity-20"
+                  animate={{ scale: [1, 1.3, 1] }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                />
               </div>
               <span className="text-sm text-gray-300 font-medium">
                 <span className="text-[#ECB629] font-bold">Системна</span> диагностика на проблемите
@@ -130,26 +135,33 @@ const ProblemSection = () => {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
             >
-              <Card className="relative bg-slate-800/50 border-slate-700 hover:border-[#ECB629]/50 transition-all duration-300 group overflow-hidden h-full">
+              <Card className="relative bg-slate-800/50 border-red-500/20 hover:border-red-500/50 transition-all duration-300 group overflow-hidden h-full">
                 {/* Hover Glow Effect */}
-                <div className="absolute inset-0 bg-gradient-to-r from-red-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-red-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 
                 <CardContent className="p-8 text-center relative z-10">
-                  <div className="relative">
-                    <problem.icon className="w-12 h-12 text-red-500 mb-4 mx-auto group-hover:scale-110 transition-transform duration-300" />
+                  <div className="relative mb-6">
+                    <div className="w-16 h-16 mx-auto bg-red-500/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300 border border-red-500/30">
+                      <problem.icon className="w-8 h-8 text-red-500" />
+                    </div>
                     <motion.div
-                      className="absolute inset-0 bg-red-500 rounded-full opacity-20 scale-150"
-                      animate={{ scale: [1.5, 1.8, 1.5] }}
-                      transition={{ duration: 2, repeat: Infinity, delay: index * 0.5 }}
+                      className="absolute inset-0 bg-red-500 rounded-full opacity-5"
+                      animate={{ scale: [1.1, 1.3, 1.1] }}
+                      transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: index * 1 }}
                     />
                   </div>
                   
-                  <h3 className="text-xl font-bold text-white mb-4 group-hover:text-[#ECB629] transition-colors">
+                  <h3 className="text-xl font-bold text-white mb-4 group-hover:text-red-400 transition-colors">
                     {problem.title}
                   </h3>
-                  <p className="text-gray-300">
+                  <p className="text-gray-300 leading-relaxed">
                     {problem.description}
                   </p>
+                  
+                  {/* Problem Indicator */}
+                  <div className="absolute top-4 right-4 w-6 h-6 bg-red-500/20 rounded-full flex items-center justify-center border border-red-500/30">
+                    <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+                  </div>
                 </CardContent>
               </Card>
             </motion.div>
