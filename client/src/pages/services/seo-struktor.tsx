@@ -679,12 +679,12 @@ const FinalCTASection = () => {
           >
             <Button
               size="lg"
-              className="bg-[var(--pravdast-yellow)] text-black hover:bg-[var(--pravdast-yellow)]/90 px-12 py-6 text-xl font-semibold shadow-xl hover:shadow-2xl transition-all duration-300"
+              className="bg-[var(--pravdast-yellow)] text-black hover:bg-[var(--pravdast-yellow)]/90 px-6 md:px-12 py-4 md:py-6 text-base md:text-xl font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 w-full md:w-auto"
               asChild
             >
               <a href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu" target="_blank" rel="noopener noreferrer">
                 Кандидатствайте за диагностика
-                <ArrowRight className="ml-3 h-6 w-6" />
+                <ArrowRight className="ml-2 md:ml-3 h-5 w-5 md:h-6 md:w-6" />
               </a>
             </Button>
             <p className="text-sm text-gray-400 mt-4">
