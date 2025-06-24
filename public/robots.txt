@@ -1,7 +1,22 @@
-
 User-agent: *
-Disallow: /admin/
-Disallow: /api/
-Disallow: /_*
+Allow: /
 
+# AI and crawler bots
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+# SEO
 Sitemap: https://www.pravdagency.eu/sitemap.xml
+Sitemap: https://www.pravdagency.eu/sitemap-index.xml

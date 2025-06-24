@@ -1,3 +1,6 @@
+/* Inter Font - Import must be first */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -52,9 +55,6 @@
     border-color: var(--pravdast-yellow);
   }
 }
-
-/* Inter Font */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 body {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
