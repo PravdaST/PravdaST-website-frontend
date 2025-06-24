@@ -209,6 +209,7 @@ Changelog:
 - June 24, 2025. Updated SEO Struktor™ page content with final copy: replaced all placeholder text with detailed descriptions for 4-phase engineering process, updated results section to "Крайният резултат: Повече от просто позиции" with comprehensive benefit descriptions, restructured investment section with 3 principles (personalized solution, budget framework, technical specification), updated final CTA to "Готови ли сте да спрете да импровизирате?" with detailed process explanation and capacity limitations
 - June 24, 2025. Fixed Vercel build error in SEO Struktor™ page by replacing Bulgarian quotation marks („ and ") with ASCII quotation marks (\" and \") to resolve ESBuild parsing errors during deployment process
 - June 24, 2025. Updated all CTA buttons in SEO Struktor™ page to link to Typeform contact form: https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu with proper target="_blank" and rel attributes for security
+- June 24, 2025. Hidden accessibility button visually using sr-only class while keeping it accessible for screen readers and keyboard navigation - button only appears when focused, preventing mobile UI interference while maintaining SEO and accessibility compliance
 
 ## User Preferences
 

@@ -96,7 +96,7 @@ export function AccessibilityPanel({ className }: AccessibilityPanelProps) {
           <Button
             variant="outline"
             size="icon"
-            className="fixed bottom-4 right-4 z-50 rounded-full shadow-lg bg-primary text-primary-foreground hover:bg-primary/90"
+            className="sr-only focus:not-sr-only focus:fixed focus:bottom-4 focus:right-4 focus:z-50 focus:rounded-full focus:shadow-lg focus:bg-primary focus:text-primary-foreground hover:focus:bg-primary/90"
             aria-label="Отвори панел за достъпност"
           >
             <Accessibility className="h-5 w-5" />
