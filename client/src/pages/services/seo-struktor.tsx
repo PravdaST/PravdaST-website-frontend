@@ -881,54 +881,187 @@ const FinalCTASection = () => {
   const isInView = useInView(ref, { once: true, amount: 0.3 });
 
   return (
-    <section ref={ref} className="py-20 bg-slate-800/50">
-      <div className="container mx-auto px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <motion.h2
-            className="text-3xl md:text-4xl font-bold mb-8 text-white"
+    <section ref={ref} className="py-24 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 relative overflow-hidden">
+      {/* Enhanced Technical Background */}
+      <div className="absolute inset-0 opacity-5">
+        <svg className="w-full h-full" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="final-cta-pattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+              <circle cx="20" cy="20" r="2" fill="var(--pravdast-yellow)" opacity="0.4"/>
+              <path d="M0,20 L40,20 M20,0 L20,40" stroke="var(--pravdast-yellow)" strokeWidth="0.5" opacity="0.3"/>
+              <circle cx="5" cy="5" r="0.5" fill="var(--pravdast-yellow)" opacity="0.6"/>
+              <circle cx="35" cy="35" r="0.5" fill="var(--pravdast-yellow)" opacity="0.6"/>
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#final-cta-pattern)" />
+        </svg>
+      </div>
+
+      {/* Floating Elements */}
+      <div className="absolute inset-0">
+        <div className="absolute top-20 left-10 w-32 h-32 bg-[var(--pravdast-yellow)]/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-20 right-10 w-40 h-40 bg-[var(--pravdast-yellow)]/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-[var(--pravdast-yellow)]/5 rounded-full blur-3xl"></div>
+      </div>
+
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="max-w-5xl mx-auto">
+          {/* Connection line from previous section */}
+          <motion.div
+            className="w-0.5 h-16 bg-gradient-to-b from-[var(--pravdast-yellow)] to-slate-600 mx-auto mb-16"
+            initial={{ scaleY: 0 }}
+            animate={isInView ? { scaleY: 1 } : {}}
+            transition={{ duration: 0.8 }}
+          />
+
+          <motion.div
+            className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8 }}
           >
-            Готови ли сте да спрете да импровизирате?
-          </motion.h2>
+            <div className="inline-block px-6 py-3 bg-[var(--pravdast-yellow)]/10 rounded-full border border-[var(--pravdast-yellow)]/20 mb-8">
+              <span className="text-[var(--pravdast-yellow)] text-sm font-semibold tracking-wider">ФИНАЛНА СТЪПКА</span>
+            </div>
+            <h2 className="text-4xl md:text-6xl font-bold mb-8 text-white leading-tight">
+              Готови ли сте да спрете да импровизирате?
+            </h2>
+          </motion.div>
 
-          <motion.p
-            className="text-xl text-gray-300 mb-8 leading-relaxed"
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            Нашият инженерен процес е задълбочен и изисква пълна отдаденост. Затова работим с ограничен брой нови клиенти всеки месец, за да гарантираме качество и реални резултати.
-          </motion.p>
-
-          <motion.p
-            className="text-lg text-gray-300 mb-12 leading-relaxed"
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.3 }}
-          >
-            Първата стъпка е нашата експертна диагностика. С нейна помощ ще научите повече за скритите проблеми на вашия сайт и ще получите ясна представа за потенциала му.
-          </motion.p>
-
-          <motion.div
-            className="space-y-4"
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            <Button
-              size="lg"
-              className="bg-[var(--pravdast-yellow)] text-black hover:bg-[var(--pravdast-yellow)]/90 px-6 md:px-12 py-4 md:py-6 text-base md:text-xl font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 w-full md:w-auto"
-              asChild
+          <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
+            {/* Left side - Content */}
+            <motion.div
+              className="space-y-8"
+              initial={{ opacity: 0, x: -50 }}
+              animate={isInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <a href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu" target="_blank" rel="noopener noreferrer">
-                Кандидатствайте за диагностика
-                <ArrowRight className="ml-2 md:ml-3 h-5 w-5 md:h-6 md:w-6" />
-              </a>
-            </Button>
-            <p className="text-sm text-gray-400 mt-4">
-              Ще се свържем с вас в рамките на 48 часа, ако имаме свободен капацитет за този месец.
+              <div className="space-y-6">
+                <div className="p-6 bg-slate-800/40 rounded-2xl border border-slate-600/30">
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="w-3 h-3 bg-red-400 rounded-full animate-pulse"></div>
+                    <h3 className="text-xl font-bold text-white">Проблемът</h3>
+                  </div>
+                  <p className="text-gray-300 leading-relaxed">
+                    Нашият инженерен процес е задълбочен и изисква пълна отдаденост. Затова работим с ограничен брой нови клиенти всеки месец.
+                  </p>
+                </div>
+
+                <div className="p-6 bg-slate-800/40 rounded-2xl border border-[var(--pravdast-yellow)]/20">
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="w-3 h-3 bg-[var(--pravdast-yellow)] rounded-full animate-pulse"></div>
+                    <h3 className="text-xl font-bold text-white">Решението</h3>
+                  </div>
+                  <p className="text-gray-300 leading-relaxed">
+                    Първата стъпка е нашата експертна диагностика. С нейна помощ ще научите повече за скритите проблеми на вашия сайт и ще получите ясна представа за потенциала му.
+                  </p>
+                </div>
+              </div>
+
+              {/* Urgency indicators */}
+              <motion.div
+                className="grid grid-cols-3 gap-4"
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.8, delay: 0.6 }}
+              >
+                <div className="text-center p-4 bg-slate-800/30 rounded-xl">
+                  <div className="text-2xl font-bold text-[var(--pravdast-yellow)] mb-1">48h</div>
+                  <div className="text-xs text-gray-400">Отговор</div>
+                </div>
+                <div className="text-center p-4 bg-slate-800/30 rounded-xl">
+                  <div className="text-2xl font-bold text-[var(--pravdast-yellow)] mb-1">5min</div>
+                  <div className="text-xs text-gray-400">Процес</div>
+                </div>
+                <div className="text-center p-4 bg-slate-800/30 rounded-xl">
+                  <div className="text-2xl font-bold text-[var(--pravdast-yellow)] mb-1">100%</div>
+                  <div className="text-xs text-gray-400">Безплатно</div>
+                </div>
+              </motion.div>
+            </motion.div>
+
+            {/* Right side - Enhanced CTA */}
+            <motion.div
+              className="relative"
+              initial={{ opacity: 0, x: 50 }}
+              animate={isInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            >
+              <div className="relative p-8 bg-gradient-to-br from-slate-800/80 to-slate-900/80 backdrop-blur-sm rounded-3xl border border-[var(--pravdast-yellow)]/30 overflow-hidden">
+                {/* Animated background elements */}
+                <div className="absolute inset-0 bg-gradient-to-r from-[var(--pravdast-yellow)]/5 to-transparent"></div>
+                <div className="absolute top-0 right-0 w-32 h-32 bg-[var(--pravdast-yellow)]/10 rounded-full -translate-y-16 translate-x-16"></div>
+                
+                <div className="relative z-10 text-center space-y-6">
+                  <div className="space-y-4">
+                    <div className="inline-block px-4 py-2 bg-[var(--pravdast-yellow)]/20 border border-[var(--pravdast-yellow)]/40 rounded-full">
+                      <span className="text-[var(--pravdast-yellow)] text-sm font-semibold">ОГРАНИЧЕНИ МЕСТА</span>
+                    </div>
+                    
+                    <h3 className="text-2xl md:text-3xl font-bold text-white leading-tight">
+                      Започнете диагностиката днес
+                    </h3>
+                    
+                    <p className="text-gray-300 text-sm leading-relaxed">
+                      Безплатна техническа диагностика с детайлен анализ на потенциала на вашия сайт
+                    </p>
+                  </div>
+
+                  {/* Enhanced CTA Button */}
+                  <motion.div
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                  >
+                    <Button
+                      size="lg"
+                      className="w-full bg-[var(--pravdast-yellow)] text-black hover:bg-[var(--pravdast-yellow)]/90 px-8 py-6 text-lg font-bold shadow-2xl hover:shadow-[var(--pravdast-yellow)]/20 transition-all duration-300 relative overflow-hidden group"
+                      asChild
+                    >
+                      <a href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu" target="_blank" rel="noopener noreferrer">
+                        {/* Button shimmer effect */}
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 group-hover:animate-pulse"></div>
+                        <span className="relative z-10 flex items-center justify-center gap-3">
+                          Кандидатствайте за диагностика
+                          <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
+                        </span>
+                      </a>
+                    </Button>
+                  </motion.div>
+
+                  {/* Trust indicators */}
+                  <div className="grid grid-cols-2 gap-4 pt-6 border-t border-slate-600/30">
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                      <span className="text-xs text-gray-400">Без ангажименти</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                      <span className="text-xs text-gray-400">100% поверително</span>
+                    </div>
+                  </div>
+
+                  <p className="text-xs text-gray-500 mt-4">
+                    Ще се свържем с вас в рамките на 48 часа, ако имаме свободен капацитет за този месец.
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Bottom urgency message */}
+          <motion.div
+            className="text-center p-6 bg-slate-800/30 rounded-2xl border border-red-500/20"
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.8 }}
+          >
+            <div className="flex items-center justify-center gap-3 mb-2">
+              <div className="w-3 h-3 bg-red-400 rounded-full animate-pulse"></div>
+              <span className="text-red-400 text-sm font-semibold tracking-wider">ВАЖНО</span>
+            </div>
+            <p className="text-gray-300 text-sm">
+              Всеки ден на изчакване е изгубена възможност. Вашите конкуренти не спят.
             </p>
           </motion.div>
         </div>
@@ -953,13 +1086,38 @@ export default function SeoStruktor() {
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center overflow-hidden">
         <SeoStruktorBackground />
+        
+        {/* Enhanced floating elements */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-1/4 left-10 w-2 h-2 bg-[var(--pravdast-yellow)] rounded-full animate-ping opacity-60"></div>
+          <div className="absolute top-1/3 right-20 w-1 h-1 bg-[var(--pravdast-yellow)] rounded-full animate-pulse opacity-80"></div>
+          <div className="absolute bottom-1/4 left-1/4 w-3 h-3 bg-[var(--pravdast-yellow)] rounded-full animate-bounce opacity-40"></div>
+          <div className="absolute bottom-1/3 right-1/4 w-1 h-1 bg-[var(--pravdast-yellow)] rounded-full animate-ping opacity-70"></div>
+        </div>
+
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
+            {/* Status badge */}
+            <motion.div
+              className="inline-flex items-center gap-3 px-6 py-3 bg-slate-800/40 backdrop-blur-sm border border-[var(--pravdast-yellow)]/20 rounded-full mb-8"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="relative">
+                <div className="w-3 h-3 bg-green-400 rounded-full"></div>
+                <div className="absolute inset-0 w-3 h-3 bg-green-400 rounded-full animate-ping opacity-60"></div>
+              </div>
+              <span className="text-white text-sm font-semibold">
+                <span className="text-[var(--pravdast-yellow)]">Ново</span> - Приемаме проекти за 2025
+              </span>
+            </motion.div>
+
             <motion.h1
               className="text-5xl md:text-7xl font-bold mb-8 leading-tight text-white"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
             >
               Вашите конкуренти не са по-добри.{" "}
               <span className="text-[var(--pravdast-yellow)]">
