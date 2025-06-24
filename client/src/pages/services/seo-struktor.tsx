@@ -315,44 +315,60 @@ const EngineeringProcessSection = () => {
       number: "0",
       title: "Здравият фундамент (Pagekraft™)",
       description: "Преди да строим, проверяваме терена. Ако вашият сайт е бавен или технически неизправен, ние го изграждаме наново. Това е фундаментът, без който всяка конструкция е нестабилна.",
-      icon: "🏗️"
+      duration: "2-3 седмици",
+      deliverable: "Технически одит + оптимизиран сайт"
     },
     {
       number: "1", 
       title: "Архитектурен план",
       description: "Проектираме перфектната вътрешна архитектура, за да може Google лесно да \"разбере\" и оцени стойността на вашия сайт. Това е чертежът, който следваме.",
-      icon: "📐"
+      duration: "1-2 седмици",
+      deliverable: "SEO архитектура + URL структура"
     },
     {
       number: "2",
       title: "Архитектура на съдържанието", 
       description: "Създаваме съдържание, което отговаря на въпросите на клиентите ви и демонстрира вашата експертиза. Всяка страница е структурен елемент, който допринася за здравината и стойността на цялата сграда.",
-      icon: "📝"
+      duration: "4-6 седмици",
+      deliverable: "Content стратегия + оптимизирани страници"
     },
     {
       number: "3",
       title: "Външен авторитет",
       description: "Систематично изграждаме репутацията на вашия сайт в интернет, превръщайки го в авторитетен източник. Това му придава по-висока стойност и стабилност в очите на Google и пазара.",
-      icon: "🔗"
+      duration: "Непрекъснато",
+      deliverable: "Link building + brand mentions"
     }
   ];
 
   return (
-    <section ref={ref} className="py-20 bg-gradient-to-br from-[var(--pravdast-dark)] to-[var(--pravdast-dark-gray)] relative overflow-hidden">
-      {/* Background pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <pattern id="timeline-grid" width="100" height="100" patternUnits="userSpaceOnUse">
-              <path d="M 100 0 L 0 0 0 100" fill="none" stroke="var(--pravdast-yellow)" strokeWidth="0.5"/>
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#timeline-grid)" />
-        </svg>
+    <section ref={ref} className="py-20 bg-slate-800/30 relative overflow-hidden">
+      {/* Dynamic Blueprint Background */}
+      <div className="absolute inset-0 opacity-3">
+        <div className="grid grid-cols-12 gap-4 h-full p-8">
+          {Array.from({ length: 144 }).map((_, i) => (
+            <motion.div
+              key={i}
+              className="bg-[var(--pravdast-yellow)] rounded-sm h-1"
+              initial={{ opacity: 0, scale: 0 }}
+              animate={isInView ? { 
+                opacity: Math.random() * 0.3 + 0.1, 
+                scale: Math.random() * 0.8 + 0.4 
+              } : {}}
+              transition={{
+                duration: 2,
+                delay: i * 0.01,
+                repeat: Infinity,
+                repeatType: "reverse",
+                ease: "easeInOut"
+              }}
+            />
+          ))}
+        </div>
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <motion.div
             className="text-center mb-20"
             initial={{ opacity: 0, y: 30 }}
@@ -363,80 +379,137 @@ const EngineeringProcessSection = () => {
               <span className="text-[var(--pravdast-yellow)] text-sm font-semibold">СИСТЕМЕН ПРОЦЕС</span>
             </div>
             <h2 className="text-3xl md:text-5xl font-bold text-white leading-tight">
-              От основите до покрива:<br />
-              <span className="text-[var(--pravdast-yellow)]">Нашият четирифазен процес</span>
+              От основите до покрива
             </h2>
-            <p className="text-gray-300 text-lg mt-4 max-w-2xl mx-auto">
-              Всеки етап е съобразен с предишния за максимална ефективност
+            <p className="text-gray-300 text-lg mt-6 max-w-3xl mx-auto">
+              Нашият четирифазен инженерен процес на изграждане
             </p>
           </motion.div>
 
-          <div className="relative">
-            {/* Modern Timeline Structure */}
-            <div className="grid gap-8 md:gap-12">
-              {phases.map((phase, index) => (
-                <motion.div
-                  key={index}
-                  className="relative"
-                  initial={{ opacity: 0, y: 50 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.8, delay: 0.3 + index * 0.2 }}
-                >
-                  <div className="flex items-center gap-8 md:gap-12">
-                    {/* Phase Number & Icon */}
-                    <div className="flex-shrink-0 relative">
-                      <div className="w-20 h-20 bg-gradient-to-br from-[var(--pravdast-yellow)] to-yellow-500 rounded-2xl flex items-center justify-center shadow-lg transform rotate-3 hover:rotate-0 transition-transform duration-300">
-                        <span className="text-2xl font-bold text-black">{phase.number}</span>
-                      </div>
-                      {index < phases.length - 1 && (
-                        <motion.div
-                          className="absolute top-20 left-1/2 w-0.5 h-16 bg-gradient-to-b from-[var(--pravdast-yellow)] to-transparent"
-                          initial={{ scaleY: 0 }}
-                          animate={isInView ? { scaleY: 1 } : {}}
-                          transition={{ duration: 1, delay: 1 + index * 0.3 }}
-                          style={{ transformOrigin: "top" }}
-                        />
-                      )}
-                    </div>
+          {/* Modern Card-Based Timeline */}
+          <div className="grid gap-8 md:gap-12">
+            {phases.map((phase, index) => (
+              <motion.div
+                key={phase.number}
+                className="relative"
+                initial={{ opacity: 0, y: 50 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.8, delay: index * 0.15 }}
+              >
+                {/* Connection Line */}
+                {index < phases.length - 1 && (
+                  <motion.div
+                    className="absolute left-6 md:left-10 top-20 w-0.5 h-16 bg-gradient-to-b from-[var(--pravdast-yellow)] to-slate-600 z-0"
+                    initial={{ scaleY: 0 }}
+                    animate={isInView ? { scaleY: 1 } : {}}
+                    transition={{ duration: 0.8, delay: index * 0.15 + 0.5 }}
+                  />
+                )}
 
-                    {/* Content */}
-                    <div className="flex-1">
-                      <div className="bg-slate-800/60 p-8 rounded-2xl border border-slate-700/50 backdrop-blur-sm hover:border-[var(--pravdast-yellow)]/30 transition-colors duration-300">
-                        <div className="flex items-center gap-3 mb-4">
-                          <div className="w-2 h-2 bg-[var(--pravdast-yellow)] rounded-full"></div>
-                          <span className="text-[var(--pravdast-yellow)] text-sm font-semibold tracking-wider">
-                            ФАЗА {phase.number}
-                          </span>
+                <motion.div
+                  className="bg-slate-800/60 backdrop-blur-sm rounded-2xl border border-slate-600/30 overflow-hidden group hover:border-[var(--pravdast-yellow)]/40 transition-all duration-500"
+                  whileHover={{ scale: 1.01, y: -2 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  <div className="p-6 md:p-8">
+                    <div className="flex flex-col md:flex-row md:items-start gap-6">
+                      
+                      {/* Phase Number Circle */}
+                      <motion.div
+                        className="flex-shrink-0"
+                        whileHover={{ scale: 1.1, rotate: 5 }}
+                        transition={{ type: "spring", stiffness: 400 }}
+                      >
+                        <div className="relative">
+                          <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-[var(--pravdast-yellow)] to-yellow-600 rounded-full flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300">
+                            <span className="text-black font-bold text-xl md:text-2xl">
+                              {phase.number}
+                            </span>
+                          </div>
+                          {/* Pulsing ring effect */}
+                          <div className="absolute inset-0 w-12 h-12 md:w-16 md:h-16 bg-[var(--pravdast-yellow)]/20 rounded-full animate-ping opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                         </div>
-                        <h3 className="text-2xl font-bold mb-4 text-white">
-                          {phase.title}
-                        </h3>
-                        <p className="text-gray-300 leading-relaxed text-lg">
-                          {phase.description}
-                        </p>
+                      </motion.div>
+
+                      {/* Content */}
+                      <div className="flex-1 space-y-4">
+                        <div>
+                          <h3 className="text-xl md:text-2xl font-bold text-white mb-2 group-hover:text-[var(--pravdast-yellow)] transition-colors duration-300">
+                            {phase.title}
+                          </h3>
+                          <p className="text-gray-300 leading-relaxed text-sm md:text-base">
+                            {phase.description}
+                          </p>
+                        </div>
+
+                        {/* Phase Details */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4 border-t border-slate-600/30">
+                          <div className="flex items-center space-x-2">
+                            <div className="w-2 h-2 bg-[var(--pravdast-yellow)] rounded-full"></div>
+                            <span className="text-sm text-gray-400">Времетраене:</span>
+                            <span className="text-sm font-semibold text-white">{phase.duration}</span>
+                          </div>
+                          <div className="flex items-center space-x-2">
+                            <div className="w-2 h-2 bg-[var(--pravdast-yellow)] rounded-full"></div>
+                            <span className="text-sm text-gray-400">Резултат:</span>
+                            <span className="text-sm font-semibold text-white">{phase.deliverable}</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Progress indicator */}
+                      <div className="flex-shrink-0 hidden md:block">
+                        <motion.div
+                          className="w-1 h-20 bg-slate-700 rounded-full overflow-hidden"
+                          initial={{ height: 0 }}
+                          animate={isInView ? { height: 80 } : {}}
+                          transition={{ duration: 1, delay: index * 0.15 + 0.8 }}
+                        >
+                          <motion.div
+                            className="w-full bg-gradient-to-t from-[var(--pravdast-yellow)] to-yellow-400"
+                            initial={{ height: "0%" }}
+                            animate={isInView ? { height: "100%" } : {}}
+                            transition={{ duration: 1.5, delay: index * 0.15 + 1 }}
+                          />
+                        </motion.div>
                       </div>
                     </div>
                   </div>
-                </motion.div>
-              ))}
-            </div>
 
-            {/* Connection Flow Visualization */}
-            <motion.svg
-              className="absolute inset-0 w-full h-full pointer-events-none"
-              initial={{ opacity: 0 }}
-              animate={isInView ? { opacity: 0.3 } : {}}
-              transition={{ duration: 2, delay: 1.5 }}
-            >
-              <path
-                d="M 100 100 Q 200 50 300 100 T 500 100"
-                fill="none"
-                stroke="var(--pravdast-yellow)"
-                strokeWidth="1"
-                opacity="0.2"
-              />
-            </motion.svg>
+                  {/* Hover effect gradient overlay */}
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-[var(--pravdast-yellow)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                    initial={false}
+                  />
+                </motion.div>
+              </motion.div>
+            ))}
           </div>
+
+          {/* Bottom CTA */}
+          <motion.div
+            className="text-center mt-16 p-8 bg-slate-800/40 rounded-2xl border border-[var(--pravdast-yellow)]/20"
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 1.2 }}
+          >
+            <h3 className="text-2xl font-bold text-white mb-4">
+              Започнете инженерния процес днес
+            </h3>
+            <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
+              Всеки ден на изчакване е изгубена възможност. Вашите конкуренти не спят.
+            </p>
+            <Button
+              size="lg"
+              className="bg-[var(--pravdast-yellow)] text-black hover:bg-[var(--pravdast-yellow)]/90 px-6 md:px-8 py-4 text-base md:text-lg font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 w-full md:w-auto"
+              asChild
+            >
+              <a href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu" target="_blank" rel="noopener noreferrer">
+                Започнете диагностиката
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </a>
+            </Button>
+          </motion.div>
         </div>
       </div>
     </section>
