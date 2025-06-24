@@ -195,15 +195,28 @@ export default function Trendlab() {
                 />
               </div>
               <span className="text-sm font-medium text-gray-300">
-                Приемаме проекти • <span className="text-[#ECB629]">Системен подход към съдържанието</span>
+                Приемаме проекти • <span className="text-[#ECB629]">Ново</span>
               </span>
+            </motion.div>
+
+            {/* Animated Badge */}
+            <motion.div
+              className="inline-block mb-6"
+              initial={{ opacity: 0, y: 20 }}
+              animate={heroInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
+              <Badge className="bg-gradient-to-r from-[#ECB629] to-[#F59E0B] text-black font-semibold px-4 py-2 text-sm">
+                <BookOpen className="h-4 w-4 mr-2" />
+                Системен подход към съдържанието
+              </Badge>
             </motion.div>
 
             <motion.h1
               className="text-5xl md:text-7xl font-bold mb-8 leading-tight"
               initial={{ opacity: 0, y: 30 }}
               animate={heroInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.4 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
             >
               Най-убедителната история е{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ECB629] to-[#F59E0B]">
@@ -216,7 +229,7 @@ export default function Trendlab() {
               className="text-xl md:text-2xl text-gray-300 mb-12 max-w-4xl mx-auto leading-relaxed"
               initial={{ opacity: 0, y: 30 }}
               animate={heroInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.6 }}
+              transition={{ duration: 0.8, delay: 0.8 }}
             >
               Вие притежавате безценна експертиза и опит. Нашата система Trendlab™ превръща тези ваши знания в автентично съдържание, което изгражда доверие, създава общност и ви превръща в безспорния авторитет във вашата сфера.
             </motion.p>
@@ -225,7 +238,7 @@ export default function Trendlab() {
               className="flex flex-col sm:flex-row gap-6 justify-center items-center"
               initial={{ opacity: 0, y: 30 }}
               animate={heroInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.8 }}
+              transition={{ duration: 0.8, delay: 1.0 }}
             >
               <Button
                 size="lg"
@@ -253,6 +266,9 @@ export default function Trendlab() {
             transition={{ duration: 0.8 }}
           >
             <div className="text-center mb-16">
+              <Badge className="bg-gradient-to-r from-[#ECB629] to-[#F59E0B] text-black font-semibold px-4 py-2 mb-6">
+                Философията
+              </Badge>
               <h2 className="text-4xl md:text-5xl font-bold mb-6">
                 Вашата експертиза не е просто информация.{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ECB629] to-[#F59E0B]">
@@ -434,6 +450,9 @@ export default function Trendlab() {
             transition={{ duration: 0.8 }}
           >
             <div className="text-center mb-16">
+              <Badge className="bg-gradient-to-r from-[#ECB629] to-[#F59E0B] text-black font-semibold px-4 py-2 mb-6">
+                Процесът
+              </Badge>
               <h2 className="text-4xl md:text-5xl font-bold mb-6">
                 Нашата поточна линия за съдържание:{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ECB629] to-[#F59E0B]">
@@ -442,128 +461,99 @@ export default function Trendlab() {
               </h2>
             </div>
 
-            {/* Modern Timeline */}
-            <div className="relative max-w-4xl mx-auto">
-              {/* Central Line */}
-              <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-[#ECB629] via-[#ECB629]/50 to-[#ECB629]/20 rounded-full"></div>
-              
-              <div className="space-y-16">
-                {[
-                  {
-                    phase: "01",
-                    title: "Извличане на експертиза",
-                    description: "Провеждаме стратегически сесии с вас, за да извлечем вашите уникални знания, ценности и истории.",
-                    icon: Microscope,
-                    duration: "2-3 седмици",
-                    deliverables: "Експертен профил, ключови послания, story bank",
-                    position: "left"
-                  },
-                  {
-                    phase: "02", 
-                    title: "Проектиране на съдържанието",
-                    description: "Превръщаме суровата информация в конкретни формати – сценарии за видеа, структура на статии, концепции за визии.",
-                    icon: FileText,
-                    duration: "1-2 седмици",
-                    deliverables: "Съдържателен календар, готови формати, визуални концепции",
-                    position: "right"
-                  },
-                  {
-                    phase: "03",
-                    title: "Ефективна продукция",
-                    description: "Използваме модерни технологии за създаване на съдържание, които ни позволяват да продуцираме висококачествени видеа и текстове изключително бързо и с оптимизиран бюджет.",
-                    icon: Camera,
-                    duration: "Непрекъснато",
-                    deliverables: "Готово съдържание, оптимизирано за всяка платформа",
-                    position: "left"
-                  },
-                  {
-                    phase: "04",
-                    title: "Разпространение и анализ", 
-                    description: "Публикуваме съдържанието в правилните канали и измерваме неговото въздействие върху репутацията ви.",
-                    icon: Megaphone,
-                    duration: "Непрекъснато",
-                    deliverables: "Публикации, анализи, оптимизации",
-                    position: "right"
-                  }
-                ].map((phase, index) => (
-                  <motion.div
-                    key={index}
-                    className="relative flex items-center"
-                    initial={{ opacity: 0, x: phase.position === 'left' ? -100 : 100 }}
-                    animate={processInView ? { opacity: 1, x: 0 } : {}}
-                    transition={{ duration: 0.8, delay: index * 0.3 }}
-                  >
-                    {/* Timeline Node */}
-                    <motion.div
-                      className="absolute left-1/2 transform -translate-x-1/2 z-10"
-                      initial={{ scale: 0 }}
-                      animate={processInView ? { scale: 1 } : {}}
-                      transition={{ duration: 0.6, delay: index * 0.3 + 0.2 }}
-                    >
-                      <div className="w-20 h-20 bg-gradient-to-br from-[#ECB629] to-[#F59E0B] rounded-full flex items-center justify-center text-black font-bold text-xl shadow-2xl border-4 border-slate-900 relative">
-                        {phase.phase}
-                        
-                        {/* Pulsing Ring */}
+            <div className="grid gap-8 md:gap-12">
+              {[
+                {
+                  phase: "01",
+                  title: "Извличане на експертиза",
+                  description: "Провеждаме стратегически сесии с вас, за да извлечем вашите уникални знания, ценности и истории.",
+                  icon: Microscope,
+                  duration: "2-3 седмици",
+                  deliverables: "Експертен профил, ключови послания, story bank"
+                },
+                {
+                  phase: "02", 
+                  title: "Проектиране на съдържанието",
+                  description: "Превръщаме суровата информация в конкретни формати – сценарии за видеа, структура на статии, концепции за визии.",
+                  icon: FileText,
+                  duration: "1-2 седмици",
+                  deliverables: "Съдържателен календар, готови формати, визуални концепции"
+                },
+                {
+                  phase: "03",
+                  title: "Ефективна продукция",
+                  description: "Използваме модерни технологии за създаване на съдържание, които ни позволяват да продуцираме висококачествени видеа и текстове изключително бързо и с оптимизиран бюджет.",
+                  icon: Camera,
+                  duration: "Непрекъснато",
+                  deliverables: "Готово съдържание, оптимизирано за всяка платформа"
+                },
+                {
+                  phase: "04",
+                  title: "Разпространение и анализ", 
+                  description: "Публикуваме съдържанието в правилните канали и измерваме неговото въздействие върху репутацията ви.",
+                  icon: Megaphone,
+                  duration: "Непрекъснато",
+                  deliverables: "Публикации, анализи, оптимизации"
+                }
+              ].map((phase, index) => (
+                <motion.div
+                  key={index}
+                  className="relative"
+                  initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+                  animate={processInView ? { opacity: 1, x: 0 } : {}}
+                  transition={{ duration: 0.8, delay: index * 0.2 }}
+                >
+                  <Card className="bg-slate-800/30 border-slate-600/30 p-8 backdrop-blur-sm hover:bg-slate-800/50 transition-all duration-300 group">
+                    <div className="flex items-start space-x-6">
+                      {/* Phase Number */}
+                      <div className="relative">
                         <motion.div
-                          className="absolute inset-0 border-2 border-[#ECB629] rounded-full opacity-30"
+                          className="w-16 h-16 bg-gradient-to-br from-[#ECB629] to-[#F59E0B] rounded-full flex items-center justify-center text-black font-bold text-lg shadow-lg"
+                          whileHover={{ scale: 1.1 }}
+                          transition={{ type: "spring", stiffness: 300 }}
+                        >
+                          {phase.phase}
+                        </motion.div>
+                        <motion.div
+                          className="absolute inset-0 w-16 h-16 border-2 border-[#ECB629] rounded-full opacity-0 group-hover:opacity-100"
                           animate={{
-                            scale: [1, 1.5, 1],
-                            opacity: [0.3, 0, 0.3],
+                            scale: [1, 1.2, 1],
+                            opacity: [0, 0.5, 0],
                           }}
                           transition={{
-                            duration: 3,
+                            duration: 2,
                             repeat: Infinity,
                             ease: "easeInOut",
-                            delay: index * 0.5,
                           }}
                         />
                       </div>
-                    </motion.div>
 
-                    {/* Content Card */}
-                    <div className={`w-full ${phase.position === 'left' ? 'pr-16' : 'pl-16'}`}>
-                      <Card className={`bg-slate-800/40 border-slate-600/30 p-6 backdrop-blur-sm hover:bg-slate-800/60 transition-all duration-300 group relative overflow-hidden ${
-                        phase.position === 'left' ? 'ml-0 mr-auto' : 'ml-auto mr-0'
-                      } max-w-md`}>
-                        {/* Card Glow Effect */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-[#ECB629]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                      {/* Content */}
+                      <div className="flex-1">
+                        <div className="flex items-center gap-3 mb-4">
+                          <phase.icon className="h-6 w-6 text-[#ECB629]" />
+                          <h3 className="text-2xl font-bold">{phase.title}</h3>
+                        </div>
+                        <p className="text-gray-300 mb-6 leading-relaxed">
+                          {phase.description}
+                        </p>
                         
-                        <div className="relative z-10">
-                          {/* Icon & Title */}
-                          <div className="flex items-center gap-3 mb-4">
-                            <div className="w-10 h-10 bg-[#ECB629]/20 rounded-full flex items-center justify-center">
-                              <phase.icon className="h-5 w-5 text-[#ECB629]" />
-                            </div>
-                            <h3 className="text-xl font-bold text-white">{phase.title}</h3>
+                        {/* Details */}
+                        <div className="grid md:grid-cols-2 gap-4">
+                          <div className="bg-slate-700/30 rounded-lg p-4">
+                            <div className="text-sm text-[#ECB629] font-semibold mb-1">ПРОДЪЛЖИТЕЛНОСТ</div>
+                            <div className="text-white">{phase.duration}</div>
                           </div>
-
-                          {/* Description */}
-                          <p className="text-gray-300 mb-6 leading-relaxed text-sm">
-                            {phase.description}
-                          </p>
-
-                          {/* Details Grid */}
-                          <div className="space-y-3">
-                            <div className="bg-slate-700/30 rounded-lg p-3 border border-slate-600/20">
-                              <div className="text-xs text-[#ECB629] font-semibold mb-1">ВРЕМЕТРАЕНЕ</div>
-                              <div className="text-white text-sm">{phase.duration}</div>
-                            </div>
-                            <div className="bg-slate-700/30 rounded-lg p-3 border border-slate-600/20">
-                              <div className="text-xs text-[#ECB629] font-semibold mb-1">РЕЗУЛТАТ</div>
-                              <div className="text-white text-xs leading-relaxed">{phase.deliverables}</div>
-                            </div>
+                          <div className="bg-slate-700/30 rounded-lg p-4">
+                            <div className="text-sm text-[#ECB629] font-semibold mb-1">РЕЗУЛТАТ</div>
+                            <div className="text-white text-sm">{phase.deliverables}</div>
                           </div>
                         </div>
-
-                        {/* Connection Line to Timeline */}
-                        <div className={`absolute top-1/2 transform -translate-y-1/2 w-8 h-px bg-[#ECB629]/50 ${
-                          phase.position === 'left' ? 'right-0' : 'left-0'
-                        }`}></div>
-                      </Card>
+                      </div>
                     </div>
-                  </motion.div>
-                ))}
-              </div>
+                  </Card>
+                </motion.div>
+              ))}
             </div>
 
             {/* CTA */}
@@ -599,6 +589,9 @@ export default function Trendlab() {
             transition={{ duration: 0.8 }}
           >
             <div className="text-center mb-16">
+              <Badge className="bg-gradient-to-r from-[#ECB629] to-[#F59E0B] text-black font-semibold px-4 py-2 mb-6">
+                Резултатите
+              </Badge>
               <h2 className="text-4xl md:text-5xl font-bold mb-6">
                 Спрете да преследвате клиенти.{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ECB629] to-[#F59E0B]">
@@ -674,7 +667,9 @@ export default function Trendlab() {
             animate={investmentInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8 }}
           >
-
+            <Badge className="bg-gradient-to-r from-[#ECB629] to-[#F59E0B] text-black font-semibold px-4 py-2 mb-6">
+              Инвестицията
+            </Badge>
             <h2 className="text-4xl md:text-5xl font-bold mb-8">
               Структура на{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ECB629] to-[#F59E0B]">
