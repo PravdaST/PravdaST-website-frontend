@@ -55,56 +55,116 @@ const process = [
 
 export default function Clientomat() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-gradient-to-br from-[var(--pravdast-dark)] to-[var(--pravdast-dark-gray)] text-white">
       <Navigation />
       
       {/* Hero Section */}
-      <section className="pt-24 pb-16 bg-gradient-to-br from-[var(--pravdast-dark)] to-[var(--pravdast-dark-gray)] relative overflow-hidden">
+      <section className="relative min-h-screen flex items-center overflow-hidden">
         <ClientomatBackground />
         
+        {/* Enhanced floating elements */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-1/4 left-10 w-2 h-2 bg-[var(--pravdast-yellow)] rounded-full animate-ping opacity-60"></div>
+          <div className="absolute top-1/3 right-20 w-1 h-1 bg-[var(--pravdast-yellow)] rounded-full animate-pulse opacity-80"></div>
+          <div className="absolute bottom-1/4 left-1/4 w-3 h-3 bg-[var(--pravdast-yellow)] rounded-full animate-bounce opacity-40"></div>
+          <div className="absolute bottom-1/3 right-1/4 w-1 h-1 bg-[var(--pravdast-yellow)] rounded-full animate-ping opacity-70"></div>
+        </div>
+
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
+            {/* Status badge */}
             <motion.div
-              className="w-20 h-20 mx-auto mb-8 bg-[var(--pravdast-yellow)]/10 rounded-full flex items-center justify-center"
-              initial={{ opacity: 0, scale: 0.5 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8 }}
+              className="inline-flex items-center gap-3 px-6 py-3 bg-slate-800/40 backdrop-blur-sm border border-[var(--pravdast-yellow)]/20 rounded-full mb-8"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
             >
-              <Users className="text-[var(--pravdast-yellow)]" size={40} />
+              <div className="relative">
+                <div className="w-3 h-3 bg-green-400 rounded-full"></div>
+                <div className="absolute inset-0 w-3 h-3 bg-green-400 rounded-full animate-ping opacity-60"></div>
+              </div>
+              <span className="text-white text-sm font-semibold">
+                <span className="text-[var(--pravdast-yellow)]">Ново</span> - Приемаме проекти за 2025
+              </span>
             </motion.div>
-            
+
             <motion.h1
-              className="text-4xl md:text-6xl font-bold mb-6"
+              className="text-5xl md:text-7xl font-bold mb-8 leading-tight text-white"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <span className="text-[var(--pravdast-yellow)]">Clientomat™</span><br />
-              Спрете да губите клиенти
+              <span className="text-[var(--pravdast-yellow)]">Clientomat™</span>
             </motion.h1>
             
             <motion.p
-              className="text-xl text-gray-300 mb-8"
+              className="text-xl md:text-2xl text-gray-300 mb-12 leading-relaxed"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              Превръщаме еднократните купувачи в редовни приходи. Система за максимизиране стойността от всеки клиент.
+              Автоматизиран клиентски магнит.<br />
+              <span className="text-[var(--pravdast-yellow)]">Превръщаме непознати в лоялни клиенти с проверени системи.</span>
             </motion.p>
-            
+
             <motion.div
-              className="flex flex-col sm:flex-row gap-4 justify-center"
+              className="flex flex-col sm:flex-row gap-4 justify-center mb-12"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ type: "spring", stiffness: 400, damping: 17 }}
+              >
+                <Button
+                  size="lg"
+                  className="bg-[var(--pravdast-yellow)] text-black hover:bg-[var(--pravdast-yellow)]/90 px-6 md:px-12 py-4 md:py-6 text-base md:text-xl font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 w-full md:w-auto relative overflow-hidden group"
+                  asChild
+                >
+                  <a href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu" target="_blank" rel="noopener noreferrer">
+                    {/* Button glow effect */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 group-hover:animate-pulse"></div>
+                    <span className="relative z-10 flex items-center justify-center gap-3">
+                      Започнете диагностиката
+                      <ArrowRight className="h-5 w-5 md:h-6 md:w-6 group-hover:translate-x-1 transition-transform duration-300" />
+                    </span>
+                  </a>
+                </Button>
+              </motion.div>
+              
               <Button
                 size="lg"
-                className="bg-[var(--pravdast-yellow)] text-[var(--pravdast-dark)] hover:bg-[#d4a426] text-lg font-semibold px-8 py-4"
-                onClick={() => window.open("https://form.typeform.com/to/GXLaGY98", "_blank")}
+                variant="outline"
+                className="border-[var(--pravdast-yellow)] text-[var(--pravdast-yellow)] hover:bg-[var(--pravdast-yellow)]/10 px-6 md:px-12 py-4 md:py-6 text-base md:text-xl font-semibold transition-all duration-300 w-full md:w-auto"
+                asChild
               >
-                Заявете диагностика сега
+                <a href="#process">
+                  Вижте процеса
+                </a>
               </Button>
+            </motion.div>
+
+            {/* Trust indicators */}
+            <motion.div
+              className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.8 }}
+            >
+              <div className="flex items-center justify-center gap-3 p-4 bg-slate-800/30 backdrop-blur-sm rounded-xl border border-slate-600/20">
+                <div className="w-2 h-2 bg-[var(--pravdast-yellow)] rounded-full"></div>
+                <span className="text-gray-300 text-sm font-medium">Безплатна диагностика</span>
+              </div>
+              <div className="flex items-center justify-center gap-3 p-4 bg-slate-800/30 backdrop-blur-sm rounded-xl border border-slate-600/20">
+                <div className="w-2 h-2 bg-[var(--pravdast-yellow)] rounded-full"></div>
+                <span className="text-gray-300 text-sm font-medium">Отговор в 48 часа</span>
+              </div>
+              <div className="flex items-center justify-center gap-3 p-4 bg-slate-800/30 backdrop-blur-sm rounded-xl border border-slate-600/20">
+                <div className="w-2 h-2 bg-[var(--pravdast-yellow)] rounded-full"></div>
+                <span className="text-gray-300 text-sm font-medium">Процес 5 минути</span>
+              </div>
             </motion.div>
           </div>
         </div>
