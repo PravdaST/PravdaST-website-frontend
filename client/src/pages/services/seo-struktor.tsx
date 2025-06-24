@@ -228,7 +228,8 @@ const PhilosophySection = () => {
                     animate={{
                       x: currentStep === 1 ? [0, 10, 0] : [0, -10, 0],
                       color: currentStep === 1 ? 'rgb(236, 182, 40)' : 'rgb(248, 113, 113)',
-                      scale: currentStep === 1 ? [1, 1.2, 1] : [1, 0.8, 1]
+                      scale: currentStep === 1 ? [1, 1.2, 1] : [1, 0.8, 1],
+                      rotateY: currentStep === 1 ? 0 : 180
                     }}
                     transition={{ 
                       duration: 1.5,
