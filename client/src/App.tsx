@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import Home from "@/pages/home";
 import Services from "@/pages/services";
 import SeoStruktor from "@/pages/services/seo-struktor";
+import SeoStruktorNew from "@/pages/seo-structor-new";
 import Clientomat from "@/pages/services/clientomat";
 import SalesEngine from "@/pages/services/sales-engine";
 import CaseStudies from "@/pages/case-studies";
@@ -24,6 +25,7 @@ function DocumentTitleManager() {
       '/',
       '/services',
       '/services/seo-struktor',
+      '/seo-structor-new',
       '/services/clientomat', 
       '/services/sales-engine',
       '/case-studies',
@@ -48,6 +50,7 @@ function Router() {
         <Route path="/" component={Home} />
         <Route path="/services" component={Services} />
         <Route path="/services/seo-struktor" component={SeoStruktor} />
+        <Route path="/seo-structor-new" component={SeoStruktorNew} />
         <Route path="/services/clientomat" component={Clientomat} />
         <Route path="/services/sales-engine" component={SalesEngine} />
         <Route path="/case-studies" component={CaseStudies} />
