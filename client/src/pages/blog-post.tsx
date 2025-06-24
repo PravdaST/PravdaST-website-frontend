@@ -15,7 +15,69 @@ interface BlogPost {
   slug: string;
   tags: string[];
   featuredImage?: string;
+  views?: number;
 }
+
+interface Comment {
+  id: string;
+  author: string;
+  content: string;
+  publishedAt: string;
+  replies?: Comment[];
+}
+
+// Blog Background Component
+const BlogBackground = () => {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const updateMousePosition = (e: MouseEvent) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+    window.addEventListener('mousemove', updateMousePosition);
+    return () => window.removeEventListener('mousemove', updateMousePosition);
+  }, []);
+
+  return (
+    <div className="absolute inset-0 overflow-hidden opacity-10">
+      {/* Blog Grid */}
+      <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="blog-grid" width="60" height="60" patternUnits="userSpaceOnUse">
+            <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#ECB629" strokeWidth="0.5" opacity="0.3"/>
+            <circle cx="30" cy="30" r="1.5" fill="#ECB629" opacity="0.4"/>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#blog-grid)" />
+      </svg>
+      
+      {/* Floating Content Keywords */}
+      {['CONTENT', 'INSIGHTS', 'KNOWLEDGE', 'EXPERTISE', 'STORIES', 'GROWTH'].map((keyword, i) => (
+        <motion.div
+          key={keyword}
+          className="absolute text-[#ECB629] font-mono text-xs opacity-20"
+          style={{
+            left: `${15 + (i * 12)}%`,
+            top: `${20 + (i % 3) * 25}%`,
+          }}
+          animate={{
+            x: mousePosition.x * 0.01 * (i % 2 === 0 ? 1 : -1),
+            y: mousePosition.y * 0.01 * (i % 2 === 0 ? -1 : 1),
+            opacity: [0.2, 0.4, 0.2],
+          }}
+          transition={{ 
+            type: "spring", 
+            stiffness: 30, 
+            damping: 10,
+            opacity: { duration: 3, repeat: Infinity }
+          }}
+        >
+          {keyword}
+        </motion.div>
+      ))}
+    </div>
+  );
+};
 
 // Същите блог постове като в главната страница
 const blogPosts: BlogPost[] = [
@@ -99,7 +161,8 @@ const blogPosts: BlogPost[] = [
     readTime: 8,
     category: 'Бизнес стратегия',
     slug: 'predskazuem-rastezh-b2b-kompanii',
-    tags: ['растеж', 'B2B', 'системи', 'стратегия']
+    tags: ['растеж', 'B2B', 'системи', 'стратегия'],
+    views: 2847
   },
   {
     id: '2',
