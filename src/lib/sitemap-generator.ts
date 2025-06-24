@@ -68,8 +68,7 @@ Allow: /
 # Sitemap
 Sitemap: ${this.baseUrl}/sitemap.xml
 
-# Disallow admin and private pages
-Disallow: /admin/
+# Disallow private pages
 Disallow: /api/
 Disallow: /_*
 

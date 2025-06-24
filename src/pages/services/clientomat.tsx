@@ -4,21 +4,21 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
-import { 
-  Network, 
-  User, 
-  Settings, 
-  Search, 
-  FileText, 
-  Plug, 
-  TrendingUp, 
-  Zap, 
-  Clock, 
-  BarChart3, 
+import {
+  Network,
+  User,
+  Settings,
+  Search,
+  FileText,
+  Plug,
+  TrendingUp,
+  Zap,
+  Clock,
+  BarChart3,
   Target,
   Power,
   CheckCircle,
-  ArrowRight
+  ArrowRight,
 } from "lucide-react";
 import { Link } from "wouter";
 
@@ -35,14 +35,17 @@ const ClientomatPage = () => {
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0">
             {/* Network Grid */}
-            <div className="absolute inset-0" style={{
-              backgroundImage: `
+            <div
+              className="absolute inset-0"
+              style={{
+                backgroundImage: `
                 linear-gradient(rgba(236, 182, 40, 0.1) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(236, 182, 40, 0.1) 1px, transparent 1px)
               `,
-              backgroundSize: '60px 60px'
-            }}></div>
-            
+                backgroundSize: "60px 60px",
+              }}
+            ></div>
+
             {/* Communication Nodes */}
             {[...Array(8)].map((_, i) => (
               <motion.div
@@ -60,11 +63,11 @@ const ClientomatPage = () => {
                   duration: 3,
                   repeat: Infinity,
                   delay: i * 0.4,
-                  ease: "easeInOut"
+                  ease: "easeInOut",
                 }}
               />
             ))}
-            
+
             {/* Connection Lines */}
             {[...Array(6)].map((_, i) => (
               <motion.div
@@ -73,7 +76,7 @@ const ClientomatPage = () => {
                 style={{
                   left: `${5 + i * 15}%`,
                   top: `${20 + i * 15}%`,
-                  width: '200px',
+                  width: "200px",
                   transform: `rotate(${i * 30}deg)`,
                 }}
                 animate={{
@@ -84,7 +87,7 @@ const ClientomatPage = () => {
                   duration: 4,
                   repeat: Infinity,
                   delay: i * 0.7,
-                  ease: "easeInOut"
+                  ease: "easeInOut",
                 }}
               />
             ))}
@@ -106,23 +109,28 @@ const ClientomatPage = () => {
                     <motion.div
                       className="absolute inset-0 w-2 h-2 bg-[#ECB629] rounded-full opacity-20"
                       animate={{ scale: [1, 1.3, 1] }}
-                      transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                      transition={{
+                        duration: 4,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                      }}
                     />
                   </div>
                   <span className="text-sm text-gray-300 font-medium">
-                    Clientomat™ <span className="text-[#ECB629] font-bold">система</span>
+                    Clientomat™{" "}
+                    <span className="text-[#ECB629] font-bold">система</span>
                   </span>
                 </div>
               </motion.div>
 
-              <motion.h1 
+              <motion.h1
                 className="text-5xl md:text-7xl font-bold mb-8 text-white leading-tight"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
               >
-                Всяко пропуснато запитване <br />
-                е <span className="text-[#ECB629] relative">
+                Всяко пропуснато запитване <br />е{" "}
+                <span className="text-[#ECB629] relative">
                   изгубен клиент
                   <motion.div
                     className="absolute -bottom-3 left-0 right-0 h-2 bg-gradient-to-r from-[#ECB629] to-[#ECB629]/50 rounded-full"
@@ -133,13 +141,16 @@ const ClientomatPage = () => {
                 </span>
               </motion.h1>
 
-              <motion.p 
+              <motion.p
                 className="text-xl md:text-2xl text-gray-300 mb-12 max-w-4xl mx-auto leading-relaxed"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
               >
-                Докато вие сте заети да управлявате бизнеса си, потенциални клиенти остават без отговор. Нашата система Clientomat™ работи като ваш 24/7 дигитален асистент, който посреща, квалифицира и насочва всяко запитване, без да пропуска нито една възможност.
+                Докато вие сте заети да управлявате бизнеса си, потенциални
+                клиенти остават без отговор. Нашата система Clientomat™ работи
+                като ваш 24/7 дигитален асистент, който посреща, квалифицира и
+                насочва всяко запитване, без да пропуска нито една възможност.
               </motion.p>
 
               <motion.div
@@ -155,8 +166,8 @@ const ClientomatPage = () => {
                   className="group relative"
                 >
                   <div className="absolute -inset-1 bg-gradient-to-r from-[#ECB629] to-[#ECB629]/50 rounded-xl blur opacity-30 group-hover:opacity-50 transition duration-300"></div>
-                  <Button 
-                    size="lg" 
+                  <Button
+                    size="lg"
                     className="relative bg-[#ECB629] text-black hover:bg-[#ECB629]/90 px-8 py-4 md:px-12 md:py-6 text-base md:text-xl font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-105"
                   >
                     Спрете да губите клиенти
@@ -178,18 +189,22 @@ const ClientomatPage = () => {
                 <motion.div
                   className="w-20 h-20 bg-[#ECB629] rounded-full flex items-center justify-center relative z-10"
                   animate={{ scale: [1, 1.1, 1] }}
-                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
                 >
                   <Network className="text-black" size={40} />
                 </motion.div>
-                
+
                 {/* Surrounding Connection Points */}
                 {[...Array(6)].map((_, i) => {
-                  const angle = (i * 60) * (Math.PI / 180);
+                  const angle = i * 60 * (Math.PI / 180);
                   const radius = 80;
                   const x = Math.cos(angle) * radius;
                   const y = Math.sin(angle) * radius;
-                  
+
                   return (
                     <motion.div
                       key={i}
@@ -197,7 +212,7 @@ const ClientomatPage = () => {
                       style={{
                         left: `${x}px`,
                         top: `${y}px`,
-                        transform: 'translate(-50%, -50%)'
+                        transform: "translate(-50%, -50%)",
                       }}
                       animate={{
                         scale: [0.8, 1.2, 0.8],
@@ -207,7 +222,7 @@ const ClientomatPage = () => {
                         duration: 3,
                         repeat: Infinity,
                         delay: i * 0.5,
-                        ease: "easeInOut"
+                        ease: "easeInOut",
                       }}
                     >
                       <div className="w-2 h-2 bg-[#ECB629] rounded-full"></div>
@@ -221,16 +236,22 @@ const ClientomatPage = () => {
       </section>
 
       {/* Philosophy Section */}
-      <section className="py-20 bg-slate-800/50 relative overflow-hidden" ref={philosophyRef}>
+      <section
+        className="py-20 bg-slate-800/50 relative overflow-hidden"
+        ref={philosophyRef}
+      >
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-5">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `
               linear-gradient(45deg, rgba(236, 182, 40, 0.1) 25%, transparent 25%),
               linear-gradient(-45deg, rgba(236, 182, 40, 0.1) 25%, transparent 25%)
             `,
-            backgroundSize: '30px 30px'
-          }}></div>
+              backgroundSize: "30px 30px",
+            }}
+          ></div>
         </div>
 
         <div className="container mx-auto px-6 relative z-10">
@@ -257,13 +278,16 @@ const ClientomatPage = () => {
             >
               {/* Background Pattern */}
               <div className="absolute inset-0 opacity-5">
-                <div className="absolute inset-0" style={{
-                  backgroundImage: `
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    backgroundImage: `
                     linear-gradient(45deg, rgba(236, 182, 40, 0.1) 25%, transparent 25%),
                     linear-gradient(-45deg, rgba(236, 182, 40, 0.1) 25%, transparent 25%)
                   `,
-                  backgroundSize: '20px 20px'
-                }}></div>
+                    backgroundSize: "20px 20px",
+                  }}
+                ></div>
               </div>
 
               <div className="grid md:grid-cols-3 gap-12 items-center relative z-10">
@@ -280,12 +304,18 @@ const ClientomatPage = () => {
                       <motion.div
                         className="absolute inset-0 bg-red-500 rounded-full opacity-10"
                         animate={{ scale: [1.1, 1.3, 1.1] }}
-                        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                        transition={{
+                          duration: 4,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                        }}
                       />
                     </div>
-                    <h3 className="text-lg font-bold text-red-300 mb-3">Човешки фактор</h3>
+                    <h3 className="text-lg font-bold text-red-300 mb-3">
+                      Човешки фактор
+                    </h3>
                   </div>
-                  
+
                   {/* Chaotic Communication Lines */}
                   <div className="relative h-24 flex items-center justify-center mb-4">
                     {[...Array(5)].map((_, i) => (
@@ -294,7 +324,7 @@ const ClientomatPage = () => {
                         className="absolute bg-red-400 rounded-full"
                         style={{
                           width: `${2 + i * 2}px`,
-                          height: '2px',
+                          height: "2px",
                           transform: `rotate(${i * 36 - 72}deg) translateX(${15 + i * 8}px)`,
                         }}
                         animate={{
@@ -305,11 +335,11 @@ const ClientomatPage = () => {
                           duration: 2 + i * 0.3,
                           repeat: Infinity,
                           delay: i * 0.2,
-                          ease: "easeInOut"
+                          ease: "easeInOut",
                         }}
                       />
                     ))}
-                    
+
                     {/* Center chaos indicator */}
                     <motion.div
                       className="w-4 h-4 bg-red-500 rounded-full opacity-60"
@@ -336,26 +366,30 @@ const ClientomatPage = () => {
                     <motion.div
                       className="w-16 h-16 bg-[#ECB629] rounded-full flex items-center justify-center relative"
                       animate={{ rotate: 360 }}
-                      transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                      transition={{
+                        duration: 8,
+                        repeat: Infinity,
+                        ease: "linear",
+                      }}
                     >
                       <ArrowRight className="text-black" size={32} />
                     </motion.div>
-                    
+
                     {/* Transformation rings */}
                     {[...Array(3)].map((_, i) => (
                       <motion.div
                         key={i}
                         className="absolute inset-0 border-2 border-[#ECB629] rounded-full"
-                        style={{ 
+                        style={{
                           transform: `scale(${1.2 + i * 0.3})`,
-                          opacity: 0.3 - i * 0.1
+                          opacity: 0.3 - i * 0.1,
                         }}
                         animate={{ rotate: -360 }}
-                        transition={{ 
-                          duration: 6 + i * 2, 
-                          repeat: Infinity, 
+                        transition={{
+                          duration: 6 + i * 2,
+                          repeat: Infinity,
                           ease: "linear",
-                          delay: i * 0.5 
+                          delay: i * 0.5,
                         }}
                       />
                     ))}
@@ -375,12 +409,18 @@ const ClientomatPage = () => {
                       <motion.div
                         className="absolute inset-0 bg-[#ECB629] rounded-full opacity-10"
                         animate={{ scale: [1.1, 1.3, 1.1] }}
-                        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                        transition={{
+                          duration: 4,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                        }}
                       />
                     </div>
-                    <h3 className="text-lg font-bold text-[#ECB629] mb-3">Системен процес</h3>
+                    <h3 className="text-lg font-bold text-[#ECB629] mb-3">
+                      Системен процес
+                    </h3>
                   </div>
-                  
+
                   {/* Organized Communication Lines */}
                   <div className="relative h-24 flex items-center justify-center mb-4">
                     {[...Array(4)].map((_, i) => (
@@ -388,8 +428,8 @@ const ClientomatPage = () => {
                         key={i}
                         className="absolute bg-[#ECB629] rounded-full"
                         style={{
-                          width: '40px',
-                          height: '2px',
+                          width: "40px",
+                          height: "2px",
                           top: `${i * 6}px`,
                         }}
                         animate={{
@@ -400,22 +440,22 @@ const ClientomatPage = () => {
                           duration: 3,
                           repeat: Infinity,
                           delay: i * 0.2,
-                          ease: "easeInOut"
+                          ease: "easeInOut",
                         }}
                       />
                     ))}
-                    
+
                     {/* System flow indicators */}
                     <motion.div
                       className="absolute right-0 w-2 h-2 bg-[#ECB629] rounded-full"
-                      animate={{ 
+                      animate={{
                         x: [-50, 0, -50],
-                        opacity: [0, 1, 0] 
+                        opacity: [0, 1, 0],
                       }}
-                      transition={{ 
-                        duration: 2, 
+                      transition={{
+                        duration: 2,
                         repeat: Infinity,
-                        ease: "easeInOut"
+                        ease: "easeInOut",
                       }}
                     />
                   </div>
@@ -444,10 +484,12 @@ const ClientomatPage = () => {
                 <h3 className="text-xl font-bold text-red-300">Проблемът</h3>
               </div>
               <p className="text-gray-300 leading-relaxed text-lg">
-                Когато разчитате на ръчна комуникация, резултатите винаги са различни. Едно запитване получава перфектен отговор, друго е забравено. Тази непоследователност струва скъпо.
+                Когато разчитате на ръчна комуникация, резултатите винаги са
+                различни. Едно запитване получава перфектен отговор, друго е
+                забравено. Тази непоследователност струва скъпо.
               </p>
             </motion.div>
-            
+
             {/* Solution Card */}
             <motion.div
               className="bg-slate-800/60 rounded-xl p-8 border border-[#ECB629]/20"
@@ -457,10 +499,15 @@ const ClientomatPage = () => {
             >
               <div className="flex items-center mb-6">
                 <div className="w-3 h-3 bg-[#ECB629] rounded-full mr-3"></div>
-                <h3 className="text-xl font-bold text-[#ECB629]">Нашият подход</h3>
+                <h3 className="text-xl font-bold text-[#ECB629]">
+                  Нашият подход
+                </h3>
               </div>
               <p className="text-gray-300 leading-relaxed text-lg">
-                Ние елиминираме случайността. Чрез Clientomat™ ние изграждаме предвидим, автоматизиран диалог, който гарантира, че всеки клиент получава едно и също високо ниво на обслужване, всеки път.
+                Ние елиминираме случайността. Чрез Clientomat™ ние изграждаме
+                предвидим, автоматизиран диалог, който гарантира, че всеки
+                клиент получава едно и също високо ниво на обслужване, всеки
+                път.
               </p>
             </motion.div>
           </div>
@@ -471,13 +518,16 @@ const ClientomatPage = () => {
       <section className="py-20 bg-slate-900 relative overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `
               linear-gradient(rgba(236, 182, 40, 0.1) 1px, transparent 1px),
               linear-gradient(90deg, rgba(236, 182, 40, 0.1) 1px, transparent 1px)
             `,
-            backgroundSize: '50px 50px'
-          }}></div>
+              backgroundSize: "50px 50px",
+            }}
+          ></div>
         </div>
 
         <div className="container mx-auto px-6 relative z-10">
@@ -490,7 +540,9 @@ const ClientomatPage = () => {
           >
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-8">
               Как изграждаме вашия <br />
-              <span className="text-[#ECB629]">автоматизиран комуникационен поток</span>
+              <span className="text-[#ECB629]">
+                автоматизиран комуникационен поток
+              </span>
             </h2>
           </motion.div>
 
@@ -501,35 +553,39 @@ const ClientomatPage = () => {
                 {
                   phase: "1",
                   title: "Анализ на комуникацията",
-                  description: "Проучваме как и откъде идват вашите запитвания и какъв е пътят на клиента от първия контакт до сделката.",
+                  description:
+                    "Проучваме как и откъде идват вашите запитвания и какъв е пътят на клиента от първия контакт до сделката.",
                   icon: Search,
                   duration: "1-2 седмици",
-                  deliverables: "Карта на комуникационните канали"
+                  deliverables: "Карта на комуникационните канали",
                 },
                 {
-                  phase: "2", 
+                  phase: "2",
                   title: "Проектиране на потока",
-                  description: "Проектираме логиката на системата – последователността от автоматизирани допирни точки, които ще изграждат доверие и ще водят към продажба.",
+                  description:
+                    "Проектираме логиката на системата – последователността от автоматизирани допирни точки, които ще изграждат доверие и ще водят към продажба.",
                   icon: FileText,
                   duration: "2-3 седмици",
-                  deliverables: "Детайлна схема на автоматизацията"
+                  deliverables: "Детайлна схема на автоматизацията",
                 },
                 {
                   phase: "3",
-                  title: "Техническо внедряване", 
-                  description: "Свързваме системата с вашия сайт и канали за комуникация и я тестваме обстойно.",
+                  title: "Техническо внедряване",
+                  description:
+                    "Свързваме системата с вашия сайт и канали за комуникация и я тестваме обстойно.",
                   icon: Plug,
                   duration: "3-4 седмици",
-                  deliverables: "Функционираща система"
+                  deliverables: "Функционираща система",
                 },
                 {
                   phase: "4",
                   title: "Оптимизация и анализ",
-                  description: "Анализираме данните и постоянно подобряваме системата за по-висока ефективност.",
+                  description:
+                    "Анализираме данните и постоянно подобряваме системата за по-висока ефективност.",
                   icon: TrendingUp,
                   duration: "Непрекъснато",
-                  deliverables: "Месечни доклади за оптимизация"
-                }
+                  deliverables: "Месечни доклади за оптимизация",
+                },
               ].map((step, index) => (
                 <motion.div
                   key={index}
@@ -541,24 +597,31 @@ const ClientomatPage = () => {
                 >
                   {/* Hover Glow */}
                   <div className="absolute inset-0 bg-gradient-to-r from-[#ECB629]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  
+
                   <div className="flex items-start gap-6 relative z-10">
                     {/* Phase Number & Icon */}
                     <div className="flex-shrink-0">
                       <div className="w-16 h-16 bg-[#ECB629] rounded-full flex items-center justify-center mb-4 relative group-hover:scale-105 transition-transform duration-300">
-                        <span className="text-black font-bold text-xl">{step.phase}</span>
+                        <span className="text-black font-bold text-xl">
+                          {step.phase}
+                        </span>
                         <motion.div
                           className="absolute inset-0 bg-[#ECB629] rounded-full opacity-10"
                           animate={{ scale: [1.1, 1.3, 1.1] }}
-                          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: index * 1 }}
+                          transition={{
+                            duration: 6,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                            delay: index * 1,
+                          }}
                         />
                       </div>
-                      
+
                       <div className="w-12 h-12 bg-slate-700 rounded-full flex items-center justify-center mx-2">
                         <step.icon className="text-[#ECB629]" size={24} />
                       </div>
                     </div>
-                    
+
                     {/* Content */}
                     <div className="flex-1">
                       <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-[#ECB629] transition-colors">
@@ -567,23 +630,31 @@ const ClientomatPage = () => {
                       <p className="text-gray-300 text-lg leading-relaxed mb-4">
                         {step.description}
                       </p>
-                      
+
                       {/* Details */}
                       <div className="grid md:grid-cols-2 gap-4">
                         <div className="bg-slate-700/30 rounded-lg p-4">
                           <div className="flex items-center gap-2 mb-2">
                             <Clock className="text-[#ECB629]" size={16} />
-                            <span className="text-sm font-semibold text-[#ECB629]">Продължителност</span>
+                            <span className="text-sm font-semibold text-[#ECB629]">
+                              Продължителност
+                            </span>
                           </div>
-                          <p className="text-gray-300 text-sm">{step.duration}</p>
+                          <p className="text-gray-300 text-sm">
+                            {step.duration}
+                          </p>
                         </div>
-                        
+
                         <div className="bg-slate-700/30 rounded-lg p-4">
                           <div className="flex items-center gap-2 mb-2">
                             <CheckCircle className="text-[#ECB629]" size={16} />
-                            <span className="text-sm font-semibold text-[#ECB629]">Резултат</span>
+                            <span className="text-sm font-semibold text-[#ECB629]">
+                              Резултат
+                            </span>
                           </div>
-                          <p className="text-gray-300 text-sm">{step.deliverables}</p>
+                          <p className="text-gray-300 text-sm">
+                            {step.deliverables}
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -607,7 +678,9 @@ const ClientomatPage = () => {
           >
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-8">
               Крайният резултат: <br />
-              <span className="text-[#ECB629]">Повече време за вас, повече приходи за бизнеса</span>
+              <span className="text-[#ECB629]">
+                Повече време за вас, повече приходи за бизнеса
+              </span>
             </h2>
           </motion.div>
 
@@ -617,31 +690,35 @@ const ClientomatPage = () => {
               {
                 icon: Zap,
                 title: "Секундни отговори",
-                description: "Всеки потенциален клиент получава отговор за секунди, 24/7",
+                description:
+                  "Всеки потенциален клиент получава отговор за секунди, 24/7",
                 metric: "< 5 сек",
-                color: "text-blue-400"
+                color: "text-blue-400",
               },
               {
                 icon: Clock,
                 title: "Освободено време",
-                description: "Освобождавате часове от вашето време от повтарящи се, административни задачи",
+                description:
+                  "Освобождавате часове от вашето време от повтарящи се, административни задачи",
                 metric: "80% време",
-                color: "text-green-400"
+                color: "text-green-400",
               },
               {
                 icon: BarChart3,
-                title: "Скалируемост", 
-                description: "Изграждате предвидим и скалируем процес на продажби, който не зависи от човешкия фактор",
+                title: "Скалируемост",
+                description:
+                  "Изграждате предвидим и скалируем процес на продажби, който не зависи от човешкия фактор",
                 metric: "∞ капацитет",
-                color: "text-purple-400"
+                color: "text-purple-400",
               },
               {
                 icon: Target,
                 title: "Висока конверсия",
-                description: "Увеличавате успеваемостта чрез последователна и професионална комуникация",
+                description:
+                  "Увеличавате успеваемостта чрез последователна и професионална комуникация",
                 metric: "+40% ROI",
-                color: "text-[#ECB629]"
-              }
+                color: "text-[#ECB629]",
+              },
             ].map((benefit, index) => (
               <motion.div
                 key={index}
@@ -652,24 +729,31 @@ const ClientomatPage = () => {
                 viewport={{ once: true }}
               >
                 <div className="relative mb-6">
-                  <div className={`w-16 h-16 mx-auto rounded-full flex items-center justify-center border group-hover:scale-110 transition-transform duration-300 ${benefit.color.replace('text-', 'bg-').replace('400', '500/20')} ${benefit.color.replace('text-', 'border-').replace('400', '500/30')}`}>
+                  <div
+                    className={`w-16 h-16 mx-auto rounded-full flex items-center justify-center border group-hover:scale-110 transition-transform duration-300 ${benefit.color.replace("text-", "bg-").replace("400", "500/20")} ${benefit.color.replace("text-", "border-").replace("400", "500/30")}`}
+                  >
                     <benefit.icon className={`${benefit.color}`} size={32} />
                   </div>
                   <motion.div
-                    className={`absolute inset-0 rounded-full opacity-5 ${benefit.color.replace('text-', 'bg-').replace('400', '500')}`}
+                    className={`absolute inset-0 rounded-full opacity-5 ${benefit.color.replace("text-", "bg-").replace("400", "500")}`}
                     animate={{ scale: [1.1, 1.3, 1.1] }}
-                    transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: index * 1 }}
+                    transition={{
+                      duration: 6,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                      delay: index * 1,
+                    }}
                   />
                 </div>
-                
+
                 <div className={`text-2xl font-bold mb-2 ${benefit.color}`}>
                   {benefit.metric}
                 </div>
-                
+
                 <h3 className="text-lg font-semibold text-white mb-3">
                   {benefit.title}
                 </h3>
-                
+
                 <p className="text-gray-300 text-sm leading-relaxed">
                   {benefit.description}
                 </p>
@@ -700,18 +784,21 @@ const ClientomatPage = () => {
                 {
                   number: "1",
                   title: "Персонализирано решение",
-                  description: "Всяка система Clientomat™ се проектира спрямо вашите уникални процеси. Ние не предлагаме готови пакети."
+                  description:
+                    "Всяка система Clientomat™ се проектира спрямо вашите уникални процеси. Ние не предлагаме готови пакети.",
                 },
                 {
-                  number: "2", 
+                  number: "2",
                   title: "Бюджетна рамка",
-                  description: "За ориентация, базовите инженерни проекти започват от 1750 лв./месец."
+                  description:
+                    "За ориентация, базовите инженерни проекти започват от 1750 лв./месец.",
                 },
                 {
                   number: "3",
-                  title: "Техническа спецификация", 
-                  description: "Финалната инвестиция се определя след техническа диагностика. Вие получавате детайлно инженерно предложение, в което всеки компонент е ясно описан и остойностен."
-                }
+                  title: "Техническа спецификация",
+                  description:
+                    "Финалната инвестиция се определя след техническа диагностика. Вие получавате детайлно инженерно предложение, в което всеки компонент е ясно описан и остойностен.",
+                },
               ].map((principle, index) => (
                 <motion.div
                   key={index}
@@ -723,9 +810,11 @@ const ClientomatPage = () => {
                 >
                   <div className="flex items-start gap-6">
                     <div className="w-12 h-12 bg-[#ECB629] rounded-full flex items-center justify-center flex-shrink-0">
-                      <span className="text-black font-bold text-lg">{principle.number}</span>
+                      <span className="text-black font-bold text-lg">
+                        {principle.number}
+                      </span>
                     </div>
-                    
+
                     <div>
                       <h3 className="text-xl font-bold text-white mb-3">
                         {principle.title}
@@ -748,9 +837,9 @@ const ClientomatPage = () => {
         <div className="absolute inset-0 flex items-center justify-center opacity-5">
           <motion.div
             className="w-96 h-96 rounded-full border-4 border-[#ECB629]"
-            animate={{ 
+            animate={{
               scale: [1, 1.2, 1],
-              opacity: [0.1, 0.3, 0.1] 
+              opacity: [0.1, 0.3, 0.1],
             }}
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
           />
@@ -770,7 +859,7 @@ const ClientomatPage = () => {
               </div>
             </motion.div>
 
-            <motion.h2 
+            <motion.h2
               className="text-4xl md:text-6xl font-bold mb-8 text-white"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -781,14 +870,17 @@ const ClientomatPage = () => {
               бизнеса си на <span className="text-[#ECB629]">автопилот?</span>
             </motion.h2>
 
-            <motion.p 
+            <motion.p
               className="text-xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
               viewport={{ once: true }}
             >
-              Нашата експертна диагностика ще анализира настоящия ви процес по обработка на запитвания и ще ви покаже точно къде губите време и клиенти. Работим с ограничен брой клиенти всеки месец, за да гарантираме качество.
+              Нашата експертна диагностика ще анализира настоящия ви процес по
+              обработка на запитвания и ще ви покаже точно къде губите време и
+              клиенти. Работим с ограничен брой клиенти всеки месец, за да
+              гарантираме качество.
             </motion.p>
 
             <motion.div
@@ -805,8 +897,8 @@ const ClientomatPage = () => {
                 className="group relative inline-block"
               >
                 <div className="absolute -inset-1 bg-gradient-to-r from-[#ECB629] to-[#ECB629]/50 rounded-xl blur opacity-30 group-hover:opacity-50 transition duration-300"></div>
-                <Button 
-                  size="lg" 
+                <Button
+                  size="lg"
                   className="relative bg-[#ECB629] text-black hover:bg-[#ECB629]/90 px-8 py-4 md:px-12 md:py-6 text-base md:text-xl font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-105"
                 >
                   Получете своя диагностичен доклад
@@ -824,7 +916,10 @@ const ClientomatPage = () => {
             >
               <div className="w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
               <span className="text-gray-300 font-medium">
-                Диагностика за този месец: остават само <span className="text-[#ECB629] font-bold">3 свободни места</span>
+                Диагностика за този месец: остават само{" "}
+                <span className="text-[#ECB629] font-bold">
+                  3 свободни места
+                </span>
               </span>
             </motion.div>
           </div>
