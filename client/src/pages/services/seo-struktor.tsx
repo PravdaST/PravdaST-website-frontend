@@ -108,15 +108,23 @@ const SeoStruktorBackground = () => {
   );
 };
 
-// Philosophy Section Component
+// Philosophy Section Component  
 const PhilosophySection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
+  const [currentStep, setCurrentStep] = useState(0);
+
+  useEffect(() => {
+    if (isInView) {
+      const timer = setTimeout(() => setCurrentStep(1), 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [isInView]);
 
   return (
-    <section ref={ref} className="py-20 bg-slate-800/50">
+    <section ref={ref} className="py-20 bg-slate-900/50">
       <div className="container mx-auto px-6">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-4xl mx-auto">
           <motion.h2
             className="text-3xl md:text-4xl font-bold mb-16 text-center text-white"
             initial={{ opacity: 0, y: 30 }}
@@ -126,100 +134,132 @@ const PhilosophySection = () => {
             За да е стабилна една сграда, тя се нуждае от инженерен план.
           </motion.h2>
 
-          <div className="grid md:grid-cols-2 gap-8 items-stretch">
-            {/* Left Column - Chaos */}
+          {/* Mobile-first single column design */}
+          <div className="space-y-12">
+            
+            {/* Transformation Visualization */}
             <motion.div
-              className="flex flex-col h-full"
-              initial={{ opacity: 0, x: -50 }}
-              animate={isInView ? { opacity: 1, x: 0 } : {}}
+              className="relative bg-slate-800/80 rounded-2xl p-8 border border-slate-600/30 overflow-hidden"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={isInView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <div className="relative p-8 bg-slate-700/50 rounded-lg border border-red-500/30 h-64 flex flex-col justify-center mb-6">
-                <div className="absolute inset-0 opacity-20">
-                  <div className="grid grid-cols-6 gap-2 h-full p-4">
-                    {Array.from({ length: 24 }).map((_, i) => (
-                      <motion.div
-                        key={i}
-                        className="bg-red-400 rounded-sm h-4"
-                        style={{
-                          transform: `rotate(${Math.random() * 90}deg) translate(${Math.random() * 20}px, ${Math.random() * 20}px)`,
-                        }}
-                        animate={{
-                          rotate: [0, 360],
-                          scale: [1, 1.1, 1],
-                        }}
-                        transition={{
-                          duration: 3 + Math.random() * 2,
-                          repeat: Infinity,
-                          ease: "linear",
-                        }}
-                      />
-                    ))}
-                  </div>
-                </div>
-                <h3 className="text-2xl font-bold mb-4 text-red-400 relative z-10 text-center">
-                  БЕЗ СИСТЕМА
-                </h3>
-                <div className="text-center text-red-300 text-sm relative z-10">
-                  Хаотичен подход
+              {/* Background Pattern */}
+              <div className="absolute inset-0 opacity-10">
+                <div className="grid grid-cols-8 md:grid-cols-12 gap-1 h-full p-4">
+                  {Array.from({ length: 96 }).map((_, i) => (
+                    <motion.div
+                      key={i}
+                      className={`rounded-sm h-2 ${
+                        currentStep === 0 
+                          ? 'bg-red-400' 
+                          : 'bg-[var(--pravdast-yellow)]'
+                      }`}
+                      initial={{
+                        rotate: currentStep === 0 ? Math.random() * 180 - 90 : 0,
+                        scale: currentStep === 0 ? Math.random() * 0.8 + 0.6 : 1,
+                      }}
+                      animate={{
+                        rotate: currentStep === 1 ? 0 : Math.random() * 180 - 90,
+                        scale: currentStep === 1 ? 1 : Math.random() * 0.8 + 0.6,
+                      }}
+                      transition={{
+                        duration: 1.5,
+                        delay: i * 0.01,
+                        ease: "easeOut",
+                      }}
+                    />
+                  ))}
                 </div>
               </div>
-              <p className="text-gray-300 leading-relaxed flex-1">
-                Повечето уебсайтове се развиват хаотично – добавя се страница
-                тук, пише се статия там. Липсва единна, централна структура.
-                Точно това е причината резултатите да са непредсказуеми и
-                краткотрайни.
-              </p>
+
+              {/* Status Indicator */}
+              <div className="relative z-10 text-center mb-8">
+                <motion.div
+                  className={`inline-flex items-center px-4 py-2 rounded-full text-sm font-semibold ${
+                    currentStep === 0 
+                      ? 'bg-red-500/20 text-red-300 border border-red-500/30' 
+                      : 'bg-[var(--pravdast-yellow)]/20 text-[var(--pravdast-yellow)] border border-[var(--pravdast-yellow)]/30'
+                  }`}
+                  animate={{
+                    backgroundColor: currentStep === 1 
+                      ? 'rgba(236, 182, 40, 0.2)' 
+                      : 'rgba(239, 68, 68, 0.2)'
+                  }}
+                  transition={{ duration: 1 }}
+                >
+                  <motion.div
+                    className={`w-2 h-2 rounded-full mr-2 ${
+                      currentStep === 0 ? 'bg-red-400' : 'bg-[var(--pravdast-yellow)]'
+                    }`}
+                    animate={{
+                      backgroundColor: currentStep === 1 
+                        ? 'rgb(236, 182, 40)' 
+                        : 'rgb(248, 113, 113)'
+                    }}
+                    transition={{ duration: 1 }}
+                  />
+                  {currentStep === 0 ? 'БЕЗ СИСТЕМА' : 'СЪС СИСТЕМА'}
+                </motion.div>
+              </div>
+
+              {/* Progress Arrow */}
+              <div className="relative z-10 flex justify-center mb-8">
+                <motion.div
+                  className="flex items-center space-x-4"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 2 }}
+                >
+                  <div className="w-16 h-0.5 bg-gradient-to-r from-red-400 to-[var(--pravdast-yellow)]"></div>
+                  <ArrowRight className="text-[var(--pravdast-yellow)] w-6 h-6" />
+                  <div className="w-16 h-0.5 bg-[var(--pravdast-yellow)]"></div>
+                </motion.div>
+              </div>
             </motion.div>
 
-            {/* Right Column - Structure */}
-            <motion.div
-              className="flex flex-col h-full"
-              initial={{ opacity: 0, x: 50 }}
-              animate={isInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.4 }}
-            >
-              <div className="relative p-8 bg-slate-700/50 rounded-lg border border-[var(--pravdast-yellow)]/30 h-64 flex flex-col justify-center mb-6">
-                <div className="absolute inset-0 opacity-20">
-                  <div className="grid grid-cols-6 gap-2 h-full p-4">
-                    {Array.from({ length: 24 }).map((_, i) => (
-                      <motion.div
-                        key={i}
-                        className="bg-[var(--pravdast-yellow)] rounded-sm h-4"
-                        initial={{
-                          rotate: Math.random() * 90,
-                          x: Math.random() * 20,
-                          y: Math.random() * 20,
-                        }}
-                        animate={isInView ? {
-                          rotate: 0,
-                          x: 0,
-                          y: 0,
-                        } : {}}
-                        transition={{
-                          duration: 2,
-                          delay: 0.6 + i * 0.05,
-                          ease: "easeInOut",
-                        }}
-                      />
-                    ))}
-                  </div>
+            {/* Content Cards */}
+            <div className="grid gap-8 md:grid-cols-2">
+              
+              {/* Problem Card */}
+              <motion.div
+                className="bg-slate-800/60 rounded-xl p-6 border border-red-500/20"
+                initial={{ opacity: 0, y: 30 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.8, delay: 0.4 }}
+              >
+                <div className="flex items-center mb-4">
+                  <div className="w-3 h-3 bg-red-400 rounded-full mr-3"></div>
+                  <h3 className="text-lg font-bold text-red-300">Проблемът</h3>
                 </div>
-                <h3 className="text-2xl font-bold mb-4 text-[var(--pravdast-yellow)] relative z-10 text-center">
-                  СЪС СИСТЕМА
-                </h3>
-                <div className="text-center text-yellow-300 text-sm relative z-10">
-                  Структуриран подход
+                <p className="text-gray-300 leading-relaxed">
+                  Повечето уебсайтове се развиват хаотично – добавя се
+                  страница тук, пише се статия там. Липсва единна,
+                  централна структура. Точно това е причината резултатите
+                  да са непредсказуеми и краткотрайни.
+                </p>
+              </motion.div>
+
+              {/* Solution Card */}
+              <motion.div
+                className="bg-slate-800/60 rounded-xl p-6 border border-[var(--pravdast-yellow)]/20"
+                initial={{ opacity: 0, y: 30 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.8, delay: 0.6 }}
+              >
+                <div className="flex items-center mb-4">
+                  <div className="w-3 h-3 bg-[var(--pravdast-yellow)] rounded-full mr-3"></div>
+                  <h3 className="text-lg font-bold text-[var(--pravdast-yellow)]">Решението</h3>
                 </div>
-              </div>
-              <p className="text-gray-300 leading-relaxed flex-1">
-                Ние подхождаме към вашия сайт като архитекти. Преди да
-                поставим и една \"тухла\" (съдържание), ние създаваме цялостния
-                инженерен план (SEO Struktor™), който гарантира, че всеки
-                елемент работи в синхрон с останалите, за да се постигне
-                крайната цел – доминация в Google.
-              </p>
-            </motion.div>
+                <p className="text-gray-300 leading-relaxed">
+                  Ние подхождаме към вашия сайт като архитекти. Преди да
+                  поставим и една \"тухла\" (съдържание), ние създаваме цялостния
+                  инженерен план (SEO Struktor™), който гарантира, че всеки
+                  елемент работи в синхрон с останалите, за да се постигне
+                  крайната цел – доминация в Google.
+                </p>
+              </motion.div>
+            </div>
           </div>
         </div>
       </div>
