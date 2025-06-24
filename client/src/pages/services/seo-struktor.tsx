@@ -116,8 +116,11 @@ const PhilosophySection = () => {
 
   useEffect(() => {
     if (isInView) {
-      const timer = setTimeout(() => setCurrentStep(1), 1000);
-      return () => clearTimeout(timer);
+      const interval = setInterval(() => {
+        setCurrentStep(prev => prev === 0 ? 1 : 0);
+      }, 3000); // Switch every 3 seconds
+      
+      return () => clearInterval(interval);
     }
   }, [isInView]);
 
@@ -162,11 +165,12 @@ const PhilosophySection = () => {
                       animate={{
                         rotate: currentStep === 1 ? 0 : Math.random() * 180 - 90,
                         scale: currentStep === 1 ? 1 : Math.random() * 0.8 + 0.6,
+                        backgroundColor: currentStep === 1 ? 'rgb(236, 182, 40)' : 'rgb(248, 113, 113)'
                       }}
                       transition={{
-                        duration: 1.5,
-                        delay: i * 0.01,
-                        ease: "easeOut",
+                        duration: 2,
+                        delay: i * 0.005,
+                        ease: "easeInOut",
                       }}
                     />
                   ))}
@@ -209,11 +213,40 @@ const PhilosophySection = () => {
                   className="flex items-center space-x-4"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ delay: 2 }}
+                  transition={{ delay: 1 }}
                 >
-                  <div className="w-16 h-0.5 bg-gradient-to-r from-red-400 to-[var(--pravdast-yellow)]"></div>
-                  <ArrowRight className="text-[var(--pravdast-yellow)] w-6 h-6" />
-                  <div className="w-16 h-0.5 bg-[var(--pravdast-yellow)]"></div>
+                  <motion.div 
+                    className="w-16 h-0.5"
+                    animate={{
+                      background: currentStep === 0 
+                        ? 'linear-gradient(to right, rgb(248, 113, 113), rgb(239, 68, 68))'
+                        : 'linear-gradient(to right, rgb(248, 113, 113), rgb(236, 182, 40))'
+                    }}
+                    transition={{ duration: 1.5 }}
+                  />
+                  <motion.div
+                    animate={{
+                      x: currentStep === 1 ? [0, 10, 0] : [0, -10, 0],
+                      color: currentStep === 1 ? 'rgb(236, 182, 40)' : 'rgb(248, 113, 113)',
+                      scale: currentStep === 1 ? [1, 1.2, 1] : [1, 0.8, 1]
+                    }}
+                    transition={{ 
+                      duration: 1.5,
+                      repeat: Infinity,
+                      repeatType: "loop"
+                    }}
+                  >
+                    <ArrowRight className="w-6 h-6" />
+                  </motion.div>
+                  <motion.div 
+                    className="w-16 h-0.5"
+                    animate={{
+                      background: currentStep === 1 
+                        ? 'linear-gradient(to right, rgb(236, 182, 40), rgb(236, 182, 40))'
+                        : 'linear-gradient(to right, rgb(236, 182, 40), rgb(248, 113, 113))'
+                    }}
+                    transition={{ duration: 1.5 }}
+                  />
                 </motion.div>
               </div>
             </motion.div>
