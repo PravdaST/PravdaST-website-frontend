@@ -17,7 +17,7 @@ export default function Test() {
               href="/"
               className="inline-block bg-slate-700 text-white px-6 py-3 rounded-lg font-semibold hover:bg-slate-600 transition-colors"
             >
-              Обратно към началото33
+              Обратно към началото
             </a>
           </div>
         </div>
