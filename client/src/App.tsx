@@ -5,7 +5,6 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import { useEffect } from "react";
-import KlaviyoSetup from "./components/klaviyo-setup";
 import Home from "@/pages/home";
 import Services from "@/pages/services";
 import SeoStruktor from "@/pages/services/seo-struktor";
@@ -67,7 +66,6 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        <KlaviyoSetup />
         <Toaster />
         <Router />
         <SpeedInsights />
