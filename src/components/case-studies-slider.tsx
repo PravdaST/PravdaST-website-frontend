@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import {
@@ -106,26 +105,13 @@ export const CaseStudiesSlider = () => {
     <section className="py-20 bg-[var(--pravdast-dark)]">
       <div className="container mx-auto px-6">
         {/* Header */}
-        <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-        >
-          <motion.div
-            className="inline-flex items-center gap-2 mb-8 px-4 py-2 rounded-full bg-gradient-to-r from-slate-800/80 to-slate-700/60 border border-slate-600/30 backdrop-blur-sm"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
             <span className="text-sm text-gray-300 font-medium">
               <span className="text-[var(--pravdast-yellow)]">
                 <b>Проследими</b>
               </span>{" "}
               резултати от реални клиенти
             </span>
-          </motion.div>
+          </div className=">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
             Един реален пример струва повече от{" "}
             <span className="text-[var(--pravdast-yellow)]">
@@ -136,18 +122,12 @@ export const CaseStudiesSlider = () => {
             Вижте как компании превърнаха хаоса в предсказуем растеж с нашите
             инженерни системи
           </p>
-        </motion.div>
+        </div className=">
 
         {/* Slider */}
         <div className="relative max-w-6xl mx-auto">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={currentSlide}
-              initial={{ opacity: 0, x: 100 }}
-              animate={{ opacity: 1, x: 0 }}
+          <div mode="wait">
               exit={{ opacity: 0, x: -100 }}
-              transition={{ duration: 0.5 }}
-            >
               <Card className="bg-[var(--pravdast-dark-gray)] border-[var(--pravdast-yellow)]/20">
                 <CardContent className="p-8 md:p-12">
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -178,7 +158,6 @@ export const CaseStudiesSlider = () => {
                           <span
                             key={index}
                             className="px-4 py-2 bg-[var(--pravdast-yellow)]/10 border border-[var(--pravdast-yellow)]/30 rounded-full text-sm text-[var(--pravdast-yellow)] font-medium"
-                          >
                             {system}
                           </span>
                         ))}
@@ -194,13 +173,7 @@ export const CaseStudiesSlider = () => {
                     <div>
                       <div className="grid grid-cols-1 gap-4">
                         {currentCase.results.map((result, index) => (
-                          <motion.div
-                            key={index}
                             className="bg-[var(--pravdast-dark)]/50 border border-[var(--pravdast-yellow)]/20 rounded-lg p-6 text-center"
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5, delay: index * 0.1 }}
-                          >
                             <div className="flex items-center justify-center mb-3">
                               <TrendingUp className="text-[var(--pravdast-yellow)] w-6 h-6 mr-2" />
                               <span className="text-2xl md:text-3xl font-bold text-[var(--pravdast-yellow)]">
@@ -210,15 +183,15 @@ export const CaseStudiesSlider = () => {
                             <p className="text-gray-300 text-sm">
                               {result.description}
                             </p>
-                          </motion.div>
+                          </div className=">
                         ))}
                       </div>
                     </div>
                   </div>
                 </CardContent>
               </Card>
-            </motion.div>
-          </AnimatePresence>
+            </div className=">
+          </div>
 
           {/* Navigation Arrows */}
           <div className="flex justify-center items-center gap-4 mt-8">
@@ -227,7 +200,6 @@ export const CaseStudiesSlider = () => {
               size="icon"
               onClick={prevSlide}
               className="w-12 h-12 rounded-full bg-[var(--pravdast-dark-gray)] border-[var(--pravdast-yellow)]/30 hover:bg-[var(--pravdast-yellow)]/10 hover:border-[var(--pravdast-yellow)] text-white"
-            >
               <ChevronLeft className="w-6 h-6" />
             </Button>
 
@@ -237,7 +209,6 @@ export const CaseStudiesSlider = () => {
                 <button
                   key={index}
                   onClick={() => setCurrentSlide(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
                     index === currentSlide
                       ? "bg-[var(--pravdast-yellow)] scale-125"
                       : "bg-gray-600 hover:bg-gray-500"
@@ -251,7 +222,6 @@ export const CaseStudiesSlider = () => {
               size="icon"
               onClick={nextSlide}
               className="w-12 h-12 rounded-full bg-[var(--pravdast-dark-gray)] border-[var(--pravdast-yellow)]/30 hover:bg-[var(--pravdast-yellow)]/10 hover:border-[var(--pravdast-yellow)] text-white"
-            >
               <ChevronRight className="w-6 h-6" />
             </Button>
           </div>
@@ -262,7 +232,6 @@ export const CaseStudiesSlider = () => {
               <Button
                 size="lg"
                 className="bg-[var(--pravdast-yellow)] text-[var(--pravdast-dark)] hover:bg-[#d4a426] font-semibold px-8 py-3"
-              >
                 Вижте всички казуси
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>

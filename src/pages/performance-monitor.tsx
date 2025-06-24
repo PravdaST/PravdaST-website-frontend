@@ -15,7 +15,6 @@ interface ResourceAnalysis {
   cssSize: number;
   imageSize: number;
   recommendations: string[];
-}
 
 export default function PerformanceMonitor() {
   const [metrics, setMetrics] = useState<any>({});
@@ -64,7 +63,6 @@ export default function PerformanceMonitor() {
         return <Badge className="bg-yellow-100 text-yellow-800">Нужда от подобрение</Badge>;
       default:
         return <Badge className="bg-red-100 text-red-800">Слаб</Badge>;
-    }
   };
 
   const formatTime = (ms: number) => {
@@ -90,7 +88,6 @@ export default function PerformanceMonitor() {
       value: metrics.cumulativeLayoutShift,
       target: '< 0.1',
       description: 'Стабилност на визуалното съдържание'
-    }
   ];
 
   const performanceTips = [
@@ -117,7 +114,6 @@ export default function PerformanceMonitor() {
       title: 'Critical CSS',
       description: 'Inline critical CSS за по-бързо рендиране',
       status: 'good'
-    }
   ];
 
   return (
@@ -331,7 +327,6 @@ export default function PerformanceMonitor() {
                         {typeof window !== 'undefined' ? 
                           performance.navigation?.type === 0 ? 'Navigate' : 'Reload' 
                           : 'N/A'
-                        }
                       </div>
                       <div className="text-sm text-muted-foreground">Navigation Type</div>
                     </div>
@@ -340,7 +335,6 @@ export default function PerformanceMonitor() {
                         {typeof window !== 'undefined' ? 
                           (navigator as any).connection?.effectiveType || '4g'
                           : 'N/A'
-                        }
                       </div>
                       <div className="text-sm text-muted-foreground">Connection</div>
                     </div>
@@ -370,4 +364,3 @@ export default function PerformanceMonitor() {
       </div>
     </div>
   );
-}

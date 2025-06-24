@@ -21,12 +21,10 @@ export const SeoStruktorBackground = () => {
       {Array.from({ length: 8 }).map((_, i) => (
         <div
           key={i}
-          className="absolute w-2 h-2 bg-[#ECB628] rounded-full animate-pulse"
           style={{
             left: `${20 + (i * 10)}%`,
             top: `${30 + (i % 3) * 20}%`,
             animationDelay: `${i * 0.5}s`
-          }}
         />
       ))}
       
@@ -34,13 +32,10 @@ export const SeoStruktorBackground = () => {
       {["SEO", "ORGANIC", "RANKING", "KEYWORDS", "TRAFFIC"].map((keyword, i) => (
         <div
           key={keyword}
-          className="absolute text-[#ECB628] font-mono text-xs opacity-30 animate-bounce"
           style={{
             left: `${15 + i * 15}%`,
             top: `${40 + (i % 2) * 20}%`,
             animationDelay: `${i * 0.7}s`
-          }}
-        >
           {keyword}
         </div>
       ))}

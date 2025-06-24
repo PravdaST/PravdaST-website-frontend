@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import { AnimatedBackground } from "./animated-background";
 
 export const HeroSection = () => {
   return (

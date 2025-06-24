@@ -37,14 +37,12 @@ interface BlogPost {
   tags: string[];
   featuredImage?: string;
   views?: number;
-}
 
 interface Comment {
   id: string;
   author: string;
   content: string;
   publishedAt: string;
-}
 
 // Blog Background Component - без framer-motion
 const BlogBackground = () => {
@@ -58,7 +56,6 @@ const BlogBackground = () => {
             width="60"
             height="60"
             patternUnits="userSpaceOnUse"
-          >
             <path
               d="M 60 0 L 0 0 0 60"
               fill="none"
@@ -80,8 +77,6 @@ const BlogBackground = () => {
           style={{
             left: `${15 + i * 12}%`,
             top: `${20 + (i % 3) * 25}%`,
-          }}
-        >
           {keyword}
         </div>
       ))}
@@ -148,7 +143,6 @@ export default function BlogPost() {
         navigator.clipboard.writeText(url);
         alert("Линкът е копиран!");
         break;
-    }
     setShowShareMenu(false);
   };
 
@@ -184,7 +178,6 @@ export default function BlogPost() {
         <Footer />
       </div>
     );
-  }
 
   return (
     <div className="min-h-screen bg-slate-900">
@@ -196,7 +189,6 @@ export default function BlogPost() {
           ogTitle: post.title,
           ogDescription: post.excerpt,
           ogImage: post.featuredImage || "/og-blog-default.jpg",
-        }}
         pageSlug={`blog/${post.slug}`}
       />
       <Navigation />
@@ -259,4 +251,3 @@ export default function BlogPost() {
       <Footer />
     </div>
   );
-}

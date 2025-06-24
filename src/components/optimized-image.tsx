@@ -14,7 +14,6 @@ interface OptimizedImageProps {
   sizes?: string;
   onLoad?: () => void;
   onError?: () => void;
-}
 
 export function OptimizedImage({
   src,
@@ -42,7 +41,6 @@ export function OptimizedImage({
     if (process.env.NODE_ENV === 'production' && width) {
       // Vercel автоматично оптимизира изображенията
       return `${originalSrc}?w=${width}&q=${quality}&fm=webp`;
-    }
     
     return originalSrc;
   };
@@ -63,7 +61,6 @@ export function OptimizedImage({
       gradient.addColorStop(1, '#e5e7eb');
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, 10, 10);
-    }
     
     return canvas.toDataURL();
   };
@@ -74,7 +71,6 @@ export function OptimizedImage({
       // За приоритетни изображения зареждаме веднага
       setCurrentSrc(generateOptimizedSrc(src, width));
       return;
-    }
 
     const img = imgRef.current;
     if (!img) return;
@@ -85,12 +81,9 @@ export function OptimizedImage({
           if (entry.isIntersecting) {
             setCurrentSrc(generateOptimizedSrc(src, width));
             observerRef.current?.unobserve(img);
-          }
         });
       },
       {
-        rootMargin: '50px' // Започваме да зареждаме 50px преди да влезе в viewport
-      }
     );
 
     observerRef.current.observe(img);
@@ -119,11 +112,9 @@ export function OptimizedImage({
           className
         )}
         style={{ width, height }}
-      >
         Изображението не може да се зареди
       </div>
     );
-  }
 
   return (
     <div className={cn("relative overflow-hidden", className)} style={{ width, height }}>
@@ -148,12 +139,10 @@ export function OptimizedImage({
         onLoad={handleLoad}
         onError={handleError}
         className={cn(
-          "w-full h-full object-cover transition-opacity duration-300",
           {
             "opacity-0": !isLoaded,
             "opacity-100": isLoaded,
             "blur-sm": blur && !isLoaded
-          }
         )}
         loading={priority ? "eager" : "lazy"}
         decoding="async"
@@ -162,12 +151,10 @@ export function OptimizedImage({
       {/* Loading индикатор */}
       {!isLoaded && currentSrc && (
         <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
-          <div className="w-8 h-8 border-2 border-gray-300 border-t-primary rounded-full animate-spin" />
         </div>
       )}
     </div>
   );
-}
 
 // Hook за преcalculating image dimensions
 export function useImageDimensions(src: string) {
@@ -182,12 +169,10 @@ export function useImageDimensions(src: string) {
   }, [src]);
   
   return dimensions;
-}
 
 // Responsive Image компонент
 interface ResponsiveImageProps extends OptimizedImageProps {
   breakpoints?: { [key: string]: number };
-}
 
 export function ResponsiveImage({
   breakpoints = {
@@ -220,4 +205,3 @@ export function ResponsiveImage({
       sizes={props.sizes || generateSizes()}
     />
   );
-}

@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { ArrowRight, TrendingUp, Users, Clock, Target, Zap, CheckCircle, Eye, Star } from "lucide-react";
 import { SEOHead } from "@/components/seo-head";
 import { pageSEOData } from "@/data/seo-pages";
-import { motion } from "framer-motion";
+// Removed framer-motion for Vercel compatibility
 
 const caseStudies = [
   {
@@ -42,7 +42,6 @@ const caseStudies = [
     systems: ["SEO Struktor™", "Clientomat™"],
     testimonial: "Благодарение на Pravdast сега имаме постоянен поток от нови клиенти.",
     image: "/api/placeholder/600/400",
-  }
 ];
 
 export default function CaseStudies() {
@@ -67,109 +66,58 @@ export default function CaseStudies() {
               
               {/* Growth Lines */}
               {[...Array(5)].map((_, i) => (
-                <motion.div
-                  key={i}
                   className="absolute h-px bg-gradient-to-r from-transparent via-[#ECB629] to-transparent"
                   style={{
                     left: `${i * 20}%`,
                     top: `${80 - i * 15}%`,
                     width: `${30 + i * 10}%`,
-                  }}
-                  animate={{
-                    opacity: [0.3, 1, 0.3],
-                    scaleX: [0.8, 1.2, 0.8],
-                  }}
-                  transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                    delay: i * 0.5,
-                  }}
                 />
               ))}
             </div>
           </div>
 
           <div className="container mx-auto px-6 relative z-10">
-            <motion.div 
-              className="max-w-4xl mx-auto text-center"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-            >
               {/* Status Badge */}
-              <motion.div
-                className="inline-flex items-center gap-3 mb-8 px-6 py-3 rounded-full bg-gradient-to-r from-slate-800/80 to-slate-700/60 border border-slate-600/30 backdrop-blur-sm"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-              >
                 <div className="flex items-center gap-2">
                   <div className="relative">
                     <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                    <motion.div
-                      className="absolute inset-0 w-2 h-2 bg-green-500 rounded-full opacity-20"
-                      animate={{ scale: [1, 1.3, 1] }}
-                      transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                     />
                   </div>
                   <span className="text-sm text-gray-300 font-medium">
                     <span className="text-[#ECB629] font-bold">Проследими</span> резултати от реални проекти
                   </span>
                 </div>
-              </motion.div>
+              </div className=">"
 
-              <motion.h1 
+              <div className="h1 "
                 className="text-5xl md:text-6xl font-bold mb-6 text-white"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-              >
                 Реални резултати от <br />
                 <span className="text-[#ECB629] relative">
                   нашите системи
-                  <motion.div
-                    className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-[#ECB629] to-[#ECB629]/50 rounded-full"
-                    initial={{ scaleX: 0 }}
-                    animate={{ scaleX: 1 }}
-                    transition={{ duration: 1, delay: 0.8 }}
                   />
                 </span>
-              </motion.h1>
+              </div className="h1>"
               
-              <motion.p 
+              <div className="p "
                 className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-              >
                 Разгледайте как нашите клиенти постигнаха измерим растеж с инженерни бизнес системи.
-              </motion.p>
+              </div className="p>"
 
               {/* Stats Preview */}
-              <motion.div 
-                className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.5 }}
-              >
                 {[
                   { label: "Средно увеличение", value: "+250%" },
                   { label: "Успешни проекта", value: "47+" },
                   { label: "ROI за клиенти", value: "380%" },
                   { label: "Време за резултат", value: "3-6м" },
                 ].map((stat, index) => (
-                  <motion.div
-                    key={index}
                     className="bg-slate-800/50 rounded-lg p-4 border border-slate-700"
                     whileHover={{ scale: 1.05 }}
-                    transition={{ duration: 0.2 }}
-                  >
                     <div className="text-2xl font-bold text-[#ECB629] mb-1">{stat.value}</div>
                     <div className="text-sm text-gray-400">{stat.label}</div>
-                  </motion.div>
+                  </div className=">"
                 ))}
-              </motion.div>
-            </motion.div>
+              </div className=">"
+            </div className=">"
           </div>
         </section>
 
@@ -184,28 +132,12 @@ export default function CaseStudies() {
           <div className="container mx-auto px-6 relative z-10">
             <div className="space-y-16">
               {caseStudies.map((study, index) => (
-                <motion.div
-                  key={study.id}
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: index * 0.2 }}
-                  viewport={{ once: true }}
-                >
-                  <Card className="relative bg-slate-800/50 border-slate-700 overflow-hidden group hover:border-[#ECB629]/50 transition-all duration-300">
                     {/* Hover Glow Effect */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-[#ECB629]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     
                     <CardContent className="p-0 relative z-10">
                       <div className="grid lg:grid-cols-2 gap-0">
                         {/* Content */}
                         <div className="p-8 lg:p-12">
-                          <motion.div 
-                            className="flex flex-wrap gap-3 mb-6"
-                            initial={{ opacity: 0, x: -20 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.6, delay: 0.2 }}
-                            viewport={{ once: true }}
-                          >
                             {study.systems.map((system, idx) => (
                               <Badge key={idx} className="bg-[#ECB629] text-black font-semibold px-3 py-1">
                                 {system}
@@ -214,65 +146,36 @@ export default function CaseStudies() {
                             <Badge variant="outline" className="border-slate-600 text-gray-300 px-3 py-1">
                               {study.industry}
                             </Badge>
-                          </motion.div>
+                          </div className=">"
                           
-                          <motion.h3 
-                            className="text-2xl lg:text-3xl font-bold text-white mb-2 group-hover:text-[#ECB629] transition-colors"
-                            initial={{ opacity: 0, x: -20 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.6, delay: 0.3 }}
-                            viewport={{ once: true }}
-                          >
+                          <div className="h3 "
                             {study.company}
-                          </motion.h3>
+                          </div className="h3>"
 
-                          <motion.p 
+                          <div className="p "
                             className="text-gray-400 mb-6 italic"
-                            initial={{ opacity: 0, x: -20 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.6, delay: 0.35 }}
-                            viewport={{ once: true }}
-                          >
                             {study.tagline}
-                          </motion.p>
+                          </div className="p>"
                           
                           <div className="space-y-6">
-                            <motion.div
-                              initial={{ opacity: 0, x: -20 }}
-                              whileInView={{ opacity: 1, x: 0 }}
-                              transition={{ duration: 0.6, delay: 0.4 }}
-                              viewport={{ once: true }}
-                            >
                               <h4 className="text-lg font-semibold text-[#ECB629] mb-2 flex items-center gap-2">
                                 <Target className="w-5 h-5" />
                                 Предизвикателство
                               </h4>
                               <p className="text-gray-300">{study.challenge}</p>
-                            </motion.div>
+                            </div className=">"
                             
-                            <motion.div
-                              initial={{ opacity: 0, x: -20 }}
-                              whileInView={{ opacity: 1, x: 0 }}
-                              transition={{ duration: 0.6, delay: 0.5 }}
-                              viewport={{ once: true }}
-                            >
                               <h4 className="text-lg font-semibold text-[#ECB629] mb-2 flex items-center gap-2">
                                 <Zap className="w-5 h-5" />
                                 Решение
                               </h4>
                               <p className="text-gray-300">{study.solution}</p>
-                            </motion.div>
+                            </div className=">"
 
-                            <motion.div
-                              initial={{ opacity: 0, x: -20 }}
-                              whileInView={{ opacity: 1, x: 0 }}
-                              transition={{ duration: 0.6, delay: 0.6 }}
-                              viewport={{ once: true }}
-                            >
                               <blockquote className="bg-slate-800/30 p-4 rounded-lg border-l-4 border-[#ECB629]">
                                 <p className="text-gray-300 italic">"{study.testimonial}"</p>
                               </blockquote>
-                            </motion.div>
+                            </div className=">"
                           </div>
                         </div>
                         
@@ -293,39 +196,23 @@ export default function CaseStudies() {
                           </div>
 
                           <div className="w-full relative z-10">
-                            <motion.h4 
+                            <div className="h4 "
                               className="text-xl font-bold text-white mb-6 text-center"
-                              initial={{ opacity: 0, y: 20 }}
-                              whileInView={{ opacity: 1, y: 0 }}
-                              transition={{ duration: 0.6, delay: 0.3 }}
-                              viewport={{ once: true }}
-                            >
                               Ключови резултати
-                            </motion.h4>
+                            </div className="h4>"
                             <div className="space-y-6">
                               {study.results.map((result, metricIndex) => (
-                                <motion.div 
-                                  key={metricIndex} 
                                   className="text-center group/metric"
-                                  initial={{ opacity: 0, scale: 0.8 }}
-                                  whileInView={{ opacity: 1, scale: 1 }}
-                                  transition={{ duration: 0.6, delay: 0.4 + metricIndex * 0.1 }}
-                                  viewport={{ once: true }}
                                   whileHover={{ scale: 1.05 }}
-                                >
                                   <div className="relative">
-                                    <div className="text-3xl font-bold text-[#ECB629] mb-2 group-hover/metric:scale-110 transition-transform">
                                       {result.metric}
                                     </div>
-                                    <motion.div
-                                      className="absolute inset-0 bg-[#ECB629] rounded-full opacity-0 group-hover/metric:opacity-20 blur-xl"
-                                      transition={{ duration: 0.3 }}
                                     />
                                   </div>
                                   <div className="text-sm text-gray-400">
                                     {result.description}
                                   </div>
-                                </motion.div>
+                                </div className=">"
                               ))}
                             </div>
                           </div>
@@ -333,7 +220,7 @@ export default function CaseStudies() {
                       </div>
                     </CardContent>
                   </Card>
-                </motion.div>
+                </div className=">"
               ))}
             </div>
           </div>
@@ -344,80 +231,37 @@ export default function CaseStudies() {
           {/* Animated Background Elements */}
           <div className="absolute inset-0 opacity-20">
             {[...Array(8)].map((_, i) => (
-              <motion.div
-                key={i}
                 className="absolute w-1 h-1 bg-black rounded-full"
                 style={{
                   left: `${Math.random() * 100}%`,
                   top: `${Math.random() * 100}%`,
-                }}
-                animate={{
-                  scale: [1, 2, 1],
-                  opacity: [0.3, 1, 0.3],
-                }}
-                transition={{
-                  duration: 3 + Math.random(),
-                  repeat: Infinity,
-                  delay: Math.random() * 2,
-                }}
               />
             ))}
           </div>
 
           <div className="container mx-auto px-6 text-center relative z-10">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
               {/* Urgency Badge */}
-              <motion.div
-                className="inline-flex items-center gap-3 mb-8 px-6 py-3 rounded-full bg-black/10 backdrop-blur-sm border border-black/20"
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
-              >
                 <div className="flex items-center gap-2">
                   <div className="relative">
                     <div className="w-2 h-2 bg-red-500 rounded-full"></div>
-                    <div className="absolute inset-0 bg-red-500 rounded-full animate-ping opacity-75"></div>
                   </div>
                   <span className="text-sm text-black font-semibold">
                     Само 3 места за Q1 2025
                   </span>
                 </div>
-              </motion.div>
+              </div className=">"
 
-              <motion.h2 
+              <div className="h2 "
                 className="text-4xl md:text-5xl font-bold text-black mb-6"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                viewport={{ once: true }}
-              >
                 Готови за такива резултати?
-              </motion.h2>
+              </div className="h2>"
               
-              <motion.p 
+              <div className="p "
                 className="text-xl text-black/80 mb-8 max-w-2xl mx-auto"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-                viewport={{ once: true }}
-              >
                 Започнете своята история на успех с безплатна консултация.
-              </motion.p>
+              </div className="p>"
 
               {/* Trust Signals */}
-              <motion.div 
-                className="flex flex-wrap justify-center gap-6 mb-8 text-sm text-black/70"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-                viewport={{ once: true }}
-              >
                 <div className="flex items-center gap-2">
                   <div className="w-4 h-4 bg-green-500 rounded-full flex items-center justify-center">
                     <CheckCircle className="w-3 h-3 text-white" />
@@ -436,31 +280,20 @@ export default function CaseStudies() {
                   </div>
                   <span>Гарантирани резултати</span>
                 </div>
-              </motion.div>
+              </div className=">"
               
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.5 }}
-                viewport={{ once: true }}
-              >
                 <Button 
                   size="lg"
                   variant="outline"
                   className="relative border-2 border-black text-black hover:bg-black hover:text-[#ECB629] px-8 py-4 text-lg font-semibold overflow-hidden group"
                   asChild
-                >
                   <a href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu" target="_blank" rel="noopener noreferrer">
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black opacity-0 group-hover:opacity-10"
-                      animate={{ x: ['-100%', '100%'] }}
-                      transition={{ duration: 1.5, repeat: Infinity, repeatType: 'loop' }}
                     />
                     Започнете сега <ArrowRight className="ml-2 w-5 h-5" />
                   </a>
                 </Button>
-              </motion.div>
-            </motion.div>
+              </div className=">"
+            </div className=">"
           </div>
         </section>
       </main>
@@ -468,4 +301,3 @@ export default function CaseStudies() {
       <Footer />
     </div>
   );
-}

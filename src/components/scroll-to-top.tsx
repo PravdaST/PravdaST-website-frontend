@@ -9,4 +9,3 @@ export function ScrollToTop() {
   }, [location]);
 
   return null;
-}

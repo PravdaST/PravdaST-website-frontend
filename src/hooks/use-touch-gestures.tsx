@@ -9,7 +9,6 @@ interface TouchGestureOptions {
   onTap?: () => void;
   onDoubleTap?: () => void;
   threshold?: number;
-}
 
 export function useTouchGestures(options: TouchGestureOptions) {
   const elementRef = useRef<HTMLElement>(null);
@@ -21,8 +20,6 @@ export function useTouchGestures(options: TouchGestureOptions) {
     const element = elementRef.current;
     if (!element) return;
 
-    let initialDistance = 0;
-    let initialScale = 1;
 
     const handleTouchStart = (e: TouchEvent) => {
       e.preventDefault();
@@ -38,11 +35,9 @@ export function useTouchGestures(options: TouchGestureOptions) {
         // Pinch gesture detection
         const touch1 = e.touches[0];
         const touch2 = e.touches[1];
-        initialDistance = Math.sqrt(
           Math.pow(touch2.clientX - touch1.clientX, 2) +
           Math.pow(touch2.clientY - touch1.clientY, 2)
         );
-      }
     };
 
     const handleTouchMove = (e: TouchEvent) => {
@@ -54,11 +49,7 @@ export function useTouchGestures(options: TouchGestureOptions) {
           Math.pow(touch2.clientY - touch1.clientY, 2)
         );
         
-        if (initialDistance > 0) {
-          const scale = currentDistance / initialDistance;
           options.onPinch(scale);
-        }
-      }
     };
 
     const handleTouchEnd = (e: TouchEvent) => {
@@ -79,11 +70,9 @@ export function useTouchGestures(options: TouchGestureOptions) {
           } else {
             // Single tap
             options.onTap?.();
-          }
           
           setLastTap(now);
           return;
-        }
         
         // Swipe detection
         if (Math.abs(deltaX) > threshold || Math.abs(deltaY) > threshold) {
@@ -93,17 +82,12 @@ export function useTouchGestures(options: TouchGestureOptions) {
               options.onSwipeRight?.();
             } else if (deltaX < -threshold) {
               options.onSwipeLeft?.();
-            }
           } else {
             // Vertical swipe
             if (deltaY > threshold) {
               options.onSwipeDown?.();
             } else if (deltaY < -threshold) {
               options.onSwipeUp?.();
-            }
-          }
-        }
-      }
     };
 
     element.addEventListener('touchstart', handleTouchStart, { passive: false });
@@ -118,9 +102,7 @@ export function useTouchGestures(options: TouchGestureOptions) {
   }, [options, threshold, touchStart, lastTap]);
 
   return elementRef;
-}
 
-// Hook за mobile viewport detection
 export function useIsMobile() {
   const [isMobile, setIsMobile] = useState(false);
 
@@ -136,7 +118,6 @@ export function useIsMobile() {
   }, []);
 
   return isMobile;
-}
 
 // Hook за orientation change
 export function useOrientation() {
@@ -158,7 +139,6 @@ export function useOrientation() {
   }, []);
 
   return orientation;
-}
 
 // Hook за safe area detection (notch support)
 export function useSafeArea() {
@@ -187,4 +167,3 @@ export function useSafeArea() {
   }, []);
 
   return safeArea;
-}

@@ -19,7 +19,6 @@ import { cn } from '@/lib/utils';
 
 interface MobileNavigationProps {
   className?: string;
-}
 
 export function MobileNavigation({ className }: MobileNavigationProps) {
   const [location] = useLocation();
@@ -75,7 +74,6 @@ export function MobileNavigation({ className }: MobileNavigationProps) {
       icon: <Phone className="h-5 w-5" />,
       description: 'Свържете се с нас',
       highlight: true
-    }
   ];
 
   const serviceItems = [
@@ -93,7 +91,6 @@ export function MobileNavigation({ className }: MobileNavigationProps) {
       href: '/services/sales-engine',
       label: 'Sales Engine™',
       description: 'Система за продажби'
-    }
   ];
 
   const closeMenu = () => setIsOpen(false);
@@ -124,7 +121,6 @@ export function MobileNavigation({ className }: MobileNavigationProps) {
                   variant="ghost" 
                   size="icon"
                   className="h-10 w-10"
-                >
                   <Menu className="h-6 w-6" />
                   <span className="sr-only">Отвори меню</span>
                 </Button>
@@ -133,7 +129,6 @@ export function MobileNavigation({ className }: MobileNavigationProps) {
               <SheetContent 
                 side="right" 
                 className="w-full sm:w-80 p-0 overflow-y-auto"
-              >
                 {/* Header в менюто */}
                 <div className="flex items-center justify-between p-6 border-b">
                   <div className="flex items-center space-x-2">
@@ -150,7 +145,6 @@ export function MobileNavigation({ className }: MobileNavigationProps) {
                     size="icon" 
                     onClick={closeMenu}
                     className="h-8 w-8"
-                  >
                     <X className="h-5 w-5" />
                   </Button>
                 </div>
@@ -164,7 +158,6 @@ export function MobileNavigation({ className }: MobileNavigationProps) {
                   {mainNavItems.map((item) => (
                     <Link key={item.href} href={item.href} onClick={closeMenu}>
                       <div className={cn(
-                        "flex items-center space-x-3 p-3 rounded-lg transition-colors group",
                         isActiveRoute(item.href)
                           ? "bg-primary text-primary-foreground"
                           : "hover:bg-muted",
@@ -185,7 +178,6 @@ export function MobileNavigation({ className }: MobileNavigationProps) {
                               <Badge 
                                 variant="secondary" 
                                 className="text-xs px-1.5 py-0.5"
-                              >
                                 {item.badge}
                               </Badge>
                             )}
@@ -219,7 +211,6 @@ export function MobileNavigation({ className }: MobileNavigationProps) {
                     {serviceItems.map((service) => (
                       <Link key={service.href} href={service.href} onClick={closeMenu}>
                         <div className={cn(
-                          "flex items-center justify-between p-3 rounded-lg transition-colors hover:bg-muted",
                           isActiveRoute(service.href) && "bg-primary/10 border border-primary/20"
                         )}>
                           <div>
@@ -259,7 +250,6 @@ export function MobileNavigation({ className }: MobileNavigationProps) {
 
     </div>
   );
-}
 
 // Bottom Navigation за мобилни устройства
 export function MobileBottomNavigation() {
@@ -290,7 +280,6 @@ export function MobileBottomNavigation() {
 
   return (
     <div className={cn(
-      "lg:hidden fixed bottom-0 left-0 right-0 z-40 transition-transform duration-300",
       isVisible ? "translate-y-0" : "translate-y-full"
     )}>
       <div className="bg-background/95 backdrop-blur-md border-t">
@@ -301,7 +290,6 @@ export function MobileBottomNavigation() {
             return (
               <Link key={item.href} href={item.href}>
                 <div className={cn(
-                  "flex flex-col items-center justify-center h-full transition-colors",
                   isActive 
                     ? "text-primary bg-primary/10" 
                     : "text-muted-foreground hover:text-foreground"
@@ -316,4 +304,3 @@ export function MobileBottomNavigation() {
       </div>
     </div>
   );
-}

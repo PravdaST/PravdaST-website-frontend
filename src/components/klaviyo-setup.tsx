@@ -6,7 +6,6 @@ const KlaviyoSetup = () => {
   if (!KLAVIYO_COMPANY_ID) {
     console.log("Klaviyo: Company ID not found");
     return null;
-  }
 
   console.log("Klaviyo: Loading with Company ID:", KLAVIYO_COMPANY_ID);
 
@@ -22,7 +21,6 @@ const KlaviyoSetup = () => {
       // Cleanup при unmount
       if (script.parentNode) {
         script.parentNode.removeChild(script);
-      }
     };
   }, [KLAVIYO_COMPANY_ID]);
 

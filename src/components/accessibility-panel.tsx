@@ -19,7 +19,6 @@ import { cn } from '@/lib/utils';
 
 interface AccessibilityPanelProps {
   className?: string;
-}
 
 export function AccessibilityPanel({ className }: AccessibilityPanelProps) {
   const [isOpen, setIsOpen] = useState(false);
@@ -40,7 +39,6 @@ export function AccessibilityPanel({ className }: AccessibilityPanelProps) {
       case 'enableReducedMotion':
         accessibilityManager.enableReducedMotion(enabled);
         break;
-    }
     
     setOptions(accessibilityManager.getOptions());
     
@@ -77,7 +75,6 @@ export function AccessibilityPanel({ className }: AccessibilityPanelProps) {
       description: 'Намалява анимациите и преходите',
       icon: <Pause className="h-5 w-5" />,
       enabled: options.enableReducedMotion || false
-    }
   ];
 
   const keyboardShortcuts = [
@@ -98,7 +95,6 @@ export function AccessibilityPanel({ className }: AccessibilityPanelProps) {
             size="icon"
             className="sr-only focus:not-sr-only focus:fixed focus:bottom-4 focus:right-4 focus:z-50 focus:rounded-full focus:shadow-lg focus:bg-primary focus:text-primary-foreground hover:focus:bg-primary/90"
             aria-label="Отвори панел за достъпност"
-          >
             <Accessibility className="h-5 w-5" />
           </Button>
         </SheetTrigger>
@@ -107,7 +103,6 @@ export function AccessibilityPanel({ className }: AccessibilityPanelProps) {
           side="right" 
           className="w-full sm:w-96 overflow-y-auto"
           aria-labelledby="accessibility-title"
-        >
           {/* Header */}
           <div className="flex items-center justify-between mb-6">
             <div>
@@ -124,7 +119,6 @@ export function AccessibilityPanel({ className }: AccessibilityPanelProps) {
               size="icon"
               onClick={() => setIsOpen(false)}
               aria-label="Затвори панела"
-            >
               <X className="h-4 w-4" />
             </Button>
           </div>
@@ -269,7 +263,6 @@ export function AccessibilityPanel({ className }: AccessibilityPanelProps) {
       </Sheet>
     </div>
   );
-}
 
 // Skip to main content component
 export function SkipToMainContent() {
@@ -279,7 +272,6 @@ export function SkipToMainContent() {
     if (main instanceof HTMLElement) {
       main.focus();
       main.scrollIntoView({ behavior: 'smooth' });
-    }
   };
 
   return (
@@ -287,8 +279,6 @@ export function SkipToMainContent() {
       href="#main-content"
       onClick={handleSkip}
       className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 z-50 px-4 py-2 bg-primary text-primary-foreground rounded-md focus:outline-none focus:ring-2 focus:ring-ring"
-    >
       Премини към основното съдържание
     </a>
   );
-}

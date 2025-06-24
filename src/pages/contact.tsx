@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { motion } from "framer-motion";
+// Removed framer-motion for Vercel compatibility
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -49,7 +49,6 @@ const contactInfo = [
     title: "Работно време",
     info: "Понеделник - Петък",
     description: "09:00 - 18:00 (GMT+2)"
-  }
 ];
 
 export default function Contact() {
@@ -107,7 +106,6 @@ export default function Contact() {
     // Изчистване на грешката при промяна
     if (errors[name as keyof ContactFormData]) {
       setErrors(prev => ({ ...prev, [name]: undefined }));
-    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -131,8 +129,6 @@ export default function Contact() {
           newErrors[path] = err.message;
         });
         setErrors(newErrors);
-      }
-    }
   };
 
   return (
@@ -157,93 +153,45 @@ export default function Contact() {
               
               {/* Connection Signals */}
               {[...Array(4)].map((_, i) => (
-                <motion.div
-                  key={i}
                   className="absolute"
                   style={{
                     left: `${25 + i * 25}%`,
                     top: `${30 + i * 10}%`,
-                  }}
-                  animate={{
                     y: [0, -10, 0],
-                    opacity: [0.4, 0.8, 0.4],
-                  }}
-                  transition={{
-                    duration: 3 + i * 0.5,
-                    repeat: Infinity,
-                    delay: i * 0.5,
-                    ease: "easeInOut"
-                  }}
-                >
                   <Send className="w-6 h-6 text-[#ECB629]" />
-                </motion.div>
+                </div className=">"
               ))}
             </div>
           </div>
 
           <div className="container mx-auto px-6 relative z-10">
-            <motion.div 
-              className="max-w-4xl mx-auto text-center"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-            >
               {/* Status Badge */}
-              <motion.div
-                className="inline-flex items-center gap-3 mb-8 px-6 py-3 rounded-full bg-gradient-to-r from-slate-800/80 to-slate-700/60 border border-slate-600/30 backdrop-blur-sm"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-              >
                 <div className="flex items-center gap-2">
                   <div className="relative">
                     <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                    <motion.div
-                      className="absolute inset-0 w-2 h-2 bg-green-500 rounded-full opacity-20"
-                      animate={{ scale: [1, 1.3, 1] }}
-                      transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                     />
                   </div>
                   <span className="text-sm text-gray-300 font-medium">
                     <span className="text-[#ECB629] font-bold">Безплатна</span> консултация за всеки проект
                   </span>
                 </div>
-              </motion.div>
+              </div className=">"
 
-              <motion.h1 
+              <div className="h1 "
                 className="text-5xl md:text-6xl font-bold mb-6 text-white"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-              >
                 Готови за <br />
                 <span className="text-[#ECB629] relative">
                   разговор?
-                  <motion.div
-                    className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-[#ECB629] to-[#ECB629]/50 rounded-full"
-                    initial={{ scaleX: 0 }}
-                    animate={{ scaleX: 1 }}
-                    transition={{ duration: 1, delay: 0.8 }}
                   />
                 </span>
-              </motion.h1>
+              </div className="h1>"
               
-              <motion.p 
+              <div className="p "
                 className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-              >
                 Свържете се с нас за безплатна консултация. Ще обсъдим вашите цели и как можем да ви помогнем да ги постигнете.
-              </motion.p>
+              </div className="p>"
 
               {/* Quick Stats */}
-              <motion.div 
-                className="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-xl mx-auto"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.5 }}
-              >
                 <div className="bg-slate-800/50 rounded-lg p-4 border border-slate-700">
                   <div className="text-lg font-bold text-[#ECB629] mb-1">24h</div>
                   <div className="text-sm text-gray-400">Отговор</div>
@@ -256,8 +204,8 @@ export default function Contact() {
                   <div className="text-lg font-bold text-[#ECB629] mb-1">100%</div>
                   <div className="text-sm text-gray-400">Конфиденциалност</div>
                 </div>
-              </motion.div>
-            </motion.div>
+              </div className=">"
+            </div className=">"
           </div>
         </section>
 
@@ -272,13 +220,6 @@ export default function Contact() {
           <div className="container mx-auto px-6 relative z-10">
             <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
               {/* Contact Form */}
-              <motion.div
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8 }}
-                viewport={{ once: true }}
-              >
-                <Card className="bg-slate-800/50 border-slate-700 hover:border-[#ECB629]/50 transition-all duration-300">
                   <CardContent className="p-8">
                     <div className="mb-6">
                       <h2 className="text-2xl font-bold text-white mb-2">Изпратете ни съобщение</h2>
@@ -379,15 +320,10 @@ export default function Contact() {
                         type="submit"
                         disabled={contactMutation.isPending}
                         className="w-full bg-[#ECB629] text-black hover:bg-[#ECB629]/90 py-3 text-lg font-semibold relative overflow-hidden group"
-                      >
                         {contactMutation.isPending ? (
                           <span>Изпращане...</span>
                         ) : (
                           <>
-                            <motion.div
-                              className="absolute inset-0 bg-gradient-to-r from-[#ECB629] via-white to-[#ECB629] opacity-0 group-hover:opacity-20"
-                              animate={{ x: ['-100%', '100%'] }}
-                              transition={{ duration: 1.5, repeat: Infinity, repeatType: 'loop' }}
                             />
                             Изпрати съобщение <Send className="ml-2 w-5 h-5" />
                           </>
@@ -396,42 +332,21 @@ export default function Contact() {
                     </form>
                   </CardContent>
                 </Card>
-              </motion.div>
+              </div className=">"
 
               {/* Contact Information */}
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8 }}
-                viewport={{ once: true }}
-                className="space-y-6"
-              >
                 <div className="mb-8">
                   <h2 className="text-2xl font-bold text-white mb-4">Информация за контакт</h2>
                   <p className="text-gray-300">Можете да се свържете с нас по всеки от следните начини:</p>
                 </div>
 
                 {contactInfo.map((info, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: index * 0.1 }}
-                    viewport={{ once: true }}
-                  >
-                    <Card className="bg-slate-800/50 border-slate-700 hover:border-[#ECB629]/50 transition-all duration-300 group">
                       <CardContent className="p-6">
                         <div className="flex items-start gap-4">
                           <div className="relative">
-                            <info.icon className="w-8 h-8 text-[#ECB629] group-hover:scale-110 transition-transform duration-300" />
-                            <motion.div
-                              className="absolute inset-0 bg-[#ECB629] rounded-full opacity-20 scale-150"
-                              animate={{ scale: [1.5, 1.8, 1.5] }}
-                              transition={{ duration: 2, repeat: Infinity, delay: index * 0.3 }}
                             />
                           </div>
                           <div>
-                            <h3 className="text-lg font-semibold text-white mb-1 group-hover:text-[#ECB629] transition-colors">
                               {info.title}
                             </h3>
                             <p className="text-[#ECB629] font-medium mb-1">{info.info}</p>
@@ -440,16 +355,10 @@ export default function Contact() {
                         </div>
                       </CardContent>
                     </Card>
-                  </motion.div>
+                  </div className=">"
                 ))}
 
                 {/* Quick CTA */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.5 }}
-                  viewport={{ once: true }}
-                >
                   <Card className="bg-gradient-to-r from-[#ECB629]/20 to-[#ECB629]/10 border-[#ECB629]/30">
                     <CardContent className="p-6 text-center">
                       <h3 className="text-xl font-bold text-white mb-2">Предпочитате директен разговор?</h3>
@@ -458,20 +367,15 @@ export default function Contact() {
                         variant="outline"
                         className="border-[#ECB629] text-[#ECB629] hover:bg-[#ECB629] hover:text-black relative overflow-hidden group"
                         asChild
-                      >
                         <a href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu" target="_blank" rel="noopener noreferrer">
-                          <motion.div
-                            className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-20"
-                            animate={{ x: ['-100%', '100%'] }}
-                            transition={{ duration: 1.5, repeat: Infinity, repeatType: 'loop' }}
                           />
                           Резервирай консултация <ArrowRight className="ml-2 w-4 h-4" />
                         </a>
                       </Button>
                     </CardContent>
                   </Card>
-                </motion.div>
-              </motion.div>
+                </div className=">"
+              </div className=">"
             </div>
           </div>
         </section>
@@ -480,4 +384,3 @@ export default function Contact() {
       <Footer />
     </div>
   );
-}

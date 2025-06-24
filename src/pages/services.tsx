@@ -43,7 +43,6 @@ export default function Services() {
         "Revenue forecasting",
         "Conversion optimization"
       ]
-    }
   ];
 
   return (
@@ -105,7 +104,6 @@ export default function Services() {
                         ? 'bg-[#ECB628] hover:bg-[#ECB628]/90 text-black' 
                         : 'bg-slate-600 hover:bg-slate-500 text-white'
                     }`}
-                  >
                     Започни сега <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>
                 </CardContent>
@@ -127,7 +125,6 @@ export default function Services() {
           <Button 
             size="lg"
             className="bg-[#ECB628] hover:bg-[#ECB628]/90 text-black font-semibold px-8 py-4"
-          >
             Безплатна консултация
           </Button>
         </div>
@@ -136,4 +133,3 @@ export default function Services() {
       <Footer />
     </>
   );
-}

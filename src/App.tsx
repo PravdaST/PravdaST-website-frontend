@@ -31,8 +31,6 @@ function Router() {
       <Route component={NotFound} />
     </Switch>
   );
-}
-
 function App() {
   return (
     <ErrorBoundary>
@@ -42,6 +40,4 @@ function App() {
       </QueryClientProvider>
     </ErrorBoundary>
   );
-}
-
 export default App;

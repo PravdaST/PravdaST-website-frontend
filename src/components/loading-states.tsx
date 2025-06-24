@@ -20,13 +20,11 @@ export function LoadingSpinner({
   return (
     <Loader2 
       className={cn(
-        'animate-spin text-primary',
         sizeClasses[size],
         className
       )} 
     />
   );
-}
 
 // Skeleton loaders for different content types
 export function PageSkeleton() {
@@ -60,7 +58,6 @@ export function PageSkeleton() {
       </div>
     </div>
   );
-}
 
 export function BlogSkeleton() {
   return (
@@ -105,7 +102,6 @@ export function BlogSkeleton() {
       </div>
     </div>
   );
-}
 
 export function FormSkeleton() {
   return (
@@ -125,7 +121,6 @@ export function FormSkeleton() {
       </CardContent>
     </Card>
   );
-}
 
 // Loading overlay for forms and buttons
 export function LoadingOverlay({ 
@@ -150,7 +145,6 @@ export function LoadingOverlay({
       )}
     </div>
   );
-}
 
 // Button with loading state
 export function LoadingButton({
@@ -170,7 +164,6 @@ export function LoadingButton({
   return (
     <button
       className={cn(
-        "inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
         "bg-primary text-primary-foreground hover:bg-primary/90",
         "h-10 px-4 py-2",
         className
@@ -178,7 +171,6 @@ export function LoadingButton({
       onClick={onClick}
       disabled={isLoading}
       {...props}
-    >
       {isLoading ? (
         <>
           <LoadingSpinner size="sm" className="mr-2" />
@@ -189,7 +181,6 @@ export function LoadingButton({
       )}
     </button>
   );
-}
 
 // Full page loading screen
 export function FullPageLoading({ message = "Зарежда приложението..." }: { message?: string }) {
@@ -208,7 +199,6 @@ export function FullPageLoading({ message = "Зарежда приложение
       </div>
     </div>
   );
-}
 
 // Network error state
 export function NetworkError({ 
@@ -234,14 +224,12 @@ export function NetworkError({
           isLoading={false}
           onClick={onRetry}
           className="mt-4"
-        >
           <RefreshCw className="w-4 h-4 mr-2" />
           Опитай отново
         </LoadingButton>
       )}
     </div>
   );
-}
 
 // Empty state component
 export function EmptyState({
@@ -267,7 +255,6 @@ export function EmptyState({
       {action && <div className="mt-4">{action}</div>}
     </div>
   );
-}
 
 // Progress indicator
 export function ProgressIndicator({ 
@@ -291,7 +278,6 @@ export function ProgressIndicator({
       )}
       <div className="w-full bg-muted rounded-full h-2">
         <div 
-          className="bg-primary h-2 rounded-full transition-all duration-300 ease-out"
           style={{ width: `${percentage}%` }}
         />
       </div>
@@ -300,4 +286,3 @@ export function ProgressIndicator({
       </div>
     </div>
   );
-}

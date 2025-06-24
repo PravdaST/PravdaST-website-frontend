@@ -4,12 +4,10 @@ import { ChevronRight, Home } from "lucide-react";
 interface BreadcrumbItem {
   title: string;
   href: string;
-}
 
 interface BreadcrumbsProps {
   items?: BreadcrumbItem[];
   className?: string;
-}
 
 export function Breadcrumbs({ items, className = "" }: BreadcrumbsProps) {
   const [location] = useLocation();
@@ -62,14 +60,11 @@ export function Breadcrumbs({ items, className = "" }: BreadcrumbsProps) {
               <span 
                 className="text-gray-900 dark:text-gray-100 font-medium"
                 aria-current="page"
-              >
                 {breadcrumb.title}
               </span>
             ) : (
               <Link 
                 href={breadcrumb.href}
-                className="hover:text-[#ECB628] transition-colors duration-200"
-              >
                 {breadcrumb.title}
               </Link>
             )}
@@ -78,7 +73,6 @@ export function Breadcrumbs({ items, className = "" }: BreadcrumbsProps) {
       </ol>
     </nav>
   );
-}
 
 // Hook за генериране на structured data за breadcrumbs
 export function useBreadcrumbSchema() {
@@ -106,7 +100,6 @@ export function useBreadcrumbSchema() {
         "position": 1,
         "name": "Начало",
         "item": baseUrl
-      }
     ];
 
     pathnames.forEach((pathname, index) => {
@@ -129,4 +122,3 @@ export function useBreadcrumbSchema() {
   };
 
   return generateBreadcrumbSchema();
-}

@@ -3,7 +3,6 @@ import { useEffect } from 'react';
 interface SchemaMarkupProps {
   type: 'organization' | 'website' | 'service' | 'breadcrumb';
   data?: any;
-}
 
 export function SchemaMarkup({ type, data }: SchemaMarkupProps) {
   useEffect(() => {
@@ -17,7 +16,6 @@ export function SchemaMarkup({ type, data }: SchemaMarkupProps) {
       const existing = document.getElementById(`schema-${type}`);
       if (existing) {
         existing.remove();
-      }
       
       document.head.appendChild(script);
     };
@@ -63,11 +61,9 @@ export function SchemaMarkup({ type, data }: SchemaMarkupProps) {
             "@type": "Service",
             "name": "Sales Engine™", 
             "description": "Система за автоматизиране на продажбите"
-          }
         ]
       };
       addSchemaScript(organizationSchema);
-    }
 
     if (type === 'website') {
       const websiteSchema = {
@@ -94,10 +90,8 @@ export function SchemaMarkup({ type, data }: SchemaMarkupProps) {
         "copyrightHolder": {
           "@type": "Organization",
           "name": "Pravda ST"
-        }
       };
       addSchemaScript(websiteSchema);
-    }
 
     if (type === 'service' && data) {
       const serviceSchema = {
@@ -126,14 +120,12 @@ export function SchemaMarkup({ type, data }: SchemaMarkupProps) {
               },
               "price": data.price,
               "priceCurrency": "BGN"
-            }
           ]
         },
         "category": "Business Consulting",
         "serviceType": "Business Engineering"
       };
       addSchemaScript(serviceSchema);
-    }
 
     if (type === 'breadcrumb' && data?.breadcrumbs) {
       const breadcrumbSchema = {
@@ -147,19 +139,16 @@ export function SchemaMarkup({ type, data }: SchemaMarkupProps) {
         }))
       };
       addSchemaScript(breadcrumbSchema);
-    }
 
     // Cleanup функция за премахване на schema при unmount
     return () => {
       const existing = document.getElementById(`schema-${type}`);
       if (existing) {
         existing.remove();
-      }
     };
   }, [type, data]);
 
   return null; // Компонентът не рендира нищо визуално
-}
 
 // Hook за лесно използване на schema markup
 export function useSchemaMarkup() {
@@ -176,4 +165,3 @@ export function useSchemaMarkup() {
     ServiceSchema: addServiceSchema,
     BreadcrumbSchema: addBreadcrumbSchema
   };
-}

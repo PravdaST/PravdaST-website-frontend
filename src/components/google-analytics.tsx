@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 
 interface GoogleAnalyticsProps {
   trackingId?: string;
-}
 
 export function GoogleAnalytics({ trackingId = 'G-XXXXXXXXXX' }: GoogleAnalyticsProps) {
   useEffect(() => {
@@ -10,7 +9,6 @@ export function GoogleAnalytics({ trackingId = 'G-XXXXXXXXXX' }: GoogleAnalytics
     const timer = setTimeout(() => {
       if (typeof window !== 'undefined' && window.gtag) {
         window.gtag('config', trackingId);
-      }
     }, 100);
 
     return () => clearTimeout(timer);
@@ -59,12 +57,10 @@ export function GoogleAnalytics({ trackingId = 'G-XXXXXXXXXX' }: GoogleAnalytics
       // Cleanup при unmount
       if (script.parentNode) {
         script.parentNode.removeChild(script);
-      }
     };
   }, [trackingId]);
 
   return null;
-}
 
 // Hook за лесно проследяване в компоненти
 export function useAnalytics() {
@@ -74,7 +70,6 @@ export function useAnalytics() {
         page_path: path,
         page_title: title
       });
-    }
   };
 
   const trackUserAction = (action: string, category: string = 'user_interaction') => {
@@ -83,7 +78,6 @@ export function useAnalytics() {
         event_category: category,
         event_label: window.location.pathname
       });
-    }
   };
 
   const trackBusinessEvent = (eventName: string, parameters: Record<string, any> = {}) => {
@@ -93,7 +87,6 @@ export function useAnalytics() {
         currency: 'BGN',
         ...parameters
       });
-    }
   };
 
   return {
@@ -101,4 +94,3 @@ export function useAnalytics() {
     trackUserAction,
     trackBusinessEvent
   };
-}

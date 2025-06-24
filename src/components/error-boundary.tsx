@@ -9,14 +9,11 @@ interface Props {
   children: ReactNode;
   fallback?: ReactNode;
   onError?: (error: Error, errorInfo: ErrorInfo) => void;
-}
-
 interface State {
   hasError: boolean;
   error: Error | null;
   errorInfo: ErrorInfo | null;
   errorId: string;
-}
 
 export class ErrorBoundary extends Component<Props, State> {
   constructor(props: Props) {
@@ -27,7 +24,6 @@ export class ErrorBoundary extends Component<Props, State> {
       errorInfo: null,
       errorId: ''
     };
-  }
 
   static getDerivedStateFromError(error: Error): Partial<State> {
     return {
@@ -35,7 +31,6 @@ export class ErrorBoundary extends Component<Props, State> {
       error,
       errorId: Math.random().toString(36).substr(2, 9)
     };
-  }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     this.setState({
@@ -54,13 +49,10 @@ export class ErrorBoundary extends Component<Props, State> {
         fatal: false,
         error_id: this.state.errorId
       });
-    }
 
     // Callback за допълнително error handling
     if (this.props.onError) {
       this.props.onError(error, errorInfo);
-    }
-  }
 
   handleRetry = () => {
     this.setState({
@@ -80,7 +72,6 @@ export class ErrorBoundary extends Component<Props, State> {
       // Ако има custom fallback компонент
       if (this.props.fallback) {
         return this.props.fallback;
-      }
 
       const { error, errorId } = this.state;
       const isDevelopment = process.env.NODE_ENV === 'development';
@@ -124,7 +115,6 @@ export class ErrorBoundary extends Component<Props, State> {
                   onClick={this.handleRetry}
                   className="flex-1"
                   variant="default"
-                >
                   <RefreshCw className="w-4 h-4 mr-2" />
                   Опитай отново
                 </Button>
@@ -133,7 +123,6 @@ export class ErrorBoundary extends Component<Props, State> {
                   onClick={this.handleReload}
                   variant="outline"
                   className="flex-1"
-                >
                   <RefreshCw className="w-4 h-4 mr-2" />
                   Презареди страницата
                 </Button>
@@ -160,7 +149,6 @@ export class ErrorBoundary extends Component<Props, State> {
                 <a 
                   href="mailto:contact@pravdast.agency" 
                   className="text-primary hover:underline"
-                >
                   contact@pravdast.agency
                 </a>
               </div>
@@ -168,11 +156,8 @@ export class ErrorBoundary extends Component<Props, State> {
           </Card>
         </div>
       );
-    }
 
     return this.props.children;
-  }
-}
 
 // Hook за error handling във functional компоненти
 export function useErrorHandler() {
@@ -185,11 +170,9 @@ export function useErrorHandler() {
         description: error.toString(),
         fatal: false
       });
-    }
   };
 
   return handleError;
-}
 
 // Специализирани error boundaries за различни части от приложението
 export function PageErrorBoundary({ children }: { children: ReactNode }) {
@@ -212,12 +195,9 @@ export function PageErrorBoundary({ children }: { children: ReactNode }) {
             </CardContent>
           </Card>
         </div>
-      }
-    >
       {children}
     </ErrorBoundary>
   );
-}
 
 export function ComponentErrorBoundary({ children, componentName }: { 
   children: ReactNode; 
@@ -235,14 +215,10 @@ export function ComponentErrorBoundary({ children, componentName }: {
               size="sm" 
               onClick={() => window.location.reload()}
               className="ml-2 h-auto p-0"
-            >
               Презареди страницата
             </Button>
           </AlertDescription>
         </Alert>
-      }
-    >
       {children}
     </ErrorBoundary>
   );
-}

@@ -14,7 +14,6 @@ interface SEOHealthCheck {
   score: number;
   checks: Record<string, boolean>;
   recommendations: string[];
-}
 
 export default function SEOMonitor() {
   const [seoHealth, setSeoHealth] = useState<SEOHealthCheck | null>(null);
@@ -71,7 +70,6 @@ export default function SEOMonitor() {
       title: 'Изпратете sitemap файловете',
       description: 'Добавете всички sitemap URL адреси в Search Console',
       status: 'ready'
-    }
   ];
 
   return (
@@ -194,7 +192,6 @@ export default function SEOMonitor() {
                         size="sm"
                         onClick={() => window.open(sitemap.url, '_blank')}
                         className="w-full"
-                      >
                         <ExternalLink className="h-4 w-4 mr-2" />
                         Преглед на Sitemap
                       </Button>
@@ -297,4 +294,3 @@ export default function SEOMonitor() {
       </div>
     </div>
   );
-}

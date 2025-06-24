@@ -4,7 +4,6 @@ import { SEOData, defaultSEOConfig } from "../../shared/seo-types";
 interface SEOHeadProps {
   seo?: Partial<SEOData>;
   pageSlug?: string;
-}
 
 export function SEOHead({ seo, pageSlug }: SEOHeadProps) {
   const title = seo?.title || defaultSEOConfig.defaultTitle;
@@ -38,9 +37,7 @@ export function SEOHead({ seo, pageSlug }: SEOHeadProps) {
           meta.setAttribute('property', name);
         } else {
           meta.setAttribute('name', name);
-        }
         document.head.appendChild(meta);
-      }
       meta.setAttribute('content', content);
     };
 
@@ -51,7 +48,6 @@ export function SEOHead({ seo, pageSlug }: SEOHeadProps) {
       updateMetaTag('robots', 'noindex, nofollow');
     } else {
       updateMetaTag('robots', robots);
-    }
     
     // Допълнителни SEO тагове
     updateMetaTag('author', 'Pravdast');
@@ -65,9 +61,6 @@ export function SEOHead({ seo, pageSlug }: SEOHeadProps) {
     updateMetaTag('distribution', 'global');
     
     // Viewport и мобилна оптимизация (ако не са зададени)
-    if (!document.querySelector('meta[name="viewport"]')) {
-      updateMetaTag('viewport', 'width=device-width, initial-scale=1.0, maximum-scale=5.0');
-    }
     
     // Тема цвят за мобилни браузъри
     updateMetaTag('theme-color', '#ECB628');
@@ -80,7 +73,6 @@ export function SEOHead({ seo, pageSlug }: SEOHeadProps) {
         link = document.createElement('link');
         link.setAttribute('rel', rel);
         document.head.appendChild(link);
-      }
       link.setAttribute('href', href);
       if (sizes) link.setAttribute('sizes', sizes);
       if (type) link.setAttribute('type', type);
@@ -105,7 +97,6 @@ export function SEOHead({ seo, pageSlug }: SEOHeadProps) {
     const googleVerification = import.meta.env.VITE_GOOGLE_SITE_VERIFICATION;
     if (googleVerification) {
       updateMetaTag('google-site-verification', googleVerification);
-    }
 
     // Open Graph тагове
     updateMetaTag('og:title', ogTitle, true);
@@ -129,7 +120,6 @@ export function SEOHead({ seo, pageSlug }: SEOHeadProps) {
       canonicalLink = document.createElement('link');
       canonicalLink.setAttribute('rel', 'canonical');
       document.head.appendChild(canonicalLink);
-    }
     canonicalLink.setAttribute('href', canonical);
 
     // Schema.org JSON-LD
@@ -196,7 +186,6 @@ export function SEOHead({ seo, pageSlug }: SEOHeadProps) {
             "urlTemplate": `${defaultSEOConfig.siteUrl}/search?q={search_term_string}`
           },
           "query-input": "required name=search_term_string"
-        }
       };
 
       // Добавяне на основните schemas
@@ -207,16 +196,13 @@ export function SEOHead({ seo, pageSlug }: SEOHeadProps) {
         script.setAttribute('data-schema-type', schema['@type']);
         document.head.appendChild(script);
       });
-    }
 
   }, [title, description, keywords, canonical, ogTitle, ogDescription, ogImage, ogType, twitterCard, twitterTitle, twitterDescription, twitterImage, robots, noIndex, seo?.structuredData]);
 
   return null; // Този компонент не рендира нищо визуално
-}
 
 // Hook за лесно използване на SEO
 export function useSEO(seo?: Partial<SEOData>, pageSlug?: string) {
   useEffect(() => {
     // Тази логика се изпълнява при промяна на страницата
   }, [seo, pageSlug]);
-}

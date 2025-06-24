@@ -2,7 +2,7 @@ import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { SEOHead } from "@/components/seo-head";
 import { Card, CardContent } from "@/components/ui/card";
-import { motion } from "framer-motion";
+// Removed framer-motion for Vercel compatibility
 import { ChevronDown, HelpCircle } from "lucide-react";
 import { useState } from "react";
 
@@ -10,7 +10,6 @@ interface FAQItem {
   question: string;
   answer: string;
   category: string;
-}
 
 const faqData: FAQItem[] = [
   {
@@ -120,7 +119,6 @@ export default function FAQ() {
             "Отговори на най-честите въпроси за бизнес инженеринг услугите: SEO Struktor™, Clientomat™, Sales Engine™. Научете повече за процесите и резултатите.",
           keywords:
             "FAQ, въпроси отговори, бизнес инженеринг, SEO услуги, автоматизация, продажбени системи",
-        }}
         pageSlug="/faq"
       />
 
@@ -137,50 +135,29 @@ export default function FAQ() {
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             {/* Status Badge */}
-            <motion.div
-              className="inline-flex items-center gap-2 mb-8 px-4 py-2 rounded-full bg-gradient-to-r from-slate-800/80 to-slate-700/60 border border-slate-600/30 backdrop-blur-sm"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
               <div className="relative">
                 <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                <div className="absolute inset-0 w-2 h-2 bg-blue-400 rounded-full animate-ping opacity-75"></div>
               </div>
               <span className="text-sm text-gray-300 font-medium">
                 Отговаряме в рамките на 48 часа
               </span>
-            </motion.div>
+            </div className=">
 
-            <motion.div
-              className="w-20 h-20 mx-auto mb-8 bg-gradient-to-br from-[var(--pravdast-yellow)]/20 to-[var(--pravdast-yellow)]/5 rounded-full flex items-center justify-center border border-[var(--pravdast-yellow)]/20"
-              initial={{ opacity: 0, scale: 0.5 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.1 }}
-            >
               <HelpCircle className="text-[var(--pravdast-yellow)]" size={40} />
-            </motion.div>
+            </div className=">
 
-            <motion.h1
+            <div className="h1
               className="text-5xl md:text-7xl font-bold mb-8 leading-tight"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
               Често задавани{" "}
               <span className="text-[var(--pravdast-yellow)]">въпроси</span>
-            </motion.h1>
+            </div className="h1>
 
-            <motion.p
+            <div className="p
               className="text-xl md:text-2xl text-gray-300 mb-12 leading-relaxed max-w-3xl mx-auto"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-            >
               Отговори на най-честите въпроси за нашите бизнес инженеринг
               услуги. Всичко което трябва да знаете за системния подход към
               растеж.
-            </motion.p>
+            </div className="p>
           </div>
         </div>
       </section>
@@ -189,36 +166,26 @@ export default function FAQ() {
       <section className="pb-8 bg-slate-900">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">
-            <motion.div
-              className="flex flex-wrap gap-4 justify-center mb-8"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-            >
               <button
                 onClick={() => setSelectedCategory("Всички")}
-                className={`px-6 py-3 rounded-full transition-all duration-300 font-medium ${
                   selectedCategory === "Всички"
                     ? "bg-[var(--pravdast-yellow)] text-black shadow-lg shadow-[var(--pravdast-yellow)]/20"
                     : "bg-slate-800/80 text-gray-300 hover:bg-slate-700/80 border border-slate-700"
                 }`}
-              >
                 Всички
               </button>
               {categories.map((category) => (
                 <button
                   key={category}
                   onClick={() => setSelectedCategory(category)}
-                  className={`px-6 py-3 rounded-full transition-all duration-300 font-medium ${
                     selectedCategory === category
                       ? "bg-[var(--pravdast-yellow)] text-black shadow-lg shadow-[var(--pravdast-yellow)]/20"
                       : "bg-slate-800/80 text-gray-300 hover:bg-slate-700/80 border border-slate-700"
                   }`}
-                >
                   {category}
                 </button>
               ))}
-            </motion.div>
+            </div className=">
           </div>
         </div>
       </section>
@@ -229,14 +196,7 @@ export default function FAQ() {
           <div className="max-w-7xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredFAQ.map((item, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
                   className="h-full"
-                >
-                  <Card className="bg-slate-800/60 border-slate-700/50 hover:border-[var(--pravdast-yellow)]/40 hover:shadow-lg hover:shadow-[var(--pravdast-yellow)]/5 transition-all duration-300 backdrop-blur-sm h-full flex flex-col">
                     <CardContent className="p-6 flex flex-col h-full">
                       <div className="flex items-center gap-3 mb-4">
                         <div className="w-2 h-2 bg-[var(--pravdast-yellow)] rounded-full"></div>
@@ -256,7 +216,7 @@ export default function FAQ() {
                       </div>
                     </CardContent>
                   </Card>
-                </motion.div>
+                </div className=">
               ))}
             </div>
           </div>
@@ -266,12 +226,6 @@ export default function FAQ() {
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-br from-[var(--pravdast-dark)] to-[var(--pravdast-dark-gray)]">
         <div className="container mx-auto px-6 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="max-w-3xl mx-auto"
-          >
             <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
               Не намерихте отговор на{" "}
               <span className="text-[var(--pravdast-yellow)]">въпроса си?</span>
@@ -281,19 +235,13 @@ export default function FAQ() {
               всички ваши въпроси. Експертите ни са на разположение.
             </p>
 
-            <motion.div
-              className="relative group inline-block"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-            >
-              <div className="absolute -inset-1 bg-gradient-to-r from-[var(--pravdast-yellow)] via-amber-400 to-[var(--pravdast-yellow)] rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-300 blur-sm"></div>
               <a
                 href="/contact"
-                className="relative inline-flex items-center px-10 py-5 bg-[var(--pravdast-yellow)] text-black font-bold rounded-xl transition-all duration-300 text-lg border border-[var(--pravdast-yellow)]"
-              >
                 Заявете безплатна консултация
               </a>
-            </motion.div>
+            </div className=">
 
             <div className="mt-8 flex items-center justify-center gap-8 text-sm text-gray-400">
               <div className="flex items-center gap-2">
@@ -305,11 +253,10 @@ export default function FAQ() {
                 <span>Безплатна консултация</span>
               </div>
             </div>
-          </motion.div>
+          </div className=">
         </div>
       </section>
 
       <Footer />
     </div>
   );
-}

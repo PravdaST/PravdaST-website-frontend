@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+// Removed framer-motion for Vercel compatibility
 import { Button } from "@/components/ui/button";
 import { Home, Search, ArrowLeft, Target, Wrench } from "lucide-react";
 import { Link } from "wouter";
@@ -17,12 +17,6 @@ export default function NotFound() {
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-3xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="mb-12"
-          >
             {/* Engineering-style 404 with borders */}
             <div className="relative mb-8">
               <div className="text-[#ECB628] text-9xl md:text-[12rem] font-black mb-4 relative">
@@ -43,19 +37,11 @@ export default function NotFound() {
               <span className="text-[#ECB628] font-semibold"> Но имаме решение</span> - 
               нашите системи за предсказуем растеж са на една клик разстояние.
             </p>
-          </motion.div>
+          </div className=">"
 
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="flex flex-col sm:flex-row gap-6 justify-center mb-12"
-          >
             <Link href="/">
               <Button 
                 size="lg" 
-                className="!bg-[#ECB628] !text-black hover:!bg-[#d4a422] hover:!text-black font-bold text-lg px-8 py-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-200"
-              >
                 <Home className="w-5 h-5 mr-2" />
                 Начална страница
               </Button>
@@ -65,40 +51,24 @@ export default function NotFound() {
               <Button 
                 size="lg" 
                 variant="outline" 
-                className="!border-2 !border-[#ECB628] !text-[#ECB628] hover:!bg-[#ECB628] hover:!text-black !bg-transparent font-bold text-lg px-8 py-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-200"
-              >
                 <Target className="w-5 h-5 mr-2" />
                 Системи за растеж
               </Button>
             </Link>
-          </motion.div>
+          </div className=">"
 
           {/* Engineering-style divider */}
-          <motion.div
-            initial={{ opacity: 0, scaleX: 0 }}
-            animate={{ opacity: 1, scaleX: 1 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className="relative mb-12"
-          >
             <div className="h-px bg-gradient-to-r from-transparent via-[#ECB628] to-transparent"></div>
             <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-slate-800 px-6">
               <Wrench className="w-6 h-6 text-[#ECB628]" />
             </div>
-          </motion.div>
+          </div className=">"
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="bg-slate-800 border border-slate-700 rounded-2xl p-8 shadow-sm"
-          >
             <p className="text-white text-lg mb-6 font-semibold">
               Популярни страници:
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-base">
               <Link href="/services/seo-struktor">
-                <div className="group p-4 rounded-xl border border-slate-600 hover:border-[#ECB628] transition-all duration-200 cursor-pointer hover:bg-slate-700">
-                  <div className="text-[#ECB628] font-bold group-hover:text-white transition-colors">
                     SEO Struktor™
                   </div>
                   <div className="text-slate-400 text-sm mt-1">
@@ -107,8 +77,6 @@ export default function NotFound() {
                 </div>
               </Link>
               <Link href="/services/clientomat">
-                <div className="group p-4 rounded-xl border border-slate-600 hover:border-[#ECB628] transition-all duration-200 cursor-pointer hover:bg-slate-700">
-                  <div className="text-[#ECB628] font-bold group-hover:text-white transition-colors">
                     Clientomat™
                   </div>
                   <div className="text-slate-400 text-sm mt-1">
@@ -117,8 +85,6 @@ export default function NotFound() {
                 </div>
               </Link>
               <Link href="/services/sales-engine">
-                <div className="group p-4 rounded-xl border border-slate-600 hover:border-[#ECB628] transition-all duration-200 cursor-pointer hover:bg-slate-700">
-                  <div className="text-[#ECB628] font-bold group-hover:text-white transition-colors">
                     Sales Engine™
                   </div>
                   <div className="text-slate-400 text-sm mt-1">
@@ -129,24 +95,20 @@ export default function NotFound() {
             </div>
             <div className="flex justify-center gap-8 mt-8 text-sm">
               <Link href="/case-studies">
-                <span className="text-slate-400 hover:text-[#ECB628] cursor-pointer transition-colors font-medium">
                   Казуси за успех
                 </span>
               </Link>
               <Link href="/contact">
-                <span className="text-slate-400 hover:text-[#ECB628] cursor-pointer transition-colors font-medium">
                   Свързване
                 </span>
               </Link>
               <Link href="/about">
-                <span className="text-slate-400 hover:text-[#ECB628] cursor-pointer transition-colors font-medium">
                   За нас
                 </span>
               </Link>
             </div>
-          </motion.div>
+          </div className=">"
         </div>
       </div>
     </div>
   );
-}
