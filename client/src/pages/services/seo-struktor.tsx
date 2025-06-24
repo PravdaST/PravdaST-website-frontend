@@ -525,37 +525,60 @@ const ResultsSection = () => {
     {
       icon: <Zap className="w-8 h-8" />,
       title: "Предвидим поток от качествени запитвания",
-      description: "От клиенти, които активно търсят вашите решения"
+      description: "От клиенти, които активно търсят вашите решения",
+      metric: "3x повече leads"
     },
     {
       icon: <BarChart3 className="w-8 h-8" />,
       title: "Дълготраен дигитален актив",
-      description: "С нарастваща стойност, който работи за вас 24/7"
+      description: "С нарастваща стойност, който работи за вас 24/7",
+      metric: "365 дни работа"
     },
     {
       icon: <TrendingDown className="w-8 h-8" />,
       title: "Намалена зависимост",
-      description: "От постоянни и рискови рекламни бюджети"
+      description: "От постоянни и рискови рекламни бюджети",
+      metric: "60% по-малко разходи"
     },
     {
       icon: <Crown className="w-8 h-8" />,
       title: "Установен пазарен авторитет", 
-      description: "И разпознаваемост на вашия бранд като експерт в нишата"
+      description: "И разпознаваемост на вашия бранд като експерт в нишата",
+      metric: "Топ 3 позиции"
     }
   ];
 
   return (
-    <section ref={ref} className="py-20 bg-slate-800/50 relative overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0">
-        <div className="absolute top-20 left-10 w-32 h-32 bg-[var(--pravdast-yellow)]/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 right-10 w-40 h-40 bg-[var(--pravdast-yellow)]/5 rounded-full blur-3xl"></div>
+    <section ref={ref} className="py-20 bg-slate-900/40 relative overflow-hidden">
+      {/* Enhanced Background */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="grid grid-cols-8 md:grid-cols-16 gap-2 h-full p-6">
+          {Array.from({ length: 128 }).map((_, i) => (
+            <motion.div
+              key={i}
+              className="bg-[var(--pravdast-yellow)] rounded-full"
+              style={{ height: Math.random() * 4 + 1 + "px" }}
+              initial={{ opacity: 0, scaleY: 0 }}
+              animate={isInView ? { 
+                opacity: Math.random() * 0.6 + 0.2,
+                scaleY: Math.random() * 2 + 0.5
+              } : {}}
+              transition={{
+                duration: 1.5,
+                delay: i * 0.01,
+                repeat: Infinity,
+                repeatType: "reverse",
+                ease: "easeInOut"
+              }}
+            />
+          ))}
+        </div>
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-7xl mx-auto">
           <motion.div
-            className="text-center mb-16"
+            className="text-center mb-20"
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8 }}
@@ -563,81 +586,100 @@ const ResultsSection = () => {
             <div className="inline-block px-4 py-2 bg-[var(--pravdast-yellow)]/10 rounded-full border border-[var(--pravdast-yellow)]/20 mb-6">
               <span className="text-[var(--pravdast-yellow)] text-sm font-semibold">ИЗМЕРИМИ РЕЗУЛТАТИ</span>
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight">
               Крайният резултат: Повече от просто \"позиции\"
             </h2>
-            <p className="text-gray-300 text-lg max-w-2xl mx-auto">
+            <p className="text-gray-300 text-xl max-w-3xl mx-auto leading-relaxed">
               Системата SEO Struktor™ създава дълготрайна стойност за вашия бизнес
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {benefits.map((benefit, index) => (
               <motion.div
                 key={index}
-                className="group relative"
-                initial={{ opacity: 0, y: 30 }}
+                className="relative group"
+                initial={{ opacity: 0, y: 50 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.8, delay: 0.2 + index * 0.1 }}
+                transition={{ duration: 0.8, delay: index * 0.15 }}
               >
-                <div className="h-full p-8 bg-gradient-to-b from-slate-700/40 to-slate-800/60 rounded-2xl border border-slate-600/30 hover:border-[var(--pravdast-yellow)]/40 transition-all duration-300 group-hover:transform group-hover:scale-105">
-                  {/* Icon with animated background */}
-                  <div className="relative mb-6">
-                    <div className="w-16 h-16 bg-[var(--pravdast-yellow)]/10 rounded-2xl flex items-center justify-center mx-auto group-hover:bg-[var(--pravdast-yellow)]/20 transition-colors duration-300">
-                      <div className="text-[var(--pravdast-yellow)] group-hover:scale-110 transition-transform duration-300">
-                        {benefit.icon}
-                      </div>
-                    </div>
-                    {/* Animated dot */}
+                <motion.div
+                  className="bg-slate-800/70 backdrop-blur-sm p-8 rounded-3xl border border-slate-600/30 h-full group-hover:border-[var(--pravdast-yellow)]/50 transition-all duration-500 overflow-hidden relative"
+                  whileHover={{ scale: 1.02, y: -5 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  {/* Floating elements background */}
+                  <div className="absolute top-0 right-0 w-20 h-20 bg-[var(--pravdast-yellow)]/5 rounded-full -translate-y-10 translate-x-10 group-hover:scale-150 transition-transform duration-700" />
+                  
+                  <div className="relative z-10">
+                    {/* Icon with enhanced styling */}
                     <motion.div
-                      className="absolute -top-1 -right-1 w-3 h-3 bg-[var(--pravdast-yellow)] rounded-full"
-                      animate={{
-                        scale: [1, 1.2, 1],
-                        opacity: [0.7, 1, 0.7],
-                      }}
-                      transition={{
-                        duration: 2,
-                        repeat: Infinity,
-                        delay: index * 0.5,
-                      }}
-                    />
-                  </div>
-
-                  <h3 className="text-xl font-bold mb-3 text-white text-center group-hover:text-[var(--pravdast-yellow)] transition-colors duration-300">
-                    {benefit.title}
-                  </h3>
-                  <p className="text-gray-300 text-center leading-relaxed group-hover:text-gray-200 transition-colors duration-300">
-                    {benefit.description}
-                  </p>
-
-                  {/* Progress indicator */}
-                  <div className="mt-6 pt-4 border-t border-slate-600/30">
-                    <div className="flex items-center justify-center gap-2">
-                      <div className="w-2 h-2 bg-[var(--pravdast-yellow)] rounded-full"></div>
-                      <div className="text-xs text-[var(--pravdast-yellow)] font-semibold">
-                        {index === 0 && "30-90 дни"}
-                        {index === 1 && "6-12 месеца"}
-                        {index === 2 && "3-6 месеца"}
-                        {index === 3 && "12+ месеца"}
+                      className="relative mb-6"
+                      whileHover={{ scale: 1.1, rotate: 5 }}
+                      transition={{ type: "spring", stiffness: 400 }}
+                    >
+                      <div className="w-16 h-16 bg-gradient-to-br from-[var(--pravdast-yellow)] to-yellow-600 rounded-2xl flex items-center justify-center shadow-lg relative">
+                        <div className="text-black">
+                          {benefit.icon}
+                        </div>
+                        {/* Pulsing ring effect */}
+                        <div className="absolute inset-0 bg-[var(--pravdast-yellow)]/30 rounded-2xl animate-ping opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                       </div>
-                    </div>
+                    </motion.div>
+                    
+                    {/* Metric badge */}
+                    <motion.div
+                      className="inline-block px-3 py-1 bg-[var(--pravdast-yellow)]/20 border border-[var(--pravdast-yellow)]/30 rounded-full mb-4"
+                      initial={{ scale: 0 }}
+                      animate={isInView ? { scale: 1 } : {}}
+                      transition={{ duration: 0.5, delay: index * 0.15 + 0.3 }}
+                    >
+                      <span className="text-[var(--pravdast-yellow)] text-sm font-semibold">
+                        {benefit.metric}
+                      </span>
+                    </motion.div>
+
+                    <h3 className="text-xl md:text-2xl font-bold text-white mb-4 group-hover:text-[var(--pravdast-yellow)] transition-colors duration-300 leading-tight">
+                      {benefit.title}
+                    </h3>
+                    <p className="text-gray-300 leading-relaxed text-sm md:text-base">
+                      {benefit.description}
+                    </p>
+
+                    {/* Enhanced progress indicator */}
+                    <motion.div
+                      className="mt-6 relative"
+                      initial={{ opacity: 0 }}
+                      animate={isInView ? { opacity: 1 } : {}}
+                      transition={{ duration: 0.8, delay: index * 0.15 + 0.5 }}
+                    >
+                      <div className="w-full h-2 bg-slate-700/50 rounded-full overflow-hidden">
+                        <motion.div
+                          className="h-full bg-gradient-to-r from-[var(--pravdast-yellow)] via-yellow-400 to-[var(--pravdast-yellow)] relative"
+                          initial={{ width: "0%" }}
+                          animate={isInView ? { width: "100%" } : {}}
+                          transition={{ duration: 1.5, delay: index * 0.15 + 0.8 }}
+                        >
+                          {/* Shimmer effect */}
+                          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 animate-pulse" />
+                        </motion.div>
+                      </div>
+                      <div className="flex justify-between mt-2">
+                        <span className="text-xs text-gray-500">Преди</span>
+                        <span className="text-xs text-[var(--pravdast-yellow)]">Със SEO Struktor™</span>
+                      </div>
+                    </motion.div>
                   </div>
-                </div>
+
+                  {/* Hover gradient overlay */}
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-br from-[var(--pravdast-yellow)]/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                    initial={false}
+                  />
+                </motion.div>
               </motion.div>
             ))}
           </div>
-
-          {/* Bottom CTA hint */}
-          <motion.div
-            className="text-center mt-12"
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : {}}
-            transition={{ duration: 0.8, delay: 1 }}
-          >
-            <p className="text-gray-400 text-sm">
-              Всички резултати се проследяват и отчитат ежемесечно
-            </p>
-          </motion.div>
         </div>
       </div>
     </section>
@@ -650,62 +692,199 @@ const InvestmentSection = () => {
   const isInView = useInView(ref, { once: true, amount: 0.3 });
   const [isHovered, setIsHovered] = useState(false);
 
+  const principles = [
+    {
+      number: "1",
+      title: "Персонализирано решение",
+      description: "Всяка система SEO Struktor™ се проектира и изгражда спрямо уникалните цели и състояние на вашия бизнес. Ние не предлагаме готови пакети.",
+      icon: "🎯"
+    },
+    {
+      number: "2", 
+      title: "Бюджетна рамка",
+      description: "За ориентация, базовите инженерни проекти започват от 1980 лв./месечно.",
+      icon: "💰"
+    },
+    {
+      number: "3",
+      title: "Техническа спецификация", 
+      description: "Финалната инвестиция се определя след задължителна техническа диагностика. Вие получавате детайлно инженерно предложение, в което всеки компонент е ясно описан и стойностен.",
+      icon: "📋"
+    }
+  ];
+
   return (
-    <section ref={ref} className="py-20 bg-gradient-to-br from-[var(--pravdast-dark)] to-[var(--pravdast-dark-gray)] relative overflow-hidden">
-      {/* Blueprint grid background */}
+    <section ref={ref} className="py-20 bg-slate-900/70 relative overflow-hidden">
+      {/* Technical Background Pattern */}
       <div className="absolute inset-0 opacity-5">
-        <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+        <svg className="w-full h-full" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
           <defs>
-            <pattern id="blueprint-grid-investment" width="50" height="50" patternUnits="userSpaceOnUse">
-              <path d="M 50 0 L 0 0 0 50" fill="none" stroke="currentColor" strokeWidth="0.5"/>
+            <pattern id="tech-pattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+              <circle cx="10" cy="10" r="1" fill="var(--pravdast-yellow)" opacity="0.3"/>
+              <path d="M0,10 L20,10 M10,0 L10,20" stroke="var(--pravdast-yellow)" strokeWidth="0.5" opacity="0.2"/>
             </pattern>
           </defs>
-          <rect width="100%" height="100%" fill="url(#blueprint-grid-investment)" />
+          <rect width="100%" height="100%" fill="url(#tech-pattern)" />
         </svg>
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
-        <div className="max-w-4xl mx-auto text-center">
-          <motion.h2
-            className="text-3xl md:text-4xl font-bold mb-16 text-white"
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8 }}
           >
-            Техническа спецификация на инвестицията
-          </motion.h2>
+            <div className="inline-block px-4 py-2 bg-[var(--pravdast-yellow)]/10 rounded-full border border-[var(--pravdast-yellow)]/20 mb-6">
+              <span className="text-[var(--pravdast-yellow)] text-sm font-semibold">ПРОЗРАЧНО ЦЕНООБРАЗУВАНЕ</span>
+            </div>
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight">
+              Структура на инвестицията
+            </h2>
+            <p className="text-gray-300 text-xl max-w-3xl mx-auto">
+              Инженерно проектиране изисква прецизност и в техническата спецификация
+            </p>
+          </motion.div>
 
+          {/* Price Display */}
           <motion.div
-            className="bg-slate-800/50 p-8 rounded-lg border border-slate-600/30 mb-8"
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            className="text-center mb-16"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <motion.div
-              className="text-4xl md:text-5xl font-bold mb-6"
+              className="inline-block p-8 bg-slate-800/60 backdrop-blur-sm rounded-3xl border border-slate-600/30 relative overflow-hidden group"
               onHoverStart={() => setIsHovered(true)}
               onHoverEnd={() => setIsHovered(false)}
-              animate={isHovered ? { scale: 1.05 } : { scale: 1 }}
-              transition={{ type: "spring", stiffness: 300, damping: 10 }}
+              whileHover={{ scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 300 }}
             >
-              <span className="text-[var(--pravdast-yellow)]">1980 лв.</span>
-              <span className="text-white">/месечно</span>
+              {/* Animated background elements */}
+              <div className="absolute inset-0 bg-gradient-to-r from-[var(--pravdast-yellow)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              
+              <div className="relative z-10">
+                <div className="text-sm text-[var(--pravdast-yellow)] font-semibold mb-2 tracking-wider">
+                  ЗАПОЧВА ОТ
+                </div>
+                <motion.div
+                  className="text-5xl md:text-6xl font-bold mb-2"
+                  animate={isHovered ? { scale: 1.05 } : { scale: 1 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 10 }}
+                >
+                  <span className="text-[var(--pravdast-yellow)]">1980 лв.</span>
+                  <span className="text-white text-3xl">/месечно</span>
+                </motion.div>
+                <div className="text-gray-400 text-sm">
+                  *Финалната цена се определя след техническа диагностика
+                </div>
+              </div>
             </motion.div>
-            
-            <div className="space-y-4 text-left">
-              <div className="p-4 bg-slate-700/30 rounded">
-                <h4 className="font-semibold mb-2 text-white">1. Персонализирано решение</h4>
-                <p className="text-gray-300 text-sm">Всяка система SEO Struktor™ се проектира и изгражда спрямо уникалните цели и състояние на вашия бизнес. Ние не предлагаме готови пакети.</p>
-              </div>
-              <div className="p-4 bg-slate-700/30 rounded">
-                <h4 className="font-semibold mb-2 text-white">2. Бюджетна рамка</h4>
-                <p className="text-gray-300 text-sm">За ориентация, базовите инженерни проекти започват от 1980 лв./месечно.</p>
-              </div>
-              <div className="p-4 bg-slate-700/30 rounded">
-                <h4 className="font-semibold mb-2 text-white">3. Техническа спецификация</h4>
-                <p className="text-gray-300 text-sm">Финалната инвестиция се определя след задължителна техническа диагностика. Вие получавате детайлно инженерно предложение, в което всеки компонент е ясно описан и стойностен.</p>
-              </div>
-            </div>
+          </motion.div>
+
+          {/* Principles Grid */}
+          <div className="grid gap-8 md:gap-12">
+            {principles.map((principle, index) => (
+              <motion.div
+                key={principle.number}
+                className="relative"
+                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+                animate={isInView ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 0.8, delay: index * 0.2 }}
+              >
+                <motion.div
+                  className={`flex flex-col md:flex-row items-center gap-8 ${
+                    index % 2 === 1 ? 'md:flex-row-reverse' : ''
+                  }`}
+                  whileHover={{ scale: 1.01 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  {/* Number Circle */}
+                  <motion.div
+                    className="flex-shrink-0"
+                    whileHover={{ scale: 1.1, rotate: 10 }}
+                    transition={{ type: "spring", stiffness: 400 }}
+                  >
+                    <div className="relative">
+                      <div className="w-20 h-20 bg-gradient-to-br from-[var(--pravdast-yellow)] to-yellow-600 rounded-full flex items-center justify-center shadow-xl">
+                        <span className="text-black font-bold text-2xl">
+                          {principle.number}
+                        </span>
+                      </div>
+                      {/* Connection line to next */}
+                      {index < principles.length - 1 && (
+                        <motion.div
+                          className="absolute top-20 left-1/2 w-0.5 h-16 bg-gradient-to-b from-[var(--pravdast-yellow)] to-slate-600 hidden md:block"
+                          initial={{ scaleY: 0 }}
+                          animate={isInView ? { scaleY: 1 } : {}}
+                          transition={{ duration: 1, delay: index * 0.3 + 0.5 }}
+                        />
+                      )}
+                    </div>
+                  </motion.div>
+
+                  {/* Content Card */}
+                  <div className="flex-1 w-full">
+                    <motion.div
+                      className="bg-slate-800/60 backdrop-blur-sm p-8 rounded-2xl border border-slate-600/30 group hover:border-[var(--pravdast-yellow)]/40 transition-all duration-500"
+                      whileHover={{ y: -3 }}
+                      transition={{ type: "spring", stiffness: 300 }}
+                    >
+                      <div className="flex items-center gap-4 mb-4">
+                        <div className="text-2xl">{principle.icon}</div>
+                        <h3 className="text-xl md:text-2xl font-bold text-white group-hover:text-[var(--pravdast-yellow)] transition-colors duration-300">
+                          {principle.title}
+                        </h3>
+                      </div>
+                      <p className="text-gray-300 leading-relaxed text-sm md:text-base">
+                        {principle.description}
+                      </p>
+
+                      {/* Decorative element */}
+                      <motion.div
+                        className="mt-6 w-full h-1 bg-slate-700 rounded-full overflow-hidden"
+                        initial={{ width: 0 }}
+                        animate={isInView ? { width: "100%" } : {}}
+                        transition={{ duration: 1, delay: index * 0.2 + 0.8 }}
+                      >
+                        <motion.div
+                          className="h-full bg-gradient-to-r from-[var(--pravdast-yellow)] to-yellow-400"
+                          initial={{ width: "0%" }}
+                          animate={isInView ? { width: "100%" } : {}}
+                          transition={{ duration: 1.5, delay: index * 0.2 + 1 }}
+                        />
+                      </motion.div>
+                    </motion.div>
+                  </div>
+                </motion.div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Bottom CTA */}
+          <motion.div
+            className="text-center mt-16 p-8 bg-slate-800/40 rounded-3xl border border-[var(--pravdast-yellow)]/20"
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 1 }}
+          >
+            <h3 className="text-2xl font-bold text-white mb-4">
+              Готови за персонализирана оферта?
+            </h3>
+            <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
+              Всяка инвестиция започва с безплатна техническа диагностика и детайлно планиране.
+            </p>
+            <Button
+              size="lg"
+              className="bg-[var(--pravdast-yellow)] text-black hover:bg-[var(--pravdast-yellow)]/90 px-6 md:px-12 py-4 md:py-6 text-base md:text-xl font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 w-full md:w-auto"
+              asChild
+            >
+              <a href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu" target="_blank" rel="noopener noreferrer">
+                Получете персонализирана оферта
+                <ArrowRight className="ml-2 md:ml-3 h-5 w-5 md:h-6 md:w-6" />
+              </a>
+            </Button>
           </motion.div>
         </div>
       </div>
