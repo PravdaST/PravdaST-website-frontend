@@ -195,6 +195,7 @@ Changelog:
 - June 24, 2025. Added Writesonic SEO Fixer script to HTML head for automated SEO optimization and site audit improvements
 - June 24, 2025. Fixed HTML lang attribute from "en" to "bg" for proper Bulgarian language declaration following SEO audit recommendations
 - June 24, 2025. Added critical security headers to vercel.json: Content-Security-Policy, X-Content-Type-Options, X-Frame-Options, Referrer-Policy for enhanced security posture
+- June 24, 2025. Created LLMs.txt file for better AI/LLM understanding of website content and structure, includes service descriptions, contact info, and technical details
 
 ## User Preferences
 
