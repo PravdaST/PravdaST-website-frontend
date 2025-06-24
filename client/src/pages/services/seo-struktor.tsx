@@ -6,6 +6,7 @@ import { SEOHead } from "@/components/seo-head";
 import { useRef, useState, useEffect } from "react";
 import {
   ArrowRight,
+  ArrowLeft,
   BarChart3,
   TrendingDown,
   Crown,
@@ -228,8 +229,7 @@ const PhilosophySection = () => {
                     animate={{
                       x: currentStep === 1 ? [0, 10, 0] : [0, -10, 0],
                       color: currentStep === 1 ? 'rgb(236, 182, 40)' : 'rgb(248, 113, 113)',
-                      scale: currentStep === 1 ? [1, 1.2, 1] : [1, 0.8, 1],
-                      rotateY: currentStep === 1 ? 0 : 180
+                      scale: currentStep === 1 ? [1, 1.2, 1] : [1, 0.8, 1]
                     }}
                     transition={{ 
                       duration: 1.5,
@@ -237,7 +237,11 @@ const PhilosophySection = () => {
                       repeatType: "loop"
                     }}
                   >
-                    <ArrowRight className="w-6 h-6" />
+                    {currentStep === 1 ? (
+                      <ArrowRight className="w-6 h-6" />
+                    ) : (
+                      <ArrowLeft className="w-6 h-6" />
+                    )}
                   </motion.div>
                   <motion.div 
                     className="w-16 h-0.5"

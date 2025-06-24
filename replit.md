@@ -213,7 +213,7 @@ Changelog:
 - June 24, 2025. Redesigned philosophy section in SEO Struktor™ with modern mobile-first UI: replaced two-column layout with single transformation visualization showing animated transition from chaos to system, added status indicators, progress arrows, and separated content into problem/solution cards for better mobile experience and visual clarity
 - June 24, 2025. Enhanced philosophy section transformation with infinite loop animation: cycles between chaos and system states every 3 seconds, added dynamic arrow with pulsing movement and color transitions, synchronized background elements to smoothly transition between red (chaos) and yellow (system) states for continuous visual engagement
 - June 24, 2025. Optimized CTA buttons for mobile responsiveness in SEO Struktor™ page: reduced padding from px-12 py-6 to px-6 py-4 on mobile, decreased font size from text-xl to text-base, made buttons full width on mobile (w-full md:w-auto), and reduced arrow icon size for better mobile user experience
-- June 24, 2025. Enhanced philosophy section arrow animation with directional rotation: added rotateY animation so arrow flips 180 degrees when transitioning back to chaos state (БЕЗ СИСТЕМА), creating visual indication of reverse transformation direction while maintaining forward direction for system state (СЪС СИСТЕМА)
+- June 24, 2025. Enhanced philosophy section arrow animation with directional switching: replaced rotateY with conditional ArrowLeft/ArrowRight icons to show proper direction - ArrowLeft when transitioning to chaos state (БЕЗ СИСТЕМА), ArrowRight when moving toward system state (СЪС СИСТЕМА), creating smooth visual indication of transformation direction
 
 ## User Preferences
 
