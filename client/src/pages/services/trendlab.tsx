@@ -436,7 +436,7 @@ export default function Trendlab() {
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-bold mb-6">
                 Нашата поточна линия за съдържание:{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ECB629] to-[#F59E0B]">
+                <span className="text-[#ECB629] font-bold">
                   Процес в 4 фази
                 </span>
               </h2>
