@@ -1,7 +1,29 @@
-import { useRoute } from 'wouter';
-import { Link } from 'wouter';
-import { SEOHead } from '@/components/seo-head';
-import { Calendar, Clock, User, ArrowLeft, Share2, Tag } from 'lucide-react';
+import { useParams } from "wouter";
+import { useState, useEffect, useRef } from "react";
+import { motion, useInView } from "framer-motion";
+import { Navigation } from "@/components/navigation";
+import { Footer } from "@/components/footer";
+import { SEOHead } from "@/components/seo-head";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { 
+  Clock, 
+  User, 
+  Tag, 
+  ArrowLeft, 
+  Share2, 
+  Facebook, 
+  Twitter, 
+  Linkedin, 
+  Copy,
+  MessageCircle,
+  Send,
+  Heart,
+  Eye,
+  BookOpen,
+  TrendingUp
+} from "lucide-react";
+import { Link } from "wouter";
 
 interface BlogPost {
   id: string;
@@ -79,17 +101,12 @@ const BlogBackground = () => {
   );
 };
 
-// Същите блог постове като в главната страница
 const blogPosts: BlogPost[] = [
   {
     id: '1',
     title: 'Как да създадете предсказуем растеж в B2B компанията си',
     excerpt: 'Откройте тайните на системния подход към бизнес растежа. Научете как водещите компании строят устойчиви системи за генериране на клиенти.',
     content: `
-# Как да създадете предсказуем растеж в B2B компанията си
-
-## Въведение
-
 В днешния конкурентен бизнес свят, много компании разчитат на случайността и късмета за растежа си. Това е рискован подход, който води до нестабилни резултати и стрес за собствениците.
 
 ## Проблемът с традиционния подход
@@ -110,49 +127,44 @@ const blogPosts: BlogPost[] = [
 - Анализ на клиентската база
 - Проучване на пазарни възможности
 - Оценка на конкурентите
-- Идентифициране на bottlenecks
 
 ### 2. Проектиране на системи
-Създаваме персонализирани системи за:
-- **Lead generation** - автоматизирано привличане на потенциални клиенти
-- **Продажбен процес** - стандартизиран pipeline с ясни етапи
-- **Customer retention** - системи за задържане и развитие на клиенти
+Изграждаме специализирани системи за:
+- Генериране на качествени leads
+- Автоматизиране на продажбите
+- Задържане и развитие на клиенти
 
-### 3. Внедряване и оптимизация
-Поетапно внедряваме системите и непрекъснато ги оптимизираме базирано на данни.
+### 3. Измерване и оптимизация
+Всичко се мери и се подобрява непрекъснато:
+- KPI проследяване в реално време
+- A/B тестване на всички процеси
+- Месечни ревюта и корекции
 
-## Нашите методологии
+## Практически стъпки
 
-### SEO Struktor™
-Нашата собствена SEO методология, която гарантира:
-- Топ позиции в Google за ключови думи
-- Органичен трафик с висока конверсия
-- Дългосрочни резултати
+Ето как можете да започнете трансформацията:
 
-### Clientomat™
-Автоматизирана система за генериране на клиенти:
-- Персонализирани кампании
-- Multi-channel подход
-- Автоматично nurturing
+**Стъпка 1: Одит на текущото състояние**
+Направете честна оценка на:
+- Текущи резултати и тенденции
+- Силни и слаби страни
+- Възможности за подобрение
 
-### Sales Engine™
-Оптимизиран продажбен процес:
-- Данни-базирана сегментация
-- Персонализирани предложения
-- Автоматизирано follow-up
+**Стъпка 2: Дефиниране на цели**
+Поставете SMART цели за:
+- Ръст на приходите
+- Увеличение на клиентската база
+- Подобряване на конверсиите
 
-## Резултати от клиенти
-
-Нашите клиенти постигат:
-- **200-400% увеличение** на генерираните leads
-- **150-300% подобрение** в конверсията
-- **Стабилен месечен растеж** от 15-25%
+**Стъпка 3: Внедряване на системи**
+Започнете с най-критичните области:
+- CRM система за проследяване на клиенти
+- Маркетинг автоматизация
+- Процеси за продажби
 
 ## Заключение
 
 Предсказуемият растеж не е случайност - той е резултат от правилно проектирани и внедрени системи. Спрете да разчитате на късмета и започнете да строите устойчив бизнес още днес.
-
----
 
 **Готови за трансформация?** Свържете се с нас за безплатна консултация и научете как можем да помогнем на вашата компания да постигне предсказуем растеж.
     `,
@@ -168,242 +180,466 @@ const blogPosts: BlogPost[] = [
     id: '2',
     title: 'SEO Struktor™: Революционен подход към търсещата оптимизация',
     excerpt: 'Разберете как нашата собствена методология SEO Struktor™ помага на клиентите ни да достигнат топ позиции в Google за ключови думи с висок търсещ обем.',
-    content: `
-# SEO Struktor™: Революционен подход към търсещата оптимизация
-
-## Какво е SEO Struktor™?
-
-SEO Struktor™ е нашата собствена, патентована методология за търсещата оптимизация, разработена въз основа на дълбоки анализи на Google алгоритмите и тестове с над 100 клиента.
-
-## Проблемите с традиционното SEO
-
-Повечето SEO агенции използват остарели техники:
-- Фокус върху количество вместо качество
-- Игнориране на user experience
-- Липса на техническа оптимизация
-- Неправилна keyword стратегия
-
-## Нашият подход
-
-### 1. Техническа архитектура
-- Пълен одит на сайта
-- Core Web Vitals оптимизация
-- Schema markup внедряване
-- Mobile-first дизайн
-
-### 2. Съдържателна стратегия
-- Дълбоко keyword research
-- Content clustering
-- E-A-T оптимизация
-- User intent анализ
-
-### 3. Link building стратегия
-- Висококачествени backlinks
-- Local SEO оптимизация
-- Brand mention building
-- Digital PR кампании
-
-## Резултати
-
-Нашите клиенти постигат:
-- **300-500% увеличение** в органичния трафик
-- **Топ 3 позиции** за над 80% от целевите keywords
-- **ROI от 400-800%** в първата година
-
-## Заключение
-
-SEO Struktor™ не е просто оптимизация - това е цялостна трансформация на дигиталното присъствие на вашия бранд.
-    `,
+    content: `SEO Struktor™ е собствената ни методология...`,
     author: 'SEO Експерти',
     publishedAt: '2024-12-10',
     readTime: 12,
     category: 'SEO',
     slug: 'seo-struktor-revolutsionen-podhod',
-    tags: ['SEO', 'органичен трафик', 'Google', 'оптимизация']
+    tags: ['SEO', 'органичен трафик', 'Google', 'оптимизация'],
+    views: 1923
+  },
+  {
+    id: '3',
+    title: 'Clientomat™: Автоматизиране на процеса за генериране на клиенти',
+    excerpt: 'Научете как системата Clientomat™ помага на компаниите да автоматизират процеса си за привличане и задържане на клиенти, като същевременно увеличават конверсиите.',
+    content: `Clientomat™ е иновативна система...`,
+    author: 'Automation Team',
+    publishedAt: '2024-12-05',
+    readTime: 10,
+    category: 'Автоматизация',
+    slug: 'clientomat-avtomatiziran-sistem',
+    tags: ['автоматизация', 'CRM', 'продажби', 'клиенти'],
+    views: 1456
+  }
+];
+
+// Most read posts (top 3)
+const mostReadPosts = blogPosts
+  .sort((a, b) => (b.views || 0) - (a.views || 0))
+  .slice(0, 3);
+
+// Sample comments data
+const sampleComments: Comment[] = [
+  {
+    id: '1',
+    author: 'Иван Петров',
+    content: 'Много полезна статия! Вече започнахме да прилагаме някои от съветите във фирмата.',
+    publishedAt: '2024-12-16'
+  },
+  {
+    id: '2',
+    author: 'Мария Георгиева',
+    content: 'Отлично обяснение на системния подход. Искам да науча повече за автоматизацията.',
+    publishedAt: '2024-12-15'
   }
 ];
 
 export default function BlogPost() {
-  const [match, params] = useRoute('/blog/:slug');
-  
-  if (!match || !params?.slug) {
-    return (
-      <div className="min-h-screen bg-[var(--pravdast-dark)] flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-4xl font-bold text-white mb-4">Статията не е намерена</h1>
-          <Link href="/blog">
-            <a className="text-[var(--pravdast-yellow)] hover:text-[var(--pravdast-yellow)]/80 transition-colors">
-              ← Обратно към блога
-            </a>
-          </Link>
-        </div>
-      </div>
-    );
-  }
+  const { slug } = useParams();
+  const [post, setPost] = useState<BlogPost | null>(null);
+  const [comments, setComments] = useState<Comment[]>(sampleComments);
+  const [newComment, setNewComment] = useState('');
+  const [newCommentAuthor, setNewCommentAuthor] = useState('');
+  const [showShareMenu, setShowShareMenu] = useState(false);
+  const [liked, setLiked] = useState(false);
+  const contentRef = useRef(null);
+  const isInView = useInView(contentRef);
 
-  const post = blogPosts.find(p => p.slug === params.slug);
+  useEffect(() => {
+    const foundPost = blogPosts.find(p => p.slug === slug);
+    setPost(foundPost || null);
+  }, [slug]);
+
+  const handleShare = (platform: string) => {
+    if (!post) return;
+    
+    const url = `https://www.pravdagency.eu/blog/${post.slug}`;
+    const text = `${post.title} - ${post.excerpt}`;
+    
+    switch (platform) {
+      case 'facebook':
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank');
+        break;
+      case 'twitter':
+        window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`, '_blank');
+        break;
+      case 'linkedin':
+        window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`, '_blank');
+        break;
+      case 'copy':
+        navigator.clipboard.writeText(url);
+        alert('Линкът е копиран!');
+        break;
+    }
+    setShowShareMenu(false);
+  };
+
+  const handleAddComment = () => {
+    if (!newComment.trim() || !newCommentAuthor.trim()) return;
+    
+    const comment: Comment = {
+      id: Date.now().toString(),
+      author: newCommentAuthor,
+      content: newComment,
+      publishedAt: new Date().toISOString().split('T')[0]
+    };
+    
+    setComments([comment, ...comments]);
+    setNewComment('');
+    setNewCommentAuthor('');
+  };
 
   if (!post) {
     return (
-      <div className="min-h-screen bg-[var(--pravdast-dark)] flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-4xl font-bold text-white mb-4">Статията не е намерена</h1>
-          <Link href="/blog">
-            <a className="text-[var(--pravdast-yellow)] hover:text-[var(--pravdast-yellow)]/80 transition-colors">
-              ← Обратно към блога
-            </a>
-          </Link>
+      <div className="min-h-screen bg-slate-900">
+        <Navigation />
+        <div className="min-h-screen flex items-center justify-center">
+          <div className="text-center">
+            <h1 className="text-2xl font-bold text-white mb-4">Статията не е намерена</h1>
+            <Link href="/blog">
+              <Button variant="outline" className="text-white border-white hover:bg-white hover:text-slate-900">
+                Обратно към блога
+              </Button>
+            </Link>
+          </div>
         </div>
+        <Footer />
       </div>
     );
   }
 
-  const seoData = {
-    title: `${post.title} | Pravdast Блог`,
-    description: post.excerpt,
-    keywords: post.tags.join(', '),
-    canonical: `https://www.pravdagency.eu/blog/${post.slug}`
-  };
-
   return (
-    <>
-      <SEOHead seo={seoData} pageSlug={`blog/${post.slug}`} />
+    <div className="min-h-screen bg-slate-900">
+      <SEOHead 
+        seo={{
+          title: post.title,
+          description: post.excerpt,
+          keywords: post.tags.join(', '),
+          ogTitle: post.title,
+          ogDescription: post.excerpt,
+          ogImage: post.featuredImage || '/og-blog-default.jpg'
+        }} 
+        pageSlug={`blog/${post.slug}`} 
+      />
+      <Navigation />
       
-      <div className="min-h-screen bg-[var(--pravdast-dark)]">
-        {/* Back to Blog */}
-        <div className="pt-32 px-4">
+      {/* Hero Section */}
+      <section className="relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 pt-20 pb-12">
+        <BlogBackground />
+        
+        <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-4xl mx-auto">
-            <Link href="/blog">
-              <a className="inline-flex items-center gap-2 text-[var(--pravdast-yellow)] hover:text-[var(--pravdast-yellow)]/80 transition-colors mb-8">
-                <ArrowLeft className="w-4 h-4" />
-                Обратно към блога
-              </a>
-            </Link>
-          </div>
-        </div>
-
-        {/* Article Header */}
-        <article className="px-4 pb-20">
-          <div className="max-w-4xl mx-auto">
-            {/* Category */}
-            <div className="mb-4">
-              <span className="text-sm font-semibold text-[var(--pravdast-yellow)] bg-[var(--pravdast-yellow)]/10 px-3 py-1 rounded">
-                {post.category}
-              </span>
-            </div>
-
-            {/* Title */}
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
-              {post.title}
-            </h1>
-
-            {/* Meta Info */}
-            <div className="flex flex-wrap items-center gap-6 mb-8 pb-8 border-b border-gray-700/50">
-              <div className="flex items-center gap-2 text-gray-300">
-                <User className="w-4 h-4" />
-                <span className="text-sm">{post.author}</span>
-              </div>
-              <div className="flex items-center gap-2 text-gray-300">
-                <Calendar className="w-4 h-4" />
-                <span className="text-sm">
-                  {new Date(post.publishedAt).toLocaleDateString('bg-BG', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric'
-                  })}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              <Link href="/blog">
+                <Button variant="ghost" className="text-white hover:text-[#ECB629] mb-6 group">
+                  <ArrowLeft className="mr-2 h-4 w-4 group-hover:translate-x-[-4px] transition-transform" />
+                  Обратно към блога
+                </Button>
+              </Link>
+              
+              <div className="mb-6">
+                <span className="inline-flex items-center gap-2 px-4 py-2 text-sm bg-[#ECB629]/20 text-[#ECB629] rounded-full border border-[#ECB629]/30 backdrop-blur-sm">
+                  <BookOpen className="h-4 w-4" />
+                  {post.category}
                 </span>
               </div>
-              <div className="flex items-center gap-2 text-gray-300">
-                <Clock className="w-4 h-4" />
-                <span className="text-sm">{post.readTime} минути четене</span>
+              
+              <h1 className="text-4xl md:text-6xl font-bold text-white mb-8 leading-tight">
+                {post.title}
+              </h1>
+              
+              <div className="flex flex-wrap items-center gap-6 text-gray-300 mb-8">
+                <div className="flex items-center gap-2">
+                  <User className="h-5 w-5 text-[#ECB629]" />
+                  <span className="font-medium">{post.author}</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Clock className="h-5 w-5 text-[#ECB629]" />
+                  <span>{post.readTime} мин четене</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Eye className="h-5 w-5 text-[#ECB629]" />
+                  <span>{post.views || 0} прегледа</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Tag className="h-5 w-5 text-[#ECB629]" />
+                  <span>{new Date(post.publishedAt).toLocaleDateString('bg-BG')}</span>
+                </div>
               </div>
-              <button className="flex items-center gap-2 text-gray-300 hover:text-[var(--pravdast-yellow)] transition-colors">
-                <Share2 className="w-4 h-4" />
-                <span className="text-sm">Споделете</span>
-              </button>
-            </div>
-
-            {/* Featured Image Placeholder */}
-            <div className="h-64 md:h-96 bg-gradient-to-r from-[var(--pravdast-yellow)]/20 to-[var(--pravdast-yellow)]/5 rounded-xl flex items-center justify-center mb-12">
-              <div className="text-[var(--pravdast-yellow)] font-bold text-6xl">P</div>
-            </div>
-
-            {/* Article Content */}
-            <div className="prose prose-lg prose-invert max-w-none">
-              <div 
-                className="text-gray-300 leading-relaxed"
-                dangerouslySetInnerHTML={{ 
-                  __html: post.content.split('\n').map(line => {
-                    if (line.startsWith('# ')) {
-                      return `<h1 class="text-3xl font-bold text-white mt-12 mb-6">${line.slice(2)}</h1>`;
-                    }
-                    if (line.startsWith('## ')) {
-                      return `<h2 class="text-2xl font-bold text-white mt-10 mb-4">${line.slice(3)}</h2>`;
-                    }
-                    if (line.startsWith('### ')) {
-                      return `<h3 class="text-xl font-bold text-[var(--pravdast-yellow)] mt-8 mb-3">${line.slice(4)}</h3>`;
-                    }
-                    if (line.startsWith('- **') && line.includes('**')) {
-                      const boldMatch = line.match(/- \*\*(.*?)\*\* - (.*)/);
-                      if (boldMatch) {
-                        return `<li class="mb-2"><strong class="text-[var(--pravdast-yellow)]">${boldMatch[1]}</strong> - ${boldMatch[2]}</li>`;
-                      }
-                    }
-                    if (line.startsWith('- ')) {
-                      return `<li class="mb-2 text-gray-300">${line.slice(2)}</li>`;
-                    }
-                    if (line.includes('**') && !line.startsWith('#')) {
-                      return `<p class="mb-4 text-gray-300">${line.replace(/\*\*(.*?)\*\*/g, '<strong class="text-[var(--pravdast-yellow)]">$1</strong>')}</p>`;
-                    }
-                    if (line.trim() === '---') {
-                      return `<hr class="my-12 border-gray-700" />`;
-                    }
-                    if (line.trim() && !line.startsWith('#')) {
-                      return `<p class="mb-4 text-gray-300">${line}</p>`;
-                    }
-                    return '';
-                  }).join('')
-                }}
-              />
-            </div>
-
-            {/* Tags */}
-            <div className="mt-12 pt-8 border-t border-gray-700/50">
-              <div className="flex items-center gap-3 mb-6">
-                <Tag className="w-5 h-5 text-gray-400" />
-                <span className="text-gray-400 font-medium">Тагове:</span>
+              
+              {/* Social Share & Like */}
+              <div className="flex items-center gap-4 mb-8">
+                <div className="relative">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setShowShareMenu(!showShareMenu)}
+                    className="border-[#ECB629]/30 text-[#ECB629] hover:bg-[#ECB629]/10"
+                  >
+                    <Share2 className="h-4 w-4 mr-2" />
+                    Споделяне
+                  </Button>
+                  
+                  {showShareMenu && (
+                    <motion.div
+                      className="absolute top-full mt-2 left-0 bg-slate-800 border border-slate-600 rounded-lg p-3 shadow-xl z-50 min-w-48"
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <div className="grid grid-cols-2 gap-2">
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => handleShare('facebook')}
+                          className="justify-start hover:bg-blue-600/20 hover:text-blue-400"
+                        >
+                          <Facebook className="h-4 w-4 mr-2" />
+                          Facebook
+                        </Button>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => handleShare('twitter')}
+                          className="justify-start hover:bg-sky-600/20 hover:text-sky-400"
+                        >
+                          <Twitter className="h-4 w-4 mr-2" />
+                          Twitter
+                        </Button>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => handleShare('linkedin')}
+                          className="justify-start hover:bg-blue-700/20 hover:text-blue-300"
+                        >
+                          <Linkedin className="h-4 w-4 mr-2" />
+                          LinkedIn
+                        </Button>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => handleShare('copy')}
+                          className="justify-start hover:bg-gray-600/20 hover:text-gray-300"
+                        >
+                          <Copy className="h-4 w-4 mr-2" />
+                          Копирай
+                        </Button>
+                      </div>
+                    </motion.div>
+                  )}
+                </div>
+                
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setLiked(!liked)}
+                  className={`border-[#ECB629]/30 ${liked ? 'bg-[#ECB629]/20 text-[#ECB629]' : 'text-[#ECB629] hover:bg-[#ECB629]/10'}`}
+                >
+                  <Heart className={`h-4 w-4 mr-2 ${liked ? 'fill-current' : ''}`} />
+                  {liked ? 'Харесано' : 'Харесай'}
+                </Button>
               </div>
-              <div className="flex flex-wrap gap-2">
+              
+              <div className="flex flex-wrap gap-3">
                 {post.tags.map((tag) => (
-                  <span
+                  <span 
                     key={tag}
-                    className="text-sm text-gray-300 bg-gray-800/50 border border-gray-700 px-3 py-1 rounded-full hover:bg-gray-700/50 transition-colors"
+                    className="px-3 py-1 text-sm bg-slate-800/50 text-gray-300 rounded-full border border-slate-700/50 backdrop-blur-sm"
                   >
                     #{tag}
                   </span>
                 ))}
               </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      <main className="pb-16">
+        <div className="container mx-auto px-6">
+          <div className="grid lg:grid-cols-4 gap-12 max-w-7xl mx-auto">
+            {/* Main Content */}
+            <div className="lg:col-span-3">
+              <motion.div
+                ref={contentRef}
+                className="prose prose-lg prose-invert max-w-none"
+                initial={{ opacity: 0, y: 30 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.8 }}
+              >
+                <Card className="bg-slate-800/30 border-slate-600/30 p-8 backdrop-blur-sm">
+                  <div 
+                    className="text-gray-300 leading-relaxed [&>h2]:text-white [&>h2]:font-bold [&>h2]:text-2xl [&>h2]:mb-6 [&>h2]:mt-8 [&>h3]:text-white [&>h3]:font-semibold [&>h3]:text-xl [&>h3]:mb-4 [&>h3]:mt-6 [&>strong]:text-[#ECB629] [&>strong]:font-semibold [&>ul]:my-6 [&>li]:mb-2 [&>p]:mb-6"
+                    dangerouslySetInnerHTML={{ 
+                      __html: post.content
+                        .replace(/\n\n/g, '</p><p>')
+                        .replace(/^/, '<p>')
+                        .replace(/$/, '</p>')
+                        .replace(/## (.*)/g, '<h2>$1</h2>')
+                        .replace(/### (.*)/g, '<h3>$1</h3>')
+                        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                        .replace(/- (.*)/g, '<li>$1</li>')
+                        .replace(/(<li>.*<\/li>)/gs, '<ul class="list-disc list-inside space-y-2 ml-4">$1</ul>')
+                    }}
+                  />
+                </Card>
+              </motion.div>
+
+              {/* Comments Section */}
+              <motion.div
+                className="mt-12"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                viewport={{ once: true }}
+              >
+                <Card className="bg-slate-800/30 border-slate-600/30 p-8 backdrop-blur-sm">
+                  <div className="flex items-center gap-3 mb-8">
+                    <MessageCircle className="h-6 w-6 text-[#ECB629]" />
+                    <h3 className="text-2xl font-bold text-white">
+                      Коментари ({comments.length})
+                    </h3>
+                  </div>
+
+                  {/* Add Comment Form */}
+                  <div className="mb-8 p-6 bg-slate-700/30 rounded-lg border border-slate-600/30">
+                    <h4 className="text-lg font-semibold text-white mb-4">Оставете коментар</h4>
+                    <div className="space-y-4">
+                      <div>
+                        <label className="block text-sm font-medium text-gray-300 mb-2">
+                          Вашето име
+                        </label>
+                        <input
+                          type="text"
+                          value={newCommentAuthor}
+                          onChange={(e) => setNewCommentAuthor(e.target.value)}
+                          className="w-full px-4 py-3 bg-slate-800 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:border-[#ECB629] focus:outline-none"
+                          placeholder="Въведете вашето име"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-300 mb-2">
+                          Коментар
+                        </label>
+                        <textarea
+                          value={newComment}
+                          onChange={(e) => setNewComment(e.target.value)}
+                          rows={4}
+                          className="w-full px-4 py-3 bg-slate-800 border border-slate-600 rounded-lg text-white placeholder-gray-400 focus:border-[#ECB629] focus:outline-none resize-none"
+                          placeholder="Споделете вашето мнение..."
+                        />
+                      </div>
+                      <Button
+                        onClick={handleAddComment}
+                        disabled={!newComment.trim() || !newCommentAuthor.trim()}
+                        className="bg-[#ECB629] text-black hover:bg-[#ECB629]/90 font-semibold"
+                      >
+                        <Send className="h-4 w-4 mr-2" />
+                        Публикувай коментар
+                      </Button>
+                    </div>
+                  </div>
+
+                  {/* Comments List */}
+                  <div className="space-y-6">
+                    {comments.map((comment) => (
+                      <div 
+                        key={comment.id}
+                        className="p-6 bg-slate-700/20 rounded-lg border border-slate-600/20"
+                      >
+                        <div className="flex items-center gap-3 mb-3">
+                          <div className="w-10 h-10 bg-[#ECB629]/20 rounded-full flex items-center justify-center">
+                            <User className="h-5 w-5 text-[#ECB629]" />
+                          </div>
+                          <div>
+                            <p className="font-semibold text-white">{comment.author}</p>
+                            <p className="text-sm text-gray-400">
+                              {new Date(comment.publishedAt).toLocaleDateString('bg-BG')}
+                            </p>
+                          </div>
+                        </div>
+                        <p className="text-gray-300 leading-relaxed">{comment.content}</p>
+                      </div>
+                    ))}
+                  </div>
+                </Card>
+              </motion.div>
+            </div>
+
+            {/* Sidebar */}
+            <div className="lg:col-span-1">
+              <div className="sticky top-24 space-y-8">
+                {/* Most Read Posts */}
+                <motion.div
+                  initial={{ opacity: 0, x: 30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.8 }}
+                  viewport={{ once: true }}
+                >
+                  <Card className="bg-slate-800/30 border-slate-600/30 p-6 backdrop-blur-sm">
+                    <div className="flex items-center gap-3 mb-6">
+                      <TrendingUp className="h-5 w-5 text-[#ECB629]" />
+                      <h3 className="text-lg font-bold text-white">Най-четени</h3>
+                    </div>
+                    
+                    <div className="space-y-4">
+                      {mostReadPosts.map((readPost, index) => (
+                        <Link key={readPost.id} href={`/blog/${readPost.slug}`}>
+                          <div className="group p-4 bg-slate-700/20 hover:bg-slate-700/40 rounded-lg border border-slate-600/20 hover:border-[#ECB629]/30 transition-all duration-300 cursor-pointer">
+                            <div className="flex items-start gap-3">
+                              <span className="flex-shrink-0 w-6 h-6 bg-[#ECB629] text-black text-sm font-bold rounded-full flex items-center justify-center">
+                                {index + 1}
+                              </span>
+                              <div className="flex-1 min-w-0">
+                                <h4 className="text-sm font-semibold text-white group-hover:text-[#ECB629] transition-colors line-clamp-2 mb-2">
+                                  {readPost.title}
+                                </h4>
+                                <div className="flex items-center gap-3 text-xs text-gray-400">
+                                  <div className="flex items-center gap-1">
+                                    <Eye className="h-3 w-3" />
+                                    <span>{readPost.views}</span>
+                                  </div>
+                                  <div className="flex items-center gap-1">
+                                    <Clock className="h-3 w-3" />
+                                    <span>{readPost.readTime} мин</span>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </Link>
+                      ))}
+                    </div>
+                  </Card>
+                </motion.div>
+
+                {/* CTA Card */}
+                <motion.div
+                  initial={{ opacity: 0, x: 30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                  viewport={{ once: true }}
+                >
+                  <Card className="bg-gradient-to-br from-[#ECB629]/20 to-[#ECB629]/5 border-[#ECB629]/30 p-6 backdrop-blur-sm">
+                    <h3 className="text-lg font-bold text-white mb-4">
+                      Готови за трансформация?
+                    </h3>
+                    <p className="text-gray-300 text-sm mb-6 leading-relaxed">
+                      Свържете се с нас за безплатна консултация и научете как можем да помогнем на вашата компания.
+                    </p>
+                    <Button 
+                      size="sm"
+                      className="w-full bg-[#ECB629] text-black hover:bg-[#ECB629]/90 font-semibold"
+                      asChild
+                    >
+                      <a href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu" target="_blank" rel="noopener noreferrer">
+                        Безплатна консултация
+                      </a>
+                    </Button>
+                  </Card>
+                </motion.div>
+              </div>
             </div>
           </div>
-        </article>
+        </div>
+      </main>
 
-        {/* CTA Section */}
-        <section className="px-4 py-16 bg-gradient-to-r from-[var(--pravdast-yellow)]/10 to-[var(--pravdast-yellow)]/5 border-t border-gray-700/50">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Готови за собствена трансформация?
-            </h2>
-            <p className="text-gray-300 text-lg mb-8">
-              Свържете се с нас за безплатна консултация и започнете да строите системи за предсказуем растеж още днес.
-            </p>
-            <Link href="/contact">
-              <a className="inline-flex items-center gap-2 bg-[var(--pravdast-yellow)] text-[var(--pravdast-dark)] px-8 py-4 rounded-lg font-bold hover:bg-[var(--pravdast-yellow)]/90 transition-colors">
-                Безплатна консултация
-              </a>
-            </Link>
-          </div>
-        </section>
-      </div>
-    </>
+      <Footer />
+    </div>
   );
 }
