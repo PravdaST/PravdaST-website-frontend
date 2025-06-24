@@ -31,6 +31,7 @@ import BlogPost from "@/pages/blog-post";
 import FAQ from "@/pages/faq";
 import About from "@/pages/about";
 import Contact from "@/pages/contact";
+import Admin from "@/pages/admin";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -50,6 +51,7 @@ function Router() {
           <Route path="/faq" component={FAQ} />
           <Route path="/about" component={About} />
           <Route path="/contact" component={Contact} />
+          <Route path="/admin" component={Admin} />
           <Route
             path="/strapi-test"
             component={lazy(() => import("@/pages/strapi-test"))}
