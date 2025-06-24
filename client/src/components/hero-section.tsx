@@ -4,44 +4,110 @@ import { AnimatedBackground } from "./animated-background"; // И вашия а�
 
 export const HeroSection = () => {
   return (
-    <section className="min-h-screen flex items-center relative overflow-hidden bg-gradient-to-br from-[var(--pravdast-dark)] to-[var(--pravdast-dark-gray)]">
-      <AnimatedBackground />
+    <section className="min-h-screen flex items-center relative overflow-hidden bg-slate-900">
+      {/* Animated Tech Background */}
+      <div className="absolute inset-0 opacity-15">
+        <div className="absolute inset-0">
+          {/* Hero Grid Pattern */}
+          <div className="absolute inset-0" style={{
+            backgroundImage: `
+              linear-gradient(rgba(236, 182, 40, 0.1) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(236, 182, 40, 0.1) 1px, transparent 1px)
+            `,
+            backgroundSize: '50px 50px'
+          }}></div>
+          
+          {/* Tech Lines */}
+          <div className="tech-lines">
+            {[...Array(6)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="absolute h-px bg-gradient-to-r from-transparent via-[#ECB629] to-transparent"
+                style={{
+                  top: `${20 + i * 15}%`,
+                  width: `${200 + i * 50}px`,
+                  left: i % 2 === 0 ? '10%' : 'auto',
+                  right: i % 2 === 1 ? '10%' : 'auto',
+                }}
+                animate={{
+                  opacity: [0.2, 0.8, 0.2],
+                  scaleX: [0.8, 1.2, 0.8],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  delay: i * 0.5,
+                }}
+              />
+            ))}
+          </div>
 
-      {/* Enhanced floating elements */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/4 left-10 w-2 h-2 bg-[var(--pravdast-yellow)] rounded-full animate-ping opacity-60"></div>
-        <div className="absolute top-1/3 right-20 w-1 h-1 bg-[var(--pravdast-yellow)] rounded-full animate-pulse opacity-80"></div>
-        <div className="absolute bottom-1/4 left-1/4 w-3 h-3 bg-[var(--pravdast-yellow)] rounded-full animate-bounce opacity-40"></div>
-        <div className="absolute bottom-1/3 right-1/4 w-1 h-1 bg-[var(--pravdast-yellow)] rounded-full animate-ping opacity-70"></div>
+          {/* Floating Tech Elements */}
+          {[...Array(12)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-1 h-1 bg-[#ECB629] rounded-full"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+              }}
+              animate={{
+                scale: [1, 1.5, 1],
+                opacity: [0.3, 1, 0.3],
+              }}
+              transition={{
+                duration: 2 + Math.random(),
+                repeat: Infinity,
+                delay: Math.random() * 2,
+              }}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Background Elements */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#ECB629] rounded-full blur-3xl"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-blue-500 rounded-full blur-3xl"></div>
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
           {/* Enhanced Status Badge */}
           <motion.div
-            className="inline-flex items-center gap-3 px-6 py-3 bg-slate-800/40 backdrop-blur-sm border border-[var(--pravdast-yellow)]/20 rounded-full mb-8"
+            className="inline-flex items-center gap-3 px-6 py-3 rounded-full mb-8 bg-gradient-to-r from-slate-800/80 to-slate-700/60 border border-[#ECB629]/20 backdrop-blur-sm"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
             <div className="relative">
               <div className="w-3 h-3 bg-green-400 rounded-full"></div>
-              <div className="absolute inset-0 w-3 h-3 bg-green-400 rounded-full animate-ping opacity-60"></div>
+              <motion.div
+                className="absolute inset-0 w-3 h-3 bg-green-400 rounded-full"
+                animate={{ scale: [1, 1.5, 1], opacity: [1, 0, 1] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              />
             </div>
             <span className="text-white text-sm font-semibold">
-              <span className="text-[var(--pravdast-yellow)]">Ново</span> - Приемаме проекти за 2025
+              <span className="text-[#ECB629] font-bold">Ново</span> - Приемаме проекти за 2025
             </span>
           </motion.div>
 
           <motion.h1
-            className="text-5xl md:text-7xl font-bold mb-8 leading-tight text-white" // Добавен text-white за по-добра четимост, ако не идва от родителски елемент
+            className="text-5xl md:text-7xl font-bold mb-8 leading-tight text-white"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
           >
             Престанете да залагате на маркетинг.{" "}
-            <span className="text-[var(--pravdast-yellow)]">
+            <span className="text-[#ECB629] relative">
               Започнете да изграждате растеж.
+              <motion.div
+                className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-[#ECB629] to-[#ECB629]/50 rounded-full"
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ duration: 1, delay: 0.8 }}
+              />
             </span>
           </motion.h1>
 
