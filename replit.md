@@ -193,6 +193,7 @@ Changelog:
 - June 24, 2025. Converted partners carousel to automatic slider: auto-advance every 4 seconds, smooth Framer Motion animations, staggered logo appearance, clickable navigation dots, maintains 5 logos display
 - June 24, 2025. Reverted partners carousel to continuous infinite scroll: removed navigation dots, implemented Framer-style continuous horizontal movement, 3 sets for seamless loop, gradient fade edges
 - June 24, 2025. Added Writesonic SEO Fixer script to HTML head for automated SEO optimization and site audit improvements
+- June 24, 2025. Successfully cleaned and adapted project structure for Vercel deployment: removed duplicated client/ folder, fixed build configuration, created minimal but functional src/ structure with proper TypeScript setup and working build process
 - June 24, 2025. Fixed HTML lang attribute from "en" to "bg" for proper Bulgarian language declaration following SEO audit recommendations
 - June 24, 2025. Added critical security headers to vercel.json: Content-Security-Policy, X-Content-Type-Options, X-Frame-Options, Referrer-Policy for enhanced security posture
 - June 24, 2025. Created LLMs.txt file for better AI/LLM understanding of website content and structure, includes service descriptions, contact info, and technical details

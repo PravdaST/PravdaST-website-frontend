@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --pravdast-yellow: #ECB628;
+  --pravdast-dark: #0f172a;
+  --pravdast-dark-gray: #1e293b;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--pravdast-dark);
+  color: white;
+}

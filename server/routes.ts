@@ -1,14 +1,14 @@
-import type { Express, Request, Response } from "express";
+import type { Express } from "express";
 import { createServer, type Server } from "http";
-import { storage } from "./storage";
-import { insertContactSchema } from "@shared/schema";
-import { z } from "zod";
-import { seoGenerator } from "./lib/seo-generator";
-import { sanitizeInput, validateContentType } from "./middleware/security";
-import { emailService } from "./lib/email-service";
-
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Minimal routes for Vercel deployment
+  app.get("/api/health", (req, res) => {
+    res.json({ status: "ok", timestamp: new Date().toISOString() });
+  });
+
+  const httpServer = createServer(app);
+  return httpServer;
   // Списък с валидни routes
   const validRoutes = [
     '/',
