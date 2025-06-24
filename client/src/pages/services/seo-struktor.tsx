@@ -2,8 +2,7 @@ import { motion } from "framer-motion";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { CheckCircle, Search, Target, TrendingUp, Users, ArrowRight, FunnelIcon, BarChart3, Shield, Star } from "lucide-react";
+import { CheckCircle, Search, Target, TrendingUp, Users, ArrowRight, Filter, BarChart3, Shield, Star } from "lucide-react";
 import { SeoStruktorBackground } from "@/components/SeoStruktorBackground";
 
 export default function SeoStruktor() {
@@ -92,7 +91,7 @@ export default function SeoStruktor() {
                   <div className="relative z-10">
                     <h3 className="text-xl font-semibold mb-4 text-red-400">Стандартният подход</h3>
                     <p className="text-gray-300">
-                      Повечето уебсайтове се развиват хаотично – добавя се страница тук, пише се статия там. Липсва единна, централна структура. Точно това е причината резултатите да са непредсказуеми и краткотрайни.
+                      Повечето уебсайтове се развиват хаотично - добавя се страница тук, пише се статия там. Липсва единна, централна структура. Точно това е причината резултатите да са непредсказуеми и краткотрайни.
                     </p>
                   </div>
                 </div>
@@ -120,7 +119,7 @@ export default function SeoStruktor() {
                   <div className="relative z-10">
                     <h3 className="text-xl font-semibold mb-4 text-[var(--pravdast-yellow)]">Нашият подход</h3>
                     <p className="text-gray-300">
-                      Ние подхождаме към вашия сайт като архитекти. Преди да поставим и една „тухла" (съдържание), ние създаваме цялостния инженерен план (SEO Struktor™), който гарантира, че всеки елемент работи в синхрон с останалите, за да се постигне крайната цел – доминация в Google.
+                      Ние подхождаме към вашия сайт като архитекти. Преди да поставим и една тухла (съдържание), ние създаваме цялостния инженерен план (SEO Struktor™), който гарантира, че всеки елемент работи в синхрон с останалите, за да се постигне крайната цел - доминация в Google.
                     </p>
                   </div>
                 </div>
@@ -155,7 +154,7 @@ export default function SeoStruktor() {
                   {
                     phase: "Фаза 1",
                     title: "Архитектурен план",
-                    description: "Проектираме перфектната вътрешна архитектура, за да може Google лесно да „разбере" и оцени стойността на вашия сайт. Това е чертежът, който следваме.",
+                    description: "Проектираме перфектната вътрешна архитектура, за да може Google лесно да разбере и оцени стойността на вашия сайт. Това е чертежът, който следваме.",
                     icon: <Target className="h-6 w-6" />
                   },
                   {
@@ -212,7 +211,7 @@ export default function SeoStruktor() {
           <div className="grid md:grid-cols-2 gap-8">
             {[
               {
-                icon: <FunnelIcon className="h-8 w-8" />,
+                icon: <Filter className="h-8 w-8" />,
                 title: "Предвидим поток от качествени запитвания",
                 description: "от клиенти, които активно търсят вашите решения."
               },
