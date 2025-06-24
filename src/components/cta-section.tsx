@@ -116,7 +116,7 @@ export const CTASection = () => {
               >
                 <Button
                   size="lg"
-                  className="w-full bg-[var(--pravdast-dark)] text-[var(--pravdast-yellow)] hover:bg-[var(--pravdast-dark)]/90 text-lg font-bold py-4 px-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group"
+                  className="w-full bg-[var(--pravdast-dark)] text-[var(--pravdast-yellow)] hover:bg-transparent hover:text-[var(--pravdast-dark)] hover:border-2 hover:border-white text-lg font-bold py-4 px-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group border-2 border-transparent"
                   onClick={() => window.open("https://form.typeform.com/to/GXLaGY98", "_blank")}
                 >
                   <span className="relative z-10 flex items-center justify-center gap-3">
@@ -141,7 +141,7 @@ export const CTASection = () => {
                 <Button
                   variant="outline"
                   size="lg"
-                  className="w-full bg-transparent border-2 border-[var(--pravdast-dark)] text-[var(--pravdast-dark)] hover:bg-[var(--pravdast-dark)] hover:text-[var(--pravdast-yellow)] text-lg font-semibold py-4 px-8 rounded-xl transition-all duration-300"
+                  className="w-full bg-transparent border-2 border-[var(--pravdast-dark)] text-[var(--pravdast-dark)] hover:bg-[var(--pravdast-dark)] hover:text-white text-lg font-semibold py-4 px-8 rounded-xl transition-all duration-300"
                   onClick={() => window.location.href = "/services"}
                 >
                   <span className="flex items-center justify-center gap-3">
