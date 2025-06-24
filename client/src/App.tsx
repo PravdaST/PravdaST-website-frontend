@@ -26,7 +26,7 @@ import Clientomat from "@/pages/services/clientomat";
 import Trendlab from "@/pages/services/trendlab";
 import SalesEngine from "@/pages/services/sales-engine";
 import CaseStudies from "@/pages/case-studies";
-import BlogPage from "@/pages/blog";
+import Blog from "@/pages/blog";
 import BlogPost from "@/pages/blog-post";
 import FAQ from "@/pages/faq";
 import About from "@/pages/about";
@@ -45,7 +45,7 @@ function Router() {
           <Route path="/services/trendlab" component={Trendlab} />
           <Route path="/services/sales-engine" component={SalesEngine} />
           <Route path="/case-studies" component={CaseStudies} />
-          <Route path="/blog" component={BlogPage} />
+          <Route path="/blog" component={Blog} />
           <Route path="/blog/:slug" component={BlogPost} />
           <Route path="/faq" component={FAQ} />
           <Route path="/about" component={About} />
