@@ -9,11 +9,14 @@ interface Props {
   children: ReactNode;
   fallback?: ReactNode;
   onError?: (error: Error, errorInfo: ErrorInfo) => void;
+}
+
 interface State {
   hasError: boolean;
   error: Error | null;
   errorInfo: ErrorInfo | null;
   errorId: string;
+}
 
 export class ErrorBoundary extends Component<Props, State> {
   constructor(props: Props) {
@@ -24,6 +27,7 @@ export class ErrorBoundary extends Component<Props, State> {
       errorInfo: null,
       errorId: ''
     };
+  }
 
   static getDerivedStateFromError(error: Error): Partial<State> {
     return {

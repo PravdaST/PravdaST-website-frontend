@@ -29,8 +29,9 @@ export const Navigation = () => {
   ];
 
   return (
-    <div nav
+    <nav
       className="w-full bg-slate-900 border-b border-[#ECB629]/20 relative overflow-hidden"
+    >
       {/* Animated Tech Background */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0">
@@ -45,74 +46,85 @@ export const Navigation = () => {
           
           {/* Status Indicators */}
           {[...Array(8)].map((_, i) => (
-            <div div
+            <div
               key={i}
               className="absolute w-1 h-1 bg-[#ECB629] rounded-full"
               style={{
                 left: `${10 + i * 12}%`,
                 top: '50%',
+              }}
             />
           ))}
         </div>
       </div>
       <div className="container mx-auto px-6 py-4 relative z-10">
         <div className="flex justify-between items-center">
-          <div div
+          <motion.div
             whileHover={{ scale: 1.05 }}
+          >
             <Link href="/">
               <div className="text-2xl font-bold text-[#ECB629] cursor-pointer relative">
                 PRAVDA ST
-                <div div
+                <motion.div
                   className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#ECB629] origin-left"
                   whileHover={{ scaleX: 1 }}
                 />
               </div>
             </Link>
-          </div div>
+          </motion.div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item, index) => (
-              <div div
+              <motion.div
                 key={item.href}
+                whileHover={{ y: -2 }}
+              >
                 <Link href={item.href}>
-                  <div span
+                  <span
+                    className={`transition-colors duration-200 ${
                       location === item.href
                         ? "text-[#ECB629] font-semibold"
                         : "text-white hover:text-[#ECB629]"
                     }`}
-                    whileHover={{ y: -2 }}
+                  >
                     {item.label}
-                    {location === item.href && (
-                      <div div
-                        className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#ECB629]"
-                        layoutId="activeTab"
-                      />
-                    )}
-                  </div span>
+                  </span>
+                  {location === item.href && (
+                    <motion.div
+                      className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#ECB629]"
+                      layoutId="activeTab"
+                    />
+                  )}
                 </Link>
-              </div div>
+              </motion.div>
             ))}
             
-            <div div
+            <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+            >
               <Button
                 className="bg-[#ECB629] text-black hover:bg-[#ECB629]/90 font-semibold relative overflow-hidden group"
                 onClick={() => {
                   window.open("https://form.typeform.com/to/GXLaGY98", "_blank");
-                <div div
+                  trackCTAClick('navigation_start_now');
+                }}
+              >
+                <div
                   className="absolute inset-0 bg-gradient-to-r from-[#ECB629] via-white to-[#ECB629] opacity-0 group-hover:opacity-20"
                 />
                 <span className="relative z-10">ЗАПОЧНЕТЕ СЕГА</span>
               </Button>
-            </div div>
+            </motion.div>
           </div>
 
           {/* Mobile Menu Button */}
           <div className="md:hidden">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="text-white"
+            >
               {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
@@ -120,36 +132,41 @@ export const Navigation = () => {
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <div div
+          <motion.div
             className="md:hidden mt-4 pb-4 border-t border-[var(--pravdast-yellow)]/20"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
+          >
             <div className="flex flex-col space-y-4 pt-4">
               {navItems.map((item) => (
                 <Link key={item.href} href={item.href}>
                   <span
+                    className={`transition-colors duration-200 ${
                       location === item.href
-                        ? "text-[var(--pravdast-yellow)] font-semibold"
+                        ? "text-[#ECB629] font-semibold"
                         : "text-white"
                     }`}
                     onClick={() => setIsMobileMenuOpen(false)}
+                  >
                     {item.label}
                   </span>
                 </Link>
               ))}
               <Button
-                className="bg-[var(--pravdast-yellow)] text-[var(--pravdast-dark)] hover:bg-[#d4a426] font-semibold w-full"
+                className="bg-[#ECB629] text-black hover:bg-[#ECB629]/90 font-semibold w-full"
                 onClick={() => {
-                  window.open(
-                    "https://form.typeform.com/to/GXLaGY98",
-                    "_blank",
-                  );
+                  window.open("https://form.typeform.com/to/GXLaGY98", "_blank");
                   setIsMobileMenuOpen(false);
+                  trackCTAClick('mobile_navigation_start_now');
+                }}
+              >
                 ЗАПОЧНЕТЕ СЕГА
               </Button>
             </div>
-          </div div>
+          </motion.div>
         )}
       </div>
-    </div nav>
+    </nav>
   );
 };
