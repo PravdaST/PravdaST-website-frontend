@@ -1,23 +1,23 @@
-export default function Home() {
+export default function Test() {
   return (
     <div className="min-h-screen bg-slate-900 text-white">
       <div className="container mx-auto px-6 py-20">
         <div className="text-center">
-          <h1 className="text-6xl font-bold mb-6 text-white">
-            Pravdast
+          <h1 className="text-4xl font-bold mb-6 text-white">
+            Тестова страница
           </h1>
           <p className="text-xl text-gray-300 mb-8">
-            Business Engineering Platform
+            Тази страница е за тестване на Vercel deployment
           </p>
           <div className="bg-[#ECB628] text-black px-8 py-4 rounded-lg inline-block font-semibold">
-            Системни решения за предсказуем растеж
+            Тест успешен - страницата работи!
           </div>
           <div className="mt-8">
             <a 
-              href="/test" 
+              href="/" 
               className="inline-block bg-slate-700 text-white px-6 py-3 rounded-lg font-semibold hover:bg-slate-600 transition-colors"
             >
-              Тестова страница
+              Обратно към началото
             </a>
           </div>
         </div>
