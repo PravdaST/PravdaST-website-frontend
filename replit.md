@@ -203,6 +203,7 @@ Changelog:
 - June 24, 2025. Created new SEO Struktor™ page (/seo-structor-new) following detailed structure: hero section with engineering blueprint background, philosophy section with chaotic vs structured visualization, 4-phase engineering process timeline, expected results with benefits grid, investment structure with pricing principles, final CTA section maintaining brand consistency
 - June 24, 2025. Cleaned up project structure by removing duplicate src/ directory that was conflicting with client/src/, resolved Vercel build errors, maintained proper Vite + Express architecture with client/server separation
 - June 24, 2025. Confirmed project is fully ready for Vercel deployment: all critical files preserved (vercel.json, api/ functions, package.json scripts), build system working correctly, proper SPA routing configuration, security headers configured, no missing components
+- June 24, 2025. Restored complete Klaviyo integration: frontend tracking component, backend API profile creation in contacts.js, proper CSP headers, requires VITE_KLAVIYO_COMPANY_ID and KLAVIYO_PRIVATE_API_KEY environment variables
 
 ## User Preferences
 
