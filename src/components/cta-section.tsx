@@ -14,7 +14,7 @@ export const CTASection = () => {
         <div className="max-w-6xl mx-auto">
           {/* Urgency Badge */}
           <motion.div
-            className="flex justify-center mb-10"
+            className="flex justify-center mb-8"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -38,7 +38,7 @@ export const CTASection = () => {
           >
             <h2 className="text-4xl md:text-6xl font-bold mb-8 leading-tight text-[var(--pravdast-dark)]">
               Приемаме до{" "}
-              <motion.span 
+              <motion.span
                 className="inline-block relative"
                 initial={{ scale: 0.8 }}
                 whileInView={{ scale: 1 }}
@@ -72,7 +72,11 @@ export const CTASection = () => {
             >
               <div className="bg-[var(--pravdast-dark)]/5 backdrop-blur-sm rounded-2xl p-8 border border-[var(--pravdast-dark)]/10">
                 <p className="text-xl text-[var(--pravdast-dark)]/90 leading-relaxed">
-                  Нашият инженерен подход изисква пълна отдаденост и дълбок фокус върху бизнеса на всеки наш клиент. Затова работим с ограничен брой компании едновременно, за да гарантираме реални резултати. Разберете дали вашият бизнес е подходящ за нашата система.
+                  Нашият инженерен подход изисква пълна отдаденост и дълбок
+                  фокус върху бизнеса на всеки наш клиент. Затова работим с
+                  ограничен брой компании едновременно, за да гарантираме реални
+                  резултати. Разберете дали вашият бизнес е подходящ за нашата
+                  система.
                 </p>
               </div>
 
@@ -80,10 +84,10 @@ export const CTASection = () => {
               <div className="space-y-3">
                 {[
                   "Безплатна консултация",
-                  "Без ангажименти", 
+                  "Без ангажименти",
                   "100% поверителност",
                   "Отговор в 48 часа",
-                  "Процес само 5 минути"
+                  "Процес само 5 минути",
                 ].map((item, index) => (
                   <motion.div
                     key={index}
@@ -94,7 +98,9 @@ export const CTASection = () => {
                     viewport={{ once: true }}
                   >
                     <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                    <span className="text-[var(--pravdast-dark)]/80 font-medium">{item}</span>
+                    <span className="text-[var(--pravdast-dark)]/80 font-medium">
+                      {item}
+                    </span>
                   </motion.div>
                 ))}
               </div>
@@ -117,7 +123,12 @@ export const CTASection = () => {
                 <Button
                   size="lg"
                   className="w-full bg-[var(--pravdast-dark)] text-[var(--pravdast-yellow)] hover:bg-transparent hover:text-[var(--pravdast-dark)] hover:border-2 hover:border-white text-lg font-bold py-4 px-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 relative overflow-hidden group border-2 border-transparent"
-                  onClick={() => window.open("https://form.typeform.com/to/GXLaGY98", "_blank")}
+                  onClick={() =>
+                    window.open(
+                      "https://form.typeform.com/to/GXLaGY98",
+                      "_blank",
+                    )
+                  }
                 >
                   <span className="relative z-10 flex items-center justify-center gap-3">
                     Безплатна консултация
@@ -142,7 +153,7 @@ export const CTASection = () => {
                   variant="outline"
                   size="lg"
                   className="w-full bg-transparent border-2 border-[var(--pravdast-dark)] text-[var(--pravdast-dark)] hover:bg-[var(--pravdast-dark)] hover:text-white text-lg font-semibold py-4 px-8 rounded-xl transition-all duration-300"
-                  onClick={() => window.location.href = "/services"}
+                  onClick={() => (window.location.href = "/services")}
                 >
                   <span className="flex items-center justify-center gap-3">
                     Разгледай услугите
