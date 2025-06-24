@@ -1,0 +1,7 @@
+
+User-agent: *
+Disallow: /admin/
+Disallow: /api/
+Disallow: /_*
+
+Sitemap: https://www.pravdagency.eu/sitemap.xml
