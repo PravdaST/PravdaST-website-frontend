@@ -215,6 +215,7 @@ Changelog:
 - June 24, 2025. Optimized CTA buttons for mobile responsiveness in SEO Struktor™ page: reduced padding from px-12 py-6 to px-6 py-4 on mobile, decreased font size from text-xl to text-base, made buttons full width on mobile (w-full md:w-auto), and reduced arrow icon size for better mobile user experience
 - June 24, 2025. Enhanced philosophy section arrow animation with directional switching: replaced rotateY with conditional ArrowLeft/ArrowRight icons to show proper direction - ArrowLeft when transitioning to chaos state (БЕЗ СИСТЕМА), ArrowRight when moving toward system state (СЪС СИСТЕМА), creating smooth visual indication of transformation direction
 - June 24, 2025. Completely redesigned timeline section with modern card-based layout: replaced traditional vertical timeline with horizontal cards featuring gradient number circles, progress indicators, phase details (duration/deliverables), animated background elements, hover effects with pulsing rings and gradient overlays, and enhanced bottom CTA section for better engagement and visual hierarchy
+- June 24, 2025. Enhanced Results and Investment sections with modern designs: Results section now features metrics badges, enhanced progress indicators with shimmer effects, floating background elements, and improved card layouts; Investment section redesigned with technical background pattern, prominent price display with hover effects, principles presented as alternating cards with connection lines, and comprehensive bottom CTA
 
 ## User Preferences
 
