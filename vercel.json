@@ -1,30 +1,7 @@
 {
-  "version": 2,
-  "buildCommand": "npm run build",
+  "buildCommand": "vite build",
   "outputDirectory": "dist",
-  "headers": [
-    {
-      "source": "/(.*)",
-      "headers": [
-        {
-          "key": "Content-Security-Policy",
-          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://static.klaviyo.com https://static-tracking.klaviyo.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https://upload.wikimedia.org https://framerusercontent.com; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://vitals.vercel-insights.com https://a.klaviyo.com https://www.google-analytics.com https://region1.google-analytics.com;"
-        },
-        {
-          "key": "X-Content-Type-Options",
-          "value": "nosniff"
-        },
-        {
-          "key": "X-Frame-Options",
-          "value": "DENY"
-        },
-        {
-          "key": "Referrer-Policy",
-          "value": "origin-when-cross-origin"
-        }
-      ]
-    }
-  ],
+  "installCommand": "npm install",
   "rewrites": [
     {
       "source": "/sitemap.xml",
