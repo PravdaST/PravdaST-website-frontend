@@ -3,9 +3,7 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertContactSchema } from "../shared/schema";
 import { z } from "zod";
-import { seoGenerator } from "./lib/seo-generator";
-import { sanitizeInput, validateContentType } from "./middleware/security";
-import { emailService } from "./lib/email-service";
+
 import { registerAdminRoutes } from "./admin-routes";
 import { setupDefaultAdmin } from "./admin-setup";
 
@@ -14,7 +12,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Setup default admin user on startup
   setupDefaultAdmin();
   
-  // Register admin routes
+  // Register admin routes first
   registerAdminRoutes(app);
   
   // Списък с валидни routes
@@ -53,25 +51,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
     next();
   });
 
-  // Contact form submission with security middleware
-  app.post("/api/contacts", sanitizeInput, validateContentType, async (req, res) => {
+  // Contact form submission
+  app.post("/api/contacts", async (req, res) => {
     try {
       const validatedData = insertContactSchema.parse(req.body);
       const contact = await storage.createContact(validatedData);
       
-      // Изпращане на имейл до contact@pravdast.agency
-      const emailData = {
-        ...validatedData,
-        company: validatedData.company || undefined
-      };
-      const emailSent = await emailService.sendContactNotification(emailData);
-      
-      if (emailSent) {
-        console.log('Имейл изпратен успешно до contact@pravdast.agency');
-      } else {
-        console.log('Имейлът не беше изпратен, но контактът е запазен в базата данни');
-      }
-
       res.json({ 
         success: true, 
         message: "Съобщението е изпратено успешно! Ще се свържем с вас скоро.",

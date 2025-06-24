@@ -101,16 +101,7 @@ export default function AdminLogin({ onLogin }: LoginProps) {
             </Button>
           </form>
           
-          <div className="mt-6 p-4 bg-green-500/10 border border-green-500/20 rounded-lg">
-            <div className="flex items-start gap-3">
-              <AlertCircle className="h-5 w-5 text-green-400 mt-0.5 flex-shrink-0" />
-              <div className="text-sm text-green-300">
-                <p className="font-medium mb-1">Админ достъп:</p>
-                <p>Потребител: admin</p>
-                <p>Парола: pravdast2025!</p>
-              </div>
-            </div>
-          </div>
+
         </CardContent>
       </Card>
     </div>
