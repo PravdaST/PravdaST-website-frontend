@@ -650,16 +650,16 @@ export default function BlogPost() {
                   transition={{ duration: 0.8, delay: 0.2 }}
                   viewport={{ once: true }}
                 >
-                  <Card className="bg-gradient-to-br from-[#ECB629]/20 to-[#ECB629]/5 border-[#ECB629]/30 p-6 backdrop-blur-sm">
-                    <h3 className="text-lg font-bold text-white mb-4">
+                  <Card className="bg-gradient-to-br from-[#ECB629]/90 to-[#ECB629]/70 border-[#ECB629]/50 p-6 backdrop-blur-sm">
+                    <h3 className="text-lg font-bold text-black mb-4">
                       Готови за трансформация?
                     </h3>
-                    <p className="text-gray-300 text-sm mb-6 leading-relaxed">
+                    <p className="text-black/80 text-sm mb-6 leading-relaxed">
                       Свържете се с нас за безплатна консултация и научете как можем да помогнем на вашата компания.
                     </p>
                     <Button 
                       size="sm"
-                      className="w-full bg-[#ECB629] text-black hover:bg-[#ECB629]/90 font-semibold"
+                      className="w-full bg-black text-[#ECB629] hover:bg-black/90 font-semibold border border-black/20"
                       asChild
                     >
                       <a href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu" target="_blank" rel="noopener noreferrer">
