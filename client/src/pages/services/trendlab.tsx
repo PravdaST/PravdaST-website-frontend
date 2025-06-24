@@ -7,7 +7,7 @@ import { ArrowRight, BookOpen, Users, Clock, Handshake, Magnet, Microscope, File
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 
-// Animated Background Component
+// Content Creation Background
 const TrendlabBackground = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
@@ -20,75 +20,113 @@ const TrendlabBackground = () => {
   }, []);
 
   return (
-    <div className="absolute inset-0 overflow-hidden opacity-10">
-      {/* Story Grid */}
+    <div className="absolute inset-0 overflow-hidden opacity-15">
+      {/* Neural Network Grid */}
       <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          <pattern id="story-grid" width="80" height="80" patternUnits="userSpaceOnUse">
-            <path d="M 80 0 L 0 0 0 80" fill="none" stroke="#ECB629" strokeWidth="0.5" opacity="0.4"/>
-            <circle cx="40" cy="40" r="2" fill="#ECB629" opacity="0.6"/>
+          <pattern id="neural-grid" width="120" height="120" patternUnits="userSpaceOnUse">
+            <circle cx="60" cy="60" r="2" fill="#ECB629" opacity="0.6"/>
+            <circle cx="20" cy="20" r="1.5" fill="#ECB629" opacity="0.4"/>
+            <circle cx="100" cy="20" r="1.5" fill="#ECB629" opacity="0.4"/>
+            <circle cx="20" cy="100" r="1.5" fill="#ECB629" opacity="0.4"/>
+            <circle cx="100" cy="100" r="1.5" fill="#ECB629" opacity="0.4"/>
+            
+            {/* Connection Lines */}
+            <path d="M 60 60 L 20 20" stroke="#ECB629" strokeWidth="0.5" opacity="0.3"/>
+            <path d="M 60 60 L 100 20" stroke="#ECB629" strokeWidth="0.5" opacity="0.3"/>
+            <path d="M 60 60 L 20 100" stroke="#ECB629" strokeWidth="0.5" opacity="0.3"/>
+            <path d="M 60 60 L 100 100" stroke="#ECB629" strokeWidth="0.5" opacity="0.3"/>
           </pattern>
+          
+          <linearGradient id="dataFlow" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#ECB629" stopOpacity="0"/>
+            <stop offset="50%" stopColor="#ECB629" stopOpacity="0.8"/>
+            <stop offset="100%" stopColor="#ECB629" stopOpacity="0"/>
+          </linearGradient>
         </defs>
-        <rect width="100%" height="100%" fill="url(#story-grid)" />
+        <rect width="100%" height="100%" fill="url(#neural-grid)" />
       </svg>
 
-      {/* Floating Story Elements */}
+      {/* Floating Content Blocks */}
       <div className="absolute inset-0">
-        {Array.from({ length: 8 }).map((_, i) => (
+        {Array.from({ length: 12 }).map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-16 h-16 border border-[#ECB629]/20 rounded-lg"
+            className="absolute"
             style={{
-              left: `${15 + (i * 12)}%`,
-              top: `${20 + (i % 3) * 25}%`,
+              left: `${10 + (i * 8)}%`,
+              top: `${15 + (i % 4) * 20}%`,
             }}
             animate={{
-              y: [0, -20, 0],
-              opacity: [0.2, 0.4, 0.2],
-              rotate: [0, 5, 0],
+              y: [0, -15, 0],
+              opacity: [0.3, 0.7, 0.3],
+              scale: [0.8, 1, 0.8],
             }}
             transition={{
-              duration: 4 + i * 0.5,
+              duration: 3 + i * 0.3,
               repeat: Infinity,
               ease: "easeInOut",
+              delay: i * 0.2,
             }}
           >
-            <div className="w-full h-full bg-gradient-to-br from-[#ECB629]/10 to-transparent rounded-lg" />
+            {/* Content Type Icons */}
+            <div className="w-8 h-8 rounded border border-[#ECB629]/30 bg-[#ECB629]/5 flex items-center justify-center">
+              {i % 4 === 0 && <div className="w-3 h-2 bg-[#ECB629]/40 rounded-sm" />}
+              {i % 4 === 1 && <div className="w-2 h-3 bg-[#ECB629]/40 rounded-full" />}
+              {i % 4 === 2 && <div className="w-3 h-3 bg-[#ECB629]/40 rounded" />}
+              {i % 4 === 3 && <div className="w-4 h-1 bg-[#ECB629]/40 rounded-full" />}
+            </div>
           </motion.div>
         ))}
       </div>
 
-      {/* Story Connection Lines */}
+      {/* Data Flow Streams */}
       <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
-        <motion.path
-          d="M 100 300 Q 400 200 700 350 Q 1000 500 1300 300"
-          fill="none"
-          stroke="#ECB629"
-          strokeWidth="2"
-          opacity="0.3"
-          initial={{ pathLength: 0 }}
-          animate={{ pathLength: 1 }}
-          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-        />
+        {Array.from({ length: 3 }).map((_, i) => (
+          <motion.path
+            key={i}
+            d={`M ${i * 400 + 100} 100 Q ${i * 400 + 300} 200 ${i * 400 + 500} 300 Q ${i * 400 + 700} 400 ${i * 400 + 900} 200`}
+            fill="none"
+            stroke="url(#dataFlow)"
+            strokeWidth="2"
+            initial={{ pathLength: 0, opacity: 0 }}
+            animate={{ 
+              pathLength: [0, 1, 0],
+              opacity: [0, 0.6, 0],
+            }}
+            transition={{ 
+              duration: 4,
+              repeat: Infinity,
+              delay: i * 1.5,
+              ease: "easeInOut"
+            }}
+          />
+        ))}
       </svg>
 
-      {/* Mouse Follower */}
+      {/* Interactive Content Bubble */}
       <motion.div
-        className="absolute w-32 h-32 border border-[#ECB629]/30 rounded-full pointer-events-none"
+        className="absolute w-24 h-24 pointer-events-none"
         style={{
-          left: mousePosition.x - 64,
-          top: mousePosition.y - 64,
+          left: mousePosition.x - 48,
+          top: mousePosition.y - 48,
         }}
         animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.3, 0.1, 0.3],
+          scale: [1, 1.1, 1],
+          opacity: [0.2, 0.4, 0.2],
         }}
         transition={{
           duration: 2,
           repeat: Infinity,
           ease: "easeInOut",
         }}
-      />
+      >
+        <div className="w-full h-full rounded-full border border-[#ECB629]/30 bg-[#ECB629]/5">
+          <div className="absolute inset-2 rounded-full border border-[#ECB629]/20">
+            <div className="absolute inset-2 rounded-full bg-[#ECB629]/10" />
+          </div>
+        </div>
+      </motion.div>
     </div>
   );
 };
@@ -243,71 +281,159 @@ export default function Trendlab() {
               </p>
             </div>
 
-            {/* Transformation Visualization */}
-            <div className="relative max-w-4xl mx-auto mb-16">
-              <Card className="bg-slate-800/30 border-slate-600/30 p-8 backdrop-blur-sm">
-                <div className="flex flex-col items-center space-y-8">
-                  {/* Information vs Story */}
-                  <div className="w-full max-w-2xl">
+            {/* Content Factory Visualization */}
+            <div className="relative max-w-5xl mx-auto mb-16">
+              <Card className="bg-slate-800/30 border-slate-600/30 p-8 backdrop-blur-sm relative overflow-hidden">
+                {/* Factory Background */}
+                <div className="absolute inset-0 opacity-5">
+                  <div className="absolute inset-0" style={{
+                    backgroundImage: `
+                      linear-gradient(rgba(236, 182, 40, 0.1) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(236, 182, 40, 0.1) 1px, transparent 1px)
+                    `,
+                    backgroundSize: '30px 30px'
+                  }}></div>
+                </div>
+
+                <div className="relative z-10">
+                  <h3 className="text-2xl font-bold text-center mb-8 text-white">
+                    Фабриката за съдържание
+                  </h3>
+                  
+                  <div className="grid md:grid-cols-3 gap-8 items-center">
+                    {/* Input */}
                     <motion.div 
-                      className={`transition-all duration-1500 ${
-                        isTransitioning ? 'opacity-50 scale-95' : 'opacity-100 scale-100'
-                      }`}
+                      className="text-center"
+                      initial={{ opacity: 0, x: -50 }}
+                      animate={philosophyInView ? { opacity: 1, x: 0 } : {}}
+                      transition={{ duration: 0.8, delay: 0.2 }}
                     >
-                      {!isTransitioning ? (
-                        <div className="text-center p-8 bg-red-900/20 border border-red-600/30 rounded-lg">
-                          <div className="text-6xl mb-4">📊</div>
-                          <h3 className="text-2xl font-bold text-red-300 mb-4">СУХИ ДАННИ</h3>
-                          <div className="font-mono text-sm text-gray-400 space-y-1">
-                            <div>• Факт 1: Продукт А</div>
-                            <div>• Факт 2: Функция Б</div>
-                            <div>• Факт 3: Характеристика В</div>
-                          </div>
-                          <div className="mt-4 text-red-400 text-sm">Никого не интересува</div>
+                      <div className="w-20 h-20 mx-auto bg-slate-700/30 rounded-xl flex items-center justify-center mb-4 border border-slate-600/30">
+                        <div className="text-gray-400">
+                          <div className="w-8 h-1 bg-gray-400 rounded mb-1"></div>
+                          <div className="w-6 h-1 bg-gray-400 rounded mb-1"></div>
+                          <div className="w-7 h-1 bg-gray-400 rounded"></div>
                         </div>
-                      ) : (
-                        <div className="text-center p-8 bg-[#ECB629]/20 border border-[#ECB629]/30 rounded-lg">
-                          <div className="text-6xl mb-4">❤️</div>
-                          <h3 className="text-2xl font-bold text-[#ECB629] mb-4">ИСТОРИЯ</h3>
-                          <div className="text-sm text-gray-300 space-y-1">
-                            <div>• Как решихме проблем X</div>
-                            <div>• Защо направихме избор Y</div>
-                            <div>• Какво научихме от грешка Z</div>
-                          </div>
-                          <div className="mt-4 text-[#ECB629] text-sm">Изгражда доверие и емоции</div>
+                      </div>
+                      <h4 className="text-lg font-semibold text-gray-300 mb-2">Сурова експертиза</h4>
+                      <p className="text-sm text-gray-400">Знания, опит, факти</p>
+                    </motion.div>
+
+                    {/* Process */}
+                    <motion.div 
+                      className="text-center relative"
+                      initial={{ opacity: 0, y: 30 }}
+                      animate={philosophyInView ? { opacity: 1, y: 0 } : {}}
+                      transition={{ duration: 0.8, delay: 0.4 }}
+                    >
+                      <motion.div 
+                        className="w-24 h-24 mx-auto bg-[#ECB629]/20 rounded-full flex items-center justify-center mb-4 border-2 border-[#ECB629]/30 relative"
+                        animate={{
+                          rotate: [0, 360],
+                        }}
+                        transition={{
+                          duration: 8,
+                          repeat: Infinity,
+                          ease: "linear",
+                        }}
+                      >
+                        <Camera className="h-8 w-8 text-[#ECB629]" />
+                        
+                        {/* Gear teeth */}
+                        {Array.from({ length: 8 }).map((_, i) => (
+                          <div 
+                            key={i}
+                            className="absolute w-2 h-4 bg-[#ECB629]/30 rounded-sm"
+                            style={{
+                              transform: `rotate(${i * 45}deg) translateY(-14px)`,
+                              transformOrigin: 'center bottom'
+                            }}
+                          />
+                        ))}
+                      </motion.div>
+                      <h4 className="text-lg font-semibold text-[#ECB629] mb-2">Trendlab™ Система</h4>
+                      <p className="text-sm text-gray-400">AI + Креативност</p>
+                    </motion.div>
+
+                    {/* Output */}
+                    <motion.div 
+                      className="text-center"
+                      initial={{ opacity: 0, x: 50 }}
+                      animate={philosophyInView ? { opacity: 1, x: 0 } : {}}
+                      transition={{ duration: 0.8, delay: 0.6 }}
+                    >
+                      <div className="w-20 h-20 mx-auto bg-[#ECB629]/20 rounded-xl flex items-center justify-center mb-4 border border-[#ECB629]/30 relative overflow-hidden">
+                        <motion.div
+                          className="absolute inset-0 bg-gradient-to-r from-transparent via-[#ECB629]/20 to-transparent"
+                          animate={{
+                            x: [-100, 100],
+                          }}
+                          transition={{
+                            duration: 2,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                          }}
+                        />
+                        <div className="relative z-10 text-[#ECB629]">
+                          <div className="w-8 h-6 border border-[#ECB629] rounded mb-1"></div>
+                          <div className="w-8 h-1 bg-[#ECB629] rounded"></div>
                         </div>
-                      )}
+                      </div>
+                      <h4 className="text-lg font-semibold text-[#ECB629] mb-2">Въздействащи истории</h4>
+                      <p className="text-sm text-gray-400">Видео, статии, визии</p>
                     </motion.div>
                   </div>
 
-                  {/* Arrow */}
-                  <motion.div
-                    className="flex items-center justify-center"
-                    animate={{
-                      scale: [1, 1.1, 1],
-                      opacity: [0.7, 1, 0.7],
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                    }}
-                  >
-                    {isTransitioning ? (
-                      <ArrowLeft className="h-8 w-8 text-[#ECB629]" />
-                    ) : (
-                      <ArrowRight className="h-8 w-8 text-[#ECB629]" />
-                    )}
-                  </motion.div>
+                  {/* Flow arrows */}
+                  <div className="hidden md:block absolute top-1/2 left-1/4 transform -translate-y-1/2">
+                    <motion.div
+                      animate={{
+                        x: [0, 10, 0],
+                        opacity: [0.5, 1, 0.5],
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                      }}
+                    >
+                      <ArrowRight className="h-6 w-6 text-[#ECB629]" />
+                    </motion.div>
+                  </div>
+                  
+                  <div className="hidden md:block absolute top-1/2 right-1/4 transform -translate-y-1/2">
+                    <motion.div
+                      animate={{
+                        x: [0, 10, 0],
+                        opacity: [0.5, 1, 0.5],
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                        delay: 0.5,
+                      }}
+                    >
+                      <ArrowRight className="h-6 w-6 text-[#ECB629]" />
+                    </motion.div>
+                  </div>
                 </div>
               </Card>
             </div>
 
             <div className="text-center">
-              <h3 className="text-2xl font-bold mb-4">Нашият подход</h3>
-              <p className="text-lg text-gray-300 max-w-3xl mx-auto">
-                Ние не сме просто създатели на съдържание. Ние сме инженери на истории. Trendlab™ е нашата система, която взима вашата експертиза и я превръща във въздействащ разказ, който отличава вашия бранд от всички останали.
-              </p>
+              <h3 className="text-2xl font-bold mb-4 text-white">Нашият подход</h3>
+              <div className="max-w-4xl mx-auto">
+                <p className="text-lg text-gray-300 mb-6">
+                  Ние не сме просто създатели на съдържание. Ние сме инженери на истории.
+                </p>
+                <div className="relative">
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#ECB629]/5 via-[#ECB629]/10 to-[#ECB629]/5 rounded-lg"></div>
+                  <p className="text-xl font-semibold text-[#ECB629] p-6 relative z-10">
+                    Trendlab™ е нашата система, която взима вашата експертиза и я превръща във въздействащ разказ, който отличава вашия бранд от всички останали.
+                  </p>
+                </div>
+              </div>
             </div>
           </motion.div>
         </div>
@@ -581,7 +707,32 @@ export default function Trendlab() {
 
       {/* Final CTA Section */}
       <section className="py-20 bg-[#ECB629] text-black relative overflow-hidden">
-        <div className="container mx-auto px-6">
+        {/* Dynamic Background Elements */}
+        <div className="absolute inset-0 opacity-10">
+          {Array.from({ length: 20 }).map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-2 h-2 bg-black rounded-full"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+              }}
+              animate={{
+                scale: [1, 1.5, 1],
+                opacity: [0.3, 1, 0.3],
+                rotate: [0, 180, 360],
+              }}
+              transition={{
+                duration: 3 + Math.random() * 2,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: Math.random() * 2,
+              }}
+            />
+          ))}
+        </div>
+
+        <div className="container mx-auto px-6 relative z-10">
           <motion.div
             ref={ctaRef}
             className="max-w-4xl mx-auto text-center"
@@ -589,25 +740,89 @@ export default function Trendlab() {
             animate={ctaInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-8">
-              Готови ли сте вашият глас да бъде чут?
-            </h2>
-            <p className="text-xl mb-12 leading-relaxed max-w-3xl mx-auto">
-              Нашата експертна диагностика ще анализира вашия настоящ авторитет и ще ви даде ясен инженерен план как да се превърнете в лидер на мнение във вашата сфера. Работим с ограничен брой клиенти всеки месец.
-            </p>
+            <motion.div
+              className="inline-flex items-center gap-2 bg-black/10 rounded-full px-6 py-3 border border-black/20 mb-8"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={ctaInView ? { opacity: 1, scale: 1 } : {}}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              <motion.div
+                className="w-2 h-2 bg-black rounded-full"
+                animate={{
+                  scale: [1, 1.5, 1],
+                  opacity: [1, 0.5, 1],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              />
+              <span className="text-sm font-medium">
+                Ограничена наличност • Работим с <span className="font-bold">максимум 8 клиента</span> месечно
+              </span>
+            </motion.div>
 
-            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+            <h2 className="text-4xl md:text-5xl font-bold mb-8 leading-tight">
+              Готови ли сте вашият глас да бъде{" "}
+              <span className="relative">
+                чут
+                <motion.div
+                  className="absolute -bottom-2 left-0 right-0 h-1 bg-black/30 rounded-full"
+                  initial={{ scaleX: 0 }}
+                  animate={ctaInView ? { scaleX: 1 } : {}}
+                  transition={{ duration: 0.8, delay: 1 }}
+                />
+              </span>
+              ?
+            </h2>
+            
+            <div className="max-w-3xl mx-auto mb-12">
+              <p className="text-xl mb-6 leading-relaxed">
+                Нашата експертна диагностика ще анализира вашия настоящ авторитет и ще ви даде ясен инженерен план как да се превърнете в лидер на мнение във вашата сфера.
+              </p>
+              
+              <div className="grid md:grid-cols-3 gap-4 text-sm">
+                <div className="bg-black/10 rounded-lg p-4 border border-black/20">
+                  <div className="font-semibold mb-1">🎯 Персонализиран план</div>
+                  <div className="opacity-80">За вашата индустрия</div>
+                </div>
+                <div className="bg-black/10 rounded-lg p-4 border border-black/20">
+                  <div className="font-semibold mb-1">⚡ Бърз старт</div>
+                  <div className="opacity-80">Резултати за 30 дни</div>
+                </div>
+                <div className="bg-black/10 rounded-lg p-4 border border-black/20">
+                  <div className="font-semibold mb-1">🔒 Без ангажименти</div>
+                  <div className="opacity-80">Безплатна диагностика</div>
+                </div>
+              </div>
+            </div>
+
+            <motion.div
+              className="flex flex-col sm:flex-row gap-6 justify-center items-center"
+              initial={{ opacity: 0, y: 20 }}
+              animate={ctaInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            >
               <Button
                 size="lg"
-                className="bg-black text-[#ECB629] hover:bg-black/90 font-semibold text-lg px-8 py-4 rounded-full shadow-lg"
+                className="bg-black text-[#ECB629] hover:bg-black/90 font-semibold text-lg px-8 py-4 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 relative overflow-hidden group"
                 asChild
               >
                 <a href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu" target="_blank" rel="noopener noreferrer">
-                  Искам диагностика на авторитета
-                  <ArrowRight className="ml-2 h-5 w-5" />
+                  <span className="relative z-10">
+                    Искам диагностика на авторитета
+                    <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
+                  </span>
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-transparent via-[#ECB629]/20 to-transparent"
+                    initial={{ x: "-100%" }}
+                    whileHover={{ x: "100%" }}
+                    transition={{ duration: 0.6 }}
+                  />
                 </a>
               </Button>
-            </div>
+            </motion.div>
           </motion.div>
         </div>
       </section>
