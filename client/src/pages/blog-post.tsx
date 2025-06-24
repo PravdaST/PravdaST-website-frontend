@@ -463,20 +463,55 @@ export default function BlogPost() {
                 transition={{ duration: 0.8 }}
               >
                 <Card className="bg-slate-800/30 border-slate-600/30 p-8 backdrop-blur-sm">
-                  <div 
-                    className="text-gray-300 leading-relaxed [&>h2]:text-white [&>h2]:font-bold [&>h2]:text-2xl [&>h2]:mb-6 [&>h2]:mt-8 [&>h3]:text-white [&>h3]:font-semibold [&>h3]:text-xl [&>h3]:mb-4 [&>h3]:mt-6 [&>strong]:text-[#ECB629] [&>strong]:font-semibold [&>ul]:my-6 [&>li]:mb-2 [&>p]:mb-6"
-                    dangerouslySetInnerHTML={{ 
-                      __html: post.content
-                        .replace(/\n\n/g, '</p><p>')
-                        .replace(/^/, '<p>')
-                        .replace(/$/, '</p>')
-                        .replace(/## (.*)/g, '<h2>$1</h2>')
-                        .replace(/### (.*)/g, '<h3>$1</h3>')
-                        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                        .replace(/- (.*)/g, '<li>$1</li>')
-                        .replace(/(<li>.*<\/li>)/gs, '<ul class="list-disc list-inside space-y-2 ml-4">$1</ul>')
-                    }}
-                  />
+                  <div className="text-gray-300 leading-relaxed prose prose-lg prose-invert max-w-none">
+                    {post.content.split('\n\n').map((paragraph, index) => {
+                      // Skip empty paragraphs
+                      if (!paragraph.trim()) return null;
+                      
+                      // Handle H2 headers
+                      if (paragraph.startsWith('## ')) {
+                        return (
+                          <h2 key={index} className="text-white font-bold text-2xl mb-6 mt-8">
+                            {paragraph.replace('## ', '')}
+                          </h2>
+                        );
+                      }
+                      
+                      // Handle H3 headers
+                      if (paragraph.startsWith('### ')) {
+                        return (
+                          <h3 key={index} className="text-white font-semibold text-xl mb-4 mt-6">
+                            {paragraph.replace('### ', '')}
+                          </h3>
+                        );
+                      }
+                      
+                      // Handle lists
+                      if (paragraph.includes('- ')) {
+                        const items = paragraph.split('\n').filter(line => line.trim().startsWith('- '));
+                        return (
+                          <ul key={index} className="list-disc list-inside space-y-2 ml-4 my-6">
+                            {items.map((item, itemIndex) => (
+                              <li key={itemIndex} className="mb-2">
+                                <span dangerouslySetInnerHTML={{
+                                  __html: item.replace('- ', '').replace(/\*\*(.*?)\*\*/g, '<strong class="text-[#ECB629] font-semibold">$1</strong>')
+                                }} />
+                              </li>
+                            ))}
+                          </ul>
+                        );
+                      }
+                      
+                      // Handle regular paragraphs
+                      return (
+                        <p key={index} className="mb-6">
+                          <span dangerouslySetInnerHTML={{
+                            __html: paragraph.replace(/\*\*(.*?)\*\*/g, '<strong class="text-[#ECB629] font-semibold">$1</strong>')
+                          }} />
+                        </p>
+                      );
+                    })}
+                  </div>
                 </Card>
               </motion.div>
 
