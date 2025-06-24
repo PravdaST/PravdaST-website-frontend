@@ -106,7 +106,11 @@ export default function CaseStudies() {
                 <div className="flex items-center gap-2">
                   <div className="relative">
                     <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                    <div className="absolute inset-0 bg-green-500 rounded-full animate-ping opacity-75"></div>
+                    <motion.div
+                      className="absolute inset-0 w-2 h-2 bg-green-500 rounded-full opacity-20"
+                      animate={{ scale: [1, 1.3, 1] }}
+                      transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                    />
                   </div>
                   <span className="text-sm text-gray-300 font-medium">
                     <span className="text-[#ECB629] font-bold">Проследими</span> резултати от реални проекти

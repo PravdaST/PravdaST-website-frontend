@@ -165,13 +165,14 @@ export default function Contact() {
                     top: `${30 + i * 10}%`,
                   }}
                   animate={{
-                    scale: [1, 1.5, 1],
-                    opacity: [0.3, 1, 0.3],
+                    y: [0, -10, 0],
+                    opacity: [0.4, 0.8, 0.4],
                   }}
                   transition={{
-                    duration: 2 + i * 0.5,
+                    duration: 3 + i * 0.5,
                     repeat: Infinity,
-                    delay: i * 0.3,
+                    delay: i * 0.5,
+                    ease: "easeInOut"
                   }}
                 >
                   <Send className="w-6 h-6 text-[#ECB629]" />
@@ -197,7 +198,11 @@ export default function Contact() {
                 <div className="flex items-center gap-2">
                   <div className="relative">
                     <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                    <div className="absolute inset-0 bg-green-500 rounded-full animate-ping opacity-75"></div>
+                    <motion.div
+                      className="absolute inset-0 w-2 h-2 bg-green-500 rounded-full opacity-20"
+                      animate={{ scale: [1, 1.3, 1] }}
+                      transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                    />
                   </div>
                   <span className="text-sm text-gray-300 font-medium">
                     <span className="text-[#ECB629] font-bold">Безплатна</span> консултация за всеки проект

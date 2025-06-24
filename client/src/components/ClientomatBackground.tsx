@@ -56,44 +56,44 @@ export const ClientomatBackground = () => {
         }}
       />
       
-      {/* Pulsing circles traveling along streams */}
+      {/* Smooth floating particles */}
       <motion.div
-        className="absolute top-1/4 left-0 w-2 h-2 bg-[var(--pravdast-yellow)]/40 rounded-full"
+        className="absolute top-1/4 left-0 w-2 h-2 bg-[var(--pravdast-yellow)]/30 rounded-full"
         animate={{
           x: [-20, 1400],
-          scale: [1, 1.3, 1],
-          opacity: [0, 0.8, 0]
+          y: [0, -20, 0],
+          opacity: [0, 0.6, 0]
         }}
         transition={{
-          duration: 12,
+          duration: 15,
           repeat: Infinity,
           ease: "easeInOut",
           delay: 2
         }}
       />
       <motion.div
-        className="absolute top-1/2 left-0 w-1.5 h-1.5 bg-[var(--pravdast-yellow)]/35 rounded-full"
+        className="absolute top-1/2 left-0 w-1.5 h-1.5 bg-[var(--pravdast-yellow)]/25 rounded-full"
         animate={{
           x: [-15, 1300],
-          scale: [1, 1.4, 1],
-          opacity: [0, 0.7, 0]
+          y: [0, 15, 0],
+          opacity: [0, 0.5, 0]
         }}
         transition={{
-          duration: 15,
+          duration: 18,
           repeat: Infinity,
           ease: "easeInOut",
           delay: 5
         }}
       />
       <motion.div
-        className="absolute top-3/4 left-0 w-2 h-2 bg-[var(--pravdast-yellow)]/45 rounded-full"
+        className="absolute top-3/4 left-0 w-2 h-2 bg-[var(--pravdast-yellow)]/35 rounded-full"
         animate={{
           x: [-20, 1200],
-          scale: [1, 1.2, 1],
-          opacity: [0, 0.9, 0]
+          y: [0, -10, 0],
+          opacity: [0, 0.7, 0]
         }}
         transition={{
-          duration: 10,
+          duration: 12,
           repeat: Infinity,
           ease: "easeInOut",
           delay: 8

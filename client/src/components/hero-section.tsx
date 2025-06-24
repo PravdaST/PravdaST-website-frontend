@@ -83,9 +83,9 @@ export const HeroSection = () => {
             <div className="relative">
               <div className="w-3 h-3 bg-green-400 rounded-full"></div>
               <motion.div
-                className="absolute inset-0 w-3 h-3 bg-green-400 rounded-full"
-                animate={{ scale: [1, 1.5, 1], opacity: [1, 0, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
+                className="absolute inset-0 w-3 h-3 bg-green-400 rounded-full opacity-30"
+                animate={{ scale: [1, 1.2, 1] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
               />
             </div>
             <span className="text-white text-sm font-semibold">
