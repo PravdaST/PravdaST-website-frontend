@@ -199,6 +199,7 @@ Changelog:
 - June 24, 2025. Addressed all SEO audit issues: fixed multiple H1 tags to proper H2 hierarchy, removed emojis from meta descriptions for better Google compliance, maintained 50-60 character title lengths, ensured proper heading structure throughout homepage components
 - June 24, 2025. Completely redesigned CTA section with modern design following best practices: urgency indicators, prominent number emphasis with glow effects, two-column layout, trust signals, gradient buttons with shimmer effects, animated background elements, proper visual hierarchy for maximum conversion
 - June 24, 2025. Simplified CTA section to clean two-column layout per user request: left side with main text and trust indicators list (безплатна консултация, без ангажименти, 100% поверителност, отговор в 48 часа, процес 5 минути), right side with single prominent CTA button with glow effects and animations
+- June 24, 2025. Refactored CTA section with proper visual hierarchy: two-column layout (text left-aligned, buttons center-aligned), primary button (black background, yellow text), secondary outline button (transparent with black border), responsive single-column on mobile, preserved yellow background and existing content
 
 ## User Preferences
 
