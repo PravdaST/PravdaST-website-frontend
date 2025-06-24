@@ -10,7 +10,7 @@ const app = express();
 // Serve static files from dist
 app.use(express.static(path.join(__dirname, '../dist')));
 
-// Health check
+// Health check endpoint
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
@@ -22,5 +22,5 @@ app.get('*', (req, res) => {
 
 const port = process.env.PORT || 5000;
 app.listen(port, '0.0.0.0', () => {
-  console.log(`Pravdast clean server running on port ${port}`);
+  console.log(`Pravdast server running on port ${port}`);
 });
