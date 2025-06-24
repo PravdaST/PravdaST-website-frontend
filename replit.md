@@ -99,6 +99,7 @@ The application is designed to be database-agnostic through Drizzle's abstractio
 ## Changelog
 
 Changelog:
+- June 24, 2025. Fixed critical Vercel deployment error by correcting build output directory configuration - moved from "../dist" to "./dist" with proper build command chain
 - June 24, 2025. Successfully restored complete Pravdast website and optimized for Vercel deployment - all original functionality preserved including SEO, contact forms, and business content while restructuring for serverless architecture
 - June 18, 2025. Initial setup with engineering-themed homepage
 - June 18, 2025. Expanding to full website with case studies, services pages, and business engineering approach
