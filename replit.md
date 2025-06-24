@@ -203,6 +203,7 @@ Changelog:
 - June 24, 2025. Fixed critical file path issue: correctly updated src/pages/services/seo-struktor.tsx (not client/src/pages/services/seo-struktor.tsx) with complete SEO Struktor™ content overhaul including new hero messaging, philosophy section with chaos vs structure visualization, 4-phase engineering process, results section, investment structure with 1980 лв./месечно pricing, and diagnostic CTA - changes deployed and live via HMR
 - June 24, 2025. Cleaned up project structure: removed obsolete client/ folder that was causing confusion and file duplication - project uses src/ structure as primary frontend location, not client/src/
 - June 24, 2025. Fixed Vercel deployment build errors: recreated client/ folder structure with proper Vite configuration, Tailwind setup, and PostCSS config for production builds - resolved "Could not resolve entry module client/index.html" error, updated vercel.json build command to use npm run build instead of client-specific build process
+- June 24, 2025. Finalized project structure: client/src/ for frontend development, server/ and shared/ for backend, eliminated duplicate src/ folder confusion - both Replit development and Vercel production now use unified client/ structure
 
 ## User Preferences
 
