@@ -20,7 +20,7 @@ const problems = [
   }
 ];
 
-export const ProblemSection = () => {
+const ProblemSection = () => {
   return (
     <section className="py-20 bg-[var(--pravdast-dark-gray)]">
       <div className="container mx-auto px-6">
@@ -78,3 +78,5 @@ export const ProblemSection = () => {
     </section>
   );
 };
+
+export default ProblemSection;

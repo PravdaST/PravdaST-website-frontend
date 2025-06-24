@@ -20,7 +20,7 @@ const steps = [
   }
 ];
 
-export const ProcessSection = () => {
+const ProcessSection = () => {
   return (
     <section className="py-20 bg-[var(--pravdast-dark-gray)] relative">
       <div className="tech-grid-bg absolute inset-0 opacity-30"></div>
@@ -83,3 +83,5 @@ export const ProcessSection = () => {
     </section>
   );
 };
+
+export default ProcessSection;

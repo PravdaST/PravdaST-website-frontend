@@ -10,8 +10,9 @@ import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
-import { trackFormSubmission, trackConversion, trackLead } from "@/lib/analytics";
-import { Mail, Phone, MapPin, Clock } from "lucide-react";
+import { Mail, Phone, MapPin, Clock, Send, CheckCircle, ArrowRight } from "lucide-react";
+import { SEOHead } from "@/components/seo-head";
+import { pageSEOData } from "@/data/seo-pages";
 import { z } from "zod";
 
 const contactSchema = z.object({
@@ -23,6 +24,33 @@ const contactSchema = z.object({
 });
 
 type ContactFormData = z.infer<typeof contactSchema>;
+
+const contactInfo = [
+  {
+    icon: Mail,
+    title: "Имейл",
+    info: "contact@pravdagency.eu",
+    description: "Отговаряме в рамките на 24 часа"
+  },
+  {
+    icon: Phone,
+    title: "Телефон",
+    info: "+359 879 282 299",
+    description: "Работни дни: 9:00 - 18:00"
+  },
+  {
+    icon: MapPin,
+    title: "Офис",
+    info: "ул. Дебър №58, Варна",
+    description: "Среща по предварително уговаряне"
+  },
+  {
+    icon: Clock,
+    title: "Работно време",
+    info: "Понеделник - Петък",
+    description: "09:00 - 18:00 (GMT+2)"
+  }
+];
 
 export default function Contact() {
   const [formData, setFormData] = useState<ContactFormData>({
@@ -44,222 +72,298 @@ export default function Contact() {
     },
     onSuccess: (response) => {
       console.log('Успешен отговор:', response);
-      // Analytics проследяване на успешна форма
-      trackFormSubmission('contact_form', true);
-      trackConversion('contact_lead');
-      trackLead('website_contact_form', 100);
-      
       toast({
-        title: "Успешно изпратено!",
-        description: "Ще се свържем с вас в най-скоро време.",
+        title: "Съобщението е изпратено!",
+        description: "Благодарим ви! Ще се свържем с вас в най-скоро време.",
       });
-      setFormData({ name: "", email: "", website: "", company: "", message: "" });
+      
+      // Изчистване на формата
+      setFormData({
+        name: "",
+        email: "",
+        website: "",
+        company: "",
+        message: ""
+      });
       setErrors({});
-      queryClient.invalidateQueries({ queryKey: ["/api/contacts"] });
+      
+      // Invalidate контактните заявки
+      queryClient.invalidateQueries({ queryKey: ['/api/contacts'] });
     },
     onError: (error: any) => {
       console.error('Грешка при изпращане:', error);
-      // Analytics проследяване на неуспешна форма
-      trackFormSubmission('contact_form', false);
-      
-      // По-детайлно съобщение за грешка
-      let errorMessage = "Възникна проблем при изпращането. Моля, опитайте отново.";
-      
-      if (error?.response?.data?.error) {
-        errorMessage = error.response.data.error;
-      } else if (error?.message) {
-        errorMessage = error.message;
-      }
-      
       toast({
-        title: "Грешка",
-        description: errorMessage,
+        title: "Грешка при изпращане",
+        description: "Моля опитайте отново или се свържете с нас директно.",
         variant: "destructive",
       });
     },
   });
 
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+    
+    // Изчистване на грешката при промяна
+    if (errors[name as keyof ContactFormData]) {
+      setErrors(prev => ({ ...prev, [name]: undefined }));
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     try {
-      contactSchema.parse(formData);
+      // Валидация на данните
+      const validatedData = contactSchema.parse(formData);
+      
+      // Изчистване на предишни грешки
       setErrors({});
-      contactMutation.mutate(formData);
+      
+      // Изпращане на данните
+      contactMutation.mutate(validatedData);
+      
     } catch (error) {
       if (error instanceof z.ZodError) {
-        const fieldErrors: Partial<ContactFormData> = {};
+        const newErrors: Partial<ContactFormData> = {};
         error.errors.forEach((err) => {
-          if (err.path[0]) {
-            fieldErrors[err.path[0] as keyof ContactFormData] = err.message;
-          }
+          const path = err.path[0] as keyof ContactFormData;
+          newErrors[path] = err.message;
         });
-        setErrors(fieldErrors);
+        setErrors(newErrors);
       }
     }
   };
 
-  const handleInputChange = (field: keyof ContactFormData, value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
-    if (errors[field]) {
-      setErrors(prev => ({ ...prev, [field]: undefined }));
-    }
-  };
-
-  const contactInfo = [
-    {
-      icon: Mail,
-      title: "Имейл",
-      info: "contact@pravdast.agency",
-      description: "Отговаряме в рамките на 24 часа",
-      link: "mailto:contact@pravdast.agency"
-    },
-    {
-      icon: Phone,
-      title: "Телефон / Viber",
-      info: "+359 879 282 299",
-      description: "Работни дни 9:00 - 18:00 или Viber чат",
-      link: "viber://chat?number=%2B359879282299"
-    },
-    {
-      icon: MapPin,
-      title: "Локация",
-      info: "гр.Варна ул. Дебър №58",
-      description: "Работим с клиенти от цяла България"
-    },
-    {
-      icon: Clock,
-      title: "Време за отговор",
-      info: "24 часа",
-      description: "Максимално време за първоначален отговор"
-    }
-  ];
-
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-slate-900">
+      <SEOHead seo={pageSEOData.contact} pageSlug="contact" />
       <Navigation />
       
-      {/* Hero Section */}
-      <section className="pt-24 pb-16 bg-gradient-to-br from-[var(--pravdast-dark)] to-[var(--pravdast-dark-gray)]">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto text-center">
-            <motion.h1
-              className="text-4xl md:text-6xl font-bold mb-6"
+      <main className="pt-20">
+        {/* Hero Section */}
+        <section className="py-20 relative overflow-hidden">
+          {/* Animated Tech Background */}
+          <div className="absolute inset-0 opacity-20">
+            <div className="absolute inset-0">
+              {/* Communication Grid Pattern */}
+              <div className="absolute inset-0" style={{
+                backgroundImage: `
+                  radial-gradient(circle at 25% 25%, rgba(236, 182, 40, 0.1) 2px, transparent 2px),
+                  radial-gradient(circle at 75% 75%, rgba(236, 182, 40, 0.1) 2px, transparent 2px)
+                `,
+                backgroundSize: '50px 50px'
+              }}></div>
+              
+              {/* Connection Signals */}
+              {[...Array(4)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  className="absolute"
+                  style={{
+                    left: `${25 + i * 25}%`,
+                    top: `${30 + i * 10}%`,
+                  }}
+                  animate={{
+                    scale: [1, 1.5, 1],
+                    opacity: [0.3, 1, 0.3],
+                  }}
+                  transition={{
+                    duration: 2 + i * 0.5,
+                    repeat: Infinity,
+                    delay: i * 0.3,
+                  }}
+                >
+                  <Send className="w-6 h-6 text-[#ECB629]" />
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          <div className="container mx-auto px-6 relative z-10">
+            <motion.div 
+              className="max-w-4xl mx-auto text-center"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
-              Спрете да губите време.{" "}
-              <span className="text-[var(--pravdast-yellow)]">Започнете сега</span>
-            </motion.h1>
-            <motion.p
-              className="text-xl text-gray-300 mb-8"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              Заявете експертна диагностика. Ще анализираме вашия бизнес и ще ви дадем конкретен план за контролиран растеж.
-            </motion.p>
-          </div>
-        </div>
-      </section>
+              {/* Status Badge */}
+              <motion.div
+                className="inline-flex items-center gap-3 mb-8 px-6 py-3 rounded-full bg-gradient-to-r from-slate-800/80 to-slate-700/60 border border-slate-600/30 backdrop-blur-sm"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
+                <div className="flex items-center gap-2">
+                  <div className="relative">
+                    <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                    <div className="absolute inset-0 bg-green-500 rounded-full animate-ping opacity-75"></div>
+                  </div>
+                  <span className="text-sm text-gray-300 font-medium">
+                    <span className="text-[#ECB629] font-bold">Безплатна</span> консултация за всеки проект
+                  </span>
+                </div>
+              </motion.div>
 
-      {/* Contact Form and Info */}
-      <section className="py-20 bg-[var(--pravdast-dark)]">
-        <div className="container mx-auto px-6">
-          <div className="max-w-6xl mx-auto">
-            <div className="grid lg:grid-cols-2 gap-12">
+              <motion.h1 
+                className="text-5xl md:text-6xl font-bold mb-6 text-white"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+              >
+                Готови за <br />
+                <span className="text-[#ECB629] relative">
+                  разговор?
+                  <motion.div
+                    className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-[#ECB629] to-[#ECB629]/50 rounded-full"
+                    initial={{ scaleX: 0 }}
+                    animate={{ scaleX: 1 }}
+                    transition={{ duration: 1, delay: 0.8 }}
+                  />
+                </span>
+              </motion.h1>
+              
+              <motion.p 
+                className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+              >
+                Свържете се с нас за безплатна консултация. Ще обсъдим вашите цели и как можем да ви помогнем да ги постигнете.
+              </motion.p>
+
+              {/* Quick Stats */}
+              <motion.div 
+                className="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-xl mx-auto"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.5 }}
+              >
+                <div className="bg-slate-800/50 rounded-lg p-4 border border-slate-700">
+                  <div className="text-lg font-bold text-[#ECB629] mb-1">24h</div>
+                  <div className="text-sm text-gray-400">Отговор</div>
+                </div>
+                <div className="bg-slate-800/50 rounded-lg p-4 border border-slate-700">
+                  <div className="text-lg font-bold text-[#ECB629] mb-1">0 лв.</div>
+                  <div className="text-sm text-gray-400">Консултация</div>
+                </div>
+                <div className="bg-slate-800/50 rounded-lg p-4 border border-slate-700 col-span-2 md:col-span-1">
+                  <div className="text-lg font-bold text-[#ECB629] mb-1">100%</div>
+                  <div className="text-sm text-gray-400">Конфиденциалност</div>
+                </div>
+              </motion.div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Contact Form & Info Section */}
+        <section className="py-20 relative">
+          {/* Background Elements */}
+          <div className="absolute inset-0 opacity-5">
+            <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-[#ECB629] rounded-full blur-3xl"></div>
+            <div className="absolute bottom-1/4 right-1/4 w-48 h-48 bg-green-500 rounded-full blur-3xl"></div>
+          </div>
+
+          <div className="container mx-auto px-6 relative z-10">
+            <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
               {/* Contact Form */}
               <motion.div
-                initial={{ opacity: 0, x: -50 }}
+                initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8 }}
                 viewport={{ once: true }}
               >
-                <Card className="bg-[var(--pravdast-dark-gray)] border-[var(--pravdast-yellow)]">
+                <Card className="bg-slate-800/50 border-slate-700 hover:border-[#ECB629]/50 transition-all duration-300">
                   <CardContent className="p-8">
-                    <h2 className="text-3xl font-bold mb-6">Заявете безплатна диагностика</h2>
-                    <p className="text-gray-300 mb-8">
-                      Попълнете формата и ще се свържем с вас в рамките на 24 часа с конкретен план за подобрение.
-                    </p>
-                    
+                    <div className="mb-6">
+                      <h2 className="text-2xl font-bold text-white mb-2">Изпратете ни съобщение</h2>
+                      <p className="text-gray-300">Ще се свържем с вас в рамките на 24 часа</p>
+                    </div>
+
                     <form onSubmit={handleSubmit} className="space-y-6">
-                      <div>
-                        <Label htmlFor="name" className="text-sm font-medium text-white">
-                          Име *
-                        </Label>
-                        <Input
-                          id="name"
-                          type="text"
-                          value={formData.name}
-                          onChange={(e) => handleInputChange("name", e.target.value)}
-                          className="mt-1 bg-[var(--pravdast-dark)] border-[var(--pravdast-medium-gray)] text-white"
-                          placeholder="Вашето име"
-                        />
-                        {errors.name && (
-                          <p className="text-red-400 text-sm mt-1">{errors.name}</p>
-                        )}
+                      <div className="grid md:grid-cols-2 gap-4">
+                        <div>
+                          <Label htmlFor="name" className="text-white">Име *</Label>
+                          <Input
+                            id="name"
+                            name="name"
+                            type="text"
+                            value={formData.name}
+                            onChange={handleInputChange}
+                            className={`bg-slate-700/50 border-slate-600 text-white placeholder-gray-400 focus:border-[#ECB629] ${
+                              errors.name ? 'border-red-500' : ''
+                            }`}
+                            placeholder="Вашето име"
+                          />
+                          {errors.name && (
+                            <p className="text-red-400 text-sm mt-1">{errors.name}</p>
+                          )}
+                        </div>
+
+                        <div>
+                          <Label htmlFor="email" className="text-white">Имейл *</Label>
+                          <Input
+                            id="email"
+                            name="email"
+                            type="email"
+                            value={formData.email}
+                            onChange={handleInputChange}
+                            className={`bg-slate-700/50 border-slate-600 text-white placeholder-gray-400 focus:border-[#ECB629] ${
+                              errors.email ? 'border-red-500' : ''
+                            }`}
+                            placeholder="your@email.com"
+                          />
+                          {errors.email && (
+                            <p className="text-red-400 text-sm mt-1">{errors.email}</p>
+                          )}
+                        </div>
+                      </div>
+
+                      <div className="grid md:grid-cols-2 gap-4">
+                        <div>
+                          <Label htmlFor="website" className="text-white">Уебсайт *</Label>
+                          <Input
+                            id="website"
+                            name="website"
+                            type="url"
+                            value={formData.website}
+                            onChange={handleInputChange}
+                            className={`bg-slate-700/50 border-slate-600 text-white placeholder-gray-400 focus:border-[#ECB629] ${
+                              errors.website ? 'border-red-500' : ''
+                            }`}
+                            placeholder="https://your-website.com"
+                          />
+                          {errors.website && (
+                            <p className="text-red-400 text-sm mt-1">{errors.website}</p>
+                          )}
+                        </div>
+
+                        <div>
+                          <Label htmlFor="company" className="text-white">Компания</Label>
+                          <Input
+                            id="company"
+                            name="company"
+                            type="text"
+                            value={formData.company}
+                            onChange={handleInputChange}
+                            className="bg-slate-700/50 border-slate-600 text-white placeholder-gray-400 focus:border-[#ECB629]"
+                            placeholder="Вашата компания (по избор)"
+                          />
+                        </div>
                       </div>
 
                       <div>
-                        <Label htmlFor="email" className="text-sm font-medium text-white">
-                          Имейл *
-                        </Label>
-                        <Input
-                          id="email"
-                          type="email"
-                          value={formData.email}
-                          onChange={(e) => handleInputChange("email", e.target.value)}
-                          className="mt-1 bg-[var(--pravdast-dark)] border-[var(--pravdast-medium-gray)] text-white"
-                          placeholder="your@email.com"
-                        />
-                        {errors.email && (
-                          <p className="text-red-400 text-sm mt-1">{errors.email}</p>
-                        )}
-                      </div>
-
-                      <div>
-                        <Label htmlFor="website" className="text-sm font-medium text-white">
-                          Сайт *
-                        </Label>
-                        <Input
-                          id="website"
-                          type="url"
-                          value={formData.website}
-                          onChange={(e) => handleInputChange("website", e.target.value)}
-                          className="mt-1 bg-[var(--pravdast-dark)] border-[var(--pravdast-medium-gray)] text-white"
-                          placeholder="https://вашия-сайт.com"
-                        />
-                        {errors.website && (
-                          <p className="text-red-400 text-sm mt-1">{errors.website}</p>
-                        )}
-                      </div>
-
-                      <div>
-                        <Label htmlFor="company" className="text-sm font-medium text-white">
-                          Компания
-                        </Label>
-                        <Input
-                          id="company"
-                          type="text"
-                          value={formData.company}
-                          onChange={(e) => handleInputChange("company", e.target.value)}
-                          className="mt-1 bg-[var(--pravdast-dark)] border-[var(--pravdast-medium-gray)] text-white"
-                          placeholder="Название на компанията (незадължително)"
-                        />
-                      </div>
-
-                      <div>
-                        <Label htmlFor="message" className="text-sm font-medium text-white">
-                          Съобщение *
-                        </Label>
+                        <Label htmlFor="message" className="text-white">Съобщение *</Label>
                         <Textarea
                           id="message"
+                          name="message"
                           value={formData.message}
-                          onChange={(e) => handleInputChange("message", e.target.value)}
-                          className="mt-1 bg-[var(--pravdast-dark)] border-[var(--pravdast-medium-gray)] text-white"
-                          placeholder="Разкажете ни за вашия бизнес и какви предизвикателства имате..."
+                          onChange={handleInputChange}
                           rows={5}
+                          className={`bg-slate-700/50 border-slate-600 text-white placeholder-gray-400 focus:border-[#ECB629] resize-none ${
+                            errors.message ? 'border-red-500' : ''
+                          }`}
+                          placeholder="Разкажете ни за вашия проект и как можем да ви помогнем..."
                         />
                         {errors.message && (
                           <p className="text-red-400 text-sm mt-1">{errors.message}</p>
@@ -269,141 +373,105 @@ export default function Contact() {
                       <Button
                         type="submit"
                         disabled={contactMutation.isPending}
-                        className="w-full bg-[var(--pravdast-yellow)] text-[var(--pravdast-dark)] hover:bg-[#d4a426] font-semibold py-3"
+                        className="w-full bg-[#ECB629] text-black hover:bg-[#ECB629]/90 py-3 text-lg font-semibold relative overflow-hidden group"
                       >
-                        {contactMutation.isPending ? "Изпращане..." : "Изпратете съобщението"}
+                        {contactMutation.isPending ? (
+                          <span>Изпращане...</span>
+                        ) : (
+                          <>
+                            <motion.div
+                              className="absolute inset-0 bg-gradient-to-r from-[#ECB629] via-white to-[#ECB629] opacity-0 group-hover:opacity-20"
+                              animate={{ x: ['-100%', '100%'] }}
+                              transition={{ duration: 1.5, repeat: Infinity, repeatType: 'loop' }}
+                            />
+                            Изпрати съобщение <Send className="ml-2 w-5 h-5" />
+                          </>
+                        )}
                       </Button>
                     </form>
                   </CardContent>
                 </Card>
               </motion.div>
 
-              {/* Contact Info */}
+              {/* Contact Information */}
               <motion.div
-                initial={{ opacity: 0, x: 50 }}
+                initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
+                transition={{ duration: 0.8 }}
                 viewport={{ once: true }}
+                className="space-y-6"
               >
-                <div className="space-y-8">
-                  <div>
-                    <h2 className="text-3xl font-bold mb-6">Как можете да се свържете с нас</h2>
-                    <p className="text-gray-300 mb-8">
-                      Избирайте най-удобния за вас начин за контакт. Ще се радваме да обсъдим как можем да помогнем на вашия бизнес.
-                    </p>
-                  </div>
-
-                  <div className="grid gap-6">
-                    {contactInfo.map((info, index) => (
-                      <motion.div
-                        key={index}
-                        className="flex items-start space-x-4"
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: index * 0.1 }}
-                        viewport={{ once: true }}
-                      >
-                        <div className="w-12 h-12 bg-[var(--pravdast-yellow)]/10 rounded-full flex items-center justify-center flex-shrink-0">
-                          <info.icon className="text-[var(--pravdast-yellow)]" size={24} />
-                        </div>
-                        <div>
-                          <h3 className="font-semibold text-lg mb-1">{info.title}</h3>
-                          {info.link ? (
-                            <a 
-                              href={info.link}
-                              className="text-[var(--pravdast-yellow)] font-medium mb-1 hover:underline cursor-pointer block"
-                            >
-                              {info.info}
-                            </a>
-                          ) : (
-                            <p className="text-[var(--pravdast-yellow)] font-medium mb-1">{info.info}</p>
-                          )}
-                          <p className="text-gray-400 text-sm">{info.description}</p>
-                        </div>
-                      </motion.div>
-                    ))}
-                  </div>
-
-                  {/* Quick CTA */}
-                  <div className="bg-[var(--pravdast-dark-gray)] p-6 rounded-lg border border-[var(--pravdast-yellow)]/30">
-                    <h3 className="font-semibold text-lg mb-3 text-[var(--pravdast-yellow)]">
-                      Предпочитате директен разговор?
-                    </h3>
-                    <p className="text-gray-300 mb-4">
-                      Заявете директно онлайн консултация с нашия екип.
-                    </p>
-                    <Button
-                      className="bg-[var(--pravdast-yellow)] text-[var(--pravdast-dark)] hover:bg-[#d4a426] font-semibold"
-                      onClick={() => window.open("https://form.typeform.com/to/GXLaGY98", "_blank")}
-                    >
-                      Запази консултация
-                    </Button>
-                  </div>
+                <div className="mb-8">
+                  <h2 className="text-2xl font-bold text-white mb-4">Информация за контакт</h2>
+                  <p className="text-gray-300">Можете да се свържете с нас по всеки от следните начини:</p>
                 </div>
-              </motion.div>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* FAQ Section */}
-      <section className="py-20 bg-[var(--pravdast-dark-gray)]">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto">
-            <motion.div
-              className="text-center mb-16"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="text-4xl font-bold mb-4">Често задавани въпроси</h2>
-              <p className="text-xl text-gray-300">
-                Отговори на най-честите въпроси относно нашите услуги
-              </p>
-            </motion.div>
+                {contactInfo.map((info, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                  >
+                    <Card className="bg-slate-800/50 border-slate-700 hover:border-[#ECB629]/50 transition-all duration-300 group">
+                      <CardContent className="p-6">
+                        <div className="flex items-start gap-4">
+                          <div className="relative">
+                            <info.icon className="w-8 h-8 text-[#ECB629] group-hover:scale-110 transition-transform duration-300" />
+                            <motion.div
+                              className="absolute inset-0 bg-[#ECB629] rounded-full opacity-20 scale-150"
+                              animate={{ scale: [1.5, 1.8, 1.5] }}
+                              transition={{ duration: 2, repeat: Infinity, delay: index * 0.3 }}
+                            />
+                          </div>
+                          <div>
+                            <h3 className="text-lg font-semibold text-white mb-1 group-hover:text-[#ECB629] transition-colors">
+                              {info.title}
+                            </h3>
+                            <p className="text-[#ECB629] font-medium mb-1">{info.info}</p>
+                            <p className="text-gray-400 text-sm">{info.description}</p>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                ))}
 
-            <div className="space-y-6">
-              {[
-                {
-                  question: "Колко време отнема да видя първите резултати?",
-                  answer: "Първите резултати обикновено се виждат в рамките на 4-8 седмици, в зависимост от сложността на проекта и избраната система."
-                },
-                {
-                  question: "Какво включва безплатната диагностика?",
-                  answer: "Анализираме вашето текущо състояние, идентифицираме възможностите за подобрение и ви предоставяме конкретен план с приоритети и очаквани резултати."
-                },
-                {
-                  question: "Работите ли само с големи компании?",
-                  answer: "Не, работим с утвърдени бизнеси от всякакъв размер - от малки семейни фирми до големи корпорации. Важното е да имате желание за системен растеж."
-                },
-                {
-                  question: "Можете ли да гарантирате резултати?",
-                  answer: "Не можем да гарантираме конкретни цифри, но можем да гарантираме, че ще следваме проверен процес и ще оптимизираме постоянно въз основа на данните."
-                }
-              ].map((faq, index) => (
+                {/* Quick CTA */}
                 <motion.div
-                  key={index}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  transition={{ duration: 0.6, delay: 0.5 }}
                   viewport={{ once: true }}
                 >
-                  <Card className="bg-[var(--pravdast-dark)] border-[var(--pravdast-medium-gray)]">
-                    <CardContent className="p-6">
-                      <h3 className="font-semibold text-lg mb-3 text-[var(--pravdast-yellow)]">
-                        {faq.question}
-                      </h3>
-                      <p className="text-gray-300">{faq.answer}</p>
+                  <Card className="bg-gradient-to-r from-[#ECB629]/20 to-[#ECB629]/10 border-[#ECB629]/30">
+                    <CardContent className="p-6 text-center">
+                      <h3 className="text-xl font-bold text-white mb-2">Предпочитате директен разговор?</h3>
+                      <p className="text-gray-300 mb-4">Резервирайте 30-минутна безплатна консултация</p>
+                      <Button 
+                        variant="outline"
+                        className="border-[#ECB629] text-[#ECB629] hover:bg-[#ECB629] hover:text-black relative overflow-hidden group"
+                        asChild
+                      >
+                        <a href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu" target="_blank" rel="noopener noreferrer">
+                          <motion.div
+                            className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-20"
+                            animate={{ x: ['-100%', '100%'] }}
+                            transition={{ duration: 1.5, repeat: Infinity, repeatType: 'loop' }}
+                          />
+                          Резервирай консултация <ArrowRight className="ml-2 w-4 h-4" />
+                        </a>
+                      </Button>
                     </CardContent>
                   </Card>
                 </motion.div>
-              ))}
+              </motion.div>
             </div>
           </div>
-        </div>
-      </section>
-
+        </section>
+      </main>
+      
       <Footer />
     </div>
   );
