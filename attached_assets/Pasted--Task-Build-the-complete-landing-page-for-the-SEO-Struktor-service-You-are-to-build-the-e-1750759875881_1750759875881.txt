@@ -1,0 +1,59 @@
+**Task: Build the complete landing page for the "SEO Struktor™" service.**
+
+You are to build the entire page based on the following detailed creative brief, which is divided into sections. Implement all specified content, visual concepts, and interactive animations.
+
+**Section 1: Hero Section**
+-   **Content:**
+    -   Main Headline: "Вашите конкуренти не са по-добри. Просто имат по-добра система."
+    -   Sub-headline: "В Google битката се печели не от най-големия, а от най-добре структурирания. SEO Struktor™ изгражда вашето онлайн присъствие като инженерно съоръжение, проектирано да доминира в търсенето по предвидим и измерим начин."
+    -   Button: "[Изпреварете конкуренцията]"
+-   **Visual & Interaction Design:**
+    -   Create an animated background featuring a subtle blueprint grid and slowly moving abstract lines/nodes.
+    -   Implement a gentle mouse-over parallax effect: as the user moves the cursor, the background elements should shift slightly in the opposite direction to create a 3D depth effect.
+
+**Section 2: The Philosophy Section**
+-   **Content:**
+    -   Section Title: "За да е стабилна една сграда, тя се нуждае от инженерен план."
+    -   Left Column Text: "Повечето уебсайтове се развиват хаотично – добавя се страница тук, пише се статия там. Липсва единна, централна структура. Точно това е причината резултатите да са непредсказуеми и краткотрайни."
+    -   Right Column Text: "Ние подхождаме към вашия сайт като архитекти. Преди да поставим и една „тухла“ (съдържание), ние създаваме цялостния инженерен план (SEO Struktor™), който гарантира, че всеки елемент работи в синхрон с останалите, за да се постигне крайната цел – доминация в Google."
+-   **Visual & Interaction Design:**
+    -   Implement a two-column layout.
+    -   Above the left column text, display a graphic with chaotic, messy elements.
+    -   Above the right column text, display a graphic with the same elements, but perfectly structured.
+    -   Animate the transition from chaos to order. This animation must be triggered only when the section scrolls into the viewport.
+
+**Section 3: The Engineering Process Section**
+-   **Content:**
+    -   Section Title: "От основите до покрива: Нашият четирифазен процес на изграждане"
+    -   Phase 0: "Здравият фундамент (Pagekraft™)" - with description.
+    -   Phase 1: "Архитектурен план" - with description.
+    -   Phase 2: "Архитектура на съдържанието" - with description.
+    -   Phase 3: "Външен авторитет" - with description.
+-   **Visual & Interaction Design:**
+    -   Create a vertical timeline infographic connecting the four phases.
+    -   As the user scrolls down, the connecting line should "draw" itself progressively.
+    -   Each phase and its corresponding icon should appear with a gentle fade-in and slide-up animation as it enters the viewport.
+    -   Icons should be in a 2D schematic line-art style.
+
+**Section 4: The Expected Results Section**
+-   **Content:** List the four key benefits (Predictable flow, Long-term asset, Reduced ad dependency, Market authority).
+-   **Visual & Interaction Design:**
+    -   Use a minimal 2D line-art icon for each benefit (Funnel, Bar Chart, Closing Tap, Crown).
+    -   Implement a staggered fade-in animation, so each of the four benefits appears sequentially with a slight delay as the section scrolls into view.
+
+**Section 5: The Investment Structure Section**
+-   **Content:** Use the provided text for the title and the three principles.
+-   **Visual & Interaction Design:**
+    -   The design should be minimalist ("Technical Specification" theme).
+    * Use a very faint blueprint grid as the section background.
+    -   The price (`1980 лв./месечно`) should be the only element in the brand's accent yellow color.
+    -   Implement a subtle "pulse" or color-shift animation on the price text upon mouse hover.
+
+**Section 6: The Final CTA Section**
+-   **Content:** Use the provided text for the main headline, description, and final button text "[Кандидатствайте за диагностика]".
+-   **Visual & Interaction Design:**
+    -   The design should have maximum "clean focus" with no distracting graphics.
+    -   The button should be large, in the brand's accent yellow.
+    -   Implement a subtle hover animation on the button (e.g., slight scaling or glow).
+
+Please build this entire page as a single, comprehensive React component.
