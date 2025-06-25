@@ -33,6 +33,8 @@ import AdminPravda from "@/pages/admin-pravda";
 import FAQ from "@/pages/faq";
 import About from "@/pages/about";
 import Contact from "@/pages/contact";
+import Terms from "@/pages/terms";
+import Privacy from "@/pages/privacy";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -53,6 +55,8 @@ function Router() {
           <Route path="/faq" component={FAQ} />
           <Route path="/about" component={About} />
           <Route path="/contact" component={Contact} />
+          <Route path="/terms" component={Terms} />
+          <Route path="/privacy" component={Privacy} />
           <Route
             path="/strapi-test"
             component={lazy(() => import("@/pages/strapi-test"))}
