@@ -43,9 +43,10 @@ export default async function handler(req, res) {
     const userId = await authenticateAdmin(req, sql);
 
     if (req.method === 'GET') {
-      // Get all blog posts
+      // Get all blog posts for admin
       const posts = await sql`
-        SELECT * FROM blog_posts 
+        SELECT id, title, slug, excerpt, content, category, tags, is_published, created_at, updated_at 
+        FROM blog_posts 
         ORDER BY created_at DESC
       `;
       return res.json(posts);
