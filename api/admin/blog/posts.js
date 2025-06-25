@@ -66,7 +66,7 @@ export default async function handler(req, res) {
       console.log(`Creating post: ${title}, published: ${isPublished}`);
       const posts = await sql`
         INSERT INTO blog_posts (title, slug, excerpt, content, category, tags, is_published, created_at, updated_at)
-        VALUES (${title}, ${slug}, ${excerpt}, ${content}, ${category || 'Общи'}, ${tags}, ${isPublished}, NOW(), NOW())
+        VALUES (${title}, ${slug}, ${excerpt}, ${content}, ${category || 'Общи'}, ${JSON.stringify(tags || [])}, ${isPublished}, NOW(), NOW())
         RETURNING *
       `;
 
