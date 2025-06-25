@@ -513,215 +513,99 @@ export default function Clickstarter() {
 
         {/* Final CTA */}
         <section className="py-20 bg-[#ECB629] text-black relative overflow-hidden">
-          {/* Enhanced Background Pattern */}
-          <div className="absolute inset-0">
-            <div className="absolute inset-0 opacity-20">
-              <div className="absolute inset-0" style={{
-                backgroundImage: `
-                  linear-gradient(rgba(0, 0, 0, 0.15) 2px, transparent 2px),
-                  linear-gradient(90deg, rgba(0, 0, 0, 0.15) 2px, transparent 2px),
-                  linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px),
-                  linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px)
-                `,
-                backgroundSize: '80px 80px, 80px 80px, 20px 20px, 20px 20px'
-              }}></div>
-            </div>
-            
-            {/* Floating Elements */}
-            {[...Array(8)].map((_, i) => (
-              <motion.div
-                key={i}
-                className="absolute w-2 h-2 bg-black/20 rounded-full"
-                style={{
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                }}
-                animate={{
-                  y: [0, -20, 0],
-                  opacity: [0.2, 0.6, 0.2],
-                  scale: [1, 1.2, 1],
-                }}
-                transition={{
-                  duration: 3 + Math.random() * 2,
-                  repeat: Infinity,
-                  delay: Math.random() * 2,
-                }}
-              />
-            ))}
-            
-            {/* Optimization Flow */}
-            <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
-              <motion.path
-                d="M 0 50% Q 25% 30% 50% 50% T 100% 50%"
-                fill="none"
-                stroke="rgba(0,0,0,0.1)"
-                strokeWidth="3"
-                strokeDasharray="20,10"
-                animate={{
-                  strokeDashoffset: [0, -30],
-                }}
-                transition={{
-                  duration: 4,
-                  repeat: Infinity,
-                  ease: "linear",
-                }}
-              />
-            </svg>
+          {/* Subtle Background */}
+          <div className="absolute inset-0 opacity-5">
+            <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-black rounded-full blur-3xl"></div>
+            <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-white rounded-full blur-3xl"></div>
           </div>
           
           <div className="container mx-auto px-6 relative z-10">
-            <div className="max-w-6xl mx-auto">
-              <motion.div
+            <div className="max-w-4xl mx-auto text-center">
+              <motion.h2
+                className="text-4xl md:text-5xl font-bold mb-8 text-black leading-tight"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
                 viewport={{ once: true }}
-                className="text-center mb-12"
               >
-                {/* Premium Badge */}
-                <motion.div
-                  className="inline-flex items-center gap-3 px-8 py-4 rounded-full mb-8 bg-black/10 border-2 border-black/20 backdrop-blur-sm"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                  viewport={{ once: true }}
-                >
-                  <div className="relative">
-                    <motion.div
-                      className="w-4 h-4 bg-black rounded-full"
-                      animate={{ scale: [1, 1.2, 1] }}
-                      transition={{ duration: 2, repeat: Infinity }}
-                    />
-                    <div className="absolute inset-0 w-4 h-4 bg-black rounded-full opacity-30 animate-ping"></div>
-                  </div>
-                  <span className="text-black text-lg font-bold">ЕКСКЛУЗИВНО</span>
-                </motion.div>
-
-                <motion.h2
-                  className="text-4xl md:text-6xl font-bold mb-8 leading-tight"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.1 }}
-                  viewport={{ once: true }}
-                >
-                  Готови ли сте да превърнете разходите в{" "}
-                  <span className="relative">
-                    предвидима инвестиция?
-                    <motion.div
-                      className="absolute -bottom-2 left-0 right-0 h-2 bg-black/20 rounded-full"
-                      initial={{ scaleX: 0 }}
-                      whileInView={{ scaleX: 1 }}
-                      transition={{ duration: 1, delay: 0.8 }}
-                      viewport={{ once: true }}
-                    />
-                  </span>
-                </motion.h2>
-              </motion.div>
-
-              <div className="grid lg:grid-cols-2 gap-12 items-center">
-                {/* Left Content */}
-                <motion.div
-                  initial={{ opacity: 0, x: -30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.8 }}
-                  viewport={{ once: true }}
-                  className="space-y-6"
-                >
-                  <div className="bg-black/10 rounded-2xl p-8 border border-black/20">
-                    <h3 className="text-2xl font-bold mb-4 text-black">Ограничен капацитет</h3>
-                    <p className="text-lg text-black/80 leading-relaxed">
-                      Нашият инженерен процес е задълбочен и изисква пълна отдаденост, за да гарантираме реални резултати. Поради тази причина, за следващия месец имаме капацитет да приемем само{" "}
-                      <span className="font-bold text-black text-xl">3 нови проекта</span>{" "}
-                      за техническа диагностика.
-                    </p>
-                  </div>
-
+                Готови ли сте да превърнете разходите в{" "}
+                <span className="relative">
+                  предвидима инвестиция?
+                  <motion.div
+                    className="absolute -bottom-2 left-0 right-0 h-1 bg-black/30 rounded-full"
+                    initial={{ scaleX: 0 }}
+                    whileInView={{ scaleX: 1 }}
+                    transition={{ duration: 1, delay: 0.6 }}
+                    viewport={{ once: true }}
+                  />
+                </span>
+              </motion.h2>
+              
+              <motion.div
+                className="grid md:grid-cols-2 gap-8 mb-12"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                viewport={{ once: true }}
+              >
+                {/* Left - Information */}
+                <div className="text-left">
+                  <h3 className="text-2xl font-bold mb-4 text-black">Ограничен капацитет</h3>
+                  <p className="text-lg text-black/80 leading-relaxed mb-6">
+                    Нашият инженерен процес е задълбочен и изисква пълна отдаденост, за да гарантираме реални резултати. Поради тази причина, за следващия месец имаме капацитет да приемем само{" "}
+                    <span className="font-bold text-black">3 нови проекта</span>{" "}
+                    за техническа диагностика.
+                  </p>
+                  
                   {/* Trust Indicators */}
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="space-y-3">
                     {[
-                      { icon: CheckCircle, text: "Безплатна консултация" },
-                      { icon: Clock, text: "Отговор в 48 часа" },
-                      { icon: Target, text: "Без ангажименти" },
-                      { icon: Crown, text: "100% поверителност" },
-                    ].map((item, index) => (
-                      <motion.div
-                        key={index}
-                        className="flex items-center gap-3 p-4 bg-black/5 rounded-xl border border-black/10"
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: 0.1 * index }}
-                        viewport={{ once: true }}
-                      >
-                        <item.icon className="w-5 h-5 text-black" />
-                        <span className="font-medium text-black text-sm">{item.text}</span>
-                      </motion.div>
+                      "Безплатна консултация",
+                      "Отговор в 48 часа", 
+                      "Без ангажименти",
+                      "100% поверителност"
+                    ].map((text, index) => (
+                      <div key={index} className="flex items-center gap-3">
+                        <CheckCircle className="w-5 h-5 text-black" />
+                        <span className="text-black font-medium">{text}</span>
+                      </div>
                     ))}
                   </div>
-                </motion.div>
+                </div>
 
-                {/* Right CTA */}
-                <motion.div
-                  initial={{ opacity: 0, x: 30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                  viewport={{ once: true }}
-                  className="text-center lg:text-left"
-                >
-                  <div className="bg-black/15 rounded-3xl p-8 border-2 border-black/20 relative overflow-hidden">
-                    {/* Animated Background */}
-                    <div className="absolute inset-0 opacity-10">
-                      <motion.div
-                        className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-black/20"
-                        animate={{ x: ['-100%', '100%'] }}
-                        transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-                      />
-                    </div>
+                {/* Right - CTA */}
+                <div className="flex flex-col justify-center items-center">
+                  <motion.div
+                    className="text-6xl font-bold text-black mb-4"
+                    animate={{ scale: [1, 1.05, 1] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                  >
+                    3
+                  </motion.div>
+                  
+                  <p className="text-xl font-semibold text-black mb-8">
+                    Оставащи места за януари 2025
+                  </p>
 
-                    <div className="relative z-10">
-                      <motion.div
-                        className="text-6xl font-bold text-black mb-4 relative"
-                        animate={{ scale: [1, 1.05, 1] }}
-                        transition={{ duration: 2, repeat: Infinity }}
-                      >
-                        3
-                        <motion.div
-                          className="absolute -top-2 -right-2 w-4 h-4 bg-black rounded-full"
-                          animate={{ scale: [0, 1, 0] }}
-                          transition={{ duration: 1.5, repeat: Infinity, delay: 0.5 }}
-                        />
-                      </motion.div>
-                      
-                      <p className="text-xl font-semibold text-black mb-8">
-                        Оставащи места за януари 2025
-                      </p>
+                  <a 
+                    href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="w-full max-w-sm"
+                  >
+                    <Button className="bg-black text-[#ECB629] hover:bg-gray-900 px-8 py-6 text-xl font-bold w-full mb-4 transition-all duration-300">
+                      Запазете едно от 3-те места
+                    </Button>
+                  </a>
 
-                      <a 
-                        href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu" 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="inline-block w-full"
-                      >
-                        <Button className="bg-black text-[#ECB629] hover:bg-gray-900 px-8 py-6 text-xl font-bold w-full mb-6 relative overflow-hidden group shadow-xl">
-                          <motion.div
-                            className="absolute inset-0 bg-gradient-to-r from-gray-800 via-black to-gray-800"
-                            animate={{ x: ['-100%', '100%'] }}
-                            transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                            style={{ opacity: 0.3 }}
-                          />
-                          <span className="relative z-10">Запазете едно от 3-те места</span>
-                        </Button>
-                      </a>
-
-                      <div className="flex items-center justify-center gap-2 text-black/70">
-                        <Clock className="w-4 h-4" />
-                        <span className="text-sm font-medium">
-                          Ще се свържем с вас в рамките на 48 часа
-                        </span>
-                      </div>
-                    </div>
+                  <div className="flex items-center gap-2 text-black/70">
+                    <Clock className="w-4 h-4" />
+                    <span className="text-sm">
+                      Ще се свържем с вас в рамките на 48 часа
+                    </span>
                   </div>
-                </motion.div>
-              </div>
+                </div>
+              </motion.div>
             </div>
           </div>
         </section>
