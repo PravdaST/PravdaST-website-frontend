@@ -414,7 +414,7 @@ export default function BlogPost() {
                     variant="outline"
                     size="sm"
                     onClick={() => setShowShareMenu(!showShareMenu)}
-                    className="border-[#ECB629]/30 text-[#ECB629] hover:bg-[#ECB629]/10"
+                    className="border-[#ECB629]/30 text-[#ECB629] hover:bg-[#ECB629]/10 hover:border-[#ECB629]/50 transition-all duration-300"
                   >
                     <Share2 className="h-4 w-4 mr-2" />
                     Споделяне
@@ -422,48 +422,92 @@ export default function BlogPost() {
 
                   {showShareMenu && (
                     <motion.div
-                      className="absolute top-full mt-2 left-0 bg-slate-800 border border-slate-600 rounded-lg p-3 shadow-xl z-50 min-w-48"
-                      initial={{ opacity: 0, y: -10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.2 }}
+                      className="absolute top-full mt-3 left-0 bg-slate-800/95 backdrop-blur-sm border border-slate-600/50 rounded-xl p-4 shadow-2xl z-50 min-w-64"
+                      initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      transition={{ duration: 0.3, ease: "easeOut" }}
                     >
-                      <div className="grid grid-cols-2 gap-2">
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={() => handleShare("facebook")}
-                          className="justify-start hover:bg-blue-600/20 hover:text-blue-400"
+                      <div className="mb-3">
+                        <h4 className="text-sm font-medium text-white mb-2">Споделете статията</h4>
+                        <div className="h-px bg-gradient-to-r from-[#ECB629]/30 to-transparent"></div>
+                      </div>
+                      
+                      <div className="space-y-2">
+                        <motion.div
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
                         >
-                          <Facebook className="h-4 w-4 mr-2" />
-                          Facebook
-                        </Button>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={() => handleShare("twitter")}
-                          className="justify-start hover:bg-sky-600/20 hover:text-sky-400"
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => handleShare("facebook")}
+                            className="w-full justify-start hover:bg-blue-600/20 hover:text-blue-400 transition-all duration-200 rounded-lg p-3 h-auto"
+                          >
+                            <div className="flex items-center gap-3">
+                              <div className="w-8 h-8 bg-blue-600/20 rounded-lg flex items-center justify-center">
+                                <Facebook className="h-4 w-4 text-blue-400" />
+                              </div>
+                              <span className="text-sm font-medium">Facebook</span>
+                            </div>
+                          </Button>
+                        </motion.div>
+
+                        <motion.div
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
                         >
-                          <Twitter className="h-4 w-4 mr-2" />
-                          Twitter
-                        </Button>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={() => handleShare("linkedin")}
-                          className="justify-start hover:bg-blue-700/20 hover:text-blue-300"
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => handleShare("twitter")}
+                            className="w-full justify-start hover:bg-sky-600/20 hover:text-sky-400 transition-all duration-200 rounded-lg p-3 h-auto"
+                          >
+                            <div className="flex items-center gap-3">
+                              <div className="w-8 h-8 bg-sky-600/20 rounded-lg flex items-center justify-center">
+                                <Twitter className="h-4 w-4 text-sky-400" />
+                              </div>
+                              <span className="text-sm font-medium">Twitter</span>
+                            </div>
+                          </Button>
+                        </motion.div>
+
+                        <motion.div
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
                         >
-                          <Linkedin className="h-4 w-4 mr-2" />
-                          LinkedIn
-                        </Button>
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={() => handleShare("copy")}
-                          className="justify-start hover:bg-gray-600/20 hover:text-gray-300"
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => handleShare("linkedin")}
+                            className="w-full justify-start hover:bg-blue-700/20 hover:text-blue-300 transition-all duration-200 rounded-lg p-3 h-auto"
+                          >
+                            <div className="flex items-center gap-3">
+                              <div className="w-8 h-8 bg-blue-700/20 rounded-lg flex items-center justify-center">
+                                <Linkedin className="h-4 w-4 text-blue-300" />
+                              </div>
+                              <span className="text-sm font-medium">LinkedIn</span>
+                            </div>
+                          </Button>
+                        </motion.div>
+
+                        <motion.div
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
                         >
-                          <Copy className="h-4 w-4 mr-2" />
-                          Копирай
-                        </Button>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => handleShare("copy")}
+                            className="w-full justify-start hover:bg-[#ECB629]/20 hover:text-[#ECB629] transition-all duration-200 rounded-lg p-3 h-auto"
+                          >
+                            <div className="flex items-center gap-3">
+                              <div className="w-8 h-8 bg-[#ECB629]/20 rounded-lg flex items-center justify-center">
+                                <Copy className="h-4 w-4 text-[#ECB629]" />
+                              </div>
+                              <span className="text-sm font-medium">Копирай линка</span>
+                            </div>
+                          </Button>
+                        </motion.div>
                       </div>
                     </motion.div>
                   )}
@@ -473,10 +517,14 @@ export default function BlogPost() {
                   variant="outline"
                   size="sm"
                   onClick={() => setLiked(!liked)}
-                  className={`border-[#ECB629]/30 ${liked ? "bg-[#ECB629]/20 text-[#ECB629]" : "text-[#ECB629] hover:bg-[#ECB629]/10"}`}
+                  className={`border-[#ECB629]/30 transition-all duration-300 ${
+                    liked 
+                      ? "bg-[#ECB629]/20 text-[#ECB629] border-[#ECB629]/50" 
+                      : "text-[#ECB629] hover:bg-[#ECB629]/10 hover:border-[#ECB629]/50"
+                  }`}
                 >
                   <Heart
-                    className={`h-4 w-4 mr-2 ${liked ? "fill-current" : ""}`}
+                    className={`h-4 w-4 mr-2 transition-all duration-300 ${liked ? "fill-current scale-110" : ""}`}
                   />
                   {liked ? "Харесано" : "Харесай"}
                 </Button>

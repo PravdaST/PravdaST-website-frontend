@@ -237,6 +237,8 @@ Changelog:
 - June 25, 2025. Fixed console errors: removed Writesonic SEO Fixer script causing 404 errors, updated Klaviyo setup to handle missing API keys gracefully, fixed Service Worker caching issues with Promise.allSettled, added proper enctype to manifest.json share_target, updated CSP headers to remove blocked external scripts
 - June 25, 2025. Redesigned Clickstarter™ hero section to match homepage design consistency: implemented min-h-screen layout with same tech background patterns, grid system, floating keywords (ROI, CTR, CPC, ROAS), identical status badge and button styling, maintained thematic content while achieving visual consistency
 - June 25, 2025. Simplified Clickstarter™ CTA section with clean design: removed complex background patterns and floating elements, implemented clean two-column layout (information left, CTA right), minimalist trust indicators with CheckCircle icons, focused on large number "3" without excessive animations, clean black button with yellow text for better readability and professional appearance
+- June 25, 2025. Fixed blog loading issue by switching from blog-db.tsx to static blog.tsx in App.tsx routing - eliminated "зареждане на публикации" loading message, now displays 6 hardcoded Bulgarian blog posts without database dependency
+- June 25, 2025. Completely redesigned social sharing buttons in blog posts with premium UI: enhanced dropdown menu with backdrop blur, individual icon containers with brand colors, smooth hover animations, proper spacing and typography, "Споделете статията" header with gradient separator
 
 ## User Preferences
 
