@@ -51,6 +51,7 @@ export default async function handler(req, res) {
       
       // If only isPublished is provided (publish/unpublish action)
       if (typeof isPublished === 'boolean' && !title && !content) {
+        console.log(`Updating post ${postId} to published: ${isPublished}`);
         const posts = await sql`
           UPDATE blog_posts 
           SET is_published = ${isPublished}, updated_at = NOW()
@@ -61,6 +62,7 @@ export default async function handler(req, res) {
           return res.status(404).json({ error: 'Blog post not found' });
         }
         
+        console.log(`Post ${postId} updated, is_published: ${posts[0].is_published}`);
         return res.json({ 
           message: `Blog post ${isPublished ? 'published' : 'unpublished'} successfully`, 
           post: posts[0] 
