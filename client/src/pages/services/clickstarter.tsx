@@ -106,10 +106,12 @@ export default function Clickstarter() {
   return (
     <>
       <SEOHead 
-        title="Clickstarter™ - Оптимизация на рекламния бюджет | Pravdast"
-        description="Прецизна настройка на вашия рекламен процес за максимална възвръщаемост. Елиминирайте загубите и максимизирайте резултата от всеки лев."
-        keywords="рекламна оптимизация, PPC управление, рекламен ROI, дигитален маркетинг, ефективност на рекламата"
-        type="service"
+        seo={{
+          title: "Clickstarter™ - Оптимизация на рекламния бюджет | Pravdast",
+          description: "Прецизна настройка на вашия рекламен процес за максимална възвръщаемост. Елиминирайте загубите и максимизирайте резултата от всеки лев.",
+          ogImage: "/og-clickstarter.png",
+        }}
+        pageSlug="services/clickstarter"
       />
       
       <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
