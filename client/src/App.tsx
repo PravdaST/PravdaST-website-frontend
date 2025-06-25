@@ -28,6 +28,7 @@ import SalesEngine from "@/pages/services/sales-engine";
 import CaseStudies from "@/pages/case-studies";
 import Blog from "@/pages/blog";
 import BlogPost from "@/pages/blog-post";
+import AdminPravda from "@/pages/admin-pravda";
 import FAQ from "@/pages/faq";
 import About from "@/pages/about";
 import Contact from "@/pages/contact";
@@ -62,6 +63,7 @@ function Router() {
             path="/performance-monitor"
             component={lazy(() => import("@/pages/performance-monitor"))}
           />
+          <Route path="/admin-pravda" component={AdminPravda} />
           <Route component={NotFound} />
         </Switch>
       </Suspense>

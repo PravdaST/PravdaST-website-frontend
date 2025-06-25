@@ -15,11 +15,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
     '/services',
     '/services/seo-struktor',
     '/services/clientomat', 
+    '/services/trendlab',
     '/services/sales-engine',
     '/case-studies',
     '/about',
     '/contact',
-    '/strapi-test'
+    '/faq',
+    '/blog',
+    '/strapi-test',
+    '/admin-pravda'
   ];
 
   // Middleware за проверка на валидни routes - трябва да е ПРЕДИ Vite middleware
@@ -80,6 +84,192 @@ export async function registerRoutes(app: Express): Promise<Server> {
           error: "Възникна грешка при изпращането на съобщението" 
         });
       }
+    }
+  });
+
+  // Admin authentication endpoints
+  app.post("/api/admin/login", async (req, res) => {
+    try {
+      const { username, password } = req.body;
+      
+      if (!username || !password) {
+        return res.status(400).json({ message: "Username and password required" });
+      }
+
+      const user = await storage.getUserByUsername(username);
+      if (!user) {
+        return res.status(401).json({ message: "Invalid credentials" });
+      }
+
+      const bcrypt = require('bcrypt');
+      const isValidPassword = await bcrypt.compare(password, user.password);
+      if (!isValidPassword) {
+        return res.status(401).json({ message: "Invalid credentials" });
+      }
+
+      // Create session
+      const { randomBytes } = require('crypto');
+      const sessionToken = randomBytes(32).toString('hex');
+      const expiresAt = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 hours
+
+      await storage.createAdminSession({
+        sessionToken,
+        userId: user.id,
+        expiresAt,
+      });
+
+      res.json({ 
+        message: "Login successful", 
+        token: sessionToken,
+        user: { id: user.id, username: user.username }
+      });
+    } catch (error: any) {
+      console.error("Error during login:", error);
+      res.status(500).json({ message: "Login failed" });
+    }
+  });
+
+  // Simple auth middleware for admin routes
+  const authenticateAdmin = async (req: any, res: any, next: any) => {
+    const authHeader = req.headers.authorization;
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+      return res.status(401).json({ message: "No token provided" });
+    }
+
+    const token = authHeader.substring(7);
+    const session = await storage.getAdminSession(token);
+    
+    if (!session) {
+      return res.status(401).json({ message: "Invalid or expired session" });
+    }
+
+    req.adminUserId = session.userId;
+    next();
+  };
+
+  app.post("/api/admin/logout", authenticateAdmin, async (req: any, res) => {
+    try {
+      const authHeader = req.headers.authorization;
+      const token = authHeader.substring(7);
+      await storage.deleteAdminSession(token);
+      res.json({ message: "Logout successful" });
+    } catch (error: any) {
+      console.error("Error during logout:", error);
+      res.status(500).json({ message: "Logout failed" });
+    }
+  });
+
+  // Admin CRM endpoints for blog management
+  app.get("/api/admin/blog/posts", authenticateAdmin, async (req, res) => {
+    try {
+      const posts = await storage.getAllBlogPosts();
+      res.json(posts);
+    } catch (error: any) {
+      console.error("Error fetching admin blog posts:", error);
+      res.status(500).json({ message: "Failed to fetch blog posts" });
+    }
+  });
+
+  app.post("/api/admin/blog/posts", authenticateAdmin, async (req: any, res) => {
+    try {
+      const { insertBlogPostSchema } = require("@shared/schema");
+      const postData = insertBlogPostSchema.parse({
+        ...req.body,
+        authorId: req.adminUserId,
+      });
+      const post = await storage.createBlogPost(postData);
+      res.json({ message: "Blog post created successfully", post });
+    } catch (error: any) {
+      console.error("Error creating blog post:", error);
+      res.status(400).json({ 
+        message: "Failed to create blog post", 
+        error: error.message 
+      });
+    }
+  });
+
+  app.put("/api/admin/blog/posts/:id", authenticateAdmin, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const updateData = req.body;
+      delete updateData.authorId; // Don't allow changing author
+      
+      const post = await storage.updateBlogPost(id, updateData);
+      res.json({ message: "Blog post updated successfully", post });
+    } catch (error: any) {
+      console.error("Error updating blog post:", error);
+      res.status(400).json({ 
+        message: "Failed to update blog post", 
+        error: error.message 
+      });
+    }
+  });
+
+  app.delete("/api/admin/blog/posts/:id", authenticateAdmin, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      await storage.deleteBlogPost(id);
+      res.json({ message: "Blog post deleted successfully" });
+    } catch (error: any) {
+      console.error("Error deleting blog post:", error);
+      res.status(500).json({ message: "Failed to delete blog post" });
+    }
+  });
+
+  app.post("/api/admin/blog/posts/:id/publish", authenticateAdmin, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      await storage.publishBlogPost(id);
+      res.json({ message: "Blog post published successfully" });
+    } catch (error: any) {
+      console.error("Error publishing blog post:", error);
+      res.status(500).json({ message: "Failed to publish blog post" });
+    }
+  });
+
+  app.post("/api/admin/blog/posts/:id/unpublish", authenticateAdmin, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      await storage.unpublishBlogPost(id);
+      res.json({ message: "Blog post unpublished successfully" });
+    } catch (error: any) {
+      console.error("Error unpublishing blog post:", error);
+      res.status(500).json({ message: "Failed to unpublish blog post" });
+    }
+  });
+
+  // Admin contacts endpoint
+  app.get("/api/admin/contacts", authenticateAdmin, async (req, res) => {
+    try {
+      const contacts = await storage.getAllContacts();
+      res.json(contacts);
+    } catch (error: any) {
+      console.error("Error fetching contacts:", error);
+      res.status(500).json({ message: "Failed to fetch contacts" });
+    }
+  });
+
+  // Public blog endpoints (for frontend consumption)
+  app.get("/api/blog/posts", async (req, res) => {
+    try {
+      const posts = await storage.getPublishedBlogPosts();
+      res.json(posts);
+    } catch (error: any) {
+      console.error("Error fetching blog posts:", error);
+      res.status(500).json({ message: "Failed to fetch blog posts" });
+    }
+  });
+
+  app.get("/api/blog/posts/:slug", async (req, res) => {
+    try {
+      const post = await storage.getBlogPostBySlug(req.params.slug);
+      if (!post || !post.isPublished) {
+        return res.status(404).json({ message: "Blog post not found" });
+      }
+      res.json(post);
+    } catch (error: any) {
+      console.error("Error fetching blog post:", error);
+      res.status(500).json({ message: "Failed to fetch blog post" });
     }
   });
 
