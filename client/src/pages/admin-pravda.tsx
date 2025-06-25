@@ -323,7 +323,7 @@ export default function AdminPravdaPage() {
   // Publish/Unpublish mutations
   const publishMutation = useMutation({
     mutationFn: async ({ id, action }: { id: number; action: 'publish' | 'unpublish' }) => {
-      const response = await fetch(`/api/admin/blog/posts/${id}/${action}`, {
+      const response = await fetch(`/api/admin/blog/${action}/${id}`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,

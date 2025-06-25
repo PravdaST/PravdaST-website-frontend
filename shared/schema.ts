@@ -1,4 +1,4 @@
-import { pgTable, text, serial, timestamp, boolean } from "drizzle-orm/pg-core";
+import { pgTable, text, serial, timestamp, boolean, integer } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
@@ -28,7 +28,7 @@ export const blogPosts = pgTable("blog_posts", {
   category: text("category").notNull(),
   tags: text("tags").array().default([]),
   isPublished: boolean("is_published").default(false).notNull(),
-  authorId: serial("author_id").notNull(),
+  authorId: integer("author_id").notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });
@@ -37,7 +37,7 @@ export const blogPosts = pgTable("blog_posts", {
 export const adminSessions = pgTable("admin_sessions", {
   id: serial("id").primaryKey(),
   sessionToken: text("session_token").notNull().unique(),
-  userId: serial("user_id").notNull(),
+  userId: integer("user_id").notNull(),
   expiresAt: timestamp("expires_at").notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
