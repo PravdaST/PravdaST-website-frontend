@@ -23,18 +23,18 @@ import {
 } from "lucide-react";
 import { motion } from "framer-motion";
 
-// Animated Background for Clickstarter
-const ClickstarterBackground = () => {
+// Clickstarter Hero Background Component
+const ClickstarterHeroBackground = () => {
   return (
     <div className="absolute inset-0 overflow-hidden opacity-10">
-      {/* Engine Optimization Grid */}
+      {/* Ad Optimization Grid */}
       <svg
         className="absolute inset-0 w-full h-full"
         xmlns="http://www.w3.org/2000/svg"
       >
         <defs>
           <pattern
-            id="engine-grid"
+            id="ad-optimization-grid"
             width="80"
             height="80"
             patternUnits="userSpaceOnUse"
@@ -49,13 +49,46 @@ const ClickstarterBackground = () => {
             <circle cx="40" cy="40" r="2" fill="#ECB629" opacity="0.4" />
           </pattern>
         </defs>
-        <rect width="100%" height="100%" fill="url(#engine-grid)" />
+        <rect width="100%" height="100%" fill="url(#ad-optimization-grid)" />
       </svg>
 
-      {/* Floating Engine Gears */}
-      {[...Array(8)].map((_, i) => (
+      {/* Floating Ad Performance Keywords */}
+      {[
+        "ROI",
+        "CLICKS",
+        "CTR",
+        "CPC",
+        "ROAS",
+        "OPTIMIZATION",
+        "TARGETING",
+        "CONVERSION",
+      ].map((keyword, i) => (
         <motion.div
-          key={i}
+          key={keyword}
+          className="absolute text-[#ECB629] font-bold text-sm tracking-wider"
+          style={{
+            left: `${10 + Math.random() * 80}%`,
+            top: `${10 + Math.random() * 80}%`,
+          }}
+          animate={{
+            y: [0, -30, 0],
+            opacity: [0.2, 0.6, 0.2],
+            scale: [0.8, 1.1, 0.8],
+          }}
+          transition={{
+            duration: 4 + Math.random() * 3,
+            repeat: Infinity,
+            delay: Math.random() * 2,
+          }}
+        >
+          {keyword}
+        </motion.div>
+      ))}
+
+      {/* Engine Performance Indicators */}
+      {[...Array(12)].map((_, i) => (
+        <motion.div
+          key={`engine-${i}`}
           className="absolute"
           style={{
             left: `${Math.random() * 100}%`,
@@ -63,41 +96,54 @@ const ClickstarterBackground = () => {
           }}
           animate={{
             rotate: [0, 360],
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.7, 0.3],
+            scale: [1, 1.3, 1],
+            opacity: [0.3, 0.8, 0.3],
           }}
           transition={{
-            duration: 8 + Math.random() * 4,
-            repeat: Infinity,
-            delay: Math.random() * 2,
-          }}
-        >
-          <Settings className="w-6 h-6 text-[#ECB629]" />
-        </motion.div>
-      ))}
-
-      {/* Optimization Indicators */}
-      {[...Array(6)].map((_, i) => (
-        <motion.div
-          key={`indicator-${i}`}
-          className="absolute"
-          style={{
-            left: `${20 + Math.random() * 60}%`,
-            top: `${20 + Math.random() * 60}%`,
-          }}
-          animate={{
-            y: [0, -20, 0],
-            opacity: [0.2, 0.8, 0.2],
-          }}
-          transition={{
-            duration: 3 + Math.random() * 2,
+            duration: 6 + Math.random() * 4,
             repeat: Infinity,
             delay: Math.random() * 3,
           }}
         >
-          <TrendingUp className="w-4 h-4 text-[#ECB629]" />
+          <Settings className="w-4 h-4 text-[#ECB629]" />
         </motion.div>
       ))}
+
+      {/* Optimization Flow Lines */}
+      <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
+        <motion.path
+          d="M100,200 Q300,100 500,200 T900,200"
+          fill="none"
+          stroke="#ECB629"
+          strokeWidth="2"
+          opacity="0.3"
+          strokeDasharray="10,5"
+          animate={{
+            strokeDashoffset: [0, -20],
+          }}
+          transition={{
+            duration: 3,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+        />
+        <motion.path
+          d="M200,400 Q400,300 600,400 T1000,400"
+          fill="none"
+          stroke="#ECB629"
+          strokeWidth="1.5"
+          opacity="0.2"
+          strokeDasharray="8,4"
+          animate={{
+            strokeDashoffset: [0, -16],
+          }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+        />
+      </svg>
     </div>
   );
 };
@@ -119,113 +165,78 @@ export default function Clickstarter() {
         
         {/* Hero Section */}
         <section className="pt-32 pb-20 relative overflow-hidden">
-          <ClickstarterBackground />
+          <ClickstarterHeroBackground />
           
           <div className="container mx-auto px-6 relative z-10">
-            <div className="max-w-6xl mx-auto">
-              <div className="grid lg:grid-cols-2 gap-12 items-center">
-                {/* Left Content */}
+            <div className="max-w-5xl mx-auto">
+              <div className="text-center">
+                {/* Status Badge */}
                 <motion.div
-                  initial={{ opacity: 0, x: -50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.8 }}
+                  className="inline-flex items-center gap-3 mb-8 px-6 py-3 rounded-full bg-gradient-to-r from-slate-800/80 to-slate-700/60 border border-slate-600/30 backdrop-blur-sm"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
                 >
-                  {/* Status Badge */}
-                  <motion.div
-                    className="inline-flex items-center gap-3 mb-8 px-6 py-3 rounded-full bg-gradient-to-r from-slate-800/80 to-slate-700/60 border border-slate-600/30 backdrop-blur-sm"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.2 }}
-                  >
-                    <div className="flex items-center gap-2">
-                      <div className="relative">
-                        <div className="w-2 h-2 bg-[#ECB629] rounded-full"></div>
-                        <div className="absolute inset-0 bg-[#ECB629] rounded-full animate-ping opacity-75"></div>
-                      </div>
-                      <span className="text-sm text-gray-300 font-medium">
-                        <span className="text-[#ECB629] font-bold">Прецизна</span>{" "}
-                        оптимизация
-                      </span>
+                  <div className="flex items-center gap-2">
+                    <div className="relative">
+                      <div className="w-2 h-2 bg-[#ECB629] rounded-full"></div>
+                      <div className="absolute inset-0 bg-[#ECB629] rounded-full animate-ping opacity-75"></div>
                     </div>
-                  </motion.div>
-
-                  <motion.h1
-                    className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.3 }}
-                  >
-                    Вашият рекламен бюджет е мощен двигател.{" "}
-                    <span className="text-[#ECB629] relative">
-                      Работи ли на пълни обороти?
-                      <motion.div
-                        className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-[#ECB629] to-[#ECB629]/50 rounded-full"
-                        initial={{ scaleX: 0 }}
-                        animate={{ scaleX: 1 }}
-                        transition={{ duration: 1, delay: 0.8 }}
-                      />
+                    <span className="text-sm text-gray-300 font-medium">
+                      <span className="text-[#ECB629] font-bold">Прецизна</span>{" "}
+                      оптимизация
                     </span>
-                  </motion.h1>
-
-                  <motion.p
-                    className="text-xl text-gray-300 mb-8 leading-relaxed"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.4 }}
-                  >
-                    Много компании харчат пари за реклама, но малко от тях извличат максималната възвръщаемост от всеки лев. Нашата система Clickstarter™ е инженерното решение, което прецизно настройва вашия рекламен процес, за да елиминира загубите и да максимизира резултата.
-                  </motion.p>
-
-                  <motion.div
-                    className="flex flex-col sm:flex-row gap-4"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.5 }}
-                  >
-                    <a 
-                      href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu" 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                    >
-                      <Button className="bg-[#ECB629] hover:bg-[#ECB629]/90 text-black px-8 py-4 text-lg font-semibold group">
-                        Започнете оптимизацията
-                        <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                      </Button>
-                    </a>
-                  </motion.div>
+                  </div>
                 </motion.div>
 
-                {/* Right Visual */}
-                <motion.div
-                  className="relative"
-                  initial={{ opacity: 0, x: 50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
+                <motion.h1
+                  className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.3 }}
                 >
-                  <div className="relative bg-slate-800/30 rounded-2xl p-8 border border-slate-600/30 backdrop-blur-sm">
-                    {/* Engine Visualization */}
-                    <div className="flex justify-center items-center h-64">
+                  Вашият рекламен бюджет е мощен двигател.{" "}
+                  <span className="text-[#ECB629] relative">
+                    Работи ли на пълни обороти?
+                    <motion.div
+                      className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-[#ECB629] to-[#ECB629]/50 rounded-full"
+                      initial={{ scaleX: 0 }}
+                      animate={{ scaleX: 1 }}
+                      transition={{ duration: 1, delay: 0.8 }}
+                    />
+                  </span>
+                </motion.h1>
+
+                <motion.p
+                  className="text-xl text-gray-300 mb-8 leading-relaxed max-w-4xl mx-auto"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.4 }}
+                >
+                  Много компании харчат пари за реклама, но малко от тях извличат максималната възвръщаемост от всеки лев. Нашата система Clickstarter™ е инженерното решение, което прецизно настройва вашия рекламен процес, за да елиминира загубите и да максимизира резултата.
+                </motion.p>
+
+                <motion.div
+                  className="flex flex-col sm:flex-row gap-4 justify-center"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.5 }}
+                >
+                  <a 
+                    href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                  >
+                    <Button className="bg-[#ECB629] hover:bg-[#ECB629]/90 text-black px-8 py-4 text-lg font-semibold group relative overflow-hidden">
                       <motion.div
-                        className="relative"
-                        animate={{ rotate: [0, 360] }}
-                        transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-                      >
-                        <div className="w-32 h-32 border-4 border-[#ECB629] rounded-full flex items-center justify-center">
-                          <Settings className="w-16 h-16 text-[#ECB629]" />
-                        </div>
-                      </motion.div>
-                      
-                      {/* Adjustment Hand */}
-                      <motion.div
-                        className="absolute right-8"
-                        initial={{ x: 50, opacity: 0 }}
-                        animate={{ x: 0, opacity: 1 }}
-                        transition={{ duration: 1, delay: 1 }}
-                      >
-                        <Wrench className="w-8 h-8 text-[#ECB629]" />
-                      </motion.div>
-                    </div>
-                  </div>
+                        className="absolute inset-0 bg-gradient-to-r from-white/20 via-white/40 to-white/20"
+                        animate={{ x: ['-100%', '100%'] }}
+                        transition={{ duration: 2, repeat: Infinity, repeatType: 'loop' }}
+                      />
+                      <span className="relative z-10">Започнете оптимизацията</span>
+                      <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform relative z-10" />
+                    </Button>
+                  </a>
                 </motion.div>
               </div>
             </div>
