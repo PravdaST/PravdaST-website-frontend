@@ -1,867 +1,1349 @@
 import { motion, useInView } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
-import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { ArrowRight, Search, Target, TrendingUp, BarChart3, CheckCircle, Clock, ArrowLeft, Zap, Users, Settings } from "lucide-react";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
+import { Button } from "@/components/ui/button";
 import { SEOHead } from "@/components/seo-head";
-import { pageSEOData } from "@/data/seo-pages";
+import { useRef, useState, useEffect } from "react";
+import {
+  ArrowRight,
+  ArrowLeft,
+  BarChart3,
+  TrendingDown,
+  Crown,
+  Zap,
+} from "lucide-react";
 
-// Unique SEO Blueprint Background
-const SEOStruktorBackground = () => {
+// SEO Struktor Background Component
+const SeoStruktorBackground = () => {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const updateMousePosition = (e: MouseEvent) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+    window.addEventListener("mousemove", updateMousePosition);
+    return () => window.removeEventListener("mousemove", updateMousePosition);
+  }, []);
+
   return (
-    <div className="absolute inset-0 overflow-hidden opacity-10">
-      {/* SEO Blueprint Grid */}
-      <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
+    <div className="absolute inset-0 overflow-hidden opacity-15">
+      {/* SEO Structure Grid */}
+      <svg
+        className="absolute inset-0 w-full h-full"
+        xmlns="http://www.w3.org/2000/svg"
+      >
         <defs>
-          {/* SEO Network Pattern */}
-          <pattern id="seo-blueprint" width="140" height="140" patternUnits="userSpaceOnUse">
-            {/* Central Search Hub */}
-            <circle cx="70" cy="70" r="3" fill="#ECB629" opacity="0.8"/>
-            
-            {/* SEO Elements (8 points around hub) */}
-            <circle cx="70" cy="20" r="1.5" fill="#ECB629" opacity="0.5"/>
-            <circle cx="110" cy="35" r="1.5" fill="#ECB629" opacity="0.5"/>
-            <circle cx="120" cy="70" r="1.5" fill="#ECB629" opacity="0.5"/>
-            <circle cx="110" cy="105" r="1.5" fill="#ECB629" opacity="0.5"/>
-            <circle cx="70" cy="120" r="1.5" fill="#ECB629" opacity="0.5"/>
-            <circle cx="30" cy="105" r="1.5" fill="#ECB629" opacity="0.5"/>
-            <circle cx="20" cy="70" r="1.5" fill="#ECB629" opacity="0.5"/>
-            <circle cx="30" cy="35" r="1.5" fill="#ECB629" opacity="0.5"/>
-            
-            {/* Hub Connection Lines */}
-            <path d="M 70 70 L 70 20" stroke="#ECB629" strokeWidth="0.5" opacity="0.3"/>
-            <path d="M 70 70 L 110 35" stroke="#ECB629" strokeWidth="0.5" opacity="0.3"/>
-            <path d="M 70 70 L 120 70" stroke="#ECB629" strokeWidth="0.5" opacity="0.3"/>
-            <path d="M 70 70 L 110 105" stroke="#ECB629" strokeWidth="0.5" opacity="0.3"/>
-            <path d="M 70 70 L 70 120" stroke="#ECB629" strokeWidth="0.5" opacity="0.3"/>
-            <path d="M 70 70 L 30 105" stroke="#ECB629" strokeWidth="0.5" opacity="0.3"/>
-            <path d="M 70 70 L 20 70" stroke="#ECB629" strokeWidth="0.5" opacity="0.3"/>
-            <path d="M 70 70 L 30 35" stroke="#ECB629" strokeWidth="0.5" opacity="0.3"/>
-            
-            {/* SEO Ranking Flow */}
-            <path d="M 70 20 Q 95 25 110 35" stroke="#ECB629" strokeWidth="0.3" opacity="0.2" fill="none"/>
-            <path d="M 110 35 Q 125 50 120 70" stroke="#ECB629" strokeWidth="0.3" opacity="0.2" fill="none"/>
-            <path d="M 120 70 Q 125 90 110 105" stroke="#ECB629" strokeWidth="0.3" opacity="0.2" fill="none"/>
-            <path d="M 110 105 Q 95 115 70 120" stroke="#ECB629" strokeWidth="0.3" opacity="0.2" fill="none"/>
-            <path d="M 70 120 Q 45 115 30 105" stroke="#ECB629" strokeWidth="0.3" opacity="0.2" fill="none"/>
-            <path d="M 30 105 Q 15 90 20 70" stroke="#ECB629" strokeWidth="0.3" opacity="0.2" fill="none"/>
-            <path d="M 20 70 Q 15 50 30 35" stroke="#ECB629" strokeWidth="0.3" opacity="0.2" fill="none"/>
-            <path d="M 30 35 Q 45 25 70 20" stroke="#ECB629" strokeWidth="0.3" opacity="0.2" fill="none"/>
+          <pattern
+            id="seo-grid"
+            width="80"
+            height="80"
+            patternUnits="userSpaceOnUse"
+          >
+            <path
+              d="M 80 0 L 0 0 0 80"
+              fill="none"
+              stroke="var(--pravdast-yellow)"
+              strokeWidth="0.5"
+              opacity="0.3"
+            />
+            <circle
+              cx="40"
+              cy="40"
+              r="2"
+              fill="var(--pravdast-yellow)"
+              opacity="0.4"
+            />
           </pattern>
-          
-          {/* SEO Signal Flow */}
-          <linearGradient id="seoFlow" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#ECB629" stopOpacity="0"/>
-            <stop offset="50%" stopColor="#ECB629" stopOpacity="0.6"/>
-            <stop offset="100%" stopColor="#ECB629" stopOpacity="0"/>
-          </linearGradient>
         </defs>
-        
-        <rect width="100%" height="100%" fill="url(#seo-blueprint)" />
+        <rect width="100%" height="100%" fill="url(#seo-grid)" />
       </svg>
 
-      {/* Floating SEO Elements */}
-      <div className="absolute inset-0">
-        {Array.from({ length: 6 }).map((_, i) => (
+      {/* SEO Keywords floating */}
+      {["SEO", "STRUCTURE", "SYSTEM", "RANKING", "TRAFFIC", "AUTHORITY"].map(
+        (keyword, i) => (
           <motion.div
-            key={i}
-            className="absolute"
+            key={keyword}
+            className="absolute text-[var(--pravdast-yellow)] font-mono text-xs opacity-20"
             style={{
-              left: `${15 + (i * 14)}%`,
-              top: `${20 + (i % 2) * 40}%`,
+              left: `${15 + i * 12}%`,
+              top: `${20 + (i % 3) * 25}%`,
             }}
             animate={{
-              y: [0, -8, 0],
-              opacity: [0.3, 0.7, 0.3],
-              scale: [0.9, 1.1, 0.9],
+              x: mousePosition.x * 0.015 * (i % 2 === 0 ? 1 : -1),
+              y: mousePosition.y * 0.015 * (i % 2 === 0 ? -1 : 1),
+              opacity: [0.2, 0.4, 0.2],
             }}
             transition={{
-              duration: 2.5 + i * 0.3,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: i * 0.5,
+              type: "spring",
+              stiffness: 30,
+              damping: 10,
+              opacity: { duration: 3, repeat: Infinity },
             }}
           >
-            {/* SEO Technique Icons */}
-            <div className="w-7 h-7 rounded-lg border border-[#ECB629]/30 bg-[#ECB629]/5 flex items-center justify-center backdrop-blur-sm">
-              {i % 3 === 0 && <Search className="w-3 h-3 text-[#ECB629]/60" />}
-              {i % 3 === 1 && <Target className="w-3 h-3 text-[#ECB629]/60" />}
-              {i % 3 === 2 && <BarChart3 className="w-3 h-3 text-[#ECB629]/60" />}
-            </div>
+            {keyword}
           </motion.div>
-        ))}
-      </div>
+        ),
+      )}
 
-      {/* SEO Ranking Waves */}
-      <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
-        {Array.from({ length: 3 }).map((_, i) => (
-          <motion.path
-            key={i}
-            d={`M ${i * 400 + 100} 200 Q ${i * 400 + 250} 150 ${i * 400 + 400} 200 Q ${i * 400 + 550} 250 ${i * 400 + 700} 200`}
-            fill="none"
-            stroke="url(#seoFlow)"
-            strokeWidth="1.5"
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ 
-              pathLength: [0, 1, 0],
-              opacity: [0, 0.5, 0],
-            }}
-            transition={{ 
-              duration: 4,
-              repeat: Infinity,
-              delay: i * 1.3,
-              ease: "easeInOut"
-            }}
-          />
-        ))}
-      </svg>
+      {/* Network connections representing SEO structure */}
+      <motion.svg
+        className="absolute inset-0 w-full h-full"
+        animate={{
+          x: mousePosition.x * 0.008,
+          y: mousePosition.y * 0.008,
+        }}
+        transition={{ type: "spring", stiffness: 40, damping: 15 }}
+      >
+        {/* Central hub */}
+        <circle
+          cx="50%"
+          cy="50%"
+          r="4"
+          fill="var(--pravdast-yellow)"
+          opacity="0.6"
+        />
+
+        {/* Connecting lines to represent SEO structure */}
+        <path
+          d="M 20% 30% Q 50% 20% 80% 30%"
+          fill="none"
+          stroke="var(--pravdast-yellow)"
+          strokeWidth="1.5"
+          opacity="0.4"
+        />
+        <path
+          d="M 20% 70% Q 50% 80% 80% 70%"
+          fill="none"
+          stroke="var(--pravdast-yellow)"
+          strokeWidth="1.5"
+          opacity="0.4"
+        />
+        <path
+          d="M 30% 20% L 50% 50% L 70% 20%"
+          fill="none"
+          stroke="var(--pravdast-yellow)"
+          strokeWidth="1"
+          opacity="0.3"
+        />
+        <path
+          d="M 30% 80% L 50% 50% L 70% 80%"
+          fill="none"
+          stroke="var(--pravdast-yellow)"
+          strokeWidth="1"
+          opacity="0.3"
+        />
+      </motion.svg>
     </div>
   );
 };
 
-export default function SEOStruktorPage() {
-  const heroRef = useRef(null);
-  const philosophyRef = useRef(null);
-  const processRef = useRef(null);
-  const resultsRef = useRef(null);
-  const investmentRef = useRef(null);
-  const ctaRef = useRef(null);
-
-  const heroInView = useInView(heroRef, { once: true });
-  const philosophyInView = useInView(philosophyRef, { once: true });
-  const processInView = useInView(processRef, { once: true });
-  const resultsInView = useInView(resultsRef, { once: true });
-  const investmentInView = useInView(investmentRef, { once: true });
-  const ctaInView = useInView(ctaRef, { once: true });
-
-  const [transformationState, setTransformationState] = useState<'chaos' | 'system'>('chaos');
+// Philosophy Section Component
+const PhilosophySection = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.3 });
+  const [currentStep, setCurrentStep] = useState(0);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setTransformationState(prev => prev === 'chaos' ? 'system' : 'chaos');
-    }, 3000);
-    return () => clearInterval(interval);
-  }, []);
+    if (isInView) {
+      const interval = setInterval(() => {
+        setCurrentStep((prev) => (prev === 0 ? 1 : 0));
+      }, 3000); // Switch every 3 seconds
+
+      return () => clearInterval(interval);
+    }
+  }, [isInView]);
 
   return (
-    <div className="min-h-screen bg-slate-900">
-      <SEOHead seo={pageSEOData["services/seo-struktor"]} pageSlug="services/seo-struktor" />
-      <Navigation />
-      
-      {/* Hero Section */}
-      <section ref={heroRef} className="min-h-screen flex items-center relative overflow-hidden">
-        <SEOStruktorBackground />
-        
-        <div className="container mx-auto px-6 relative z-10">
-          <div className="max-w-5xl mx-auto">
-            <div className="text-center mb-16">
-              <motion.div
-                className="inline-flex items-center gap-3 mb-8 px-6 py-3 rounded-full bg-gradient-to-r from-slate-800/80 to-slate-700/60 border border-slate-600/30 backdrop-blur-sm"
-                initial={{ opacity: 0, y: 20 }}
-                animate={heroInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6 }}
-              >
-                <div className="flex items-center gap-2">
-                  <motion.div 
-                    className="w-2 h-2 bg-[#ECB629] rounded-full"
-                    animate={{ 
-                      boxShadow: [
-                        "0 0 0 0 rgba(236, 182, 40, 0.7)",
-                        "0 0 0 4px rgba(236, 182, 40, 0)",
-                        "0 0 0 0 rgba(236, 182, 40, 0)"
-                      ]
-                    }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                  />
-                  <span className="text-sm text-gray-300 font-medium">
-                    SEO Struktor™ <span className="text-[#ECB629] font-bold">система</span>
-                  </span>
-                </div>
-              </motion.div>
+    <section ref={ref} className="py-20 bg-slate-900/50">
+      <div className="container mx-auto px-6">
+        <div className="max-w-4xl mx-auto">
+          <motion.h2
+            className="text-3xl md:text-4xl font-bold mb-16 text-center text-white"
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8 }}
+          >
+            За да е стабилна една сграда, тя се нуждае от инженерен план.
+          </motion.h2>
 
-              <motion.h1 
-                className="text-5xl md:text-7xl font-bold mb-8 text-white leading-tight"
+          {/* Mobile-first single column design */}
+          <div className="space-y-12">
+            {/* Transformation Visualization */}
+            <motion.div
+              className="relative bg-slate-800/80 rounded-2xl p-8 border border-slate-600/30 overflow-hidden"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={isInView ? { opacity: 1, scale: 1 } : {}}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              {/* Background Pattern */}
+              <div className="absolute inset-0 opacity-10">
+                <div className="grid grid-cols-8 md:grid-cols-12 gap-1 h-full p-4">
+                  {Array.from({ length: 96 }).map((_, i) => (
+                    <motion.div
+                      key={i}
+                      className={`rounded-sm h-2 ${
+                        currentStep === 0
+                          ? "bg-red-400"
+                          : "bg-[var(--pravdast-yellow)]"
+                      }`}
+                      initial={{
+                        rotate:
+                          currentStep === 0 ? Math.random() * 180 - 90 : 0,
+                        scale:
+                          currentStep === 0 ? Math.random() * 0.8 + 0.6 : 1,
+                      }}
+                      animate={{
+                        rotate:
+                          currentStep === 1 ? 0 : Math.random() * 180 - 90,
+                        scale:
+                          currentStep === 1 ? 1 : Math.random() * 0.8 + 0.6,
+                        backgroundColor:
+                          currentStep === 1
+                            ? "rgb(236, 182, 40)"
+                            : "rgb(248, 113, 113)",
+                      }}
+                      transition={{
+                        duration: 2,
+                        delay: i * 0.005,
+                        ease: "easeInOut",
+                      }}
+                    />
+                  ))}
+                </div>
+              </div>
+
+              {/* Status Indicator */}
+              <div className="relative z-10 text-center mb-8">
+                <motion.div
+                  className={`inline-flex items-center px-4 py-2 rounded-full text-sm font-semibold ${
+                    currentStep === 0
+                      ? "bg-red-500/20 text-red-300 border border-red-500/30"
+                      : "bg-[var(--pravdast-yellow)]/20 text-[var(--pravdast-yellow)] border border-[var(--pravdast-yellow)]/30"
+                  }`}
+                  animate={{
+                    backgroundColor:
+                      currentStep === 1
+                        ? "rgba(236, 182, 40, 0.2)"
+                        : "rgba(239, 68, 68, 0.2)",
+                  }}
+                  transition={{ duration: 1 }}
+                >
+                  <motion.div
+                    className={`w-2 h-2 rounded-full mr-2 ${
+                      currentStep === 0
+                        ? "bg-red-400"
+                        : "bg-[var(--pravdast-yellow)]"
+                    }`}
+                    animate={{
+                      backgroundColor:
+                        currentStep === 1
+                          ? "rgb(236, 182, 40)"
+                          : "rgb(248, 113, 113)",
+                    }}
+                    transition={{ duration: 1 }}
+                  />
+                  {currentStep === 0 ? "БЕЗ СИСТЕМА" : "СЪС СИСТЕМА"}
+                </motion.div>
+              </div>
+
+              {/* Progress Arrow */}
+              <div className="relative z-10 flex justify-center mb-8">
+                <motion.div
+                  className="flex items-center space-x-4"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 1 }}
+                >
+                  <motion.div
+                    className="w-16 h-0.5"
+                    animate={{
+                      background:
+                        currentStep === 0
+                          ? "linear-gradient(to right, rgb(248, 113, 113), rgb(239, 68, 68))"
+                          : "linear-gradient(to right, rgb(248, 113, 113), rgb(236, 182, 40))",
+                    }}
+                    transition={{ duration: 1.5 }}
+                  />
+                  <motion.div
+                    animate={{
+                      x: currentStep === 1 ? [0, 10, 0] : [0, -10, 0],
+                      color:
+                        currentStep === 1
+                          ? "rgb(236, 182, 40)"
+                          : "rgb(248, 113, 113)",
+                      scale: currentStep === 1 ? [1, 1.2, 1] : [1, 0.8, 1],
+                    }}
+                    transition={{
+                      duration: 1.5,
+                      repeat: Infinity,
+                      repeatType: "loop",
+                    }}
+                  >
+                    {currentStep === 1 ? (
+                      <ArrowRight className="w-6 h-6" />
+                    ) : (
+                      <ArrowLeft className="w-6 h-6" />
+                    )}
+                  </motion.div>
+                  <motion.div
+                    className="w-16 h-0.5"
+                    animate={{
+                      background:
+                        currentStep === 1
+                          ? "linear-gradient(to right, rgb(236, 182, 40), rgb(236, 182, 40))"
+                          : "linear-gradient(to right, rgb(236, 182, 40), rgb(248, 113, 113))",
+                    }}
+                    transition={{ duration: 1.5 }}
+                  />
+                </motion.div>
+              </div>
+            </motion.div>
+
+            {/* Content Cards */}
+            <div className="grid gap-8 md:grid-cols-2">
+              {/* Problem Card */}
+              <motion.div
+                className="bg-slate-800/60 rounded-xl p-6 border border-red-500/20"
                 initial={{ opacity: 0, y: 30 }}
-                animate={heroInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.8, delay: 0.2 }}
-              >
-                Спрете да <span className="text-red-400">импровизирате</span> <br />
-                с <span className="text-[#ECB629]">SEO</span>
-              </motion.h1>
-              
-              <motion.p 
-                className="text-xl md:text-2xl text-gray-300 mb-12 max-w-4xl mx-auto leading-relaxed"
-                initial={{ opacity: 0, y: 20 }}
-                animate={heroInView ? { opacity: 1, y: 0 } : {}}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.8, delay: 0.4 }}
               >
-                SEO Struktor™ е инженерната система, която превръща SEO хаоса в предсказуеми първи позиции в Google.
-              </motion.p>
+                <div className="flex items-center mb-4">
+                  <div className="w-3 h-3 bg-red-400 rounded-full mr-3"></div>
+                  <h3 className="text-lg font-bold text-red-300">Проблемът</h3>
+                </div>
+                <p className="text-gray-300 leading-relaxed">
+                  Повечето уебсайтове се развиват хаотично – добавя се страница
+                  тук, пише се статия там. Липсва единна, централна структура.
+                  Точно това е причината резултатите да са непредсказуеми и
+                  краткотрайни.
+                </p>
+              </motion.div>
 
+              {/* Solution Card */}
               <motion.div
-                className="flex flex-col sm:flex-row gap-6 justify-center items-center"
+                className="bg-slate-800/60 rounded-xl p-6 border border-[var(--pravdast-yellow)]/20"
                 initial={{ opacity: 0, y: 30 }}
-                animate={heroInView ? { opacity: 1, y: 0 } : {}}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.8, delay: 0.6 }}
               >
-                <Button
-                  size="lg"
-                  className="group relative bg-[#ECB629] text-black hover:bg-[#ECB629]/90 font-semibold text-lg px-8 py-4 rounded-lg shadow-lg hover:shadow-[#ECB629]/25 transition-all duration-300 overflow-hidden"
-                  asChild
-                >
-                  <a href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu" target="_blank" rel="noopener noreferrer">
-                    <span className="relative z-10">Започнете безплатната диагностика</span>
-                    <ArrowRight className="ml-2 w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" />
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
-                      initial={{ x: "-100%" }}
-                      whileHover={{ x: "100%" }}
-                      transition={{ duration: 0.6 }}
-                    />
-                  </a>
-                </Button>
+                <div className="flex items-center mb-4">
+                  <div className="w-3 h-3 bg-[var(--pravdast-yellow)] rounded-full mr-3"></div>
+                  <h3 className="text-lg font-bold text-[var(--pravdast-yellow)]">
+                    Решението
+                  </h3>
+                </div>
+                <p className="text-gray-300 leading-relaxed">
+                  Ние подхождаме към вашия сайт като архитекти. Преди да
+                  поставим и една \"тухла\" (съдържание), ние създаваме
+                  цялостния инженерен план (SEO Struktor™), който гарантира, че
+                  всеки елемент работи в синхрон с останалите, за да се постигне
+                  крайната цел – доминация в Google.
+                </p>
               </motion.div>
             </div>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
+  );
+};
 
-      {/* Philosophy Section */}
-      <section ref={philosophyRef} className="py-20 relative overflow-hidden">
-        <div className="container mx-auto px-6">
+// Engineering Process Section Component
+const EngineeringProcessSection = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.2 });
+
+  const phases = [
+    {
+      number: "0",
+      title: "Здравият фундамент (Pagekraft™)",
+      description:
+        "Преди да строим, проверяваме терена. Ако вашият сайт е бавен или технически неизправен, ние го изграждаме наново. Това е фундаментът, без който всяка конструкция е нестабилна.",
+      duration: "2-3 седмици",
+      deliverable: "Технически одит + оптимизиран сайт",
+    },
+    {
+      number: "1",
+      title: "Архитектурен план",
+      description:
+        'Проектираме перфектната вътрешна архитектура, за да може Google лесно да "разбере" и оцени стойността на вашия сайт. Това е чертежът, който следваме.',
+      duration: "1-2 седмици",
+      deliverable: "SEO архитектура + URL структура",
+    },
+    {
+      number: "2",
+      title: "Архитектура на съдържанието",
+      description:
+        "Създаваме съдържание, което отговаря на въпросите на клиентите ви и демонстрира вашата експертиза. Всяка страница е структурен елемент, който допринася за здравината и стойността на цялата сграда.",
+      duration: "4-6 седмици",
+      deliverable: "Content стратегия + оптимизирани страници",
+    },
+    {
+      number: "3",
+      title: "Външен авторитет",
+      description:
+        "Систематично изграждаме репутацията на вашия сайт в интернет, превръщайки го в авторитетен източник. Това му придава по-висока стойност и стабилност в очите на Google и пазара.",
+      duration: "Непрекъснато",
+      deliverable: "Link building + brand mentions",
+    },
+  ];
+
+  return (
+    <section
+      ref={ref}
+      className="py-20 bg-slate-800/30 relative overflow-hidden"
+    >
+      {/* Dynamic Blueprint Background */}
+      <div className="absolute inset-0 opacity-3">
+        <div className="grid grid-cols-12 gap-4 h-full p-8">
+          {Array.from({ length: 144 }).map((_, i) => (
+            <motion.div
+              key={i}
+              className="bg-[var(--pravdast-yellow)] rounded-sm h-1"
+              initial={{ opacity: 0, scale: 0 }}
+              animate={
+                isInView
+                  ? {
+                      opacity: Math.random() * 0.3 + 0.1,
+                      scale: Math.random() * 0.8 + 0.4,
+                    }
+                  : {}
+              }
+              transition={{
+                duration: 2,
+                delay: i * 0.01,
+                repeat: Infinity,
+                repeatType: "reverse",
+                ease: "easeInOut",
+              }}
+            />
+          ))}
+        </div>
+      </div>
+
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="max-w-6xl mx-auto">
           <motion.div
-            className="max-w-6xl mx-auto"
+            className="text-center mb-20"
             initial={{ opacity: 0, y: 30 }}
-            animate={philosophyInView ? { opacity: 1, y: 0 } : {}}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8 }}
           >
-            <div className="text-center mb-16">
-              <motion.div
-                className="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full bg-[#ECB629]/10 border border-[#ECB629]/20"
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={philosophyInView ? { opacity: 1, scale: 1 } : {}}
-                transition={{ duration: 0.6, delay: 0.1 }}
-              >
-                <div className="w-2 h-2 bg-[#ECB629] rounded-full animate-pulse" />
-                <span className="text-[#ECB629] font-semibold text-sm">ИНЖЕНЕРЕН</span>
-              </motion.div>
-              
-              <motion.h2 
-                className="text-4xl md:text-5xl font-bold text-white mb-8"
-                initial={{ opacity: 0, y: 20 }}
-                animate={philosophyInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.8, delay: 0.2 }}
-              >
-                От хаос към система
-              </motion.h2>
-              
-              <motion.p 
-                className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed"
-                initial={{ opacity: 0, y: 20 }}
-                animate={philosophyInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.8, delay: 0.4 }}
-              >
-                Повечето компании правят SEO като хобисти. Ние го правим като инженери.
-              </motion.p>
+            <div className="inline-block px-4 py-2 bg-[var(--pravdast-yellow)]/10 rounded-full border border-[var(--pravdast-yellow)]/20 mb-6">
+              <span className="text-[var(--pravdast-yellow)] text-sm font-semibold">
+                СИСТЕМЕН ПРОЦЕС
+              </span>
             </div>
+            <h2 className="text-3xl md:text-5xl font-bold text-white leading-tight">
+              От основите до покрива
+            </h2>
+            <p className="text-gray-300 text-lg mt-6 max-w-3xl mx-auto">
+              Нашият четирифазен инженерен процес на изграждане
+            </p>
+          </motion.div>
 
-            {/* Transformation Visualization */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={philosophyInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              className="mb-16"
-            >
-              <Card className="bg-slate-800/50 border-slate-600/30 p-8 max-w-4xl mx-auto">
-                <div className="text-center">
+          {/* Modern Card-Based Timeline */}
+          <div className="grid gap-8 md:gap-12">
+            {phases.map((phase, index) => (
+              <motion.div
+                key={phase.number}
+                className="relative"
+                initial={{ opacity: 0, y: 50 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.8, delay: index * 0.15 }}
+              >
+                {/* Connection Line */}
+                {index < phases.length - 1 && (
                   <motion.div
-                    className="flex flex-col md:flex-row items-center justify-center gap-8"
-                    animate={transformationState === 'chaos' ? { opacity: 1 } : { opacity: 0.6 }}
-                    transition={{ duration: 1 }}
-                  >
-                    {/* Chaos State */}
-                    <div className="flex-1 text-center">
-                      <motion.div
-                        className={`w-20 h-20 rounded-lg flex items-center justify-center mx-auto mb-4 transition-all duration-1000 ${
-                          transformationState === 'chaos' 
-                            ? 'bg-red-600/20 border-2 border-red-600/50' 
-                            : 'bg-slate-700/20 border-2 border-slate-600/30'
-                        }`}
-                      >
-                        <Zap className={`w-10 h-10 transition-colors duration-1000 ${
-                          transformationState === 'chaos' ? 'text-red-400' : 'text-slate-500'
-                        }`} />
-                      </motion.div>
-                      <motion.div
-                        className={`inline-flex items-center px-4 py-2 rounded-full border transition-all duration-1000 ${
-                          transformationState === 'chaos'
-                            ? 'bg-red-600/10 border-red-600/30 text-red-400'
-                            : 'bg-slate-700/10 border-slate-600/30 text-slate-400'
-                        }`}
-                      >
-                        БЕЗ СИСТЕМА
-                      </motion.div>
-                      <p className="text-gray-400 text-sm mt-4">
-                        Случайни keywords, непоследователни действия, неизмерими резултати
-                      </p>
-                    </div>
+                    className="absolute left-6 md:left-10 top-24 w-0.5 h-20 bg-gradient-to-b from-[var(--pravdast-yellow)] to-slate-600 z-0"
+                    initial={{ scaleY: 0 }}
+                    animate={isInView ? { scaleY: 1 } : {}}
+                    transition={{ duration: 0.8, delay: index * 0.15 + 0.5 }}
+                  />
+                )}
 
-                    {/* Arrow */}
-                    <motion.div
-                      className="flex items-center justify-center"
-                      animate={{
-                        x: transformationState === 'system' ? [0, 10, 0] : [0, -10, 0],
-                      }}
-                      transition={{ duration: 0.8 }}
-                    >
-                      {transformationState === 'system' ? (
-                        <ArrowRight className={`w-8 h-8 transition-colors duration-1000 text-[#ECB629]`} />
-                      ) : (
-                        <ArrowLeft className={`w-8 h-8 transition-colors duration-1000 text-red-400`} />
-                      )}
+                <motion.div className="bg-slate-800/60 backdrop-blur-sm rounded-2xl border border-slate-600/30 overflow-hidden transition-all duration-300">
+                  <div className="p-6 md:p-8">
+                    <div className="flex flex-col md:flex-row md:items-start gap-6">
+                      {/* Phase Number Circle */}
+                      <motion.div className="flex-shrink-0">
+                        <div className="relative">
+                          <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-[var(--pravdast-yellow)] to-yellow-600 rounded-full flex items-center justify-center shadow-lg">
+                            <span className="text-black font-bold text-xl md:text-2xl">
+                              {phase.number}
+                            </span>
+                          </div>
+                        </div>
+                      </motion.div>
+
+                      {/* Content */}
+                      <div className="flex-1 space-y-4">
+                        <div>
+                          <h3 className="text-xl md:text-2xl font-bold text-white mb-2">
+                            {phase.title}
+                          </h3>
+                          <p className="text-gray-300 leading-relaxed text-sm md:text-base">
+                            {phase.description}
+                          </p>
+                        </div>
+
+                        {/* Phase Details */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4 border-t border-slate-600/30">
+                          <div className="flex items-center space-x-2">
+                            <div className="w-2 h-2 bg-[var(--pravdast-yellow)] rounded-full"></div>
+                            <span className="text-sm text-gray-400">
+                              Времетраене:
+                            </span>
+                            <span className="text-sm font-semibold text-white">
+                              {phase.duration}
+                            </span>
+                          </div>
+                          <div className="flex items-center space-x-2">
+                            <div className="w-2 h-2 bg-[var(--pravdast-yellow)] rounded-full"></div>
+                            <span className="text-sm text-gray-400">
+                              Резултат:
+                            </span>
+                            <span className="text-sm font-semibold text-white">
+                              {phase.deliverable}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Progress indicator */}
+                      <div className="flex-shrink-0 hidden md:block">
+                        <motion.div
+                          className="w-1 h-20 bg-slate-700 rounded-full overflow-hidden"
+                          initial={{ height: 0 }}
+                          animate={isInView ? { height: 80 } : {}}
+                          transition={{
+                            duration: 1,
+                            delay: index * 0.15 + 0.8,
+                          }}
+                        >
+                          <motion.div
+                            className="w-full bg-gradient-to-t from-[var(--pravdast-yellow)] to-yellow-400"
+                            initial={{ height: "0%" }}
+                            animate={isInView ? { height: "100%" } : {}}
+                            transition={{
+                              duration: 1.5,
+                              delay: index * 0.15 + 1,
+                            }}
+                          />
+                        </motion.div>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Bottom CTA */}
+          <motion.div
+            className="text-center mt-16"
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 1.2 }}
+          >
+            {/* Connection line from last phase */}
+            <motion.div
+              className="w-0.5 h-16 bg-gradient-to-b from-[var(--pravdast-yellow)] to-slate-600 mx-auto mb-8"
+              initial={{ scaleY: 0 }}
+              animate={isInView ? { scaleY: 1 } : {}}
+              transition={{ duration: 0.8, delay: 1 }}
+            />
+
+            <div className="p-8 bg-slate-800/40 rounded-2xl border border-[var(--pravdast-yellow)]/20">
+              <h3 className="text-2xl font-bold text-white mb-4">
+                Започнете инженерния процес днес
+              </h3>
+              <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
+                Всеки ден на изчакване е изгубена възможност. Вашите конкуренти
+                не спят.
+              </p>
+              <Button
+                size="lg"
+                className="bg-[var(--pravdast-yellow)] text-black hover:bg-[var(--pravdast-yellow)]/90 px-6 md:px-8 py-4 text-base md:text-lg font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 w-full md:w-auto"
+                asChild
+              >
+                <a
+                  href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Започнете диагностиката
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </a>
+              </Button>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// Results Section Component
+const ResultsSection = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.3 });
+
+  const benefits = [
+    {
+      icon: <Zap className="w-8 h-8" />,
+      title: "Предвидим поток от качествени запитвания",
+      description: "От клиенти, които активно търсят вашите решения",
+      metric: "3x повече leads",
+    },
+    {
+      icon: <BarChart3 className="w-8 h-8" />,
+      title: "Дълготраен дигитален актив",
+      description: "С нарастваща стойност, който работи за вас 24/7",
+      metric: "365 дни работа",
+    },
+    {
+      icon: <TrendingDown className="w-8 h-8" />,
+      title: "Намалена зависимост",
+      description: "От постоянни и рискови рекламни бюджети",
+      metric: "60% по-малко разходи",
+    },
+    {
+      icon: <Crown className="w-8 h-8" />,
+      title: "Установен пазарен авторитет",
+      description: "И разпознаваемост на вашия бранд като експерт в нишата",
+      metric: "Топ 3 позиции",
+    },
+  ];
+
+  return (
+    <section
+      ref={ref}
+      className="py-20 bg-slate-900/40 relative overflow-hidden"
+    >
+      {/* Enhanced Background */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="grid grid-cols-8 md:grid-cols-16 gap-2 h-full p-6">
+          {Array.from({ length: 128 }).map((_, i) => (
+            <motion.div
+              key={i}
+              className="bg-[var(--pravdast-yellow)] rounded-full"
+              style={{ height: Math.random() * 4 + 1 + "px" }}
+              initial={{ opacity: 0, scaleY: 0 }}
+              animate={
+                isInView
+                  ? {
+                      opacity: Math.random() * 0.6 + 0.2,
+                      scaleY: Math.random() * 2 + 0.5,
+                    }
+                  : {}
+              }
+              transition={{
+                duration: 1.5,
+                delay: i * 0.01,
+                repeat: Infinity,
+                repeatType: "reverse",
+                ease: "easeInOut",
+              }}
+            />
+          ))}
+        </div>
+      </div>
+
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            className="text-center mb-20"
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8 }}
+          >
+            <div className="inline-block px-4 py-2 bg-[var(--pravdast-yellow)]/10 rounded-full border border-[var(--pravdast-yellow)]/20 mb-6">
+              <span className="text-[var(--pravdast-yellow)] text-sm font-semibold">
+                ИЗМЕРИМИ РЕЗУЛТАТИ
+              </span>
+            </div>
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight">
+              Крайният резултат: Повече от просто \"позиции\"
+            </h2>
+            <p className="text-gray-300 text-xl max-w-3xl mx-auto leading-relaxed">
+              Системата SEO Struktor™ създава дълготрайна стойност за вашия
+              бизнес
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {benefits.map((benefit, index) => (
+              <motion.div
+                key={index}
+                className="relative group"
+                initial={{ opacity: 0, y: 50 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.8, delay: index * 0.15 }}
+              >
+                <motion.div className="bg-slate-800/70 backdrop-blur-sm p-8 rounded-3xl border border-slate-600/30 h-full transition-all duration-300 overflow-hidden relative">
+                  {/* Floating elements background */}
+                  <div className="absolute top-0 right-0 w-20 h-20 bg-[var(--pravdast-yellow)]/5 rounded-full -translate-y-10 translate-x-10" />
+
+                  <div className="relative z-10">
+                    {/* Icon with enhanced styling */}
+                    <motion.div className="relative mb-6">
+                      <div className="w-16 h-16 bg-gradient-to-br from-[var(--pravdast-yellow)] to-yellow-600 rounded-2xl flex items-center justify-center shadow-lg relative">
+                        <div className="text-black">{benefit.icon}</div>
+                      </div>
                     </motion.div>
 
-                    {/* System State */}
-                    <div className="flex-1 text-center">
-                      <motion.div
-                        className={`w-20 h-20 rounded-lg flex items-center justify-center mx-auto mb-4 transition-all duration-1000 ${
-                          transformationState === 'system' 
-                            ? 'bg-[#ECB629]/20 border-2 border-[#ECB629]/50' 
-                            : 'bg-slate-700/20 border-2 border-slate-600/30'
-                        }`}
-                      >
-                        <Settings className={`w-10 h-10 transition-colors duration-1000 ${
-                          transformationState === 'system' ? 'text-[#ECB629]' : 'text-slate-500'
-                        }`} />
-                      </motion.div>
-                      <motion.div
-                        className={`inline-flex items-center px-4 py-2 rounded-full border transition-all duration-1000 ${
-                          transformationState === 'system'
-                            ? 'bg-[#ECB629]/10 border-[#ECB629]/30 text-[#ECB629]'
-                            : 'bg-slate-700/10 border-slate-600/30 text-slate-400'
-                        }`}
-                      >
-                        СЪС СИСТЕМА
-                      </motion.div>
-                      <p className="text-gray-400 text-sm mt-4">
-                        Точни данни, инженерен подход, предсказуеми резултати
-                      </p>
+                    {/* Metric badge */}
+                    <motion.div
+                      className="inline-block px-3 py-1 bg-[var(--pravdast-yellow)]/20 border border-[var(--pravdast-yellow)]/30 rounded-full mb-4"
+                      initial={{ scale: 0 }}
+                      animate={isInView ? { scale: 1 } : {}}
+                      transition={{ duration: 0.5, delay: index * 0.15 + 0.3 }}
+                    >
+                      <span className="text-[var(--pravdast-yellow)] text-sm font-semibold">
+                        {benefit.metric}
+                      </span>
+                    </motion.div>
+
+                    <h3 className="text-xl md:text-2xl font-bold text-white mb-4 leading-tight">
+                      {benefit.title}
+                    </h3>
+                    <p className="text-gray-300 leading-relaxed text-sm md:text-base">
+                      {benefit.description}
+                    </p>
+
+                    {/* Enhanced progress indicator */}
+                    <motion.div
+                      className="mt-6 relative"
+                      initial={{ opacity: 0 }}
+                      animate={isInView ? { opacity: 1 } : {}}
+                      transition={{ duration: 0.8, delay: index * 0.15 + 0.5 }}
+                    >
+                      <div className="w-full h-2 bg-slate-700/50 rounded-full overflow-hidden">
+                        <motion.div
+                          className="h-full bg-gradient-to-r from-[var(--pravdast-yellow)] via-yellow-400 to-[var(--pravdast-yellow)] relative"
+                          initial={{ width: "0%" }}
+                          animate={isInView ? { width: "100%" } : {}}
+                          transition={{
+                            duration: 1.5,
+                            delay: index * 0.15 + 0.8,
+                          }}
+                        >
+                          {/* Shimmer effect */}
+                          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 animate-pulse" />
+                        </motion.div>
+                      </div>
+                      <div className="flex justify-between mt-2">
+                        <span className="text-xs text-gray-500">Преди</span>
+                        <span className="text-xs text-[var(--pravdast-yellow)]">
+                          Със SEO Struktor™
+                        </span>
+                      </div>
+                    </motion.div>
+                  </div>
+                </motion.div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// Investment Section Component
+const InvestmentSection = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.3 });
+  const [isHovered, setIsHovered] = useState(false);
+
+  const principles = [
+    {
+      number: "1",
+      title: "Персонализирано решение",
+      description:
+        "Всяка система SEO Struktor™ се проектира и изгражда спрямо уникалните цели и състояние на вашия бизнес. Ние не предлагаме готови пакети.",
+      icon: "🎯",
+    },
+    {
+      number: "2",
+      title: "Бюджетна рамка",
+      description:
+        "За ориентация, базовите инженерни проекти започват от 1980 лв./месечно.",
+      icon: "💰",
+    },
+    {
+      number: "3",
+      title: "Техническа спецификация",
+      description:
+        "Финалната инвестиция се определя след задължителна техническа диагностика. Вие получавате детайлно инженерно предложение, в което всеки компонент е ясно описан и стойностен.",
+      icon: "📋",
+    },
+  ];
+
+  return (
+    <section
+      ref={ref}
+      className="py-20 bg-slate-900/70 relative overflow-hidden"
+    >
+      {/* Technical Background Pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <svg
+          className="w-full h-full"
+          viewBox="0 0 100 100"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <pattern
+              id="tech-pattern"
+              x="0"
+              y="0"
+              width="20"
+              height="20"
+              patternUnits="userSpaceOnUse"
+            >
+              <circle
+                cx="10"
+                cy="10"
+                r="1"
+                fill="var(--pravdast-yellow)"
+                opacity="0.3"
+              />
+              <path
+                d="M0,10 L20,10 M10,0 L10,20"
+                stroke="var(--pravdast-yellow)"
+                strokeWidth="0.5"
+                opacity="0.2"
+              />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#tech-pattern)" />
+        </svg>
+      </div>
+
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8 }}
+          >
+            <div className="inline-block px-4 py-2 bg-[var(--pravdast-yellow)]/10 rounded-full border border-[var(--pravdast-yellow)]/20 mb-6">
+              <span className="text-[var(--pravdast-yellow)] text-sm font-semibold">
+                ПРОЗРАЧНО ЦЕНООБРАЗУВАНЕ
+              </span>
+            </div>
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight">
+              Структура на инвестицията
+            </h2>
+            <p className="text-gray-300 text-xl max-w-3xl mx-auto">
+              Инженерно проектиране изисква прецизност и в техническата
+              спецификация
+            </p>
+          </motion.div>
+
+          {/* Price Display */}
+          <motion.div
+            className="text-center mb-16"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : {}}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <motion.div className="inline-block p-8 bg-slate-800/60 backdrop-blur-sm rounded-3xl border border-slate-600/30 relative overflow-hidden">
+              <div className="relative z-10">
+                <div className="text-sm text-[var(--pravdast-yellow)] font-semibold mb-2 tracking-wider">
+                  ЗАПОЧВА ОТ
+                </div>
+                <div className="text-5xl md:text-6xl font-bold mb-2">
+                  <span className="text-[var(--pravdast-yellow)]">
+                    1980 лв.
+                  </span>
+                  <span className="text-white text-3xl">/месечно</span>
+                </div>
+                <div className="text-gray-400 text-sm">
+                  *Финалната цена се определя след техническа диагностика
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+
+          {/* Principles Grid */}
+          <div className="grid gap-8 md:gap-12">
+            {principles.map((principle, index) => (
+              <motion.div
+                key={principle.number}
+                className="relative"
+                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+                animate={isInView ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 0.8, delay: index * 0.2 }}
+              >
+                <motion.div
+                  className={`flex flex-col md:flex-row items-center gap-8 ${
+                    index % 2 === 1 ? "md:flex-row-reverse" : ""
+                  }`}
+                >
+                  {/* Number Circle */}
+                  <motion.div className="flex-shrink-0">
+                    <div className="relative">
+                      <div className="w-20 h-20 bg-gradient-to-br from-[var(--pravdast-yellow)] to-yellow-600 rounded-full flex items-center justify-center shadow-xl">
+                        <span className="text-black font-bold text-2xl">
+                          {principle.number}
+                        </span>
+                      </div>
+                      {/* Connection line to next */}
+                      {index < principles.length - 1 && (
+                        <motion.div
+                          className="absolute top-20 left-1/2 w-0.5 h-16 bg-gradient-to-b from-[var(--pravdast-yellow)] to-slate-600 hidden md:block"
+                          initial={{ scaleY: 0 }}
+                          animate={isInView ? { scaleY: 1 } : {}}
+                          transition={{ duration: 1, delay: index * 0.3 + 0.5 }}
+                        />
+                      )}
                     </div>
                   </motion.div>
-                </div>
-              </Card>
-            </motion.div>
 
-            {/* Problems Grid */}
-            <div className="grid lg:grid-cols-3 gap-8 mb-16">
-              {[
-                {
-                  icon: Search,
-                  title: "Импровизация с keywords",
-                  description: "Избирате думи \"на око\" без данни за търсенията",
-                  status: "ПРОБЛЕМ",
-                },
-                {
-                  icon: Target,
-                  title: "Липса на стратегия",
-                  description: "Правите SEO дейности без ясен план и цели",
-                  status: "ПРОБЛЕМ",
-                },
-                {
-                  icon: BarChart3,
-                  title: "Неизмерими резултати",
-                  description: "Не знаете дали SEO усилията ви дават резултат",
-                  status: "ПРОБЛЕМ",
-                }
-              ].map((problem, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={philosophyInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.8, delay: 0.3 + index * 0.2 }}
-                >
-                  <Card className="relative bg-slate-800/50 border-red-600/30 h-full group hover:border-red-500/50 transition-all duration-300">
-                    <div className="absolute top-4 right-4">
-                      <Badge variant="destructive" className="bg-red-600/20 text-red-400 border-red-600/30">
-                        {problem.status}
-                      </Badge>
-                    </div>
-                    <div className="p-8">
-                      <div className="w-16 h-16 bg-red-600/20 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                        <problem.icon className="w-8 h-8 text-red-400" />
+                  {/* Content Card */}
+                  <div className="flex-1 w-full">
+                    <motion.div className="bg-slate-800/60 backdrop-blur-sm p-8 rounded-2xl border border-slate-600/30 transition-all duration-300">
+                      <div className="flex items-center gap-4 mb-4">
+                        <div className="text-2xl">{principle.icon}</div>
+                        <h3 className="text-xl md:text-2xl font-bold text-white">
+                          {principle.title}
+                        </h3>
                       </div>
-                      <h3 className="text-xl font-bold text-white mb-4">{problem.title}</h3>
-                      <p className="text-gray-300">{problem.description}</p>
-                    </div>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
+                      <p className="text-gray-300 leading-relaxed text-sm md:text-base">
+                        {principle.description}
+                      </p>
 
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={philosophyInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.8 }}
-              className="text-center"
-            >
-              <Card className="relative bg-slate-800/60 border-[#ECB629]/20 max-w-4xl mx-auto overflow-hidden">
-                <div className="absolute top-4 right-4">
-                  <Badge className="bg-[#ECB629]/20 text-[#ECB629] border-[#ECB629]/30">
-                    РЕШЕНИЕ
-                  </Badge>
-                </div>
-                <div className="p-12">
-                  <div className="w-20 h-20 bg-[#ECB629]/20 rounded-full flex items-center justify-center mb-8 mx-auto">
-                    <CheckCircle className="w-10 h-10 text-[#ECB629]" />
-                  </div>
-                  <h3 className="text-3xl font-bold text-white mb-6">
-                    SEO Struktor™ ви дава система
-                  </h3>
-                  <p className="text-xl text-gray-300 mb-8">
-                    Инженерен подход към SEO, който превръща всяка дейност в измерим резултат
-                  </p>
-                  
-                  <div className="text-center">
-                    <motion.div
-                      className="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full bg-slate-700/30 border border-slate-600/30"
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      animate={philosophyInView ? { opacity: 1, scale: 1 } : {}}
-                      transition={{ duration: 0.6, delay: 0.1 }}
-                    >
-                      <Settings className="w-4 h-4 text-[#ECB629]" />
-                      <span className="text-[#ECB629] font-semibold text-sm">ОТ ОСНОВИТЕ ДО ПОКРИВА</span>
-                    </motion.div>
-                    <p className="text-lg text-gray-300 max-w-3xl mx-auto">
-                      Изграждаме цялостна SEO архитектура, която работи като часовников механизъм - всеки компонент има своята роля в постигането на първи позиции.
-                    </p>
-                  </div>
-                </div>
-              </Card>
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Process Section */}
-      <section ref={processRef} className="py-20 bg-slate-800/30 relative overflow-hidden">
-        <div className="container mx-auto px-6">
-          <motion.div
-            className="max-w-6xl mx-auto"
-            initial={{ opacity: 0, y: 30 }}
-            animate={processInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8 }}
-          >
-            <div className="text-center mb-16">
-              <motion.div
-                className="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full bg-[#ECB629]/10 border border-[#ECB629]/20"
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={processInView ? { opacity: 1, scale: 1 } : {}}
-                transition={{ duration: 0.6, delay: 0.1 }}
-              >
-                <Settings className="w-4 h-4 text-[#ECB629]" />
-                <span className="text-[#ECB629] font-semibold text-sm">4-ЕТАПНА СИСТЕМА</span>
-              </motion.div>
-              
-              <motion.h2 
-                className="text-4xl md:text-5xl font-bold text-white mb-8"
-                initial={{ opacity: 0, y: 20 }}
-                animate={processInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.8, delay: 0.2 }}
-              >
-                Инженерният процес на SEO Struktor™
-              </motion.h2>
-              
-              <motion.p 
-                className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed"
-                initial={{ opacity: 0, y: 20 }}
-                animate={processInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.8, delay: 0.4 }}
-              >
-                Четири точни етапа, които превръщат вашия сайт в машина за първи позиции
-              </motion.p>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-8">
-              {[
-                {
-                  phase: "01",
-                  title: "Техническа диагностика",
-                  duration: "1-2 седмици",
-                  description: "Пълен технически audit на сайта - от Core Web Vitals до архитектурата на информацията. Идентифицираме всички технически бариери пред ранжирането.",
-                  deliverables: ["120+ технически проверки", "Page Speed оптимизация план", "Mobile-first анализ", "Структурирани данни audit"]
-                },
-                {
-                  phase: "02", 
-                  title: "Keyword Architecture",
-                  duration: "2-3 седмици",
-                  description: "Изграждаме цялостната keyword стратегия базирана на реални данни за търсенията, конкурентния анализ и бизнес целите.",
-                  deliverables: ["Keyword mapping", "Search intent анализ", "Competitor gap analysis", "Content strategy roadmap"]
-                },
-                {
-                  phase: "03",
-                  title: "Content Engineering",
-                  duration: "4-6 седмици", 
-                  description: "Създаваме SEO-оптимизирано съдържание, което отговаря точно на потребителските заявки и удовлетворява Google алгоритмите.",
-                  deliverables: ["Technical content creation", "On-page optimization", "Internal linking strategy", "E-A-T signals implementation"]
-                },
-                {
-                  phase: "04",
-                  title: "Authority Building",
-                  duration: "Постоянно",
-                  description: "Изграждаме авторитета на сайта чрез качествени backlink-ове, местно SEO (ако е приложимо) и непрекъсната оптимизация.",
-                  deliverables: ["Link building campaigns", "Local SEO optimization", "Performance monitoring", "Algorithm updates adaptation"]
-                }
-              ].map((step, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={processInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.8, delay: 0.3 + index * 0.2 }}
-                >
-                  <Card className="relative bg-slate-800/50 border-slate-600/30 h-full group hover:border-[#ECB629]/50 transition-all duration-300">
-                    <div className="absolute -top-4 -left-4 w-12 h-12 bg-[#ECB629] rounded-full flex items-center justify-center font-bold text-black text-lg">
-                      {step.phase}
-                    </div>
-                    <div className="p-8 pt-12">
-                      <div className="flex items-center justify-between mb-4">
-                        <h3 className="text-2xl font-bold text-white">{step.title}</h3>
-                        <Badge variant="outline" className="border-[#ECB629]/30 text-[#ECB629]">
-                          {step.duration}
-                        </Badge>
-                      </div>
-                      <p className="text-gray-300 mb-6">{step.description}</p>
-                      
-                      <div>
-                        <h4 className="text-lg font-bold text-white mb-3">Ключови deliverable-и:</h4>
-                        <ul className="space-y-2">
-                          {step.deliverables.map((item, i) => (
-                            <li key={i} className="flex items-center text-gray-300">
-                              <CheckCircle className="w-4 h-4 text-[#ECB629] mr-2 flex-shrink-0" />
-                              <span className="text-sm">{item}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Results Section */}
-      <section ref={resultsRef} className="py-20 relative overflow-hidden">
-        <div className="container mx-auto px-6">
-          <motion.div
-            className="max-w-6xl mx-auto"
-            initial={{ opacity: 0, y: 30 }}
-            animate={resultsInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8 }}
-          >
-            <div className="text-center mb-16">
-              <motion.div
-                className="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full bg-green-600/10 border border-green-600/20"
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={resultsInView ? { opacity: 1, scale: 1 } : {}}
-                transition={{ duration: 0.6, delay: 0.1 }}
-              >
-                <TrendingUp className="w-4 h-4 text-green-400" />
-                <span className="text-green-400 font-semibold text-sm">КРАЙНИЯТ РЕЗУЛТАТ</span>
-              </motion.div>
-              
-              <motion.h2 
-                className="text-4xl md:text-5xl font-bold text-white mb-8"
-                initial={{ opacity: 0, y: 20 }}
-                animate={resultsInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.8, delay: 0.2 }}
-              >
-                Повече от просто позиции
-              </motion.h2>
-              
-              <motion.p 
-                className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed"
-                initial={{ opacity: 0, y: 20 }}
-                animate={resultsInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.8, delay: 0.4 }}
-              >
-                SEO Struktor™ не само ви изкарва на първа страница - превръща органичния трафик в реален бизнес растеж
-              </motion.p>
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-8 mb-16">
-              {[
-                {
-                  metric: "300%+",
-                  label: "Увеличение на органичния трафик",
-                  description: "В първите 6 месеца от стартиране на системата",
-                  timeline: "6-месечен период",
-                  progress: 85
-                },
-                {
-                  metric: "120%",
-                  label: "Растеж на конверсиите",
-                  description: "Качественият трафик се превръща в клиенти",
-                  timeline: "9-месечен период", 
-                  progress: 70
-                },
-                {
-                  metric: "50+",
-                  label: "Първи позиции в Google",
-                  description: "За ключови търсения във вашата ниша",
-                  timeline: "12-месечен период",
-                  progress: 95
-                }
-              ].map((result, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={resultsInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.8, delay: 0.3 + index * 0.2 }}
-                >
-                  <Card className="bg-slate-800/50 border-slate-600/30 h-full text-center group hover:border-[#ECB629]/50 transition-all duration-300 relative overflow-hidden">
-                    <div className="p-8">
-                      <motion.div 
-                        className="text-5xl font-bold text-[#ECB629] mb-4"
-                        initial={{ scale: 0.5, opacity: 0 }}
-                        animate={resultsInView ? { scale: 1, opacity: 1 } : {}}
-                        transition={{ duration: 0.6, delay: 0.5 + index * 0.2 }}
+                      {/* Decorative element */}
+                      <motion.div
+                        className="mt-6 w-full h-1 bg-slate-700 rounded-full overflow-hidden"
+                        initial={{ width: 0 }}
+                        animate={isInView ? { width: "100%" } : {}}
+                        transition={{ duration: 1, delay: index * 0.2 + 0.8 }}
                       >
-                        {result.metric}
+                        <motion.div
+                          className="h-full bg-gradient-to-r from-[var(--pravdast-yellow)] to-yellow-400"
+                          initial={{ width: "0%" }}
+                          animate={isInView ? { width: "100%" } : {}}
+                          transition={{ duration: 1.5, delay: index * 0.2 + 1 }}
+                        />
                       </motion.div>
-                      <h3 className="text-xl font-bold text-white mb-4">{result.label}</h3>
-                      <p className="text-gray-300 mb-6">{result.description}</p>
-                      
-                      {/* Progress Indicator */}
-                      <div className="mb-4">
-                        <div className="w-full bg-slate-700 rounded-full h-2">
-                          <motion.div 
-                            className="bg-[#ECB629] h-2 rounded-full"
-                            initial={{ width: 0 }}
-                            animate={resultsInView ? { width: `${result.progress}%` } : {}}
-                            transition={{ duration: 1.5, delay: 0.8 + index * 0.3 }}
-                          />
-                        </div>
-                        <div className="text-xs text-gray-400 mt-2">{result.progress}% постижение</div>
-                      </div>
-                      
-                      <Badge variant="outline" className="border-slate-600 text-slate-400">
-                        {result.timeline}
-                      </Badge>
-                    </div>
-                  </Card>
+                    </motion.div>
+                  </div>
                 </motion.div>
-              ))}
-            </div>
+              </motion.div>
+            ))}
+          </div>
 
+          {/* Bottom CTA */}
+          <motion.div
+            className="text-center mt-16"
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 1 }}
+          >
+            {/* Connection line from last principle */}
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={resultsInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.8 }}
-              className="text-center"
-            >
-              <Card className="bg-slate-800/60 border-[#ECB629]/20 max-w-4xl mx-auto">
-                <div className="p-12">
-                  <div className="w-20 h-20 bg-[#ECB629]/20 rounded-full flex items-center justify-center mb-8 mx-auto">
-                    <Users className="w-10 h-10 text-[#ECB629]" />
-                  </div>
-                  <h3 className="text-3xl font-bold text-white mb-6">
-                    Вашите клиенти ви намират сами
-                  </h3>
-                  <p className="text-xl text-gray-300 mb-8">
-                    Вместо да изразходвате бюджет за реклами, хората ви търсят директно в Google когато имат нужда от вашите услуги
-                  </p>
-                  
-                  <div className="grid md:grid-cols-2 gap-8 text-left">
-                    <div>
-                      <h4 className="text-xl font-bold text-white mb-4 flex items-center">
-                        <Target className="w-6 h-6 text-[#ECB629] mr-3" />
-                        Sustainable Growth
-                      </h4>
-                      <p className="text-gray-300">
-                        SEO работи 24/7 и носи дългосрочни резултати, за разлика от платените реклами.
-                      </p>
-                    </div>
-                    <div>
-                      <h4 className="text-xl font-bold text-white mb-4 flex items-center">
-                        <BarChart3 className="w-6 h-6 text-[#ECB629] mr-3" />
-                        Higher Conversion Rates
-                      </h4>
-                      <p className="text-gray-300">
-                        Хората, които ви намират чрез търсене, са с 3-5 пъти по-склонни да станат клиенти.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </Card>
-            </motion.div>
+              className="w-0.5 h-16 bg-gradient-to-b from-[var(--pravdast-yellow)] to-slate-600 mx-auto mb-8"
+              initial={{ scaleY: 0 }}
+              animate={isInView ? { scaleY: 1 } : {}}
+              transition={{ duration: 0.8, delay: 1.5 }}
+            />
+
+            <div className="p-8 bg-slate-800/40 rounded-3xl border border-[var(--pravdast-yellow)]/20">
+              <h3 className="text-2xl font-bold text-white mb-4">
+                Готови за персонализирана оферта?
+              </h3>
+              <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
+                Всяка инвестиция започва с безплатна техническа диагностика и
+                детайлно планиране.
+              </p>
+              <Button
+                size="lg"
+                className="bg-[var(--pravdast-yellow)] text-black hover:bg-[var(--pravdast-yellow)]/90 px-6 md:px-12 py-4 md:py-6 text-base md:text-xl font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 w-full md:w-auto"
+                asChild
+              >
+                <a
+                  href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Получете персонализирана оферта
+                  <ArrowRight className="ml-2 md:ml-3 h-5 w-5 md:h-6 md:w-6" />
+                </a>
+              </Button>
+            </div>
           </motion.div>
         </div>
-      </section>
+      </div>
+    </section>
+  );
+};
 
-      {/* Investment Section */}
-      <section ref={investmentRef} className="py-20 bg-slate-800/30 relative overflow-hidden">
-        <div className="container mx-auto px-6">
+// Final CTA Section Component
+const FinalCTASection = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.3 });
+
+  return (
+    <section
+      ref={ref}
+      className="py-24 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 relative overflow-hidden"
+    >
+      {/* Enhanced Technical Background */}
+      <div className="absolute inset-0 opacity-5">
+        <svg
+          className="w-full h-full"
+          viewBox="0 0 200 200"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <pattern
+              id="final-cta-pattern"
+              x="0"
+              y="0"
+              width="40"
+              height="40"
+              patternUnits="userSpaceOnUse"
+            >
+              <circle
+                cx="20"
+                cy="20"
+                r="2"
+                fill="var(--pravdast-yellow)"
+                opacity="0.4"
+              />
+              <path
+                d="M0,20 L40,20 M20,0 L20,40"
+                stroke="var(--pravdast-yellow)"
+                strokeWidth="0.5"
+                opacity="0.3"
+              />
+              <circle
+                cx="5"
+                cy="5"
+                r="0.5"
+                fill="var(--pravdast-yellow)"
+                opacity="0.6"
+              />
+              <circle
+                cx="35"
+                cy="35"
+                r="0.5"
+                fill="var(--pravdast-yellow)"
+                opacity="0.6"
+              />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#final-cta-pattern)" />
+        </svg>
+      </div>
+
+      {/* Floating Elements */}
+      <div className="absolute inset-0">
+        <div className="absolute top-20 left-10 w-32 h-32 bg-[var(--pravdast-yellow)]/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-20 right-10 w-40 h-40 bg-[var(--pravdast-yellow)]/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-[var(--pravdast-yellow)]/5 rounded-full blur-3xl"></div>
+      </div>
+
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="max-w-5xl mx-auto">
+          {/* Connection line from previous section */}
           <motion.div
-            className="max-w-4xl mx-auto"
+            className="w-0.5 h-16 bg-gradient-to-b from-[var(--pravdast-yellow)] to-slate-600 mx-auto mb-16"
+            initial={{ scaleY: 0 }}
+            animate={isInView ? { scaleY: 1 } : {}}
+            transition={{ duration: 0.8 }}
+          />
+
+          <motion.div
+            className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
-            animate={investmentInView ? { opacity: 1, y: 0 } : {}}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8 }}
           >
-            <div className="text-center mb-16">
-              <motion.h2 
-                className="text-4xl md:text-5xl font-bold text-white mb-8"
-                initial={{ opacity: 0, y: 20 }}
-                animate={investmentInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.8, delay: 0.2 }}
-              >
-                Инвестиция в дългосрочния успех
-              </motion.h2>
-              
-              <motion.p 
-                className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed mb-12"
-                initial={{ opacity: 0, y: 20 }}
-                animate={investmentInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.8, delay: 0.4 }}
-              >
-                SEO Struktor™ е инвестиция, която се изплаща многократно чрез устойчив органичен растеж
-              </motion.p>
-
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={investmentInView ? { opacity: 1, scale: 1 } : {}}
-                transition={{ duration: 0.8, delay: 0.6 }}
-              >
-                <Card className="bg-slate-800/60 border-[#ECB629]/20 p-12 text-center">
-                  <div className="mb-8">
-                    <div className="text-6xl font-bold text-[#ECB629] mb-4">1980 лв.</div>
-                    <div className="text-xl text-gray-300">месечно</div>
-                  </div>
-                  
-                  <div className="grid md:grid-cols-3 gap-8 text-left mb-8">
-                    <div>
-                      <h4 className="text-lg font-bold text-white mb-3">Персонализирано решение:</h4>
-                      <ul className="space-y-2 text-sm text-gray-300">
-                        <li className="flex items-center">
-                          <CheckCircle className="w-4 h-4 text-[#ECB629] mr-2" />
-                          Индивидуален SEO план
-                        </li>
-                        <li className="flex items-center">
-                          <CheckCircle className="w-4 h-4 text-[#ECB629] mr-2" />
-                          Нишова стратегия
-                        </li>
-                        <li className="flex items-center">
-                          <CheckCircle className="w-4 h-4 text-[#ECB629] mr-2" />
-                          Конкурентен анализ
-                        </li>
-                        <li className="flex items-center">
-                          <CheckCircle className="w-4 h-4 text-[#ECB629] mr-2" />
-                          Местно SEO (при нужда)
-                        </li>
-                      </ul>
-                    </div>
-                    <div>
-                      <h4 className="text-lg font-bold text-white mb-3">В рамките на бюджета:</h4>
-                      <ul className="space-y-2 text-sm text-gray-300">
-                        <li className="flex items-center">
-                          <CheckCircle className="w-4 h-4 text-[#ECB629] mr-2" />
-                          Без скрити такси
-                        </li>
-                        <li className="flex items-center">
-                          <CheckCircle className="w-4 h-4 text-[#ECB629] mr-2" />
-                          Прозрачно ценообразуване
-                        </li>
-                        <li className="flex items-center">
-                          <CheckCircle className="w-4 h-4 text-[#ECB629] mr-2" />
-                          ROI-базирани резултати
-                        </li>
-                        <li className="flex items-center">
-                          <CheckCircle className="w-4 h-4 text-[#ECB629] mr-2" />
-                          Flexible договорни условия
-                        </li>
-                      </ul>
-                    </div>
-                    <div>
-                      <h4 className="text-lg font-bold text-white mb-3">Техническа спецификация:</h4>
-                      <ul className="space-y-2 text-sm text-gray-300">
-                        <li className="flex items-center">
-                          <CheckCircle className="w-4 h-4 text-[#ECB629] mr-2" />
-                          Core Web Vitals оптимизация
-                        </li>
-                        <li className="flex items-center">
-                          <CheckCircle className="w-4 h-4 text-[#ECB629] mr-2" />
-                          Technical SEO audit
-                        </li>
-                        <li className="flex items-center">
-                          <CheckCircle className="w-4 h-4 text-[#ECB629] mr-2" />
-                          Schema markup
-                        </li>
-                        <li className="flex items-center">
-                          <CheckCircle className="w-4 h-4 text-[#ECB629] mr-2" />
-                          Performance мониторинг
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </Card>
-              </motion.div>
+            <div className="inline-block px-6 py-3 bg-[var(--pravdast-yellow)]/10 rounded-full border border-[var(--pravdast-yellow)]/20 mb-8">
+              <span className="text-[var(--pravdast-yellow)] text-sm font-semibold tracking-wider">
+                ФИНАЛНА СТЪПКА
+              </span>
             </div>
+            <h2 className="text-4xl md:text-6xl font-bold mb-8 text-white leading-tight">
+              Готови ли сте да спрете да импровизирате?
+            </h2>
           </motion.div>
-        </div>
-      </section>
 
-      {/* CTA Section */}
-      <section ref={ctaRef} className="py-20 bg-[#ECB629] text-black relative overflow-hidden">
-        <div className="container mx-auto px-6 relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
-            <motion.h2 
-              className="text-4xl md:text-5xl font-bold mb-8 leading-tight"
-              initial={{ opacity: 0, y: 30 }}
-              animate={ctaInView ? { opacity: 1, y: 0 } : {}}
+          <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
+            {/* Left side - Content */}
+            <motion.div
+              className="space-y-8"
+              initial={{ opacity: 0, x: -50 }}
+              animate={isInView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              Готови ли сте да спрете <br />
-              да <span className="text-black">импровизирате?</span>
-            </motion.h2>
+              <div className="space-y-6">
+                <div className="p-6 bg-slate-800/40 rounded-2xl border border-slate-600/30">
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="w-3 h-3 bg-red-400 rounded-full animate-pulse"></div>
+                    <h3 className="text-xl font-bold text-white">Проблемът</h3>
+                  </div>
+                  <p className="text-gray-300 leading-relaxed">
+                    Нашият инженерен процес е задълбочен и изисква пълна
+                    отдаденост. Затова работим с ограничен брой нови клиенти
+                    всеки месец.
+                  </p>
+                </div>
 
-            <motion.p 
-              className="text-xl text-gray-800 mb-12 max-w-3xl mx-auto leading-relaxed"
-              initial={{ opacity: 0, y: 20 }}
-              animate={ctaInView ? { opacity: 1, y: 0 } : {}}
+                <div className="p-6 bg-slate-800/40 rounded-2xl border border-[var(--pravdast-yellow)]/20">
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="w-3 h-3 bg-[var(--pravdast-yellow)] rounded-full animate-pulse"></div>
+                    <h3 className="text-xl font-bold text-white">Решението</h3>
+                  </div>
+                  <p className="text-gray-300 leading-relaxed">
+                    Първата стъпка е нашата експертна диагностика. С нейна помощ
+                    ще научите повече за скритите проблеми на вашия сайт и ще
+                    получите ясна представа за потенциала му.
+                  </p>
+                </div>
+              </div>
+
+              {/* Urgency indicators */}
+              <motion.div
+                className="grid grid-cols-3 gap-4"
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.8, delay: 0.6 }}
+              >
+                <div className="text-center p-4 bg-slate-800/30 rounded-xl">
+                  <div className="text-2xl font-bold text-[var(--pravdast-yellow)] mb-1">
+                    48h
+                  </div>
+                  <div className="text-xs text-gray-400">Отговор</div>
+                </div>
+                <div className="text-center p-4 bg-slate-800/30 rounded-xl">
+                  <div className="text-2xl font-bold text-[var(--pravdast-yellow)] mb-1">
+                    5min
+                  </div>
+                  <div className="text-xs text-gray-400">Процес</div>
+                </div>
+                <div className="text-center p-4 bg-slate-800/30 rounded-xl">
+                  <div className="text-2xl font-bold text-[var(--pravdast-yellow)] mb-1">
+                    100%
+                  </div>
+                  <div className="text-xs text-gray-400">Безплатно</div>
+                </div>
+              </motion.div>
+            </motion.div>
+
+            {/* Right side - Enhanced CTA */}
+            <motion.div
+              className="relative"
+              initial={{ opacity: 0, x: 50 }}
+              animate={isInView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              Безплатната ни диагностика ще ви покаже точно какво се случва с вашето SEO и как да стигнете до първа страница.
+              <div className="relative p-8 bg-gradient-to-br from-slate-800/80 to-slate-900/80 backdrop-blur-sm rounded-3xl border border-[var(--pravdast-yellow)]/30 overflow-hidden">
+                {/* Animated background elements */}
+                <div className="absolute inset-0 bg-gradient-to-r from-[var(--pravdast-yellow)]/5 to-transparent"></div>
+                <div className="absolute top-0 right-0 w-32 h-32 bg-[var(--pravdast-yellow)]/10 rounded-full -translate-y-16 translate-x-16"></div>
+
+                <div className="relative z-10 text-center space-y-6">
+                  <div className="space-y-4">
+                    <div className="inline-block px-4 py-2 bg-[var(--pravdast-yellow)]/20 border border-[var(--pravdast-yellow)]/40 rounded-full">
+                      <span className="text-[var(--pravdast-yellow)] text-sm font-semibold">
+                        ОГРАНИЧЕНИ МЕСТА
+                      </span>
+                    </div>
+
+                    <h3 className="text-2xl md:text-3xl font-bold text-white leading-tight">
+                      Започнете диагностиката днес
+                    </h3>
+
+                    <p className="text-gray-300 text-sm leading-relaxed">
+                      Безплатна техническа диагностика с детайлен анализ на
+                      потенциала на вашия сайт
+                    </p>
+                  </div>
+
+                  {/* Enhanced CTA Button */}
+                  <motion.div
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                  >
+                    <Button
+                      size="lg"
+                      className="w-full bg-[var(--pravdast-yellow)] text-black hover:bg-[var(--pravdast-yellow)]/90 px-8 py-6 text-lg font-bold shadow-2xl hover:shadow-[var(--pravdast-yellow)]/20 transition-all duration-300 relative overflow-hidden group"
+                      asChild
+                    >
+                      <a
+                        href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {/* Button shimmer effect */}
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 group-hover:animate-pulse"></div>
+                        <span className="relative z-10 flex items-center justify-center gap-3">
+                          Кандидатствайте за диагностика
+                          <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
+                        </span>
+                      </a>
+                    </Button>
+                  </motion.div>
+
+                  {/* Trust indicators */}
+                  <div className="grid grid-cols-2 gap-4 pt-6 border-t border-slate-600/30">
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                      <span className="text-xs text-gray-400">
+                        Без ангажименти
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                      <span className="text-xs text-gray-400">
+                        100% поверително
+                      </span>
+                    </div>
+                  </div>
+
+                  <p className="text-xs text-gray-500 mt-4">
+                    Ще се свържем с вас в рамките на 48 часа, ако имаме свободен
+                    капацитет за този месец.
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Bottom urgency message */}
+          <motion.div
+            className="text-center p-6 bg-slate-800/30 rounded-2xl border border-red-500/20"
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8, delay: 0.8 }}
+          >
+            <div className="flex items-center justify-center gap-3 mb-2">
+              <div className="w-3 h-3 bg-red-400 rounded-full animate-pulse"></div>
+              <span className="text-red-400 text-sm font-semibold tracking-wider">
+                ВАЖНО
+              </span>
+            </div>
+            <p className="text-gray-300 text-sm">
+              Всеки ден на изчакване е изгубена възможност. Вашите конкуренти не
+              спят.
+            </p>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default function SeoStruktor() {
+  const seoData = {
+    title: "SEO Struktor™ - Инженерен подход към SEO оптимизация | Pravdast",
+    description:
+      "Изграждаме вашето онлайн присъствие като инженерно съоръжение. Структуриран SEO подход за предвидими резултати в Google.",
+    keywords:
+      "SEO оптимизация, SEO услуги България, структуриран SEO, инженерен SEO подход",
+    ogImage: "/og-images/seo-struktor.svg",
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-[var(--pravdast-dark)] to-[var(--pravdast-dark-gray)] text-white">
+      <SEOHead seo={seoData} pageSlug="services/seo-struktor" />
+      <Navigation />
+
+      {/* Hero Section */}
+      <section className="relative min-h-screen flex items-center overflow-hidden">
+        <SeoStruktorBackground />
+
+        {/* Enhanced floating elements */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-1/4 left-10 w-2 h-2 bg-[var(--pravdast-yellow)] rounded-full animate-ping opacity-60"></div>
+          <div className="absolute top-1/3 right-20 w-1 h-1 bg-[var(--pravdast-yellow)] rounded-full animate-pulse opacity-80"></div>
+          <div className="absolute bottom-1/4 left-1/4 w-3 h-3 bg-[var(--pravdast-yellow)] rounded-full animate-bounce opacity-40"></div>
+          <div className="absolute bottom-1/3 right-1/4 w-1 h-1 bg-[var(--pravdast-yellow)] rounded-full animate-ping opacity-70"></div>
+        </div>
+
+        <div className="container mx-auto px-6 relative z-10">
+          <div className="max-w-4xl mx-auto text-center">
+            {/* Status badge */}
+            <motion.div
+              className="inline-flex items-center gap-3 px-6 py-3 bg-slate-800/40 backdrop-blur-sm border border-[var(--pravdast-yellow)]/20 rounded-full mb-8"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="relative">
+                <div className="w-3 h-3 bg-green-400 rounded-full"></div>
+                <div className="absolute inset-0 w-3 h-3 bg-green-400 rounded-full animate-ping opacity-60"></div>
+              </div>
+              <span className="text-white text-sm font-semibold">
+                <span className="text-[var(--pravdast-yellow)]">Ново</span> -
+                Приемаме проекти за 2025
+              </span>
+            </motion.div>
+
+            <motion.h1
+              className="text-5xl md:text-7xl font-bold mb-8 leading-tight text-white"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              Вашите конкуренти не са по-добри.{" "}
+              <span className="text-[var(--pravdast-yellow)]">
+                Просто имат по-добра система.
+              </span>
+            </motion.h1>
+
+            <motion.p
+              className="text-xl md:text-2xl text-gray-300 mb-12 leading-relaxed max-w-3xl mx-auto"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              В Google битката се печели не от най-големия, а от най-добре
+              структурирания. SEO Struktor™ изгражда вашето онлайн присъствие
+              като инженерно съоръжение, проектирано да доминира в търсенето по
+              предвидим и измерим начин.
             </motion.p>
 
             <motion.div
+              className="flex flex-col sm:flex-row gap-4 justify-center"
               initial={{ opacity: 0, y: 30 }}
-              animate={ctaInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.6 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
             >
               <Button
                 size="lg"
-                className="group relative bg-black text-[#ECB629] hover:bg-black/90 font-bold text-xl px-6 py-4 md:px-12 md:py-6 rounded-lg shadow-lg hover:shadow-black/30 transition-all duration-300 overflow-hidden"
-                asChild
+                className="bg-[var(--pravdast-yellow)] text-black hover:bg-[var(--pravdast-yellow)]/90 px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
               >
-                <a href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu" target="_blank" rel="noopener noreferrer">
-                  <span className="relative z-10">Започнете безплатната диагностика</span>
-                  <ArrowRight className="ml-3 w-5 h-5 md:w-6 md:h-6 relative z-10 group-hover:translate-x-1 transition-transform" />
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-transparent via-[#ECB629]/20 to-transparent"
-                    initial={{ x: "-100%" }}
-                    whileHover={{ x: "100%" }}
-                    transition={{ duration: 0.6 }}
-                  />
-                </a>
+                Изпреварете конкуренцията
+                <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
             </motion.div>
           </div>
         </div>
       </section>
+
+      {/* Philosophy Section */}
+      <PhilosophySection />
+
+      {/* Engineering Process Section */}
+      <EngineeringProcessSection />
+
+      {/* Results Section */}
+      <ResultsSection />
+
+      {/* Investment Section */}
+      <InvestmentSection />
+
+      {/* Final CTA Section */}
+      <FinalCTASection />
 
       <Footer />
     </div>
