@@ -1,33 +1,25 @@
-async function executeQuery(sql, params = []) {
-  const { neon } = await import('@neondatabase/serverless');
-  // Use new Vercel-Neon database URL
-  const dbUrl = process.env.DATABASE_DATABASE_URL || process.env.DATABASE_URL;
-  const db = neon(dbUrl);
-  return await db(sql, params);
-}
-
-// Auth middleware function
-async function authenticateAdmin(req) {
+// Admin contacts endpoint for Vercel serverless
+async function authenticateAdmin(req, sql) {
   const authHeader = req.headers.authorization;
   if (!authHeader || !authHeader.startsWith('Bearer ')) {
     throw new Error('No token provided');
   }
 
   const token = authHeader.substring(7);
-  const sessionResult = await executeQuery(
-    'SELECT * FROM admin_sessions WHERE session_token = $1 AND expires_at > NOW()',
-    [token]
-  );
+  const sessions = await sql`
+    SELECT * FROM admin_sessions 
+    WHERE session_token = ${token} AND expires_at > NOW()
+  `;
   
-  if (sessionResult.length === 0) {
+  if (sessions.length === 0) {
     throw new Error('Invalid or expired session');
   }
 
-  return sessionResult[0].user_id;
+  return sessions[0].user_id;
 }
 
-module.exports = async function handler(req, res) {
-  // Set CORS headers
+export default async function handler(req, res) {
+  // CORS headers
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
@@ -37,19 +29,36 @@ module.exports = async function handler(req, res) {
   }
 
   if (req.method !== 'GET') {
-    return res.status(405).json({ message: 'Method not allowed' });
+    return res.status(405).json({ error: 'Method not allowed' });
   }
 
   try {
-    await authenticateAdmin(req);
+    // Import neon client
+    const { neon } = await import('@neondatabase/serverless');
+    const dbUrl = process.env.DATABASE_URL;
     
-    const result = await executeQuery('SELECT * FROM contacts ORDER BY created_at DESC');
-    res.json(result);
-  } catch (error) {
-    console.error('Contacts API error:', error);
-    if (error.message.includes('token') || error.message.includes('session')) {
-      return res.status(401).json({ message: error.message });
+    if (!dbUrl) {
+      return res.status(500).json({ error: 'Database configuration error' });
     }
-    return res.status(500).json({ message: 'Failed to fetch contacts' });
+
+    const sql = neon(dbUrl);
+    
+    // Authenticate user
+    await authenticateAdmin(req, sql);
+    
+    // Get all contacts
+    const contacts = await sql`
+      SELECT * FROM contacts 
+      ORDER BY created_at DESC
+    `;
+
+    return res.json(contacts);
+
+  } catch (error) {
+    console.error('Contacts error:', error);
+    if (error.message.includes('token') || error.message.includes('session')) {
+      return res.status(401).json({ error: error.message });
+    }
+    return res.status(500).json({ error: 'Internal server error' });
   }
 }

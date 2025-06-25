@@ -1,13 +1,6 @@
-async function executeQuery(sql, params = []) {
-  const { neon } = await import('@neondatabase/serverless');
-  // Use new Vercel-Neon database URL
-  const dbUrl = process.env.DATABASE_DATABASE_URL || process.env.DATABASE_URL;
-  const db = neon(dbUrl);
-  return await db(sql, params);
-}
-
-module.exports = async function handler(req, res) {
-  // Set CORS headers
+// Admin logout endpoint for Vercel serverless
+export default async function handler(req, res) {
+  // CORS headers
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
@@ -17,21 +10,34 @@ module.exports = async function handler(req, res) {
   }
 
   if (req.method !== 'POST') {
-    return res.status(405).json({ message: 'Method not allowed' });
+    return res.status(405).json({ error: 'Method not allowed' });
   }
 
   try {
     const authHeader = req.headers.authorization;
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
-      return res.status(401).json({ message: 'No token provided' });
+      return res.status(401).json({ error: 'No token provided' });
     }
 
     const token = authHeader.substring(7);
-    await executeQuery('DELETE FROM admin_sessions WHERE session_token = $1', [token]);
+
+    // Import neon client
+    const { neon } = await import('@neondatabase/serverless');
+    const dbUrl = process.env.DATABASE_URL;
     
-    res.json({ message: 'Logout successful' });
+    if (!dbUrl) {
+      return res.status(500).json({ error: 'Database configuration error' });
+    }
+
+    const sql = neon(dbUrl);
+    
+    // Delete session
+    await sql`DELETE FROM admin_sessions WHERE session_token = ${token}`;
+
+    return res.json({ message: 'Logout successful' });
+
   } catch (error) {
     console.error('Logout error:', error);
-    res.status(500).json({ message: 'Logout failed' });
+    return res.status(500).json({ error: 'Logout failed' });
   }
-};
+}

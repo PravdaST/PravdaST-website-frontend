@@ -1,65 +1,78 @@
-const bcrypt = require('bcrypt');
-const { randomBytes } = require('crypto');
+// Admin login endpoint for Vercel serverless
+import bcrypt from 'bcrypt';
+import { randomBytes } from 'crypto';
 
-async function executeQuery(sql, params = []) {
-  const { neon } = await import('@neondatabase/serverless');
-  // Use new Vercel-Neon database URL
-  const dbUrl = process.env.DATABASE_DATABASE_URL || process.env.DATABASE_URL;
-  const db = neon(dbUrl);
-  return await db(sql, params);
-}
-
-module.exports = async function handler(req, res) {
-  // Set CORS headers
+export default async function handler(req, res) {
+  // CORS headers
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
   }
 
   if (req.method !== 'POST') {
-    return res.status(405).json({ message: 'Method not allowed' });
+    return res.status(405).json({ error: 'Method not allowed' });
   }
 
   try {
-    const { username, password } = req.body;
+    const { username, password } = req.body || {};
     
     if (!username || !password) {
-      return res.status(400).json({ message: 'Username and password required' });
+      return res.status(400).json({ error: 'Username and password required' });
     }
 
+    // Import neon client
+    const { neon } = await import('@neondatabase/serverless');
+    
+    // Get database URL
+    const dbUrl = process.env.DATABASE_URL;
+    if (!dbUrl) {
+      console.error('DATABASE_URL not found');
+      return res.status(500).json({ error: 'Database configuration error' });
+    }
+
+    const sql = neon(dbUrl);
+    
     // Find user
-    const userResult = await executeQuery('SELECT * FROM users WHERE username = $1', [username]);
-    if (userResult.length === 0) {
-      return res.status(401).json({ message: 'Invalid credentials' });
+    const users = await sql`SELECT * FROM users WHERE username = ${username}`;
+    
+    if (users.length === 0) {
+      return res.status(401).json({ error: 'Invalid credentials' });
     }
-    const user = userResult[0];
 
+    const user = users[0];
+    
     // Verify password
-    const isValidPassword = await bcrypt.compare(password, user.password);
-    if (!isValidPassword) {
-      return res.status(401).json({ message: 'Invalid credentials' });
+    const isValid = await bcrypt.compare(password, user.password);
+    if (!isValid) {
+      return res.status(401).json({ error: 'Invalid credentials' });
     }
 
     // Create session
-    const sessionToken = randomBytes(32).toString('hex');
-    const expiresAt = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 hours
+    const token = randomBytes(32).toString('hex');
+    const expiresAt = new Date(Date.now() + 24 * 60 * 60 * 1000);
 
-    await executeQuery(
-      'INSERT INTO admin_sessions (session_token, user_id, expires_at) VALUES ($1, $2, $3)',
-      [sessionToken, user.id, expiresAt]
-    );
+    await sql`
+      INSERT INTO admin_sessions (session_token, user_id, expires_at) 
+      VALUES (${token}, ${user.id}, ${expiresAt})
+    `;
 
-    res.json({ 
-      message: 'Login successful', 
-      token: sessionToken,
-      user: { id: user.id, username: user.username }
+    return res.json({
+      message: 'Login successful',
+      token: token,
+      user: {
+        id: user.id,
+        username: user.username
+      }
     });
+
   } catch (error) {
     console.error('Login error:', error);
-    res.status(500).json({ message: 'Login failed', error: error.message });
+    return res.status(500).json({ 
+      error: 'Login failed',
+      details: error.message 
+    });
   }
-};
-
+}
