@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "wouter";
+import { useQuery } from "@tanstack/react-query";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { SEOHead } from "@/components/seo-head";
@@ -23,17 +24,60 @@ interface BlogPost {
   title: string;
   excerpt: string;
   content: string;
-  author: string;
-  publishedAt: string;
-  readTime: number;
+  author?: string;
+  created_at: string;
   category: string;
   slug: string;
   tags: string[];
-  featuredImage?: string;
+  is_published?: boolean;
 }
 
-// Български блог постове за бизнес инженерство
-const blogPosts: BlogPost[] = [
+export default function Blog() {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("Всички");
+
+  // Fetch blog posts from API
+  const { data: posts, isLoading, error } = useQuery({
+    queryKey: ['/api/blog/posts'],
+    queryFn: async () => {
+      const response = await fetch('/api/blog/posts');
+      if (!response.ok) {
+        throw new Error(`Failed to fetch posts: ${response.status}`);
+      }
+      const data = await response.json();
+      return Array.isArray(data) ? data : [];
+    },
+    retry: 3,
+    staleTime: 5 * 60 * 1000, // 5 minutes
+  });
+
+  // Calculate read time based on content length
+  const calculateReadTime = (content: string) => {
+    const wordsPerMinute = 200;
+    const words = content ? content.split(' ').length : 0;
+    return Math.max(1, Math.ceil(words / wordsPerMinute));
+  };
+
+  // Transform API data to match component expectations
+  const transformedPosts = posts && Array.isArray(posts) ? posts.map((post: any) => ({
+    ...post,
+    id: post.id?.toString() || '0',
+    author: post.author || 'Pravdast Team',
+    tags: Array.isArray(post.tags) ? post.tags : [],
+  })) : [];
+
+  // Get all categories from posts
+  const allCategories = ['Всички', ...Array.from(new Set(
+    transformedPosts && transformedPosts.length > 0 ? transformedPosts.map((post: BlogPost) => post.category) : []
+  ))];
+
+  const filteredPosts = transformedPosts && Array.isArray(transformedPosts) && transformedPosts.length > 0 ? transformedPosts.filter((post: BlogPost) => {
+    const matchesSearch = post.title && post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         post.excerpt && post.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         (post.tags && Array.isArray(post.tags) && post.tags.some(tag => tag && tag.toLowerCase().includes(searchTerm.toLowerCase())));
+    const matchesCategory = selectedCategory === 'Всички' || post.category === selectedCategory;
+    return matchesSearch && matchesCategory;
+  }) : [];
   {
     id: "1",
     title: "Как да създадете предсказуем растеж в B2B компанията си",
