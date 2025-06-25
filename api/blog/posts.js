@@ -38,8 +38,11 @@ export default async function handler(req, res) {
     
     console.log(`Successfully fetched ${posts.length} published posts`);
     
+    // Ensure we always return an array, even if empty
+    const postsArray = Array.isArray(posts) ? posts : [];
+    
     // Return posts as JSON array with 200 OK status
-    return res.status(200).json(posts);
+    return res.status(200).json(postsArray);
 
   } catch (error) {
     // Log detailed error to console

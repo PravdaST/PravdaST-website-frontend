@@ -111,19 +111,21 @@ export default function Blog() {
     staleTime: 5 * 60 * 1000, // 5 minutes
   });
 
-  // Use API posts if available, otherwise fallback to static posts
-  const posts = apiPosts || blogPosts;
+  // Ensure we have a valid array of posts
+  const posts = Array.isArray(apiPosts) ? apiPosts : (isLoading ? [] : blogPosts);
 
-  // Get unique categories from posts
-  const allCategories = ['Всички', ...Array.from(new Set(posts.map((post: BlogPost) => post.category)))];
+  // Get unique categories from posts (defensive check)
+  const allCategories = ['Всички', ...Array.from(new Set(
+    posts && posts.length > 0 ? posts.map((post: BlogPost) => post.category) : []
+  ))];
 
-  const filteredPosts = posts.filter((post: BlogPost) => {
+  const filteredPosts = posts && posts.length > 0 ? posts.filter((post: BlogPost) => {
     const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          post.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         post.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()));
+                         (post.tags && post.tags.some && post.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase())));
     const matchesCategory = selectedCategory === 'Всички' || post.category === selectedCategory;
     return matchesSearch && matchesCategory;
-  });
+  }) : [];
 
   return (
     <div className="min-h-screen bg-slate-900">
