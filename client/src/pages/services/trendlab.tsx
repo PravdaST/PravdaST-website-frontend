@@ -423,31 +423,167 @@ export default function Trendlab() {
         </div>
       </section>
 
-      {/* Process Section */}
+      {/* Ultra-Modern Process Section */}
       <section className="py-20 bg-slate-900 relative overflow-hidden">
-        <div className="container mx-auto px-6">
+        {/* Advanced Background System */}
+        <div className="absolute inset-0 opacity-15">
+          <div className="absolute inset-0">
+            {/* Production Line Grid */}
+            <div className="absolute inset-0" style={{
+              backgroundImage: `
+                linear-gradient(rgba(236, 182, 41, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(236, 182, 41, 0.1) 1px, transparent 1px),
+                linear-gradient(rgba(236, 182, 41, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(236, 182, 41, 0.05) 1px, transparent 1px)
+              `,
+              backgroundSize: '60px 60px, 60px 60px, 20px 20px, 20px 20px'
+            }}></div>
+            
+            {/* Flowing Data Streams */}
+            {[...Array(6)].map((_, i) => (
+              <motion.div
+                key={`stream-${i}`}
+                className="absolute w-1 h-32 bg-gradient-to-b from-[#ECB629]/20 to-transparent rounded-full"
+                style={{
+                  left: `${10 + i * 15}%`,
+                  top: `${20 + (i % 2) * 40}%`,
+                }}
+                animate={{
+                  scaleY: [0.5, 1.2, 0.5],
+                  opacity: [0.3, 0.8, 0.3],
+                  y: [0, -20, 0],
+                }}
+                transition={{
+                  duration: 4 + i * 0.5,
+                  repeat: Infinity,
+                  delay: i * 0.8,
+                  ease: "easeInOut"
+                }}
+              />
+            ))}
+
+            {/* Processing Nodes */}
+            {[...Array(8)].map((_, i) => (
+              <motion.div
+                key={`processor-${i}`}
+                className="absolute w-3 h-3 rounded-full border-2 border-[#ECB629]/30"
+                style={{
+                  left: `${15 + i * 10}%`,
+                  top: `${30 + (i % 3) * 20}%`,
+                }}
+                animate={{
+                  scale: [0.8, 1.4, 0.8],
+                  borderWidth: [1, 3, 1],
+                  opacity: [0.4, 0.9, 0.4],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  delay: i * 0.4,
+                  ease: "easeInOut"
+                }}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Background Elements */}
+        <div className="absolute inset-0 opacity-10">
+          <motion.div 
+            className="absolute top-1/4 left-1/4 w-64 h-64 bg-gradient-to-r from-[#ECB629]/40 to-orange-500/30 rounded-full blur-3xl"
+            animate={{
+              scale: [1, 1.3, 1],
+              opacity: [0.1, 0.2, 0.1],
+              x: [0, 30, 0],
+            }}
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          />
+          <motion.div 
+            className="absolute bottom-1/4 right-1/4 w-48 h-48 bg-gradient-to-l from-blue-500/20 to-[#ECB629]/30 rounded-full blur-3xl"
+            animate={{
+              scale: [1, 1.2, 1],
+              opacity: [0.1, 0.25, 0.1],
+              y: [0, -20, 0],
+            }}
+            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+          />
+        </div>
+
+        <div className="container mx-auto px-6 relative z-10">
           <motion.div
             ref={processRef}
-            className="max-w-6xl mx-auto"
+            className="max-w-7xl mx-auto"
             initial={{ opacity: 0, y: 30 }}
             animate={processInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8 }}
           >
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            {/* Enhanced Header */}
+            <motion.div 
+              className="text-center mb-20"
+              initial={{ opacity: 0, y: 20 }}
+              animate={processInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              <motion.div
+                className="inline-flex items-center gap-3 mb-8 px-6 py-3 rounded-full bg-gradient-to-r from-slate-800/80 to-slate-700/60 border border-[#ECB629]/30 backdrop-blur-sm"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={processInView ? { opacity: 1, scale: 1 } : {}}
+                transition={{ duration: 0.6, delay: 0.3 }}
+              >
+                <div className="w-2 h-2 bg-[#ECB629] rounded-full">
+                  <motion.div
+                    className="absolute inset-0 w-2 h-2 bg-[#ECB629] rounded-full opacity-40"
+                    animate={{ scale: [1, 1.5, 1] }}
+                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                  />
+                </div>
+                <span className="text-sm text-gray-300 font-medium">
+                  <span className="text-[#ECB629] font-bold">Поточна линия</span> за съдържание
+                </span>
+              </motion.div>
+
+              <h2 className="text-4xl md:text-6xl font-bold mb-6 text-white">
                 Нашата поточна линия за съдържание:{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ECB629] to-[#F59E0B]">
+                <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ECB629] to-[#F59E0B] relative">
                   Процес в 4 фази
+                  <motion.div
+                    className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-[#ECB629] to-[#F59E0B] rounded-full"
+                    initial={{ scaleX: 0 }}
+                    animate={processInView ? { scaleX: 1 } : {}}
+                    transition={{ duration: 1, delay: 0.8 }}
+                  />
                 </span>
               </h2>
-            </div>
+            </motion.div>
 
-            {/* Modern Timeline */}
-            <div className="relative max-w-4xl mx-auto">
-              {/* Central Line */}
-              <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-[#ECB629] via-[#ECB629]/50 to-[#ECB629]/20 rounded-full"></div>
+            {/* Ultra-Modern Timeline Cards */}
+            <div className="relative">
+              {/* Connection Flow */}
+              <div className="hidden lg:block absolute inset-0">
+                <svg className="w-full h-full" viewBox="0 0 1200 800" preserveAspectRatio="none">
+                  <motion.path
+                    d="M200,200 Q400,100 600,200 Q800,300 1000,200"
+                    stroke="url(#gradient)"
+                    strokeWidth="2"
+                    fill="none"
+                    strokeDasharray="10,5"
+                    initial={{ pathLength: 0 }}
+                    animate={processInView ? { pathLength: 1 } : {}}
+                    transition={{ duration: 2, delay: 0.5 }}
+                  />
+                  <defs>
+                    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" style={{ stopColor: '#ECB629', stopOpacity: 0.3 }} />
+                      <stop offset="50%" style={{ stopColor: '#ECB629', stopOpacity: 0.8 }} />
+                      <stop offset="100%" style={{ stopColor: '#ECB629', stopOpacity: 0.3 }} />
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
               
-              <div className="space-y-16">
+              {/* Modern Process Cards Grid */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 relative z-10">
                 {[
                   {
                     phase: "01",
@@ -456,7 +592,7 @@ export default function Trendlab() {
                     icon: Microscope,
                     duration: "2-3 седмици",
                     deliverables: "Експертен профил, ключови послания, story bank",
-                    position: "left"
+                    color: "from-blue-500/20 to-[#ECB629]/20"
                   },
                   {
                     phase: "02", 
@@ -465,7 +601,7 @@ export default function Trendlab() {
                     icon: FileText,
                     duration: "1-2 седмици",
                     deliverables: "Съдържателен календар, готови формати, визуални концепции",
-                    position: "right"
+                    color: "from-[#ECB629]/20 to-orange-500/20"
                   },
                   {
                     phase: "03",
@@ -474,7 +610,7 @@ export default function Trendlab() {
                     icon: Camera,
                     duration: "Непрекъснато",
                     deliverables: "Готово съдържание, оптимизирано за всяка платформа",
-                    position: "left"
+                    color: "from-orange-500/20 to-red-500/20"
                   },
                   {
                     phase: "04",
@@ -483,83 +619,164 @@ export default function Trendlab() {
                     icon: Megaphone,
                     duration: "Непрекъснато",
                     deliverables: "Публикации, анализи, оптимизации",
-                    position: "right"
+                    color: "from-red-500/20 to-purple-500/20"
                   }
                 ].map((phase, index) => (
                   <motion.div
                     key={index}
-                    className="relative flex items-center"
-                    initial={{ opacity: 0, x: phase.position === 'left' ? -100 : 100 }}
-                    animate={processInView ? { opacity: 1, x: 0 } : {}}
-                    transition={{ duration: 0.8, delay: index * 0.3 }}
+                    className="relative group"
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={processInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.8, delay: index * 0.2 }}
                   >
-                    {/* Timeline Node */}
+                    {/* Outer glow effect */}
                     <motion.div
-                      className="absolute left-1/2 transform -translate-x-1/2 z-10"
-                      initial={{ scale: 0 }}
-                      animate={processInView ? { scale: 1 } : {}}
-                      transition={{ duration: 0.6, delay: index * 0.3 + 0.2 }}
-                    >
-                      <div className="w-20 h-20 bg-gradient-to-br from-[#ECB629] to-[#F59E0B] rounded-full flex items-center justify-center text-black font-bold text-xl shadow-2xl border-4 border-slate-900 relative">
-                        {phase.phase}
-                        
-                        {/* Pulsing Ring */}
-                        <motion.div
-                          className="absolute inset-0 border-2 border-[#ECB629] rounded-full opacity-30"
-                          animate={{
-                            scale: [1, 1.5, 1],
-                            opacity: [0.3, 0, 0.3],
-                          }}
-                          transition={{
-                            duration: 3,
-                            repeat: Infinity,
-                            ease: "easeInOut",
-                            delay: index * 0.5,
-                          }}
-                        />
+                      className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${phase.color} blur-xl opacity-0 group-hover:opacity-100`}
+                      transition={{ duration: 0.3 }}
+                    />
+
+                    {/* Main Card */}
+                    <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-slate-800/80 to-slate-900/90 border border-[#ECB629]/20 backdrop-blur-sm p-8 hover:border-[#ECB629]/40 transition-all duration-300">
+                      {/* Animated Background Pattern */}
+                      <div className="absolute inset-0 opacity-5">
+                        <div className="absolute inset-0" style={{
+                          backgroundImage: `
+                            linear-gradient(45deg, rgba(236, 182, 41, 0.1) 25%, transparent 25%),
+                            linear-gradient(-45deg, rgba(236, 182, 41, 0.1) 25%, transparent 25%)
+                          `,
+                          backgroundSize: '30px 30px'
+                        }}></div>
                       </div>
-                    </motion.div>
 
-                    {/* Content Card */}
-                    <div className={`w-full ${phase.position === 'left' ? 'pr-16' : 'pl-16'}`}>
-                      <Card className={`bg-slate-800/40 border-slate-600/30 p-6 backdrop-blur-sm hover:bg-slate-800/60 transition-all duration-300 group relative overflow-hidden ${
-                        phase.position === 'left' ? 'ml-0 mr-auto' : 'ml-auto mr-0'
-                      } max-w-md`}>
-                        {/* Card Glow Effect */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-[#ECB629]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        
-                        <div className="relative z-10">
-                          {/* Icon & Title */}
-                          <div className="flex items-center gap-3 mb-4">
-                            <div className="w-10 h-10 bg-[#ECB629]/20 rounded-full flex items-center justify-center">
-                              <phase.icon className="h-5 w-5 text-[#ECB629]" />
-                            </div>
-                            <h3 className="text-xl font-bold text-white">{phase.title}</h3>
+                      {/* Phase Badge */}
+                      <div className="absolute top-6 right-6">
+                        <motion.div 
+                          className="flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-[#ECB629]/30 to-orange-500/30 border border-[#ECB629]/50"
+                          whileHover={{ scale: 1.05 }}
+                          transition={{ duration: 0.2 }}
+                        >
+                          <div className="w-2 h-2 bg-[#ECB629] rounded-full">
+                            <motion.div
+                              className="absolute inset-0 bg-[#ECB629] rounded-full opacity-40"
+                              animate={{ scale: [1, 1.5, 1] }}
+                              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                            />
                           </div>
+                          <span className="text-xs text-[#ECB629] font-bold">ФАЗА {phase.phase}</span>
+                        </motion.div>
+                      </div>
 
-                          {/* Description */}
-                          <p className="text-gray-300 mb-6 leading-relaxed text-sm">
-                            {phase.description}
-                          </p>
+                      <div className="relative z-10">
+                        {/* Icon & Number */}
+                        <div className="flex items-center gap-4 mb-6">
+                          <motion.div 
+                            className="relative"
+                            whileHover={{ scale: 1.1, rotate: 5 }}
+                            transition={{ duration: 0.3 }}
+                          >
+                            {/* Outer ring */}
+                            <motion.div
+                              className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#ECB629]/20 to-orange-500/20 border-2 border-[#ECB629]/30 flex items-center justify-center"
+                              animate={{
+                                boxShadow: [
+                                  '0 0 20px rgba(236, 182, 41, 0.2)',
+                                  '0 0 30px rgba(236, 182, 41, 0.4)',
+                                  '0 0 20px rgba(236, 182, 41, 0.2)'
+                                ],
+                              }}
+                              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                            >
+                              <phase.icon className="h-8 w-8 text-[#ECB629]" />
+                            </motion.div>
+                            
+                            {/* Orbiting elements */}
+                            <motion.div
+                              className="absolute -top-1 -right-1 w-3 h-3 bg-[#ECB629] rounded-full"
+                              animate={{
+                                rotate: [0, 360],
+                                scale: [0.8, 1.2, 0.8],
+                              }}
+                              transition={{
+                                duration: 4,
+                                repeat: Infinity,
+                                ease: "linear"
+                              }}
+                            />
+                          </motion.div>
 
-                          {/* Details Grid */}
-                          <div className="space-y-3">
-                            <div className="bg-slate-700/30 rounded-lg p-3 border border-slate-600/20">
-                              <div className="text-xs text-[#ECB629] font-semibold mb-1">ВРЕМЕТРАЕНЕ</div>
-                              <div className="text-white text-sm">{phase.duration}</div>
+                          <div>
+                            <motion.div
+                              className="text-6xl font-black text-[#ECB629] opacity-20 leading-none"
+                              animate={{
+                                opacity: [0.2, 0.4, 0.2],
+                              }}
+                              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                            >
+                              {phase.phase}
+                            </motion.div>
+                          </div>
+                        </div>
+
+                        {/* Content */}
+                        <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-[#ECB629] transition-colors duration-300">
+                          {phase.title}
+                        </h3>
+                        
+                        <p className="text-gray-300 mb-6 leading-relaxed">
+                          {phase.description}
+                        </p>
+
+                        {/* Details Grid */}
+                        <div className="grid grid-cols-1 gap-4">
+                          <div className="flex items-center gap-3 p-3 rounded-xl bg-slate-800/50 border border-slate-700/50">
+                            <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
+                            <div>
+                              <span className="text-sm text-gray-400">Времетраене:</span>
+                              <span className="text-white font-semibold ml-2">{phase.duration}</span>
                             </div>
-                            <div className="bg-slate-700/30 rounded-lg p-3 border border-slate-600/20">
-                              <div className="text-xs text-[#ECB629] font-semibold mb-1">РЕЗУЛТАТ</div>
-                              <div className="text-white text-xs leading-relaxed">{phase.deliverables}</div>
+                          </div>
+                          
+                          <div className="flex items-start gap-3 p-3 rounded-xl bg-slate-800/50 border border-slate-700/50">
+                            <div className="w-2 h-2 bg-green-400 rounded-full mt-2"></div>
+                            <div>
+                              <span className="text-sm text-gray-400 block">Резултати:</span>
+                              <span className="text-white font-semibold">{phase.deliverables}</span>
                             </div>
                           </div>
                         </div>
 
-                        {/* Connection Line to Timeline */}
-                        <div className={`absolute top-1/2 transform -translate-y-1/2 w-8 h-px bg-[#ECB629]/50 ${
-                          phase.position === 'left' ? 'right-0' : 'left-0'
-                        }`}></div>
-                      </Card>
+                        {/* Progress Indicator */}
+                        <div className="mt-6 pt-4 border-t border-slate-700/50">
+                          <div className="flex items-center justify-between">
+                            <span className="text-sm text-gray-400">Прогрес в процеса</span>
+                            <span className="text-sm text-[#ECB629] font-semibold">{Math.round((index + 1) / 4 * 100)}%</span>
+                          </div>
+                          <div className="mt-2 w-full bg-slate-700/50 rounded-full h-2">
+                            <motion.div
+                              className="h-2 bg-gradient-to-r from-[#ECB629] to-orange-500 rounded-full"
+                              initial={{ width: 0 }}
+                              animate={processInView ? { width: `${((index + 1) / 4) * 100}%` } : {}}
+                              transition={{ duration: 1, delay: index * 0.2 + 0.5 }}
+                            />
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Floating elements */}
+                      <div className="absolute bottom-4 right-4 opacity-20">
+                        <motion.div
+                          className="w-3 h-3 bg-[#ECB629] rounded-full"
+                          animate={{
+                            scale: [1, 1.3, 1],
+                            opacity: [0.2, 0.6, 0.2],
+                          }}
+                          transition={{
+                            duration: 2,
+                            repeat: Infinity,
+                            delay: index * 0.3,
+                          }}
+                        />
+                      </div>
                     </div>
                   </motion.div>
                 ))}
