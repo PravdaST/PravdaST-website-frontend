@@ -77,7 +77,7 @@ export default async function handler(req, res) {
       const posts = await sql`
         UPDATE blog_posts 
         SET title = ${title}, slug = ${slug}, excerpt = ${excerpt}, content = ${content}, 
-            tags = ${tags || []}, is_published = ${isPublished || false}, updated_at = NOW()
+            category = ${category || 'Общи'}, tags = ${tags || []}, is_published = ${isPublished || false}, updated_at = NOW()
         WHERE id = ${postId} RETURNING *
       `;
         
