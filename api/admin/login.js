@@ -1,17 +1,17 @@
-import { Pool, neonConfig } from '@neondatabase/serverless';
-import { drizzle } from 'drizzle-orm/neon-serverless';
-import { users, adminSessions } from '../../shared/schema.js';
-import { eq } from 'drizzle-orm';
-import bcrypt from 'bcrypt';
-import { randomBytes } from 'crypto';
-import ws from 'ws';
+const { Pool, neonConfig } = require('@neondatabase/serverless');
+const { drizzle } = require('drizzle-orm/neon-serverless');
+const { users, adminSessions } = require('../../shared/schema.js');
+const { eq } = require('drizzle-orm');
+const bcrypt = require('bcrypt');
+const { randomBytes } = require('crypto');
+const ws = require('ws');
 
 neonConfig.webSocketConstructor = ws;
 
 const pool = new Pool({ connectionString: process.env.DATABASE_URL });
 const db = drizzle({ client: pool });
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   // Set CORS headers
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');

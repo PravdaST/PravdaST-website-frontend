@@ -2,6 +2,11 @@ import { pgTable, text, serial, timestamp, boolean, integer } from "drizzle-orm/
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
+// CommonJS exports for Vercel serverless functions
+if (typeof module !== 'undefined' && module.exports) {
+  const { pgTable: pgTableCJS, text: textCJS, serial: serialCJS, timestamp: timestampCJS, boolean: booleanCJS, integer: integerCJS } = require("drizzle-orm/pg-core");
+}
+
 export const users = pgTable("users", {
   id: serial("id").primaryKey(),
   username: text("username").notNull().unique(),
