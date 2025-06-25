@@ -1,0 +1,40 @@
+// Public API endpoint for blog posts
+const { neon } = require('@neondatabase/serverless');
+
+module.exports = async (req, res) => {
+  // Enable CORS
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+
+  if (req.method !== 'GET') {
+    return res.status(405).json({ error: 'Method not allowed' });
+  }
+
+  try {
+    const dbUrl = process.env.DATABASE_URL;
+    if (!dbUrl) {
+      throw new Error('DATABASE_URL environment variable is not set');
+    }
+
+    const sql = neon(dbUrl);
+    
+    // Get only published blog posts, ordered by creation date (newest first)
+    const posts = await sql`
+      SELECT id, title, slug, excerpt, category, tags, created_at, updated_at
+      FROM blog_posts 
+      WHERE is_published = true 
+      ORDER BY created_at DESC
+    `;
+
+    return res.json(posts);
+
+  } catch (error) {
+    console.error('Public blog posts API error:', error);
+    return res.status(500).json({ error: 'Internal server error' });
+  }
+};

@@ -252,7 +252,7 @@ export default function AdminPravdaPage() {
   // Update blog post mutation
   const updatePostMutation = useMutation({
     mutationFn: async ({ id, data }: { id: number; data: Partial<BlogPostForm> }) => {
-      const response = await fetch(`/api/admin/blog/posts/${id}`, {
+      const response = await fetch(`/api/admin/blog/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

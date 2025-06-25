@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { Link } from 'wouter';
 import { Navigation } from '@/components/navigation';
 import { Footer } from '@/components/footer';
@@ -11,17 +12,15 @@ import { Calendar, Clock, User, ArrowRight, Search, BookOpen, TrendingUp } from 
 import { motion } from 'framer-motion';
 
 interface BlogPost {
-  id: string;
+  id: number;
   title: string;
   excerpt: string;
-  content: string;
-  author: string;
-  publishedAt: string;
-  readTime: number;
+  content?: string;
   category: string;
   slug: string;
   tags: string[];
-  featuredImage?: string;
+  created_at: string;
+  updated_at: string;
 }
 
 // Български блог постове за бизнес инженерство
@@ -106,7 +105,19 @@ export default function Blog() {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('Всички');
 
-  const filteredPosts = blogPosts.filter(post => {
+  // Fetch blog posts from API
+  const { data: apiPosts, isLoading } = useQuery({
+    queryKey: ['/api/blog/posts'],
+    staleTime: 5 * 60 * 1000, // 5 minutes
+  });
+
+  // Use API posts if available, otherwise fallback to static posts
+  const posts = apiPosts || blogPosts;
+
+  // Get unique categories from posts
+  const allCategories = ['Всички', ...Array.from(new Set(posts.map((post: BlogPost) => post.category)))];
+
+  const filteredPosts = posts.filter((post: BlogPost) => {
     const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          post.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          post.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()));
@@ -246,7 +257,7 @@ export default function Blog() {
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              {categories.map((category, index) => (
+              {allCategories.map((category, index) => (
                 <motion.button
                   key={category}
                   onClick={() => setSelectedCategory(category)}
@@ -278,8 +289,13 @@ export default function Blog() {
           </div>
 
           <div className="container mx-auto px-6 relative z-10">
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {filteredPosts.map((post, index) => (
+            {isLoading ? (
+              <div className="text-center py-16">
+                <div className="text-gray-300">Зареждане на статии...</div>
+              </div>
+            ) : (
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {filteredPosts.map((post: BlogPost, index: number) => (
                 <motion.div
                   key={post.id}
                   initial={{ opacity: 0, y: 30 }}
@@ -337,11 +353,15 @@ export default function Blog() {
                       >
                         <div className="flex items-center gap-1">
                           <Calendar className="w-4 h-4" />
-                          <span>{new Date(post.publishedAt).toLocaleDateString('bg-BG')}</span>
+                          <span>{new Date(post.created_at || post.publishedAt).toLocaleDateString('bg-BG')}</span>
                         </div>
                         <div className="flex items-center gap-1">
                           <Clock className="w-4 h-4" />
-                          <span>{post.readTime} мин</span>
+                          <span>{post.readTime || Math.max(1, Math.ceil(post.excerpt.length / 200))} мин четене</span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <User className="w-4 h-4" />
+                          <span>{post.author || 'Pravdast Team'}</span>
                         </div>
                       </motion.div>
 
@@ -388,8 +408,9 @@ export default function Blog() {
                     </CardContent>
                   </Card>
                 </motion.div>
-              ))}
-            </div>
+                ))}
+              </div>
+            )}
 
             {/* No Results */}
             {filteredPosts.length === 0 && (
