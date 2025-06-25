@@ -1,141 +1,159 @@
-import { useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
-import { Link } from 'wouter';
-import { Navigation } from '@/components/navigation';
-import { Footer } from '@/components/footer';
-import { SEOHead } from '@/components/seo-head';
-import { Card, CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Badge } from '@/components/ui/badge';
-import { Calendar, Clock, User, ArrowRight, Search, BookOpen, TrendingUp } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { useState } from "react";
+import { Link } from "wouter";
+import { Navigation } from "@/components/navigation";
+import { Footer } from "@/components/footer";
+import { SEOHead } from "@/components/seo-head";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Badge } from "@/components/ui/badge";
+import {
+  Calendar,
+  Clock,
+  User,
+  ArrowRight,
+  Search,
+  BookOpen,
+  TrendingUp,
+} from "lucide-react";
+import { motion } from "framer-motion";
 
 interface BlogPost {
-  id: number;
+  id: string;
   title: string;
   excerpt: string;
-  content?: string;
+  content: string;
+  author: string;
+  publishedAt: string;
+  readTime: number;
   category: string;
   slug: string;
   tags: string[];
-  created_at: string;
-  updated_at: string;
+  featuredImage?: string;
 }
 
 // Български блог постове за бизнес инженерство
 const blogPosts: BlogPost[] = [
   {
-    id: '1',
-    title: 'Как да създадете предсказуем растеж в B2B компанията си',
-    excerpt: 'Откройте тайните на системния подход към бизнес растежа. Научете как водещите компании строят устойчиви системи за генериране на клиенти.',
-    content: '',
-    author: 'Екипът на Pravdast',
-    publishedAt: '2024-12-15',
+    id: "1",
+    title: "Как да създадете предсказуем растеж в B2B компанията си",
+    excerpt:
+      "Откройте тайните на системния подход към бизнес растежа. Научете как водещите компании строят устойчиви системи за генериране на клиенти.",
+    content: "",
+    author: "Екипът на Pravdast",
+    publishedAt: "2024-12-15",
     readTime: 8,
-    category: 'Бизнес стратегия',
-    slug: 'predskazuem-rastezh-b2b-kompanii',
-    tags: ['растеж', 'B2B', 'системи', 'стратегия']
+    category: "Бизнес стратегия",
+    slug: "predskazuem-rastezh-b2b-kompanii",
+    tags: ["растеж", "B2B", "системи", "стратегия"],
   },
   {
-    id: '2', 
-    title: 'SEO Struktor™: Революционен подход към търсещата оптимизация',
-    excerpt: 'Разберете как нашата собствена методология SEO Struktor™ помага на клиентите ни да достигнат топ позиции в Google за ключови думи с висок търсещ обем.',
-    content: '',
-    author: 'SEO Експерти',
-    publishedAt: '2024-12-10',
+    id: "2",
+    title: "SEO Struktor™: Революционен подход към търсещата оптимизация",
+    excerpt:
+      "Разберете как нашата собствена методология SEO Struktor™ помага на клиентите ни да достигнат топ позиции в Google за ключови думи с висок търсещ обем.",
+    content: "",
+    author: "SEO Експерти",
+    publishedAt: "2024-12-10",
     readTime: 12,
-    category: 'SEO',
-    slug: 'seo-struktor-revolutsionen-podhod',
-    tags: ['SEO', 'органичен трафик', 'Google', 'оптимизация']
+    category: "SEO",
+    slug: "seo-struktor-revolutsionen-podhod",
+    tags: ["SEO", "органичен трафик", "Google", "оптимизация"],
   },
   {
-    id: '3',
-    title: 'Clientomat™: Автоматизиране на процеса за придобиване на клиенти',
-    excerpt: 'Научете как системата Clientomat™ трансформира начина, по който B2B компаниите привличат и конвертират потенциални клиенти в действителни продажби.',
-    content: '',
-    author: 'Automation Team',
-    publishedAt: '2024-12-08',
+    id: "3",
+    title: "Clientomat™: Автоматизиране на процеса за придобиване на клиенти",
+    excerpt:
+      "Научете как системата Clientomat™ трансформира начина, по който B2B компаниите привличат и конвертират потенциални клиенти в действителни продажби.",
+    content: "",
+    author: "Automation Team",
+    publishedAt: "2024-12-08",
     readTime: 10,
-    category: 'Автоматизация',
-    slug: 'clientomat-avtomatiziran-proces',
-    tags: ['автоматизация', 'клиенти', 'B2B', 'конверсия']
+    category: "Автоматизация",
+    slug: "clientomat-avtomatiziran-proces",
+    tags: ["автоматизация", "клиенти", "B2B", "конверсия"],
   },
   {
-    id: '4',
-    title: 'Данни срещу интуиция: Защо успешните компании винаги избират данните',
-    excerpt: 'Анализ на разликата между компании, които базират решенията си на данни, и тези, които разчитат на интуиция. Резултатите са поразителни.',
-    content: '',
-    author: 'Data Analytics Team',
-    publishedAt: '2024-12-05',
+    id: "4",
+    title:
+      "Данни срещу интуиция: Защо успешните компании винаги избират данните",
+    excerpt:
+      "Анализ на разликата между компании, които базират решенията си на данни, и тези, които разчитат на интуиция. Резултатите са поразителни.",
+    content: "",
+    author: "Data Analytics Team",
+    publishedAt: "2024-12-05",
     readTime: 6,
-    category: 'Данни и анализи',
-    slug: 'danni-sreshtu-intuitsiya',
-    tags: ['данни', 'анализи', 'решения', 'стратегия']
+    category: "Данни и анализи",
+    slug: "danni-sreshtu-intuitsiya",
+    tags: ["данни", "анализи", "решения", "стратегия"],
   },
   {
-    id: '5',
-    title: 'Систематично мащабиране: Как да растете без да увеличавате хаоса',
-    excerpt: 'Мащабирането на бизнеса не трябва да означава увеличаване на сложността. Научете как да растете системно и контролирано.',
-    content: '',
-    author: 'Business Engineering Team',
-    publishedAt: '2024-12-01',
+    id: "5",
+    title: "Систематично мащабиране: Как да растете без да увеличавате хаоса",
+    excerpt:
+      "Мащабирането на бизнеса не трябва да означава увеличаване на сложността. Научете как да растете системно и контролирано.",
+    content: "",
+    author: "Business Engineering Team",
+    publishedAt: "2024-12-01",
     readTime: 15,
-    category: 'Мащабиране',
-    slug: 'sistematichno-mashtabirane',
-    tags: ['мащабиране', 'системи', 'растеж', 'процеси']
+    category: "Мащабиране",
+    slug: "sistematichno-mashtabirane",
+    tags: ["мащабиране", "системи", "растеж", "процеси"],
   },
   {
-    id: '6',
-    title: 'ROI на маркетинговите системи: Как да измерите истинската стойност',
-    excerpt: 'Всяка маркетингова активност трябва да се измерва. Разберете как да калкулирате точния ROI на вашите маркетингови инвестиции.',
-    content: '',
-    author: 'Marketing ROI Specialists',
-    publishedAt: '2024-11-28',
+    id: "6",
+    title: "ROI на маркетинговите системи: Как да измерите истинската стойност",
+    excerpt:
+      "Всяка маркетингова активност трябва да се измерва. Разберете как да калкулирате точния ROI на вашите маркетингови инвестиции.",
+    content: "",
+    author: "Marketing ROI Specialists",
+    publishedAt: "2024-11-28",
     readTime: 9,
-    category: 'Маркетинг ROI',
-    slug: 'roi-marketingovi-sistemi',
-    tags: ['ROI', 'маркетинг', 'измерване', 'стойност']
-  }
+    category: "Маркетинг ROI",
+    slug: "roi-marketingovi-sistemi",
+    tags: ["ROI", "маркетинг", "измерване", "стойност"],
+  },
 ];
 
-const categories = ['Всички', 'Бизнес стратегия', 'SEO', 'Автоматизация', 'Данни и анализи', 'Мащабиране', 'Маркетинг ROI'];
+const categories = [
+  "Всички",
+  "Бизнес стратегия",
+  "SEO",
+  "Автоматизация",
+  "Данни и анализи",
+  "Мащабиране",
+  "Маркетинг ROI",
+];
 
 export default function Blog() {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('Всички');
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("Всички");
 
-  // Fetch blog posts from API
-  const { data: apiPosts, isLoading } = useQuery({
-    queryKey: ['/api/blog/posts'],
-    staleTime: 5 * 60 * 1000, // 5 minutes
-  });
-
-  // Ensure we have a valid array of posts
-  const posts = Array.isArray(apiPosts) ? apiPosts : (isLoading ? [] : blogPosts);
-
-  // Get unique categories from posts (defensive check)
-  const allCategories = ['Всички', ...Array.from(new Set(
-    posts && posts.length > 0 ? posts.map((post: BlogPost) => post.category) : []
-  ))];
-
-  const filteredPosts = posts && Array.isArray(posts) && posts.length > 0 ? posts.filter((post: BlogPost) => {
-    const matchesSearch = post.title && post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         post.excerpt && post.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         (post.tags && Array.isArray(post.tags) && post.tags.some(tag => tag && tag.toLowerCase().includes(searchTerm.toLowerCase())));
-    const matchesCategory = selectedCategory === 'Всички' || post.category === selectedCategory;
+  const filteredPosts = blogPosts.filter((post) => {
+    const matchesSearch =
+      post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      post.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      post.tags.some((tag) =>
+        tag.toLowerCase().includes(searchTerm.toLowerCase()),
+      );
+    const matchesCategory =
+      selectedCategory === "Всички" || post.category === selectedCategory;
     return matchesSearch && matchesCategory;
-  }) : [];
+  });
 
   return (
     <div className="min-h-screen bg-slate-900">
-      <SEOHead seo={{
-        title: "Блог за бизнес инженерство | Pravdast",
-        description: "Научете как да създадете предсказуем растеж в B2B компанията си с нашите експертни статии за системи, автоматизация и data-driven подходи.",
-        ogImage: "/og-blog.png"
-      }} pageSlug="blog" />
+      <SEOHead
+        seo={{
+          title: "Блог за бизнес инженерство | Pravdast",
+          description:
+            "Научете как да създадете предсказуем растеж в B2B компанията си с нашите експертни статии за системи, автоматизация и data-driven подходи.",
+          ogImage: "/og-blog.png",
+        }}
+        pageSlug="blog"
+      />
       <Navigation />
-      
+
       <main className="pt-20">
         {/* Hero Section */}
         <section className="py-20 relative overflow-hidden">
@@ -143,14 +161,17 @@ export default function Blog() {
           <div className="absolute inset-0 opacity-20">
             <div className="absolute inset-0">
               {/* Knowledge Grid Pattern */}
-              <div className="absolute inset-0" style={{
-                backgroundImage: `
+              <div
+                className="absolute inset-0"
+                style={{
+                  backgroundImage: `
                   linear-gradient(rgba(236, 182, 40, 0.1) 1px, transparent 1px),
                   linear-gradient(90deg, rgba(236, 182, 40, 0.1) 1px, transparent 1px)
                 `,
-                backgroundSize: '50px 50px'
-              }}></div>
-              
+                  backgroundSize: "50px 50px",
+                }}
+              ></div>
+
               {/* Floating Books */}
               {[...Array(6)].map((_, i) => (
                 <motion.div
@@ -178,7 +199,7 @@ export default function Blog() {
           </div>
 
           <div className="container mx-auto px-6 relative z-10">
-            <motion.div 
+            <motion.div
               className="max-w-4xl mx-auto text-center"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -197,12 +218,13 @@ export default function Blog() {
                     <div className="absolute inset-0 bg-[#ECB629] rounded-full animate-ping opacity-75"></div>
                   </div>
                   <span className="text-sm text-gray-300 font-medium">
-                    <span className="text-[#ECB629] font-bold">Безплатна</span> експертна информация
+                    <span className="text-[#ECB629] font-bold">Безплатна</span>{" "}
+                    експертна информация
                   </span>
                 </div>
               </motion.div>
 
-              <motion.h1 
+              <motion.h1
                 className="text-5xl md:text-6xl font-bold mb-6 text-white"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -219,18 +241,20 @@ export default function Blog() {
                   />
                 </span>
               </motion.h1>
-              
-              <motion.p 
+
+              <motion.p
                 className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
               >
-                Научете как да създадете предсказуем растеж в B2B компанията си с нашите експертни статии за системи, автоматизация и data-driven подходи.
+                Научете как да създадете предсказуем растеж в B2B компанията си
+                с нашите експертни статии за системи, автоматизация и
+                data-driven подходи.
               </motion.p>
 
               {/* Search Bar */}
-              <motion.div 
+              <motion.div
                 className="max-w-md mx-auto relative"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -252,21 +276,21 @@ export default function Blog() {
         {/* Categories Filter */}
         <section className="py-8 relative">
           <div className="container mx-auto px-6">
-            <motion.div 
+            <motion.div
               className="flex flex-wrap gap-3 justify-center"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              {allCategories.map((category, index) => (
+              {categories.map((category, index) => (
                 <motion.button
                   key={category}
                   onClick={() => setSelectedCategory(category)}
                   className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                     selectedCategory === category
-                      ? 'bg-[#ECB629] text-black'
-                      : 'bg-slate-800/50 text-gray-300 hover:bg-slate-700/50 border border-slate-700'
+                      ? "bg-[#ECB629] text-black"
+                      : "bg-slate-800/50 text-gray-300 hover:bg-slate-700/50 border border-slate-700"
                   }`}
                   initial={{ opacity: 0, scale: 0.8 }}
                   whileInView={{ opacity: 1, scale: 1 }}
@@ -291,22 +315,8 @@ export default function Blog() {
           </div>
 
           <div className="container mx-auto px-6 relative z-10">
-            {isLoading ? (
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {[...Array(6)].map((_, i) => (
-                  <Card key={i} className="overflow-hidden bg-slate-800/50 border-slate-700/50 animate-pulse">
-                    <div className="h-48 bg-slate-700/50"></div>
-                    <CardContent className="p-6">
-                      <div className="h-4 bg-slate-700/50 rounded mb-2"></div>
-                      <div className="h-6 bg-slate-700/50 rounded mb-4"></div>
-                      <div className="h-4 bg-slate-700/50 rounded"></div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            ) : filteredPosts && Array.isArray(filteredPosts) && filteredPosts.length > 0 ? (
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {filteredPosts.map((post: BlogPost, index: number) => (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {filteredPosts.map((post, index) => (
                 <motion.div
                   key={post.id}
                   initial={{ opacity: 0, y: 30 }}
@@ -317,7 +327,7 @@ export default function Blog() {
                   <Card className="relative bg-slate-800/50 border-slate-700 hover:border-[#ECB629]/50 transition-all duration-300 group overflow-hidden h-full">
                     {/* Hover Glow Effect */}
                     <div className="absolute inset-0 bg-gradient-to-r from-[#ECB629]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    
+
                     <CardContent className="p-6 relative z-10 h-full flex flex-col">
                       {/* Category Badge */}
                       <motion.div
@@ -333,7 +343,7 @@ export default function Blog() {
                       </motion.div>
 
                       {/* Title */}
-                      <motion.h3 
+                      <motion.h3
                         className="text-xl font-bold text-white mb-3 group-hover:text-[#ECB629] transition-colors line-clamp-2"
                         initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -344,7 +354,7 @@ export default function Blog() {
                       </motion.h3>
 
                       {/* Excerpt */}
-                      <motion.p 
+                      <motion.p
                         className="text-gray-300 mb-4 flex-grow line-clamp-3"
                         initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -355,7 +365,7 @@ export default function Blog() {
                       </motion.p>
 
                       {/* Meta Info */}
-                      <motion.div 
+                      <motion.div
                         className="flex items-center gap-4 text-sm text-gray-400 mb-4"
                         initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -364,40 +374,34 @@ export default function Blog() {
                       >
                         <div className="flex items-center gap-1">
                           <Calendar className="w-4 h-4" />
-                          <span>{new Date(post.created_at || post.publishedAt).toLocaleDateString('bg-BG')}</span>
+                          <span>
+                            {new Date(post.publishedAt).toLocaleDateString(
+                              "bg-BG",
+                            )}
+                          </span>
                         </div>
                         <div className="flex items-center gap-1">
                           <Clock className="w-4 h-4" />
-                          <span>{post.readTime || Math.max(1, Math.ceil(post.excerpt.length / 200))} мин четене</span>
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <User className="w-4 h-4" />
-                          <span>{post.author || 'Pravdast Team'}</span>
+                          <span>{post.readTime} мин</span>
                         </div>
                       </motion.div>
 
                       {/* Tags */}
-                      <motion.div 
+                      <motion.div
                         className="flex flex-wrap gap-2 mb-4"
                         initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.4, delay: 0.6 }}
                         viewport={{ once: true }}
                       >
-                        {post.tags && Array.isArray(post.tags) && post.tags.length > 0 ? (
-                          post.tags.slice(0, 3).map((tag, tagIndex) => (
-                            <span 
-                              key={tagIndex}
-                              className="px-2 py-1 bg-slate-700/50 text-gray-300 text-xs rounded-full"
-                            >
-                              {tag}
-                            </span>
-                          ))
-                        ) : (
-                          <span className="px-2 py-1 bg-slate-700/50 text-gray-300 text-xs rounded-full">
-                            {post.category || 'Общо'}
+                        {post.tags.slice(0, 3).map((tag, tagIndex) => (
+                          <span
+                            key={tagIndex}
+                            className="px-2 py-1 bg-slate-700/50 text-gray-300 text-xs rounded-full"
+                          >
+                            {tag}
                           </span>
-                        )}
+                        ))}
                       </motion.div>
 
                       {/* Read More Button */}
@@ -407,31 +411,35 @@ export default function Blog() {
                         transition={{ duration: 0.4, delay: 0.7 }}
                         viewport={{ once: true }}
                       >
-                        <Button 
-                          variant="outline" 
+                        <Button
+                          variant="outline"
                           className="w-full border-[#ECB629] text-[#ECB629] hover:bg-[#ECB629] hover:text-black group-hover:bg-[#ECB629] group-hover:text-black transition-all relative overflow-hidden"
                           asChild
                         >
                           <Link href={`/blog/${post.slug}`}>
                             <motion.div
                               className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-20"
-                              animate={{ x: ['-100%', '100%'] }}
-                              transition={{ duration: 1.5, repeat: Infinity, repeatType: 'loop' }}
+                              animate={{ x: ["-100%", "100%"] }}
+                              transition={{
+                                duration: 1.5,
+                                repeat: Infinity,
+                                repeatType: "loop",
+                              }}
                             />
-                            Четете повече <ArrowRight className="ml-2 w-4 h-4" />
+                            Четете повече{" "}
+                            <ArrowRight className="ml-2 w-4 h-4" />
                           </Link>
                         </Button>
                       </motion.div>
                     </CardContent>
                   </Card>
                 </motion.div>
-                ))}
-              </div>
-            )}
+              ))}
+            </div>
 
             {/* No Results */}
-            {(!filteredPosts || !Array.isArray(filteredPosts) || filteredPosts.length === 0) && !isLoading && (
-              <motion.div 
+            {filteredPosts.length === 0 && (
+              <motion.div
                 className="text-center py-16"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -439,12 +447,11 @@ export default function Blog() {
                 viewport={{ once: true }}
               >
                 <TrendingUp className="w-16 h-16 text-gray-600 mx-auto mb-4" />
-                <h3 className="text-xl font-semibold text-gray-400 mb-2">Няма намерени статии</h3>
+                <h3 className="text-xl font-semibold text-gray-400 mb-2">
+                  Няма намерени статии
+                </h3>
                 <p className="text-gray-500">
-                  {searchTerm || selectedCategory !== 'Всички' 
-                    ? 'Опитайте с различни ключови думи или категория.' 
-                    : 'Работим върху ново съдържание. Очаквайте скоро експертни статии за бизнес инженерство.'
-                  }
+                  Опитайте с различни ключови думи или категория.
                 </p>
               </motion.div>
             )}
@@ -483,7 +490,7 @@ export default function Blog() {
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <motion.h2 
+              <motion.h2
                 className="text-4xl md:text-5xl font-bold text-black mb-6"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -492,36 +499,46 @@ export default function Blog() {
               >
                 Готови да приложите знанията?
               </motion.h2>
-              
-              <motion.p 
+
+              <motion.p
                 className="text-xl text-black/80 mb-8 max-w-2xl mx-auto"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
                 viewport={{ once: true }}
               >
-                Превърнете четенето в действие. Започнете със системен подход към растежа на вашия бизнес.
+                Превърнете четенето в действие. Започнете със системен подход
+                към растежа на вашия бизнес.
               </motion.p>
-              
+
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
                 viewport={{ once: true }}
               >
-                <Button 
+                <Button
                   size="lg"
                   variant="outline"
                   className="relative border-2 border-black text-black hover:bg-black hover:text-[#ECB629] px-8 py-4 text-lg font-semibold overflow-hidden group"
                   asChild
                 >
-                  <a href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu" target="_blank" rel="noopener noreferrer">
+                  <a
+                    href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <motion.div
                       className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black opacity-0 group-hover:opacity-10"
-                      animate={{ x: ['-100%', '100%'] }}
-                      transition={{ duration: 1.5, repeat: Infinity, repeatType: 'loop' }}
+                      animate={{ x: ["-100%", "100%"] }}
+                      transition={{
+                        duration: 1.5,
+                        repeat: Infinity,
+                        repeatType: "loop",
+                      }}
                     />
-                    Безплатна консултация <ArrowRight className="ml-2 w-5 h-5" />
+                    Безплатна консултация{" "}
+                    <ArrowRight className="ml-2 w-5 h-5" />
                   </a>
                 </Button>
               </motion.div>
@@ -529,7 +546,7 @@ export default function Blog() {
           </div>
         </section>
       </main>
-      
+
       <Footer />
     </div>
   );
