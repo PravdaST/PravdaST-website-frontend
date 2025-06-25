@@ -23,13 +23,17 @@ module.exports = async (req, res) => {
 
     const sql = neon(dbUrl);
     
+    console.log('Fetching published blog posts...');
+    
     // Get only published blog posts, ordered by creation date (newest first)
     const posts = await sql`
-      SELECT id, title, slug, excerpt, category, tags, created_at, updated_at
+      SELECT id, title, slug, excerpt, tags, created_at, updated_at
       FROM blog_posts 
       WHERE is_published = true 
       ORDER BY created_at DESC
     `;
+    
+    console.log(`Found ${posts.length} published posts`);
 
     return res.json(posts);
 

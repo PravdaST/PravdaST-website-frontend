@@ -24,12 +24,16 @@ module.exports = async (req, res) => {
     const sql = neon(dbUrl);
     const { slug } = req.query;
     
+    console.log(`Fetching blog post with slug: ${slug}`);
+    
     // Get published blog post by slug
     const posts = await sql`
-      SELECT id, title, slug, excerpt, content, category, tags, created_at, updated_at
+      SELECT id, title, slug, excerpt, content, tags, created_at, updated_at
       FROM blog_posts 
       WHERE slug = ${slug} AND is_published = true
     `;
+    
+    console.log(`Found ${posts.length} posts for slug: ${slug}`);
 
     if (posts.length === 0) {
       return res.status(404).json({ error: 'Blog post not found' });

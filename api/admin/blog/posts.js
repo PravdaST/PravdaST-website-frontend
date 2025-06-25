@@ -59,9 +59,10 @@ export default async function handler(req, res) {
         return res.status(400).json({ error: 'Missing required fields' });
       }
 
+      console.log(`Creating post: ${title}, published: ${isPublished}`);
       const posts = await sql`
-        INSERT INTO blog_posts (title, slug, excerpt, content, category, tags, is_published, author_id)
-        VALUES (${title}, ${slug}, ${excerpt}, ${content}, ${category}, ${tags}, ${isPublished}, ${userId})
+        INSERT INTO blog_posts (title, slug, excerpt, content, tags, is_published, created_at, updated_at)
+        VALUES (${title}, ${slug}, ${excerpt}, ${content}, ${tags}, ${isPublished}, NOW(), NOW())
         RETURNING *
       `;
 
