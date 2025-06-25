@@ -53,10 +53,13 @@ export default async function handler(req, res) {
 
     if (req.method === 'POST') {
       // Create new blog post
-      const { title, slug, excerpt, content, category, tags = [], isPublished = false } = req.body || {};
+      const { title, slug, excerpt, content, tags = [], isPublished = false } = req.body || {};
       
-      if (!title || !slug || !excerpt || !content || !category) {
-        return res.status(400).json({ error: 'Missing required fields' });
+      console.log('Received data:', { title, slug, excerpt, content: content?.length, tags, isPublished });
+      
+      if (!title || !slug || !excerpt || !content) {
+        console.log('Missing fields:', { title: !!title, slug: !!slug, excerpt: !!excerpt, content: !!content });
+        return res.status(400).json({ error: 'Missing required fields: title, slug, excerpt, content' });
       }
 
       console.log(`Creating post: ${title}, published: ${isPublished}`);
@@ -66,7 +69,8 @@ export default async function handler(req, res) {
         RETURNING *
       `;
 
-      return res.json({ message: 'Blog post created', post: posts[0] });
+      console.log('Post created successfully:', posts[0].id);
+      return res.json({ message: 'Blog post created successfully', post: posts[0] });
     }
 
     return res.status(405).json({ error: 'Method not allowed' });

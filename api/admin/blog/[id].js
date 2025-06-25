@@ -70,7 +70,7 @@ export default async function handler(req, res) {
       }
       
       // Full update with all fields
-      if (!title || !slug || !excerpt || !content || !category) {
+      if (!title || !slug || !excerpt || !content) {
         return res.status(400).json({ error: 'Missing required fields for full update' });
       }
       

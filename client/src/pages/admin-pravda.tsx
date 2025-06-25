@@ -351,6 +351,7 @@ export default function AdminPravdaPage() {
   };
 
   const handleBlogSubmit = (data: BlogPostForm) => {
+    console.log('Submitting blog form data:', data);
     if (editingPost) {
       updatePostMutation.mutate({ id: editingPost.id, data });
     } else {
