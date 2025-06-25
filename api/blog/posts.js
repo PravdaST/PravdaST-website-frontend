@@ -39,6 +39,7 @@ module.exports = async (req, res) => {
 
   } catch (error) {
     console.error('Public blog posts API error:', error);
-    return res.status(500).json({ error: 'Internal server error' });
+    console.error('Error details:', error.message, error.stack);
+    return res.status(500).json({ error: 'Internal server error', details: error.message });
   }
 };

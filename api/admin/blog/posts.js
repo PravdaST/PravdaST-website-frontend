@@ -53,9 +53,9 @@ export default async function handler(req, res) {
 
     if (req.method === 'POST') {
       // Create new blog post
-      const { title, slug, excerpt, content, tags = [], isPublished = false } = req.body || {};
+      const { title, slug, excerpt, content, category, tags = [], isPublished = false } = req.body || {};
       
-      console.log('Received data:', { title, slug, excerpt, content: content?.length, tags, isPublished });
+      console.log('Received data:', { title, slug, excerpt, content: content?.length, category, tags, isPublished });
       
       if (!title || !slug || !excerpt || !content) {
         console.log('Missing fields:', { title: !!title, slug: !!slug, excerpt: !!excerpt, content: !!content });
@@ -77,9 +77,10 @@ export default async function handler(req, res) {
 
   } catch (error) {
     console.error('Blog posts error:', error);
+    console.error('Full error details:', error.message, error.stack);
     if (error.message.includes('token') || error.message.includes('session')) {
       return res.status(401).json({ error: error.message });
     }
-    return res.status(500).json({ error: 'Internal server error' });
+    return res.status(500).json({ error: 'Internal server error', details: error.message });
   }
 }
