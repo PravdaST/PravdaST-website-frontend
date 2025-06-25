@@ -10,8 +10,19 @@ import { CTASection } from "@/components/cta-section";
 import { Footer } from "@/components/footer";
 import { SEOHead } from "@/components/seo-head";
 import { pageSEOData } from "@/data/seo-pages";
+import { useEffect } from "react";
+import { localBusinessSchema, injectStructuredData } from "@/lib/seo-schemas";
+import { tracking, ConversionStage } from "@/lib/tracking";
 
 export default function Home() {
+  useEffect(() => {
+    // Inject Local Business Schema for SEO
+    injectStructuredData(localBusinessSchema, 'local-business-schema');
+    
+    // Track page view
+    tracking.trackFunnelStage(ConversionStage.LANDING);
+  }, []);
+
   return (
     <div className="min-h-screen bg-slate-900">
       <SEOHead seo={pageSEOData.home} pageSlug="" />

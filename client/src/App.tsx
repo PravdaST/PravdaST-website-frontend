@@ -19,6 +19,8 @@ import { lazy, useEffect, Suspense } from "react";
 import { FullPageLoading } from "@/components/loading-states";
 import usePageTracking from "./hooks/usePageTracking";
 import KlaviyoSetup from "@/components/klaviyo-setup";
+import { PixelIntegration } from "@/components/pixel-integration";
+import { ProgressiveProiling } from "@/components/progressive-profiling";
 import Home from "@/pages/home";
 import Services from "@/pages/services";
 import SeoStruktor from "@/pages/services/seo-struktor";
@@ -35,6 +37,8 @@ import About from "@/pages/about";
 import Contact from "@/pages/contact";
 import Terms from "@/pages/terms";
 import Privacy from "@/pages/privacy";
+import Calculators from "@/pages/calculators";
+import AnalyticsDashboard from "@/pages/analytics-dashboard";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -55,6 +59,8 @@ function Router() {
           <Route path="/faq" component={FAQ} />
           <Route path="/about" component={About} />
           <Route path="/contact" component={Contact} />
+          <Route path="/calculators" component={Calculators} />
+          <Route path="/analytics" component={AnalyticsDashboard} />
           <Route path="/terms" component={Terms} />
           <Route path="/privacy" component={Privacy} />
           <Route
@@ -90,6 +96,8 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <KlaviyoSetup />
+        <PixelIntegration />
+        <ProgressiveProiling trigger="time" delay={45000} />
         <SkipToMainContent />
         <ScrollToTop />
         <Toaster />

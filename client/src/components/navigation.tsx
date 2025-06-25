@@ -22,6 +22,7 @@ export const Navigation = () => {
   const navItems = [
     { href: "/", label: "Начало" },
     { href: "/services", label: "Услуги" },
+    { href: "/calculators", label: "Калкулатори" },
     { href: "/case-studies", label: "Резултати" },
     { href: "/blog", label: "Блог" },
     { href: "/about", label: "За нас" },

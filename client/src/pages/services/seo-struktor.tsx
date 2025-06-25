@@ -4,6 +4,8 @@ import { Footer } from "@/components/footer";
 import { Button } from "@/components/ui/button";
 import { SEOHead } from "@/components/seo-head";
 import { useRef, useState, useEffect } from "react";
+import { seoStruktorSchema, injectStructuredData } from "@/lib/seo-schemas";
+import { trackServiceView, trackCTAClick } from "@/lib/tracking";
 import {
   ArrowRight,
   ArrowLeft,
