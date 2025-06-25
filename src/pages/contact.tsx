@@ -49,6 +49,7 @@ const contactInfo = [
     title: "Работно време",
     info: "Понеделник - Петък",
     description: "09:00 - 18:00 (GMT+2)"
+  }
 ];
 
 export default function Contact() {
@@ -153,13 +154,17 @@ export default function Contact() {
               
               {/* Connection Signals */}
               {[...Array(4)].map((_, i) => (
+                <motion.div
+                  key={i}
                   className="absolute"
                   style={{
                     left: `${25 + i * 25}%`,
                     top: `${30 + i * 10}%`,
                     y: [0, -10, 0],
+                  }}
+                >
                   <Send className="w-6 h-6 text-[#ECB629]" />
-                </div className=">"
+                </motion.div>
               ))}
             </div>
           </div>

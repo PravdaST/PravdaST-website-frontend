@@ -70,7 +70,7 @@ export class ErrorBoundary extends Component<Props, State> {
 
   handleReload = () => {
     window.location.reload();
-  }
+  };
 
   render() {
     if (this.state.hasError) {
