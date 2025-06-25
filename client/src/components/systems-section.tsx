@@ -1,20 +1,17 @@
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Card, CardContent } from "@/components/ui/card";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import {
   Search,
   Users,
-  Bot,
-  Eye,
+  BarChart,
   Edit,
+  Eye,
   Globe,
   Repeat,
   MessageCircle,
   Coins,
   Magnet,
   Filter,
-  BarChart,
   Cog,
 } from "lucide-react";
 import { Link } from "wouter";
@@ -136,10 +133,6 @@ const systems = [
 ];
 
 export const SystemsSection = () => {
-  const [activeTab, setActiveTab] = useState("seo");
-
-  const activeSystem = systems.find((system) => system.id === activeTab);
-
   return (
     <section className="py-20 bg-slate-900 relative overflow-hidden">
       {/* Animated Tech Background */}
@@ -245,250 +238,122 @@ export const SystemsSection = () => {
           </motion.p>
         </motion.div>
 
-        <div className="max-w-6xl mx-auto">
-          <div className="flex flex-col lg:flex-row gap-8">
-            {/* Tab Navigation */}
-            <div className="lg:w-1/3">
-              <div className="space-y-3">
-                {systems.map((system, index) => (
-                  <motion.div
-                    key={system.id}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.6, delay: index * 0.1 }}
-                    viewport={{ once: true }}
-                  >
-                    <button
-                      className={`w-full text-left p-6 rounded-xl transition-all duration-300 relative overflow-hidden group cursor-pointer ${
-                        activeTab === system.id
-                          ? "bg-gradient-to-r from-slate-800/80 to-slate-700/60 border border-[#ECB629] text-white shadow-lg shadow-[#ECB629]/10"
-                          : "bg-slate-800/30 border border-slate-700/50 text-gray-300 hover:bg-slate-700/40 hover:border-[#ECB629]/30 hover:text-white"
-                      }`}
-                      onClick={() => setActiveTab(system.id)}
+        {/* Modern Grid Layout */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+          {systems.map((system, index) => (
+            <motion.div
+              key={system.id}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              viewport={{ once: true }}
+              className="relative group"
+            >
+              {/* System Card */}
+              <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-slate-800/80 to-slate-900/90 border border-[#ECB629]/20 p-6 h-full backdrop-blur-sm hover:border-[#ECB629]/40 transition-all duration-300 group-hover:transform group-hover:scale-105">
+                {/* Animated Background Pattern */}
+                <div className="absolute inset-0 opacity-10 group-hover:opacity-20 transition-opacity duration-300">
+                  <div className="absolute inset-0" style={{
+                    backgroundImage: `
+                      linear-gradient(rgba(236, 182, 40, 0.2) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(236, 182, 40, 0.2) 1px, transparent 1px)
+                    `,
+                    backgroundSize: '20px 20px'
+                  }}></div>
+                </div>
+                
+                {/* Status Badge */}
+                <div className="absolute top-4 right-4">
+                  <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-[#ECB629]/20 border border-[#ECB629]/40">
+                    <div className="w-2 h-2 bg-green-500 rounded-full">
+                      <div className="absolute inset-0 bg-green-500 rounded-full animate-ping opacity-75"></div>
+                    </div>
+                    <span className="text-xs text-[#ECB629] font-medium">АКТИВНА</span>
+                  </div>
+                </div>
+                
+                <div className="relative z-10">
+                  {/* Icon Section */}
+                  <div className="mb-6">
+                    <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#ECB629] to-[#ECB629]/80 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                      <system.icon className="text-black" size={32} />
+                    </div>
+                    <div className="space-y-1">
+                      <h3 className="text-xl font-bold text-[#ECB629]">
+                        {system.title}
+                      </h3>
+                      <p className="text-sm text-gray-400 leading-tight">
+                        {system.subtitle}
+                      </p>
+                    </div>
+                  </div>
+                  
+                  {/* Description */}
+                  <p className="text-gray-300 text-sm leading-relaxed mb-6 line-clamp-4">
+                    {system.description}
+                  </p>
+                  
+                  {/* Features List */}
+                  <div className="space-y-3 mb-6">
+                    {system.features.slice(0, 2).map((feature, i) => (
+                      <motion.div
+                        key={i}
+                        className="flex items-start gap-3 text-sm"
+                        initial={{ opacity: 0, x: -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.4, delay: i * 0.1 + 0.3 }}
+                        viewport={{ once: true }}
+                      >
+                        <div className="w-1.5 h-1.5 bg-[#ECB629] rounded-full mt-2 flex-shrink-0"></div>
+                        <div>
+                          <span className="text-[#ECB629] font-medium">{feature.title}:</span>
+                          <span className="text-gray-300 ml-1">{feature.description}</span>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+                  
+                  {/* Pricing */}
+                  <div className="border-t border-gray-700 pt-4 mb-6">
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-white mb-1">{system.price}</div>
+                      <div className="text-xs text-gray-400">{system.period}</div>
+                    </div>
+                  </div>
+                  
+                  {/* CTA Button */}
+                  <Link href={system.link}>
+                    <Button 
+                      className="w-full bg-gradient-to-r from-[#ECB629] to-[#ECB629]/80 hover:from-[#ECB629]/90 hover:to-[#ECB629]/70 text-black font-semibold py-3 rounded-xl transition-all duration-300 group-hover:shadow-lg group-hover:shadow-[#ECB629]/20"
                     >
-                      {/* Active Tab Glow */}
-                      {activeTab === system.id && (
-                        <motion.div
-                          className="absolute inset-0 bg-gradient-to-r from-[#ECB629]/10 to-transparent rounded-xl"
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          transition={{ duration: 0.3 }}
-                        />
-                      )}
-                      
-                      {/* Hover Glow Effect */}
-                      <div className="absolute inset-0 bg-gradient-to-r from-[#ECB629]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl"></div>
-                      
-                      <div className="relative z-10 flex items-center">
-                        <div className="mr-4">
-                          <div className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 ${
-                            activeTab === system.id 
-                              ? "bg-[#ECB629] text-black" 
-                              : "bg-slate-700 text-gray-400 group-hover:bg-[#ECB629]/20 group-hover:text-[#ECB629]"
-                          }`}>
-                            <system.icon size={24} />
-                          </div>
-                        </div>
-                        
-                        <div className="flex-1">
-                          <h3 className={`text-lg font-semibold mb-1 transition-colors ${
-                            activeTab === system.id ? "text-[#ECB629]" : "text-current"
-                          }`}>
-                            {system.title}
-                          </h3>
-                          <p className="text-sm text-gray-400 line-clamp-2">{system.subtitle}</p>
-                        </div>
-                        
-                        {/* Active Indicator */}
-                        {activeTab === system.id && (
-                          <motion.div
-                            className="w-1 h-8 bg-[#ECB629] rounded-full ml-3"
-                            initial={{ scaleY: 0 }}
-                            animate={{ scaleY: 1 }}
-                            transition={{ duration: 0.3 }}
-                          />
-                        )}
-                      </div>
-                    </button>
-                  </motion.div>
-                ))}
+                      Научи повече
+                    </Button>
+                  </Link>
+                </div>
+                
+                {/* Floating Success Elements */}
+                <div className="absolute bottom-4 left-4 opacity-20">
+                  <div className="flex gap-1">
+                    {[...Array(3)].map((_, i) => (
+                      <motion.div
+                        key={i}
+                        className="w-1.5 h-1.5 bg-[#ECB629] rounded-full"
+                        animate={{
+                          scale: [1, 1.3, 1],
+                          opacity: [0.3, 0.7, 0.3],
+                        }}
+                        transition={{
+                          duration: 2,
+                          repeat: Infinity,
+                          delay: i * 0.3,
+                        }}
+                      />
+                    ))}
+                  </div>
+                </div>
               </div>
-            </div>
-
-            {/* Tab Content */}
-            <div className="lg:w-2/3">
-              <AnimatePresence mode="wait">
-                {activeSystem && (
-                  <motion.div
-                    key={activeSystem.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <Card className="bg-slate-800/50 border-[#ECB629] hover:border-[#ECB629]/70 transition-all duration-300 group overflow-hidden">
-                      {/* Hover Glow Effect */}
-                      <div className="absolute inset-0 bg-gradient-to-r from-[#ECB629]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                      
-                      <CardContent className="p-8 relative z-10">
-                        {/* Engineering Visual */}
-                        <div className="w-full h-64 mb-8 bg-gradient-to-r from-slate-800 to-slate-700 rounded-lg flex items-center justify-center border border-[#ECB629]/30 relative overflow-hidden">
-                          {/* Animated Background Pattern */}
-                          <div className="absolute inset-0 opacity-10">
-                            <div className="absolute inset-0" style={{
-                              backgroundImage: `
-                                linear-gradient(45deg, rgba(236, 182, 40, 0.1) 25%, transparent 25%),
-                                linear-gradient(-45deg, rgba(236, 182, 40, 0.1) 25%, transparent 25%)
-                              `,
-                              backgroundSize: '20px 20px'
-                            }}></div>
-                          </div>
-                          
-                          <div className="text-center relative z-10">
-                            <motion.div
-                              className="relative"
-                              whileHover={{ scale: 1.1 }}
-                              transition={{ duration: 0.3 }}
-                            >
-                              <activeSystem.icon
-                                className="text-[#ECB629] text-6xl mb-4 mx-auto"
-                                size={96}
-                              />
-                              <motion.div
-                                className="absolute inset-0 bg-[#ECB629] rounded-full opacity-10"
-                                animate={{ scale: [1.2, 1.4, 1.2] }}
-                                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                              />
-                            </motion.div>
-                            
-                            <div className="flex items-center justify-center space-x-4">
-                              <motion.div 
-                                className="w-12 h-12 bg-[#ECB629] rounded-full flex items-center justify-center"
-                                whileHover={{ scale: 1.1 }}
-                              >
-                                <Edit className="text-black" size={20} />
-                              </motion.div>
-                              <motion.div 
-                                className="w-8 h-1 bg-[#ECB629]"
-                                animate={{ scaleX: [1, 1.2, 1] }}
-                                transition={{ duration: 2, repeat: Infinity }}
-                              ></motion.div>
-                              <motion.div 
-                                className="w-12 h-12 bg-[#ECB629] rounded-full flex items-center justify-center"
-                                whileHover={{ scale: 1.1 }}
-                              >
-                                <Cog className="text-black" size={20} />
-                              </motion.div>
-                              <motion.div 
-                                className="w-8 h-1 bg-[#ECB629]"
-                                animate={{ scaleX: [1, 1.2, 1] }}
-                                transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
-                              ></motion.div>
-                              <motion.div 
-                                className="w-12 h-12 bg-[#ECB629] rounded-full flex items-center justify-center"
-                                whileHover={{ scale: 1.1 }}
-                              >
-                                <BarChart className="text-black" size={20} />
-                              </motion.div>
-                            </div>
-                          </div>
-                        </div>
-
-                        <motion.h3 
-                          className="text-3xl font-bold mb-4 text-white group-hover:text-[#ECB629] transition-colors"
-                          initial={{ opacity: 0, y: 10 }}
-                          whileInView={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.6 }}
-                          viewport={{ once: true }}
-                        >
-                          {activeSystem.title}
-                        </motion.h3>
-                        
-                        <motion.p 
-                          className="text-lg text-gray-300 mb-6"
-                          initial={{ opacity: 0, y: 10 }}
-                          whileInView={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.6, delay: 0.1 }}
-                          viewport={{ once: true }}
-                        >
-                          {activeSystem.description}
-                        </motion.p>
-
-                        <motion.div 
-                          className="flex items-center justify-between mb-6"
-                          initial={{ opacity: 0, y: 10 }}
-                          whileInView={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.6, delay: 0.2 }}
-                          viewport={{ once: true }}
-                        >
-                          <div className="text-2xl font-bold text-[#ECB629]">
-                            {activeSystem.price}
-                          </div>
-                          <div className="text-sm text-gray-400">
-                            Без ангажименти
-                          </div>
-                        </motion.div>
-                        
-                        <motion.p 
-                          className="text-sm text-gray-400 mb-8"
-                          initial={{ opacity: 0, y: 10 }}
-                          whileInView={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.6, delay: 0.3 }}
-                          viewport={{ once: true }}
-                        >
-                          {activeSystem.period}
-                        </motion.p>
-
-                        <div className="space-y-6">
-                          {activeSystem.features.map((feature, index) => (
-                            <motion.div
-                              key={index}
-                              className="flex items-start space-x-4 group/feature"
-                              initial={{ opacity: 0, x: -20 }}
-                              whileInView={{ opacity: 1, x: 0 }}
-                              transition={{ duration: 0.6, delay: 0.4 + index * 0.1 }}
-                              viewport={{ once: true }}
-                              whileHover={{ x: 5 }}
-                            >
-                              <div className="w-8 h-8 bg-[#ECB629] rounded-full flex items-center justify-center flex-shrink-0 mt-1 group-hover/feature:scale-110 transition-transform duration-300">
-                                <feature.icon className="text-black text-sm" size={16} />
-                              </div>
-                              <div>
-                                <h4 className="font-semibold text-lg mb-2 text-white group-hover/feature:text-[#ECB629] transition-colors">
-                                  {feature.title}
-                                </h4>
-                                <p className="text-gray-300">
-                                  {feature.description}
-                                </p>
-                              </div>
-                            </motion.div>
-                          ))}
-                        </div>
-
-                        <motion.div
-                          initial={{ opacity: 0, y: 20 }}
-                          whileInView={{ opacity: 1, y: 0 }}
-                          transition={{ duration: 0.6, delay: 0.8 }}
-                          viewport={{ once: true }}
-                        >
-                          <Link href={activeSystem.link}>
-                            <Button className="mt-8 bg-[#ECB629] text-black hover:bg-[#ECB629]/90 font-semibold px-8 py-3 relative overflow-hidden group">
-                              <motion.div
-                                className="absolute inset-0 bg-gradient-to-r from-[#ECB629] via-white to-[#ECB629] opacity-0 group-hover:opacity-20"
-                                animate={{ x: ['-100%', '100%'] }}
-                                transition={{ duration: 1.5, repeat: Infinity, repeatType: 'loop' }}
-                              />
-                              <span className="relative z-10">Разгледай системата</span>
-                            </Button>
-                          </Link>
-                        </motion.div>
-                      </CardContent>
-                    </Card>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-          </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
