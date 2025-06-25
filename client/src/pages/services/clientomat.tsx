@@ -9,99 +9,113 @@ import { Footer } from "@/components/footer";
 import { SEOHead } from "@/components/seo-head";
 import { pageSEOData } from "@/data/seo-pages";
 
-// Client Network Background
+// Unique Client Network Background
 const ClientomatBackground = () => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-
-  useEffect(() => {
-    const updateMousePosition = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-    window.addEventListener('mousemove', updateMousePosition);
-    return () => window.removeEventListener('mousemove', updateMousePosition);
-  }, []);
-
   return (
-    <div className="absolute inset-0 overflow-hidden opacity-15">
-      {/* Client Network Grid */}
+    <div className="absolute inset-0 overflow-hidden opacity-10">
+      {/* Client Ecosystem Network */}
       <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          <pattern id="client-grid" width="120" height="120" patternUnits="userSpaceOnUse">
-            <circle cx="60" cy="60" r="3" fill="#ECB629" opacity="0.8"/>
-            <circle cx="20" cy="20" r="1.5" fill="#ECB629" opacity="0.4"/>
-            <circle cx="100" cy="20" r="1.5" fill="#ECB629" opacity="0.4"/>
-            <circle cx="20" cy="100" r="1.5" fill="#ECB629" opacity="0.4"/>
-            <circle cx="100" cy="100" r="1.5" fill="#ECB629" opacity="0.4"/>
-            <circle cx="60" cy="20" r="1.5" fill="#ECB629" opacity="0.4"/>
-            <circle cx="60" cy="100" r="1.5" fill="#ECB629" opacity="0.4"/>
+          {/* Central Hub Pattern */}
+          <pattern id="client-ecosystem" width="150" height="150" patternUnits="userSpaceOnUse">
+            {/* Central Client Hub */}
+            <circle cx="75" cy="75" r="4" fill="#ECB629" opacity="0.8"/>
             
-            {/* Hub Connection Lines */}
-            <path d="M 60 60 L 20 20" stroke="#ECB629" strokeWidth="0.5" opacity="0.3"/>
-            <path d="M 60 60 L 100 20" stroke="#ECB629" strokeWidth="0.5" opacity="0.3"/>
-            <path d="M 60 60 L 20 100" stroke="#ECB629" strokeWidth="0.5" opacity="0.3"/>
-            <path d="M 60 60 L 100 100" stroke="#ECB629" strokeWidth="0.5" opacity="0.3"/>
-            <path d="M 60 60 L 60 20" stroke="#ECB629" strokeWidth="0.5" opacity="0.3"/>
-            <path d="M 60 60 L 60 100" stroke="#ECB629" strokeWidth="0.5" opacity="0.3"/>
+            {/* Client Journey Stages (6 points around hub) */}
+            <circle cx="75" cy="25" r="2" fill="#ECB629" opacity="0.5"/>
+            <circle cx="115" cy="50" r="2" fill="#ECB629" opacity="0.5"/>
+            <circle cx="115" cy="100" r="2" fill="#ECB629" opacity="0.5"/>
+            <circle cx="75" cy="125" r="2" fill="#ECB629" opacity="0.5"/>
+            <circle cx="35" cy="100" r="2" fill="#ECB629" opacity="0.5"/>
+            <circle cx="35" cy="50" r="2" fill="#ECB629" opacity="0.5"/>
+            
+            {/* Connection Lines from Central Hub */}
+            <path d="M 75 75 L 75 25" stroke="#ECB629" strokeWidth="0.5" opacity="0.3"/>
+            <path d="M 75 75 L 115 50" stroke="#ECB629" strokeWidth="0.5" opacity="0.3"/>
+            <path d="M 75 75 L 115 100" stroke="#ECB629" strokeWidth="0.5" opacity="0.3"/>
+            <path d="M 75 75 L 75 125" stroke="#ECB629" strokeWidth="0.5" opacity="0.3"/>
+            <path d="M 75 75 L 35 100" stroke="#ECB629" strokeWidth="0.5" opacity="0.3"/>
+            <path d="M 75 75 L 35 50" stroke="#ECB629" strokeWidth="0.5" opacity="0.3"/>
+            
+            {/* Client Journey Flow (connecting outer points) */}
+            <path d="M 75 25 Q 95 30 115 50" stroke="#ECB629" strokeWidth="0.3" opacity="0.2" fill="none"/>
+            <path d="M 115 50 Q 120 75 115 100" stroke="#ECB629" strokeWidth="0.3" opacity="0.2" fill="none"/>
+            <path d="M 115 100 Q 95 120 75 125" stroke="#ECB629" strokeWidth="0.3" opacity="0.2" fill="none"/>
+            <path d="M 75 125 Q 55 120 35 100" stroke="#ECB629" strokeWidth="0.3" opacity="0.2" fill="none"/>
+            <path d="M 35 100 Q 30 75 35 50" stroke="#ECB629" strokeWidth="0.3" opacity="0.2" fill="none"/>
+            <path d="M 35 50 Q 55 30 75 25" stroke="#ECB629" strokeWidth="0.3" opacity="0.2" fill="none"/>
           </pattern>
           
-          <radialGradient id="clientPulse" cx="50%" cy="50%" r="50%">
+          {/* Client Data Flow Gradient */}
+          <linearGradient id="clientFlow" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#ECB629" stopOpacity="0"/>
+            <stop offset="30%" stopColor="#ECB629" stopOpacity="0.4"/>
+            <stop offset="70%" stopColor="#ECB629" stopOpacity="0.4"/>
+            <stop offset="100%" stopColor="#ECB629" stopOpacity="0"/>
+          </linearGradient>
+          
+          {/* Pulsing Hub Effect */}
+          <radialGradient id="hubPulse" cx="50%" cy="50%" r="50%">
             <stop offset="0%" stopColor="#ECB629" stopOpacity="0.6"/>
+            <stop offset="50%" stopColor="#ECB629" stopOpacity="0.3"/>
             <stop offset="100%" stopColor="#ECB629" stopOpacity="0"/>
           </radialGradient>
         </defs>
-        <rect width="100%" height="100%" fill="url(#client-grid)" />
+        
+        <rect width="100%" height="100%" fill="url(#client-ecosystem)" />
       </svg>
 
-      {/* Client Journey Nodes */}
+      {/* Floating Client Touchpoints */}
       <div className="absolute inset-0">
-        {Array.from({ length: 10 }).map((_, i) => (
+        {Array.from({ length: 8 }).map((_, i) => (
           <motion.div
             key={i}
             className="absolute"
             style={{
-              left: `${15 + (i * 8)}%`,
-              top: `${20 + (i % 3) * 25}%`,
+              left: `${10 + (i * 12)}%`,
+              top: `${15 + (i % 3) * 30}%`,
             }}
             animate={{
-              scale: [1, 1.2, 1],
-              opacity: [0.4, 0.8, 0.4],
+              y: [0, -10, 0],
+              opacity: [0.3, 0.7, 0.3],
+              scale: [0.8, 1.1, 0.8],
             }}
             transition={{
-              duration: 2 + i * 0.3,
+              duration: 3 + i * 0.4,
               repeat: Infinity,
               ease: "easeInOut",
-              delay: i * 0.4,
+              delay: i * 0.6,
             }}
           >
-            {/* Client Icons */}
-            <div className="w-6 h-6 rounded-full border border-[#ECB629]/40 bg-[#ECB629]/10 flex items-center justify-center">
-              <div className="w-2 h-2 bg-[#ECB629]/60 rounded-full" />
+            {/* Client Touchpoint Icons */}
+            <div className="w-8 h-8 rounded-lg border border-[#ECB629]/30 bg-[#ECB629]/5 flex items-center justify-center backdrop-blur-sm">
+              {i % 4 === 0 && <Users className="w-3 h-3 text-[#ECB629]/60" />}
+              {i % 4 === 1 && <Network className="w-3 h-3 text-[#ECB629]/60" />}
+              {i % 4 === 2 && <Target className="w-3 h-3 text-[#ECB629]/60" />}
+              {i % 4 === 3 && <Handshake className="w-3 h-3 text-[#ECB629]/60" />}
             </div>
           </motion.div>
         ))}
       </div>
 
-      {/* Data Connection Lines */}
+      {/* Client Journey Flow Lines */}
       <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
-        {Array.from({ length: 4 }).map((_, i) => (
-          <motion.line
+        {Array.from({ length: 3 }).map((_, i) => (
+          <motion.path
             key={i}
-            x1={`${20 + i * 25}%`}
-            y1="30%"
-            x2={`${40 + i * 25}%`}
-            y2="70%"
-            stroke="#ECB629"
-            strokeWidth="1"
-            opacity="0.3"
-            initial={{ pathLength: 0 }}
+            d={`M ${i * 300 + 50} 150 Q ${i * 300 + 200} 250 ${i * 300 + 350} 150 Q ${i * 300 + 500} 50 ${i * 300 + 650} 150`}
+            fill="none"
+            stroke="url(#clientFlow)"
+            strokeWidth="1.5"
+            initial={{ pathLength: 0, opacity: 0 }}
             animate={{ 
               pathLength: [0, 1, 0],
-              opacity: [0, 0.5, 0],
+              opacity: [0, 0.6, 0],
             }}
             transition={{ 
-              duration: 3,
+              duration: 5,
               repeat: Infinity,
-              delay: i * 0.8,
+              delay: i * 1.8,
               ease: "easeInOut"
             }}
           />
@@ -302,7 +316,7 @@ export default function ClientomatPage() {
               transition={{ duration: 0.8, delay: 0.8 }}
               className="text-center"
             >
-              <Card className="relative bg-gradient-to-r from-[#ECB629]/10 to-[#ECB629]/5 border-[#ECB629]/20 max-w-4xl mx-auto overflow-hidden">
+              <Card className="relative bg-slate-800/60 border-[#ECB629]/20 max-w-4xl mx-auto overflow-hidden">
                 <div className="absolute top-4 right-4">
                   <Badge className="bg-[#ECB629]/20 text-[#ECB629] border-[#ECB629]/30">
                     РЕШЕНИЕ
@@ -566,7 +580,7 @@ export default function ClientomatPage() {
               transition={{ duration: 0.8, delay: 0.8 }}
               className="text-center"
             >
-              <Card className="bg-gradient-to-r from-[#ECB629]/10 to-[#ECB629]/5 border-[#ECB629]/20 max-w-4xl mx-auto">
+              <Card className="bg-slate-800/60 border-[#ECB629]/20 max-w-4xl mx-auto">
                 <div className="p-12">
                   <div className="w-20 h-20 bg-[#ECB629]/20 rounded-full flex items-center justify-center mb-8 mx-auto">
                     <Users className="w-10 h-10 text-[#ECB629]" />
@@ -638,7 +652,7 @@ export default function ClientomatPage() {
                 animate={investmentInView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ duration: 0.8, delay: 0.6 }}
               >
-                <Card className="bg-gradient-to-r from-[#ECB629]/10 to-[#ECB629]/5 border-[#ECB629]/20 p-12 text-center">
+                <Card className="bg-slate-800/60 border-[#ECB629]/20 p-12 text-center">
                   <div className="mb-8">
                     <div className="text-6xl font-bold text-[#ECB629] mb-4">2750 лв.</div>
                     <div className="text-xl text-gray-300">месечно</div>
