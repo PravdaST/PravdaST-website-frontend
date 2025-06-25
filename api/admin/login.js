@@ -36,7 +36,7 @@ export default async function handler(req, res) {
     const sql = neon(dbUrl);
     
     // Find user
-    const users = await sql`SELECT * FROM users WHERE username = ${username}`;
+    const users = await sql`SELECT * FROM admin_users WHERE username = ${username}`;
     
     if (users.length === 0) {
       return res.status(401).json({ error: 'Invalid credentials' });
@@ -45,7 +45,7 @@ export default async function handler(req, res) {
     const user = users[0];
     
     // Verify password
-    const isValid = await bcrypt.compare(password, user.password);
+    const isValid = await bcrypt.compare(password, user.password_hash);
     if (!isValid) {
       return res.status(401).json({ error: 'Invalid credentials' });
     }
