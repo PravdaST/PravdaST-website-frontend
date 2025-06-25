@@ -292,10 +292,19 @@ export default function Blog() {
 
           <div className="container mx-auto px-6 relative z-10">
             {isLoading ? (
-              <div className="text-center py-16">
-                <div className="text-gray-300">Зареждане на статии...</div>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {[...Array(6)].map((_, i) => (
+                  <Card key={i} className="overflow-hidden bg-slate-800/50 border-slate-700/50 animate-pulse">
+                    <div className="h-48 bg-slate-700/50"></div>
+                    <CardContent className="p-6">
+                      <div className="h-4 bg-slate-700/50 rounded mb-2"></div>
+                      <div className="h-6 bg-slate-700/50 rounded mb-4"></div>
+                      <div className="h-4 bg-slate-700/50 rounded"></div>
+                    </CardContent>
+                  </Card>
+                ))}
               </div>
-            ) : (
+            ) : filteredPosts && Array.isArray(filteredPosts) && filteredPosts.length > 0 ? (
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {filteredPosts.map((post: BlogPost, index: number) => (
                 <motion.div
