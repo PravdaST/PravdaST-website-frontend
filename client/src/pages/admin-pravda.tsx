@@ -116,13 +116,20 @@ export default function AdminPravdaPage() {
   // Login mutation
   const loginMutation = useMutation({
     mutationFn: async (data: LoginForm) => {
-      return apiRequest('/api/admin/login', {
+      const response = await fetch('/api/admin/login', {
         method: 'POST',
-        body: JSON.stringify(data),
         headers: {
           'Content-Type': 'application/json',
         },
+        body: JSON.stringify(data),
       });
+
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.message || 'Login failed');
+      }
+
+      return response.json();
     },
     onSuccess: (data) => {
       setToken(data.token);
@@ -146,7 +153,7 @@ export default function AdminPravdaPage() {
   const logout = async () => {
     try {
       if (token) {
-        await apiRequest('/api/admin/logout', {
+        await fetch('/api/admin/logout', {
           method: 'POST',
           headers: {
             'Authorization': `Bearer ${token}`,
@@ -170,36 +177,59 @@ export default function AdminPravdaPage() {
   // Fetch blog posts
   const { data: blogPosts, isLoading: blogLoading } = useQuery({
     queryKey: ['/api/admin/blog/posts'],
-    queryFn: () => apiRequest('/api/admin/blog/posts', {
-      headers: {
-        'Authorization': `Bearer ${token}`,
-      },
-    }),
+    queryFn: async () => {
+      const response = await fetch('/api/admin/blog/posts', {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+      
+      if (!response.ok) {
+        throw new Error('Failed to fetch blog posts');
+      }
+      
+      return response.json();
+    },
     enabled: isAuthenticated && token !== null,
   });
 
   // Fetch contacts
   const { data: contacts, isLoading: contactsLoading } = useQuery({
     queryKey: ['/api/admin/contacts'],
-    queryFn: () => apiRequest('/api/admin/contacts', {
-      headers: {
-        'Authorization': `Bearer ${token}`,
-      },
-    }),
+    queryFn: async () => {
+      const response = await fetch('/api/admin/contacts', {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+      
+      if (!response.ok) {
+        throw new Error('Failed to fetch contacts');
+      }
+      
+      return response.json();
+    },
     enabled: isAuthenticated && token !== null,
   });
 
   // Create blog post mutation
   const createPostMutation = useMutation({
     mutationFn: async (data: BlogPostForm) => {
-      return apiRequest('/api/admin/blog/posts', {
+      const response = await fetch('/api/admin/blog/posts', {
         method: 'POST',
-        body: JSON.stringify(data),
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`,
         },
+        body: JSON.stringify(data),
       });
+
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.message || 'Failed to create post');
+      }
+
+      return response.json();
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['/api/admin/blog/posts'] });
@@ -222,14 +252,21 @@ export default function AdminPravdaPage() {
   // Update blog post mutation
   const updatePostMutation = useMutation({
     mutationFn: async ({ id, data }: { id: number; data: Partial<BlogPostForm> }) => {
-      return apiRequest(`/api/admin/blog/posts/${id}`, {
+      const response = await fetch(`/api/admin/blog/posts/${id}`, {
         method: 'PUT',
-        body: JSON.stringify(data),
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`,
         },
+        body: JSON.stringify(data),
       });
+
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.message || 'Failed to update post');
+      }
+
+      return response.json();
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['/api/admin/blog/posts'] });
@@ -253,12 +290,19 @@ export default function AdminPravdaPage() {
   // Delete blog post mutation
   const deletePostMutation = useMutation({
     mutationFn: async (id: number) => {
-      return apiRequest(`/api/admin/blog/posts/${id}`, {
+      const response = await fetch(`/api/admin/blog/posts/${id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`,
         },
       });
+
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.message || 'Failed to delete post');
+      }
+
+      return response.json();
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['/api/admin/blog/posts'] });
@@ -279,12 +323,19 @@ export default function AdminPravdaPage() {
   // Publish/Unpublish mutations
   const publishMutation = useMutation({
     mutationFn: async ({ id, action }: { id: number; action: 'publish' | 'unpublish' }) => {
-      return apiRequest(`/api/admin/blog/posts/${id}/${action}`, {
+      const response = await fetch(`/api/admin/blog/posts/${id}/${action}`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`,
         },
       });
+
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.message || `Failed to ${action} post`);
+      }
+
+      return response.json();
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['/api/admin/blog/posts'] });
