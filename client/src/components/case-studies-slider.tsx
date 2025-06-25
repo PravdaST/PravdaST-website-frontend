@@ -103,8 +103,49 @@ export const CaseStudiesSlider = () => {
   const currentCase = caseStudies[currentSlide];
 
   return (
-    <section className="py-20 bg-[var(--pravdast-dark)]">
-      <div className="container mx-auto px-6">
+    <section className="py-20 bg-slate-900 relative overflow-hidden">
+      {/* Animated Tech Background */}
+      <div className="absolute inset-0 opacity-15">
+        <div className="absolute inset-0">
+          {/* Success Grid Pattern */}
+          <div className="absolute inset-0" style={{
+            backgroundImage: `
+              linear-gradient(rgba(236, 182, 40, 0.1) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(236, 182, 40, 0.1) 1px, transparent 1px)
+            `,
+            backgroundSize: '60px 60px'
+          }}></div>
+          
+          {/* Success Indicators */}
+          {[...Array(8)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-2 h-2 bg-green-500 rounded-full"
+              style={{
+                left: `${10 + i * 12}%`,
+                top: `${20 + (i % 4) * 20}%`,
+              }}
+              animate={{
+                scale: [1, 1.4, 1],
+                opacity: [0.4, 0.8, 0.4],
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                delay: i * 0.3,
+              }}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Background Elements */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-green-500 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-48 h-48 bg-[#ECB629] rounded-full blur-3xl"></div>
+      </div>
+
+      <div className="container mx-auto px-6 relative z-10">
         {/* Header */}
         <motion.div
           className="text-center mb-16"
@@ -114,32 +155,60 @@ export const CaseStudiesSlider = () => {
           viewport={{ once: true }}
         >
           <motion.div
-            className="inline-flex items-center gap-2 mb-8 px-4 py-2 rounded-full bg-gradient-to-r from-slate-800/80 to-slate-700/60 border border-slate-600/30 backdrop-blur-sm"
+            className="inline-flex items-center gap-3 mb-8 px-6 py-3 rounded-full bg-gradient-to-r from-slate-800/80 to-slate-700/60 border border-slate-600/30 backdrop-blur-sm"
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
           >
-            <span className="text-sm text-gray-300 font-medium">
-              <span className="text-[var(--pravdast-yellow)]">
-                <b>Проследими</b>
-              </span>{" "}
-              резултати от реални клиенти
-            </span>
+            <div className="flex items-center gap-2">
+              <div className="relative">
+                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                <motion.div
+                  className="absolute inset-0 w-2 h-2 bg-green-500 rounded-full opacity-20"
+                  animate={{ scale: [1, 1.3, 1] }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                />
+              </div>
+              <span className="text-sm text-gray-300 font-medium">
+                <span className="text-[#ECB629] font-bold">Проследими</span> резултати от реални клиенти
+              </span>
+            </div>
           </motion.div>
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
-            Един реален пример струва повече от{" "}
-            <span className="text-[var(--pravdast-yellow)]">
+
+          <motion.h2 
+            className="text-4xl md:text-5xl font-bold mb-6 text-white"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            Един реален пример струва повече от <br />
+            <span className="text-[#ECB629] relative">
               1000 обещания.
+              <motion.div
+                className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-[#ECB629] to-[#ECB629]/50 rounded-full"
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                transition={{ duration: 1, delay: 0.6 }}
+                viewport={{ once: true }}
+              />
             </span>
-          </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Вижте как компании превърнаха хаоса в предсказуем растеж с нашите
-            инженерни системи
-          </p>
+          </motion.h2>
+
+          <motion.p 
+            className="text-xl text-gray-300 max-w-3xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            viewport={{ once: true }}
+          >
+            Вижте как компании превърнаха хаоса в предсказуем растеж с нашите инженерни системи
+          </motion.p>
         </motion.div>
 
-        {/* Slider */}
-        <div className="relative max-w-6xl mx-auto">
+        {/* Modern Slider */}
+        <div className="relative max-w-7xl mx-auto">
           <AnimatePresence mode="wait">
             <motion.div
               key={currentSlide}
@@ -148,14 +217,36 @@ export const CaseStudiesSlider = () => {
               exit={{ opacity: 0, x: -100 }}
               transition={{ duration: 0.5 }}
             >
-              <Card className="bg-[var(--pravdast-dark-gray)] border-[var(--pravdast-yellow)]/20">
-                <CardContent className="p-8 md:p-12">
+              {/* Modern Case Study Card */}
+              <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-slate-800/80 to-slate-900/90 border border-[#ECB629]/20 backdrop-blur-sm">
+                {/* Animated Background Pattern */}
+                <div className="absolute inset-0 opacity-10">
+                  <div className="absolute inset-0" style={{
+                    backgroundImage: `
+                      linear-gradient(rgba(34, 197, 94, 0.1) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(34, 197, 94, 0.1) 1px, transparent 1px)
+                    `,
+                    backgroundSize: '30px 30px'
+                  }}></div>
+                </div>
+                
+                {/* Success Badge */}
+                <div className="absolute top-6 right-6">
+                  <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-green-500/20 border border-green-500/40">
+                    <div className="w-2 h-2 bg-green-500 rounded-full">
+                      <div className="absolute inset-0 bg-green-500 rounded-full animate-ping opacity-75"></div>
+                    </div>
+                    <span className="text-xs text-green-400 font-medium">УСПЕХ</span>
+                  </div>
+                </div>
+
+                <div className="p-8 md:p-12 relative z-10">
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                     {/* Left Content */}
                     <div>
-                      <div className="flex items-center gap-3 mb-4">
-                        <div className="w-3 h-3 bg-[var(--pravdast-yellow)] rounded-full"></div>
-                        <span className="text-sm text-[var(--pravdast-yellow)] font-medium uppercase tracking-wider">
+                      <div className="flex items-center gap-3 mb-6">
+                        <div className="w-4 h-4 rounded-full bg-gradient-to-r from-[#ECB629] to-[#ECB629]/80"></div>
+                        <span className="text-sm text-[#ECB629] font-medium uppercase tracking-wider">
                           {currentCase.industry}
                         </span>
                       </div>
@@ -164,7 +255,7 @@ export const CaseStudiesSlider = () => {
                         {currentCase.company}
                       </h3>
 
-                      <p className="text-lg text-[var(--pravdast-yellow)] mb-6 font-medium">
+                      <p className="text-lg text-[#ECB629] mb-6 font-medium leading-relaxed">
                         {currentCase.tagline}
                       </p>
 
@@ -175,97 +266,143 @@ export const CaseStudiesSlider = () => {
                       {/* Systems Used */}
                       <div className="flex flex-wrap gap-3 mb-8">
                         {currentCase.systems.map((system, index) => (
-                          <span
+                          <motion.span
                             key={index}
-                            className="px-4 py-2 bg-[var(--pravdast-yellow)]/10 border border-[var(--pravdast-yellow)]/30 rounded-full text-sm text-[var(--pravdast-yellow)] font-medium"
+                            className="px-4 py-2 bg-gradient-to-r from-[#ECB629]/20 to-[#ECB629]/10 border border-[#ECB629]/40 rounded-full text-sm text-[#ECB629] font-medium"
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.3, delay: index * 0.1 }}
                           >
                             {system}
-                          </span>
+                          </motion.span>
                         ))}
                       </div>
 
-                      {/* Testimonial */}
-                      <blockquote className="text-lg italic text-gray-300 border-l-4 border-[var(--pravdast-yellow)] pl-6">
-                        "{currentCase.testimonial}"
-                      </blockquote>
+                      {/* Enhanced Testimonial */}
+                      <div className="relative">
+                        <div className="absolute -left-2 -top-2 text-4xl text-[#ECB629]/20 font-serif">"</div>
+                        <blockquote className="text-lg italic text-gray-200 border-l-4 border-[#ECB629] pl-6 bg-slate-800/30 rounded-r-lg p-4">
+                          {currentCase.testimonial}
+                        </blockquote>
+                      </div>
                     </div>
 
-                    {/* Right Content - Results */}
+                    {/* Right Content - Enhanced Results */}
                     <div>
                       <div className="grid grid-cols-1 gap-4">
                         {currentCase.results.map((result, index) => (
                           <motion.div
                             key={index}
-                            className="bg-[var(--pravdast-dark)]/50 border border-[var(--pravdast-yellow)]/20 rounded-lg p-6 text-center"
+                            className="relative overflow-hidden rounded-xl bg-gradient-to-r from-slate-800/60 to-slate-900/80 border border-green-500/20 p-6 text-center group hover:border-green-500/40 transition-all duration-300"
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: index * 0.1 }}
                           >
-                            <div className="flex items-center justify-center mb-3">
-                              <TrendingUp className="text-[var(--pravdast-yellow)] w-6 h-6 mr-2" />
-                              <span className="text-2xl md:text-3xl font-bold text-[var(--pravdast-yellow)]">
-                                {result.metric}
-                              </span>
+                            {/* Success indicator background */}
+                            <div className="absolute inset-0 opacity-10">
+                              <div className="absolute inset-0" style={{
+                                backgroundImage: `
+                                  linear-gradient(45deg, rgba(34, 197, 94, 0.1) 25%, transparent 25%),
+                                  linear-gradient(-45deg, rgba(34, 197, 94, 0.1) 25%, transparent 25%)
+                                `,
+                                backgroundSize: '15px 15px'
+                              }}></div>
                             </div>
-                            <p className="text-gray-300 text-sm">
-                              {result.description}
-                            </p>
+                            
+                            <div className="relative z-10">
+                              <div className="flex items-center justify-center mb-3">
+                                <div className="w-10 h-10 rounded-full bg-gradient-to-r from-green-500 to-green-400 flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300">
+                                  <TrendingUp className="text-white w-5 h-5" />
+                                </div>
+                                <div className="text-center">
+                                  <span className="text-2xl md:text-3xl font-bold text-green-400 block">
+                                    {result.metric}
+                                  </span>
+                                </div>
+                              </div>
+                              <p className="text-gray-300 text-sm leading-relaxed">
+                                {result.description}
+                              </p>
+                            </div>
+                            
+                            {/* Floating elements */}
+                            <div className="absolute bottom-2 right-2 opacity-20">
+                              <motion.div
+                                className="w-2 h-2 bg-green-500 rounded-full"
+                                animate={{
+                                  scale: [1, 1.3, 1],
+                                  opacity: [0.3, 0.7, 0.3],
+                                }}
+                                transition={{
+                                  duration: 2,
+                                  repeat: Infinity,
+                                  delay: index * 0.2,
+                                }}
+                              />
+                            </div>
                           </motion.div>
                         ))}
                       </div>
                     </div>
                   </div>
-                </CardContent>
-              </Card>
+                </div>
+              </div>
             </motion.div>
           </AnimatePresence>
 
-          {/* Navigation Arrows */}
-          <div className="flex justify-center items-center gap-4 mt-8">
-            <Button
-              variant="outline"
-              size="icon"
+          {/* Enhanced Navigation */}
+          <div className="flex justify-center items-center gap-6 mt-12">
+            <motion.button
               onClick={prevSlide}
-              className="w-12 h-12 rounded-full bg-[var(--pravdast-dark-gray)] border-[var(--pravdast-yellow)]/30 hover:bg-[var(--pravdast-yellow)]/10 hover:border-[var(--pravdast-yellow)] text-white"
+              className="w-14 h-14 rounded-full bg-gradient-to-r from-slate-800 to-slate-700 border border-[#ECB629]/30 hover:border-[#ECB629] text-white flex items-center justify-center transition-all duration-300 hover:scale-110"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
             >
               <ChevronLeft className="w-6 h-6" />
-            </Button>
+            </motion.button>
 
-            {/* Dots Indicator */}
-            <div className="flex gap-2 mx-6">
+            {/* Enhanced Dots Indicator */}
+            <div className="flex gap-3">
               {caseStudies.map((_, index) => (
-                <button
+                <motion.button
                   key={index}
                   onClick={() => setCurrentSlide(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  className={`w-4 h-4 rounded-full transition-all duration-300 ${
                     index === currentSlide
-                      ? "bg-[var(--pravdast-yellow)] scale-125"
+                      ? "bg-[#ECB629] shadow-lg shadow-[#ECB629]/40"
                       : "bg-gray-600 hover:bg-gray-500"
                   }`}
+                  whileHover={{ scale: 1.2 }}
+                  whileTap={{ scale: 0.9 }}
                 />
               ))}
             </div>
 
-            <Button
-              variant="outline"
-              size="icon"
+            <motion.button
               onClick={nextSlide}
-              className="w-12 h-12 rounded-full bg-[var(--pravdast-dark-gray)] border-[var(--pravdast-yellow)]/30 hover:bg-[var(--pravdast-yellow)]/10 hover:border-[var(--pravdast-yellow)] text-white"
+              className="w-14 h-14 rounded-full bg-gradient-to-r from-slate-800 to-slate-700 border border-[#ECB629]/30 hover:border-[#ECB629] text-white flex items-center justify-center transition-all duration-300 hover:scale-110"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
             >
               <ChevronRight className="w-6 h-6" />
-            </Button>
+            </motion.button>
           </div>
 
-          {/* CTA */}
-          <div className="text-center mt-8">
+          {/* Enhanced CTA */}
+          <div className="text-center mt-12">
             <Link href="/case-studies">
-              <Button
-                size="lg"
-                className="bg-[var(--pravdast-yellow)] text-[var(--pravdast-dark)] hover:bg-[#d4a426] font-semibold px-8 py-3"
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
-                Вижте всички казуси
-                <ArrowRight className="ml-2 w-5 h-5" />
-              </Button>
+                <Button
+                  size="lg"
+                  className="bg-gradient-to-r from-[#ECB629] to-[#ECB629]/80 hover:from-[#ECB629]/90 hover:to-[#ECB629]/70 text-black font-semibold px-8 py-4 rounded-xl shadow-lg shadow-[#ECB629]/20 transition-all duration-300"
+                >
+                  Вижте всички казуси
+                  <ArrowRight className="ml-2 w-5 h-5" />
+                </Button>
+              </motion.div>
             </Link>
           </div>
         </div>
