@@ -47,12 +47,35 @@ export default async function handler(req, res) {
 
     if (req.method === 'PUT') {
       // Update blog post
-      const { title, slug, excerpt, content, category, tags = [], isPublished } = req.body || {};
+      const { title, slug, excerpt, content, category, tags, isPublished } = req.body || {};
+      
+      // If only isPublished is provided (publish/unpublish action)
+      if (typeof isPublished === 'boolean' && !title && !content) {
+        const posts = await sql`
+          UPDATE blog_posts 
+          SET is_published = ${isPublished}, updated_at = NOW()
+          WHERE id = ${postId} RETURNING *
+        `;
+        
+        if (posts.length === 0) {
+          return res.status(404).json({ error: 'Blog post not found' });
+        }
+        
+        return res.json({ 
+          message: `Blog post ${isPublished ? 'published' : 'unpublished'} successfully`, 
+          post: posts[0] 
+        });
+      }
+      
+      // Full update with all fields
+      if (!title || !slug || !excerpt || !content || !category) {
+        return res.status(400).json({ error: 'Missing required fields for full update' });
+      }
       
       const posts = await sql`
         UPDATE blog_posts 
         SET title = ${title}, slug = ${slug}, excerpt = ${excerpt}, content = ${content}, 
-            category = ${category}, tags = ${tags}, is_published = ${isPublished}, updated_at = NOW()
+            category = ${category}, tags = ${tags || []}, is_published = ${isPublished || false}, updated_at = NOW()
         WHERE id = ${postId} RETURNING *
       `;
         

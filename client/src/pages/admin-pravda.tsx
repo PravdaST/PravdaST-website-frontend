@@ -290,7 +290,7 @@ export default function AdminPravdaPage() {
   // Delete blog post mutation
   const deletePostMutation = useMutation({
     mutationFn: async (id: number) => {
-      const response = await fetch(`/api/admin/blog/posts/${id}`, {
+      const response = await fetch(`/api/admin/blog/${id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -323,11 +323,14 @@ export default function AdminPravdaPage() {
   // Publish/Unpublish mutations
   const publishMutation = useMutation({
     mutationFn: async ({ id, action }: { id: number; action: 'publish' | 'unpublish' }) => {
-      const response = await fetch(`/api/admin/blog/${action}/${id}`, {
-        method: 'POST',
+      const isPublished = action === 'publish';
+      const response = await fetch(`/api/admin/blog/${id}`, {
+        method: 'PUT',
         headers: {
           'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
         },
+        body: JSON.stringify({ isPublished }),
       });
 
       if (!response.ok) {
