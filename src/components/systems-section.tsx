@@ -234,7 +234,7 @@ export const SystemsSection = () => {
                     >
                       {/* Active Tab Glow */}
                       {activeTab === system.id && (
-                        <div div
+                        <div
                           className="absolute inset-0 bg-gradient-to-r from-[#ECB629]/10 to-transparent rounded-xl"
                         />
                       )}
@@ -242,16 +242,16 @@ export const SystemsSection = () => {
                       {/* Hover Glow Effect */}
                       
                       <div className="relative z-10 flex items-center">
-                        <div className="mr-4">
+                        <div className={`mr-4 w-12 h-12 rounded-lg flex items-center justify-center transition-all duration-300 ${
                             activeTab === system.id 
                               ? "bg-[#ECB629] text-black" 
                               : "bg-slate-700 text-gray-400 group-hover:bg-[#ECB629]/20 group-hover:text-[#ECB629]"
                           }`}>
                             <system.icon size={24} />
                           </div>
-                        </div>
                         
                         <div className="flex-1">
+                          <h3 className={`text-lg font-semibold mb-1 transition-colors duration-300 ${
                             activeTab === system.id ? "text-[#ECB629]" : "text-current"
                           }`}>
                             {system.title}
@@ -261,7 +261,7 @@ export const SystemsSection = () => {
                         
                         {/* Active Indicator */}
                         {activeTab === system.id && (
-                          <div div
+                          <div
                             className="w-1 h-8 bg-[#ECB629] rounded-full ml-3"
                           />
                         )}

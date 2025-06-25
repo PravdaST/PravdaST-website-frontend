@@ -66,11 +66,11 @@ export class ErrorBoundary extends Component<Props, State> {
       errorInfo: null,
       errorId: ''
     });
-  };
+  }
 
   handleReload = () => {
     window.location.reload();
-  };
+  }
 
   render() {
     if (this.state.hasError) {

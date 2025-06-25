@@ -68,7 +68,7 @@ export const SolutionSection = () => {
           <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-12">
             Ние не предлагаме маркетинг. Нашият подход е бизнес инженеринг. Разликата е в резултата:
           </p>
-        </div div>
+        </div>
         
         {/* Comparison */}
         <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto mb-20">

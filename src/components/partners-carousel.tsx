@@ -50,10 +50,8 @@ export const PartnersCarousel = () => {
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
-        <div div 
-          className="text-center mb-12"
-          <div div
-            className="inline-flex items-center gap-3 mb-6 px-6 py-3 rounded-full bg-gradient-to-r from-slate-800/80 to-slate-700/60 border border-slate-600/30 backdrop-blur-sm"
+        <div className="text-center mb-12">
+          <div className="inline-flex items-center gap-3 mb-6 px-6 py-3 rounded-full bg-gradient-to-r from-slate-800/80 to-slate-700/60 border border-slate-600/30 backdrop-blur-sm">
             <div className="flex items-center gap-2">
               <div className="relative">
                 <div className="w-2 h-2 bg-[#ECB629] rounded-full"></div>
@@ -62,8 +60,8 @@ export const PartnersCarousel = () => {
                 <span className="text-[#ECB629] font-bold">Проверени</span> партньорства с водещи платформи
               </span>
             </div>
-          </div div>
-        </div div>
+          </div>
+        </div>
 
         <div className="relative overflow-hidden max-w-6xl mx-auto">
           <div
@@ -71,22 +69,25 @@ export const PartnersCarousel = () => {
               width: `${partners.length * 3 * 240}px`,
             {/* First set */}
             {partners.map((partner, index) => (
-              <div div
+              <motion.div
                 key={`first-${index}`}
                 className="flex-shrink-0 flex justify-center items-center"
                 style={{ width: "240px" }}
                 whileHover={{ scale: 1.1 }}
+              >
                 <div className="relative p-4">
                   <img
                     src={partner.logo}
                     alt={partner.name}
                     loading="lazy"
                   />
-                  <div div
+                  <motion.div
+                    className="absolute inset-0 bg-[#ECB629]/20 rounded-lg"
+                    initial={{ opacity: 0 }}
                     whileHover={{ opacity: 0.1 }}
                   />
                 </div>
-              </div div>
+              </motion.div>
             ))}
             {/* Second set for seamless loop */}
             {partners.map((partner, index) => (
