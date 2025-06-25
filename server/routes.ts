@@ -6,6 +6,7 @@ import { z } from "zod";
 import { seoGenerator } from "./lib/seo-generator";
 import { sanitizeInput, validateContentType } from "./middleware/security";
 import { emailService } from "./lib/email-service";
+import { trackBlogView, trackBlogLike, trackBlogShare, getBlogStats } from "./blog-analytics";
 
 
 export async function registerRoutes(app: Express): Promise<Server> {
@@ -272,6 +273,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.status(500).json({ message: "Failed to fetch blog post" });
     }
   });
+
+  // Blog analytics endpoints
+  app.post("/api/blog/:slug/view", trackBlogView);
+  app.post("/api/blog/:slug/like", trackBlogLike);
+  app.post("/api/blog/:slug/share", trackBlogShare);
+  app.get("/api/blog/:slug/stats", getBlogStats);
 
   // Get all contacts (for admin purposes)
   app.get("/api/contacts", async (req, res) => {

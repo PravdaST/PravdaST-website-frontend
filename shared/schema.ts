@@ -47,6 +47,42 @@ export const adminSessions = pgTable("admin_sessions", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
+// Blog Analytics tables for real statistics
+export const blogViews = pgTable("blog_views", {
+  id: serial("id").primaryKey(),
+  postSlug: text("post_slug").notNull(),
+  viewedAt: timestamp("viewed_at").defaultNow().notNull(),
+  ipAddress: text("ip_address"),
+  userAgent: text("user_agent"),
+});
+
+export const blogLikes = pgTable("blog_likes", {
+  id: serial("id").primaryKey(),
+  postSlug: text("post_slug").notNull(),
+  likedAt: timestamp("liked_at").defaultNow().notNull(),
+  ipAddress: text("ip_address"),
+});
+
+export const blogShares = pgTable("blog_shares", {
+  id: serial("id").primaryKey(),
+  postSlug: text("post_slug").notNull(),
+  platform: text("platform").notNull(), // facebook, twitter, linkedin, copy
+  sharedAt: timestamp("shared_at").defaultNow().notNull(),
+  ipAddress: text("ip_address"),
+});
+
+// Types and schemas for blog analytics
+export type BlogView = typeof blogViews.$inferSelect;
+export type InsertBlogView = typeof blogViews.$inferInsert;
+export type BlogLike = typeof blogLikes.$inferSelect;
+export type InsertBlogLike = typeof blogLikes.$inferInsert;
+export type BlogShare = typeof blogShares.$inferSelect;
+export type InsertBlogShare = typeof blogShares.$inferInsert;
+
+export const insertBlogViewSchema = createInsertSchema(blogViews);
+export const insertBlogLikeSchema = createInsertSchema(blogLikes);
+export const insertBlogShareSchema = createInsertSchema(blogShares);
+
 export const insertUserSchema = createInsertSchema(users).pick({
   username: true,
   password: true,

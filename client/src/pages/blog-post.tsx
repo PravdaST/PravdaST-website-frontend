@@ -1,6 +1,7 @@
 import { useParams } from "wouter";
 import { useState, useEffect, useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { SEOHead } from "@/components/seo-head";
@@ -41,11 +42,17 @@ interface BlogPost {
 }
 
 interface Comment {
-  id: number;
-  authorName: string;
-  authorEmail: string;
+  id: string;
+  author: string;
   content: string;
-  createdAt: string;
+  publishedAt: string;
+}
+
+interface BlogStats {
+  views: number;
+  likes: number;
+  shares: number;
+  isLiked: boolean;
 }
 
 // Blog Background Component
@@ -258,13 +265,70 @@ export default function BlogPost() {
   const [newComment, setNewComment] = useState("");
   const [newCommentAuthor, setNewCommentAuthor] = useState("");
   const [showShareMenu, setShowShareMenu] = useState(false);
-  const [liked, setLiked] = useState(false);
   const contentRef = useRef(null);
   const isInView = useInView(contentRef);
+  const queryClient = useQueryClient();
+
+  // Get real blog stats from database
+  const { data: stats } = useQuery<BlogStats>({
+    queryKey: [`/api/blog-stats?slug=${slug}`],
+    enabled: !!slug,
+    refetchOnWindowFocus: false,
+  });
+
+  // Track blog view mutation
+  const viewMutation = useMutation({
+    mutationFn: async () => {
+      const response = await fetch('/api/blog-view', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ slug }),
+      });
+      if (!response.ok) throw new Error('Failed to track view');
+      return response.json();
+    },
+  });
+
+  // Track blog like mutation
+  const likeMutation = useMutation({
+    mutationFn: async () => {
+      const response = await fetch('/api/blog-like', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ slug }),
+      });
+      if (!response.ok) throw new Error('Failed to track like');
+      return response.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: [`/api/blog-stats?slug=${slug}`] });
+    },
+  });
+
+  // Track blog share mutation
+  const shareMutation = useMutation({
+    mutationFn: async (platform: string) => {
+      const response = await fetch('/api/blog-share', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ slug, platform }),
+      });
+      if (!response.ok) throw new Error('Failed to track share');
+      return response.json();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: [`/api/blog-stats?slug=${slug}`] });
+    },
+  });
 
   useEffect(() => {
     const foundPost = blogPosts.find((p) => p.slug === slug);
     setPost(foundPost || null);
+    
+    // Track view when post loads
+    if (foundPost && slug) {
+      viewMutation.mutate();
+    }
   }, [slug]);
 
   const handleShare = (platform: string) => {
@@ -272,6 +336,9 @@ export default function BlogPost() {
 
     const url = `https://www.pravdagency.eu/blog/${post.slug}`;
     const text = `${post.title} - ${post.excerpt}`;
+
+    // Track the share
+    shareMutation.mutate(platform);
 
     switch (platform) {
       case "facebook":
@@ -298,6 +365,10 @@ export default function BlogPost() {
         break;
     }
     setShowShareMenu(false);
+  };
+
+  const handleLike = () => {
+    likeMutation.mutate();
   };
 
   const handleAddComment = () => {
@@ -397,7 +468,7 @@ export default function BlogPost() {
                 </div>
                 <div className="flex items-center gap-2">
                   <Eye className="h-5 w-5 text-[#ECB629]" />
-                  <span>{post.views || 0} прегледа</span>
+                  <span>{stats?.views || 0} прегледа</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Tag className="h-5 w-5 text-[#ECB629]" />
@@ -516,17 +587,17 @@ export default function BlogPost() {
                 <Button
                   variant="outline"
                   size="sm"
-                  onClick={() => setLiked(!liked)}
+                  onClick={handleLike}
                   className={`border-[#ECB629]/30 transition-all duration-300 ${
-                    liked 
+                    stats?.isLiked 
                       ? "bg-[#ECB629]/20 text-[#ECB629] border-[#ECB629]/50" 
                       : "text-[#ECB629] hover:bg-[#ECB629]/10 hover:border-[#ECB629]/50"
                   }`}
                 >
                   <Heart
-                    className={`h-4 w-4 mr-2 transition-all duration-300 ${liked ? "fill-current scale-110" : ""}`}
+                    className={`h-4 w-4 mr-2 transition-all duration-300 ${stats?.isLiked ? "fill-current scale-110" : ""}`}
                   />
-                  {liked ? "Харесано" : "Харесай"}
+                  {stats?.isLiked ? `Харесано (${stats?.likes || 0})` : `Харесай (${stats?.likes || 0})`}
                 </Button>
               </div>
 
