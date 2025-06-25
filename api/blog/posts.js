@@ -36,10 +36,10 @@ export default async function handler(req, res) {
       ORDER BY created_at DESC
     `;
     
-    console.log(`Successfully fetched ${posts.length} published posts`);
+    console.log(`Successfully fetched ${posts ? posts.length : 0} published posts`);
     
-    // Ensure we always return an array, even if empty
-    const postsArray = Array.isArray(posts) ? posts : [];
+    // Ensure we always return an array, even if empty or null
+    const postsArray = Array.isArray(posts) && posts.length > 0 ? posts : [];
     
     // Return posts as JSON array with 200 OK status
     return res.status(200).json(postsArray);

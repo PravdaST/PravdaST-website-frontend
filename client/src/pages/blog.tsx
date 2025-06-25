@@ -119,10 +119,10 @@ export default function Blog() {
     posts && posts.length > 0 ? posts.map((post: BlogPost) => post.category) : []
   ))];
 
-  const filteredPosts = posts && posts.length > 0 ? posts.filter((post: BlogPost) => {
-    const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         post.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         (post.tags && post.tags.some && post.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase())));
+  const filteredPosts = posts && Array.isArray(posts) && posts.length > 0 ? posts.filter((post: BlogPost) => {
+    const matchesSearch = post.title && post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         post.excerpt && post.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         (post.tags && Array.isArray(post.tags) && post.tags.some(tag => tag && tag.toLowerCase().includes(searchTerm.toLowerCase())));
     const matchesCategory = selectedCategory === 'Всички' || post.category === selectedCategory;
     return matchesSearch && matchesCategory;
   }) : [];
@@ -375,14 +375,20 @@ export default function Blog() {
                         transition={{ duration: 0.4, delay: 0.6 }}
                         viewport={{ once: true }}
                       >
-                        {post.tags.slice(0, 3).map((tag, tagIndex) => (
-                          <span 
-                            key={tagIndex}
-                            className="px-2 py-1 bg-slate-700/50 text-gray-300 text-xs rounded-full"
-                          >
-                            {tag}
+                        {post.tags && Array.isArray(post.tags) && post.tags.length > 0 ? (
+                          post.tags.slice(0, 3).map((tag, tagIndex) => (
+                            <span 
+                              key={tagIndex}
+                              className="px-2 py-1 bg-slate-700/50 text-gray-300 text-xs rounded-full"
+                            >
+                              {tag}
+                            </span>
+                          ))
+                        ) : (
+                          <span className="px-2 py-1 bg-slate-700/50 text-gray-300 text-xs rounded-full">
+                            {post.category || 'Общо'}
                           </span>
-                        ))}
+                        )}
                       </motion.div>
 
                       {/* Read More Button */}
@@ -415,7 +421,7 @@ export default function Blog() {
             )}
 
             {/* No Results */}
-            {filteredPosts.length === 0 && (
+            {(!filteredPosts || !Array.isArray(filteredPosts) || filteredPosts.length === 0) && !isLoading && (
               <motion.div 
                 className="text-center py-16"
                 initial={{ opacity: 0, y: 20 }}
@@ -425,7 +431,12 @@ export default function Blog() {
               >
                 <TrendingUp className="w-16 h-16 text-gray-600 mx-auto mb-4" />
                 <h3 className="text-xl font-semibold text-gray-400 mb-2">Няма намерени статии</h3>
-                <p className="text-gray-500">Опитайте с различни ключови думи или категория.</p>
+                <p className="text-gray-500">
+                  {searchTerm || selectedCategory !== 'Всички' 
+                    ? 'Опитайте с различни ключови думи или категория.' 
+                    : 'Работим върху ново съдържание. Очаквайте скоро експертни статии за бизнес инженерство.'
+                  }
+                </p>
               </motion.div>
             )}
           </div>
