@@ -12,7 +12,7 @@ const STATIC_ASSETS = [
   '/about',
   '/contact',
   '/manifest.json',
-  '/icon-192.png',
+  '/favicon-192.png',
   '/icon-512.png',
   '/apple-touch-icon.png',
   '/favicon.ico'
@@ -34,10 +34,20 @@ self.addEventListener('install', (event) => {
     caches.open(STATIC_CACHE)
       .then((cache) => {
         console.log('Service Worker: Caching Static Assets');
-        return cache.addAll(STATIC_ASSETS);
+        // Кешираме файловете един по един за да избегнем грешки
+        return Promise.allSettled(
+          STATIC_ASSETS.map(asset => 
+            cache.add(asset).catch(err => 
+              console.warn(`Failed to cache ${asset}:`, err)
+            )
+          )
+        );
       })
       .then(() => {
         return self.skipWaiting();
+      })
+      .catch(error => {
+        console.error('Service Worker install error:', error);
       })
   );
 });
