@@ -1,1174 +1,1742 @@
-import { motion, useInView } from "framer-motion";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
+import { ArrowRight, Search, Target, TrendingUp, BarChart, Eye, Brain, Rocket, Crown, Diamond, Gem, HeartHandshake, Infinity, Users, CheckCircle, Star, Award, Shield, Layers, Database, Server, Code, Magnet, Zap, Clock, Network, Settings } from "lucide-react";
 import { SEOHead } from "@/components/seo-head";
-import { useRef, useState, useEffect } from "react";
-import {
-  ArrowRight,
-  ArrowLeft,
-  BarChart3,
-  TrendingDown,
-  Crown,
-  Zap,
-} from "lucide-react";
+import { pageSEOData } from "@/data/seo-pages";
 
-// SEO Struktor Background Component
-const SeoStruktorBackground = () => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+export default function SEOStruktor() {
+  const heroRef = useRef(null);
+  const philosophyRef = useRef(null);
+  const processRef = useRef(null);
+  const resultsRef = useRef(null);
+  const investmentRef = useRef(null);
+  const ctaRef = useRef(null);
 
-  useEffect(() => {
-    const updateMousePosition = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-    window.addEventListener('mousemove', updateMousePosition);
-    return () => window.removeEventListener('mousemove', updateMousePosition);
-  }, []);
+  const heroInView = useInView(heroRef, { once: true });
+  const philosophyInView = useInView(philosophyRef, { once: true });
+  const processInView = useInView(processRef, { once: true });
+  const resultsInView = useInView(resultsRef, { once: true });
+  const investmentInView = useInView(investmentRef, { once: true });
+  const ctaInView = useInView(ctaRef, { once: true });
 
-  return (
-    <div className="absolute inset-0 overflow-hidden opacity-15">
-      {/* SEO Structure Grid */}
-      <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <pattern id="seo-grid" width="80" height="80" patternUnits="userSpaceOnUse">
-            <path d="M 80 0 L 0 0 0 80" fill="none" stroke="var(--pravdast-yellow)" strokeWidth="0.5" opacity="0.3"/>
-            <circle cx="40" cy="40" r="2" fill="var(--pravdast-yellow)" opacity="0.4"/>
-          </pattern>
-        </defs>
-        <rect width="100%" height="100%" fill="url(#seo-grid)" />
-      </svg>
-      
-      {/* SEO Keywords floating */}
-      {['SEO', 'STRUCTURE', 'SYSTEM', 'RANKING', 'TRAFFIC', 'AUTHORITY'].map((keyword, i) => (
-        <motion.div
-          key={keyword}
-          className="absolute text-[var(--pravdast-yellow)] font-mono text-xs opacity-20"
-          style={{
-            left: `${15 + (i * 12)}%`,
-            top: `${20 + (i % 3) * 25}%`,
-          }}
-          animate={{
-            x: mousePosition.x * 0.015 * (i % 2 === 0 ? 1 : -1),
-            y: mousePosition.y * 0.015 * (i % 2 === 0 ? -1 : 1),
-            opacity: [0.2, 0.4, 0.2],
-          }}
-          transition={{ 
-            type: "spring", 
-            stiffness: 30, 
-            damping: 10,
-            opacity: { duration: 3, repeat: Infinity }
-          }}
-        >
-          {keyword}
-        </motion.div>
-      ))}
-      
-      {/* Network connections representing SEO structure */}
-      <motion.svg
-        className="absolute inset-0 w-full h-full"
-        animate={{
-          x: mousePosition.x * 0.008,
-          y: mousePosition.y * 0.008,
-        }}
-        transition={{ type: "spring", stiffness: 40, damping: 15 }}
-      >
-        {/* Central hub */}
-        <circle cx="50%" cy="50%" r="4" fill="var(--pravdast-yellow)" opacity="0.6"/>
-        
-        {/* Connecting lines to represent SEO structure */}
-        <path
-          d="M 20% 30% Q 50% 20% 80% 30%"
-          fill="none"
-          stroke="var(--pravdast-yellow)"
-          strokeWidth="1.5"
-          opacity="0.4"
-        />
-        <path
-          d="M 20% 70% Q 50% 80% 80% 70%"
-          fill="none"
-          stroke="var(--pravdast-yellow)"
-          strokeWidth="1.5"
-          opacity="0.4"
-        />
-        <path
-          d="M 30% 20% L 50% 50% L 70% 20%"
-          fill="none"
-          stroke="var(--pravdast-yellow)"
-          strokeWidth="1"
-          opacity="0.3"
-        />
-        <path
-          d="M 30% 80% L 50% 50% L 70% 80%"
-          fill="none"
-          stroke="var(--pravdast-yellow)"
-          strokeWidth="1"
-          opacity="0.3"
-        />
-      </motion.svg>
-    </div>
-  );
-};
-
-// Philosophy Section Component  
-const PhilosophySection = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.3 });
-  const [currentStep, setCurrentStep] = useState(0);
-
-  useEffect(() => {
-    if (isInView) {
-      const interval = setInterval(() => {
-        setCurrentStep(prev => prev === 0 ? 1 : 0);
-      }, 3000); // Switch every 3 seconds
-      
-      return () => clearInterval(interval);
-    }
-  }, [isInView]);
-
-  return (
-    <section ref={ref} className="py-20 bg-slate-900/50">
-      <div className="container mx-auto px-6">
-        <div className="max-w-4xl mx-auto">
-          <motion.h2
-            className="text-3xl md:text-4xl font-bold mb-16 text-center text-white"
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8 }}
-          >
-            За да е стабилна една сграда, тя се нуждае от инженерен план.
-          </motion.h2>
-
-          {/* Mobile-first single column design */}
-          <div className="space-y-12">
-            
-            {/* Transformation Visualization */}
-            <motion.div
-              className="relative bg-slate-800/80 rounded-2xl p-8 border border-slate-600/30 overflow-hidden"
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              {/* Background Pattern */}
-              <div className="absolute inset-0 opacity-10">
-                <div className="grid grid-cols-8 md:grid-cols-12 gap-1 h-full p-4">
-                  {Array.from({ length: 96 }).map((_, i) => (
-                    <motion.div
-                      key={i}
-                      className={`rounded-sm h-2 ${
-                        currentStep === 0 
-                          ? 'bg-red-400' 
-                          : 'bg-[var(--pravdast-yellow)]'
-                      }`}
-                      initial={{
-                        rotate: currentStep === 0 ? Math.random() * 180 - 90 : 0,
-                        scale: currentStep === 0 ? Math.random() * 0.8 + 0.6 : 1,
-                      }}
-                      animate={{
-                        rotate: currentStep === 1 ? 0 : Math.random() * 180 - 90,
-                        scale: currentStep === 1 ? 1 : Math.random() * 0.8 + 0.6,
-                        backgroundColor: currentStep === 1 ? 'rgb(236, 182, 40)' : 'rgb(248, 113, 113)'
-                      }}
-                      transition={{
-                        duration: 2,
-                        delay: i * 0.005,
-                        ease: "easeInOut",
-                      }}
-                    />
-                  ))}
-                </div>
-              </div>
-
-              {/* Status Indicator */}
-              <div className="relative z-10 text-center mb-8">
-                <motion.div
-                  className={`inline-flex items-center px-4 py-2 rounded-full text-sm font-semibold ${
-                    currentStep === 0 
-                      ? 'bg-red-500/20 text-red-300 border border-red-500/30' 
-                      : 'bg-[var(--pravdast-yellow)]/20 text-[var(--pravdast-yellow)] border border-[var(--pravdast-yellow)]/30'
-                  }`}
-                  animate={{
-                    backgroundColor: currentStep === 1 
-                      ? 'rgba(236, 182, 40, 0.2)' 
-                      : 'rgba(239, 68, 68, 0.2)'
-                  }}
-                  transition={{ duration: 1 }}
-                >
-                  <motion.div
-                    className={`w-2 h-2 rounded-full mr-2 ${
-                      currentStep === 0 ? 'bg-red-400' : 'bg-[var(--pravdast-yellow)]'
-                    }`}
-                    animate={{
-                      backgroundColor: currentStep === 1 
-                        ? 'rgb(236, 182, 40)' 
-                        : 'rgb(248, 113, 113)'
-                    }}
-                    transition={{ duration: 1 }}
-                  />
-                  {currentStep === 0 ? 'БЕЗ СИСТЕМА' : 'СЪС СИСТЕМА'}
-                </motion.div>
-              </div>
-
-              {/* Progress Arrow */}
-              <div className="relative z-10 flex justify-center mb-8">
-                <motion.div
-                  className="flex items-center space-x-4"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 1 }}
-                >
-                  <motion.div 
-                    className="w-16 h-0.5"
-                    animate={{
-                      background: currentStep === 0 
-                        ? 'linear-gradient(to right, rgb(248, 113, 113), rgb(239, 68, 68))'
-                        : 'linear-gradient(to right, rgb(248, 113, 113), rgb(236, 182, 40))'
-                    }}
-                    transition={{ duration: 1.5 }}
-                  />
-                  <motion.div
-                    animate={{
-                      x: currentStep === 1 ? [0, 10, 0] : [0, -10, 0],
-                      color: currentStep === 1 ? 'rgb(236, 182, 40)' : 'rgb(248, 113, 113)',
-                      scale: currentStep === 1 ? [1, 1.2, 1] : [1, 0.8, 1]
-                    }}
-                    transition={{ 
-                      duration: 1.5,
-                      repeat: Infinity,
-                      repeatType: "loop"
-                    }}
-                  >
-                    {currentStep === 1 ? (
-                      <ArrowRight className="w-6 h-6" />
-                    ) : (
-                      <ArrowLeft className="w-6 h-6" />
-                    )}
-                  </motion.div>
-                  <motion.div 
-                    className="w-16 h-0.5"
-                    animate={{
-                      background: currentStep === 1 
-                        ? 'linear-gradient(to right, rgb(236, 182, 40), rgb(236, 182, 40))'
-                        : 'linear-gradient(to right, rgb(236, 182, 40), rgb(248, 113, 113))'
-                    }}
-                    transition={{ duration: 1.5 }}
-                  />
-                </motion.div>
-              </div>
-            </motion.div>
-
-            {/* Content Cards */}
-            <div className="grid gap-8 md:grid-cols-2">
-              
-              {/* Problem Card */}
-              <motion.div
-                className="bg-slate-800/60 rounded-xl p-6 border border-red-500/20"
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.8, delay: 0.4 }}
-              >
-                <div className="flex items-center mb-4">
-                  <div className="w-3 h-3 bg-red-400 rounded-full mr-3"></div>
-                  <h3 className="text-lg font-bold text-red-300">Проблемът</h3>
-                </div>
-                <p className="text-gray-300 leading-relaxed">
-                  Повечето уебсайтове се развиват хаотично – добавя се
-                  страница тук, пише се статия там. Липсва единна,
-                  централна структура. Точно това е причината резултатите
-                  да са непредсказуеми и краткотрайни.
-                </p>
-              </motion.div>
-
-              {/* Solution Card */}
-              <motion.div
-                className="bg-slate-800/60 rounded-xl p-6 border border-[var(--pravdast-yellow)]/20"
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.8, delay: 0.6 }}
-              >
-                <div className="flex items-center mb-4">
-                  <div className="w-3 h-3 bg-[var(--pravdast-yellow)] rounded-full mr-3"></div>
-                  <h3 className="text-lg font-bold text-[var(--pravdast-yellow)]">Решението</h3>
-                </div>
-                <p className="text-gray-300 leading-relaxed">
-                  Ние подхождаме към вашия сайт като архитекти. Преди да
-                  поставим и една \"тухла\" (съдържание), ние създаваме цялостния
-                  инженерен план (SEO Struktor™), който гарантира, че всеки
-                  елемент работи в синхрон с останалите, за да се постигне
-                  крайната цел – доминация в Google.
-                </p>
-              </motion.div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-};
-
-// Engineering Process Section Component
-const EngineeringProcessSection = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.2 });
-
-  const phases = [
+  const engineeringPhases = [
     {
-      number: "0",
-      title: "Здравият фундамент (Pagekraft™)",
-      description: "Преди да строим, проверяваме терена. Ако вашият сайт е бавен или технически неизправен, ние го изграждаме наново. Това е фундаментът, без който всяка конструкция е нестабилна.",
-      duration: "2-3 седмици",
-      deliverable: "Технически одит + оптимизиран сайт"
+      phase: "АНАЛИЗ",
+      icon: Eye,
+      title: "Техническа диагностика",
+      description: "Дълбок технически одит на сайта, анализ на конкуренцията и идентифициране на възможностите за оптимизация.",
+      duration: "5-7 дни",
+      deliverables: "Пълен технически одит, анализ на ключови думи, конкурентен анализ",
+      color: "from-blue-500 to-cyan-400"
     },
     {
-      number: "1", 
-      title: "Архитектурен план",
-      description: "Проектираме перфектната вътрешна архитектура, за да може Google лесно да \"разбере\" и оцени стойността на вашия сайт. Това е чертежът, който следваме.",
-      duration: "1-2 седмици",
-      deliverable: "SEO архитектура + URL структура"
+      phase: "АРХИТЕКТУРА", 
+      icon: Settings,
+      title: "SEO фундамент",
+      description: "Изграждане на техническата основа - оптимизация на скоростта, структурата и технически SEO елементи.",
+      duration: "10-14 дни",
+      deliverables: "Технически оптимизации, URL структура, schema markup, sitemap",
+      color: "from-indigo-500 to-purple-400"
     },
     {
-      number: "2",
-      title: "Архитектура на съдържанието", 
-      description: "Създаваме съдържание, което отговаря на въпросите на клиентите ви и демонстрира вашата експертиза. Всяка страница е структурен елемент, който допринася за здравината и стойността на цялата сграда.",
-      duration: "4-6 седмици",
-      deliverable: "Content стратегия + оптимизирани страници"
+      phase: "СЪДЪРЖАНИЕ",
+      icon: Brain,
+      title: "Стратегическо съдържание", 
+      description: "Създаване на оптимизирано съдържание, което отговаря на потребностите на аудиторията и изискванията на Google.",
+      duration: "Ongoing",
+      deliverables: "20+ оптимизирани страници, блог стратегия, локално SEO",
+      color: "from-green-500 to-emerald-400"
     },
     {
-      number: "3",
-      title: "Външен авторитет",
-      description: "Систематично изграждаме репутацията на вашия сайт в интернет, превръщайки го в авторитетен източник. Това му придава по-висока стойност и стабилност в очите на Google и пазара.",
-      duration: "Непрекъснато",
-      deliverable: "Link building + brand mentions"
+      phase: "ВЛАСТ",
+      icon: Crown,
+      title: "Авторитет и връзки",
+      description: "Изграждане на авторитет чрез качествени backlinks, PR активности и стратегическо позициониране.",
+      duration: "Ongoing",
+      deliverables: "Link building кампания, PR активности, локална популярност",
+      color: "from-orange-500 to-red-400"
     }
   ];
 
-  return (
-    <section ref={ref} className="py-20 bg-slate-800/30 relative overflow-hidden">
-      {/* Dynamic Blueprint Background */}
-      <div className="absolute inset-0 opacity-3">
-        <div className="grid grid-cols-12 gap-4 h-full p-8">
-          {Array.from({ length: 144 }).map((_, i) => (
-            <motion.div
-              key={i}
-              className="bg-[var(--pravdast-yellow)] rounded-sm h-1"
-              initial={{ opacity: 0, scale: 0 }}
-              animate={isInView ? { 
-                opacity: Math.random() * 0.3 + 0.1, 
-                scale: Math.random() * 0.8 + 0.4 
-              } : {}}
-              transition={{
-                duration: 2,
-                delay: i * 0.01,
-                repeat: Infinity,
-                repeatType: "reverse",
-                ease: "easeInOut"
-              }}
-            />
-          ))}
-        </div>
-      </div>
-
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            className="text-center mb-20"
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8 }}
-          >
-            <div className="inline-block px-4 py-2 bg-[var(--pravdast-yellow)]/10 rounded-full border border-[var(--pravdast-yellow)]/20 mb-6">
-              <span className="text-[var(--pravdast-yellow)] text-sm font-semibold">СИСТЕМЕН ПРОЦЕС</span>
-            </div>
-            <h2 className="text-3xl md:text-5xl font-bold text-white leading-tight">
-              От основите до покрива
-            </h2>
-            <p className="text-gray-300 text-lg mt-6 max-w-3xl mx-auto">
-              Нашият четирифазен инженерен процес на изграждане
-            </p>
-          </motion.div>
-
-          {/* Modern Card-Based Timeline */}
-          <div className="grid gap-8 md:gap-12">
-            {phases.map((phase, index) => (
-              <motion.div
-                key={phase.number}
-                className="relative"
-                initial={{ opacity: 0, y: 50 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.8, delay: index * 0.15 }}
-              >
-                {/* Connection Line */}
-                {index < phases.length - 1 && (
-                  <motion.div
-                    className="absolute left-6 md:left-10 top-24 w-0.5 h-20 bg-gradient-to-b from-[var(--pravdast-yellow)] to-slate-600 z-0"
-                    initial={{ scaleY: 0 }}
-                    animate={isInView ? { scaleY: 1 } : {}}
-                    transition={{ duration: 0.8, delay: index * 0.15 + 0.5 }}
-                  />
-                )}
-
-                <motion.div
-                  className="bg-slate-800/60 backdrop-blur-sm rounded-2xl border border-slate-600/30 overflow-hidden transition-all duration-300"
-                >
-                  <div className="p-6 md:p-8">
-                    <div className="flex flex-col md:flex-row md:items-start gap-6">
-                      
-                      {/* Phase Number Circle */}
-                      <motion.div
-                        className="flex-shrink-0"
-                      >
-                        <div className="relative">
-                          <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-[var(--pravdast-yellow)] to-yellow-600 rounded-full flex items-center justify-center shadow-lg">
-                            <span className="text-black font-bold text-xl md:text-2xl">
-                              {phase.number}
-                            </span>
-                          </div>
-                        </div>
-                      </motion.div>
-
-                      {/* Content */}
-                      <div className="flex-1 space-y-4">
-                        <div>
-                          <h3 className="text-xl md:text-2xl font-bold text-white mb-2">
-                            {phase.title}
-                          </h3>
-                          <p className="text-gray-300 leading-relaxed text-sm md:text-base">
-                            {phase.description}
-                          </p>
-                        </div>
-
-                        {/* Phase Details */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4 border-t border-slate-600/30">
-                          <div className="flex items-center space-x-2">
-                            <div className="w-2 h-2 bg-[var(--pravdast-yellow)] rounded-full"></div>
-                            <span className="text-sm text-gray-400">Времетраене:</span>
-                            <span className="text-sm font-semibold text-white">{phase.duration}</span>
-                          </div>
-                          <div className="flex items-center space-x-2">
-                            <div className="w-2 h-2 bg-[var(--pravdast-yellow)] rounded-full"></div>
-                            <span className="text-sm text-gray-400">Резултат:</span>
-                            <span className="text-sm font-semibold text-white">{phase.deliverable}</span>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Progress indicator */}
-                      <div className="flex-shrink-0 hidden md:block">
-                        <motion.div
-                          className="w-1 h-20 bg-slate-700 rounded-full overflow-hidden"
-                          initial={{ height: 0 }}
-                          animate={isInView ? { height: 80 } : {}}
-                          transition={{ duration: 1, delay: index * 0.15 + 0.8 }}
-                        >
-                          <motion.div
-                            className="w-full bg-gradient-to-t from-[var(--pravdast-yellow)] to-yellow-400"
-                            initial={{ height: "0%" }}
-                            animate={isInView ? { height: "100%" } : {}}
-                            transition={{ duration: 1.5, delay: index * 0.15 + 1 }}
-                          />
-                        </motion.div>
-                      </div>
-                    </div>
-                  </div>
-
-
-                </motion.div>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Bottom CTA */}
-          <motion.div
-            className="text-center mt-16"
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 1.2 }}
-          >
-            {/* Connection line from last phase */}
-            <motion.div
-              className="w-0.5 h-16 bg-gradient-to-b from-[var(--pravdast-yellow)] to-slate-600 mx-auto mb-8"
-              initial={{ scaleY: 0 }}
-              animate={isInView ? { scaleY: 1 } : {}}
-              transition={{ duration: 0.8, delay: 1 }}
-            />
-            
-            <div className="p-8 bg-slate-800/40 rounded-2xl border border-[var(--pravdast-yellow)]/20">
-              <h3 className="text-2xl font-bold text-white mb-4">
-                Започнете инженерния процес днес
-              </h3>
-              <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
-                Всеки ден на изчакване е изгубена възможност. Вашите конкуренти не спят.
-              </p>
-              <Button
-                size="lg"
-                className="bg-[var(--pravdast-yellow)] text-black hover:bg-[var(--pravdast-yellow)]/90 px-6 md:px-8 py-4 text-base md:text-lg font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 w-full md:w-auto"
-                asChild
-              >
-                <a href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu" target="_blank" rel="noopener noreferrer">
-                  Започнете диагностиката
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </a>
-              </Button>
-            </div>
-          </motion.div>
-        </div>
-      </div>
-    </section>
-  );
-};
-
-// Results Section Component
-const ResultsSection = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.3 });
-
-  const benefits = [
+  const expectedResults = [
     {
-      icon: <Zap className="w-8 h-8" />,
-      title: "Предвидим поток от качествени запитвания",
-      description: "От клиенти, които активно търсят вашите решения",
-      metric: "3x повече leads"
+      icon: Search,
+      title: "Търсене видимост",
+      metric: "300%+ увеличение",
+      description: "Драматично подобрение в позициите за таргетирани ключови думи",
+      timeframe: "3-6 месеца"
     },
     {
-      icon: <BarChart3 className="w-8 h-8" />,
-      title: "Дълготраен дигитален актив",
-      description: "С нарастваща стойност, който работи за вас 24/7",
-      metric: "365 дни работа"
+      icon: Users,
+      title: "Органичен трафик", 
+      metric: "250%+ растеж",
+      description: "Стабилно увеличение на качествени посетители от Google",
+      timeframe: "4-8 месеца"
     },
     {
-      icon: <TrendingDown className="w-8 h-8" />,
-      title: "Намалена зависимост",
-      description: "От постоянни и рискови рекламни бюджети",
-      metric: "60% по-малко разходи"
+      icon: Target,
+      title: "Конверсии",
+      metric: "180%+ подобрение",
+      description: "Повече потенциални клиенти и продажби от органичен трафик",
+      timeframe: "2-4 месеца"
     },
     {
-      icon: <Crown className="w-8 h-8" />,
-      title: "Установен пазарен авторитет", 
-      description: "И разпознаваемост на вашия бранд като експерт в нишата",
-      metric: "Топ 3 позиции"
+      icon: Crown,
+      title: "Авторитет",
+      metric: "Top 3 позиции",
+      description: "Доминация в търсенията за основните ви услуги",
+      timeframe: "6-12 месеца"
     }
   ];
 
-  return (
-    <section ref={ref} className="py-20 bg-slate-900/40 relative overflow-hidden">
-      {/* Enhanced Background */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="grid grid-cols-8 md:grid-cols-16 gap-2 h-full p-6">
-          {Array.from({ length: 128 }).map((_, i) => (
-            <motion.div
-              key={i}
-              className="bg-[var(--pravdast-yellow)] rounded-full"
-              style={{ height: Math.random() * 4 + 1 + "px" }}
-              initial={{ opacity: 0, scaleY: 0 }}
-              animate={isInView ? { 
-                opacity: Math.random() * 0.6 + 0.2,
-                scaleY: Math.random() * 2 + 0.5
-              } : {}}
-              transition={{
-                duration: 1.5,
-                delay: i * 0.01,
-                repeat: Infinity,
-                repeatType: "reverse",
-                ease: "easeInOut"
-              }}
-            />
-          ))}
-        </div>
-      </div>
-
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            className="text-center mb-20"
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8 }}
-          >
-            <div className="inline-block px-4 py-2 bg-[var(--pravdast-yellow)]/10 rounded-full border border-[var(--pravdast-yellow)]/20 mb-6">
-              <span className="text-[var(--pravdast-yellow)] text-sm font-semibold">ИЗМЕРИМИ РЕЗУЛТАТИ</span>
-            </div>
-            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight">
-              Крайният резултат: Повече от просто \"позиции\"
-            </h2>
-            <p className="text-gray-300 text-xl max-w-3xl mx-auto leading-relaxed">
-              Системата SEO Struktor™ създава дълготрайна стойност за вашия бизнес
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {benefits.map((benefit, index) => (
-              <motion.div
-                key={index}
-                className="relative group"
-                initial={{ opacity: 0, y: 50 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.8, delay: index * 0.15 }}
-              >
-                <motion.div
-                  className="bg-slate-800/70 backdrop-blur-sm p-8 rounded-3xl border border-slate-600/30 h-full transition-all duration-300 overflow-hidden relative"
-                >
-                  {/* Floating elements background */}
-                  <div className="absolute top-0 right-0 w-20 h-20 bg-[var(--pravdast-yellow)]/5 rounded-full -translate-y-10 translate-x-10" />
-                  
-                  <div className="relative z-10">
-                    {/* Icon with enhanced styling */}
-                    <motion.div
-                      className="relative mb-6"
-                    >
-                      <div className="w-16 h-16 bg-gradient-to-br from-[var(--pravdast-yellow)] to-yellow-600 rounded-2xl flex items-center justify-center shadow-lg relative">
-                        <div className="text-black">
-                          {benefit.icon}
-                        </div>
-                      </div>
-                    </motion.div>
-                    
-                    {/* Metric badge */}
-                    <motion.div
-                      className="inline-block px-3 py-1 bg-[var(--pravdast-yellow)]/20 border border-[var(--pravdast-yellow)]/30 rounded-full mb-4"
-                      initial={{ scale: 0 }}
-                      animate={isInView ? { scale: 1 } : {}}
-                      transition={{ duration: 0.5, delay: index * 0.15 + 0.3 }}
-                    >
-                      <span className="text-[var(--pravdast-yellow)] text-sm font-semibold">
-                        {benefit.metric}
-                      </span>
-                    </motion.div>
-
-                    <h3 className="text-xl md:text-2xl font-bold text-white mb-4 leading-tight">
-                      {benefit.title}
-                    </h3>
-                    <p className="text-gray-300 leading-relaxed text-sm md:text-base">
-                      {benefit.description}
-                    </p>
-
-                    {/* Enhanced progress indicator */}
-                    <motion.div
-                      className="mt-6 relative"
-                      initial={{ opacity: 0 }}
-                      animate={isInView ? { opacity: 1 } : {}}
-                      transition={{ duration: 0.8, delay: index * 0.15 + 0.5 }}
-                    >
-                      <div className="w-full h-2 bg-slate-700/50 rounded-full overflow-hidden">
-                        <motion.div
-                          className="h-full bg-gradient-to-r from-[var(--pravdast-yellow)] via-yellow-400 to-[var(--pravdast-yellow)] relative"
-                          initial={{ width: "0%" }}
-                          animate={isInView ? { width: "100%" } : {}}
-                          transition={{ duration: 1.5, delay: index * 0.15 + 0.8 }}
-                        >
-                          {/* Shimmer effect */}
-                          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 animate-pulse" />
-                        </motion.div>
-                      </div>
-                      <div className="flex justify-between mt-2">
-                        <span className="text-xs text-gray-500">Преди</span>
-                        <span className="text-xs text-[var(--pravdast-yellow)]">Със SEO Struktor™</span>
-                      </div>
-                    </motion.div>
-                  </div>
-
-
-                </motion.div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-};
-
-// Investment Section Component  
-const InvestmentSection = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.3 });
-  const [isHovered, setIsHovered] = useState(false);
-
-  const principles = [
+  const investmentPrinciples = [
     {
-      number: "1",
+      icon: Target,
       title: "Персонализирано решение",
-      description: "Всяка система SEO Struktor™ се проектира и изгражда спрямо уникалните цели и състояние на вашия бизнес. Ние не предлагаме готови пакети.",
-      icon: "🎯"
+      description: "Всеки проект започва с детайлна диагностика и стратегия, адаптирана към вашите специфични нужди и конкуренция."
     },
     {
-      number: "2", 
+      icon: Shield,
       title: "Бюджетна рамка",
-      description: "За ориентация, базовите инженерни проекти започват от 1980 лв./месечно.",
-      icon: "💰"
+      description: "Прозрачна ценова структура с ясни очаквания - знаете точно какво получавате за всеки вложен лев."
     },
     {
-      number: "3",
-      title: "Техническа спецификация", 
-      description: "Финалната инвестиция се определя след задължителна техническа диагностика. Вие получавате детайлно инженерно предложение, в което всеки компонент е ясно описан и стойностен.",
-      icon: "📋"
+      icon: Settings,
+      title: "Техническа спецификация",
+      description: "Детайлни месечни отчети с конкретни метрики, за да виждате реалния прогрес и възвръщаемост на инвестицията."
     }
   ];
 
   return (
-    <section ref={ref} className="py-20 bg-slate-900/70 relative overflow-hidden">
-      {/* Technical Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <svg className="w-full h-full" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <pattern id="tech-pattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-              <circle cx="10" cy="10" r="1" fill="var(--pravdast-yellow)" opacity="0.3"/>
-              <path d="M0,10 L20,10 M10,0 L10,20" stroke="var(--pravdast-yellow)" strokeWidth="0.5" opacity="0.2"/>
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#tech-pattern)" />
-        </svg>
-      </div>
+    <div className="min-h-screen bg-slate-900">
+      <SEOHead seo={pageSEOData["services/seo-struktor"]} pageSlug="services/seo-struktor" />
+      <Navigation />
+      
+      {/* Revolutionary Hero Section */}
+      <section className="pt-20 min-h-screen flex items-center relative overflow-hidden">
+        {/* Next-Gen SEO Background System */}
+        <div className="absolute inset-0">
+          {/* SEO Network Grid */}
+          <div className="absolute inset-0 opacity-25">
+            <div className="absolute inset-0" style={{
+              backgroundImage: `
+                linear-gradient(rgba(59, 130, 246, 0.4) 2px, transparent 2px),
+                linear-gradient(90deg, rgba(59, 130, 246, 0.4) 2px, transparent 2px),
+                radial-gradient(circle at 25% 25%, rgba(59, 130, 246, 0.2) 2px, transparent 2px),
+                radial-gradient(circle at 75% 75%, rgba(99, 102, 241, 0.2) 2px, transparent 2px)
+              `,
+              backgroundSize: '120px 120px, 120px 120px, 60px 60px, 80px 80px'
+            }}></div>
+          </div>
 
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8 }}
-          >
-            <div className="inline-block px-4 py-2 bg-[var(--pravdast-yellow)]/10 rounded-full border border-[var(--pravdast-yellow)]/20 mb-6">
-              <span className="text-[var(--pravdast-yellow)] text-sm font-semibold">ПРОЗРАЧНО ЦЕНООБРАЗУВАНЕ</span>
-            </div>
-            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight">
-              Структура на инвестицията
-            </h2>
-            <p className="text-gray-300 text-xl max-w-3xl mx-auto">
-              Инженерно проектиране изисква прецизност и в техническата спецификация
-            </p>
-          </motion.div>
-
-          {/* Price Display */}
-          <motion.div
-            className="text-center mb-16"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            <motion.div
-              className="inline-block p-8 bg-slate-800/60 backdrop-blur-sm rounded-3xl border border-slate-600/30 relative overflow-hidden"
-            >
-              <div className="relative z-10">
-                <div className="text-sm text-[var(--pravdast-yellow)] font-semibold mb-2 tracking-wider">
-                  ЗАПОЧВА ОТ
-                </div>
-                <div className="text-5xl md:text-6xl font-bold mb-2">
-                  <span className="text-[var(--pravdast-yellow)]">1980 лв.</span>
-                  <span className="text-white text-3xl">/месечно</span>
-                </div>
-                <div className="text-gray-400 text-sm">
-                  *Финалната цена се определя след техническа диагностика
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
-
-          {/* Principles Grid */}
-          <div className="grid gap-8 md:gap-12">
-            {principles.map((principle, index) => (
+          {/* Search Algorithm Streams */}
+          <div className="absolute inset-0 opacity-35">
+            {/* Ranking Flow Lines */}
+            {[...Array(18)].map((_, i) => (
               <motion.div
-                key={principle.number}
-                className="relative"
-                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
-                animate={isInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.8, delay: index * 0.2 }}
-              >
-                <motion.div
-                  className={`flex flex-col md:flex-row items-center gap-8 ${
-                    index % 2 === 1 ? 'md:flex-row-reverse' : ''
-                  }`}
-                >
-                  {/* Number Circle */}
-                  <motion.div
-                    className="flex-shrink-0"
-                  >
-                    <div className="relative">
-                      <div className="w-20 h-20 bg-gradient-to-br from-[var(--pravdast-yellow)] to-yellow-600 rounded-full flex items-center justify-center shadow-xl">
-                        <span className="text-black font-bold text-2xl">
-                          {principle.number}
-                        </span>
-                      </div>
-                      {/* Connection line to next */}
-                      {index < principles.length - 1 && (
-                        <motion.div
-                          className="absolute top-20 left-1/2 w-0.5 h-16 bg-gradient-to-b from-[var(--pravdast-yellow)] to-slate-600 hidden md:block"
-                          initial={{ scaleY: 0 }}
-                          animate={isInView ? { scaleY: 1 } : {}}
-                          transition={{ duration: 1, delay: index * 0.3 + 0.5 }}
-                        />
-                      )}
-                    </div>
-                  </motion.div>
+                key={`ranking-${i}`}
+                className="absolute rounded-full"
+                style={{
+                  left: `${4 + i * 5.5}%`,
+                  top: `${8 + (i % 6) * 15}%`,
+                  width: '4px',
+                  height: '70%',
+                  background: `linear-gradient(to bottom, 
+                    rgba(59, 130, 246, ${0.3 + (i % 3) * 0.2}), 
+                    rgba(99, 102, 241, ${0.2 + (i % 3) * 0.1}), 
+                    transparent)`
+                }}
+                animate={{
+                  scaleY: [0.2, 1.8, 0.2],
+                  opacity: [0.1, 0.9, 0.1],
+                  background: [
+                    'linear-gradient(to bottom, rgba(59, 130, 246, 0.5), rgba(99, 102, 241, 0.3), transparent)',
+                    'linear-gradient(to bottom, rgba(99, 102, 241, 0.5), rgba(59, 130, 246, 0.3), transparent)',
+                    'linear-gradient(to bottom, rgba(59, 130, 246, 0.5), rgba(99, 102, 241, 0.3), transparent)'
+                  ]
+                }}
+                transition={{
+                  duration: 3.5 + i * 0.2,
+                  repeat: Infinity,
+                  delay: i * 0.3,
+                  ease: "easeInOut"
+                }}
+              />
+            ))}
+            
+            {/* SEO Signal Nodes */}
+            {[...Array(24)].map((_, i) => (
+              <motion.div
+                key={`seo-node-${i}`}
+                className="absolute rounded-full border-2"
+                style={{
+                  left: `${6 + i * 4}%`,
+                  top: `${12 + (i % 7) * 12}%`,
+                  width: `${10 + (i % 5) * 4}px`,
+                  height: `${10 + (i % 5) * 4}px`,
+                  borderColor: i % 2 === 0 ? 'rgba(59, 130, 246, 0.6)' : 'rgba(99, 102, 241, 0.6)'
+                }}
+                animate={{
+                  scale: [0.4, 2.2, 0.4],
+                  opacity: [0.2, 1, 0.2],
+                  borderWidth: [1, 4, 1],
+                  rotate: i % 2 === 0 ? [0, 360] : [360, 0],
+                  borderColor: [
+                    'rgba(59, 130, 246, 0.6)',
+                    'rgba(99, 102, 241, 0.9)',
+                    'rgba(59, 130, 246, 0.6)'
+                  ]
+                }}
+                transition={{
+                  duration: 4 + (i % 4),
+                  repeat: Infinity,
+                  delay: i * 0.15,
+                  ease: "easeInOut"
+                }}
+              />
+            ))}
 
-                  {/* Content Card */}
-                  <div className="flex-1 w-full">
-                    <motion.div
-                      className="bg-slate-800/60 backdrop-blur-sm p-8 rounded-2xl border border-slate-600/30 transition-all duration-300"
-                    >
-                      <div className="flex items-center gap-4 mb-4">
-                        <div className="text-2xl">{principle.icon}</div>
-                        <h3 className="text-xl md:text-2xl font-bold text-white">
-                          {principle.title}
-                        </h3>
-                      </div>
-                      <p className="text-gray-300 leading-relaxed text-sm md:text-base">
-                        {principle.description}
-                      </p>
-
-                      {/* Decorative element */}
-                      <motion.div
-                        className="mt-6 w-full h-1 bg-slate-700 rounded-full overflow-hidden"
-                        initial={{ width: 0 }}
-                        animate={isInView ? { width: "100%" } : {}}
-                        transition={{ duration: 1, delay: index * 0.2 + 0.8 }}
-                      >
-                        <motion.div
-                          className="h-full bg-gradient-to-r from-[var(--pravdast-yellow)] to-yellow-400"
-                          initial={{ width: "0%" }}
-                          animate={isInView ? { width: "100%" } : {}}
-                          transition={{ duration: 1.5, delay: index * 0.2 + 1 }}
-                        />
-                      </motion.div>
-                    </motion.div>
-                  </div>
-                </motion.div>
-              </motion.div>
+            {/* Authority Amplifiers */}
+            {[...Array(10)].map((_, i) => (
+              <motion.div
+                key={`authority-${i}`}
+                className="absolute rounded-full"
+                style={{
+                  left: `${12 + i * 10}%`,
+                  top: `${18 + (i % 3) * 25}%`,
+                  width: `${16 + (i % 3) * 8}px`,
+                  height: `${16 + (i % 3) * 8}px`,
+                  background: `radial-gradient(circle, 
+                    rgba(59, 130, 246, 0.${4 + i % 3}), 
+                    rgba(99, 102, 241, 0.${2 + i % 3}), 
+                    transparent)`
+                }}
+                animate={{
+                  scale: [1, 3.5, 1],
+                  opacity: [0.3, 1, 0.3],
+                  boxShadow: [
+                    '0 0 20px rgba(59, 130, 246, 0.2)',
+                    '0 0 80px rgba(59, 130, 246, 0.8)',
+                    '0 0 20px rgba(59, 130, 246, 0.2)'
+                  ],
+                }}
+                transition={{
+                  duration: 3.5,
+                  repeat: Infinity,
+                  delay: i * 0.6,
+                  ease: "easeInOut"
+                }}
+              />
             ))}
           </div>
 
-          {/* Bottom CTA */}
-          <motion.div
-            className="text-center mt-16"
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 1 }}
-          >
-            {/* Connection line from last principle */}
-            <motion.div
-              className="w-0.5 h-16 bg-gradient-to-b from-[var(--pravdast-yellow)] to-slate-600 mx-auto mb-8"
-              initial={{ scaleY: 0 }}
-              animate={isInView ? { scaleY: 1 } : {}}
-              transition={{ duration: 0.8, delay: 1.5 }}
+          {/* Atmospheric Enhancement */}
+          <div className="absolute inset-0 opacity-12">
+            <motion.div 
+              className="absolute top-1/5 left-1/5 w-[600px] h-[600px] bg-gradient-to-r from-blue-500/60 via-indigo-500/50 to-purple-500/40 rounded-full blur-3xl"
+              animate={{
+                scale: [1, 1.6, 1],
+                opacity: [0.08, 0.35, 0.08],
+                x: [0, 60, 0],
+                y: [0, -40, 0],
+              }}
+              transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
             />
-            
-            <div className="p-8 bg-slate-800/40 rounded-3xl border border-[var(--pravdast-yellow)]/20">
-              <h3 className="text-2xl font-bold text-white mb-4">
-                Готови за персонализирана оферта?
-              </h3>
-              <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
-                Всяка инвестиция започва с безплатна техническа диагностика и детайлно планиране.
-              </p>
-              <Button
-                size="lg"
-                className="bg-[var(--pravdast-yellow)] text-black hover:bg-[var(--pravdast-yellow)]/90 px-6 md:px-12 py-4 md:py-6 text-base md:text-xl font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 w-full md:w-auto"
-                asChild
-              >
-                <a href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu" target="_blank" rel="noopener noreferrer">
-                  Получете персонализирана оферта
-                  <ArrowRight className="ml-2 md:ml-3 h-5 w-5 md:h-6 md:w-6" />
-                </a>
-              </Button>
-            </div>
-          </motion.div>
-        </div>
-      </div>
-    </section>
-  );
-};
-
-// Final CTA Section Component
-const FinalCTASection = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.3 });
-
-  return (
-    <section ref={ref} className="py-24 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 relative overflow-hidden">
-      {/* Enhanced Technical Background */}
-      <div className="absolute inset-0 opacity-5">
-        <svg className="w-full h-full" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <pattern id="final-cta-pattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
-              <circle cx="20" cy="20" r="2" fill="var(--pravdast-yellow)" opacity="0.4"/>
-              <path d="M0,20 L40,20 M20,0 L20,40" stroke="var(--pravdast-yellow)" strokeWidth="0.5" opacity="0.3"/>
-              <circle cx="5" cy="5" r="0.5" fill="var(--pravdast-yellow)" opacity="0.6"/>
-              <circle cx="35" cy="35" r="0.5" fill="var(--pravdast-yellow)" opacity="0.6"/>
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#final-cta-pattern)" />
-        </svg>
-      </div>
-
-      {/* Floating Elements */}
-      <div className="absolute inset-0">
-        <div className="absolute top-20 left-10 w-32 h-32 bg-[var(--pravdast-yellow)]/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-10 w-40 h-40 bg-[var(--pravdast-yellow)]/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-[var(--pravdast-yellow)]/5 rounded-full blur-3xl"></div>
-      </div>
-
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="max-w-5xl mx-auto">
-          {/* Connection line from previous section */}
-          <motion.div
-            className="w-0.5 h-16 bg-gradient-to-b from-[var(--pravdast-yellow)] to-slate-600 mx-auto mb-16"
-            initial={{ scaleY: 0 }}
-            animate={isInView ? { scaleY: 1 } : {}}
-            transition={{ duration: 0.8 }}
-          />
-
-          <motion.div
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8 }}
-          >
-            <div className="inline-block px-6 py-3 bg-[var(--pravdast-yellow)]/10 rounded-full border border-[var(--pravdast-yellow)]/20 mb-8">
-              <span className="text-[var(--pravdast-yellow)] text-sm font-semibold tracking-wider">ФИНАЛНА СТЪПКА</span>
-            </div>
-            <h2 className="text-4xl md:text-6xl font-bold mb-8 text-white leading-tight">
-              Готови ли сте да спрете да импровизирате?
-            </h2>
-          </motion.div>
-
-          <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
-            {/* Left side - Content */}
-            <motion.div
-              className="space-y-8"
-              initial={{ opacity: 0, x: -50 }}
-              animate={isInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              <div className="space-y-6">
-                <div className="p-6 bg-slate-800/40 rounded-2xl border border-slate-600/30">
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="w-3 h-3 bg-red-400 rounded-full animate-pulse"></div>
-                    <h3 className="text-xl font-bold text-white">Проблемът</h3>
-                  </div>
-                  <p className="text-gray-300 leading-relaxed">
-                    Нашият инженерен процес е задълбочен и изисква пълна отдаденост. Затова работим с ограничен брой нови клиенти всеки месец.
-                  </p>
-                </div>
-
-                <div className="p-6 bg-slate-800/40 rounded-2xl border border-[var(--pravdast-yellow)]/20">
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="w-3 h-3 bg-[var(--pravdast-yellow)] rounded-full animate-pulse"></div>
-                    <h3 className="text-xl font-bold text-white">Решението</h3>
-                  </div>
-                  <p className="text-gray-300 leading-relaxed">
-                    Първата стъпка е нашата експертна диагностика. С нейна помощ ще научите повече за скритите проблеми на вашия сайт и ще получите ясна представа за потенциала му.
-                  </p>
-                </div>
-              </div>
-
-              {/* Urgency indicators */}
-              <motion.div
-                className="grid grid-cols-3 gap-4"
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.8, delay: 0.6 }}
-              >
-                <div className="text-center p-4 bg-slate-800/30 rounded-xl">
-                  <div className="text-2xl font-bold text-[var(--pravdast-yellow)] mb-1">48h</div>
-                  <div className="text-xs text-gray-400">Отговор</div>
-                </div>
-                <div className="text-center p-4 bg-slate-800/30 rounded-xl">
-                  <div className="text-2xl font-bold text-[var(--pravdast-yellow)] mb-1">5min</div>
-                  <div className="text-xs text-gray-400">Процес</div>
-                </div>
-                <div className="text-center p-4 bg-slate-800/30 rounded-xl">
-                  <div className="text-2xl font-bold text-[var(--pravdast-yellow)] mb-1">100%</div>
-                  <div className="text-xs text-gray-400">Безплатно</div>
-                </div>
-              </motion.div>
-            </motion.div>
-
-            {/* Right side - Enhanced CTA */}
-            <motion.div
-              className="relative"
-              initial={{ opacity: 0, x: 50 }}
-              animate={isInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.4 }}
-            >
-              <div className="relative p-8 bg-gradient-to-br from-slate-800/80 to-slate-900/80 backdrop-blur-sm rounded-3xl border border-[var(--pravdast-yellow)]/30 overflow-hidden">
-                {/* Animated background elements */}
-                <div className="absolute inset-0 bg-gradient-to-r from-[var(--pravdast-yellow)]/5 to-transparent"></div>
-                <div className="absolute top-0 right-0 w-32 h-32 bg-[var(--pravdast-yellow)]/10 rounded-full -translate-y-16 translate-x-16"></div>
-                
-                <div className="relative z-10 text-center space-y-6">
-                  <div className="space-y-4">
-                    <div className="inline-block px-4 py-2 bg-[var(--pravdast-yellow)]/20 border border-[var(--pravdast-yellow)]/40 rounded-full">
-                      <span className="text-[var(--pravdast-yellow)] text-sm font-semibold">ОГРАНИЧЕНИ МЕСТА</span>
-                    </div>
-                    
-                    <h3 className="text-2xl md:text-3xl font-bold text-white leading-tight">
-                      Започнете диагностиката днес
-                    </h3>
-                    
-                    <p className="text-gray-300 text-sm leading-relaxed">
-                      Безплатна техническа диагностика с детайлен анализ на потенциала на вашия сайт
-                    </p>
-                  </div>
-
-                  {/* Enhanced CTA Button */}
-                  <motion.div
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                  >
-                    <Button
-                      size="lg"
-                      className="w-full bg-[var(--pravdast-yellow)] text-black hover:bg-[var(--pravdast-yellow)]/90 px-8 py-6 text-lg font-bold shadow-2xl hover:shadow-[var(--pravdast-yellow)]/20 transition-all duration-300 relative overflow-hidden group"
-                      asChild
-                    >
-                      <a href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu" target="_blank" rel="noopener noreferrer">
-                        {/* Button shimmer effect */}
-                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 group-hover:animate-pulse"></div>
-                        <span className="relative z-10 flex items-center justify-center gap-3">
-                          Кандидатствайте за диагностика
-                          <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
-                        </span>
-                      </a>
-                    </Button>
-                  </motion.div>
-
-                  {/* Trust indicators */}
-                  <div className="grid grid-cols-2 gap-4 pt-6 border-t border-slate-600/30">
-                    <div className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                      <span className="text-xs text-gray-400">Без ангажименти</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                      <span className="text-xs text-gray-400">100% поверително</span>
-                    </div>
-                  </div>
-
-                  <p className="text-xs text-gray-500 mt-4">
-                    Ще се свържем с вас в рамките на 48 часа, ако имаме свободен капацитет за този месец.
-                  </p>
-                </div>
-              </div>
-            </motion.div>
+            <motion.div 
+              className="absolute bottom-1/5 right-1/5 w-[500px] h-[500px] bg-gradient-to-l from-purple-500/70 via-blue-500/50 to-indigo-500/40 rounded-full blur-3xl"
+              animate={{
+                scale: [1, 1.8, 1],
+                opacity: [0.08, 0.3, 0.08],
+                x: [0, -50, 0],
+                y: [0, 40, 0],
+              }}
+              transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 4 }}
+            />
+            <motion.div 
+              className="absolute top-1/2 right-1/3 w-[400px] h-[400px] bg-gradient-to-r from-cyan-500/50 to-blue-500/40 rounded-full blur-3xl"
+              animate={{
+                scale: [1, 2.2, 1],
+                opacity: [0.05, 0.25, 0.05],
+                rotate: [0, 360],
+              }}
+              transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+            />
           </div>
-
-          {/* Bottom urgency message */}
-          <motion.div
-            className="text-center p-6 bg-slate-800/30 rounded-2xl border border-red-500/20"
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.8 }}
-          >
-            <div className="flex items-center justify-center gap-3 mb-2">
-              <div className="w-3 h-3 bg-red-400 rounded-full animate-pulse"></div>
-              <span className="text-red-400 text-sm font-semibold tracking-wider">ВАЖНО</span>
-            </div>
-            <p className="text-gray-300 text-sm">
-              Всеки ден на изчакване е изгубена възможност. Вашите конкуренти не спят.
-            </p>
-          </motion.div>
-        </div>
-      </div>
-    </section>
-  );
-};
-
-export default function SeoStruktor() {
-  const seoData = {
-    title: "SEO Struktor™ - Инженерен подход към SEO оптимизация | Pravdast",
-    description: "Изграждаме вашето онлайн присъствие като инженерно съоръжение. Структуриран SEO подход за предвидими резултати в Google.",
-    keywords: "SEO оптимизация, SEO услуги България, структуриран SEO, инженерен SEO подход",
-    ogImage: "/og-images/seo-struktor.svg"
-  };
-
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-[var(--pravdast-dark)] to-[var(--pravdast-dark-gray)] text-white">
-      <SEOHead seo={seoData} pageSlug="services/seo-struktor" />
-      <Navigation />
-
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center overflow-hidden">
-        <SeoStruktorBackground />
-        
-        {/* Enhanced floating elements */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-1/4 left-10 w-2 h-2 bg-[var(--pravdast-yellow)] rounded-full animate-ping opacity-60"></div>
-          <div className="absolute top-1/3 right-20 w-1 h-1 bg-[var(--pravdast-yellow)] rounded-full animate-pulse opacity-80"></div>
-          <div className="absolute bottom-1/4 left-1/4 w-3 h-3 bg-[var(--pravdast-yellow)] rounded-full animate-bounce opacity-40"></div>
-          <div className="absolute bottom-1/3 right-1/4 w-1 h-1 bg-[var(--pravdast-yellow)] rounded-full animate-ping opacity-70"></div>
         </div>
 
         <div className="container mx-auto px-6 relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
-            {/* Status badge */}
+          <motion.div
+            ref={heroRef}
+            className="max-w-7xl mx-auto"
+            initial={{ opacity: 0, y: 40 }}
+            animate={heroInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 1 }}
+          >
+            {/* Revolutionary Status Badge */}
             <motion.div
-              className="inline-flex items-center gap-3 px-6 py-3 bg-slate-800/40 backdrop-blur-sm border border-[var(--pravdast-yellow)]/20 rounded-full mb-8"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
+              className="flex justify-center mb-12"
+              initial={{ opacity: 0, y: 30, scale: 0.8 }}
+              animate={heroInView ? { opacity: 1, y: 0, scale: 1 } : {}}
+              transition={{ duration: 1, delay: 0.2 }}
             >
-              <div className="relative">
-                <div className="w-3 h-3 bg-green-400 rounded-full"></div>
-                <div className="absolute inset-0 w-3 h-3 bg-green-400 rounded-full animate-ping opacity-60"></div>
-              </div>
-              <span className="text-white text-sm font-semibold">
-                <span className="text-[var(--pravdast-yellow)]">Ново</span> - Приемаме проекти за 2025
-              </span>
-            </motion.div>
-
-            <motion.h1
-              className="text-5xl md:text-7xl font-bold mb-8 leading-tight text-white"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              Вашите конкуренти не са по-добри.{" "}
-              <span className="text-[var(--pravdast-yellow)]">
-                Просто имат по-добра система.
-              </span>
-            </motion.h1>
-
-            <motion.p
-              className="text-xl md:text-2xl text-gray-300 mb-12 leading-relaxed max-w-3xl mx-auto"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              В Google битката се печели не от най-големия, а от най-добре
-              структурирания. SEO Struktor™ изгражда вашето онлайн присъствие
-              като инженерно съоръжение, проектирано да доминира в търсенето по
-              предвидим и измерим начин.
-            </motion.p>
-
-            <motion.div
-              className="flex flex-col sm:flex-row gap-4 justify-center"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-            >
-              <Button
-                size="lg"
-                className="bg-[var(--pravdast-yellow)] text-black hover:bg-[var(--pravdast-yellow)]/90 px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+              <motion.div 
+                className="relative"
+                whileHover={{ scale: 1.08 }}
+                transition={{ duration: 0.4 }}
               >
-                Изпреварете конкуренцията
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
+                {/* SEO system glow */}
+                <motion.div
+                  className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500/40 via-indigo-500/40 to-purple-500/40 blur-2xl"
+                  animate={{
+                    scale: [1, 1.4, 1],
+                    opacity: [0.4, 1, 0.4],
+                    rotate: [0, 180, 360],
+                  }}
+                  transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                />
+                <motion.div
+                  className="absolute inset-0 rounded-full bg-gradient-to-r from-indigo-500/30 via-blue-500/30 to-purple-500/30 blur-xl"
+                  animate={{
+                    scale: [1, 1.3, 1],
+                    opacity: [0.3, 0.8, 0.3],
+                    rotate: [360, 180, 0],
+                  }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
+                />
+                
+                {/* Main badge container */}
+                <div className="relative inline-flex items-center gap-6 px-16 py-8 rounded-full bg-gradient-to-r from-blue-500/25 via-indigo-500/25 to-purple-500/25 backdrop-blur-lg border-2 border-blue-500/50 shadow-2xl">
+                  {/* SEO ranking indicator */}
+                  <div className="relative flex items-center gap-4">
+                    <div className="relative">
+                      <div className="w-6 h-6 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full"></div>
+                      <motion.div
+                        className="absolute inset-0 w-6 h-6 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full"
+                        animate={{
+                          scale: [1, 3, 1],
+                          opacity: [0.9, 0, 0.9],
+                        }}
+                        transition={{ duration: 2.8, repeat: Infinity, ease: "easeOut" }}
+                      />
+                      <motion.div
+                        className="absolute inset-0 w-6 h-6 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full"
+                        animate={{
+                          scale: [1, 2.5, 1],
+                          opacity: [0.7, 0, 0.7],
+                        }}
+                        transition={{ duration: 2.8, repeat: Infinity, ease: "easeOut", delay: 0.9 }}
+                      />
+                    </div>
+                    <motion.div
+                      className="w-3 h-10 bg-gradient-to-t from-blue-500 via-indigo-500 to-purple-500 rounded-full"
+                      animate={{
+                        scaleY: [1, 1.6, 1],
+                        opacity: [0.7, 1, 0.7],
+                      }}
+                      transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+                    />
+                  </div>
+
+                  {/* Revolutionary brand text */}
+                  <motion.span 
+                    className="text-xl text-white font-black tracking-[0.2em] uppercase"
+                    animate={{
+                      textShadow: [
+                        '0 0 30px rgba(59, 130, 246, 0.4)',
+                        '0 0 50px rgba(59, 130, 246, 0.8)',
+                        '0 0 30px rgba(59, 130, 246, 0.4)'
+                      ],
+                    }}
+                    transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                  >
+                    SEO STRUKTOR™ СИСТЕМА
+                  </motion.span>
+
+                  {/* Authority level indicators */}
+                  <div className="flex items-center gap-2">
+                    {[...Array(5)].map((_, i) => (
+                      <motion.div
+                        key={i}
+                        className="w-4 h-4 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 rounded-full"
+                        animate={{
+                          scale: [0.5, 1.6, 0.5],
+                          opacity: [0.3, 1, 0.3],
+                        }}
+                        transition={{
+                          duration: 2.5,
+                          repeat: Infinity,
+                          delay: i * 0.4,
+                          ease: "easeInOut"
+                        }}
+                      />
+                    ))}
+                  </div>
+                </div>
+
+                {/* Quantum corner accents */}
+                <div className="absolute -top-3 -left-3 w-6 h-6 border-l-3 border-t-3 border-blue-500 rounded-tl-2xl"></div>
+                <div className="absolute -top-3 -right-3 w-6 h-6 border-r-3 border-t-3 border-indigo-500 rounded-tr-2xl"></div>
+                <div className="absolute -bottom-3 -left-3 w-6 h-6 border-l-3 border-b-3 border-indigo-500 rounded-bl-2xl"></div>
+                <div className="absolute -bottom-3 -right-3 w-6 h-6 border-r-3 border-b-3 border-purple-500 rounded-br-2xl"></div>
+              </motion.div>
             </motion.div>
-          </div>
+
+            <div className="text-center">
+              <motion.h1 
+                className="text-6xl md:text-8xl font-bold mb-10 text-white leading-tight"
+                initial={{ opacity: 0, y: 30 }}
+                animate={heroInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 1, delay: 0.4 }}
+              >
+                Спрете да се крие от Google.{" "}
+                <motion.span
+                  className="relative inline-block"
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  animate={heroInView ? { scale: 1, opacity: 1 } : {}}
+                  transition={{ duration: 1.2, delay: 0.7, type: "spring", bounce: 0.4 }}
+                  whileHover={{ scale: 1.08 }}
+                >
+                  {/* Multi-dimensional emphasis */}
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-blue-500/40 via-indigo-500/40 to-purple-500/40 rounded-[2rem] blur-2xl"
+                    animate={{
+                      scale: [1, 1.3, 1],
+                      opacity: [0.4, 0.9, 0.4],
+                      rotate: [0, 5, -5, 0],
+                    }}
+                    transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                  />
+                  <span className="relative z-10 px-8 py-4 bg-gradient-to-r from-blue-500/30 via-indigo-500/30 to-purple-500/30 rounded-[2rem] border-3 border-blue-500/40 backdrop-blur-lg">
+                    Доминирайте го
+                  </span>
+                </motion.span>
+              </motion.h1>
+              
+              <motion.p 
+                className="text-2xl md:text-3xl text-gray-200 mb-16 max-w-5xl mx-auto leading-relaxed font-medium"
+                initial={{ opacity: 0, y: 30 }}
+                animate={heroInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 1, delay: 0.6 }}
+              >
+                Инженерна система за SEO, която ви извежда на първа страница и задържа там. Не гадаене - точна наука.
+              </motion.p>
+
+              <motion.div
+                className="flex flex-col sm:flex-row gap-8 justify-center items-center"
+                initial={{ opacity: 0, y: 40 }}
+                animate={heroInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 1, delay: 0.8 }}
+              >
+                <motion.div
+                  whileHover={{ scale: 1.08 }}
+                  whileTap={{ scale: 0.92 }}
+                  className="relative"
+                >
+                  {/* SEO system button glow */}
+                  <motion.div
+                    className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500/50 via-indigo-500/50 to-purple-500/50 blur-2xl"
+                    animate={{
+                      scale: [1, 1.3, 1],
+                      opacity: [0.5, 1, 0.5],
+                      rotate: [0, 360],
+                    }}
+                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                  />
+                  
+                  <Button
+                    size="lg"
+                    className="relative bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white hover:from-blue-700 hover:via-indigo-700 hover:to-purple-700 font-bold text-xl px-12 py-6 rounded-2xl shadow-2xl border-2 border-blue-400/50 backdrop-blur-sm"
+                    asChild
+                  >
+                    <a href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu" target="_blank" rel="noopener noreferrer">
+                      <motion.div
+                        className="absolute inset-0 bg-gradient-to-r from-white/15 via-transparent to-white/15 opacity-0 group-hover:opacity-100 rounded-2xl"
+                        animate={{ x: ['-100%', '100%'] }}
+                        transition={{ duration: 2.5, repeat: Infinity, repeatType: 'loop' }}
+                      />
+                      <span className="relative z-10 flex items-center gap-4">
+                        <Search className="w-6 h-6" />
+                        Безплатна SEO диагностика
+                        <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform duration-300" />
+                      </span>
+                    </a>
+                  </Button>
+                </motion.div>
+              </motion.div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Philosophy Section */}
-      <PhilosophySection />
+      <section className="py-32 relative overflow-hidden">
+        {/* Chaos vs System Background */}
+        <div className="absolute inset-0 opacity-20">
+          {/* Strategic Philosophy Grid */}
+          <div className="absolute inset-0" style={{
+            backgroundImage: `
+              radial-gradient(circle at 30% 30%, rgba(239, 68, 68, 0.3) 2px, transparent 2px),
+              radial-gradient(circle at 70% 70%, rgba(59, 130, 246, 0.3) 2px, transparent 2px),
+              linear-gradient(45deg, rgba(239, 68, 68, 0.1) 1px, transparent 1px),
+              linear-gradient(-45deg, rgba(59, 130, 246, 0.1) 1px, transparent 1px)
+            `,
+            backgroundSize: '80px 80px, 120px 120px, 40px 40px, 40px 40px'
+          }}></div>
+
+          {/* Dynamic Chaos/System Elements */}
+          {[...Array(12)].map((_, i) => (
+            <motion.div
+              key={`philosophy-${i}`}
+              className="absolute"
+              style={{
+                left: `${10 + i * 7}%`,
+                top: `${20 + (i % 4) * 20}%`,
+                width: `${8 + (i % 3) * 4}px`,
+                height: `${8 + (i % 3) * 4}px`,
+              }}
+              animate={{
+                scale: [0.5, 2.5, 0.5],
+                opacity: [0.2, 0.8, 0.2],
+                rotate: [0, 360],
+                background: i < 6 ? [
+                  'radial-gradient(circle, rgba(239, 68, 68, 0.6), transparent)',
+                  'radial-gradient(circle, rgba(239, 68, 68, 0.8), transparent)',
+                  'radial-gradient(circle, rgba(239, 68, 68, 0.6), transparent)'
+                ] : [
+                  'radial-gradient(circle, rgba(59, 130, 246, 0.6), transparent)',
+                  'radial-gradient(circle, rgba(59, 130, 246, 0.8), transparent)',
+                  'radial-gradient(circle, rgba(59, 130, 246, 0.6), transparent)'
+                ]
+              }}
+              transition={{
+                duration: 4 + i * 0.3,
+                repeat: Infinity,
+                delay: i * 0.4,
+                ease: "easeInOut"
+              }}
+              className="rounded-full bg-gradient-to-r from-red-500/40 to-blue-500/40"
+            />
+          ))}
+        </div>
+
+        <div className="container mx-auto px-6 relative z-10">
+          <motion.div
+            ref={philosophyRef}
+            className="max-w-6xl mx-auto"
+            initial={{ opacity: 0, y: 50 }}
+            animate={philosophyInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 1 }}
+          >
+            {/* Philosophy Header */}
+            <div className="text-center mb-20">
+              <motion.div
+                className="inline-flex items-center gap-3 mb-8 px-8 py-4 rounded-full bg-gradient-to-r from-slate-500/20 to-slate-400/20 border border-slate-500/30 backdrop-blur-sm"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={philosophyInView ? { opacity: 1, scale: 1 } : {}}
+                transition={{ duration: 0.8 }}
+              >
+                <motion.div
+                  className="w-4 h-4 bg-gradient-to-r from-slate-500 to-slate-400 rounded-full"
+                  animate={{
+                    boxShadow: [
+                      '0 0 10px rgba(100, 116, 139, 0.5)',
+                      '0 0 25px rgba(100, 116, 139, 0.9)',
+                      '0 0 10px rgba(100, 116, 139, 0.5)'
+                    ],
+                  }}
+                  transition={{ duration: 3, repeat: Infinity }}
+                />
+                <span className="text-slate-300 font-semibold text-lg uppercase tracking-wider">Философията</span>
+              </motion.div>
+              
+              <motion.h2 
+                className="text-5xl md:text-6xl font-bold text-white mb-8"
+                initial={{ opacity: 0, y: 20 }}
+                animate={philosophyInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.8, delay: 0.2 }}
+              >
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-orange-500">
+                  Хаос
+                </span>
+                {" "}или{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-indigo-500">
+                  система
+                </span>
+                ?
+              </motion.h2>
+              
+              <motion.p 
+                className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed"
+                initial={{ opacity: 0, y: 20 }}
+                animate={philosophyInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.8, delay: 0.4 }}
+              >
+                Повечето компании правят SEO на случаен принцип. Ние го третираме като точна инженерна наука.
+              </motion.p>
+            </div>
+
+            {/* Transformation Visualization */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={philosophyInView ? { opacity: 1, scale: 1 } : {}}
+              transition={{ duration: 1, delay: 0.6 }}
+              className="relative"
+            >
+              <Card className="relative overflow-hidden bg-gradient-to-br from-slate-800/80 to-slate-700/60 border-2 border-slate-600/40 shadow-2xl rounded-3xl p-12">
+                {/* Transformation background pattern */}
+                <div className="absolute inset-0 opacity-10">
+                  <div className="absolute inset-0" style={{
+                    backgroundImage: `
+                      linear-gradient(45deg, rgba(239, 68, 68, 0.2) 25%, transparent 25%),
+                      linear-gradient(-45deg, rgba(59, 130, 246, 0.2) 25%, transparent 25%)
+                    `,
+                    backgroundSize: '60px 60px'
+                  }}></div>
+                </div>
+
+                <div className="relative z-10">
+                  <div className="grid lg:grid-cols-3 gap-8 items-center">
+                    {/* Chaos State */}
+                    <motion.div
+                      className="text-center"
+                      initial={{ opacity: 0, x: -50 }}
+                      animate={philosophyInView ? { opacity: 1, x: 0 } : {}}
+                      transition={{ duration: 0.8, delay: 0.8 }}
+                    >
+                      <motion.div
+                        className="w-24 h-24 mx-auto mb-6 rounded-3xl bg-gradient-to-br from-red-500/20 to-orange-500/10 border-2 border-red-500/30 flex items-center justify-center"
+                        animate={{
+                          scale: [1, 1.1, 1],
+                          boxShadow: [
+                            '0 0 20px rgba(239, 68, 68, 0.3)',
+                            '0 0 40px rgba(239, 68, 68, 0.6)',
+                            '0 0 20px rgba(239, 68, 68, 0.3)'
+                          ],
+                        }}
+                        transition={{ duration: 3, repeat: Infinity }}
+                      >
+                        <div className="text-red-400 text-3xl font-bold">БЕЗ СИСТЕМА</div>
+                      </motion.div>
+                      
+                      <div className="space-y-3 text-gray-300">
+                        <div className="flex items-center gap-2">
+                          <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+                          <span>Случайни оптимизации</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+                          <span>Непредсказуеми резултати</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+                          <span>Постоянни промени в стратегията</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+                          <span>Слаби дългосрочни резултати</span>
+                        </div>
+                      </div>
+                    </motion.div>
+
+                    {/* Transformation Arrow */}
+                    <motion.div
+                      className="flex justify-center"
+                      initial={{ opacity: 0, scale: 0.5 }}
+                      animate={philosophyInView ? { opacity: 1, scale: 1 } : {}}
+                      transition={{ duration: 0.8, delay: 1 }}
+                    >
+                      <motion.div
+                        className="relative"
+                        animate={{
+                          x: [0, 10, 0],
+                        }}
+                        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                      >
+                        <motion.div
+                          className="w-16 h-16 rounded-full bg-gradient-to-r from-red-500 to-blue-500 flex items-center justify-center shadow-lg"
+                          animate={{
+                            scale: [1, 1.2, 1],
+                            boxShadow: [
+                              '0 0 20px rgba(59, 130, 246, 0.3)',
+                              '0 0 40px rgba(59, 130, 246, 0.6)',
+                              '0 0 20px rgba(59, 130, 246, 0.3)'
+                            ],
+                          }}
+                          transition={{ duration: 2, repeat: Infinity }}
+                        >
+                          <ArrowRight className="w-8 h-8 text-white" />
+                        </motion.div>
+                      </motion.div>
+                    </motion.div>
+
+                    {/* System State */}
+                    <motion.div
+                      className="text-center"
+                      initial={{ opacity: 0, x: 50 }}
+                      animate={philosophyInView ? { opacity: 1, x: 0 } : {}}
+                      transition={{ duration: 0.8, delay: 1.2 }}
+                    >
+                      <motion.div
+                        className="w-24 h-24 mx-auto mb-6 rounded-3xl bg-gradient-to-br from-blue-500/20 to-indigo-500/10 border-2 border-blue-500/30 flex items-center justify-center"
+                        animate={{
+                          scale: [1, 1.1, 1],
+                          boxShadow: [
+                            '0 0 20px rgba(59, 130, 246, 0.3)',
+                            '0 0 40px rgba(59, 130, 246, 0.6)',
+                            '0 0 20px rgba(59, 130, 246, 0.3)'
+                          ],
+                        }}
+                        transition={{ duration: 3, repeat: Infinity, delay: 1 }}
+                      >
+                        <div className="text-blue-400 text-3xl font-bold">СЪС СИСТЕМА</div>
+                      </motion.div>
+                      
+                      <div className="space-y-3 text-gray-300">
+                        <div className="flex items-center gap-2">
+                          <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                          <span>Структуриран подход</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                          <span>Предсказуеми резултати</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                          <span>Измерим прогрес</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                          <span>Дългосрочно доминиране</span>
+                        </div>
+                      </div>
+                    </motion.div>
+                  </div>
+                </div>
+              </Card>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
 
       {/* Engineering Process Section */}
-      <EngineeringProcessSection />
+      <section className="py-32 bg-slate-800/30 relative overflow-hidden">
+        {/* Advanced Engineering Background */}
+        <div className="absolute inset-0 opacity-25">
+          {/* Engineering Grid */}
+          <div className="absolute inset-0" style={{
+            backgroundImage: `
+              linear-gradient(90deg, rgba(59, 130, 246, 0.2) 2px, transparent 2px),
+              linear-gradient(rgba(59, 130, 246, 0.1) 1px, transparent 1px),
+              radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.3) 3px, transparent 3px)
+            `,
+            backgroundSize: '100px 100px, 25px 25px, 150px 150px'
+          }}></div>
 
-      {/* Results Section */}
-      <ResultsSection />
+          {/* Engineering Data Flow */}
+          {[...Array(8)].map((_, i) => (
+            <motion.div
+              key={`engineering-flow-${i}`}
+              className="absolute"
+              style={{
+                left: `${5 + i * 12}%`,
+                top: `${30 + (i % 3) * 20}%`,
+                width: '60px',
+                height: '4px',
+                background: `linear-gradient(90deg, 
+                  rgba(59, 130, 246, 0.${3 + i % 4}), 
+                  rgba(99, 102, 241, 0.${2 + i % 3}), 
+                  transparent)`
+              }}
+              animate={{
+                scaleX: [0.2, 1.5, 0.2],
+                opacity: [0.3, 1, 0.3],
+                x: [0, 20, 0],
+              }}
+              transition={{
+                duration: 3 + i * 0.2,
+                repeat: Infinity,
+                delay: i * 0.5,
+                ease: "easeInOut"
+              }}
+              className="rounded-full"
+            />
+          ))}
+        </div>
+
+        <div className="container mx-auto px-6 relative z-10">
+          <motion.div
+            ref={processRef}
+            className="max-w-7xl mx-auto"
+            initial={{ opacity: 0, y: 50 }}
+            animate={processInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 1 }}
+          >
+            {/* Process Header */}
+            <div className="text-center mb-20">
+              <motion.div
+                className="inline-flex items-center gap-3 mb-8 px-8 py-4 rounded-full bg-gradient-to-r from-blue-500/20 to-indigo-500/20 border border-blue-500/30 backdrop-blur-sm"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={processInView ? { opacity: 1, scale: 1 } : {}}
+                transition={{ duration: 0.8 }}
+              >
+                <motion.div
+                  className="w-4 h-4 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full"
+                  animate={{
+                    boxShadow: [
+                      '0 0 10px rgba(59, 130, 246, 0.5)',
+                      '0 0 25px rgba(59, 130, 246, 0.9)',
+                      '0 0 10px rgba(59, 130, 246, 0.5)'
+                    ],
+                  }}
+                  transition={{ duration: 3, repeat: Infinity }}
+                />
+                <span className="text-blue-300 font-semibold text-lg uppercase tracking-wider">Процесът</span>
+              </motion.div>
+              
+              <motion.h2 
+                className="text-5xl md:text-6xl font-bold text-white mb-8"
+                initial={{ opacity: 0, y: 20 }}
+                animate={processInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.8, delay: 0.2 }}
+              >
+                От основите до{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-indigo-500">
+                  покрива
+                </span>
+              </motion.h2>
+              
+              <motion.p 
+                className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed"
+                initial={{ opacity: 0, y: 20 }}
+                animate={processInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.8, delay: 0.4 }}
+              >
+                Четири последователни фази на инженерен SEO процес, който води до доминация в Google.
+              </motion.p>
+            </div>
+
+            {/* Engineering Timeline */}
+            <div className="relative">
+              {/* Timeline Background */}
+              <div className="absolute inset-0 opacity-10">
+                {[...Array(6)].map((_, i) => (
+                  <motion.div
+                    key={`timeline-bg-${i}`}
+                    className="absolute"
+                    style={{
+                      left: `${10 + i * 15}%`,
+                      top: `${20 + (i % 3) * 30}%`,
+                      width: '40px',
+                      height: '2px',
+                      background: 'linear-gradient(90deg, rgba(59, 130, 246, 0.3), transparent)'
+                    }}
+                    animate={{
+                      scaleX: [0.5, 1.5, 0.5],
+                      opacity: [0.2, 0.6, 0.2],
+                    }}
+                    transition={{
+                      duration: 4 + i * 0.5,
+                      repeat: Infinity,
+                      delay: i * 0.8,
+                      ease: "easeInOut"
+                    }}
+                  />
+                ))}
+              </div>
+
+              {/* Timeline Cards */}
+              <div className="grid md:grid-cols-2 gap-8">
+                {engineeringPhases.map((phase, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={processInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.8, delay: 0.3 + index * 0.2 }}
+                    className="relative"
+                  >
+                    {/* Phase glow effect */}
+                    <motion.div
+                      className={`absolute inset-0 rounded-3xl bg-gradient-to-br ${phase.color} opacity-20 blur-xl`}
+                      animate={{
+                        opacity: [0.1, 0.3, 0.1],
+                        scale: [1, 1.05, 1],
+                      }}
+                      transition={{ 
+                        duration: 3 + index * 0.5, 
+                        repeat: Infinity, 
+                        delay: index * 0.8,
+                        ease: "easeInOut" 
+                      }}
+                    />
+                    
+                    <Card className="relative overflow-hidden bg-gradient-to-br from-slate-800/80 to-slate-700/60 border-2 border-slate-600/40 hover:border-blue-500/50 transition-all duration-500 group backdrop-blur-lg shadow-2xl rounded-3xl h-full">
+                      {/* Phase pattern overlay */}
+                      <div className="absolute inset-0 opacity-10">
+                        <div className="absolute inset-0" style={{
+                          backgroundImage: `
+                            radial-gradient(circle at 30% 30%, rgba(59, 130, 246, 0.2) 2px, transparent 2px),
+                            radial-gradient(circle at 70% 70%, rgba(99, 102, 241, 0.15) 2px, transparent 2px)
+                          `,
+                          backgroundSize: '40px 40px, 60px 60px'
+                        }}></div>
+                      </div>
+
+                      {/* Phase number badge */}
+                      <div className="absolute top-6 right-6">
+                        <motion.div 
+                          className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${phase.color} flex items-center justify-center shadow-lg`}
+                          whileHover={{ scale: 1.1, rotate: 5 }}
+                          transition={{ duration: 0.3 }}
+                        >
+                          <span className="text-white font-bold text-lg">{index + 1}</span>
+                        </motion.div>
+                      </div>
+
+                      <CardContent className="p-8 relative z-10 h-full flex flex-col">
+                        {/* Phase indicator */}
+                        <motion.div
+                          className={`inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r ${phase.color} mb-6 self-start`}
+                          whileHover={{ scale: 1.05 }}
+                          transition={{ duration: 0.3 }}
+                        >
+                          <span className="text-white font-bold text-sm uppercase tracking-wider">{phase.phase}</span>
+                        </motion.div>
+
+                        {/* Enhanced icon container */}
+                        <motion.div
+                          className={`w-20 h-20 rounded-3xl bg-gradient-to-br ${phase.color} opacity-20 flex items-center justify-center mb-8 group-hover:opacity-30 transition-all duration-300`}
+                          whileHover={{ scale: 1.1, rotate: 10 }}
+                          transition={{ duration: 0.3 }}
+                        >
+                          <phase.icon className="w-10 h-10 text-white" />
+                        </motion.div>
+                        
+                        <div className="flex-grow">
+                          <motion.h3 
+                            className="text-2xl font-bold text-white mb-4 group-hover:text-blue-300 transition-colors duration-300"
+                            whileHover={{ x: 5 }}
+                            transition={{ duration: 0.3 }}
+                          >
+                            {phase.title}
+                          </motion.h3>
+                          <p className="text-gray-300 leading-relaxed mb-6">
+                            {phase.description}
+                          </p>
+
+                          {/* Timeline info */}
+                          <div className="space-y-3 mb-6">
+                            <div className="flex items-center gap-3">
+                              <Clock className="w-4 h-4 text-blue-400" />
+                              <span className="text-blue-300 font-semibold">{phase.duration}</span>
+                            </div>
+                            <div className="text-gray-400 text-sm">
+                              {phase.deliverables}
+                            </div>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            {/* Enhanced Bottom CTA */}
+            <motion.div
+              className="text-center mt-20"
+              initial={{ opacity: 0, y: 30 }}
+              animate={processInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 1 }}
+            >
+              <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-blue-500/10 to-indigo-500/10 border border-blue-500/20 p-12 backdrop-blur-sm">
+                {/* Background pattern */}
+                <div className="absolute inset-0 opacity-10">
+                  <div className="absolute inset-0" style={{
+                    backgroundImage: `
+                      repeating-linear-gradient(
+                        45deg,
+                        rgba(59, 130, 246, 0.2) 0px,
+                        rgba(59, 130, 246, 0.2) 10px,
+                        transparent 10px,
+                        transparent 20px
+                      )
+                    `
+                  }}></div>
+                </div>
+
+                <div className="relative z-10">
+                  <motion.h3 
+                    className="text-3xl md:text-4xl font-bold text-white mb-6"
+                    animate={{
+                      textShadow: [
+                        '0 0 20px rgba(59, 130, 246, 0.3)',
+                        '0 0 30px rgba(59, 130, 246, 0.5)',
+                        '0 0 20px rgba(59, 130, 246, 0.3)'
+                      ],
+                    }}
+                    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                  >
+                    Готови ли сте да спрете да се <span className="text-blue-400">крие</span> от Google?
+                  </motion.h3>
+                  <p className="text-gray-300 text-xl mb-8">
+                    Започнете с безплатна техническа диагностика и открийте възможностите за SEO доминация
+                  </p>
+                  
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="relative inline-block"
+                  >
+                    <motion.div
+                      className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500/40 to-indigo-500/40 blur-xl"
+                      animate={{
+                        scale: [1, 1.2, 1],
+                        opacity: [0.5, 0.8, 0.5],
+                      }}
+                      transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                    />
+                    
+                    <Button 
+                      size="lg"
+                      className="relative bg-gradient-to-r from-blue-600 to-indigo-600 text-white hover:from-blue-700 hover:to-indigo-700 font-bold text-xl px-10 py-6 rounded-2xl shadow-2xl"
+                      asChild
+                    >
+                      <a href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu" target="_blank" rel="noopener noreferrer">
+                        <motion.div
+                          className="absolute inset-0 bg-gradient-to-r from-white/10 via-transparent to-white/10 opacity-0 group-hover:opacity-100 rounded-2xl"
+                          animate={{ x: ['-100%', '100%'] }}
+                          transition={{ duration: 2, repeat: Infinity, repeatType: 'loop' }}
+                        />
+                        <span className="relative z-10 flex items-center gap-3">
+                          <Search className="w-6 h-6" />
+                          Започнете SEO трансформацията
+                          <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform duration-300" />
+                        </span>
+                      </a>
+                    </Button>
+                  </motion.div>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Expected Results Section */}
+      <section className="py-32 relative overflow-hidden">
+        {/* Results Background */}
+        <div className="absolute inset-0 opacity-20">
+          {/* Success Metrics Grid */}
+          <div className="absolute inset-0" style={{
+            backgroundImage: `
+              linear-gradient(rgba(34, 197, 94, 0.3) 2px, transparent 2px),
+              linear-gradient(90deg, rgba(34, 197, 94, 0.3) 2px, transparent 2px),
+              radial-gradient(circle at 25% 25%, rgba(34, 197, 94, 0.2) 3px, transparent 3px),
+              radial-gradient(circle at 75% 75%, rgba(16, 185, 129, 0.2) 3px, transparent 3px)
+            `,
+            backgroundSize: '90px 90px, 90px 90px, 120px 120px, 150px 150px'
+          }}></div>
+
+          {/* Success Indicators */}
+          {[...Array(10)].map((_, i) => (
+            <motion.div
+              key={`results-${i}`}
+              className="absolute"
+              style={{
+                left: `${8 + i * 9}%`,
+                top: `${25 + (i % 4) * 18}%`,
+                width: `${6 + (i % 3) * 3}px`,
+                height: `${6 + (i % 3) * 3}px`,
+              }}
+              animate={{
+                scale: [0.3, 2.8, 0.3],
+                opacity: [0.2, 0.9, 0.2],
+                rotate: [0, 360],
+                background: [
+                  'radial-gradient(circle, rgba(34, 197, 94, 0.7), transparent)',
+                  'radial-gradient(circle, rgba(16, 185, 129, 0.9), transparent)',
+                  'radial-gradient(circle, rgba(34, 197, 94, 0.7), transparent)'
+                ]
+              }}
+              transition={{
+                duration: 3.5 + i * 0.2,
+                repeat: Infinity,
+                delay: i * 0.3,
+                ease: "easeInOut"
+              }}
+              className="rounded-full bg-gradient-to-r from-green-500/40 to-emerald-500/40"
+            />
+          ))}
+        </div>
+
+        <div className="container mx-auto px-6 relative z-10">
+          <motion.div
+            ref={resultsRef}
+            className="max-w-7xl mx-auto"
+            initial={{ opacity: 0, y: 50 }}
+            animate={resultsInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 1 }}
+          >
+            {/* Results Header */}
+            <div className="text-center mb-20">
+              <motion.div
+                className="inline-flex items-center gap-3 mb-8 px-8 py-4 rounded-full bg-gradient-to-r from-green-500/20 to-emerald-500/20 border border-green-500/30 backdrop-blur-sm"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={resultsInView ? { opacity: 1, scale: 1 } : {}}
+                transition={{ duration: 0.8 }}
+              >
+                <motion.div
+                  className="w-4 h-4 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full"
+                  animate={{
+                    boxShadow: [
+                      '0 0 10px rgba(34, 197, 94, 0.5)',
+                      '0 0 25px rgba(34, 197, 94, 0.9)',
+                      '0 0 10px rgba(34, 197, 94, 0.5)'
+                    ],
+                  }}
+                  transition={{ duration: 3, repeat: Infinity }}
+                />
+                <span className="text-green-300 font-semibold text-lg uppercase tracking-wider">Очаквани резултати</span>
+              </motion.div>
+              
+              <motion.h2 
+                className="text-5xl md:text-6xl font-bold text-white mb-8"
+                initial={{ opacity: 0, y: 20 }}
+                animate={resultsInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.8, delay: 0.2 }}
+              >
+                Крайният резултат:{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-500 to-emerald-500">
+                  Повече от просто позиции
+                </span>
+              </motion.h2>
+              
+              <motion.p 
+                className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed"
+                initial={{ opacity: 0, y: 20 }}
+                animate={resultsInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.8, delay: 0.4 }}
+              >
+                Измерими подобрения, които директно влияят на вашия бизнес растеж и конкурентна позиция.
+              </motion.p>
+            </div>
+
+            {/* Results Grid */}
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {expectedResults.map((result, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={resultsInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.8, delay: 0.3 + index * 0.2 }}
+                  className="relative"
+                >
+                  {/* Result glow effect */}
+                  <motion.div
+                    className="absolute inset-0 rounded-3xl bg-gradient-to-br from-green-500/15 to-emerald-500/10 blur-xl"
+                    animate={{
+                      opacity: [0.1, 0.3, 0.1],
+                      scale: [1, 1.05, 1],
+                    }}
+                    transition={{ 
+                      duration: 4 + index * 0.5, 
+                      repeat: Infinity, 
+                      delay: index * 0.6,
+                      ease: "easeInOut" 
+                    }}
+                  />
+                  
+                  <Card className="relative overflow-hidden bg-gradient-to-br from-slate-800/80 to-slate-700/60 border-2 border-slate-600/40 hover:border-green-500/50 transition-all duration-500 group backdrop-blur-lg shadow-2xl rounded-3xl h-full">
+                    {/* Result pattern overlay */}
+                    <div className="absolute inset-0 opacity-8">
+                      <div className="absolute inset-0" style={{
+                        backgroundImage: `
+                          radial-gradient(circle at 30% 30%, rgba(34, 197, 94, 0.15) 2px, transparent 2px),
+                          radial-gradient(circle at 70% 70%, rgba(16, 185, 129, 0.1) 2px, transparent 2px)
+                        `,
+                        backgroundSize: '50px 50px, 70px 70px'
+                      }}></div>
+                    </div>
+
+                    <CardContent className="p-8 relative z-10 text-center h-full flex flex-col justify-between">
+                      {/* Enhanced icon container */}
+                      <motion.div
+                        className="w-20 h-20 bg-gradient-to-br from-green-500/20 to-emerald-500/10 rounded-3xl flex items-center justify-center border-2 border-green-500/30 group-hover:border-green-500/50 transition-all duration-300 mb-6 mx-auto"
+                        whileHover={{ scale: 1.1, rotate: 5 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <result.icon className="w-10 h-10 text-green-400 group-hover:scale-110 transition-transform duration-300" />
+                      </motion.div>
+                      
+                      <div>
+                        <motion.h3 
+                          className="text-xl font-bold text-white mb-4 group-hover:text-green-300 transition-colors duration-300"
+                          whileHover={{ y: -2 }}
+                          transition={{ duration: 0.3 }}
+                        >
+                          {result.title}
+                        </motion.h3>
+
+                        {/* Metric display */}
+                        <motion.div
+                          className="mb-4"
+                          whileHover={{ scale: 1.05 }}
+                          transition={{ duration: 0.3 }}
+                        >
+                          <div className="text-2xl font-bold text-green-400 mb-2">{result.metric}</div>
+                          <div className="text-gray-300 text-sm leading-relaxed">{result.description}</div>
+                        </motion.div>
+
+                        {/* Timeframe */}
+                        <motion.div
+                          className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-green-500/20 to-emerald-500/10 border border-green-500/30"
+                          whileHover={{ scale: 1.05 }}
+                          transition={{ duration: 0.3 }}
+                        >
+                          <Clock className="w-4 h-4 text-green-400" />
+                          <span className="text-green-300 font-semibold text-sm">{result.timeframe}</span>
+                        </motion.div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
 
       {/* Investment Section */}
-      <InvestmentSection />
+      <section className="py-32 bg-slate-800/30 relative overflow-hidden">
+        <div className="container mx-auto px-6 relative z-10">
+          <motion.div
+            ref={investmentRef}
+            className="max-w-6xl mx-auto"
+            initial={{ opacity: 0, y: 30 }}
+            animate={investmentInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8 }}
+          >
+            {/* Investment Header */}
+            <div className="text-center mb-16">
+              <motion.div
+                className="inline-flex items-center gap-3 mb-8 px-8 py-4 rounded-full bg-gradient-to-r from-yellow-500/20 to-orange-500/20 border border-yellow-500/30 backdrop-blur-sm"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={investmentInView ? { opacity: 1, scale: 1 } : {}}
+                transition={{ duration: 0.8 }}
+              >
+                <motion.div
+                  className="w-4 h-4 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-full"
+                  animate={{
+                    boxShadow: [
+                      '0 0 10px rgba(245, 158, 11, 0.5)',
+                      '0 0 25px rgba(245, 158, 11, 0.9)',
+                      '0 0 10px rgba(245, 158, 11, 0.5)'
+                    ],
+                  }}
+                  transition={{ duration: 3, repeat: Infinity }}
+                />
+                <span className="text-yellow-300 font-semibold text-lg uppercase tracking-wider">Инвестицията</span>
+              </motion.div>
 
-      {/* Final CTA Section */}
-      <FinalCTASection />
+              <h2 className="text-5xl md:text-6xl font-bold mb-8 text-white">
+                Цената на{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-orange-500">
+                  доминацията
+                </span>
+              </h2>
+            </div>
+
+            {/* Investment Display */}
+            <Card className="bg-slate-800/60 border-slate-600/30 p-12 backdrop-blur-sm mb-12 rounded-3xl text-center">
+              <motion.div 
+                className="text-7xl md:text-8xl font-bold text-yellow-500 mb-6"
+                animate={{
+                  textShadow: [
+                    '0 0 30px rgba(245, 158, 11, 0.5)',
+                    '0 0 50px rgba(245, 158, 11, 0.8)',
+                    '0 0 30px rgba(245, 158, 11, 0.5)'
+                  ],
+                }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              >
+                1980 лв.
+              </motion.div>
+              <p className="text-2xl text-gray-300 mb-8">месечна инвестиция в SEO доминация</p>
+              <p className="text-lg text-gray-400">минимален период на договор – 3 месеца</p>
+            </Card>
+
+            {/* Investment Principles */}
+            <div className="grid md:grid-cols-3 gap-8">
+              {investmentPrinciples.map((principle, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={investmentInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.8, delay: 0.3 + index * 0.2 }}
+                  className="relative"
+                >
+                  <Card className="bg-slate-700/50 rounded-3xl p-8 border border-slate-600/30 h-full">
+                    <motion.div
+                      className="w-16 h-16 bg-gradient-to-br from-yellow-500/20 to-orange-500/10 rounded-2xl flex items-center justify-center border-2 border-yellow-500/30 mb-6"
+                      whileHover={{ scale: 1.1, rotate: 5 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <principle.icon className="w-8 h-8 text-yellow-500" />
+                    </motion.div>
+                    
+                    <h4 className="text-white font-bold text-xl mb-4">{principle.title}</h4>
+                    <p className="text-gray-400 leading-relaxed">{principle.description}</p>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* CTA Button */}
+            <motion.div
+              className="text-center mt-12"
+              initial={{ opacity: 0, y: 30 }}
+              animate={investmentInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.8 }}
+            >
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="relative inline-block"
+              >
+                <motion.div
+                  className="absolute inset-0 rounded-2xl bg-gradient-to-r from-yellow-500/40 to-orange-500/40 blur-xl"
+                  animate={{
+                    scale: [1, 1.2, 1],
+                    opacity: [0.5, 0.8, 0.5],
+                  }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                />
+                
+                <Button 
+                  size="lg"
+                  className="relative bg-gradient-to-r from-yellow-500 to-orange-500 text-black hover:from-yellow-600 hover:to-orange-600 font-bold text-xl px-10 py-6 rounded-2xl shadow-2xl"
+                  asChild
+                >
+                  <a href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu" target="_blank" rel="noopener noreferrer">
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-white/20 via-transparent to-white/20 opacity-0 group-hover:opacity-100 rounded-2xl"
+                      animate={{ x: ['-100%', '100%'] }}
+                      transition={{ duration: 2, repeat: Infinity, repeatType: 'loop' }}
+                    />
+                    <span className="relative z-10 flex items-center gap-3">
+                      <Search className="w-6 h-6" />
+                      Започнете доминацията
+                      <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform duration-300" />
+                    </span>
+                  </a>
+                </Button>
+              </motion.div>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Ultra-Enhanced Final CTA Section */}
+      <section className="py-32 bg-[#ECB629] text-black relative overflow-hidden">
+        {/* Ultra-Enhanced Background System */}
+        <div className="absolute inset-0">
+          {/* Advanced Grid Pattern */}
+          <div className="absolute inset-0 opacity-15">
+            <div className="absolute inset-0" style={{
+              backgroundImage: `
+                linear-gradient(rgba(0, 0, 0, 0.1) 2px, transparent 2px),
+                linear-gradient(90deg, rgba(0, 0, 0, 0.1) 2px, transparent 2px),
+                linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px)
+              `,
+              backgroundSize: '100px 100px, 100px 100px, 25px 25px, 25px 25px'
+            }}></div>
+          </div>
+
+          {/* Dynamic SEO Algorithm Network */}
+          <div className="absolute inset-0 opacity-25">
+            {/* Algorithm Stream Lines */}
+            {[...Array(12)].map((_, i) => (
+              <motion.div
+                key={`algorithm-stream-${i}`}
+                className="absolute bg-black/30 rounded-full"
+                style={{
+                  left: `${8 + i * 8}%`,
+                  top: `${20 + (i % 4) * 20}%`,
+                  width: '3px',
+                  height: '60px',
+                  transformOrigin: 'center',
+                }}
+                animate={{
+                  scaleY: [0.4, 1.8, 0.4],
+                  opacity: [0.2, 0.8, 0.2],
+                  rotate: [0, 15, -15, 0],
+                }}
+                transition={{
+                  duration: 4 + i * 0.3,
+                  repeat: Infinity,
+                  delay: i * 0.5,
+                  ease: "easeInOut"
+                }}
+              />
+            ))}
+            
+            {/* SEO Ranking Nodes */}
+            {[...Array(15)].map((_, i) => (
+              <motion.div
+                key={`ranking-node-${i}`}
+                className="absolute rounded-full border-2 border-black/40"
+                style={{
+                  left: `${5 + i * 6}%`,
+                  top: `${10 + (i % 5) * 18}%`,
+                  width: `${8 + (i % 3) * 4}px`,
+                  height: `${8 + (i % 3) * 4}px`,
+                }}
+                animate={{
+                  scale: [0.8, 1.6, 0.8],
+                  opacity: [0.3, 0.9, 0.3],
+                  borderWidth: [1, 3, 1],
+                  rotate: [0, 360],
+                }}
+                transition={{
+                  duration: 5 + (i % 3),
+                  repeat: Infinity,
+                  delay: i * 0.3,
+                  ease: "easeInOut"
+                }}
+              />
+            ))}
+
+            {/* Authority Signal Cores */}
+            {[...Array(6)].map((_, i) => (
+              <motion.div
+                key={`authority-signal-${i}`}
+                className="absolute w-10 h-10 rounded-full bg-gradient-to-r from-black/40 to-orange-600/30"
+                style={{
+                  left: `${12 + i * 16}%`,
+                  top: `${15 + (i % 2) * 70}%`,
+                }}
+                animate={{
+                  scale: [1, 2.4, 1],
+                  opacity: [0.4, 0.9, 0.4],
+                  boxShadow: [
+                    '0 0 30px rgba(0,0,0,0.2)',
+                    '0 0 60px rgba(0,0,0,0.6)',
+                    '0 0 30px rgba(0,0,0,0.2)'
+                  ],
+                }}
+                transition={{
+                  duration: 3.5,
+                  repeat: Infinity,
+                  delay: i * 0.8,
+                  ease: "easeInOut"
+                }}
+              />
+            ))}
+          </div>
+
+          {/* Enhanced Background Elements */}
+          <div className="absolute inset-0 opacity-8">
+            <motion.div 
+              className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-black/40 to-orange-600/30 rounded-full blur-3xl"
+              animate={{
+                scale: [1, 1.3, 1],
+                opacity: [0.1, 0.3, 0.1],
+                x: [0, 30, 0],
+                y: [0, -15, 0],
+              }}
+              transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+            />
+            <motion.div 
+              className="absolute bottom-1/4 right-1/4 w-72 h-72 bg-gradient-to-l from-orange-600/50 to-black/40 rounded-full blur-3xl"
+              animate={{
+                scale: [1, 1.4, 1],
+                opacity: [0.1, 0.25, 0.1],
+                x: [0, -25, 0],
+                y: [0, 20, 0],
+              }}
+              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+            />
+            <motion.div 
+              className="absolute top-1/2 right-1/3 w-56 h-56 bg-gradient-to-r from-red-600/30 to-black/30 rounded-full blur-3xl"
+              animate={{
+                scale: [1, 1.6, 1],
+                opacity: [0.05, 0.2, 0.05],
+                rotate: [0, 360],
+              }}
+              transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+            />
+          </div>
+        </div>
+
+        <div className="container mx-auto px-6 relative z-10">
+          <motion.div
+            ref={ctaRef}
+            className="max-w-7xl mx-auto"
+            initial={{ opacity: 0, y: 30 }}
+            animate={ctaInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.8 }}
+          >
+            {/* Ultra-Premium Status Badge */}
+            <motion.div
+              className="flex justify-center mb-16"
+              initial={{ opacity: 0, y: 20, scale: 0.9 }}
+              animate={ctaInView ? { opacity: 1, y: 0, scale: 1 } : {}}
+              transition={{ duration: 0.8 }}
+            >
+              <motion.div 
+                className="relative"
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.3 }}
+              >
+                {/* Multi-layer glow system */}
+                <motion.div
+                  className="absolute inset-0 rounded-full bg-gradient-to-r from-orange-500/30 to-red-500/30 blur-xl"
+                  animate={{
+                    scale: [1, 1.3, 1],
+                    opacity: [0.5, 0.9, 0.5],
+                  }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                />
+                <motion.div
+                  className="absolute inset-0 rounded-full bg-gradient-to-r from-black/20 to-black/10 blur-lg"
+                  animate={{
+                    scale: [1, 1.2, 1],
+                    opacity: [0.3, 0.7, 0.3],
+                  }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                />
+                
+                {/* Main badge container */}
+                <div className="relative inline-flex items-center gap-4 px-12 py-6 rounded-full bg-gradient-to-r from-black/30 to-black/20 backdrop-blur-md border-2 border-black/40 shadow-2xl">
+                  {/* SEO readiness indicator system */}
+                  <div className="relative flex items-center gap-3">
+                    <div className="relative">
+                      <div className="w-5 h-5 bg-orange-500 rounded-full"></div>
+                      <motion.div
+                        className="absolute inset-0 w-5 h-5 bg-orange-500 rounded-full"
+                        animate={{
+                          scale: [1, 2.5, 1],
+                          opacity: [0.8, 0, 0.8],
+                        }}
+                        transition={{ duration: 2.5, repeat: Infinity, ease: "easeOut" }}
+                      />
+                      <motion.div
+                        className="absolute inset-0 w-5 h-5 bg-orange-500 rounded-full"
+                        animate={{
+                          scale: [1, 2, 1],
+                          opacity: [0.6, 0, 0.6],
+                        }}
+                        transition={{ duration: 2.5, repeat: Infinity, ease: "easeOut", delay: 0.7 }}
+                      />
+                    </div>
+                    <motion.div
+                      className="w-2 h-8 bg-gradient-to-t from-orange-500 to-red-500 rounded-full"
+                      animate={{
+                        scaleY: [1, 1.4, 1],
+                        opacity: [0.6, 1, 0.6],
+                      }}
+                      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                    />
+                  </div>
+
+                  {/* Enhanced SEO readiness text */}
+                  <motion.span 
+                    className="text-lg text-black font-black tracking-widest uppercase"
+                    animate={{
+                      textShadow: [
+                        '0 0 20px rgba(0,0,0,0.3)',
+                        '0 0 30px rgba(0,0,0,0.5)',
+                        '0 0 20px rgba(0,0,0,0.3)'
+                      ],
+                    }}
+                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                  >
+                    ГОТОВИ ЗА ДОМИНАЦИЯ
+                  </motion.span>
+
+                  {/* SEO level indicators */}
+                  <div className="flex items-center gap-1">
+                    {[...Array(4)].map((_, i) => (
+                      <motion.div
+                        key={i}
+                        className="w-3 h-3 bg-gradient-to-r from-orange-500 to-red-500 rounded-full"
+                        animate={{
+                          scale: [0.6, 1.4, 0.6],
+                          opacity: [0.4, 1, 0.4],
+                        }}
+                        transition={{
+                          duration: 2,
+                          repeat: Infinity,
+                          delay: i * 0.3,
+                          ease: "easeInOut"
+                        }}
+                      />
+                    ))}
+                  </div>
+                </div>
+
+                {/* Premium corner accents */}
+                <div className="absolute -top-2 -left-2 w-4 h-4 border-l-2 border-t-2 border-orange-500 rounded-tl-xl"></div>
+                <div className="absolute -top-2 -right-2 w-4 h-4 border-r-2 border-t-2 border-red-500 rounded-tr-xl"></div>
+                <div className="absolute -bottom-2 -left-2 w-4 h-4 border-l-2 border-b-2 border-red-500 rounded-bl-xl"></div>
+                <div className="absolute -bottom-2 -right-2 w-4 h-4 border-r-2 border-b-2 border-orange-500 rounded-br-xl"></div>
+              </motion.div>
+            </motion.div>
+
+            {/* Premium Main Content Card */}
+            <div className="relative">
+              {/* Outer SEO dominance glow */}
+              <motion.div
+                className="absolute inset-0 rounded-[2.5rem] bg-gradient-to-r from-black/25 via-orange-500/15 to-black/25 blur-2xl"
+                animate={{
+                  opacity: [0.5, 0.9, 0.5],
+                  scale: [1, 1.03, 1],
+                }}
+                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+              />
+
+              {/* Main CTA Card */}
+              <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-black/20 via-black/10 to-black/15 border-2 border-black/30 backdrop-blur-lg p-12 md:p-20 shadow-2xl">
+                {/* Premium pattern system */}
+                <div className="absolute inset-0">
+                  <div className="absolute inset-0 opacity-8" style={{
+                    backgroundImage: `
+                      linear-gradient(45deg, rgba(0, 0, 0, 0.15) 25%, transparent 25%),
+                      linear-gradient(-45deg, rgba(0, 0, 0, 0.15) 25%, transparent 25%),
+                      linear-gradient(45deg, transparent 75%, rgba(0, 0, 0, 0.05) 75%),
+                      linear-gradient(-45deg, transparent 75%, rgba(0, 0, 0, 0.05) 75%)
+                    `,
+                    backgroundSize: '80px 80px, 80px 80px, 80px 80px, 80px 80px',
+                    backgroundPosition: '0 0, 0 40px, 40px -40px, -40px 0px'
+                  }}></div>
+
+                  {/* SEO optimization elements */}
+                  {[...Array(8)].map((_, i) => (
+                    <motion.div
+                      key={`seo-element-${i}`}
+                      className="absolute opacity-20"
+                      style={{
+                        left: `${5 + i * 12}%`,
+                        top: `${15 + (i % 4) * 25}%`,
+                      }}
+                      animate={{
+                        rotate: [0, 360],
+                        scale: [0.7, 1.3, 0.7],
+                        opacity: [0.1, 0.4, 0.1],
+                      }}
+                      transition={{
+                        duration: 10 + i * 3,
+                        repeat: Infinity,
+                        ease: "linear",
+                        delay: i * 1,
+                      }}
+                    >
+                      <div className="w-10 h-10 border-2 border-black/40 transform rotate-45"></div>
+                    </motion.div>
+                  ))}
+                </div>
+
+                <div className="relative z-10 text-center">
+                  {/* Enhanced main headline */}
+                  <motion.h2 
+                    className="text-4xl md:text-6xl font-bold mb-8 leading-tight"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={ctaInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.8, delay: 0.3 }}
+                  >
+                    Готови ли сте да спрете да{" "}
+                    <motion.span
+                      className="relative inline-block"
+                      initial={{ scale: 0.9 }}
+                      animate={ctaInView ? { scale: 1 } : {}}
+                      transition={{ duration: 1, delay: 0.5, type: "spring", bounce: 0.3 }}
+                      whileHover={{ scale: 1.05 }}
+                    >
+                      {/* Multi-layer SEO emphasis */}
+                      <motion.div
+                        className="absolute inset-0 bg-gradient-to-r from-orange-500/30 to-red-500/30 rounded-2xl blur-xl"
+                        animate={{
+                          scale: [1, 1.2, 1],
+                          opacity: [0.5, 0.8, 0.5],
+                        }}
+                        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                      />
+                      <span className="relative z-10 px-4 py-2 bg-gradient-to-r from-black/20 to-black/10 rounded-2xl border-2 border-black/30">
+                        импровизирате
+                      </span>
+                      <motion.div
+                        className="absolute bottom-0 left-0 right-0 h-3 bg-black/20 rounded-b-xl"
+                        initial={{ scaleX: 0 }}
+                        animate={ctaInView ? { scaleX: 1 } : {}}
+                        transition={{ duration: 1.5, delay: 0.8 }}
+                      />
+                    </motion.span>
+                    ?
+                  </motion.h2>
+                  
+                  {/* Enhanced description */}
+                  <motion.p 
+                    className="text-xl mb-12 leading-relaxed max-w-4xl mx-auto font-medium"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={ctaInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.8, delay: 0.5 }}
+                  >
+                    Безплатната ни диагностика ще ви покаже точно какво се случва с вашето SEO и как да стигнете до първа страница. Процесът отнема 5 минути, анализът - 48 часа. Приемаме само 3 нови партньора за следващото тримесечие.
+                  </motion.p>
+
+                  {/* Premium CTA Button */}
+                  <motion.div
+                    className="flex justify-center"
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={ctaInView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.8, delay: 0.7 }}
+                  >
+                    <motion.div
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="relative"
+                    >
+                      {/* Button glow effect */}
+                      <motion.div
+                        className="absolute inset-0 rounded-2xl bg-gradient-to-r from-black/40 to-black/20 blur-xl"
+                        animate={{
+                          scale: [1, 1.2, 1],
+                          opacity: [0.5, 0.8, 0.5],
+                        }}
+                        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                      />
+                      
+                      <Button
+                        size="lg"
+                        className="relative bg-gradient-to-r from-black to-gray-800 text-[#ECB629] hover:from-black/90 hover:to-gray-800/90 font-bold text-2xl px-16 py-8 rounded-2xl shadow-2xl hover:shadow-black/30 transition-all duration-300 border-2 border-black/20"
+                        asChild
+                      >
+                        <a href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu" target="_blank" rel="noopener noreferrer">
+                          <motion.div
+                            className="absolute inset-0 bg-gradient-to-r from-[#ECB629]/10 via-transparent to-[#ECB629]/10 opacity-0 group-hover:opacity-100 rounded-2xl"
+                            animate={{ x: ['-100%', '100%'] }}
+                            transition={{ duration: 3, repeat: Infinity, repeatType: 'loop' }}
+                          />
+                          <span className="relative z-10 flex items-center gap-4">
+                            <Search className="w-8 h-8" />
+                            Започнете безплатната диагностика
+                            <ArrowRight className="w-8 h-8 group-hover:translate-x-2 transition-transform duration-300" />
+                          </span>
+                        </a>
+                      </Button>
+                    </motion.div>
+                  </motion.div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
 
       <Footer />
     </div>
