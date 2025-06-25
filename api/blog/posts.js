@@ -27,7 +27,7 @@ module.exports = async (req, res) => {
     
     // Get only published blog posts, ordered by creation date (newest first)
     const posts = await sql`
-      SELECT id, title, slug, excerpt, tags, created_at, updated_at
+      SELECT id, title, slug, excerpt, content, category, tags, created_at, updated_at
       FROM blog_posts 
       WHERE is_published = true 
       ORDER BY created_at DESC

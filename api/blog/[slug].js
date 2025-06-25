@@ -28,7 +28,7 @@ module.exports = async (req, res) => {
     
     // Get published blog post by slug
     const posts = await sql`
-      SELECT id, title, slug, excerpt, content, tags, created_at, updated_at
+      SELECT id, title, slug, excerpt, content, category, tags, created_at, updated_at
       FROM blog_posts 
       WHERE slug = ${slug} AND is_published = true
     `;
