@@ -17,14 +17,16 @@ async function authenticateAdmin(req) {
   }
 
   const token = authHeader.substring(7);
-  const [session] = await db
+  const sessionResults = await db
     .select()
     .from(adminSessions)
     .where(eq(adminSessions.sessionToken, token));
   
-  if (!session || session.expiresAt <= new Date()) {
+  if (sessionResults.length === 0 || sessionResults[0].expiresAt <= new Date()) {
     throw new Error('Invalid or expired session');
   }
+  
+  const session = sessionResults[0];
 
   return session.userId;
 }

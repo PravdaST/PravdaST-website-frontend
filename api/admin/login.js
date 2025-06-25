@@ -33,10 +33,11 @@ export default async function handler(req, res) {
     }
 
     // Find user
-    const [user] = await db.select().from(users).where(eq(users.username, username));
-    if (!user) {
+    const userResults = await db.select().from(users).where(eq(users.username, username));
+    if (userResults.length === 0) {
       return res.status(401).json({ message: 'Invalid credentials' });
     }
+    const user = userResults[0];
 
     // Verify password
     const isValidPassword = await bcrypt.compare(password, user.password);
