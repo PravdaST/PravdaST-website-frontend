@@ -1,7 +1,5 @@
-// Public API endpoint for blog posts
-const { neon } = require('@neondatabase/serverless');
-
-module.exports = async (req, res) => {
+// Public API endpoint for all blog posts
+export default async function handler(req, res) {
   // Enable CORS
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
@@ -16,30 +14,43 @@ module.exports = async (req, res) => {
   }
 
   try {
+    // Import neon client
+    const { neon } = await import('@neondatabase/serverless');
+    
+    // Get database URL
     const dbUrl = process.env.DATABASE_URL;
     if (!dbUrl) {
-      throw new Error('DATABASE_URL environment variable is not set');
+      console.error('DATABASE_URL not found');
+      return res.status(500).json({ message: 'Database configuration error' });
     }
 
     const sql = neon(dbUrl);
     
-    console.log('Fetching published blog posts...');
+    console.log('Fetching published blog posts from database...');
     
-    // Get only published blog posts, ordered by creation date (newest first)
+    // Execute query to get all published posts
     const posts = await sql`
-      SELECT id, title, slug, excerpt, content, category, tags, created_at, updated_at
+      SELECT id, title, excerpt, slug, category, created_at 
       FROM blog_posts 
-      WHERE is_published = true 
+      WHERE is_published = true
       ORDER BY created_at DESC
     `;
     
-    console.log(`Found ${posts.length} published posts`);
-
-    return res.json(posts);
+    console.log(`Successfully fetched ${posts.length} published posts`);
+    
+    // Return posts as JSON array with 200 OK status
+    return res.status(200).json(posts);
 
   } catch (error) {
-    console.error('Public blog posts API error:', error);
-    console.error('Error details:', error.message, error.stack);
-    return res.status(500).json({ error: 'Internal server error', details: error.message });
+    // Log detailed error to console
+    console.error('Failed to fetch posts:', error);
+    console.error('Error message:', error.message);
+    console.error('Error stack:', error.stack);
+    
+    // Return 500 Internal Server Error
+    return res.status(500).json({ 
+      message: 'Error fetching blog posts',
+      error: error.message 
+    });
   }
-};
+}
