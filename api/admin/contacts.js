@@ -1,34 +1,23 @@
-const { Pool, neonConfig } = require('@neondatabase/serverless');
-const { drizzle } = require('drizzle-orm/neon-serverless');
-const { contacts, adminSessions } = require('../../shared/schema.js');
-const { eq, desc } = require('drizzle-orm');
-const ws = require('ws');
-
-neonConfig.webSocketConstructor = ws;
-
-const pool = new Pool({ connectionString: process.env.DATABASE_URL });
-const db = drizzle({ client: pool });
+const { Pool } = require('pg');
 
 // Auth middleware function
-async function authenticateAdmin(req) {
+async function authenticateAdmin(req, client) {
   const authHeader = req.headers.authorization;
   if (!authHeader || !authHeader.startsWith('Bearer ')) {
     throw new Error('No token provided');
   }
 
   const token = authHeader.substring(7);
-  const sessionResults = await db
-    .select()
-    .from(adminSessions)
-    .where(eq(adminSessions.sessionToken, token));
+  const sessionResult = await client.query(
+    'SELECT * FROM admin_sessions WHERE session_token = $1 AND expires_at > NOW()',
+    [token]
+  );
   
-  if (sessionResults.length === 0 || sessionResults[0].expiresAt <= new Date()) {
+  if (sessionResult.rows.length === 0) {
     throw new Error('Invalid or expired session');
   }
-  
-  const session = sessionResults[0];
 
-  return session.userId;
+  return sessionResult.rows[0].user_id;
 }
 
 module.exports = async function handler(req, res) {
@@ -45,16 +34,27 @@ module.exports = async function handler(req, res) {
     return res.status(405).json({ message: 'Method not allowed' });
   }
 
+  let client;
   try {
-    await authenticateAdmin(req);
+    const pool = new Pool({
+      connectionString: process.env.DATABASE_URL,
+      ssl: { rejectUnauthorized: false }
+    });
     
-    const allContacts = await db.select().from(contacts).orderBy(desc(contacts.createdAt));
-    res.json(allContacts);
+    client = await pool.connect();
+    await authenticateAdmin(req, client);
+    
+    const result = await client.query('SELECT * FROM contacts ORDER BY created_at DESC');
+    res.json(result.rows);
   } catch (error) {
     console.error('Contacts API error:', error);
     if (error.message.includes('token') || error.message.includes('session')) {
       return res.status(401).json({ message: error.message });
     }
     return res.status(500).json({ message: 'Failed to fetch contacts' });
+  } finally {
+    if (client) {
+      client.release();
+    }
   }
 }

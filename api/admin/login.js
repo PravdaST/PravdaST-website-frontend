@@ -1,15 +1,11 @@
-const { Pool, neonConfig } = require('@neondatabase/serverless');
-const { drizzle } = require('drizzle-orm/neon-serverless');
-const { users, adminSessions } = require('../../shared/schema.js');
-const { eq } = require('drizzle-orm');
 const bcrypt = require('bcrypt');
 const { randomBytes } = require('crypto');
-const ws = require('ws');
 
-neonConfig.webSocketConstructor = ws;
-
-const pool = new Pool({ connectionString: process.env.DATABASE_URL });
-const db = drizzle({ client: pool });
+async function executeQuery(sql, params = []) {
+  const { neon } = await import('@neondatabase/serverless');
+  const db = neon(process.env.DATABASE_URL);
+  return await db(sql, params);
+}
 
 module.exports = async function handler(req, res) {
   // Set CORS headers
@@ -33,11 +29,11 @@ module.exports = async function handler(req, res) {
     }
 
     // Find user
-    const userResults = await db.select().from(users).where(eq(users.username, username));
-    if (userResults.length === 0) {
+    const userResult = await executeQuery('SELECT * FROM users WHERE username = $1', [username]);
+    if (userResult.length === 0) {
       return res.status(401).json({ message: 'Invalid credentials' });
     }
-    const user = userResults[0];
+    const user = userResult[0];
 
     // Verify password
     const isValidPassword = await bcrypt.compare(password, user.password);
@@ -49,11 +45,10 @@ module.exports = async function handler(req, res) {
     const sessionToken = randomBytes(32).toString('hex');
     const expiresAt = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 hours
 
-    await db.insert(adminSessions).values({
-      sessionToken,
-      userId: user.id,
-      expiresAt,
-    });
+    await executeQuery(
+      'INSERT INTO admin_sessions (session_token, user_id, expires_at) VALUES ($1, $2, $3)',
+      [sessionToken, user.id, expiresAt]
+    );
 
     res.json({ 
       message: 'Login successful', 
@@ -62,6 +57,7 @@ module.exports = async function handler(req, res) {
     });
   } catch (error) {
     console.error('Login error:', error);
-    res.status(500).json({ message: 'Login failed' });
+    res.status(500).json({ message: 'Login failed', error: error.message });
   }
-}
+};
+

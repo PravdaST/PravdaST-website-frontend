@@ -1,34 +1,23 @@
-const { Pool, neonConfig } = require('@neondatabase/serverless');
-const { drizzle } = require('drizzle-orm/neon-serverless');
-const { blogPosts, adminSessions } = require('../../../../shared/schema.js');
-const { eq } = require('drizzle-orm');
-const ws = require('ws');
-
-neonConfig.webSocketConstructor = ws;
-
-const pool = new Pool({ connectionString: process.env.DATABASE_URL });
-const db = drizzle({ client: pool });
+const { Pool } = require('pg');
 
 // Auth middleware function
-async function authenticateAdmin(req) {
+async function authenticateAdmin(req, client) {
   const authHeader = req.headers.authorization;
   if (!authHeader || !authHeader.startsWith('Bearer ')) {
     throw new Error('No token provided');
   }
 
   const token = authHeader.substring(7);
-  const sessionResults = await db
-    .select()
-    .from(adminSessions)
-    .where(eq(adminSessions.sessionToken, token));
+  const sessionResult = await client.query(
+    'SELECT * FROM admin_sessions WHERE session_token = $1 AND expires_at > NOW()',
+    [token]
+  );
   
-  if (sessionResults.length === 0 || sessionResults[0].expiresAt <= new Date()) {
+  if (sessionResult.rows.length === 0) {
     throw new Error('Invalid or expired session');
   }
-  
-  const session = sessionResults[0];
 
-  return session.userId;
+  return sessionResult.rows[0].user_id;
 }
 
 module.exports = async function handler(req, res) {
@@ -45,15 +34,23 @@ module.exports = async function handler(req, res) {
     return res.status(405).json({ message: 'Method not allowed' });
   }
 
+  let client;
   try {
-    await authenticateAdmin(req);
+    const pool = new Pool({
+      connectionString: process.env.DATABASE_URL,
+      ssl: { rejectUnauthorized: false }
+    });
+    
+    client = await pool.connect();
+    await authenticateAdmin(req, client);
+    
     const { id } = req.query;
     const postId = parseInt(id);
 
-    await db
-      .update(blogPosts)
-      .set({ isPublished: false, updatedAt: new Date() })
-      .where(eq(blogPosts.id, postId));
+    await client.query(
+      'UPDATE blog_posts SET is_published = false, updated_at = NOW() WHERE id = $1',
+      [postId]
+    );
 
     res.json({ message: 'Blog post unpublished successfully' });
   } catch (error) {
@@ -62,5 +59,9 @@ module.exports = async function handler(req, res) {
       return res.status(401).json({ message: error.message });
     }
     return res.status(500).json({ message: 'Failed to unpublish blog post' });
+  } finally {
+    if (client) {
+      client.release();
+    }
   }
 }

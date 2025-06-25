@@ -1,13 +1,8 @@
-const { Pool, neonConfig } = require('@neondatabase/serverless');
-const { drizzle } = require('drizzle-orm/neon-serverless');
-const { blogPosts, adminSessions } = require('../../../shared/schema.js');
-const { eq, desc } = require('drizzle-orm');
-const ws = require('ws');
-
-neonConfig.webSocketConstructor = ws;
-
-const pool = new Pool({ connectionString: process.env.DATABASE_URL });
-const db = drizzle({ client: pool });
+async function executeQuery(sql, params = []) {
+  const { neon } = await import('@neondatabase/serverless');
+  const db = neon(process.env.DATABASE_URL);
+  return await db(sql, params);
+}
 
 // Auth middleware function
 async function authenticateAdmin(req) {
@@ -17,18 +12,16 @@ async function authenticateAdmin(req) {
   }
 
   const token = authHeader.substring(7);
-  const sessionResults = await db
-    .select()
-    .from(adminSessions)
-    .where(eq(adminSessions.sessionToken, token));
+  const sessionResult = await executeQuery(
+    'SELECT * FROM admin_sessions WHERE session_token = $1 AND expires_at > NOW()',
+    [token]
+  );
   
-  if (sessionResults.length === 0 || sessionResults[0].expiresAt <= new Date()) {
+  if (sessionResult.length === 0) {
     throw new Error('Invalid or expired session');
   }
-  
-  const session = sessionResults[0];
 
-  return session.userId;
+  return sessionResult[0].user_id;
 }
 
 module.exports = async function handler(req, res) {
@@ -46,20 +39,21 @@ module.exports = async function handler(req, res) {
 
     if (req.method === 'GET') {
       // Get all blog posts
-      const posts = await db.select().from(blogPosts).orderBy(desc(blogPosts.createdAt));
-      return res.json(posts);
+      const result = await executeQuery('SELECT * FROM blog_posts ORDER BY created_at DESC');
+      return res.json(result);
     }
 
     if (req.method === 'POST') {
       // Create new blog post
-      const postData = {
-        ...req.body,
-        authorId: userId,
-        updatedAt: new Date(),
-      };
+      const { title, slug, excerpt, content, category, tags = [], isPublished = false } = req.body;
       
-      const [post] = await db.insert(blogPosts).values(postData).returning();
-      return res.json({ message: 'Blog post created successfully', post });
+      const result = await executeQuery(
+        `INSERT INTO blog_posts (title, slug, excerpt, content, category, tags, is_published, author_id, updated_at) 
+         VALUES ($1, $2, $3, $4, $5, $6, $7, $8, NOW()) RETURNING *`,
+        [title, slug, excerpt, content, category, tags, isPublished, userId]
+      );
+      
+      return res.json({ message: 'Blog post created successfully', post: result[0] });
     }
 
     return res.status(405).json({ message: 'Method not allowed' });

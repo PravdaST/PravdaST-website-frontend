@@ -1,13 +1,8 @@
-const { Pool, neonConfig } = require('@neondatabase/serverless');
-const { drizzle } = require('drizzle-orm/neon-serverless');
-const { adminSessions } = require('../../shared/schema.js');
-const { eq } = require('drizzle-orm');
-const ws = require('ws');
-
-neonConfig.webSocketConstructor = ws;
-
-const pool = new Pool({ connectionString: process.env.DATABASE_URL });
-const db = drizzle({ client: pool });
+async function executeQuery(sql, params = []) {
+  const { neon } = await import('@neondatabase/serverless');
+  const db = neon(process.env.DATABASE_URL);
+  return await db(sql, params);
+}
 
 module.exports = async function handler(req, res) {
   // Set CORS headers
@@ -30,11 +25,11 @@ module.exports = async function handler(req, res) {
     }
 
     const token = authHeader.substring(7);
-    await db.delete(adminSessions).where(eq(adminSessions.sessionToken, token));
+    await executeQuery('DELETE FROM admin_sessions WHERE session_token = $1', [token]);
     
     res.json({ message: 'Logout successful' });
   } catch (error) {
     console.error('Logout error:', error);
     res.status(500).json({ message: 'Logout failed' });
   }
-}
+};

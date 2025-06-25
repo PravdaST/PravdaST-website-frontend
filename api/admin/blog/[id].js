@@ -1,34 +1,23 @@
-const { Pool, neonConfig } = require('@neondatabase/serverless');
-const { drizzle } = require('drizzle-orm/neon-serverless');
-const { blogPosts, adminSessions } = require('../../../shared/schema.js');
-const { eq } = require('drizzle-orm');
-const ws = require('ws');
-
-neonConfig.webSocketConstructor = ws;
-
-const pool = new Pool({ connectionString: process.env.DATABASE_URL });
-const db = drizzle({ client: pool });
+const { Pool } = require('pg');
 
 // Auth middleware function
-async function authenticateAdmin(req) {
+async function authenticateAdmin(req, client) {
   const authHeader = req.headers.authorization;
   if (!authHeader || !authHeader.startsWith('Bearer ')) {
     throw new Error('No token provided');
   }
 
   const token = authHeader.substring(7);
-  const sessionResults = await db
-    .select()
-    .from(adminSessions)
-    .where(eq(adminSessions.sessionToken, token));
+  const sessionResult = await client.query(
+    'SELECT * FROM admin_sessions WHERE session_token = $1 AND expires_at > NOW()',
+    [token]
+  );
   
-  if (sessionResults.length === 0 || sessionResults[0].expiresAt <= new Date()) {
+  if (sessionResult.rows.length === 0) {
     throw new Error('Invalid or expired session');
   }
-  
-  const session = sessionResults[0];
 
-  return session.userId;
+  return sessionResult.rows[0].user_id;
 }
 
 module.exports = async function handler(req, res) {
@@ -41,35 +30,40 @@ module.exports = async function handler(req, res) {
     return res.status(200).end();
   }
 
+  let client;
   try {
-    await authenticateAdmin(req);
+    const pool = new Pool({
+      connectionString: process.env.DATABASE_URL,
+      ssl: { rejectUnauthorized: false }
+    });
+    
+    client = await pool.connect();
+    await authenticateAdmin(req, client);
+    
     const { id } = req.query;
     const postId = parseInt(id);
 
     if (req.method === 'PUT') {
       // Update blog post
-      const updateData = {
-        ...req.body,
-        updatedAt: new Date(),
-      };
-      delete updateData.authorId; // Don't allow changing author
+      const { title, slug, excerpt, content, category, tags = [], isPublished } = req.body;
       
-      const [post] = await db
-        .update(blogPosts)
-        .set(updateData)
-        .where(eq(blogPosts.id, postId))
-        .returning();
+      const result = await client.query(
+        `UPDATE blog_posts 
+         SET title = $1, slug = $2, excerpt = $3, content = $4, category = $5, tags = $6, is_published = $7, updated_at = NOW()
+         WHERE id = $8 RETURNING *`,
+        [title, slug, excerpt, content, category, tags, isPublished, postId]
+      );
         
-      if (!post) {
+      if (result.rows.length === 0) {
         return res.status(404).json({ message: 'Blog post not found' });
       }
       
-      return res.json({ message: 'Blog post updated successfully', post });
+      return res.json({ message: 'Blog post updated successfully', post: result.rows[0] });
     }
 
     if (req.method === 'DELETE') {
       // Delete blog post
-      await db.delete(blogPosts).where(eq(blogPosts.id, postId));
+      await client.query('DELETE FROM blog_posts WHERE id = $1', [postId]);
       return res.json({ message: 'Blog post deleted successfully' });
     }
 
@@ -80,5 +74,9 @@ module.exports = async function handler(req, res) {
       return res.status(401).json({ message: error.message });
     }
     return res.status(500).json({ message: 'Internal server error' });
+  } finally {
+    if (client) {
+      client.release();
+    }
   }
 }
