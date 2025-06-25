@@ -3,7 +3,9 @@ const { randomBytes } = require('crypto');
 
 async function executeQuery(sql, params = []) {
   const { neon } = await import('@neondatabase/serverless');
-  const db = neon(process.env.DATABASE_URL);
+  // Use new Vercel-Neon database URL
+  const dbUrl = process.env.DATABASE_DATABASE_URL || process.env.DATABASE_URL;
+  const db = neon(dbUrl);
   return await db(sql, params);
 }
 
