@@ -34,6 +34,7 @@ const toastVariants = cva(
     defaultVariants: {
       variant: "default",
     },
+  }
 )
 
 const Toast = React.forwardRef<
@@ -76,6 +77,7 @@ const ToastClose = React.forwardRef<
     )}
     toast-close=""
     {...props}
+  >
     <X className="h-4 w-4" />
   </ToastPrimitives.Close>
 ))
@@ -119,3 +121,4 @@ export {
   ToastDescription,
   ToastClose,
   ToastAction,
+}
