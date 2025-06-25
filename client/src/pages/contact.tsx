@@ -261,28 +261,234 @@ export default function Contact() {
           </div>
         </section>
 
-        {/* Contact Form & Info Section */}
-        <section className="py-20 relative">
-          {/* Background Elements */}
-          <div className="absolute inset-0 opacity-5">
-            <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-[#ECB629] rounded-full blur-3xl"></div>
-            <div className="absolute bottom-1/4 right-1/4 w-48 h-48 bg-green-500 rounded-full blur-3xl"></div>
+        {/* Ultra-Modern Contact Form & Info Section */}
+        <section className="py-20 relative overflow-hidden">
+          {/* Ultra-Enhanced Background System */}
+          <div className="absolute inset-0">
+            {/* Advanced Grid Pattern */}
+            <div className="absolute inset-0 opacity-15">
+              <div className="absolute inset-0" style={{
+                backgroundImage: `
+                  linear-gradient(rgba(236, 182, 41, 0.1) 2px, transparent 2px),
+                  linear-gradient(90deg, rgba(236, 182, 41, 0.1) 2px, transparent 2px),
+                  linear-gradient(rgba(236, 182, 41, 0.05) 1px, transparent 1px),
+                  linear-gradient(90deg, rgba(236, 182, 41, 0.05) 1px, transparent 1px)
+                `,
+                backgroundSize: '100px 100px, 100px 100px, 25px 25px, 25px 25px'
+              }}></div>
+            </div>
+
+            {/* Dynamic Communication Flow Network */}
+            <div className="absolute inset-0 opacity-20">
+              {/* Message Stream Lines */}
+              {[...Array(12)].map((_, i) => (
+                <motion.div
+                  key={`message-stream-${i}`}
+                  className="absolute bg-[#ECB629]/30 rounded-full"
+                  style={{
+                    left: `${8 + i * 8}%`,
+                    top: `${20 + (i % 4) * 20}%`,
+                    width: '3px',
+                    height: '60px',
+                    transformOrigin: 'center',
+                  }}
+                  animate={{
+                    scaleY: [0.4, 1.8, 0.4],
+                    opacity: [0.2, 0.8, 0.2],
+                    rotate: [0, 15, -15, 0],
+                  }}
+                  transition={{
+                    duration: 4 + i * 0.3,
+                    repeat: Infinity,
+                    delay: i * 0.5,
+                    ease: "easeInOut"
+                  }}
+                />
+              ))}
+              
+              {/* Communication Nodes */}
+              {[...Array(15)].map((_, i) => (
+                <motion.div
+                  key={`comm-node-${i}`}
+                  className="absolute rounded-full border-2 border-[#ECB629]/40"
+                  style={{
+                    left: `${5 + i * 6}%`,
+                    top: `${10 + (i % 5) * 18}%`,
+                    width: `${8 + (i % 3) * 4}px`,
+                    height: `${8 + (i % 3) * 4}px`,
+                  }}
+                  animate={{
+                    scale: [0.8, 1.6, 0.8],
+                    opacity: [0.3, 0.9, 0.3],
+                    borderWidth: [1, 3, 1],
+                    rotate: [0, 360],
+                  }}
+                  transition={{
+                    duration: 5 + (i % 3),
+                    repeat: Infinity,
+                    delay: i * 0.3,
+                    ease: "easeInOut"
+                  }}
+                />
+              ))}
+
+              {/* Contact Signal Cores */}
+              {[...Array(6)].map((_, i) => (
+                <motion.div
+                  key={`contact-signal-${i}`}
+                  className="absolute w-10 h-10 rounded-full bg-gradient-to-r from-[#ECB629]/40 to-green-500/30"
+                  style={{
+                    left: `${12 + i * 16}%`,
+                    top: `${15 + (i % 2) * 70}%`,
+                  }}
+                  animate={{
+                    scale: [1, 2.4, 1],
+                    opacity: [0.4, 0.9, 0.4],
+                    boxShadow: [
+                      '0 0 30px rgba(236,182,41,0.2)',
+                      '0 0 60px rgba(236,182,41,0.6)',
+                      '0 0 30px rgba(236,182,41,0.2)'
+                    ],
+                  }}
+                  transition={{
+                    duration: 3.5,
+                    repeat: Infinity,
+                    delay: i * 0.8,
+                    ease: "easeInOut"
+                  }}
+                />
+              ))}
+            </div>
+
+            {/* Enhanced Background Elements */}
+            <div className="absolute inset-0 opacity-8">
+              <motion.div 
+                className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-[#ECB629]/40 to-green-500/30 rounded-full blur-3xl"
+                animate={{
+                  scale: [1, 1.3, 1],
+                  opacity: [0.1, 0.3, 0.1],
+                  x: [0, 30, 0],
+                  y: [0, -15, 0],
+                }}
+                transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+              />
+              <motion.div 
+                className="absolute bottom-1/4 right-1/4 w-72 h-72 bg-gradient-to-l from-green-500/50 to-[#ECB629]/40 rounded-full blur-3xl"
+                animate={{
+                  scale: [1, 1.4, 1],
+                  opacity: [0.1, 0.25, 0.1],
+                  x: [0, -25, 0],
+                  y: [0, 20, 0],
+                }}
+                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+              />
+              <motion.div 
+                className="absolute top-1/2 right-1/3 w-56 h-56 bg-gradient-to-r from-blue-500/30 to-[#ECB629]/30 rounded-full blur-3xl"
+                animate={{
+                  scale: [1, 1.6, 1],
+                  opacity: [0.05, 0.2, 0.05],
+                  rotate: [0, 360],
+                }}
+                transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+              />
+            </div>
           </div>
 
           <div className="container mx-auto px-6 relative z-10">
-            <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
-              {/* Contact Form */}
+            <div className="grid lg:grid-cols-2 gap-16 max-w-7xl mx-auto">
+              {/* Ultra-Premium Contact Form */}
               <motion.div
                 initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8 }}
                 viewport={{ once: true }}
+                className="relative"
               >
-                <Card className="bg-slate-800/50 border-slate-700 hover:border-[#ECB629]/50 transition-all duration-300">
-                  <CardContent className="p-8">
-                    <div className="mb-6">
-                      <h2 className="text-2xl font-bold text-white mb-2">Изпратете ни съобщение</h2>
-                      <p className="text-gray-300">Ще се свържем с вас в рамките на 24 часа</p>
+                {/* Form glow effect */}
+                <motion.div
+                  className="absolute inset-0 rounded-[2rem] bg-gradient-to-r from-[#ECB629]/15 via-green-500/10 to-[#ECB629]/15 blur-2xl"
+                  animate={{
+                    opacity: [0.5, 0.8, 0.5],
+                    scale: [1, 1.02, 1],
+                  }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                />
+                
+                <Card className="relative overflow-hidden bg-gradient-to-br from-slate-800/60 via-slate-800/40 to-slate-700/50 border-2 border-slate-600/40 hover:border-[#ECB629]/50 transition-all duration-500 backdrop-blur-lg shadow-2xl rounded-[2rem]">
+                  {/* Premium pattern overlay */}
+                  <div className="absolute inset-0 opacity-5">
+                    <div className="absolute inset-0" style={{
+                      backgroundImage: `
+                        linear-gradient(45deg, rgba(236, 182, 41, 0.1) 25%, transparent 25%),
+                        linear-gradient(-45deg, rgba(236, 182, 41, 0.1) 25%, transparent 25%),
+                        linear-gradient(45deg, transparent 75%, rgba(236, 182, 41, 0.05) 75%),
+                        linear-gradient(-45deg, transparent 75%, rgba(236, 182, 41, 0.05) 75%)
+                      `,
+                      backgroundSize: '60px 60px, 60px 60px, 60px 60px, 60px 60px',
+                      backgroundPosition: '0 0, 0 30px, 30px -30px, -30px 0px'
+                    }}></div>
+                  </div>
+
+                  {/* Premium status badge */}
+                  <div className="absolute top-6 right-6">
+                    <motion.div 
+                      className="relative"
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <motion.div
+                        className="absolute inset-0 rounded-full bg-gradient-to-r from-green-500/40 to-[#ECB629]/40 blur-lg"
+                        animate={{
+                          scale: [1, 1.3, 1],
+                          opacity: [0.5, 0.8, 0.5],
+                        }}
+                        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                      />
+                      <div className="relative flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-green-500/20 to-[#ECB629]/20 border border-green-500/40 backdrop-blur-sm">
+                        <motion.div 
+                          className="w-3 h-3 bg-green-500 rounded-full"
+                          animate={{
+                            boxShadow: [
+                              '0 0 10px rgba(34, 197, 94, 0.5)',
+                              '0 0 20px rgba(34, 197, 94, 0.8)',
+                              '0 0 10px rgba(34, 197, 94, 0.5)'
+                            ],
+                          }}
+                          transition={{ duration: 2, repeat: Infinity }}
+                        >
+                          <motion.div
+                            className="absolute inset-0 bg-green-500 rounded-full"
+                            animate={{ scale: [1, 2, 1], opacity: [0.8, 0, 0.8] }}
+                            transition={{ duration: 2, repeat: Infinity, ease: "easeOut" }}
+                          />
+                        </motion.div>
+                        <span className="text-xs text-green-400 font-semibold uppercase tracking-wide">
+                          24h ОТГОВОР
+                        </span>
+                      </div>
+                    </motion.div>
+                  </div>
+
+                  <CardContent className="p-10 relative z-10">
+                    <div className="mb-8">
+                      <motion.h2 
+                        className="text-3xl font-bold text-white mb-3"
+                        initial={{ opacity: 0, y: 10 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6 }}
+                        viewport={{ once: true }}
+                      >
+                        Изпратете ни <span className="text-[#ECB629]">съобщение</span>
+                      </motion.h2>
+                      <motion.p 
+                        className="text-gray-300 text-lg"
+                        initial={{ opacity: 0, y: 10 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: 0.1 }}
+                        viewport={{ once: true }}
+                      >
+                        Ще се свържем с вас в рамките на 24 часа
+                      </motion.p>
                     </div>
 
                     <form onSubmit={handleSubmit} className="space-y-6">
@@ -375,102 +581,360 @@ export default function Contact() {
                         )}
                       </div>
 
-                      <Button
-                        type="submit"
-                        disabled={contactMutation.isPending}
-                        className="w-full bg-[#ECB629] text-black hover:bg-[#ECB629]/90 py-3 text-lg font-semibold relative overflow-hidden group"
+                      <motion.div
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                        className="relative"
                       >
-                        {contactMutation.isPending ? (
-                          <span>Изпращане...</span>
-                        ) : (
-                          <>
-                            <motion.div
-                              className="absolute inset-0 bg-gradient-to-r from-[#ECB629] via-white to-[#ECB629] opacity-0 group-hover:opacity-20"
-                              animate={{ x: ['-100%', '100%'] }}
-                              transition={{ duration: 1.5, repeat: Infinity, repeatType: 'loop' }}
-                            />
-                            Изпрати съобщение <Send className="ml-2 w-5 h-5" />
-                          </>
-                        )}
-                      </Button>
+                        {/* Button glow effect */}
+                        <motion.div
+                          className="absolute inset-0 rounded-2xl bg-gradient-to-r from-[#ECB629]/30 to-green-500/20 blur-xl"
+                          animate={{
+                            scale: [1, 1.1, 1],
+                            opacity: [0.5, 0.8, 0.5],
+                          }}
+                          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                        />
+                        
+                        <Button
+                          type="submit"
+                          disabled={contactMutation.isPending}
+                          className="relative w-full bg-gradient-to-r from-[#ECB629] to-[#ECB629]/90 text-black hover:from-[#ECB629]/90 hover:to-[#ECB629]/80 py-4 text-lg font-bold rounded-2xl shadow-2xl hover:shadow-[#ECB629]/20 transition-all duration-300 border-2 border-[#ECB629]/20"
+                        >
+                          {contactMutation.isPending ? (
+                            <div className="flex items-center gap-3">
+                              <motion.div
+                                className="w-5 h-5 border-2 border-black/30 border-t-black rounded-full"
+                                animate={{ rotate: 360 }}
+                                transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                              />
+                              <span>Изпращане...</span>
+                            </div>
+                          ) : (
+                            <>
+                              <motion.div
+                                className="absolute inset-0 bg-gradient-to-r from-white/10 via-transparent to-white/10 opacity-0 group-hover:opacity-100 rounded-2xl"
+                                animate={{ x: ['-100%', '100%'] }}
+                                transition={{ duration: 2, repeat: Infinity, repeatType: 'loop' }}
+                              />
+                              <span className="relative z-10 flex items-center gap-3">
+                                <div className="w-3 h-3 bg-green-600 rounded-full animate-pulse"></div>
+                                Изпрати съобщение
+                                <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                              </span>
+                            </>
+                          )}
+                        </Button>
+                      </motion.div>
                     </form>
                   </CardContent>
                 </Card>
               </motion.div>
 
-              {/* Contact Information */}
+              {/* Ultra-Premium Contact Information */}
               <motion.div
                 initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8 }}
                 viewport={{ once: true }}
-                className="space-y-6"
+                className="relative"
               >
-                <div className="mb-8">
-                  <h2 className="text-2xl font-bold text-white mb-4">Информация за контакт</h2>
-                  <p className="text-gray-300">Можете да се свържете с нас по всеки от следните начини:</p>
-                </div>
+                {/* Info section glow effect */}
+                <motion.div
+                  className="absolute inset-0 rounded-[2rem] bg-gradient-to-l from-[#ECB629]/10 via-green-500/5 to-[#ECB629]/10 blur-2xl"
+                  animate={{
+                    opacity: [0.3, 0.6, 0.3],
+                    scale: [1, 1.02, 1],
+                  }}
+                  transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                />
 
-                {contactInfo.map((info, index) => (
+                <div className="relative space-y-8">
+                  {/* Enhanced Header */}
                   <motion.div
-                    key={index}
+                    className="mb-12"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                    transition={{ duration: 0.6 }}
                     viewport={{ once: true }}
                   >
-                    <Card className="bg-slate-800/50 border-slate-700 hover:border-[#ECB629]/50 transition-all duration-300 group">
-                      <CardContent className="p-6">
-                        <div className="flex items-start gap-4">
-                          <div className="relative">
-                            <info.icon className="w-8 h-8 text-[#ECB629] group-hover:scale-110 transition-transform duration-300" />
+                    <div className="relative">
+                      <motion.h2 
+                        className="text-3xl font-bold text-white mb-4"
+                        animate={{
+                          textShadow: [
+                            '0 0 20px rgba(236, 182, 41, 0.3)',
+                            '0 0 30px rgba(236, 182, 41, 0.5)',
+                            '0 0 20px rgba(236, 182, 41, 0.3)'
+                          ],
+                        }}
+                        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                      >
+                        Информация за <span className="text-[#ECB629]">контакт</span>
+                      </motion.h2>
+                      <p className="text-gray-300 text-lg">Можете да се свържете с нас по всеки от следните начини:</p>
+                    </div>
+                  </motion.div>
+
+                  {/* Enhanced Contact Cards */}
+                  <div className="space-y-6">
+                    {contactInfo.map((info, index) => (
+                      <motion.div
+                        key={index}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: index * 0.1 }}
+                        viewport={{ once: true }}
+                        className="relative"
+                      >
+                        {/* Card glow effect */}
+                        <motion.div
+                          className="absolute inset-0 rounded-2xl bg-gradient-to-r from-[#ECB629]/15 via-green-500/5 to-[#ECB629]/15 blur-xl"
+                          animate={{
+                            opacity: [0.3, 0.6, 0.3],
+                            scale: [1, 1.05, 1],
+                          }}
+                          transition={{ 
+                            duration: 3 + index * 0.5, 
+                            repeat: Infinity, 
+                            ease: "easeInOut",
+                            delay: index * 0.4 
+                          }}
+                        />
+                        
+                        <Card className="relative overflow-hidden bg-gradient-to-br from-slate-800/70 via-slate-800/50 to-slate-700/60 border-2 border-slate-600/40 hover:border-[#ECB629]/60 transition-all duration-500 group backdrop-blur-lg shadow-xl rounded-2xl">
+                          {/* Premium pattern overlay */}
+                          <div className="absolute inset-0 opacity-8">
+                            <div className="absolute inset-0" style={{
+                              backgroundImage: `
+                                radial-gradient(circle at 25% 25%, rgba(236, 182, 41, 0.1) 2px, transparent 2px),
+                                radial-gradient(circle at 75% 75%, rgba(34, 197, 94, 0.05) 2px, transparent 2px)
+                              `,
+                              backgroundSize: '40px 40px, 60px 60px'
+                            }}></div>
+                          </div>
+
+                          {/* Premium status indicator */}
+                          <div className="absolute top-4 right-4">
                             <motion.div
-                              className="absolute inset-0 bg-[#ECB629] rounded-full opacity-20 scale-150"
-                              animate={{ scale: [1.5, 1.8, 1.5] }}
-                              transition={{ duration: 2, repeat: Infinity, delay: index * 0.3 }}
-                            />
+                              className="w-3 h-3 bg-green-500 rounded-full"
+                              animate={{
+                                boxShadow: [
+                                  '0 0 10px rgba(34, 197, 94, 0.4)',
+                                  '0 0 20px rgba(34, 197, 94, 0.8)',
+                                  '0 0 10px rgba(34, 197, 94, 0.4)'
+                                ],
+                              }}
+                              transition={{ duration: 2, repeat: Infinity, delay: index * 0.5 }}
+                            >
+                              <motion.div
+                                className="absolute inset-0 bg-green-500 rounded-full"
+                                animate={{ scale: [1, 2.5, 1], opacity: [0.8, 0, 0.8] }}
+                                transition={{ duration: 2, repeat: Infinity, ease: "easeOut", delay: index * 0.5 }}
+                              />
+                            </motion.div>
                           </div>
-                          <div>
-                            <h3 className="text-lg font-semibold text-white mb-1 group-hover:text-[#ECB629] transition-colors">
-                              {info.title}
-                            </h3>
-                            <p className="text-[#ECB629] font-medium mb-1">{info.info}</p>
-                            <p className="text-gray-400 text-sm">{info.description}</p>
+
+                          <CardContent className="p-8 relative z-10">
+                            <div className="flex items-start gap-6">
+                              <div className="relative">
+                                {/* Enhanced icon container */}
+                                <motion.div
+                                  className="relative w-16 h-16 bg-gradient-to-br from-[#ECB629]/20 to-green-500/10 rounded-2xl flex items-center justify-center border-2 border-[#ECB629]/30 group-hover:border-[#ECB629]/60 transition-all duration-300"
+                                  whileHover={{ scale: 1.1, rotate: 5 }}
+                                  transition={{ duration: 0.3 }}
+                                >
+                                  <info.icon className="w-8 h-8 text-[#ECB629] group-hover:scale-110 transition-transform duration-300" />
+                                  
+                                  {/* Orbital ring */}
+                                  <motion.div
+                                    className="absolute inset-0 border-2 border-[#ECB629]/20 rounded-2xl"
+                                    animate={{ rotate: 360 }}
+                                    transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                                  />
+                                  <motion.div
+                                    className="absolute inset-0 border border-green-500/20 rounded-2xl"
+                                    animate={{ rotate: -360 }}
+                                    transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+                                  />
+                                  
+                                  {/* Pulsing background */}
+                                  <motion.div
+                                    className="absolute inset-0 bg-[#ECB629]/10 rounded-2xl"
+                                    animate={{
+                                      scale: [1, 1.3, 1],
+                                      opacity: [0.2, 0.6, 0.2],
+                                    }}
+                                    transition={{ 
+                                      duration: 3, 
+                                      repeat: Infinity, 
+                                      delay: index * 0.4,
+                                      ease: "easeInOut" 
+                                    }}
+                                  />
+                                </motion.div>
+                              </div>
+                              
+                              <div className="flex-1">
+                                <motion.h3 
+                                  className="text-xl font-bold text-white mb-2 group-hover:text-[#ECB629] transition-colors duration-300"
+                                  whileHover={{ x: 5 }}
+                                  transition={{ duration: 0.3 }}
+                                >
+                                  {info.title}
+                                </motion.h3>
+                                <motion.p 
+                                  className="text-[#ECB629] font-semibold text-lg mb-2"
+                                  animate={{
+                                    textShadow: [
+                                      '0 0 10px rgba(236, 182, 41, 0.3)',
+                                      '0 0 20px rgba(236, 182, 41, 0.5)',
+                                      '0 0 10px rgba(236, 182, 41, 0.3)'
+                                    ],
+                                  }}
+                                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: index * 0.8 }}
+                                >
+                                  {info.info}
+                                </motion.p>
+                                <p className="text-gray-400">{info.description}</p>
+                              </div>
+                            </div>
+                          </CardContent>
+                        </Card>
+                      </motion.div>
+                    ))}
+                  </div>
+
+                  {/* Ultra-Premium Quick CTA */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.6 }}
+                    viewport={{ once: true }}
+                    className="relative mt-12"
+                  >
+                    {/* CTA glow effect */}
+                    <motion.div
+                      className="absolute inset-0 rounded-[2rem] bg-gradient-to-r from-[#ECB629]/20 via-green-500/15 to-[#ECB629]/20 blur-2xl"
+                      animate={{
+                        opacity: [0.5, 0.8, 0.5],
+                        scale: [1, 1.03, 1],
+                      }}
+                      transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                    />
+                    
+                    <Card className="relative overflow-hidden bg-gradient-to-br from-[#ECB629]/15 via-[#ECB629]/10 to-green-500/10 border-2 border-[#ECB629]/40 shadow-2xl rounded-[2rem] backdrop-blur-lg">
+                      {/* Premium pattern system */}
+                      <div className="absolute inset-0 opacity-10">
+                        <div className="absolute inset-0" style={{
+                          backgroundImage: `
+                            linear-gradient(45deg, rgba(236, 182, 41, 0.15) 25%, transparent 25%),
+                            linear-gradient(-45deg, rgba(34, 197, 94, 0.1) 25%, transparent 25%),
+                            linear-gradient(45deg, transparent 75%, rgba(236, 182, 41, 0.05) 75%),
+                            linear-gradient(-45deg, transparent 75%, rgba(34, 197, 94, 0.05) 75%)
+                          `,
+                          backgroundSize: '40px 40px, 40px 40px, 40px 40px, 40px 40px',
+                          backgroundPosition: '0 0, 0 20px, 20px -20px, -20px 0px'
+                        }}></div>
+                      </div>
+
+                      {/* Premium status badge */}
+                      <div className="absolute top-6 right-6">
+                        <motion.div 
+                          className="relative"
+                          whileHover={{ scale: 1.05 }}
+                          transition={{ duration: 0.3 }}
+                        >
+                          <motion.div
+                            className="absolute inset-0 rounded-full bg-gradient-to-r from-[#ECB629]/40 to-green-500/40 blur-lg"
+                            animate={{
+                              scale: [1, 1.3, 1],
+                              opacity: [0.5, 0.8, 0.5],
+                            }}
+                            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                          />
+                          <div className="relative flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-[#ECB629]/20 to-green-500/20 border border-[#ECB629]/50 backdrop-blur-sm">
+                            <motion.div 
+                              className="w-3 h-3 bg-[#ECB629] rounded-full"
+                              animate={{
+                                boxShadow: [
+                                  '0 0 10px rgba(236, 182, 41, 0.5)',
+                                  '0 0 20px rgba(236, 182, 41, 0.8)',
+                                  '0 0 10px rgba(236, 182, 41, 0.5)'
+                                ],
+                              }}
+                              transition={{ duration: 2, repeat: Infinity }}
+                            >
+                              <motion.div
+                                className="absolute inset-0 bg-[#ECB629] rounded-full"
+                                animate={{ scale: [1, 2, 1], opacity: [0.8, 0, 0.8] }}
+                                transition={{ duration: 2, repeat: Infinity, ease: "easeOut" }}
+                              />
+                            </motion.div>
+                            <span className="text-xs text-[#ECB629] font-bold uppercase tracking-wide">
+                              30 МИН БЕЗПЛАТНО
+                            </span>
                           </div>
-                        </div>
+                        </motion.div>
+                      </div>
+
+                      <CardContent className="p-10 text-center relative z-10">
+                        <motion.h3 
+                          className="text-2xl font-bold text-white mb-3"
+                          animate={{
+                            textShadow: [
+                              '0 0 20px rgba(236, 182, 41, 0.3)',
+                              '0 0 30px rgba(236, 182, 41, 0.5)',
+                              '0 0 20px rgba(236, 182, 41, 0.3)'
+                            ],
+                          }}
+                          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                        >
+                          Предпочитате <span className="text-[#ECB629]">директен разговор</span>?
+                        </motion.h3>
+                        <p className="text-gray-300 text-lg mb-8 max-w-md mx-auto">
+                          Резервирайте 30-минутна безплатна консултация и обсъдете вашия проект директно с нас
+                        </p>
+                        
+                        <motion.div
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                          className="relative inline-block"
+                        >
+                          {/* Button glow effect */}
+                          <motion.div
+                            className="absolute inset-0 rounded-2xl bg-gradient-to-r from-[#ECB629]/30 to-green-500/20 blur-xl"
+                            animate={{
+                              scale: [1, 1.2, 1],
+                              opacity: [0.5, 0.8, 0.5],
+                            }}
+                            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                          />
+                          
+                          <Button 
+                            variant="outline"
+                            size="lg"
+                            className="relative border-2 border-[#ECB629] text-[#ECB629] hover:bg-[#ECB629] hover:text-black font-bold text-lg px-8 py-4 rounded-2xl shadow-2xl hover:shadow-[#ECB629]/30 transition-all duration-300 backdrop-blur-sm"
+                            asChild
+                          >
+                            <a href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu" target="_blank" rel="noopener noreferrer">
+                              <motion.div
+                                className="absolute inset-0 bg-gradient-to-r from-white/10 via-transparent to-white/10 opacity-0 group-hover:opacity-100 rounded-2xl"
+                                animate={{ x: ['-100%', '100%'] }}
+                                transition={{ duration: 2, repeat: Infinity, repeatType: 'loop' }}
+                              />
+                              <span className="relative z-10 flex items-center gap-3">
+                                <CheckCircle className="w-5 h-5" />
+                                Резервирай консултация
+                                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                              </span>
+                            </a>
+                          </Button>
+                        </motion.div>
                       </CardContent>
                     </Card>
                   </motion.div>
-                ))}
-
-                {/* Quick CTA */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.5 }}
-                  viewport={{ once: true }}
-                >
-                  <Card className="bg-gradient-to-r from-[#ECB629]/20 to-[#ECB629]/10 border-[#ECB629]/30">
-                    <CardContent className="p-6 text-center">
-                      <h3 className="text-xl font-bold text-white mb-2">Предпочитате директен разговор?</h3>
-                      <p className="text-gray-300 mb-4">Резервирайте 30-минутна безплатна консултация</p>
-                      <Button 
-                        variant="outline"
-                        className="border-[#ECB629] text-[#ECB629] hover:bg-[#ECB629] hover:text-black relative overflow-hidden group"
-                        asChild
-                      >
-                        <a href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu" target="_blank" rel="noopener noreferrer">
-                          <motion.div
-                            className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-20"
-                            animate={{ x: ['-100%', '100%'] }}
-                            transition={{ duration: 1.5, repeat: Infinity, repeatType: 'loop' }}
-                          />
-                          Резервирай консултация <ArrowRight className="ml-2 w-4 h-4" />
-                        </a>
-                      </Button>
-                    </CardContent>
-                  </Card>
-                </motion.div>
+                </div>
               </motion.div>
             </div>
           </div>
