@@ -1,0 +1,118 @@
+index-BXomS286.js:41 TypeError: Cannot read properties of undefined (reading 'length')
+
+    at index-BXomS286.js:531:10126
+
+    at Array.map (<anonymous>)
+
+    at I9 (index-BXomS286.js:531:8848)
+
+    at dp (index-BXomS286.js:39:16998)
+
+    at Nh (index-BXomS286.js:41:3139)
+
+    at $1 (index-BXomS286.js:41:44737)
+
+    at V1 (index-BXomS286.js:41:39727)
+
+    at oS (index-BXomS286.js:41:39655)
+
+    at fd (index-BXomS286.js:41:39508)
+
+    at Ih (index-BXomS286.js:41:35875)
+
+jh @ index-BXomS286.js:41
+
+a.componentDidCatch.n.callback @ index-BXomS286.js:41
+
+_g @ index-BXomS286.js:39
+
+Hg @ index-BXomS286.js:41
+
+M1 @ index-BXomS286.js:41
+
+sS @ index-BXomS286.js:41
+
+cS @ index-BXomS286.js:41
+
+Os @ index-BXomS286.js:41
+
+qg @ index-BXomS286.js:41
+
+Es @ index-BXomS286.js:39
+
+(anonymous) @ index-BXomS286.js:41
+
+setTimeout
+
+i @ index-BXomS286.js:49
+
+o @ index-BXomS286.js:49
+
+batch @ index-BXomS286.js:49
+
+ir @ index-BXomS286.js:49
+
+setData @ index-BXomS286.js:49
+
+onSuccess @ index-BXomS286.js:49
+
+f @ index-BXomS286.js:49
+
+Promise.then
+
+j @ index-BXomS286.js:49
+
+start @ index-BXomS286.js:49
+
+fetch @ index-BXomS286.js:49
+
+mo @ index-BXomS286.js:49
+
+onSubscribe @ index-BXomS286.js:49
+
+subscribe @ index-BXomS286.js:49
+
+(anonymous) @ index-BXomS286.js:49
+
+s1 @ index-BXomS286.js:39
+
+Jd @ index-BXomS286.js:41
+
+Yi @ index-BXomS286.js:41
+
+qg @ index-BXomS286.js:41
+
+Es @ index-BXomS286.js:39
+
+cS @ index-BXomS286.js:41
+
+Os @ index-BXomS286.js:41
+
+B1 @ index-BXomS286.js:41
+
+C @ index-BXomS286.js:26
+
+z @ index-BXomS286.js:26
+
+index-BXomS286.js:438 ErrorBoundary caught an error: TypeError: Cannot read properties of undefined (reading 'length')
+
+    at index-BXomS286.js:531:10126
+
+    at Array.map (<anonymous>)
+
+    at I9 (index-BXomS286.js:531:8848)
+
+    at dp (index-BXomS286.js:39:16998)
+
+    at Nh (index-BXomS286.js:41:3139)
+
+    at $1 (index-BXomS286.js:41:44737)
+
+    at V1 (index-BXomS286.js:41:39727)
+
+    at oS (index-BXomS286.js:41:39655)
+
+    at fd (index-BXomS286.js:41:39508)
+
+    at Ih (index-BXomS286.js:41:35875) {componentStack: '\n    at I9 (https://www.pravdagency.eu/assets/inde…pravdagency.eu/assets/index-BXomS286.js:41:61980)'}
+
