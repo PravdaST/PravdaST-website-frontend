@@ -254,6 +254,7 @@ Changelog:
 - June 26, 2025. Fixed all tracking system issues: resolved API 404 errors by adding /api/tracking endpoints to server routes, updated CSP headers to allow Klaviyo stylesheets (https://static.klaviyo.com), created sw-simple.js service worker, fixed manifest.json enctype to multipart/form-data, integrated KlaviyoIntegration component, added comprehensive error handling with try-catch blocks, tested all endpoints successfully - tracking API now returns 200 status codes, progressive profiling system fully operational with lead scoring (CEO profiles score 80/100)
 - June 26, 2025. Cleaned up project structure by removing duplicate /client/api folder - project now uses unified root /api structure for all Vercel serverless functions (admin.js, blog/, contacts.js, sitemap.xml.js, tracking.js), eliminated file duplication and potential deployment conflicts
 - June 26, 2025. Fixed Admin CRM login JSON error by implementing admin endpoints directly in server routes with dynamic imports to resolve ES modules conflicts - admin login now returns proper success tokens, CRM system fully operational with admin/pravda2025 credentials
+- June 26, 2025. Redesigned calculator result sections with dark theme consistency: updated main score card and CTA sections to use slate-900/80 backgrounds instead of light colors, redesigned circular SEO score visualization with SVG-based progress ring for accurate percentage display, added glow effects and improved visual hierarchy
 
 ## User Preferences
 

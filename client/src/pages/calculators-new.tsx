@@ -272,36 +272,42 @@ function ROICalculator({
                   </h3>
                 </div>
 
-                <div className="relative w-32 h-32 mx-auto mb-4">
-                  <div className="absolute inset-0 rounded-full border-8 border-slate-700/50" />
-                  <div
-                    className="absolute inset-0 rounded-full border-8 border-[#ECB629] transition-all duration-1000"
-                    style={{
-                      clipPath: `polygon(50% 50%, 50% 0%, ${
-                        50 +
-                        50 *
-                          Math.cos(
-                            (results.seoScore / 100) * 2 * Math.PI -
-                              Math.PI / 2,
-                          )
-                      }% ${
-                        50 +
-                        50 *
-                          Math.sin(
-                            (results.seoScore / 100) * 2 * Math.PI -
-                              Math.PI / 2,
-                          )
-                      }%, 50% 50%)`,
-                    }}
-                  />
+                <div className="relative w-40 h-40 mx-auto mb-4">
+                  {/* Background Circle */}
+                  <svg className="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
+                    <circle
+                      cx="50"
+                      cy="50"
+                      r="40"
+                      stroke="rgb(51 65 85 / 0.5)"
+                      strokeWidth="8"
+                      fill="none"
+                    />
+                    {/* Progress Circle */}
+                    <circle
+                      cx="50"
+                      cy="50"
+                      r="40"
+                      stroke="#ECB629"
+                      strokeWidth="8"
+                      fill="none"
+                      strokeLinecap="round"
+                      strokeDasharray={`${2 * Math.PI * 40}`}
+                      strokeDashoffset={`${2 * Math.PI * 40 * (1 - results.seoScore / 100)}`}
+                      className="transition-all duration-1000 ease-in-out"
+                    />
+                  </svg>
+                  {/* Center Content */}
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="text-center">
-                      <div className="text-3xl font-bold text-[#ECB629]">
+                      <div className="text-4xl font-bold text-[#ECB629]">
                         {results.seoScore}
                       </div>
-                      <div className="text-xs text-gray-400">от 100</div>
+                      <div className="text-sm text-gray-400">от 100</div>
                     </div>
                   </div>
+                  {/* Glow Effect */}
+                  <div className="absolute inset-0 rounded-full bg-[#ECB629]/10 blur-xl animate-pulse" />
                 </div>
 
                 <p className="text-gray-400">SEO Потенциал Скор</p>
