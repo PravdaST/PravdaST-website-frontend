@@ -258,6 +258,7 @@ Changelog:
 - June 26, 2025. Integrated main site navigation and footer into calculators page: added Navigation and Footer components from main site, removed breadcrumb navigation for cleaner design, maintained consistent styling with rest of website
 - June 26, 2025. Completely redesigned CTA section on homepage with modern clean layout: simplified background patterns, enhanced status badge with animated elements, professional two-column card design with improved trust indicators, optimized CTA buttons with hover effects, maintained yellow background theme while improving visual hierarchy and user experience
 - June 26, 2025. Fixed Admin CRM login API endpoint for Vercel compatibility: improved JSON body parsing with async stream reading, enhanced error handling for invalid JSON requests, updated function signatures to properly handle request bodies in serverless environment
+- June 26, 2025. Confirmed comprehensive Navigation and Footer integration across all public pages: contact, blog, FAQ, calculators, all service pages (SEO Struktor™, Clickstarter™, Trendlab™), and home page now have consistent site navigation while admin CRM (/admin-pravda) remains separate as intended
 
 ## User Preferences
 
