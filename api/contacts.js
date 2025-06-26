@@ -28,8 +28,8 @@ async function identifyInKlaviyo(data) {
 
   try {
     const response = await fetch('https://a.klaviyo.com/api/profiles/', options);
-    if (!response.ok) {
-      console.error('Klaviyo API error:', await response.json());
+    if (response.ok) {
+      console.log('Profile sent to Klaviyo successfully');
     }
   } catch (error) {
     console.error('Failed to send profile to Klaviyo:', error);
@@ -100,9 +100,11 @@ export default async function handler(req, res) {
         details: errorText
       });
     }
+
   } catch (error) {
+    console.error('Contact form error:', error);
     return res.status(500).json({ 
-      error: 'Server error',
+      error: 'Възникна грешка при изпращането на съобщението',
       details: error.message 
     });
   }
