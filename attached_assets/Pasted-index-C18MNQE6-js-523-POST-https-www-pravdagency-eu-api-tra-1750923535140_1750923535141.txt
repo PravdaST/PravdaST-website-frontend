@@ -1,0 +1,199 @@
+index-C18MNQE6.js:523 
+            
+            
+            POST https://www.pravdagency.eu/api/tracking?action=events 500 (Internal Server Error)
+sendEventToBackend @ index-C18MNQE6.js:523
+trackEvent @ index-C18MNQE6.js:523
+trackPageView @ index-C18MNQE6.js:523
+EM @ index-C18MNQE6.js:523
+(anonymous) @ index-C18MNQE6.js:523
+index-C18MNQE6.js:523 
+            
+            
+            POST https://www.pravdagency.eu/api/tracking?action=profile 500 (Internal Server Error)
+sendProfileToBackend @ index-C18MNQE6.js:523
+updateUserProfile @ index-C18MNQE6.js:523
+trackAttribution @ index-C18MNQE6.js:523
+initializeTracking @ index-C18MNQE6.js:523
+EM @ index-C18MNQE6.js:523
+(anonymous) @ index-C18MNQE6.js:523
+index-C18MNQE6.js:523 
+            
+            
+            POST https://www.pravdagency.eu/api/tracking?action=profile 500 (Internal Server Error)
+sendProfileToBackend @ index-C18MNQE6.js:523
+updateUserProfile @ index-C18MNQE6.js:523
+trackFunnelStage @ index-C18MNQE6.js:523
+trackPageBasedFunnelStage @ index-C18MNQE6.js:523
+trackPageView @ index-C18MNQE6.js:523
+EM @ index-C18MNQE6.js:523
+(anonymous) @ index-C18MNQE6.js:523
+index-C18MNQE6.js:523 
+            
+            
+            POST https://www.pravdagency.eu/api/tracking?action=profile 500 (Internal Server Error)
+sendProfileToBackend @ index-C18MNQE6.js:523
+updateUserProfile @ index-C18MNQE6.js:523
+trackFunnelStage @ index-C18MNQE6.js:523
+(anonymous) @ index-C18MNQE6.js:574
+Nu @ index-C18MNQE6.js:41
+ba @ index-C18MNQE6.js:41
+Lg @ index-C18MNQE6.js:41
+Gs @ index-C18MNQE6.js:39
+h3 @ index-C18MNQE6.js:41
+ei @ index-C18MNQE6.js:41
+C1 @ index-C18MNQE6.js:41
+C @ index-C18MNQE6.js:26
+F @ index-C18MNQE6.js:26
+index-C18MNQE6.js:515 Klaviyo loaded successfully
+runtime.15aea0fde78b5b4164ea.js?cb=1:1  Refused to load the stylesheet 'https://static.klaviyo.com/onsite/js/532.29db30a72412a9c367a4.css' because it violates the following Content Security Policy directive: "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://static-tracking.klaviyo.com". Note that 'style-src-elem' was not explicitly set, so 'style-src' is used as a fallback.
+
+(anonymous) @ runtime.15aea0fde78b5b4164ea.js?cb=1:1
+(anonymous) @ runtime.15aea0fde78b5b4164ea.js?cb=1:1
+i @ runtime.15aea0fde78b5b4164ea.js?cb=1:1
+(anonymous) @ runtime.15aea0fde78b5b4164ea.js?cb=1:1
+(anonymous) @ runtime.15aea0fde78b5b4164ea.js?cb=1:1
+(anonymous) @ runtime.15aea0fde78b5b4164ea.js?cb=1:1
+(anonymous) @ runtime.15aea0fde78b5b4164ea.js?cb=1:1
+push.80406.n.Z @ default~in_app_forms~signup_forms.fd7c3e9dffb5a139b63f.js?cb=1:1
+oe @ default~Render~ClientStore~.8d7ef0488fafdcd29806.js:1
+c @ default~in_app_forms~signup_forms.fd7c3e9dffb5a139b63f.js?cb=1:1
+await in c
+callback @ default~in_app_forms~signup_forms.fd7c3e9dffb5a139b63f.js?cb=1:1
+Pr @ default~in_app_forms~signup_forms~onsite-triggering.0b3d85c7bfafd6ac6a48.js?cb=1:1
+(anonymous) @ default~in_app_forms~signup_forms~onsite-triggering.0b3d85c7bfafd6ac6a48.js?cb=1:1
+setTimeout
+(anonymous) @ default~in_app_forms~signup_forms~onsite-triggering.0b3d85c7bfafd6ac6a48.js?cb=1:1
+DELAY @ default~in_app_forms~signup_forms~onsite-triggering.0b3d85c7bfafd6ac6a48.js?cb=1:1
+callback @ default~in_app_forms~signup_forms~onsite-triggering.0b3d85c7bfafd6ac6a48.js?cb=1:1
+yr @ default~in_app_forms~signup_forms~onsite-triggering.0b3d85c7bfafd6ac6a48.js?cb=1:1
+Cr @ default~in_app_forms~signup_forms~onsite-triggering.0b3d85c7bfafd6ac6a48.js?cb=1:1
+c @ default~in_app_forms~signup_forms~onsite-triggering.0b3d85c7bfafd6ac6a48.js?cb=1:1
+(anonymous) @ default~in_app_forms~signup_forms~onsite-triggering.0b3d85c7bfafd6ac6a48.js?cb=1:1
+(anonymous) @ default~in_app_forms~signup_forms~onsite-triggering.0b3d85c7bfafd6ac6a48.js?cb=1:1
+Rr @ default~in_app_forms~signup_forms~onsite-triggering.0b3d85c7bfafd6ac6a48.js?cb=1:1
+_r @ default~in_app_forms~signup_forms~onsite-triggering.0b3d85c7bfafd6ac6a48.js?cb=1:1
+o @ default~in_app_forms~signup_forms~onsite-triggering.0b3d85c7bfafd6ac6a48.js?cb=1:1
+runtime.15aea0fde78b5b4164ea.js?cb=1:1  Refused to load the stylesheet 'https://static.klaviyo.com/onsite/js/532.29db30a72412a9c367a4.css' because it violates the following Content Security Policy directive: "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://static-tracking.klaviyo.com". Note that 'style-src-elem' was not explicitly set, so 'style-src' is used as a fallback.
+
+(anonymous) @ runtime.15aea0fde78b5b4164ea.js?cb=1:1
+(anonymous) @ runtime.15aea0fde78b5b4164ea.js?cb=1:1
+i @ runtime.15aea0fde78b5b4164ea.js?cb=1:1
+(anonymous) @ runtime.15aea0fde78b5b4164ea.js?cb=1:1
+(anonymous) @ runtime.15aea0fde78b5b4164ea.js?cb=1:1
+(anonymous) @ runtime.15aea0fde78b5b4164ea.js?cb=1:1
+(anonymous) @ runtime.15aea0fde78b5b4164ea.js?cb=1:1
+(anonymous) @ runtime.15aea0fde78b5b4164ea.js?cb=1:1
+setTimeout
+(anonymous) @ runtime.15aea0fde78b5b4164ea.js?cb=1:1
+(anonymous) @ runtime.15aea0fde78b5b4164ea.js?cb=1:1
+Promise.catch
+(anonymous) @ runtime.15aea0fde78b5b4164ea.js?cb=1:1
+push.80406.n.Z @ default~in_app_forms~signup_forms.fd7c3e9dffb5a139b63f.js?cb=1:1
+oe @ default~Render~ClientStore~.8d7ef0488fafdcd29806.js:1
+c @ default~in_app_forms~signup_forms.fd7c3e9dffb5a139b63f.js?cb=1:1
+await in c
+callback @ default~in_app_forms~signup_forms.fd7c3e9dffb5a139b63f.js?cb=1:1
+Pr @ default~in_app_forms~signup_forms~onsite-triggering.0b3d85c7bfafd6ac6a48.js?cb=1:1
+(anonymous) @ default~in_app_forms~signup_forms~onsite-triggering.0b3d85c7bfafd6ac6a48.js?cb=1:1
+setTimeout
+(anonymous) @ default~in_app_forms~signup_forms~onsite-triggering.0b3d85c7bfafd6ac6a48.js?cb=1:1
+DELAY @ default~in_app_forms~signup_forms~onsite-triggering.0b3d85c7bfafd6ac6a48.js?cb=1:1
+callback @ default~in_app_forms~signup_forms~onsite-triggering.0b3d85c7bfafd6ac6a48.js?cb=1:1
+yr @ default~in_app_forms~signup_forms~onsite-triggering.0b3d85c7bfafd6ac6a48.js?cb=1:1
+Cr @ default~in_app_forms~signup_forms~onsite-triggering.0b3d85c7bfafd6ac6a48.js?cb=1:1
+c @ default~in_app_forms~signup_forms~onsite-triggering.0b3d85c7bfafd6ac6a48.js?cb=1:1
+(anonymous) @ default~in_app_forms~signup_forms~onsite-triggering.0b3d85c7bfafd6ac6a48.js?cb=1:1
+(anonymous) @ default~in_app_forms~signup_forms~onsite-triggering.0b3d85c7bfafd6ac6a48.js?cb=1:1
+Rr @ default~in_app_forms~signup_forms~onsite-triggering.0b3d85c7bfafd6ac6a48.js?cb=1:1
+_r @ default~in_app_forms~signup_forms~onsite-triggering.0b3d85c7bfafd6ac6a48.js?cb=1:1
+o @ default~in_app_forms~signup_forms~onsite-triggering.0b3d85c7bfafd6ac6a48.js?cb=1:1
+runtime.15aea0fde78b5b4164ea.js?cb=1:1  Refused to load the stylesheet 'https://static.klaviyo.com/onsite/js/532.29db30a72412a9c367a4.css' because it violates the following Content Security Policy directive: "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://static-tracking.klaviyo.com". Note that 'style-src-elem' was not explicitly set, so 'style-src' is used as a fallback.
+
+(anonymous) @ runtime.15aea0fde78b5b4164ea.js?cb=1:1
+(anonymous) @ runtime.15aea0fde78b5b4164ea.js?cb=1:1
+i @ runtime.15aea0fde78b5b4164ea.js?cb=1:1
+(anonymous) @ runtime.15aea0fde78b5b4164ea.js?cb=1:1
+(anonymous) @ runtime.15aea0fde78b5b4164ea.js?cb=1:1
+(anonymous) @ runtime.15aea0fde78b5b4164ea.js?cb=1:1
+(anonymous) @ runtime.15aea0fde78b5b4164ea.js?cb=1:1
+(anonymous) @ runtime.15aea0fde78b5b4164ea.js?cb=1:1
+setTimeout
+(anonymous) @ runtime.15aea0fde78b5b4164ea.js?cb=1:1
+(anonymous) @ runtime.15aea0fde78b5b4164ea.js?cb=1:1
+Promise.catch
+(anonymous) @ runtime.15aea0fde78b5b4164ea.js?cb=1:1
+(anonymous) @ runtime.15aea0fde78b5b4164ea.js?cb=1:1
+setTimeout
+(anonymous) @ runtime.15aea0fde78b5b4164ea.js?cb=1:1
+(anonymous) @ runtime.15aea0fde78b5b4164ea.js?cb=1:1
+Promise.catch
+(anonymous) @ runtime.15aea0fde78b5b4164ea.js?cb=1:1
+push.80406.n.Z @ default~in_app_forms~signup_forms.fd7c3e9dffb5a139b63f.js?cb=1:1
+oe @ default~Render~ClientStore~.8d7ef0488fafdcd29806.js:1
+c @ default~in_app_forms~signup_forms.fd7c3e9dffb5a139b63f.js?cb=1:1
+await in c
+callback @ default~in_app_forms~signup_forms.fd7c3e9dffb5a139b63f.js?cb=1:1
+Pr @ default~in_app_forms~signup_forms~onsite-triggering.0b3d85c7bfafd6ac6a48.js?cb=1:1
+(anonymous) @ default~in_app_forms~signup_forms~onsite-triggering.0b3d85c7bfafd6ac6a48.js?cb=1:1
+setTimeout
+(anonymous) @ default~in_app_forms~signup_forms~onsite-triggering.0b3d85c7bfafd6ac6a48.js?cb=1:1
+DELAY @ default~in_app_forms~signup_forms~onsite-triggering.0b3d85c7bfafd6ac6a48.js?cb=1:1
+callback @ default~in_app_forms~signup_forms~onsite-triggering.0b3d85c7bfafd6ac6a48.js?cb=1:1
+yr @ default~in_app_forms~signup_forms~onsite-triggering.0b3d85c7bfafd6ac6a48.js?cb=1:1
+Cr @ default~in_app_forms~signup_forms~onsite-triggering.0b3d85c7bfafd6ac6a48.js?cb=1:1
+c @ default~in_app_forms~signup_forms~onsite-triggering.0b3d85c7bfafd6ac6a48.js?cb=1:1
+(anonymous) @ default~in_app_forms~signup_forms~onsite-triggering.0b3d85c7bfafd6ac6a48.js?cb=1:1
+(anonymous) @ default~in_app_forms~signup_forms~onsite-triggering.0b3d85c7bfafd6ac6a48.js?cb=1:1
+Rr @ default~in_app_forms~signup_forms~onsite-triggering.0b3d85c7bfafd6ac6a48.js?cb=1:1
+_r @ default~in_app_forms~signup_forms~onsite-triggering.0b3d85c7bfafd6ac6a48.js?cb=1:1
+o @ default~in_app_forms~signup_forms~onsite-triggering.0b3d85c7bfafd6ac6a48.js?cb=1:1
+runtime.15aea0fde78b5b4164ea.js?cb=1:1  Refused to load the stylesheet 'https://static.klaviyo.com/onsite/js/532.29db30a72412a9c367a4.css' because it violates the following Content Security Policy directive: "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://static-tracking.klaviyo.com". Note that 'style-src-elem' was not explicitly set, so 'style-src' is used as a fallback.
+
+(anonymous) @ runtime.15aea0fde78b5b4164ea.js?cb=1:1
+(anonymous) @ runtime.15aea0fde78b5b4164ea.js?cb=1:1
+i @ runtime.15aea0fde78b5b4164ea.js?cb=1:1
+(anonymous) @ runtime.15aea0fde78b5b4164ea.js?cb=1:1
+(anonymous) @ runtime.15aea0fde78b5b4164ea.js?cb=1:1
+(anonymous) @ runtime.15aea0fde78b5b4164ea.js?cb=1:1
+(anonymous) @ runtime.15aea0fde78b5b4164ea.js?cb=1:1
+(anonymous) @ runtime.15aea0fde78b5b4164ea.js?cb=1:1
+setTimeout
+(anonymous) @ runtime.15aea0fde78b5b4164ea.js?cb=1:1
+(anonymous) @ runtime.15aea0fde78b5b4164ea.js?cb=1:1
+Promise.catch
+(anonymous) @ runtime.15aea0fde78b5b4164ea.js?cb=1:1
+(anonymous) @ runtime.15aea0fde78b5b4164ea.js?cb=1:1
+setTimeout
+(anonymous) @ runtime.15aea0fde78b5b4164ea.js?cb=1:1
+(anonymous) @ runtime.15aea0fde78b5b4164ea.js?cb=1:1
+Promise.catch
+(anonymous) @ runtime.15aea0fde78b5b4164ea.js?cb=1:1
+(anonymous) @ runtime.15aea0fde78b5b4164ea.js?cb=1:1
+setTimeout
+(anonymous) @ runtime.15aea0fde78b5b4164ea.js?cb=1:1
+(anonymous) @ runtime.15aea0fde78b5b4164ea.js?cb=1:1
+Promise.catch
+(anonymous) @ runtime.15aea0fde78b5b4164ea.js?cb=1:1
+push.80406.n.Z @ default~in_app_forms~signup_forms.fd7c3e9dffb5a139b63f.js?cb=1:1
+oe @ default~Render~ClientStore~.8d7ef0488fafdcd29806.js:1
+c @ default~in_app_forms~signup_forms.fd7c3e9dffb5a139b63f.js?cb=1:1
+await in c
+callback @ default~in_app_forms~signup_forms.fd7c3e9dffb5a139b63f.js?cb=1:1
+Pr @ default~in_app_forms~signup_forms~onsite-triggering.0b3d85c7bfafd6ac6a48.js?cb=1:1
+(anonymous) @ default~in_app_forms~signup_forms~onsite-triggering.0b3d85c7bfafd6ac6a48.js?cb=1:1
+setTimeout
+(anonymous) @ default~in_app_forms~signup_forms~onsite-triggering.0b3d85c7bfafd6ac6a48.js?cb=1:1
+DELAY @ default~in_app_forms~signup_forms~onsite-triggering.0b3d85c7bfafd6ac6a48.js?cb=1:1
+callback @ default~in_app_forms~signup_forms~onsite-triggering.0b3d85c7bfafd6ac6a48.js?cb=1:1
+yr @ default~in_app_forms~signup_forms~onsite-triggering.0b3d85c7bfafd6ac6a48.js?cb=1:1
+Cr @ default~in_app_forms~signup_forms~onsite-triggering.0b3d85c7bfafd6ac6a48.js?cb=1:1
+c @ default~in_app_forms~signup_forms~onsite-triggering.0b3d85c7bfafd6ac6a48.js?cb=1:1
+(anonymous) @ default~in_app_forms~signup_forms~onsite-triggering.0b3d85c7bfafd6ac6a48.js?cb=1:1
+(anonymous) @ default~in_app_forms~signup_forms~onsite-triggering.0b3d85c7bfafd6ac6a48.js?cb=1:1
+Rr @ default~in_app_forms~signup_forms~onsite-triggering.0b3d85c7bfafd6ac6a48.js?cb=1:1
+_r @ default~in_app_forms~signup_forms~onsite-triggering.0b3d85c7bfafd6ac6a48.js?cb=1:1
+o @ default~in_app_forms~signup_forms~onsite-triggering.0b3d85c7bfafd6ac6a48.js?cb=1:1
+runtime.15aea0fde78b5b4164ea.js?cb=1:1  Uncaught (in promise) Error: Loading chunk 532 failed after 3 retries.
+(styles.95b3dd3aa0295605f7be.js)
+    at r.onerror.r.onload (runtime.15aea0fde78b5b4164ea.js?cb=1:1:19713)
