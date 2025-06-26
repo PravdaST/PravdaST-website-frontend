@@ -150,16 +150,30 @@ function ROICalculator({
         </motion.div>
         <p className="text-gray-300 text-lg max-w-2xl mx-auto mb-4">{description}</p>
         
-        {/* Investment Info */}
+        {/* Recommendations */}
         <div className="bg-slate-800/40 rounded-xl p-4 border border-[#ECB629]/20 max-w-2xl mx-auto">
-          <div className="flex items-center justify-center gap-2 mb-2">
-            <DollarSign className="w-5 h-5 text-[#ECB629]" />
-            <span className="text-[#ECB629] font-semibold">Стартова инвестиция: {monthlyPrice.toLocaleString('bg-BG')} лв./месец</span>
+          <h4 className="text-white font-semibold mb-4 flex items-center gap-2 justify-center">
+            <CheckCircle className="w-5 h-5 text-[#ECB629]" />
+            Препоръки за подобрение:
+          </h4>
+          <div className="grid grid-cols-2 gap-3">
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 bg-[#ECB629] rounded-full" />
+              <span className="text-gray-300 text-sm">Органен трафик</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 bg-[#ECB629] rounded-full" />
+              <span className="text-gray-300 text-sm">Техническо подобрение</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 bg-[#ECB629] rounded-full" />
+              <span className="text-gray-300 text-sm">SEO аудит</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 bg-[#ECB629] rounded-full" />
+              <span className="text-gray-300 text-sm">Контент стратегия</span>
+            </div>
           </div>
-          <p className="text-gray-400 text-sm text-center">
-            Това са приходите, които може да ви донесе тази инвестиция на база трафика, който системата генерира. 
-            Спрете да харчите без план - започнете да строите с цифри.
-          </p>
         </div>
       </div>
 
@@ -358,18 +372,14 @@ function ROICalculator({
 
               {/* Recommendations */}
               <div>
-                <h4 className="text-white font-semibold mb-4 flex items-center gap-2">
-                  <CheckCircle className="w-5 h-5 text-[#ECB629]" />
-                  Препоръки за подобрение:
-                </h4>
-                <div className="grid grid-cols-2 gap-3">
-                  {recommendations.map((rec, index) => (
-                    <div key={index} className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-[#ECB629] rounded-full" />
-                      <span className="text-gray-300 text-sm">{rec}</span>
-                    </div>
-                  ))}
+                <div className="flex items-center justify-center gap-2 mb-2">
+                  <DollarSign className="w-5 h-5 text-[#ECB629]" />
+                  <span className="text-[#ECB629] font-semibold">Стартова инвестиция: {monthlyPrice.toLocaleString('bg-BG')} лв./месец</span>
                 </div>
+                <p className="text-gray-400 text-sm text-center">
+                  Това са приходите, които може да ви донесе тази инвестиция на база трафика, който системата генерира. 
+                  Спрете да харчите без план - започнете да строите с цифри.
+                </p>
               </div>
             </CardContent>
           </Card>
