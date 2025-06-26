@@ -34,7 +34,7 @@ import BlogPost from "@/pages/blog-post";
 import AdminPravda from "@/pages/admin-pravda";
 import FAQ from "@/pages/faq";
 import About from "@/pages/about";
-import Contact from "@/pages/contact";
+import Contact from "@/pages/contact-new";
 import Terms from "@/pages/terms";
 import Privacy from "@/pages/privacy";
 import Calculators from "@/pages/calculators";
