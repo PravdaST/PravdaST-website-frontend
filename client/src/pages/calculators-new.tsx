@@ -587,7 +587,7 @@ export default function CalculatorsNew() {
                 transition={{ delay: 0.2 }}
                 className="text-xl text-gray-300 max-w-3xl mx-auto"
               >
-                Изчислете точната печалба от нашите системи. Спрете да гадаете - 
+                Изчислете <span className="bg-[#ECB629] text-black px-2 py-1 rounded font-semibold">точната печалба</span> от нашите системи. Спрете да гадаете - 
                 започнете да планирате с реални числа.
               </motion.p>
             </div>
