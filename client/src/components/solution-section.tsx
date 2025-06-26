@@ -80,7 +80,7 @@ export const SolutionSection = () => {
           >
             Спрете да залагате. <br />
             <span className="text-[#ECB629] relative">
-              Време е за система
+              Време е за система!
               <motion.div
                 className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-[#ECB629] to-[#ECB629]/50 rounded-full"
                 initial={{ scaleX: 0 }}
@@ -91,7 +91,7 @@ export const SolutionSection = () => {
             </span>
           </motion.h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-12">
-            Ние не предлагаме маркетинг. Нашият подход е бизнес инженеринг. Разликата е в резултата:
+            Ние не предлагаме маркетинг. Нашият подход е бизнес инженеринг. Разликата е в резултата.
           </p>
         </motion.div>
         
