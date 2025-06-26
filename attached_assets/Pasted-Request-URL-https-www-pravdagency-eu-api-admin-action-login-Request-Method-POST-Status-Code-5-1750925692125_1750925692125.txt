@@ -1,0 +1,78 @@
+Request URL
+https://www.pravdagency.eu/api/admin?action=login
+Request Method
+POST
+Status Code
+500 Internal Server Error
+Remote Address
+64.29.17.1:443
+Referrer Policy
+origin-when-cross-origin
+cache-control
+public, max-age=0, must-revalidate
+content-length
+96
+content-security-policy
+default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://static.klaviyo.com https://static-tracking.klaviyo.com https://www.googletagmanager.com https://region1.google-analytics.com https://replit.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://static-tracking.klaviyo.com https://static.klaviyo.com; img-src 'self' data: https://upload.wikimedia.org https://framerusercontent.com; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://vitals.vercel-insights.com https://a.klaviyo.com https://fast.a.klaviyo.com https://static-forms.klaviyo.com https://www.google-analytics.com https://region1.google-analytics.com;
+content-type
+text/plain; charset=utf-8
+date
+Thu, 26 Jun 2025 08:14:23 GMT
+referrer-policy
+origin-when-cross-origin
+server
+Vercel
+strict-transport-security
+max-age=63072000
+x-content-type-options
+nosniff
+x-frame-options
+DENY
+x-vercel-error
+FUNCTION_INVOCATION_FAILED
+x-vercel-id
+fra1::xcz7t-1750925663314-304f0a7a23d2
+:authority
+www.pravdagency.eu
+:method
+POST
+:path
+/api/admin?action=login
+:scheme
+https
+accept
+*/*
+accept-encoding
+gzip, deflate, br, zstd
+accept-language
+bg-BG,bg;q=0.9
+cache-control
+no-cache
+content-length
+44
+content-type
+application/json
+origin
+https://www.pravdagency.eu
+pragma
+no-cache
+priority
+u=1, i
+referer
+https://www.pravdagency.eu/admin-pravda
+sec-ch-ua
+"Brave";v="137", "Chromium";v="137", "Not/A)Brand";v="24"
+sec-ch-ua-mobile
+?0
+sec-ch-ua-platform
+"Windows"
+sec-fetch-dest
+empty
+sec-fetch-mode
+cors
+sec-fetch-site
+same-origin
+sec-gpc
+1
+user-agent
+Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36

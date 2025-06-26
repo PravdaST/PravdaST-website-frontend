@@ -4,8 +4,6 @@ const bcrypt = require('bcrypt');
 const pool = new Pool({ connectionString: process.env.DATABASE_URL });
 
 module.exports = async function handler(req, res) {
-  const { action } = req.query;
-  
   // CORS headers
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
@@ -15,15 +13,32 @@ module.exports = async function handler(req, res) {
     return res.status(200).end();
   }
 
-  try {
-    // Ensure proper JSON parsing
-    if (req.method === 'POST' && !req.body) {
-      return res.status(400).json({ error: 'Request body is required' });
+  // Parse body for Vercel compatibility
+  let body = {};
+  if (req.method === 'POST' || req.method === 'PUT') {
+    if (req.body) {
+      body = req.body;
+    } else {
+      try {
+        let rawBody = '';
+        req.setEncoding('utf8');
+        for await (const chunk of req) {
+          rawBody += chunk;
+        }
+        body = rawBody ? JSON.parse(rawBody) : {};
+      } catch (e) {
+        console.error('JSON parse error:', e);
+        return res.status(400).json({ error: 'Invalid JSON' });
+      }
     }
+  }
 
+  const { action } = req.query;
+
+  try {
     switch (action) {
       case 'login':
-        return await handleLogin(req, res);
+        return await handleLogin(req, res, body);
       case 'logout':
         return await handleLogout(req, res);
       case 'contacts':
@@ -41,13 +56,13 @@ module.exports = async function handler(req, res) {
   }
 };
 
-async function handleLogin(req, res) {
+async function handleLogin(req, res, requestBody) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
   try {
-    const { username, password } = req.body || {};
+    const { username, password } = requestBody || {};
     
     if (!username || !password) {
       return res.status(400).json({ error: 'Username and password required' });
