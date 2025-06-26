@@ -19,6 +19,7 @@ import { lazy, useEffect, Suspense } from "react";
 import { FullPageLoading } from "@/components/loading-states";
 import usePageTracking from "./hooks/usePageTracking";
 import KlaviyoSetup from "@/components/klaviyo-setup";
+import { KlaviyoIntegration } from "@/components/klaviyo-integration";
 import { PixelIntegration } from "@/components/pixel-integration";
 import { ProgressiveProiling } from "@/components/progressive-profiling";
 import Home from "@/pages/home";
@@ -96,6 +97,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <KlaviyoSetup />
+        <KlaviyoIntegration />
         <PixelIntegration />
         <ProgressiveProiling trigger="time" delay={45000} />
         <SkipToMainContent />

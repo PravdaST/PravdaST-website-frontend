@@ -1,81 +1,33 @@
-// Simple Service Worker - Fixed version without problematic caching
-const CACHE_NAME = 'pravdast-simple-v1';
-
-// Only cache essential files that definitely exist
-const ESSENTIAL_FILES = [
+// Simple Service Worker for Pravdast Business Engineering
+const CACHE_NAME = 'pravdast-v1';
+const urlsToCache = [
   '/',
-  '/favicon.ico',
-  '/manifest.json'
+  '/manifest.json',
+  '/favicon.ico'
 ];
 
-self.addEventListener('install', event => {
-  console.log('SW: Installing...');
+self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME)
-      .then(cache => {
-        console.log('SW: Caching essential files');
-        // Cache files one by one to avoid batch failures
-        return Promise.allSettled(
-          ESSENTIAL_FILES.map(file => 
-            cache.add(file).catch(err => {
-              console.warn(`SW: Failed to cache ${file}:`, err);
-              return null;
-            })
-          )
-        );
+      .then((cache) => {
+        return cache.addAll(urlsToCache.filter(url => url !== undefined));
       })
-      .then(() => {
-        console.log('SW: Install complete');
-        return self.skipWaiting();
-      })
-      .catch(error => {
-        console.error('SW: Install failed:', error);
+      .catch((error) => {
+        console.error('Cache installation failed:', error);
       })
   );
 });
 
-self.addEventListener('activate', event => {
-  console.log('SW: Activating...');
-  event.waitUntil(
-    caches.keys().then(cacheNames => {
-      return Promise.all(
-        cacheNames.map(cacheName => {
-          if (cacheName !== CACHE_NAME) {
-            console.log('SW: Deleting old cache:', cacheName);
-            return caches.delete(cacheName);
-          }
-        })
-      );
-    }).then(() => {
-      console.log('SW: Activate complete');
-      return self.clients.claim();
-    })
-  );
-});
-
-self.addEventListener('fetch', event => {
-  // Only handle GET requests
-  if (event.request.method !== 'GET') {
-    return;
-  }
-
-  // Skip chrome-extension and other protocols
-  if (!event.request.url.startsWith('http')) {
-    return;
-  }
-
+self.addEventListener('fetch', (event) => {
   event.respondWith(
     caches.match(event.request)
-      .then(response => {
-        // Return cached version or fetch from network
+      .then((response) => {
+        // Cache hit - return response
         if (response) {
           return response;
         }
         return fetch(event.request);
-      })
-      .catch(error => {
-        console.error('SW: Fetch failed:', error);
-        return fetch(event.request);
-      })
+      }
+    )
   );
 });

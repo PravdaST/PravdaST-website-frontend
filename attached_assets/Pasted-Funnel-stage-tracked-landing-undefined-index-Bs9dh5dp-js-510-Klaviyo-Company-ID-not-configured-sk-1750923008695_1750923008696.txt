@@ -1,0 +1,38 @@
+Funnel stage tracked: landing undefined
+index-Bs9dh5dp.js:510 Klaviyo: Company ID not configured, skipping load
+index-Bs9dh5dp.js:518 Funnel stage tracked: landing undefined
+www.pravdagency.eu/:1 [Intervention] Images loaded lazily and replaced with placeholders. Load events are deferred. See https://go.microsoft.com/fwlink/?linkid=2048113
+/api/tracking/events:1 
+            
+            
+            Failed to load resource: the server responded with a status of 404 ()
+/api/tracking/profile:1 
+            
+            
+            Failed to load resource: the server responded with a status of 404 ()
+/api/tracking/profile:1 
+            
+            
+            Failed to load resource: the server responded with a status of 404 ()
+(index):37 SW registration failed: TypeError: Failed to register a ServiceWorker for scope ('https://www.pravdagency.eu/') with script ('https://www.pravdagency.eu/sw-simple.js'): A bad HTTP response code (404) was received when fetching the script.
+index-Bs9dh5dp.js:510 Klaviyo: Company ID not configured, skipping load
+/api/tracking/profile:1 
+            
+            
+            Failed to load resource: the server responded with a status of 404 ()
+manifest.json:1  Manifest: Enctype should be set to either application/x-www-form-urlencoded or multipart/form-data. It currently defaults to application/x-www-form-urlencoded
+runtime.15aea0fde78b5b4164ea.js?cb=1:1  Refused to load the stylesheet 'https://static-tracking.klaviyo.com/onsite/js/532.29db30a72412a9c367a4.css' because it violates the following Content Security Policy directive: "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com". Note that 'style-src-elem' was not explicitly set, so 'style-src' is used as a fallback.
+
+(anonymous) @ runtime.15aea0fde78b5b4164ea.js?cb=1:1
+runtime.15aea0fde78b5b4164ea.js?cb=1:1  Refused to load the stylesheet 'https://static-tracking.klaviyo.com/onsite/js/532.29db30a72412a9c367a4.css' because it violates the following Content Security Policy directive: "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com". Note that 'style-src-elem' was not explicitly set, so 'style-src' is used as a fallback.
+
+(anonymous) @ runtime.15aea0fde78b5b4164ea.js?cb=1:1
+runtime.15aea0fde78b5b4164ea.js?cb=1:1  Refused to load the stylesheet 'https://static-tracking.klaviyo.com/onsite/js/532.29db30a72412a9c367a4.css' because it violates the following Content Security Policy directive: "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com". Note that 'style-src-elem' was not explicitly set, so 'style-src' is used as a fallback.
+
+(anonymous) @ runtime.15aea0fde78b5b4164ea.js?cb=1:1
+runtime.15aea0fde78b5b4164ea.js?cb=1:1  Refused to load the stylesheet 'https://static-tracking.klaviyo.com/onsite/js/532.29db30a72412a9c367a4.css' because it violates the following Content Security Policy directive: "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com". Note that 'style-src-elem' was not explicitly set, so 'style-src' is used as a fallback.
+
+(anonymous) @ runtime.15aea0fde78b5b4164ea.js?cb=1:1
+runtime.15aea0fde78b5b4164ea.js?cb=1:1  Uncaught (in promise) Error: Loading chunk 532 failed after 3 retries.
+(styles.95b3dd3aa0295605f7be.js)
+    at HTMLLinkElement.<anonymous> (runtime.15aea0fde78b5b4164ea.js?cb=1:1:19713)

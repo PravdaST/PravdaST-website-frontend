@@ -230,7 +230,7 @@ class TrackingManager {
     // Update user profile
     this.updateUserProfile({ stage });
 
-    console.log(`Funnel stage tracked: ${stage}`, metadata);
+    console.log(`Funnel stage tracked: ${stage}`, metadata || {});
   }
 
   // Track specific events
@@ -393,12 +393,18 @@ class TrackingManager {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          ...event,
+          event_type: event.event,
+          category: event.category,
+          action: event.action,
+          label: event.label,
+          value: event.value,
+          event_data: event.custom_parameters,
           session_id: this.sessionId,
           user_id: this.userProfile?.id,
           timestamp: new Date().toISOString(),
-          url: window.location.href,
-          user_agent: navigator.userAgent
+          page_url: window.location.href,
+          user_agent: navigator.userAgent,
+          attribution_channel: this.userProfile?.attribution_channel
         })
       });
     } catch (error) {
@@ -408,13 +414,22 @@ class TrackingManager {
 
   private async sendProfileToBackend() {
     try {
+      if (!this.userProfile) return;
+      
       await fetch('/api/tracking?action=profile', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          ...this.userProfile,
+          user_id: this.userProfile.id,
+          email: this.userProfile.email,
+          company: this.userProfile.company,
+          website: this.userProfile.website,
+          industry: this.userProfile.industry,
+          company_size: this.userProfile.company_size,
+          role: this.userProfile.role,
+          budget_range: this.userProfile.budget_range,
           session_id: this.sessionId,
           timestamp: new Date().toISOString()
         })
