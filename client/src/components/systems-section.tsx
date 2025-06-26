@@ -20,7 +20,7 @@ const systems = [
   {
     id: "seo",
     title: "SEO Struktor™",
-    subtitle: "Нашата система за онлайн доминация",
+    subtitle: "Система за онлайн доминация",
     description:
       "Ние изграждаме вашето онлайн присъствие като крепост. Чрез прецизна структура на сайта и съдържание, което отговаря на въпросите на клиентите ви, ние ви превръщаме в авторитета, който Google показва на първо място.",
     price: "от 1980 лв. / месец",
@@ -36,7 +36,7 @@ const systems = [
       {
         icon: Edit,
         title: "Съдържание, което изгражда доверие",
-        description: "на реални клиентски въпроси и изгражда доверие.",
+        description: "на реални клиентски въпроси.",
       },
       {
         icon: Globe,
@@ -48,10 +48,10 @@ const systems = [
   {
     id: "trendlab",
     title: "Trendlab™",
-    subtitle: "Нашата система за създаване на въздействащо съдържание",
+    subtitle: "Система за създаване на въздействащо съдържание",
     description:
       "Ние създаваме горивото за вашия растеж. Продуцираме видеа, статии и визуални материали, които не просто изглеждат добре, а разказват вашата история, демонстрират експертизата ви и изграждат общност около вашия бранд.",
-    price: "от 1350 лв. / месец",
+    price: "от 3450 лв. / месец",
     period: "минимален период на договор – 3 месеца",
     icon: Edit,
     link: "/services/trendlab",
@@ -76,10 +76,10 @@ const systems = [
   {
     id: "clickstarter",
     title: "Clickstarter™",
-    subtitle: "Нашата система за ускорен растеж",
+    subtitle: "Система за ускорен растеж",
     description:
       "Когато имате нужда от бързи и предвидими резултати, тази система използва платени канали, за да постави вашето послание директно пред идеалните ви клиенти – в точния момент, когато те са готови да купят.",
-    price: "от 2250 лв. / месец",
+    price: "от 1570 лв. / месец",
     period: "минимален период на договор – 3 месеца",
     icon: BarChart,
     link: "/services/clickstarter",
@@ -87,8 +87,7 @@ const systems = [
       {
         icon: Filter,
         title: "Прецизно насочване",
-        description:
-          "Прецизно насочване към точната аудитория, без излишен разход.",
+        description: "към точната аудитория, без излишен разход.",
       },
       {
         icon: Coins,
@@ -105,10 +104,10 @@ const systems = [
   {
     id: "clientomat",
     title: "Clientomat™",
-    subtitle: "Нашата система за автоматизирани връзки с клиенти",
+    subtitle: "Система за автоматизирани връзки с клиенти",
     description:
       "Тази система създава автоматизиран процес, който превръща заинтересования посетител в лоялен клиент. Тя поддържа връзката, отговаря на въпроси и насочва към продажба, без да изисква вашето време.",
-    price: "от 1350 лв. / месец",
+    price: "от 2750 лв. / месец",
     period: "минимален период на договор – 3 месеца",
     icon: Users,
     link: "/services/clientomat",
@@ -116,7 +115,7 @@ const systems = [
       {
         icon: Cog,
         title: "Автоматизиране на комуникацията",
-        description: "задачи в комуникацията с клиенти.",
+        description: "с клиенти.",
       },
       {
         icon: MessageCircle,
@@ -139,14 +138,17 @@ export const SystemsSection = () => {
       <div className="absolute inset-0 opacity-15">
         <div className="absolute inset-0">
           {/* Systems Grid Pattern */}
-          <div className="absolute inset-0" style={{
-            backgroundImage: `
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `
               linear-gradient(rgba(236, 182, 40, 0.1) 1px, transparent 1px),
               linear-gradient(90deg, rgba(236, 182, 40, 0.1) 1px, transparent 1px)
             `,
-            backgroundSize: '50px 50px'
-          }}></div>
-          
+              backgroundSize: "50px 50px",
+            }}
+          ></div>
+
           {/* Connection Nodes */}
           {[...Array(6)].map((_, i) => (
             <motion.div
@@ -164,7 +166,7 @@ export const SystemsSection = () => {
                 duration: 4,
                 repeat: Infinity,
                 delay: i * 0.5,
-                ease: "easeInOut"
+                ease: "easeInOut",
               }}
             />
           ))}
@@ -198,16 +200,21 @@ export const SystemsSection = () => {
                 <motion.div
                   className="absolute inset-0 w-2 h-2 bg-[#ECB629] rounded-full opacity-20"
                   animate={{ scale: [1, 1.3, 1] }}
-                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
                 />
               </div>
               <span className="text-sm text-gray-300 font-medium">
-                <span className="text-[#ECB629] font-bold">Проверени</span> системи за устойчив растеж
+                <span className="text-[#ECB629] font-bold">Проверени</span>{" "}
+                системи за устойчив растеж
               </span>
             </div>
           </motion.div>
 
-          <motion.h2 
+          <motion.h2
             className="text-4xl md:text-5xl font-bold mb-6 text-white"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -216,7 +223,7 @@ export const SystemsSection = () => {
           >
             Нашите системи за <br />
             <span className="text-[#ECB629] relative">
-              растеж:
+              растеж.
               <motion.div
                 className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-[#ECB629] to-[#ECB629]/50 rounded-full"
                 initial={{ scaleX: 0 }}
@@ -227,14 +234,15 @@ export const SystemsSection = () => {
             </span>
           </motion.h2>
 
-          <motion.p 
+          <motion.p
             className="text-xl text-gray-300 max-w-3xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
             viewport={{ once: true }}
           >
-            Всяка система е проектирана да решава конкретен проблем във вашия бизнес и да генерира измерим растеж.
+            Всяка система е проектирана да решава конкретен проблем във вашия
+            бизнес и да генерира измерим растеж.
           </motion.p>
         </motion.div>
 
@@ -253,25 +261,30 @@ export const SystemsSection = () => {
               <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-slate-800/80 to-slate-900/90 border border-[#ECB629]/20 p-6 h-full backdrop-blur-sm hover:border-[#ECB629]/40 transition-all duration-300 group-hover:transform group-hover:scale-105">
                 {/* Animated Background Pattern */}
                 <div className="absolute inset-0 opacity-10 group-hover:opacity-20 transition-opacity duration-300">
-                  <div className="absolute inset-0" style={{
-                    backgroundImage: `
+                  <div
+                    className="absolute inset-0"
+                    style={{
+                      backgroundImage: `
                       linear-gradient(rgba(236, 182, 40, 0.2) 1px, transparent 1px),
                       linear-gradient(90deg, rgba(236, 182, 40, 0.2) 1px, transparent 1px)
                     `,
-                    backgroundSize: '20px 20px'
-                  }}></div>
+                      backgroundSize: "20px 20px",
+                    }}
+                  ></div>
                 </div>
-                
+
                 {/* Status Badge */}
                 <div className="absolute top-4 right-4">
                   <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-[#ECB629]/20 border border-[#ECB629]/40">
                     <div className="w-2 h-2 bg-green-500 rounded-full">
                       <div className="absolute inset-0 bg-green-500 rounded-full animate-ping opacity-75"></div>
                     </div>
-                    <span className="text-xs text-[#ECB629] font-medium">АКТИВНА</span>
+                    <span className="text-xs text-[#ECB629] font-medium">
+                      АКТИВНА
+                    </span>
                   </div>
                 </div>
-                
+
                 <div className="relative z-10">
                   {/* Icon Section */}
                   <div className="mb-6">
@@ -287,12 +300,12 @@ export const SystemsSection = () => {
                       </p>
                     </div>
                   </div>
-                  
+
                   {/* Description */}
                   <p className="text-gray-300 text-sm leading-relaxed mb-6 line-clamp-4">
                     {system.description}
                   </p>
-                  
+
                   {/* Features List */}
                   <div className="space-y-3 mb-6">
                     {system.features.slice(0, 2).map((feature, i) => (
@@ -306,31 +319,37 @@ export const SystemsSection = () => {
                       >
                         <div className="w-1.5 h-1.5 bg-[#ECB629] rounded-full mt-2 flex-shrink-0"></div>
                         <div>
-                          <span className="text-[#ECB629] font-medium">{feature.title}:</span>
-                          <span className="text-gray-300 ml-1">{feature.description}</span>
+                          <span className="text-[#ECB629] font-medium">
+                            {feature.title}:
+                          </span>
+                          <span className="text-gray-300 ml-1">
+                            {feature.description}
+                          </span>
                         </div>
                       </motion.div>
                     ))}
                   </div>
-                  
+
                   {/* Pricing */}
                   <div className="border-t border-gray-700 pt-4 mb-6">
                     <div className="text-center">
-                      <div className="text-2xl font-bold text-white mb-1">{system.price}</div>
-                      <div className="text-xs text-gray-400">{system.period}</div>
+                      <div className="text-2xl font-bold text-white mb-1">
+                        {system.price}
+                      </div>
+                      <div className="text-xs text-gray-400">
+                        {system.period}
+                      </div>
                     </div>
                   </div>
-                  
+
                   {/* CTA Button */}
                   <Link href={system.link}>
-                    <Button 
-                      className="w-full bg-gradient-to-r from-[#ECB629] to-[#ECB629]/80 hover:from-[#ECB629]/90 hover:to-[#ECB629]/70 text-black font-semibold py-3 rounded-xl transition-all duration-300 group-hover:shadow-lg group-hover:shadow-[#ECB629]/20"
-                    >
+                    <Button className="w-full bg-gradient-to-r from-[#ECB629] to-[#ECB629]/80 hover:from-[#ECB629]/90 hover:to-[#ECB629]/70 text-black font-semibold py-3 rounded-xl transition-all duration-300 group-hover:shadow-lg group-hover:shadow-[#ECB629]/20">
                       Научи повече
                     </Button>
                   </Link>
                 </div>
-                
+
                 {/* Floating Success Elements */}
                 <div className="absolute bottom-4 left-4 opacity-20">
                   <div className="flex gap-1">
