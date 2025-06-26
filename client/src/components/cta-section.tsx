@@ -1,5 +1,12 @@
 import { motion } from "framer-motion";
-import { ArrowRight, CheckCircle, Phone, Zap, Clock, Shield } from "lucide-react";
+import {
+  ArrowRight,
+  CheckCircle,
+  Phone,
+  Zap,
+  Clock,
+  Shield,
+} from "lucide-react";
 
 export const CTASection = () => {
   return (
@@ -7,10 +14,13 @@ export const CTASection = () => {
       {/* Sophisticated Background */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-r from-[#ECB629]/5 via-transparent to-[#ECB629]/5"></div>
-        <div className="absolute inset-0" style={{
-          backgroundImage: `radial-gradient(circle at 25% 25%, rgba(236, 182, 40, 0.15) 0%, transparent 50%),
-                           radial-gradient(circle at 75% 75%, rgba(59, 130, 246, 0.1) 0%, transparent 50%)`
-        }}></div>
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `radial-gradient(circle at 25% 25%, rgba(236, 182, 40, 0.15) 0%, transparent 50%),
+                           radial-gradient(circle at 75% 75%, rgba(59, 130, 246, 0.1) 0%, transparent 50%)`,
+          }}
+        ></div>
       </div>
 
       {/* Geometric Accents */}
@@ -45,7 +55,11 @@ export const CTASection = () => {
                   <motion.div
                     className="absolute inset-0 w-3 h-3 bg-[#ECB629] rounded-full opacity-40"
                     animate={{ scale: [1, 1.5, 1] }}
-                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
                   />
                 </div>
                 <Zap className="w-5 h-5 text-[#ECB629]" />
@@ -68,7 +82,7 @@ export const CTASection = () => {
             >
               <h2 className="text-5xl md:text-6xl font-bold text-white leading-tight">
                 Приемаме до{" "}
-                <motion.span 
+                <motion.span
                   className="relative inline-block mx-4"
                   whileHover={{ scale: 1.05 }}
                   transition={{ type: "spring", stiffness: 300 }}
@@ -87,20 +101,24 @@ export const CTASection = () => {
                 нови партньори за следващото тримесечие
               </h2>
 
-              <motion.p 
+              <motion.p
                 className="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
                 viewport={{ once: true }}
               >
-                Нашият инженерен подход изисква пълна отдаденост и дълбок фокус върху бизнеса на всеки наш клиент. 
-                <span className="text-[#ECB629] font-semibold"> Затова работим с ограничен брой компании едновременно.</span>
+                Нашият инженерен подход изисква пълна отдаденост и дълбок фокус
+                върху бизнеса на всеки наш клиент.
+                <span className="text-[#ECB629] font-semibold">
+                  {" "}
+                  Затова работим с ограничен брой компании едновременно.
+                </span>
               </motion.p>
             </motion.div>
 
             {/* Trust Indicators Grid */}
-            <motion.div 
+            <motion.div
               className="grid grid-cols-2 md:grid-cols-5 gap-6 max-w-4xl mx-auto"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -109,10 +127,10 @@ export const CTASection = () => {
             >
               {[
                 { text: "Безплатна консултация", icon: CheckCircle },
-                { text: "Без ангажименти", icon: Shield }, 
+                { text: "Без ангажименти", icon: Shield },
                 { text: "100% поверителност", icon: Shield },
                 { text: "Отговор в 48 часа", icon: Clock },
-                { text: "Процес само 5 минути", icon: Zap }
+                { text: "Попълни само за 5 минути", icon: Zap },
               ].map((item, index) => (
                 <motion.div
                   key={index}
@@ -126,7 +144,9 @@ export const CTASection = () => {
                   <div className="w-12 h-12 bg-[#ECB629]/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-[#ECB629]/30 transition-colors">
                     <item.icon className="w-6 h-6 text-[#ECB629]" />
                   </div>
-                  <p className="text-white font-medium text-sm leading-tight">{item.text}</p>
+                  <p className="text-white font-medium text-sm leading-tight">
+                    {item.text}
+                  </p>
                 </motion.div>
               ))}
             </motion.div>
@@ -152,7 +172,7 @@ export const CTASection = () => {
                   <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform duration-300" />
                 </div>
               </motion.a>
-              
+
               <motion.a
                 href="tel:+359879282299"
                 className="block w-full bg-slate-800/80 border-2 border-slate-600/50 hover:border-[#ECB629]/50 hover:bg-slate-700/80 text-white font-semibold py-4 px-8 rounded-xl transition-all duration-300 backdrop-blur-xl"
