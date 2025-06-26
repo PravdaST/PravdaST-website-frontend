@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Calculator, TrendingUp, Target, DollarSign, BarChart3, ArrowRight, CheckCircle, Zap, Users, Award, Clock } from "lucide-react";
+import { Calculator, TrendingUp, Target, DollarSign, BarChart3, ArrowRight, CheckCircle, Zap, Users, Award, Clock, Home, Phone, Mail } from "lucide-react";
+import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -337,9 +338,17 @@ function ROICalculator({ serviceName, monthlyPrice, averageResults, color, icon 
                 </Button>
                 <Button
                   variant="outline"
+                  onClick={() => {
+                    const currentService = serviceName.toLowerCase();
+                    if (currentService.includes('seo')) window.location.href = '/services/seo-struktor';
+                    else if (currentService.includes('click')) window.location.href = '/services/clickstarter';
+                    else if (currentService.includes('trend')) window.location.href = '/services/trendlab';
+                    else if (currentService.includes('client')) window.location.href = '/services/clientomat';
+                    else window.location.href = '/services';
+                  }}
                   className="border-[#ECB629] text-[#ECB629] hover:bg-[#ECB629]/10 px-8 py-3 rounded-xl"
                 >
-                  Научете повече
+                  Научете повече за услугата
                 </Button>
               </div>
             </CardContent>
@@ -440,7 +449,21 @@ export default function CalculatorsNew() {
         }} />
       </div>
 
-      <div className="relative z-10 pt-24 pb-12">
+      {/* Navigation Breadcrumb */}
+      <div className="relative z-10 pt-24 pb-4">
+        <div className="container mx-auto px-6 max-w-6xl">
+          <nav className="flex items-center gap-2 text-sm text-gray-400 mb-4">
+            <Link href="/" className="hover:text-[#ECB629] flex items-center gap-1">
+              <Home className="w-4 h-4" />
+              Начало
+            </Link>
+            <span>/</span>
+            <span className="text-white">ROI Калкулатори</span>
+          </nav>
+        </div>
+      </div>
+
+      <div className="relative z-10 pb-12">
         <div className="container mx-auto px-6 max-w-6xl">
           {/* Header */}
           <div className="text-center mb-16">
@@ -466,10 +489,28 @@ export default function CalculatorsNew() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="text-lg text-gray-300 max-w-3xl mx-auto"
+              className="text-lg text-gray-300 max-w-3xl mx-auto mb-6"
             >
               Изчислете точния ROI и SEO потенциал на вашия бизнес с нашите интерактивни калкулатори, базирани на реални данни от над 100+ проекта
             </motion.p>
+            
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              className="bg-slate-800/30 backdrop-blur-lg rounded-2xl p-6 max-w-4xl mx-auto border border-slate-700/50"
+            >
+              <h3 className="text-lg font-semibold text-white mb-3 flex items-center gap-2">
+                <Target className="w-5 h-5 text-[#ECB629]" />
+                Какво е ROI?
+              </h3>
+              <p className="text-gray-300 text-sm leading-relaxed">
+                <strong className="text-[#ECB629]">ROI (Return on Investment)</strong> е показател за възвращаемост на инвестицията. 
+                Той показва колко лева печелите за всеки лев, който инвестирате в маркетинг. 
+                Например, ROI от 300% означава, че за всеки 1 лв. инвестиция получавате 3 лв. обратно.
+                Нашите калкулатори използват реални данни от над 100 успешни проекта, за да ви покажат точния потенциал на вашия бизнес.
+              </p>
+            </motion.div>
           </div>
 
           {/* Calculator Tabs */}
@@ -503,6 +544,91 @@ export default function CalculatorsNew() {
           </Tabs>
         </div>
       </div>
+
+      {/* Footer */}
+      <footer className="relative z-10 bg-slate-900 border-t border-slate-800">
+        <div className="container mx-auto px-6 py-12">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            {/* Company Info */}
+            <div className="col-span-1 md:col-span-2">
+              <h3 className="text-white font-bold text-xl mb-4">Pravdast Business Engineering</h3>
+              <p className="text-gray-400 mb-4 max-w-md">
+                Трансформираме бизнеси в предсказуеми системи за растеж чрез инженерен подход към маркетинга.
+              </p>
+              <div className="flex items-center gap-4">
+                <Link href="/contact" className="text-[#ECB629] hover:text-[#ECB629]/80 flex items-center gap-2">
+                  <Phone className="w-4 h-4" />
+                  +359 879 282 299
+                </Link>
+                <Link href="/contact" className="text-[#ECB629] hover:text-[#ECB629]/80 flex items-center gap-2">
+                  <Mail className="w-4 h-4" />
+                  contact@pravdagency.eu
+                </Link>
+              </div>
+            </div>
+
+            {/* Services */}
+            <div>
+              <h4 className="text-white font-semibold mb-4">Услуги</h4>
+              <ul className="space-y-2">
+                <li>
+                  <Link href="/services/seo-struktor" className="text-gray-400 hover:text-[#ECB629]">
+                    SEO Struktor™
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/services/trendlab" className="text-gray-400 hover:text-[#ECB629]">
+                    Trendlab™
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/services/clickstarter" className="text-gray-400 hover:text-[#ECB629]">
+                    Clickstarter™
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/services/clientomat" className="text-gray-400 hover:text-[#ECB629]">
+                    Clientomat™
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
+            {/* Resources */}
+            <div>
+              <h4 className="text-white font-semibold mb-4">Ресурси</h4>
+              <ul className="space-y-2">
+                <li>
+                  <Link href="/blog" className="text-gray-400 hover:text-[#ECB629]">
+                    Блог
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/calculators" className="text-gray-400 hover:text-[#ECB629]">
+                    ROI Калкулатори
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/faq" className="text-gray-400 hover:text-[#ECB629]">
+                    Често задавани въпроси
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/about" className="text-gray-400 hover:text-[#ECB629]">
+                    За нас
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="border-t border-slate-800 mt-8 pt-8 text-center">
+            <p className="text-gray-400 text-sm">
+              © 2025 Pravdast Business Engineering. Всички права запазени.
+            </p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
