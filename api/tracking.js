@@ -312,6 +312,20 @@ async function handleProfile(req, res) {
           updated_at = CURRENT_TIMESTAMP
       `, [user_id, email, company, website, industry, company_size, role, budget_range, leadScore]);
 
+      // Send email notification for high-value leads (score ≥70)
+      if (leadScore >= 70) {
+        await sendHighValueLeadNotification({
+          email,
+          company,
+          website,
+          industry,
+          role,
+          budget_range,
+          lead_score: leadScore,
+          user_id
+        });
+      }
+
       client.release();
       return res.json({ success: true, lead_score: leadScore });
     } catch (error) {
@@ -341,6 +355,90 @@ async function handleProfile(req, res) {
   }
 
   return res.status(405).json({ error: 'Method not allowed' });
+}
+
+async function sendHighValueLeadNotification(leadData) {
+  try {
+    // Import SendGrid (if available in environment)
+    if (!process.env.SENDGRID_API_KEY) {
+      console.log('SendGrid not configured - high value lead notification skipped');
+      return;
+    }
+
+    const sgMail = require('@sendgrid/mail');
+    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+
+    const msg = {
+      to: 'contact@pravdagency.eu',
+      from: 'contact@pravdagency.eu',
+      subject: `🔥 Висококачествен Lead (Score: ${leadData.lead_score}/100)`,
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <div style="background: linear-gradient(135deg, #ECB629, #F4C430); padding: 20px; text-align: center;">
+            <h1 style="color: #000; margin: 0;">Нов висококачествен Lead!</h1>
+            <p style="color: #333; margin: 5px 0 0 0;">Lead Score: ${leadData.lead_score}/100</p>
+          </div>
+          
+          <div style="padding: 30px; background: #f8f9fa;">
+            <h2 style="color: #333; margin-bottom: 20px;">Информация за клиента:</h2>
+            
+            <table style="width: 100%; border-collapse: collapse;">
+              <tr style="border-bottom: 1px solid #ddd;">
+                <td style="padding: 10px; font-weight: bold; color: #555;">Email:</td>
+                <td style="padding: 10px; color: #333;">${leadData.email}</td>
+              </tr>
+              <tr style="border-bottom: 1px solid #ddd;">
+                <td style="padding: 10px; font-weight: bold; color: #555;">Компания:</td>
+                <td style="padding: 10px; color: #333;">${leadData.company || 'Не е посочена'}</td>
+              </tr>
+              <tr style="border-bottom: 1px solid #ddd;">
+                <td style="padding: 10px; font-weight: bold; color: #555;">Уебсайт:</td>
+                <td style="padding: 10px; color: #333;">${leadData.website || 'Не е посочен'}</td>
+              </tr>
+              <tr style="border-bottom: 1px solid #ddd;">
+                <td style="padding: 10px; font-weight: bold; color: #555;">Индустрия:</td>
+                <td style="padding: 10px; color: #333;">${leadData.industry || 'Не е посочена'}</td>
+              </tr>
+              <tr style="border-bottom: 1px solid #ddd;">
+                <td style="padding: 10px; font-weight: bold; color: #555;">Позиция:</td>
+                <td style="padding: 10px; color: #333;">${leadData.role || 'Не е посочена'}</td>
+              </tr>
+              <tr style="border-bottom: 1px solid #ddd;">
+                <td style="padding: 10px; font-weight: bold; color: #555;">Бюджет:</td>
+                <td style="padding: 10px; color: #333;">${leadData.budget_range || 'Не е посочен'}</td>
+              </tr>
+            </table>
+            
+            <div style="margin-top: 30px; padding: 20px; background: #ECB629; border-radius: 8px; text-align: center;">
+              <h3 style="margin: 0; color: #000;">Препоръчано действие:</h3>
+              <p style="margin: 10px 0 0 0; color: #333;">Свържете се в рамките на 1 час за максимална конверсия!</p>
+            </div>
+          </div>
+          
+          <div style="padding: 20px; text-align: center; background: #333; color: #fff;">
+            <p style="margin: 0;">Pravdast Business Engineering - Автоматична система за leads</p>
+          </div>
+        </div>
+      `,
+      text: `
+        Нов висококачествен Lead (Score: ${leadData.lead_score}/100)
+        
+        Email: ${leadData.email}
+        Компания: ${leadData.company || 'Не е посочена'}
+        Уебсайт: ${leadData.website || 'Не е посочен'}
+        Индустрия: ${leadData.industry || 'Не е посочена'}
+        Позиция: ${leadData.role || 'Не е посочена'}
+        Бюджет: ${leadData.budget_range || 'Не е посочен'}
+        
+        Препоръчано: Свържете се в рамките на 1 час!
+      `
+    };
+
+    await sgMail.send(msg);
+    console.log(`High-value lead notification sent for ${leadData.email} (Score: ${leadData.lead_score})`);
+  } catch (error) {
+    console.error('Failed to send high-value lead notification:', error);
+  }
 }
 
 function calculateLeadScore(data) {
