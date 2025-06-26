@@ -32,6 +32,7 @@ import { Footer } from "@/components/footer";
 interface ROICalculatorProps {
   serviceName: string;
   monthlyPrice: number;
+  description: string;
   averageResults: {
     trafficIncrease: number;
     conversionRate: number;
@@ -45,6 +46,7 @@ interface ROICalculatorProps {
 function ROICalculator({
   serviceName,
   monthlyPrice,
+  description,
   averageResults,
   color,
   icon,
@@ -130,6 +132,19 @@ function ROICalculator({
 
   return (
     <div className="space-y-8">
+      {/* Service Description */}
+      <div className="text-center mb-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="inline-flex items-center gap-2 bg-slate-800/50 backdrop-blur-sm border border-[#ECB629]/30 rounded-full px-4 py-2 mb-4"
+        >
+          {icon}
+          <span className="text-sm text-gray-300">{serviceName}</span>
+        </motion.div>
+        <p className="text-gray-300 text-lg max-w-2xl mx-auto">{description}</p>
+      </div>
+
       {/* Input Form */}
       <Card className="bg-slate-800/30 border-slate-700/50 backdrop-blur-lg">
         <CardHeader>
@@ -446,6 +461,7 @@ export default function CalculatorsNew() {
     {
       name: "SEO Struktor™",
       price: 1980,
+      description: "Системна SEO оптимизация за устойчив органичен трафик и по-високи позиции в Google.",
       averageResults: {
         trafficIncrease: 150,
         conversionRate: 25,
@@ -458,6 +474,7 @@ export default function CalculatorsNew() {
     {
       name: "Trendlab™",
       price: 3450,
+      description: "Експертно създаване на съдържание за изграждане на авторитет и привличане на квалифицирани клиенти.",
       averageResults: {
         trafficIncrease: 200,
         conversionRate: 35,
@@ -470,6 +487,7 @@ export default function CalculatorsNew() {
     {
       name: "Clickstarter™",
       price: 1570,
+      description: "Оптимизация на рекламните кампании за максимална ефективност и възвращаемост на инвестицията.",
       averageResults: {
         trafficIncrease: 80,
         conversionRate: 45,
@@ -482,6 +500,7 @@ export default function CalculatorsNew() {
     {
       name: "Clientomat™",
       price: 2890,
+      description: "Автоматизирана система за привличане и превръщане на посетители в платящи клиенти.",
       averageResults: {
         trafficIncrease: 120,
         conversionRate: 30,
@@ -568,13 +587,13 @@ export default function CalculatorsNew() {
                 transition={{ delay: 0.2 }}
                 className="text-xl text-gray-300 max-w-3xl mx-auto"
               >
-                Изчислете очаквания ROI от нашите бизнес инженеринг решения.
-                Базирано на данни от 100+ проекта.
+                Изчислете точната печалба от нашите системи. Спрете да гадаете - 
+                започнете да планирате с реални числа.
               </motion.p>
             </div>
 
             {/* Calculator Tabs */}
-            <Tabs defaultValue="seo-struktor" className="space-y-8">
+            <Tabs defaultValue="seo-struktor-" className="space-y-8">
               <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 bg-slate-800/50 backdrop-blur-sm border border-slate-700/30">
                 {services.map((service, index) => (
                   <TabsTrigger
@@ -601,6 +620,7 @@ export default function CalculatorsNew() {
                   <ROICalculator
                     serviceName={service.name}
                     monthlyPrice={service.price}
+                    description={service.description}
                     averageResults={service.averageResults}
                     color={service.color}
                     icon={service.icon}
