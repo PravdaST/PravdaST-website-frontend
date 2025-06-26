@@ -79,26 +79,29 @@ function ROICalculator({
       // Calculate projected improvements
       const trafficIncrease = (traffic * averageResults.trafficIncrease) / 100;
       const projectedTraffic = traffic + trafficIncrease;
-      
+
       // Current conversion rate estimation
-      const currentOrders = orderValue > 0 ? revenue / orderValue : revenue / 100;
+      const currentOrders =
+        orderValue > 0 ? revenue / orderValue : revenue / 100;
       const currentConversionRate = (currentOrders / traffic) * 100;
-      
+
       // Improved conversion rate
       const improvedConversionRate = Math.min(
-        currentConversionRate + (averageResults.conversionRate / 100) * currentConversionRate,
-        15 // Cap at 15%
+        currentConversionRate +
+          (averageResults.conversionRate / 100) * currentConversionRate,
+        15, // Cap at 15%
       );
-      
+
       // Calculate additional revenue
       const newOrders = (projectedTraffic * improvedConversionRate) / 100;
       const newRevenue = newOrders * (orderValue || 100);
       const additionalRevenue = newRevenue - revenue;
-      
+
       // ROI calculation
-      const monthlyROI = ((additionalRevenue - monthlyPrice) / monthlyPrice) * 100;
+      const monthlyROI =
+        ((additionalRevenue - monthlyPrice) / monthlyPrice) * 100;
       const paybackPeriod = monthlyPrice / Math.max(additionalRevenue, 1);
-      
+
       // SEO Score calculation
       let seoScore = 40; // Base score
       if (traffic > 1000) seoScore += 10;
@@ -106,15 +109,18 @@ function ROICalculator({
       if (revenue > 10000) seoScore += 15;
       if (revenue > 50000) seoScore += 15;
       if (orderValue > 200) seoScore += 10;
-      
+
       setResults({
         monthlyROI,
         additionalRevenue,
         projectedTraffic,
         seoScore: Math.min(seoScore, 100),
         paybackPeriod,
-        timeframe: serviceName.includes("SEO") ? "3-6 месеца" : 
-                  serviceName.includes("Trend") ? "2-4 месеца" : "1-3 месеца",
+        timeframe: serviceName.includes("SEO")
+          ? "3-6 месеца"
+          : serviceName.includes("Trend")
+            ? "2-4 месеца"
+            : "1-3 месеца",
       });
 
       // Generate recommendations
@@ -125,7 +131,7 @@ function ROICalculator({
       if (orderValue < 100) recs.push("Ценова стратегия");
       if (seoScore < 70) recs.push("SEO аудит");
       if (serviceName.includes("Trend")) recs.push("Съдържание маркетинг");
-      
+
       setRecommendations(recs.slice(0, 4));
     }
   }, [inputs, monthlyPrice, averageResults, serviceName]);
@@ -157,7 +163,7 @@ function ROICalculator({
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <Label htmlFor="revenue" className="text-white">
-                Месечен оборот (лв.)
+                Среден месечен оборот (лв.)
               </Label>
               <Input
                 id="revenue"
@@ -165,7 +171,10 @@ function ROICalculator({
                 placeholder="напр. 25000"
                 value={inputs.currentMonthlyRevenue}
                 onChange={(e) =>
-                  setInputs({ ...inputs, currentMonthlyRevenue: e.target.value })
+                  setInputs({
+                    ...inputs,
+                    currentMonthlyRevenue: e.target.value,
+                  })
                 }
                 className="bg-slate-900/50 border-slate-600 text-white"
               />
@@ -173,7 +182,7 @@ function ROICalculator({
 
             <div>
               <Label htmlFor="traffic" className="text-white">
-                Месечен трафик (посетители)
+                Среден брой месечни посетители
               </Label>
               <Input
                 id="traffic"
@@ -181,7 +190,10 @@ function ROICalculator({
                 placeholder="напр. 5000"
                 value={inputs.currentMonthlyTraffic}
                 onChange={(e) =>
-                  setInputs({ ...inputs, currentMonthlyTraffic: e.target.value })
+                  setInputs({
+                    ...inputs,
+                    currentMonthlyTraffic: e.target.value,
+                  })
                 }
                 className="bg-slate-900/50 border-slate-600 text-white"
               />
@@ -217,12 +229,16 @@ function ROICalculator({
                   <SelectValue placeholder="Изберете индустрия" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="ecommerce">E-commerce</SelectItem>
+                  <SelectItem value="ecommerce">Онлайн Магазин</SelectItem>
                   <SelectItem value="services">Услуги</SelectItem>
-                  <SelectItem value="saas">SaaS</SelectItem>
                   <SelectItem value="manufacturing">Производство</SelectItem>
+                  <SelectItem value="construction">Стройтелство</SelectItem>
+                  <SelectItem value="hospitality">Хотелиерство</SelectItem>
+                  <SelectItem value="Restaurant">Ресторантьорство</SelectItem>
                   <SelectItem value="retail">Търговия</SelectItem>
-                  <SelectItem value="consulting">Консултиране</SelectItem>
+                  <SelectItem value="consulting">
+                    Консултантски услуги
+                  </SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -232,9 +248,9 @@ function ROICalculator({
           <div className="bg-slate-900/50 rounded-lg p-4 border border-slate-700/30">
             <h4 className="text-white font-medium mb-2">Какво е ROI?</h4>
             <p className="text-gray-400 text-sm">
-              ROI (Return on Investment) показва колко лева печелите за всеки лев
-              инвестиран в услугата. Например, 300% ROI означава, че за всеки лев
-              инвестиран, получавате 3 лева обратно.
+              ROI (Return on Investment) показва колко лева печелите за всеки
+              лев инвестиран в услугата. Например, 300% ROI означава, че за
+              всеки лев инвестиран, получавате 3 лева обратно.
             </p>
           </div>
         </CardContent>
@@ -261,7 +277,10 @@ function ROICalculator({
 
                 <div className="relative w-40 h-40 mx-auto mb-4">
                   {/* Background Circle */}
-                  <svg className="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
+                  <svg
+                    className="w-full h-full transform -rotate-90"
+                    viewBox="0 0 100 100"
+                  >
                     <circle
                       cx="50"
                       cy="50"
@@ -461,7 +480,8 @@ export default function CalculatorsNew() {
     {
       name: "SEO Struktor™",
       price: 1980,
-      description: "Системна SEO оптимизация за устойчив органичен трафик и по-високи позиции в Google.",
+      description:
+        "Системна SEO оптимизация за устойчив органичен трафик и по-високи позиции в Google.",
       averageResults: {
         trafficIncrease: 150,
         conversionRate: 25,
@@ -474,7 +494,8 @@ export default function CalculatorsNew() {
     {
       name: "Trendlab™",
       price: 3450,
-      description: "Експертно създаване на съдържание за изграждане на авторитет и привличане на квалифицирани клиенти.",
+      description:
+        "Експертно създаване на съдържание за изграждане на авторитет и привличане на квалифицирани клиенти.",
       averageResults: {
         trafficIncrease: 200,
         conversionRate: 35,
@@ -487,7 +508,8 @@ export default function CalculatorsNew() {
     {
       name: "Clickstarter™",
       price: 1570,
-      description: "Оптимизация на рекламните кампании за максимална ефективност и възвращаемост на инвестицията.",
+      description:
+        "Оптимизация на рекламните кампании за максимална ефективност и възвращаемост на инвестицията.",
       averageResults: {
         trafficIncrease: 80,
         conversionRate: 45,
@@ -500,7 +522,8 @@ export default function CalculatorsNew() {
     {
       name: "Clientomat™",
       price: 2890,
-      description: "Автоматизирана система за привличане и превръщане на посетители в платящи клиенти.",
+      description:
+        "Автоматизирана система за привличане и превръщане на посетители в платящи клиенти.",
       averageResults: {
         trafficIncrease: 120,
         conversionRate: 30,
@@ -541,7 +564,7 @@ export default function CalculatorsNew() {
   return (
     <>
       <Navigation />
-      
+
       <div className="min-h-screen bg-slate-900">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-5">
@@ -587,8 +610,12 @@ export default function CalculatorsNew() {
                 transition={{ delay: 0.2 }}
                 className="text-xl text-gray-300 max-w-3xl mx-auto"
               >
-                Изчислете <span className="bg-[#ECB629] text-black px-2 py-1 rounded font-semibold">точната печалба</span> от нашите системи. Спрете да гадаете - 
-                започнете да планирате с реални числа.
+                Изчислете{" "}
+                <span className="bg-[#ECB629] text-black px-2 py-1 rounded font-semibold">
+                  точната печалба
+                </span>{" "}
+                от нашите системи. Спрете да гадаете - започнете да планирате с
+                реални числа.
               </motion.p>
             </div>
 
@@ -631,7 +658,7 @@ export default function CalculatorsNew() {
           </div>
         </div>
       </div>
-      
+
       <Footer />
     </>
   );
