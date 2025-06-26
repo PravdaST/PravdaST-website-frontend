@@ -14,14 +14,35 @@ export default async function handler(req, res) {
     return res.status(200).end();
   }
 
+  // Parse body for Vercel compatibility
+  let body = {};
+  if (req.method === 'POST' || req.method === 'PUT') {
+    if (req.body) {
+      body = req.body;
+    } else {
+      // For Vercel serverless functions, read raw body
+      try {
+        const chunks = [];
+        for await (const chunk of req) {
+          chunks.push(chunk);
+        }
+        const rawBody = Buffer.concat(chunks).toString('utf8');
+        body = rawBody ? JSON.parse(rawBody) : {};
+      } catch (error) {
+        console.error('Body parsing error:', error);
+        body = {};
+      }
+    }
+  }
+
   try {
     switch (action) {
       case 'events':
-        return await handleEvents(req, res);
+        return await handleEvents(req, res, body);
       case 'analytics':
         return await handleAnalytics(req, res);
       case 'profile':
-        return await handleProfile(req, res);
+        return await handleProfile(req, res, body);
       default:
         return res.status(404).json({ error: 'Action not found' });
     }
@@ -31,7 +52,7 @@ export default async function handler(req, res) {
   }
 }
 
-async function handleEvents(req, res) {
+async function handleEvents(req, res, body) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
@@ -46,7 +67,7 @@ async function handleEvents(req, res) {
       session_id,
       user_id,
       page_url
-    } = req.body;
+    } = body;
 
     console.log('Tracking event:', {
       event_type,
@@ -150,7 +171,7 @@ async function handleAnalytics(req, res) {
   }
 }
 
-async function handleProfile(req, res) {
+async function handleProfile(req, res, body) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
@@ -164,7 +185,11 @@ async function handleProfile(req, res) {
       industry,
       role,
       budget
-    } = req.body;
+    } = body;
+
+    if (!profileUserId) {
+      return res.status(400).json({ error: 'User ID is required' });
+    }
 
     console.log('Profile updated:', {
       profileUserId,
