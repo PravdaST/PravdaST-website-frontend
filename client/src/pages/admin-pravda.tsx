@@ -116,7 +116,7 @@ export default function AdminPravdaPage() {
   // Login mutation
   const loginMutation = useMutation({
     mutationFn: async (data: LoginForm) => {
-      const response = await fetch('/api/admin/login', {
+      const response = await fetch('/api/admin?action=login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -153,7 +153,7 @@ export default function AdminPravdaPage() {
   const logout = async () => {
     try {
       if (token) {
-        await fetch('/api/admin/logout', {
+        await fetch('/api/admin?action=logout', {
           method: 'POST',
           headers: {
             'Authorization': `Bearer ${token}`,
@@ -178,7 +178,7 @@ export default function AdminPravdaPage() {
   const { data: blogPosts, isLoading: blogLoading } = useQuery({
     queryKey: ['/api/admin/blog/posts'],
     queryFn: async () => {
-      const response = await fetch('/api/admin/blog/posts', {
+      const response = await fetch('/api/admin?action=blog-posts', {
         headers: {
           'Authorization': `Bearer ${token}`,
         },
@@ -197,7 +197,7 @@ export default function AdminPravdaPage() {
   const { data: contacts, isLoading: contactsLoading } = useQuery({
     queryKey: ['/api/admin/contacts'],
     queryFn: async () => {
-      const response = await fetch('/api/admin/contacts', {
+      const response = await fetch('/api/admin?action=contacts', {
         headers: {
           'Authorization': `Bearer ${token}`,
         },
@@ -215,7 +215,7 @@ export default function AdminPravdaPage() {
   // Create blog post mutation
   const createPostMutation = useMutation({
     mutationFn: async (data: BlogPostForm) => {
-      const response = await fetch('/api/admin/blog/posts', {
+      const response = await fetch('/api/admin?action=blog-posts', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -252,7 +252,7 @@ export default function AdminPravdaPage() {
   // Update blog post mutation
   const updatePostMutation = useMutation({
     mutationFn: async ({ id, data }: { id: number; data: Partial<BlogPostForm> }) => {
-      const response = await fetch(`/api/admin/blog/${id}`, {
+      const response = await fetch(`/api/admin?action=blog-post&id=${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -290,7 +290,7 @@ export default function AdminPravdaPage() {
   // Delete blog post mutation
   const deletePostMutation = useMutation({
     mutationFn: async (id: number) => {
-      const response = await fetch(`/api/admin/blog/${id}`, {
+      const response = await fetch(`/api/admin?action=blog-post&id=${id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -324,13 +324,13 @@ export default function AdminPravdaPage() {
   const publishMutation = useMutation({
     mutationFn: async ({ id, action }: { id: number; action: 'publish' | 'unpublish' }) => {
       const isPublished = action === 'publish';
-      const response = await fetch(`/api/admin/blog/${id}`, {
+      const response = await fetch(`/api/admin?action=blog-post&id=${id}`, {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ isPublished }),
+        body: JSON.stringify({ published: isPublished }),
       });
 
       if (!response.ok) {
