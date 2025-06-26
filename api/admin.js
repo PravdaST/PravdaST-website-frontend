@@ -16,6 +16,11 @@ module.exports = async function handler(req, res) {
   }
 
   try {
+    // Ensure proper JSON parsing
+    if (req.method === 'POST' && !req.body) {
+      return res.status(400).json({ error: 'Request body is required' });
+    }
+
     switch (action) {
       case 'login':
         return await handleLogin(req, res);
@@ -32,7 +37,7 @@ module.exports = async function handler(req, res) {
     }
   } catch (error) {
     console.error('Admin error:', error);
-    return res.status(500).json({ error: 'Internal server error' });
+    return res.status(500).json({ error: 'Internal server error', details: error.message });
   }
 };
 
@@ -41,13 +46,13 @@ async function handleLogin(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { username, password } = req.body;
-  
-  if (!username || !password) {
-    return res.status(400).json({ error: 'Username and password required' });
-  }
-
   try {
+    const { username, password } = req.body || {};
+    
+    if (!username || !password) {
+      return res.status(400).json({ error: 'Username and password required' });
+    }
+
     const client = await pool.connect();
     
     // Create admin tables if they don't exist
@@ -143,44 +148,30 @@ async function handleContacts(req, res) {
     return res.status(401).json({ error: 'No token provided' });
   }
 
-  // Verify session
-  const client = await pool.connect();
-  const sessionResult = await client.query(
-    'SELECT user_id FROM admin_sessions WHERE session_token = $1 AND expires_at > NOW()',
-    [token]
-  );
-  
-  if (sessionResult.rows.length === 0) {
-    client.release();
-    return res.status(401).json({ error: 'Invalid or expired token' });
-  }
+  try {
+    // Verify session
+    const client = await pool.connect();
+    const sessionResult = await client.query(
+      'SELECT user_id FROM admin_sessions WHERE session_token = $1 AND expires_at > NOW()',
+      [token]
+    );
 
-  if (req.method === 'GET') {
-    try {
-      await client.query(`
-        CREATE TABLE IF NOT EXISTS contacts (
-          id SERIAL PRIMARY KEY,
-          name VARCHAR(255) NOT NULL,
-          email VARCHAR(255) NOT NULL,
-          company VARCHAR(255),
-          website VARCHAR(255),
-          message TEXT NOT NULL,
-          created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-        )
-      `);
-
-      const result = await client.query('SELECT * FROM contacts ORDER BY created_at DESC');
+    if (sessionResult.rows.length === 0) {
       client.release();
-      return res.json(result.rows);
-    } catch (error) {
-      client.release();
-      console.error('Get contacts error:', error);
-      return res.status(500).json({ error: 'Failed to get contacts' });
+      return res.status(401).json({ error: 'Invalid or expired session' });
     }
-  }
 
-  client.release();
-  return res.status(405).json({ error: 'Method not allowed' });
+    // Get contacts
+    const contactsResult = await client.query(
+      'SELECT * FROM contacts ORDER BY created_at DESC'
+    );
+
+    client.release();
+    return res.json({ contacts: contactsResult.rows });
+  } catch (error) {
+    console.error('Get contacts error:', error);
+    return res.status(500).json({ error: 'Failed to get contacts' });
+  }
 }
 
 async function handleBlogPosts(req, res) {
@@ -190,69 +181,55 @@ async function handleBlogPosts(req, res) {
     return res.status(401).json({ error: 'No token provided' });
   }
 
-  const client = await pool.connect();
-  const sessionResult = await client.query(
-    'SELECT user_id FROM admin_sessions WHERE session_token = $1 AND expires_at > NOW()',
-    [token]
-  );
-  
-  if (sessionResult.rows.length === 0) {
-    client.release();
-    return res.status(401).json({ error: 'Invalid or expired token' });
-  }
+  try {
+    // Verify session
+    const client = await pool.connect();
+    const sessionResult = await client.query(
+      'SELECT user_id FROM admin_sessions WHERE session_token = $1 AND expires_at > NOW()',
+      [token]
+    );
 
-  if (req.method === 'GET') {
-    try {
-      await client.query(`
-        CREATE TABLE IF NOT EXISTS blog_posts (
-          id SERIAL PRIMARY KEY,
-          title VARCHAR(255) NOT NULL,
-          slug VARCHAR(255) UNIQUE NOT NULL,
-          excerpt TEXT,
-          content TEXT NOT NULL,
-          tags JSONB DEFAULT '[]',
-          published BOOLEAN DEFAULT false,
-          created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-          updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-        )
-      `);
-
-      const result = await client.query('SELECT * FROM blog_posts ORDER BY created_at DESC');
+    if (sessionResult.rows.length === 0) {
       client.release();
-      return res.json(result.rows);
-    } catch (error) {
-      client.release();
-      console.error('Get blog posts error:', error);
-      return res.status(500).json({ error: 'Failed to get blog posts' });
-    }
-  }
-
-  if (req.method === 'POST') {
-    const { title, slug, excerpt, content, tags } = req.body;
-    
-    if (!title || !slug || !content) {
-      client.release();
-      return res.status(400).json({ error: 'Title, slug and content are required' });
+      return res.status(401).json({ error: 'Invalid or expired session' });
     }
 
-    try {
-      const result = await client.query(`
-        INSERT INTO blog_posts (title, slug, excerpt, content, tags)
-        VALUES ($1, $2, $3, $4, $5)
-        RETURNING *
-      `, [title, slug, excerpt, content, JSON.stringify(tags || [])]);
+    const userId = sessionResult.rows[0].user_id;
+
+    if (req.method === 'GET') {
+      // Get all blog posts
+      const postsResult = await client.query(
+        'SELECT * FROM blog_posts ORDER BY created_at DESC'
+      );
+
+      client.release();
+      return res.json({ posts: postsResult.rows });
+    } else if (req.method === 'POST') {
+      // Create new blog post
+      const { title, slug, excerpt, content, category, tags, isPublished } = req.body || {};
       
-      client.release();
-      return res.json(result.rows[0]);
-    } catch (error) {
-      client.release();
-      console.error('Create blog post error:', error);
-      return res.status(500).json({ error: 'Failed to create blog post' });
-    }
-  }
+      if (!title || !slug || !excerpt || !content || !category) {
+        client.release();
+        return res.status(400).json({ error: 'Missing required fields' });
+      }
 
-  client.release();
-  return res.status(405).json({ error: 'Method not allowed' });
+      const tagsArray = Array.isArray(tags) ? tags : [];
+      
+      const insertResult = await client.query(
+        'INSERT INTO blog_posts (title, slug, excerpt, content, category, tags, is_published, author_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *',
+        [title, slug, excerpt, content, category, JSON.stringify(tagsArray), isPublished || false, userId]
+      );
+
+      client.release();
+      return res.json({ post: insertResult.rows[0] });
+    }
+
+    client.release();
+    return res.status(405).json({ error: 'Method not allowed' });
+  } catch (error) {
+    console.error('Blog posts error:', error);
+    return res.status(500).json({ error: 'Failed to handle blog posts' });
+  }
 }
 
 async function handleBlogPost(req, res) {
@@ -264,79 +241,79 @@ async function handleBlogPost(req, res) {
   }
 
   if (!id) {
-    return res.status(400).json({ error: 'Post ID is required' });
+    return res.status(400).json({ error: 'Post ID required' });
   }
 
-  const client = await pool.connect();
-  const sessionResult = await client.query(
-    'SELECT user_id FROM admin_sessions WHERE session_token = $1 AND expires_at > NOW()',
-    [token]
-  );
-  
-  if (sessionResult.rows.length === 0) {
+  try {
+    // Verify session
+    const client = await pool.connect();
+    const sessionResult = await client.query(
+      'SELECT user_id FROM admin_sessions WHERE session_token = $1 AND expires_at > NOW()',
+      [token]
+    );
+
+    if (sessionResult.rows.length === 0) {
+      client.release();
+      return res.status(401).json({ error: 'Invalid or expired session' });
+    }
+
+    if (req.method === 'GET') {
+      // Get specific blog post
+      const postResult = await client.query(
+        'SELECT * FROM blog_posts WHERE id = $1',
+        [id]
+      );
+
+      if (postResult.rows.length === 0) {
+        client.release();
+        return res.status(404).json({ error: 'Post not found' });
+      }
+
+      client.release();
+      return res.json({ post: postResult.rows[0] });
+    } else if (req.method === 'PUT') {
+      // Update blog post
+      const { title, slug, excerpt, content, category, tags, isPublished } = req.body || {};
+      
+      if (!title || !slug || !excerpt || !content || !category) {
+        client.release();
+        return res.status(400).json({ error: 'Missing required fields' });
+      }
+
+      const tagsArray = Array.isArray(tags) ? tags : [];
+      
+      const updateResult = await client.query(
+        'UPDATE blog_posts SET title = $1, slug = $2, excerpt = $3, content = $4, category = $5, tags = $6, is_published = $7, updated_at = NOW() WHERE id = $8 RETURNING *',
+        [title, slug, excerpt, content, category, JSON.stringify(tagsArray), isPublished || false, id]
+      );
+
+      if (updateResult.rows.length === 0) {
+        client.release();
+        return res.status(404).json({ error: 'Post not found' });
+      }
+
+      client.release();
+      return res.json({ post: updateResult.rows[0] });
+    } else if (req.method === 'DELETE') {
+      // Delete blog post
+      const deleteResult = await client.query(
+        'DELETE FROM blog_posts WHERE id = $1 RETURNING *',
+        [id]
+      );
+
+      if (deleteResult.rows.length === 0) {
+        client.release();
+        return res.status(404).json({ error: 'Post not found' });
+      }
+
+      client.release();
+      return res.json({ message: 'Post deleted successfully' });
+    }
+
     client.release();
-    return res.status(401).json({ error: 'Invalid or expired token' });
+    return res.status(405).json({ error: 'Method not allowed' });
+  } catch (error) {
+    console.error('Blog post error:', error);
+    return res.status(500).json({ error: 'Failed to handle blog post' });
   }
-
-  if (req.method === 'GET') {
-    try {
-      const result = await client.query('SELECT * FROM blog_posts WHERE id = $1', [id]);
-      client.release();
-      
-      if (result.rows.length === 0) {
-        return res.status(404).json({ error: 'Post not found' });
-      }
-      
-      return res.json(result.rows[0]);
-    } catch (error) {
-      client.release();
-      console.error('Get blog post error:', error);
-      return res.status(500).json({ error: 'Failed to get blog post' });
-    }
-  }
-
-  if (req.method === 'PUT') {
-    const { title, slug, excerpt, content, tags, published } = req.body;
-    
-    try {
-      const result = await client.query(`
-        UPDATE blog_posts 
-        SET title = $1, slug = $2, excerpt = $3, content = $4, tags = $5, published = $6, updated_at = CURRENT_TIMESTAMP
-        WHERE id = $7
-        RETURNING *
-      `, [title, slug, excerpt, content, JSON.stringify(tags || []), published, id]);
-      
-      client.release();
-      
-      if (result.rows.length === 0) {
-        return res.status(404).json({ error: 'Post not found' });
-      }
-      
-      return res.json(result.rows[0]);
-    } catch (error) {
-      client.release();
-      console.error('Update blog post error:', error);
-      return res.status(500).json({ error: 'Failed to update blog post' });
-    }
-  }
-
-  if (req.method === 'DELETE') {
-    try {
-      const result = await client.query('DELETE FROM blog_posts WHERE id = $1 RETURNING *', [id]);
-      client.release();
-      
-      if (result.rows.length === 0) {
-        return res.status(404).json({ error: 'Post not found' });
-      }
-      
-      return res.json({ success: true });
-    } catch (error) {
-      client.release();
-      console.error('Delete blog post error:', error);
-      return res.status(500).json({ error: 'Failed to delete blog post' });
-    }
-  }
-
-  client.release();
-  return res.status(405).json({ error: 'Method not allowed' });
 }
