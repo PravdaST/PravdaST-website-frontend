@@ -72,7 +72,7 @@ export default function AnalyticsDashboard() {
   const fetchAnalytics = async () => {
     setLoading(true);
     try {
-      const response = await fetch(`/api/tracking/analytics?type=${selectedView}&timeframe=${timeframe}`);
+      const response = await fetch(`/api/tracking?action=analytics&type=${selectedView}&timeframe=${timeframe}`);
       const analyticsData = await response.json();
       setData(analyticsData);
     } catch (error) {

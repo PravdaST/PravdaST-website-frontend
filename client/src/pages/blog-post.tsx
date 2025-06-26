@@ -271,7 +271,7 @@ export default function BlogPost() {
 
   // Get real blog stats from database
   const { data: stats } = useQuery<BlogStats>({
-    queryKey: [`/api/blog-stats?slug=${slug}`],
+    queryKey: [`/api/blog/interaction?type=stats&slug=${slug}`],
     enabled: !!slug,
     refetchOnWindowFocus: false,
   });
@@ -279,10 +279,10 @@ export default function BlogPost() {
   // Track blog view mutation
   const viewMutation = useMutation({
     mutationFn: async () => {
-      const response = await fetch('/api/blog-view', {
+      const response = await fetch('/api/blog/interaction', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ slug }),
+        body: JSON.stringify({ type: 'view', slug }),
       });
       if (!response.ok) throw new Error('Failed to track view');
       return response.json();
@@ -292,32 +292,32 @@ export default function BlogPost() {
   // Track blog like mutation
   const likeMutation = useMutation({
     mutationFn: async () => {
-      const response = await fetch('/api/blog-like', {
+      const response = await fetch('/api/blog/interaction', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ slug }),
+        body: JSON.stringify({ type: 'like', slug }),
       });
       if (!response.ok) throw new Error('Failed to track like');
       return response.json();
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: [`/api/blog-stats?slug=${slug}`] });
+      queryClient.invalidateQueries({ queryKey: [`/api/blog/interaction?type=stats&slug=${slug}`] });
     },
   });
 
   // Track blog share mutation
   const shareMutation = useMutation({
     mutationFn: async (platform: string) => {
-      const response = await fetch('/api/blog-share', {
+      const response = await fetch('/api/blog/interaction', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ slug, platform }),
+        body: JSON.stringify({ type: 'share', slug, platform }),
       });
       if (!response.ok) throw new Error('Failed to track share');
       return response.json();
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: [`/api/blog-stats?slug=${slug}`] });
+      queryClient.invalidateQueries({ queryKey: [`/api/blog/interaction?type=stats&slug=${slug}`] });
     },
   });
 

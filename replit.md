@@ -247,6 +247,7 @@ Changelog:
 - June 25, 2025. Integrated Facebook Pixel and LinkedIn Insight Tag for retargeting: complete pixel setup with purchase events, lead tracking, custom conversions, enhanced ecommerce tracking, Google Ads conversion integration, advanced audience building for remarketing campaigns
 - June 25, 2025. Enhanced content clusters for Local SEO: targeted keyword strategies for "бизнес растеж българия", "seo услуги българия", "digital marketing българия", "content marketing българия" with city-specific variations for Varna, Sofia, Plovdiv, Burgas targeting
 - June 25, 2025. Optimized Vercel deployment by consolidating 16 serverless functions down to 7 (well under 12 Hobby plan limit): unified admin.js for all admin operations, blog/interaction.js for all blog interactions, tracking.js for comprehensive analytics - eliminated deployment blocking errors while maintaining full functionality
+- June 25, 2025. Updated all frontend endpoints to use consolidated API structure: admin operations now use /api/admin?action=login|logout|contacts|blog-posts|blog-post, blog interactions use /api/blog/interaction with type parameter, tracking uses /api/tracking?action=events|analytics|profile - all endpoints operational and deployment-ready
 
 ## User Preferences
 

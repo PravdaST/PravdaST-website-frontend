@@ -387,7 +387,7 @@ class TrackingManager {
 
   private async sendEventToBackend(event: TrackingEvent) {
     try {
-      await fetch('/api/tracking/events', {
+      await fetch('/api/tracking?action=events', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -408,7 +408,7 @@ class TrackingManager {
 
   private async sendProfileToBackend() {
     try {
-      await fetch('/api/tracking/profile', {
+      await fetch('/api/tracking?action=profile', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
