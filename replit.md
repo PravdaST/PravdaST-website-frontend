@@ -255,6 +255,7 @@ Changelog:
 - June 26, 2025. Cleaned up project structure by removing duplicate /client/api folder - project now uses unified root /api structure for all Vercel serverless functions (admin.js, blog/, contacts.js, sitemap.xml.js, tracking.js), eliminated file duplication and potential deployment conflicts
 - June 26, 2025. Fixed Admin CRM login JSON error by implementing admin endpoints directly in server routes with dynamic imports to resolve ES modules conflicts - admin login now returns proper success tokens, CRM system fully operational with admin/pravda2025 credentials
 - June 26, 2025. Redesigned calculator result sections with dark theme consistency: updated main score card and CTA sections to use slate-900/80 backgrounds instead of light colors, redesigned circular SEO score visualization with SVG-based progress ring for accurate percentage display, added glow effects and improved visual hierarchy
+- June 26, 2025. Integrated main site navigation and footer into calculators page: added Navigation and Footer components from main site, removed breadcrumb navigation for cleaner design, maintained consistent styling with rest of website
 
 ## User Preferences
 

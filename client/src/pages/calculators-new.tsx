@@ -12,11 +12,7 @@ import {
   Users,
   Award,
   Clock,
-  Home,
-  Phone,
-  Mail,
 } from "lucide-react";
-import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -29,6 +25,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Navigation } from "@/components/navigation";
+import { Footer } from "@/components/footer";
 // SEO structured data will be injected directly
 
 interface ROICalculatorProps {
@@ -53,102 +51,95 @@ function ROICalculator({
 }: ROICalculatorProps) {
   const [inputs, setInputs] = useState({
     currentMonthlyRevenue: "",
-    averageOrderValue: "",
-    currentConversionRate: "",
     currentMonthlyTraffic: "",
+    averageOrderValue: "",
     industry: "",
   });
 
   const [results, setResults] = useState({
-    seoScore: 0,
     monthlyROI: 0,
-    annualROI: 0,
     additionalRevenue: 0,
-    paybackPeriod: 0,
     projectedTraffic: 0,
-    projectedLeads: 0,
-    timeframe: "",
+    seoScore: 0,
+    paybackPeriod: 0,
+    timeframe: "3-6 месеца",
   });
 
-  const calculateROI = () => {
-    const revenue = parseFloat(inputs.currentMonthlyRevenue) || 0;
-    const aov = parseFloat(inputs.averageOrderValue) || 0;
-    const conversionRate = parseFloat(inputs.currentConversionRate) || 0;
-    const traffic = parseFloat(inputs.currentMonthlyTraffic) || 0;
+  const [recommendations, setRecommendations] = useState<string[]>([]);
 
-    if (revenue > 0 && aov > 0) {
-      // Calculate SEO potential score (0-100)
-      let seoScore = 0;
-      if (traffic > 0) seoScore += 25;
-      if (conversionRate > 0) seoScore += 20;
-      if (revenue > 10000) seoScore += 20; // Higher revenue = more potential
-      if (inputs.industry) seoScore += 15;
-
-      // Bonus points for competitive industries
-      if (["ecommerce", "b2b-services", "saas"].includes(inputs.industry)) {
-        seoScore += 20;
-      }
-
-      // Calculate projected improvements
-      const projectedTraffic =
-        traffic * (1 + averageResults.trafficIncrease / 100);
-      const improvedConversionRate =
-        conversionRate * (1 + averageResults.conversionRate / 100);
-      const projectedLeads = projectedTraffic * (improvedConversionRate / 100);
-      const additionalRevenue =
-        projectedLeads * aov * averageResults.revenueMultiplier;
-
-      const monthlyROI =
-        monthlyPrice > 0
-          ? ((additionalRevenue - monthlyPrice) / monthlyPrice) * 100
-          : 0;
-      const annualROI = monthlyROI * 12;
-      const paybackPeriod =
-        additionalRevenue > 0 ? monthlyPrice / additionalRevenue : 0;
-
-      // Determine timeframe based on service type
-      let timeframe = "6-9 месеца";
-      if (serviceName.includes("SEO")) timeframe = "6-9 месеца";
-      if (serviceName.includes("Clickstarter")) timeframe = "2-4 месеца";
-      if (serviceName.includes("Trendlab")) timeframe = "3-6 месеца";
-      if (serviceName.includes("Clientomat")) timeframe = "4-8 месеца";
-
-      setResults({
-        seoScore: Math.min(seoScore, 100),
-        monthlyROI,
-        annualROI,
-        additionalRevenue,
-        paybackPeriod,
-        projectedTraffic,
-        projectedLeads,
-        timeframe,
-      });
-    }
-  };
-
+  // Calculate ROI when inputs change
   useEffect(() => {
-    calculateROI();
-  }, [inputs]);
+    const revenue = parseFloat(inputs.currentMonthlyRevenue) || 0;
+    const traffic = parseFloat(inputs.currentMonthlyTraffic) || 0;
+    const orderValue = parseFloat(inputs.averageOrderValue) || 0;
 
-  const recommendations = [
-    "SEO оптимизация",
-    "Техническа подобрения",
-    "Content маркетинг",
-    "Линк билдинг",
-  ];
+    if (revenue > 0 && traffic > 0) {
+      // Calculate projected improvements
+      const trafficIncrease = (traffic * averageResults.trafficIncrease) / 100;
+      const projectedTraffic = traffic + trafficIncrease;
+      
+      // Current conversion rate estimation
+      const currentOrders = orderValue > 0 ? revenue / orderValue : revenue / 100;
+      const currentConversionRate = (currentOrders / traffic) * 100;
+      
+      // Improved conversion rate
+      const improvedConversionRate = Math.min(
+        currentConversionRate + (averageResults.conversionRate / 100) * currentConversionRate,
+        15 // Cap at 15%
+      );
+      
+      // Calculate additional revenue
+      const newOrders = (projectedTraffic * improvedConversionRate) / 100;
+      const newRevenue = newOrders * (orderValue || 100);
+      const additionalRevenue = newRevenue - revenue;
+      
+      // ROI calculation
+      const monthlyROI = ((additionalRevenue - monthlyPrice) / monthlyPrice) * 100;
+      const paybackPeriod = monthlyPrice / Math.max(additionalRevenue, 1);
+      
+      // SEO Score calculation
+      let seoScore = 40; // Base score
+      if (traffic > 1000) seoScore += 10;
+      if (traffic > 5000) seoScore += 10;
+      if (revenue > 10000) seoScore += 15;
+      if (revenue > 50000) seoScore += 15;
+      if (orderValue > 200) seoScore += 10;
+      
+      setResults({
+        monthlyROI,
+        additionalRevenue,
+        projectedTraffic,
+        seoScore: Math.min(seoScore, 100),
+        paybackPeriod,
+        timeframe: serviceName.includes("SEO") ? "3-6 месеца" : 
+                  serviceName.includes("Trend") ? "2-4 месеца" : "1-3 месеца",
+      });
+
+      // Generate recommendations
+      const recs = [];
+      if (currentConversionRate < 2) recs.push("Конверсии оптимизация");
+      if (traffic < 5000) recs.push("Органен трафик");
+      if (!inputs.industry) recs.push("Техническо подобрение");
+      if (orderValue < 100) recs.push("Ценова стратегия");
+      if (seoScore < 70) recs.push("SEO аудит");
+      if (serviceName.includes("Trend")) recs.push("Съдържание маркетинг");
+      
+      setRecommendations(recs.slice(0, 4));
+    }
+  }, [inputs, monthlyPrice, averageResults, serviceName]);
 
   return (
     <div className="space-y-8">
-      {/* Input Section */}
+      {/* Input Form */}
       <Card className="bg-slate-800/30 border-slate-700/50 backdrop-blur-lg">
         <CardHeader>
-          <CardTitle className="text-white flex items-center gap-3">
-            <div className={`p-2 rounded-lg ${color}`}>{icon}</div>
-            {serviceName} ROI Калкулатор
+          <CardTitle className="flex items-center gap-2 text-white">
+            {icon}
+            {serviceName} - ROI Калкулатор
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <Label htmlFor="revenue" className="text-white">
                 Месечен оборот (лв.)
@@ -156,99 +147,80 @@ function ROICalculator({
               <Input
                 id="revenue"
                 type="number"
-                placeholder="напр. 50000"
+                placeholder="напр. 25000"
                 value={inputs.currentMonthlyRevenue}
                 onChange={(e) =>
-                  setInputs({
-                    ...inputs,
-                    currentMonthlyRevenue: e.target.value,
-                  })
+                  setInputs({ ...inputs, currentMonthlyRevenue: e.target.value })
                 }
-                className="bg-slate-700/50 border-slate-600 text-white"
+                className="bg-slate-900/50 border-slate-600 text-white"
               />
             </div>
-            <div>
-              <Label htmlFor="aov" className="text-white">
-                Средна стойност на поръчка (лв.)
-              </Label>
-              <Input
-                id="aov"
-                type="number"
-                placeholder="напр. 500"
-                value={inputs.averageOrderValue}
-                onChange={(e) =>
-                  setInputs({ ...inputs, averageOrderValue: e.target.value })
-                }
-                className="bg-slate-700/50 border-slate-600 text-white"
-              />
-            </div>
-          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <Label htmlFor="conversion" className="text-white">
-                Конверсия (%)
-              </Label>
-              <Input
-                id="conversion"
-                type="number"
-                placeholder="напр. 2.5"
-                value={inputs.currentConversionRate}
-                onChange={(e) =>
-                  setInputs({
-                    ...inputs,
-                    currentConversionRate: e.target.value,
-                  })
-                }
-                className="bg-slate-700/50 border-slate-600 text-white"
-              />
-            </div>
             <div>
               <Label htmlFor="traffic" className="text-white">
-                Месечен трафик
+                Месечен трафик (посетители)
               </Label>
               <Input
                 id="traffic"
                 type="number"
-                placeholder="напр. 10000"
+                placeholder="напр. 5000"
                 value={inputs.currentMonthlyTraffic}
                 onChange={(e) =>
-                  setInputs({
-                    ...inputs,
-                    currentMonthlyTraffic: e.target.value,
-                  })
+                  setInputs({ ...inputs, currentMonthlyTraffic: e.target.value })
                 }
-                className="bg-slate-700/50 border-slate-600 text-white"
+                className="bg-slate-900/50 border-slate-600 text-white"
               />
+            </div>
+
+            <div>
+              <Label htmlFor="orderValue" className="text-white">
+                Средна стойност на поръчка (лв.)
+              </Label>
+              <Input
+                id="orderValue"
+                type="number"
+                placeholder="напр. 150"
+                value={inputs.averageOrderValue}
+                onChange={(e) =>
+                  setInputs({ ...inputs, averageOrderValue: e.target.value })
+                }
+                className="bg-slate-900/50 border-slate-600 text-white"
+              />
+            </div>
+
+            <div>
+              <Label htmlFor="industry" className="text-white">
+                Индустрия
+              </Label>
+              <Select
+                value={inputs.industry}
+                onValueChange={(value) =>
+                  setInputs({ ...inputs, industry: value })
+                }
+              >
+                <SelectTrigger className="bg-slate-900/50 border-slate-600 text-white">
+                  <SelectValue placeholder="Изберете индустрия" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="ecommerce">E-commerce</SelectItem>
+                  <SelectItem value="services">Услуги</SelectItem>
+                  <SelectItem value="saas">SaaS</SelectItem>
+                  <SelectItem value="manufacturing">Производство</SelectItem>
+                  <SelectItem value="retail">Търговия</SelectItem>
+                  <SelectItem value="consulting">Консултиране</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
           </div>
 
-          <div>
-            <Label htmlFor="industry" className="text-white">
-              Индустрия
-            </Label>
-            <Select
-              value={inputs.industry}
-              onValueChange={(value) =>
-                setInputs({ ...inputs, industry: value })
-              }
-            >
-              <SelectTrigger className="bg-slate-700/50 border-slate-600 text-white">
-                <SelectValue placeholder="Изберете индустрия" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="b2b-services">B2B Услуги</SelectItem>
-                <SelectItem value="ecommerce">E-commerce</SelectItem>
-                <SelectItem value="saas">SaaS</SelectItem>
-                <SelectItem value="manufacturing">Производство</SelectItem>
-                <SelectItem value="consulting">Консултиране</SelectItem>
-                <SelectItem value="healthcare">Здравеопазване</SelectItem>
-                <SelectItem value="education">Образование</SelectItem>
-                <SelectItem value="finance">Финанси</SelectItem>
-                <SelectItem value="real-estate">Недвижими имоти</SelectItem>
-                <SelectItem value="other">Друго</SelectItem>
-              </SelectContent>
-            </Select>
+          {/* ROI Definition */}
+          <div className="bg-slate-900/50 rounded-lg p-4 border border-slate-700/30">
+            <h4 className="text-white font-medium mb-2">Какво е ROI?</h4>
+            <p className="text-gray-400 text-sm">
+              ROI (Return on Investment) показва колко лева печелите за всеки лев
+              инвестиран в услугата. Например, 300% ROI означава, че за всеки лев
+              инвестиран, получавате 3 лева обратно.
+            </p>
           </div>
         </CardContent>
       </Card>
@@ -505,30 +477,30 @@ export default function CalculatorsNew() {
         revenueMultiplier: 1.6,
       },
       color: "bg-green-500/10 text-green-500",
-      icon: <Zap className="w-5 h-5" />,
+      icon: <Target className="w-5 h-5" />,
     },
     {
       name: "Clientomat™",
       price: 2890,
       averageResults: {
         trafficIncrease: 120,
-        conversionRate: 40,
+        conversionRate: 30,
         leadIncrease: 180,
-        revenueMultiplier: 2.0,
+        revenueMultiplier: 1.9,
       },
       color: "bg-orange-500/10 text-orange-500",
       icon: <Users className="w-5 h-5" />,
     },
   ];
 
+  // SEO structured data
   useEffect(() => {
-    // Inject SEO structured data for calculator page
     const script = document.createElement("script");
     script.type = "application/ld+json";
-    script.text = JSON.stringify({
+    script.textContent = JSON.stringify({
       "@context": "https://schema.org",
       "@type": "WebApplication",
-      name: "Pravdast ROI Calculator",
+      name: "ROI Калкулатор - Pravdast",
       description:
         "Интерактивен калкулатор за изчисляване на ROI от дигитален маркетинг услуги",
       url: "https://www.pravdagency.eu/calculators",
@@ -548,252 +520,99 @@ export default function CalculatorsNew() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-slate-900">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `
-            linear-gradient(rgba(236, 182, 41, 0.1) 2px, transparent 2px),
-            linear-gradient(90deg, rgba(236, 182, 41, 0.1) 2px, transparent 2px)
-          `,
-            backgroundSize: "60px 60px",
-          }}
-        />
-      </div>
-
-      {/* Navigation Breadcrumb */}
-      <div className="relative z-10 pt-24 pb-4">
-        <div className="container mx-auto px-6 max-w-6xl">
-          <nav className="flex items-center gap-2 text-sm text-gray-400 mb-4">
-            <Link
-              href="/"
-              className="hover:text-[#ECB629] flex items-center gap-1"
-            >
-              <Home className="w-4 h-4" />
-              Начало
-            </Link>
-            <span>/</span>
-            <span className="text-white">ROI Калкулатори</span>
-          </nav>
+    <>
+      <Navigation />
+      
+      <div className="min-h-screen bg-slate-900">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-5">
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `
+              linear-gradient(rgba(236, 182, 41, 0.1) 2px, transparent 2px),
+              linear-gradient(90deg, rgba(236, 182, 41, 0.1) 2px, transparent 2px)
+            `,
+              backgroundSize: "60px 60px",
+            }}
+          />
         </div>
-      </div>
 
-      <div className="relative z-10 pb-12">
-        <div className="container mx-auto px-6 max-w-6xl">
-          {/* Header */}
-          <div className="text-center mb-16">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="inline-flex items-center gap-2 bg-slate-800/50 backdrop-blur-sm border border-[#ECB629]/30 rounded-full px-4 py-2 mb-6"
-            >
-              <Calculator className="w-4 h-4 text-[#ECB629]" />
-              <span className="text-sm text-gray-300">
-                Безплатни ROI калкулатори
-              </span>
-            </motion.div>
-
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="text-4xl md:text-5xl font-bold text-white mb-4"
-            >
-              Pravda ST <span className="text-[#ECB629]">Калкулатори</span>
-            </motion.h1>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="text-lg text-gray-300 max-w-3xl mx-auto mb-6"
-            >
-              Изчислете точния ROI и SEO потенциал на вашия бизнес с нашите
-              интерактивни калкулатори, базирани на реални данни от над 100+
-              проекта
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="bg-slate-800/30 backdrop-blur-lg rounded-2xl p-6 max-w-4xl mx-auto border border-slate-700/50"
-            >
-              <h3 className="text-lg font-semibold text-white mb-3 flex items-center gap-2">
-                <Target className="w-5 h-5 text-[#ECB629]" />
-                Какво е ROI?
-              </h3>
-              <p className="text-gray-300 text-sm leading-relaxed">
-                <strong className="text-[#ECB629]">
-                  ROI (Return on Investment)
-                </strong>{" "}
-                е показател за възвращаемост на инвестицията. Той показва колко
-                лева печелите за всеки лев, който инвестирате в системата.
-                Например, ROI от 300% означава, че за всеки 1 лв. инвестиция
-                получавате 3 лв. обратно. Нашите калкулатори използват реални
-                данни от над 100 успешни проекта, за да ви покажат точния
-                потенциал на вашия бизнес.
-              </p>
-            </motion.div>
-          </div>
-
-          {/* Calculator Tabs */}
-          <Tabs defaultValue="seo-struktor" className="w-full">
-            <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4 bg-slate-800/50 rounded-2xl p-2 mb-8">
-              {services.map((service, index) => (
-                <TabsTrigger
-                  key={index}
-                  value={service.name
-                    .toLowerCase()
-                    .replace("™", "")
-                    .replace(" ", "-")}
-                  className="rounded-xl data-[state=active]:bg-[#ECB629] data-[state=active]:text-black font-medium"
-                >
-                  {service.name}
-                </TabsTrigger>
-              ))}
-            </TabsList>
-
-            {services.map((service, index) => (
-              <TabsContent
-                key={index}
-                value={service.name
-                  .toLowerCase()
-                  .replace("™", "")
-                  .replace(" ", "-")}
+        <div className="relative z-10 pt-24 pb-12">
+          <div className="container mx-auto px-6 max-w-6xl">
+            {/* Header */}
+            <div className="text-center mb-16">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="inline-flex items-center gap-2 bg-slate-800/50 backdrop-blur-sm border border-[#ECB629]/30 rounded-full px-4 py-2 mb-6"
               >
-                <ROICalculator
-                  serviceName={service.name}
-                  monthlyPrice={service.price}
-                  averageResults={service.averageResults}
-                  color={service.color}
-                  icon={service.icon}
-                />
-              </TabsContent>
-            ))}
-          </Tabs>
+                <Calculator className="w-4 h-4 text-[#ECB629]" />
+                <span className="text-sm text-gray-300">
+                  Безплатни ROI калкулатори
+                </span>
+              </motion.div>
+
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 }}
+                className="text-4xl md:text-5xl font-bold text-white mb-4"
+              >
+                Pravda ST <span className="text-[#ECB629]">Калкулатори</span>
+              </motion.h1>
+
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+                className="text-xl text-gray-300 max-w-3xl mx-auto"
+              >
+                Изчислете очаквания ROI от нашите бизнес инженеринг решения.
+                Базирано на данни от 100+ проекта.
+              </motion.p>
+            </div>
+
+            {/* Calculator Tabs */}
+            <Tabs defaultValue="seo-struktor" className="space-y-8">
+              <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 bg-slate-800/50 backdrop-blur-sm border border-slate-700/30">
+                {services.map((service, index) => (
+                  <TabsTrigger
+                    key={index}
+                    value={service.name.toLowerCase().replace(/[™\s]/g, "-")}
+                    className="data-[state=active]:bg-[#ECB629] data-[state=active]:text-black"
+                  >
+                    <div className="flex items-center gap-2">
+                      {service.icon}
+                      <span className="hidden md:inline">{service.name}</span>
+                      <span className="md:hidden">
+                        {service.name.split("™")[0]}
+                      </span>
+                    </div>
+                  </TabsTrigger>
+                ))}
+              </TabsList>
+
+              {services.map((service, index) => (
+                <TabsContent
+                  key={index}
+                  value={service.name.toLowerCase().replace(/[™\s]/g, "-")}
+                >
+                  <ROICalculator
+                    serviceName={service.name}
+                    monthlyPrice={service.price}
+                    averageResults={service.averageResults}
+                    color={service.color}
+                    icon={service.icon}
+                  />
+                </TabsContent>
+              ))}
+            </Tabs>
+          </div>
         </div>
       </div>
-
-      {/* Footer */}
-      <footer className="relative z-10 bg-slate-900 border-t border-slate-800">
-        <div className="container mx-auto px-6 py-12">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            {/* Company Info */}
-            <div className="col-span-1 md:col-span-2">
-              <h3 className="text-white font-bold text-xl mb-4">
-                PravdaST Business Engineering
-              </h3>
-              <p className="text-gray-400 mb-4 max-w-md">
-                Трансформираме бизнеси в предсказуеми системи за растеж чрез
-                инженерен подход.
-              </p>
-              <div className="flex items-center gap-4">
-                <Link
-                  href="/contact"
-                  className="text-[#ECB629] hover:text-[#ECB629]/80 flex items-center gap-2"
-                >
-                  <Phone className="w-4 h-4" />
-                  +359 879 282 299
-                </Link>
-                <Link
-                  href="/contact"
-                  className="text-[#ECB629] hover:text-[#ECB629]/80 flex items-center gap-2"
-                >
-                  <Mail className="w-4 h-4" />
-                  contact@pravdagency.eu
-                </Link>
-              </div>
-            </div>
-
-            {/* Services */}
-            <div>
-              <h4 className="text-white font-semibold mb-4">Услуги</h4>
-              <ul className="space-y-2">
-                <li>
-                  <Link
-                    href="/services/seo-struktor"
-                    className="text-gray-400 hover:text-[#ECB629]"
-                  >
-                    SEO Struktor™
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/services/trendlab"
-                    className="text-gray-400 hover:text-[#ECB629]"
-                  >
-                    Trendlab™
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/services/clickstarter"
-                    className="text-gray-400 hover:text-[#ECB629]"
-                  >
-                    Clickstarter™
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/services/clientomat"
-                    className="text-gray-400 hover:text-[#ECB629]"
-                  >
-                    Clientomat™
-                  </Link>
-                </li>
-              </ul>
-            </div>
-
-            {/* Resources */}
-            <div>
-              <h4 className="text-white font-semibold mb-4">Ресурси</h4>
-              <ul className="space-y-2">
-                <li>
-                  <Link
-                    href="/blog"
-                    className="text-gray-400 hover:text-[#ECB629]"
-                  >
-                    Блог
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/calculators"
-                    className="text-gray-400 hover:text-[#ECB629]"
-                  >
-                    ROI Калкулатори
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/faq"
-                    className="text-gray-400 hover:text-[#ECB629]"
-                  >
-                    Често задавани въпроси
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/about"
-                    className="text-gray-400 hover:text-[#ECB629]"
-                  >
-                    За нас
-                  </Link>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="border-t border-slate-800 mt-8 pt-8 text-center">
-            <p className="text-gray-400 text-sm">
-              © 2025 Pravdast Business Engineering. Всички права запазени.
-            </p>
-          </div>
-        </div>
-      </footer>
-    </div>
+      
+      <Footer />
+    </>
   );
 }
