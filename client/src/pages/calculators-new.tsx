@@ -148,7 +148,19 @@ function ROICalculator({
           {icon}
           <span className="text-sm text-gray-300">{serviceName}</span>
         </motion.div>
-        <p className="text-gray-300 text-lg max-w-2xl mx-auto">{description}</p>
+        <p className="text-gray-300 text-lg max-w-2xl mx-auto mb-4">{description}</p>
+        
+        {/* Investment Info */}
+        <div className="bg-slate-800/40 rounded-xl p-4 border border-[#ECB629]/20 max-w-2xl mx-auto">
+          <div className="flex items-center justify-center gap-2 mb-2">
+            <DollarSign className="w-5 h-5 text-[#ECB629]" />
+            <span className="text-[#ECB629] font-semibold">Стартова инвестиция: {monthlyPrice.toLocaleString('bg-BG')} лв./месец</span>
+          </div>
+          <p className="text-gray-400 text-sm text-center">
+            Това са приходите, които може да ви донесе тази инвестиция на база трафика, който системата генерира. 
+            Спрете да харчите без план - започнете да строите с цифри.
+          </p>
+        </div>
       </div>
 
       {/* Input Form */}
