@@ -10,6 +10,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useToast } from "@/hooks/use-toast";
 import { Mail, Phone, MapPin, Clock, Send } from "lucide-react";
+import { Navigation } from "@/components/navigation";
+import { Footer } from "@/components/footer";
 
 const contactSchema = z.object({
   name: z.string().min(2, "Името трябва да бъде поне 2 символа"),
@@ -101,17 +103,19 @@ export default function ContactNew() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `
-            linear-gradient(rgba(236, 182, 41, 0.1) 2px, transparent 2px),
-            linear-gradient(90deg, rgba(236, 182, 41, 0.1) 2px, transparent 2px)
-          `,
-          backgroundSize: '60px 60px'
-        }} />
-      </div>
+    <div className="min-h-screen bg-slate-900">
+      <Navigation />
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `
+              linear-gradient(rgba(236, 182, 41, 0.1) 2px, transparent 2px),
+              linear-gradient(90deg, rgba(236, 182, 41, 0.1) 2px, transparent 2px)
+            `,
+            backgroundSize: '60px 60px'
+          }} />
+        </div>
 
       <div className="relative z-10 pt-24 pb-12">
         <div className="container mx-auto px-6 max-w-7xl">
@@ -346,6 +350,8 @@ export default function ContactNew() {
           </div>
         </div>
       </div>
+      </div>
+      <Footer />
     </div>
   );
 }
