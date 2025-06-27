@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Calculator, TrendingUp, Target, DollarSign, BarChart3, ArrowRight, CheckCircle } from "lucide-react";
+import { Calculator, TrendingUp, Target, DollarSign, BarChart3, ArrowRight, CheckCircle, Clock, Award, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -11,45 +11,155 @@ import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { injectStructuredData } from "@/lib/seo-schemas";
 
+// Types
+interface ROICalculatorProps {
+  serviceName: string;
+  monthlyPrice: number;
+  description: string;
+  averageResults: {
+    trafficIncrease: number;
+    conversionRate: number;
+    leadIncrease: number;
+    revenueMultiplier: number;
+  };
+  color: string;
+  icon: React.ReactNode;
+}
+
 // Service-specific Calculator Components
 
-// SEO Struktor Calculator
-function SEOStrukturCalculator() {
-  const [inputs, setInputs] = useState({
-    currentTraffic: '',
-    currentRanking: '',
-    targetKeywords: '',
-    industry: ''
-  });
-
-  const [results, setResults] = useState({
-    trafficIncrease: 0,
-    newLeads: 0,
-    rankingImprovement: 0,
-    monthlyROI: 0
-  });
-
-  const calculateSEO = () => {
-    const traffic = parseFloat(inputs.currentTraffic) || 0;
-    const ranking = parseFloat(inputs.currentRanking) || 100;
-    const keywords = parseFloat(inputs.targetKeywords) || 10;
-    
-    const trafficIncrease = traffic * 3.4; // 340% increase
-    const newLeads = trafficIncrease * 0.025; // 2.5% conversion
-    const rankingImprovement = Math.max(1, ranking - 30);
-    const monthlyROI = ((newLeads * 2500) - 1980) / 1980 * 100;
-
-    setResults({
-      trafficIncrease,
-      newLeads,
-      rankingImprovement,
-      monthlyROI
-    });
+// Service-specific Calculator Function Components - keeping original design
+function ServiceCalculator({ serviceName }: { serviceName: string }) {
+  // Service-specific input states and calculations based on service type
+  const getServiceInputs = () => {
+    switch (serviceName) {
+      case "SEO Struktor™":
+        return {
+          param1: { label: "Текущ месечен трафик", placeholder: "напр. 5000", key: "traffic" },
+          param2: { label: "Средна позиция в Google", placeholder: "напр. 45", key: "ranking" },
+          param3: { label: "Брой целеви ключови думи", placeholder: "напр. 20", key: "keywords" }
+        };
+      case "Trendlab™":
+        return {
+          param1: { label: "Текущи последователи", placeholder: "напр. 2500", key: "followers" },
+          param2: { label: "Публикации седмично", placeholder: "напр. 3", key: "frequency" },
+          param3: { label: "Engagement rate (%)", placeholder: "напр. 3.5", key: "engagement" }
+        };
+      case "Clickstarter™":
+        return {
+          param1: { label: "Месечен ad spend (лв.)", placeholder: "напр. 8000", key: "spend" },
+          param2: { label: "Текущ CPC (лв.)", placeholder: "напр. 3.20", key: "cpc" },
+          param3: { label: "Месечни конверсии", placeholder: "напр. 75", key: "conversions" }
+        };
+      case "Clientomat™":
+        return {
+          param1: { label: "Месечни клиенти", placeholder: "напр. 80", key: "clients" },
+          param2: { label: "Средна поръчка (лв.)", placeholder: "напр. 3500", key: "aov" },
+          param3: { label: "Repeat rate (%)", placeholder: "напр. 25", key: "repeat" }
+        };
+      default:
+        return {
+          param1: { label: "Параметър 1", placeholder: "напр. 1000", key: "param1" },
+          param2: { label: "Параметър 2", placeholder: "напр. 50", key: "param2" },
+          param3: { label: "Параметър 3", placeholder: "напр. 10", key: "param3" }
+        };
+    }
   };
 
-  useEffect(() => {
-    calculateSEO();
-  }, [inputs]);
+  const getServiceResults = () => {
+    switch (serviceName) {
+      case "SEO Struktor™":
+        return {
+          metric1: { label: "Нов трафик", suffix: "" },
+          metric2: { label: "Нови leads", suffix: "" },
+          detail1: { label: "Подобрение в позиции", suffix: "" },
+          detail2: { label: "Месечен ROI", suffix: "%" }
+        };
+      case "Trendlab™":
+        return {
+          metric1: { label: "Нови последователи", suffix: "" },
+          metric2: { label: "Месечни гледания", suffix: "K" },
+          detail1: { label: "Engagement подобрение", suffix: "%" },
+          detail2: { label: "Authority Score", suffix: "/100" }
+        };
+      case "Clickstarter™":
+        return {
+          metric1: { label: "Допълнителни поръчки", suffix: "" },
+          metric2: { label: "CPC намаление", suffix: " лв." },
+          detail1: { label: "ROAS подобрение", suffix: "x" },
+          detail2: { label: "Месечни спестявания", suffix: " лв." }
+        };
+      case "Clientomat™":
+        return {
+          metric1: { label: "Повторни поръчки", suffix: "%" },
+          metric2: { label: "LTV увеличение", suffix: "K" },
+          detail1: { label: "Retention подобрение", suffix: "%" },
+          detail2: { label: "Допълнителен приход", suffix: "K лв./месец" }
+        };
+      default:
+        return {
+          metric1: { label: "Резултат 1", suffix: "" },
+          metric2: { label: "Резултат 2", suffix: "" },
+          detail1: { label: "Детайл 1", suffix: "" },
+          detail2: { label: "Детайл 2", suffix: "" }
+        };
+    }
+  };
+
+  const calculateServiceResults = (inputs: any) => {
+    const p1 = parseFloat(inputs.param1) || 0;
+    const p2 = parseFloat(inputs.param2) || 0;
+    const p3 = parseFloat(inputs.param3) || 0;
+
+    switch (serviceName) {
+      case "SEO Struktor™":
+        return {
+          metric1: p1 * 3.4, // 340% traffic increase
+          metric2: (p1 * 3.4) * 0.025, // 2.5% conversion to leads
+          detail1: Math.max(1, p2 - 30), // Position improvement
+          detail2: (((p1 * 3.4 * 0.025 * 2500) - 1980) / 1980) * 100 // ROI
+        };
+      case "Trendlab™":
+        return {
+          metric1: p1 * 4.5, // 450% followers increase
+          metric2: (p1 * 4.5 * p2 * 250) / 1000, // Monthly views in K
+          detail1: p3 * 3.8, // Engagement boost
+          detail2: Math.min(95, 40 + (p2 * 8) + (p3 * 5)) // Authority score
+        };
+      case "Clickstarter™":
+        return {
+          metric1: p3 * 0.85, // 85% modest increase in orders
+          metric2: p2 * 0.25, // 25% CPC reduction
+          detail1: 2.1, // 2.1x ROAS
+          detail2: p1 * 0.20 // 20% cost savings
+        };
+      case "Clientomat™":
+        return {
+          metric1: p3 * 1.8, // 180% repeat orders increase
+          metric2: (p2 * 2.2) / 1000, // 220% LTV increase in K
+          detail1: Math.min(85, p3 + 35), // Retention boost
+          detail2: (p1 * p2 * 2.2 * 0.3) / 1000 // Monthly revenue in K
+        };
+      default:
+        return {
+          metric1: p1 * 2,
+          metric2: p2 * 1.5,
+          detail1: p3 * 3,
+          detail2: (p1 + p2 + p3) * 0.1
+        };
+    }
+  };
+
+  const serviceInputs = getServiceInputs();
+  const serviceResults = getServiceResults();
+
+  const [inputs, setInputs] = useState({
+    param1: '',
+    param2: '',
+    param3: ''
+  });
+
+  const results = calculateServiceResults(inputs);
 
   return (
     <div className="grid md:grid-cols-2 gap-8">
@@ -58,40 +168,40 @@ function SEOStrukturCalculator() {
         <CardHeader>
           <CardTitle className="text-white flex items-center gap-2">
             <Target className="w-5 h-5 text-[#ECB629]" />
-            SEO Параметри
+            {serviceName} Параметри
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <div>
-            <Label htmlFor="traffic" className="text-white">Текущ месечен трафик</Label>
+            <Label htmlFor="param1" className="text-white">{serviceInputs.param1.label}</Label>
             <Input
-              id="traffic"
+              id="param1"
               type="number"
-              placeholder="напр. 5000"
-              value={inputs.currentTraffic}
-              onChange={(e) => setInputs({...inputs, currentTraffic: e.target.value})}
+              placeholder={serviceInputs.param1.placeholder}
+              value={inputs.param1}
+              onChange={(e) => setInputs({...inputs, param1: e.target.value})}
               className="bg-slate-700 border-slate-600 text-white"
             />
           </div>
           <div>
-            <Label htmlFor="ranking" className="text-white">Средна позиция в Google</Label>
+            <Label htmlFor="param2" className="text-white">{serviceInputs.param2.label}</Label>
             <Input
-              id="ranking"
+              id="param2"
               type="number"
-              placeholder="напр. 45"
-              value={inputs.currentRanking}
-              onChange={(e) => setInputs({...inputs, currentRanking: e.target.value})}
+              placeholder={serviceInputs.param2.placeholder}
+              value={inputs.param2}
+              onChange={(e) => setInputs({...inputs, param2: e.target.value})}
               className="bg-slate-700 border-slate-600 text-white"
             />
           </div>
           <div>
-            <Label htmlFor="keywords" className="text-white">Брой целеви ключови думи</Label>
+            <Label htmlFor="param3" className="text-white">{serviceInputs.param3.label}</Label>
             <Input
-              id="keywords"
+              id="param3"
               type="number"
-              placeholder="напр. 20"
-              value={inputs.targetKeywords}
-              onChange={(e) => setInputs({...inputs, targetKeywords: e.target.value})}
+              placeholder={serviceInputs.param3.placeholder}
+              value={inputs.param3}
+              onChange={(e) => setInputs({...inputs, param3: e.target.value})}
               className="bg-slate-700 border-slate-600 text-white"
             />
           </div>
@@ -103,54 +213,63 @@ function SEOStrukturCalculator() {
         <CardHeader>
           <CardTitle className="text-white flex items-center gap-2">
             <TrendingUp className="w-5 h-5 text-[#ECB629]" />
-            SEO Резултати
+            {serviceName} Резултати
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-6">
           <div className="grid grid-cols-2 gap-4">
             <div className="text-center p-4 bg-slate-800/50 rounded-lg">
               <div className="text-2xl font-bold text-[#ECB629]">
-                +{results.trafficIncrease.toFixed(0)}
+                {serviceName === "SEO Struktor™" && "+"}
+                {serviceName === "Clickstarter™" && results.metric2 > 0 && "-"}
+                {results.metric1.toFixed(0)}{serviceResults.metric1.suffix}
               </div>
-              <div className="text-sm text-gray-400">Нов трафик</div>
+              <div className="text-sm text-gray-400">{serviceResults.metric1.label}</div>
             </div>
             <div className="text-center p-4 bg-slate-800/50 rounded-lg">
               <div className="text-2xl font-bold text-[#ECB629]">
-                +{results.newLeads.toFixed(0)}
+                {serviceName === "SEO Struktor™" && "+"}
+                {serviceName === "Trendlab™" && ""}
+                {serviceName === "Clickstarter™" && "-"}
+                {serviceName === "Clientomat™" && "+"}
+                {results.metric2.toFixed(serviceName === "Clickstarter™" ? 2 : 0)}{serviceResults.metric2.suffix}
               </div>
-              <div className="text-sm text-gray-400">Нови leads</div>
+              <div className="text-sm text-gray-400">{serviceResults.metric2.label}</div>
             </div>
           </div>
 
           <div className="space-y-3">
             <div className="flex justify-between items-center py-2 border-b border-slate-700">
-              <span className="text-gray-300">Подобрение в позициите:</span>
+              <span className="text-gray-300">{serviceResults.detail1.label}:</span>
               <span className="text-white font-semibold">
-                Позиция #{results.rankingImprovement.toFixed(0)}
+                {serviceName === "SEO Struktor™" && "Позиция #"}
+                {results.detail1.toFixed(serviceName === "Clickstarter™" ? 1 : 0)}{serviceResults.detail1.suffix}
               </span>
             </div>
             <div className="flex justify-between items-center py-2">
-              <span className="text-gray-300">Месечен ROI:</span>
+              <span className="text-gray-300">{serviceResults.detail2.label}:</span>
               <span className="text-white font-semibold">
-                {results.monthlyROI.toFixed(0)}%
+                {results.detail2.toFixed(0)}{serviceResults.detail2.suffix}
               </span>
             </div>
           </div>
 
-          {results.monthlyROI > 0 && (
-            <Button 
-              asChild
-              className="w-full bg-[#ECB629] text-black hover:bg-[#ECB629]/90 font-semibold"
+          <Button 
+            asChild
+            className="w-full bg-[#ECB629] text-black hover:bg-[#ECB629]/90 font-semibold"
+          >
+            <a 
+              href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu"
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              <a 
-                href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Започнете SEO оптимизацията <ArrowRight className="w-4 h-4 ml-2" />
-              </a>
-            </Button>
-          )}
+              {serviceName === "SEO Struktor™" && "Започнете SEO оптимизацията"}
+              {serviceName === "Trendlab™" && "Започнете content стратегията"}
+              {serviceName === "Clickstarter™" && "Оптимизирайте рекламите"}
+              {serviceName === "Clientomat™" && "Автоматизирайте клиентите"}
+              <ArrowRight className="w-4 h-4 ml-2" />
+            </a>
+          </Button>
         </CardContent>
       </Card>
     </div>
@@ -1176,23 +1295,48 @@ export default function CalculatorsNew() {
             </div>
 
             {/* Calculator Tabs */}
-            <Tabs defaultValue="seo-struktor-" className="space-y-8">
+            <Tabs defaultValue="seo-struktor" className="space-y-8">
               <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 bg-slate-800/50 backdrop-blur-sm border border-slate-700/30">
-                {services.map((service, index) => (
-                  <TabsTrigger
-                    key={index}
-                    value={service.name.toLowerCase().replace(/[™\s]/g, "-")}
-                    className="data-[state=active]:bg-[#ECB629] data-[state=active]:text-black"
-                  >
-                    <div className="flex items-center gap-2">
-                      {service.icon}
-                      <span className="hidden md:inline">{service.name}</span>
-                      <span className="md:hidden">
-                        {service.name.split("™")[0]}
-                      </span>
-                    </div>
-                  </TabsTrigger>
-                ))}
+                <TabsTrigger
+                  value="seo-struktor"
+                  className="data-[state=active]:bg-[#ECB629] data-[state=active]:text-black"
+                >
+                  <div className="flex items-center gap-2">
+                    <Target className="w-4 h-4" />
+                    <span className="hidden md:inline">SEO Struktor™</span>
+                    <span className="md:hidden">SEO</span>
+                  </div>
+                </TabsTrigger>
+                <TabsTrigger
+                  value="trendlab"
+                  className="data-[state=active]:bg-[#ECB629] data-[state=active]:text-black"
+                >
+                  <div className="flex items-center gap-2">
+                    <Award className="w-4 h-4" />
+                    <span className="hidden md:inline">Trendlab™</span>
+                    <span className="md:hidden">Content</span>
+                  </div>
+                </TabsTrigger>
+                <TabsTrigger
+                  value="clickstarter"
+                  className="data-[state=active]:bg-[#ECB629] data-[state=active]:text-black"
+                >
+                  <div className="flex items-center gap-2">
+                    <Target className="w-4 h-4" />
+                    <span className="hidden md:inline">Clickstarter™</span>
+                    <span className="md:hidden">Ads</span>
+                  </div>
+                </TabsTrigger>
+                <TabsTrigger
+                  value="clientomat"
+                  className="data-[state=active]:bg-[#ECB629] data-[state=active]:text-black"
+                >
+                  <div className="flex items-center gap-2">
+                    <Users className="w-4 h-4" />
+                    <span className="hidden md:inline">Clientomat™</span>
+                    <span className="md:hidden">CRM</span>
+                  </div>
+                </TabsTrigger>
               </TabsList>
 
               {services.map((service, index) => (
