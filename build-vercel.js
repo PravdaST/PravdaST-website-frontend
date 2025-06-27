@@ -52,4 +52,11 @@ if (existsSync("client/dist")) {
   process.exit(1);
 }
 
+// Ensure public files are also copied (including prerender.js)
+console.log("Copying public files...");
+if (existsSync("public")) {
+  copyRecursive("public", "dist");
+  console.log("Public files copied successfully!");
+}
+
 console.log("Build completed successfully!");

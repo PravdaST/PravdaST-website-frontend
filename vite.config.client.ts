@@ -20,5 +20,16 @@ export default defineConfig({
   build: {
     outDir: "../dist",
     emptyOutDir: true,
+    target: 'es2015',
+    minify: 'esbuild',
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'lucide': ['lucide-react'],
+          'framer': ['framer-motion'],
+          'radix': ['@radix-ui/react-slot', '@radix-ui/react-avatar', '@radix-ui/react-dialog']
+        }
+      }
+    }
   },
 });
