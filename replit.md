@@ -268,6 +268,7 @@ Changelog:
 - June 27, 2025. Successfully integrated Writesonic SEO Fixer script with site ID 685a4ad2c5787bfb2fe87e92, updated CSP headers in vercel.json to allow seo-fixer.writesonic.com domain for automated SEO optimization and site audit improvements
 - June 27, 2025. Deactivated progressive profiling popup modal by commenting out ProgressiveProiling component in App.tsx - popup now frozen and will not appear to users
 - June 27, 2025. Comprehensive SEO audit and fixes: removed duplicate sales-engine page route, added Navigation and Footer to 404 page, updated robots.txt with proper Allow/Disallow rules for admin pages and technical endpoints, enhanced Footer with complete internal linking structure for all 4 services (SEO Struktor™, Trendlab™, Clickstarter™, Clientomat™) plus blog, calculators, legal pages - eliminated orphan pages and improved site structure for better search indexing
+- June 27, 2025. Cleaned up unwanted UI elements: removed Replit development banner script from client/index.html to eliminate development-only content on production, removed SkipToMainContent accessibility button from App.tsx to eliminate hidden spam-like elements that were appearing on the site
 
 ## User Preferences
 

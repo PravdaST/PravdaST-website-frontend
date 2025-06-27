@@ -12,7 +12,6 @@ import {
 
 import {
   AccessibilityPanel,
-  SkipToMainContent,
 } from "@/components/accessibility-panel";
 import { ErrorBoundary, PageErrorBoundary } from "@/components/error-boundary";
 import { lazy, useEffect, Suspense } from "react";
@@ -100,7 +99,6 @@ function App() {
         <KlaviyoIntegration />
         <PixelIntegration />
         {/* <ProgressiveProiling trigger="time" delay={45000} /> */}
-        <SkipToMainContent />
         <ScrollToTop />
         <Toaster />
         <Router />
