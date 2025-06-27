@@ -14,14 +14,20 @@ interface ROICalculatorProps {
   serviceName: string;
   monthlyPrice: number;
   averageResults: {
-    trafficIncrease: number;
+    primaryMetricIncrease: number;
     conversionRate: number;
-    leadIncrease: number;
+    secondaryMetricIncrease: number;
     revenueMultiplier: number;
+  };
+  metrics: {
+    primary: string;
+    secondary: string;
+    primaryUnit: string;
+    secondaryUnit: string;
   };
 }
 
-function ROICalculator({ serviceName, monthlyPrice, averageResults }: ROICalculatorProps) {
+function ROICalculator({ serviceName, monthlyPrice, averageResults, metrics }: ROICalculatorProps) {
   const [inputs, setInputs] = useState({
     currentMonthlyRevenue: '',
     averageOrderValue: '',
@@ -35,8 +41,8 @@ function ROICalculator({ serviceName, monthlyPrice, averageResults }: ROICalcula
     annualROI: 0,
     additionalRevenue: 0,
     paybackPeriod: 0,
-    projectedTraffic: 0,
-    projectedLeads: 0
+    projectedPrimary: 0,
+    projectedSecondary: 0
   });
 
   const calculateROI = () => {
@@ -46,14 +52,14 @@ function ROICalculator({ serviceName, monthlyPrice, averageResults }: ROICalcula
     const traffic = parseFloat(inputs.currentMonthlyTraffic) || 0;
 
     if (revenue > 0 && aov > 0) {
-      // Calculate projected improvements
-      const projectedTraffic = traffic * (1 + averageResults.trafficIncrease / 100);
+      // Calculate projected improvements based on service
+      const projectedPrimary = traffic * (1 + averageResults.primaryMetricIncrease / 100);
       const improvedConversionRate = conversionRate * (1 + averageResults.conversionRate / 100);
-      const projectedLeads = (projectedTraffic * improvedConversionRate) / 100;
+      const projectedSecondary = (projectedPrimary * improvedConversionRate) / 100;
       
       // Calculate additional revenue
       const currentLeads = (traffic * conversionRate) / 100;
-      const additionalLeads = projectedLeads - currentLeads;
+      const additionalLeads = projectedSecondary - currentLeads;
       const additionalRevenue = additionalLeads * aov;
       
       // Calculate ROI
@@ -66,8 +72,8 @@ function ROICalculator({ serviceName, monthlyPrice, averageResults }: ROICalcula
         annualROI,
         additionalRevenue,
         paybackPeriod,
-        projectedTraffic,
-        projectedLeads
+        projectedPrimary,
+        projectedSecondary
       });
     }
   };
@@ -194,15 +200,15 @@ function ROICalculator({ serviceName, monthlyPrice, averageResults }: ROICalcula
               </span>
             </div>
             <div className="flex justify-between items-center py-2 border-b border-slate-700">
-              <span className="text-gray-300">Прогнозиран трафик:</span>
+              <span className="text-gray-300">{metrics.primary}:</span>
               <span className="text-white font-semibold">
-                {results.projectedTraffic.toFixed(0)} посетители
+                {results.projectedPrimary.toFixed(0)} {metrics.primaryUnit}
               </span>
             </div>
             <div className="flex justify-between items-center py-2">
-              <span className="text-gray-300">Прогнозирани leads:</span>
+              <span className="text-gray-300">{metrics.secondary}:</span>
               <span className="text-white font-semibold">
-                {results.projectedLeads.toFixed(0)} leads
+                {results.projectedSecondary.toFixed(0)} {metrics.secondaryUnit}
               </span>
             </div>
           </div>
@@ -536,13 +542,14 @@ export default function Calculators() {
               </div>
               
               <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
-                Изчислете вашия{" "}
-                <span className="text-[#ECB629]">ROI</span>
+                Изчислете{" "}
+                <span className="bg-[#ECB629] text-black px-2 py-1 rounded">точната печалба</span>{" "}
+                от нашите системи
               </h1>
               
               <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
-                Открийте точно колко ще спечелите от всяка маркетинг инвестиция. 
-                Инженерни калкулатори за predictable резултати.
+                Спрете да гадаете - започнете да планирате с реални числа. 
+                Инженерни калкулатори за измерими резултати.
               </p>
             </motion.div>
           </div>
@@ -562,53 +569,121 @@ export default function Calculators() {
             </TabsList>
 
             <TabsContent value="seo-struktor">
+              <div className="mb-8">
+                <div className="bg-slate-800/50 rounded-xl p-6 border border-slate-700 mb-6">
+                  <h3 className="text-2xl font-bold text-white mb-3">SEO Struktor™ - SEO Оптимизация</h3>
+                  <p className="text-gray-300 mb-4">
+                    Инженерски подход към SEO оптимизация с измерими резултати. Увеличаваме органичния трафик с технически анализ и стратегически съдържание.
+                  </p>
+                  <div className="inline-block bg-[#ECB629]/10 px-3 py-1 rounded-full border border-[#ECB629]/20">
+                    <span className="text-[#ECB629] font-semibold">Инвестиция: 1980 лв./месец</span>
+                  </div>
+                </div>
+              </div>
               <ROICalculator
                 serviceName="SEO Struktor™"
                 monthlyPrice={1980}
                 averageResults={{
-                  trafficIncrease: 340,
+                  primaryMetricIncrease: 340,
                   conversionRate: 85,
-                  leadIncrease: 250,
+                  secondaryMetricIncrease: 250,
                   revenueMultiplier: 2.3
+                }}
+                metrics={{
+                  primary: "Прогнозиран трафик",
+                  secondary: "Прогнозирани leads",
+                  primaryUnit: "посетители",
+                  secondaryUnit: "leads"
                 }}
               />
             </TabsContent>
 
             <TabsContent value="trendlab">
+              <div className="mb-8">
+                <div className="bg-slate-800/50 rounded-xl p-6 border border-slate-700 mb-6">
+                  <h3 className="text-2xl font-bold text-white mb-3">Trendlab™ - Създаване на Съдържание</h3>
+                  <p className="text-gray-300 mb-4">
+                    Система за създаване на авторитетно съдържание което изгражда експертност и привлича лоялни последователи. Превръщаме знанията ви в мощни маркетинг инструменти.
+                  </p>
+                  <div className="inline-block bg-[#ECB629]/10 px-3 py-1 rounded-full border border-[#ECB629]/20">
+                    <span className="text-[#ECB629] font-semibold">Инвестиция: 3450 лв./месец</span>
+                  </div>
+                </div>
+              </div>
               <ROICalculator
                 serviceName="Trendlab™"
                 monthlyPrice={3450}
                 averageResults={{
-                  trafficIncrease: 180,
+                  primaryMetricIncrease: 450,
                   conversionRate: 120,
-                  leadIncrease: 200,
+                  secondaryMetricIncrease: 380,
                   revenueMultiplier: 1.8
+                }}
+                metrics={{
+                  primary: "Прогнозирани гледания",
+                  secondary: "Нови последователи",
+                  primaryUnit: "гледания",
+                  secondaryUnit: "фенове"
                 }}
               />
             </TabsContent>
 
             <TabsContent value="clickstarter">
+              <div className="mb-8">
+                <div className="bg-slate-800/50 rounded-xl p-6 border border-slate-700 mb-6">
+                  <h3 className="text-2xl font-bold text-white mb-3">Clickstarter™ - Оптимизация на Реклами</h3>
+                  <p className="text-gray-300 mb-4">
+                    Оптимизация на реклами за максимален ROI. Скромни, но стабилни резултати с фокус върху конверсиите и намаляване на разходите за реклама.
+                  </p>
+                  <div className="inline-block bg-[#ECB629]/10 px-3 py-1 rounded-full border border-[#ECB629]/20">
+                    <span className="text-[#ECB629] font-semibold">Инвестиция: 1570 лв./месец</span>
+                  </div>
+                </div>
+              </div>
               <ROICalculator
                 serviceName="Clickstarter™"
                 monthlyPrice={1570}
                 averageResults={{
-                  trafficIncrease: 120,
+                  primaryMetricIncrease: 85,
                   conversionRate: 95,
-                  leadIncrease: 180,
+                  secondaryMetricIncrease: 65,
                   revenueMultiplier: 2.1
+                }}
+                metrics={{
+                  primary: "Прогнозирани поръчки",
+                  secondary: "Допълнителни продажби",
+                  primaryUnit: "поръчки",
+                  secondaryUnit: "продажби"
                 }}
               />
             </TabsContent>
 
             <TabsContent value="clientomat">
+              <div className="mb-8">
+                <div className="bg-slate-800/50 rounded-xl p-6 border border-slate-700 mb-6">
+                  <h3 className="text-2xl font-bold text-white mb-3">Clientomat™ - Автоматизация на Клиенти</h3>
+                  <p className="text-gray-300 mb-4">
+                    Автоматизация на клиентския процес с фокус върху повторни поръчки и увеличаване на стойността на клиента през времето (LTV).
+                  </p>
+                  <div className="inline-block bg-[#ECB629]/10 px-3 py-1 rounded-full border border-[#ECB629]/20">
+                    <span className="text-[#ECB629] font-semibold">Инвестиция: 2890 лв./месец</span>
+                  </div>
+                </div>
+              </div>
               <ROICalculator
                 serviceName="Clientomat™"
                 monthlyPrice={2890}
                 averageResults={{
-                  trafficIncrease: 220,
+                  primaryMetricIncrease: 180,
                   conversionRate: 150,
-                  leadIncrease: 300,
+                  secondaryMetricIncrease: 220,
                   revenueMultiplier: 2.5
+                }}
+                metrics={{
+                  primary: "Повторни поръчки",
+                  secondary: "Увеличение на LTV",
+                  primaryUnit: "% ръст",
+                  secondaryUnit: "% подобрение"
                 }}
               />
             </TabsContent>
