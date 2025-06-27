@@ -266,6 +266,7 @@ Changelog:
 - June 26, 2025. Simplified process section card titles: removed "Стъпка 1:", "Стъпка 2:", "Стъпка 3:" prefixes, now displays clean titles "Диагностика", "Изграждане", "Оптимизация" while maintaining step numbers in corner badges
 - June 27, 2025. Completely redesigned CTA section with modern dark gradient background (slate-900/slate-800) replacing yellow theme, added sophisticated geometric accents, created grid-based trust indicators with hover effects, implemented large gradient CTA buttons with animations
 - June 27, 2025. Successfully integrated Writesonic SEO Fixer script with site ID 685a4ad2c5787bfb2fe87e92, updated CSP headers in vercel.json to allow seo-fixer.writesonic.com domain for automated SEO optimization and site audit improvements
+- June 27, 2025. Deactivated progressive profiling popup modal by commenting out ProgressiveProiling component in App.tsx - popup now frozen and will not appear to users
 
 ## User Preferences
 

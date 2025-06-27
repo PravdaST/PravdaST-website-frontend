@@ -99,7 +99,7 @@ function App() {
         <KlaviyoSetup />
         <KlaviyoIntegration />
         <PixelIntegration />
-        <ProgressiveProiling trigger="time" delay={45000} />
+        {/* <ProgressiveProiling trigger="time" delay={45000} /> */}
         <SkipToMainContent />
         <ScrollToTop />
         <Toaster />
