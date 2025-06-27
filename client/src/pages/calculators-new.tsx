@@ -51,90 +51,206 @@ function ROICalculator({
   color,
   icon,
 }: ROICalculatorProps) {
+  // Service-specific input states
+  const getServiceInputs = () => {
+    switch (serviceName) {
+      case "SEO Struktor™":
+        return {
+          param1: { key: "currentTraffic", label: "Текущ месечен трафик", placeholder: "напр. 5000" },
+          param2: { key: "currentRanking", label: "Средна позиция в Google", placeholder: "напр. 45" },
+          param3: { key: "targetKeywords", label: "Брой целеви ключови думи", placeholder: "напр. 20" },
+          param4: { key: "industry", label: "Индустрия", placeholder: "Изберете индустрия" }
+        };
+      case "Trendlab™":
+        return {
+          param1: { key: "currentFollowers", label: "Текущи последователи", placeholder: "напр. 2500" },
+          param2: { key: "postsPerWeek", label: "Публикации седмично", placeholder: "напр. 3" },
+          param3: { key: "engagementRate", label: "Engagement rate (%)", placeholder: "напр. 3.5" },
+          param4: { key: "industry", label: "Индустрия", placeholder: "Изберете индустрия" }
+        };
+      case "Clickstarter™":
+        return {
+          param1: { key: "monthlyAdSpend", label: "Месечен ad spend (лв.)", placeholder: "напр. 8000" },
+          param2: { key: "currentCPC", label: "Текущ CPC (лв.)", placeholder: "напр. 3.20" },
+          param3: { key: "monthlyConversions", label: "Месечни конверсии", placeholder: "напр. 75" },
+          param4: { key: "industry", label: "Индустрия", placeholder: "Изберете индустрия" }
+        };
+      case "Clientomat™":
+        return {
+          param1: { key: "monthlyClients", label: "Месечни клиенти", placeholder: "напр. 80" },
+          param2: { key: "averageOrderValue", label: "Средна поръчка (лв.)", placeholder: "напр. 3500" },
+          param3: { key: "repeatRate", label: "Repeat rate (%)", placeholder: "напр. 25" },
+          param4: { key: "industry", label: "Индустрия", placeholder: "Изберете индустрия" }
+        };
+      default:
+        return {
+          param1: { key: "currentMonthlyRevenue", label: "Текущ месечен оборот (лв.)", placeholder: "напр. 25000" },
+          param2: { key: "currentMonthlyTraffic", label: "Месечен трафик", placeholder: "напр. 5000" },
+          param3: { key: "averageOrderValue", label: "Средна поръчка (лв.)", placeholder: "напр. 150" },
+          param4: { key: "industry", label: "Индустрия", placeholder: "Изберете индустрия" }
+        };
+    }
+  };
+
+  const serviceInputs = getServiceInputs();
+  
   const [inputs, setInputs] = useState({
-    currentMonthlyRevenue: "",
-    currentMonthlyTraffic: "",
-    averageOrderValue: "",
-    industry: "",
+    [serviceInputs.param1.key]: "",
+    [serviceInputs.param2.key]: "",
+    [serviceInputs.param3.key]: "",
+    [serviceInputs.param4.key]: "",
   });
 
   const [results, setResults] = useState({
     monthlyROI: 0,
-    additionalRevenue: 0,
-    projectedTraffic: 0,
-    seoScore: 0,
+    metric1: 0,
+    metric2: 0,
+    score: 0,
     paybackPeriod: 0,
     timeframe: "3-6 месеца",
   });
 
   const [recommendations, setRecommendations] = useState<string[]>([]);
 
+  // Service-specific calculations
+  const calculateResults = () => {
+    const param1 = parseFloat(inputs[serviceInputs.param1.key]) || 0;
+    const param2 = parseFloat(inputs[serviceInputs.param2.key]) || 0;
+    const param3 = parseFloat(inputs[serviceInputs.param3.key]) || 0;
+
+    if (param1 > 0) {
+      switch (serviceName) {
+        case "SEO Struktor™": {
+          // Traffic/ranking/keywords calculations
+          const newTraffic = param1 * 3.4; // 340% increase
+          const newLeads = newTraffic * 0.025; // 2.5% conversion
+          const revenuePerLead = 2500; // Average revenue per lead
+          const additionalRevenue = newLeads * revenuePerLead;
+          const monthlyROI = ((additionalRevenue - monthlyPrice) / monthlyPrice) * 100;
+          const score = Math.min(95, 40 + (param1 > 1000 ? 15 : 0) + (param2 < 20 ? 20 : 10) + (param3 > 10 ? 15 : 10));
+          
+          return {
+            monthlyROI,
+            metric1: newTraffic,
+            metric2: newLeads,
+            score,
+            paybackPeriod: monthlyPrice / Math.max(additionalRevenue / 12, 1),
+            timeframe: "3-6 месеца"
+          };
+        }
+        case "Trendlab™": {
+          // Followers/content/engagement calculations
+          const newFollowers = param1 * 4.5; // 450% increase
+          const monthlyViews = (newFollowers * param2 * 250) / 1000; // Views in K
+          const authorityScore = Math.min(95, 40 + (param2 * 8) + (param3 * 5));
+          const revenueFromContent = newFollowers * 0.5; // Revenue per follower
+          const monthlyROI = ((revenueFromContent - monthlyPrice) / monthlyPrice) * 100;
+          
+          return {
+            monthlyROI,
+            metric1: newFollowers,
+            metric2: monthlyViews,
+            score: authorityScore,
+            paybackPeriod: monthlyPrice / Math.max(revenueFromContent / 12, 1),
+            timeframe: "2-4 месеца"
+          };
+        }
+        case "Clickstarter™": {
+          // Ad spend/CPC/conversions calculations
+          const newConversions = param3 * 1.85; // 85% increase
+          const newCPC = param2 * 0.75; // 25% CPC reduction
+          const costSavings = param1 * 0.20; // 20% cost savings
+          const additionalRevenue = (newConversions - param3) * 500; // Revenue per conversion
+          const monthlyROI = ((additionalRevenue + costSavings - monthlyPrice) / monthlyPrice) * 100;
+          const score = Math.min(95, 50 + (param1 > 5000 ? 15 : 10) + (param2 < 2 ? 20 : 15) + (param3 > 50 ? 10 : 5));
+          
+          return {
+            monthlyROI,
+            metric1: newConversions,
+            metric2: costSavings,
+            score,
+            paybackPeriod: monthlyPrice / Math.max((additionalRevenue + costSavings) / 12, 1),
+            timeframe: "1-3 месеца"
+          };
+        }
+        case "Clientomat™": {
+          // Clients/AOV/repeat rate calculations
+          const newRepeatRate = param3 * 1.8; // 180% increase in repeat rate
+          const newLTV = param2 * 2.2; // 220% LTV increase
+          const additionalClients = param1 * 0.4; // 40% more repeat clients
+          const additionalRevenue = additionalClients * newLTV * 0.3; // Monthly portion
+          const monthlyROI = ((additionalRevenue - monthlyPrice) / monthlyPrice) * 100;
+          const score = Math.min(95, 45 + (param1 > 50 ? 15 : 10) + (param2 > 1000 ? 15 : 10) + (param3 > 20 ? 15 : 10));
+          
+          return {
+            monthlyROI,
+            metric1: newRepeatRate,
+            metric2: newLTV / 1000, // In K
+            score,
+            paybackPeriod: monthlyPrice / Math.max(additionalRevenue / 12, 1),
+            timeframe: "2-5 месеца"
+          };
+        }
+        default:
+          return {
+            monthlyROI: 0,
+            metric1: 0,
+            metric2: 0,
+            score: 0,
+            paybackPeriod: 0,
+            timeframe: "3-6 месеца"
+          };
+      }
+    }
+    return {
+      monthlyROI: 0,
+      metric1: 0,
+      metric2: 0,
+      score: 0,
+      paybackPeriod: 0,
+      timeframe: "3-6 месеца"
+    };
+  };
+
   // Calculate ROI when inputs change
   useEffect(() => {
-    const revenue = parseFloat(inputs.currentMonthlyRevenue) || 0;
-    const traffic = parseFloat(inputs.currentMonthlyTraffic) || 0;
-    const orderValue = parseFloat(inputs.averageOrderValue) || 0;
+    const newResults = calculateResults();
+    setResults(newResults);
 
-    if (revenue > 0 && traffic > 0) {
-      // Calculate projected improvements
-      const trafficIncrease = (traffic * averageResults.trafficIncrease) / 100;
-      const projectedTraffic = traffic + trafficIncrease;
-
-      // Current conversion rate estimation
-      const currentOrders =
-        orderValue > 0 ? revenue / orderValue : revenue / 100;
-      const currentConversionRate = (currentOrders / traffic) * 100;
-
-      // Improved conversion rate
-      const improvedConversionRate = Math.min(
-        currentConversionRate +
-          (averageResults.conversionRate / 100) * currentConversionRate,
-        15, // Cap at 15%
-      );
-
-      // Calculate additional revenue
-      const newOrders = (projectedTraffic * improvedConversionRate) / 100;
-      const newRevenue = newOrders * (orderValue || 100);
-      const additionalRevenue = newRevenue - revenue;
-
-      // ROI calculation
-      const monthlyROI =
-        ((additionalRevenue - monthlyPrice) / monthlyPrice) * 100;
-      const paybackPeriod = monthlyPrice / Math.max(additionalRevenue, 1);
-
-      // SEO Score calculation
-      let seoScore = 40; // Base score
-      if (traffic > 1000) seoScore += 10;
-      if (traffic > 5000) seoScore += 10;
-      if (revenue > 10000) seoScore += 15;
-      if (revenue > 50000) seoScore += 15;
-      if (orderValue > 200) seoScore += 10;
-
-      setResults({
-        monthlyROI,
-        additionalRevenue,
-        projectedTraffic,
-        seoScore: Math.min(seoScore, 100),
-        paybackPeriod,
-        timeframe: serviceName.includes("SEO")
-          ? "3-6 месеца"
-          : serviceName.includes("Trend")
-            ? "2-4 месеца"
-            : "1-3 месеца",
-      });
-
-      // Generate recommendations
-      const recs = [];
-      if (currentConversionRate < 2) recs.push("Конверсии оптимизация");
-      if (traffic < 5000) recs.push("Органен трафик");
-      if (!inputs.industry) recs.push("Техническо подобрение");
-      if (orderValue < 100) recs.push("Ценова стратегия");
-      if (seoScore < 70) recs.push("SEO аудит");
-      if (serviceName.includes("Trend")) recs.push("Съдържание маркетинг");
-
-      setRecommendations(recs.slice(0, 4));
+    // Generate service-specific recommendations
+    const param1 = parseFloat(inputs[serviceInputs.param1.key]) || 0;
+    const param2 = parseFloat(inputs[serviceInputs.param2.key]) || 0;
+    const param3 = parseFloat(inputs[serviceInputs.param3.key]) || 0;
+    
+    const recs = [];
+    switch (serviceName) {
+      case "SEO Struktor™":
+        if (param1 < 5000) recs.push("Органен трафик");
+        if (param2 > 30) recs.push("Позиции подобрение");
+        if (param3 < 15) recs.push("Keyword research");
+        if (newResults.score < 70) recs.push("Технически SEO");
+        break;
+      case "Trendlab™":
+        if (param1 < 10000) recs.push("Audience building");
+        if (param2 < 5) recs.push("Content frequency");
+        if (param3 < 5) recs.push("Engagement стратегия");
+        if (newResults.score < 70) recs.push("Authority building");
+        break;
+      case "Clickstarter™":
+        if (param2 > 3) recs.push("CPC оптимизация");
+        if (param3 < 100) recs.push("Conversion rate");
+        if (param1 > 10000) recs.push("Budget ефективност");
+        if (newResults.score < 70) recs.push("Campaign структура");
+        break;
+      case "Clientomat™":
+        if (param3 < 30) recs.push("Retention стратегия");
+        if (param2 < 2000) recs.push("LTV оптимизация");
+        if (param1 < 100) recs.push("Client acquisition");
+        if (newResults.score < 70) recs.push("CRM автоматизация");
+        break;
     }
-  }, [inputs, monthlyPrice, averageResults, serviceName]);
+    setRecommendations(recs.slice(0, 4));
+  }, [inputs, serviceName, monthlyPrice]);
 
   return (
     <div className="space-y-8">
@@ -188,18 +304,18 @@ function ROICalculator({
         <CardContent className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <Label htmlFor="revenue" className="text-white">
-                Среден месечен оборот (лв.)
+              <Label htmlFor="param1" className="text-white">
+                {serviceInputs.param1.label}
               </Label>
               <Input
-                id="revenue"
+                id="param1"
                 type="number"
-                placeholder="напр. 25000"
-                value={inputs.currentMonthlyRevenue}
+                placeholder={serviceInputs.param1.placeholder}
+                value={inputs[serviceInputs.param1.key]}
                 onChange={(e) =>
                   setInputs({
                     ...inputs,
-                    currentMonthlyRevenue: e.target.value,
+                    [serviceInputs.param1.key]: e.target.value,
                   })
                 }
                 className="bg-slate-900/50 border-slate-600 text-white"
@@ -207,18 +323,18 @@ function ROICalculator({
             </div>
 
             <div>
-              <Label htmlFor="traffic" className="text-white">
-                Среден брой месечни посетители
+              <Label htmlFor="param2" className="text-white">
+                {serviceInputs.param2.label}
               </Label>
               <Input
-                id="traffic"
+                id="param2"
                 type="number"
-                placeholder="напр. 5000"
-                value={inputs.currentMonthlyTraffic}
+                placeholder={serviceInputs.param2.placeholder}
+                value={inputs[serviceInputs.param2.key]}
                 onChange={(e) =>
                   setInputs({
                     ...inputs,
-                    currentMonthlyTraffic: e.target.value,
+                    [serviceInputs.param2.key]: e.target.value,
                   })
                 }
                 className="bg-slate-900/50 border-slate-600 text-white"
@@ -226,16 +342,19 @@ function ROICalculator({
             </div>
 
             <div>
-              <Label htmlFor="orderValue" className="text-white">
-                Средна стойност на поръчка (лв.)
+              <Label htmlFor="param3" className="text-white">
+                {serviceInputs.param3.label}
               </Label>
               <Input
-                id="orderValue"
+                id="param3"
                 type="number"
-                placeholder="напр. 150"
-                value={inputs.averageOrderValue}
+                placeholder={serviceInputs.param3.placeholder}
+                value={inputs[serviceInputs.param3.key]}
                 onChange={(e) =>
-                  setInputs({ ...inputs, averageOrderValue: e.target.value })
+                  setInputs({
+                    ...inputs,
+                    [serviceInputs.param3.key]: e.target.value,
+                  })
                 }
                 className="bg-slate-900/50 border-slate-600 text-white"
               />
@@ -243,12 +362,12 @@ function ROICalculator({
 
             <div>
               <Label htmlFor="industry" className="text-white">
-                Индустрия
+                {serviceInputs.param4.label}
               </Label>
               <Select
-                value={inputs.industry}
+                value={inputs[serviceInputs.param4.key]}
                 onValueChange={(value) =>
-                  setInputs({ ...inputs, industry: value })
+                  setInputs({ ...inputs, [serviceInputs.param4.key]: value })
                 }
               >
                 <SelectTrigger className="bg-slate-900/50 border-slate-600 text-white">
@@ -283,7 +402,7 @@ function ROICalculator({
       </Card>
 
       {/* Results Section - Modern Design */}
-      {(results.seoScore > 0 || results.monthlyROI > 0) && (
+      {(results.score > 0 || results.monthlyROI > 0) && (
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -325,7 +444,7 @@ function ROICalculator({
                       fill="none"
                       strokeLinecap="round"
                       strokeDasharray={`${2 * Math.PI * 40}`}
-                      strokeDashoffset={`${2 * Math.PI * 40 * (1 - results.seoScore / 100)}`}
+                      strokeDashoffset={`${2 * Math.PI * 40 * (1 - results.score / 100)}`}
                       className="transition-all duration-1000 ease-in-out"
                     />
                   </svg>
@@ -333,7 +452,7 @@ function ROICalculator({
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="text-center">
                       <div className="text-4xl font-bold text-[#ECB629]">
-                        {results.seoScore}
+                        {results.score}
                       </div>
                       <div className="text-sm text-gray-400">от 100</div>
                     </div>
@@ -342,31 +461,45 @@ function ROICalculator({
                   <div className="absolute inset-0 rounded-full bg-[#ECB629]/10 blur-xl animate-pulse" />
                 </div>
 
-                <p className="text-gray-400">SEO Потенциал Скор</p>
+                <p className="text-gray-400">{serviceName} Потенциал Скор</p>
               </div>
 
               {/* Key Metrics */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                 <div className="bg-slate-800/40 rounded-2xl p-6 text-center border border-slate-700/30">
                   <div className="text-2xl font-bold text-[#ECB629] mb-1">
-                    +
-                    {results.projectedTraffic > 0
-                      ? Math.round(
-                          results.projectedTraffic -
-                            parseFloat(inputs.currentMonthlyTraffic || "0"),
-                        ).toLocaleString("bg-BG")
-                      : "10 000"}
+                    {serviceName === "SEO Struktor™" && "+"}
+                    {serviceName === "Trendlab™" && "+"}
+                    {serviceName === "Clickstarter™" && "+"}
+                    {serviceName === "Clientomat™" && ""}
+                    {results.metric1 > 0 ? Math.round(results.metric1).toLocaleString("bg-BG") : "0"}
+                    {serviceName === "Clientomat™" && "%"}
                   </div>
                   <div className="text-gray-400 text-sm">
-                    Потенциален трафик/месец
+                    {serviceName === "SEO Struktor™" && "Нов трафик/месец"}
+                    {serviceName === "Trendlab™" && "Нови последователи"}
+                    {serviceName === "Clickstarter™" && "Допълнителни конверсии"}
+                    {serviceName === "Clientomat™" && "Повторни поръчки (%)"}
                   </div>
                 </div>
 
                 <div className="bg-slate-800/40 rounded-2xl p-6 text-center border border-slate-700/30">
                   <div className="text-2xl font-bold text-[#ECB629] mb-1">
-                    {results.timeframe}
+                    {serviceName === "SEO Struktor™" && "+"}
+                    {serviceName === "Trendlab™" && ""}
+                    {serviceName === "Clickstarter™" && "-"}
+                    {serviceName === "Clientomat™" && "+"}
+                    {results.metric2 > 0 ? Math.round(results.metric2).toLocaleString("bg-BG") : "0"}
+                    {serviceName === "Trendlab™" && "K"}
+                    {serviceName === "Clickstarter™" && " лв."}
+                    {serviceName === "Clientomat™" && "K"}
                   </div>
-                  <div className="text-gray-400 text-sm">Очаквано време</div>
+                  <div className="text-gray-400 text-sm">
+                    {serviceName === "SEO Struktor™" && "Нови leads/месец"}
+                    {serviceName === "Trendlab™" && "Месечни гледания"}
+                    {serviceName === "Clickstarter™" && "Спестени разходи"}
+                    {serviceName === "Clientomat™" && "LTV увеличение"}
+                  </div>
                 </div>
               </div>
 
@@ -418,8 +551,8 @@ function ROICalculator({
                   </div>
                 </div>
                 <div className="text-2xl font-bold text-blue-500 mb-1">
-                  {results.additionalRevenue > 0
-                    ? `${Math.round(results.additionalRevenue).toLocaleString("bg-BG")} лв.`
+                  {results.monthlyROI > 0
+                    ? `${Math.round((results.monthlyROI * monthlyPrice) / 100).toLocaleString("bg-BG")} лв.`
                     : "45 000 лв."}
                 </div>
                 <div className="text-gray-400 text-sm">месечно</div>
@@ -454,7 +587,7 @@ function ROICalculator({
                 Готови за <span className="text-[#ECB629]">трансформация</span>?
               </h3>
               <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
-                Вашият SEO потенциал е {results.seoScore}/100. Започнете
+                Вашият {serviceName} потенциал е {results.score}/100. Започнете
                 оптимизацията днес и постигнете измерими резултати.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
