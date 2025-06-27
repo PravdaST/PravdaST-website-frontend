@@ -70,7 +70,7 @@ export const Navigation = () => {
           ))}
         </div>
       </div>
-      <div className="container mx-auto px-6 py-4 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 py-3 sm:py-4 relative z-10">
         <div className="flex justify-between items-center">
           <motion.div
             whileHover={{ scale: 1.05 }}
@@ -163,7 +163,7 @@ export const Navigation = () => {
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
           >
-            <div className="flex flex-col space-y-4 pt-4">
+            <div className="flex flex-col space-y-3 pt-4">
               {navItems.map((item) => (
                 <Link key={item.href} href={item.href}>
                   <span

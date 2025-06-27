@@ -411,7 +411,7 @@ function ReturnOnInvestmentCalculator({
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 gap-4 sm:gap-6">
             <div>
               <Label htmlFor="param1" className="text-white">
                 {serviceInputs.param1.label}
@@ -863,10 +863,10 @@ export default function CalculatorsNew() {
           />
         </div>
 
-        <div className="relative z-10 pt-24 pb-12">
-          <div className="container mx-auto px-6 max-w-6xl">
+        <div className="relative z-10 pt-20 sm:pt-24 pb-8 sm:pb-12">
+          <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
             {/* Header */}
-            <div className="text-center mb-16">
+            <div className="text-center mb-12 sm:mb-16">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -882,7 +882,7 @@ export default function CalculatorsNew() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 }}
-                className="text-4xl md:text-5xl font-bold text-white mb-4"
+                className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 px-2 sm:px-0"
               >
                 Pravda ST <span className="text-[#ECB629]">Калкулатори</span>
               </motion.h1>

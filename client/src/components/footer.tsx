@@ -30,7 +30,7 @@ export const Footer = () => {
   };
 
   return (
-    <footer className="py-16 bg-slate-900 border-t border-[#ECB629]/20 relative overflow-hidden">
+    <footer className="py-12 sm:py-16 bg-slate-900 border-t border-[#ECB629]/20 relative overflow-hidden">
       {/* Animated Tech Background */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0">
@@ -65,8 +65,8 @@ export const Footer = () => {
         </div>
       </div>
 
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 mb-8 sm:mb-12">
           {/* Brand Section */}
           <motion.div 
             className="md:col-span-1"

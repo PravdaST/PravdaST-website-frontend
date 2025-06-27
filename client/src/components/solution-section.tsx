@@ -3,7 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 
 export const SolutionSection = () => {
   return (
-    <section className="py-20 bg-slate-800/30 relative overflow-hidden">
+    <section className="py-12 sm:py-16 md:py-20 bg-slate-800/30 relative overflow-hidden">
       {/* Animated Tech Background */}
       <div className="absolute inset-0 opacity-15">
         <div className="absolute inset-0">
@@ -45,9 +45,9 @@ export const SolutionSection = () => {
         <div className="absolute bottom-1/4 right-1/4 w-48 h-48 bg-[#ECB629] rounded-full blur-3xl"></div>
       </div>
 
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-12 sm:mb-16"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
