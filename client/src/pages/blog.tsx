@@ -3,6 +3,7 @@ import { Link } from "wouter";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { SEOHead } from "@/components/seo-head";
+import { UnifiedCTASection } from "@/components/unified-cta-section";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -538,6 +539,13 @@ export default function Blog() {
           </div>
         </section>
       </main>
+
+      {/* Unified CTA Section */}
+      <UnifiedCTASection 
+        buttonText="Заявете разговор"
+        headline="Готови ли сте да приложите това знание?"
+        description="Превърнете експертните съвети в реални резултати за вашия бизнес с нашите проверени системи."
+      />
 
       <Footer />
     </div>

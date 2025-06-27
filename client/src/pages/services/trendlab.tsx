@@ -8,6 +8,7 @@ import { ArrowRight, BookOpen, Users, Clock, Handshake, Magnet, Microscope, File
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { SEOHead } from "@/components/seo-head";
+import { UnifiedCTASection } from "@/components/unified-cta-section";
 import { pageSEOData } from "@/data/seo-pages";
 
 // Content Creation Background
@@ -1052,6 +1053,13 @@ export default function Trendlab() {
           </motion.div>
         </div>
       </section>
+
+      {/* Unified CTA Section */}
+      <UnifiedCTASection 
+        buttonText="Обърнете се към нас"
+        headline="Готови ли сте да изградите авторитет?"
+        description="Започнете трансформацията на вашия експертен глас в влиятелно съдържание с нашата система."
+      />
 
       <Footer />
     </div>

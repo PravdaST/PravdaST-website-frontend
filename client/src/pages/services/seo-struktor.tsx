@@ -3,6 +3,7 @@ import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { Button } from "@/components/ui/button";
 import { SEOHead } from "@/components/seo-head";
+import { UnifiedCTASection } from "@/components/unified-cta-section";
 import { useRef, useState, useEffect } from "react";
 import { seoStruktorSchema, injectStructuredData } from "@/lib/seo-schemas";
 import { trackServiceView, trackCTAClick } from "@/lib/tracking";
@@ -478,40 +479,13 @@ const EngineeringProcessSection = () => {
             ))}
           </div>
 
-          {/* Bottom CTA */}
+          {/* Connection line from last phase */}
           <motion.div
-            className="text-center mt-16"
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 1.2 }}
-          >
-            {/* Connection line from last phase */}
-            <motion.div
-              className="w-0.5 h-16 bg-gradient-to-b from-[var(--pravdast-yellow)] to-slate-600 mx-auto mb-8"
-              initial={{ scaleY: 0 }}
-              animate={isInView ? { scaleY: 1 } : {}}
-              transition={{ duration: 0.8, delay: 1 }}
-            />
-            
-            <div className="p-8 bg-slate-800/40 rounded-2xl border border-[var(--pravdast-yellow)]/20">
-              <h3 className="text-2xl font-bold text-white mb-4">
-                Започнете инженерния процес днес
-              </h3>
-              <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
-                Всеки ден на изчакване е изгубена възможност. Вашите конкуренти не спят.
-              </p>
-              <Button
-                size="lg"
-                className="bg-[var(--pravdast-yellow)] text-black hover:bg-[var(--pravdast-yellow)]/90 px-6 md:px-8 py-4 text-base md:text-lg font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 w-full md:w-auto"
-                asChild
-              >
-                <a href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu" target="_blank" rel="noopener noreferrer">
-                  Започнете диагностиката
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </a>
-              </Button>
-            </div>
-          </motion.div>
+            className="w-0.5 h-16 bg-gradient-to-b from-[var(--pravdast-yellow)] to-slate-600 mx-auto"
+            initial={{ scaleY: 0 }}
+            animate={isInView ? { scaleY: 1 } : {}}
+            transition={{ duration: 0.8, delay: 1 }}
+          />
         </div>
       </div>
     </section>
@@ -1009,27 +983,7 @@ const FinalCTASection = () => {
                     </p>
                   </div>
 
-                  {/* Enhanced CTA Button */}
-                  <motion.div
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 17 }}
-                  >
-                    <Button
-                      size="lg"
-                      className="w-full bg-[var(--pravdast-yellow)] text-black hover:bg-[var(--pravdast-yellow)]/90 px-8 py-6 text-lg font-bold shadow-2xl hover:shadow-[var(--pravdast-yellow)]/20 transition-all duration-300 relative overflow-hidden group"
-                      asChild
-                    >
-                      <a href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu" target="_blank" rel="noopener noreferrer">
-                        {/* Button shimmer effect */}
-                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 group-hover:animate-pulse"></div>
-                        <span className="relative z-10 flex items-center justify-center gap-3">
-                          Кандидатствайте за диагностика
-                          <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
-                        </span>
-                      </a>
-                    </Button>
-                  </motion.div>
+                  {/* CTA removed - unified CTA at page bottom */}
 
                   {/* Trust indicators */}
                   <div className="grid grid-cols-2 gap-4 pt-6 border-t border-slate-600/30">
@@ -1145,13 +1099,7 @@ export default function SeoStruktor() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              <Button
-                size="lg"
-                className="bg-[var(--pravdast-yellow)] text-black hover:bg-[var(--pravdast-yellow)]/90 px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
-              >
-                Изпреварете конкуренцията
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
+
             </motion.div>
           </div>
         </div>
@@ -1169,8 +1117,12 @@ export default function SeoStruktor() {
       {/* Investment Section */}
       <InvestmentSection />
 
-      {/* Final CTA Section */}
-      <FinalCTASection />
+      {/* Unified CTA Section */}
+      <UnifiedCTASection 
+        buttonText="Започнете диагностиката"
+        headline="Готови ли сте да спрете да импровизирате?"
+        description="Започнете систематичния подход към SEO с безплатна техническа диагностика."
+      />
 
       <Footer />
     </div>

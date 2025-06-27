@@ -7,6 +7,7 @@ import { ArrowRight, Network, Users, Clock, Handshake, Magnet, Microscope, FileT
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { SEOHead } from "@/components/seo-head";
+import { UnifiedCTASection } from "@/components/unified-cta-section";
 import { pageSEOData } from "@/data/seo-pages";
 
 // Unique Client Network Background
@@ -779,43 +780,12 @@ export default function ClientomatPage() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-[#ECB629] relative overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute w-1 h-1 bg-black rounded-full" style={{left: '32.7%', top: '23.1%', transform: 'scale(1.18)'}}></div>
-          <div className="absolute w-1 h-1 bg-black rounded-full" style={{left: '68.9%', top: '44.8%', transform: 'scale(1.31)'}}></div>
-          <div className="absolute w-1 h-1 bg-black rounded-full" style={{left: '45.2%', top: '71.6%', transform: 'scale(1.09)'}}></div>
-          <div className="absolute w-1 h-1 bg-black rounded-full" style={{left: '82.4%', top: '26.9%', transform: 'scale(1.44)'}}></div>
-          <div className="absolute w-1 h-1 bg-black rounded-full" style={{left: '21.8%', top: '63.2%', transform: 'scale(1.26)'}}></div>
-        </div>
-
-        <div className="container mx-auto px-6 text-center relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl md:text-5xl font-bold text-black mb-6">
-              Готови да автоматизирате клиентския си цикъл?
-            </h2>
-            <p className="text-xl text-black/80 mb-8 max-w-2xl mx-auto">
-              Изградете система, която работи 24/7 за привличане и задържане на клиенти.
-            </p>
-            <motion.a
-              href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 bg-black text-white px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-300 hover:scale-105 hover:-translate-y-1"
-              whileHover={{ scale: 1.05, y: -5 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Започнете днес
-              <ArrowRight className="ml-2 w-5 h-5" />
-            </motion.a>
-          </motion.div>
-        </div>
-      </section>
+      {/* Unified CTA Section */}
+      <UnifiedCTASection 
+        buttonText="Свържете се с експертите"
+        headline="Готови ли сте да автоматизирате клиентския цикъл?"
+        description="Изградете система, която работи 24/7 за привличане и задържане на клиенти с нашата проверена методология."
+      />
 
       <Footer />
     </div>

@@ -3,6 +3,7 @@ import { Link } from "wouter";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { SEOHead } from "@/components/seo-head";
+import { UnifiedCTASection } from "@/components/unified-cta-section";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -647,6 +648,13 @@ export default function Clickstarter() {
             </motion.div>
           </div>
         </section>
+
+        {/* Unified CTA Section */}
+        <UnifiedCTASection 
+          buttonText="Запишете консултация"
+          headline="Готови ли сте да оптимизирате рекламите си?"
+          description="Започнете системния подход към рекламите с безплатна консултация за вашите кампании."
+        />
 
         <Footer />
       </div>

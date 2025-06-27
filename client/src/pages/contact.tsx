@@ -1,5 +1,6 @@
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
+import { UnifiedCTASection } from "@/components/unified-cta-section";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -404,72 +405,12 @@ export default function Contact() {
           </div>
         </section>
 
-        {/* CTA Section */}
-        <section className="py-20 bg-[#ECB629] relative overflow-hidden">
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute inset-0" style={{
-              backgroundImage: `
-                linear-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px)
-              `,
-              backgroundSize: '40px 40px'
-            }}></div>
-          </div>
-
-          <div className="container mx-auto px-6 relative z-10">
-            <div className="max-w-4xl mx-auto text-center">
-              <motion.h2 
-                className="text-4xl md:text-5xl font-bold text-black mb-6"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                viewport={{ once: true }}
-              >
-                Първата консултация е безплатна
-              </motion.h2>
-              
-              <motion.p 
-                className="text-xl text-black/80 mb-8 max-w-2xl mx-auto"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                viewport={{ once: true }}
-              >
-                Ще анализираме вашия бизнес и ще предложим конкретни решения за растеж. Без ангажименти, само резултати.
-              </motion.p>
-
-              <motion.div 
-                className="flex flex-col sm:flex-row gap-4 justify-center"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-                viewport={{ once: true }}
-              >
-                <motion.a
-                  href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-3 px-8 py-4 bg-black text-white font-bold rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-2xl"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <ArrowRight className="w-5 h-5" />
-                  <span>Започнете сега</span>
-                </motion.a>
-                
-                <motion.a
-                  href="tel:+359879282299"
-                  className="inline-flex items-center gap-3 px-8 py-4 bg-transparent border-2 border-black text-black hover:bg-black hover:text-white font-semibold rounded-lg transition-all duration-300"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <Phone className="w-5 h-5" />
-                  <span>Обадете се сега</span>
-                </motion.a>
-              </motion.div>
-            </div>
-          </div>
-        </section>
+        {/* Unified CTA Section */}
+        <UnifiedCTASection 
+          buttonText="Получете оферта"
+          headline="Първата консултация е безплатна"
+          description="Ще анализираме вашия бизнес и ще предложим конкретни решения за растеж. Без ангажименти, само резултати."
+        />
       </main>
       
       <Footer />

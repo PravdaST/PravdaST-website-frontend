@@ -27,6 +27,7 @@ import {
 } from "@/components/ui/select";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
+import { UnifiedCTASection } from "@/components/unified-cta-section";
 // SEO structured data will be injected directly
 
 interface ReturnOnInvestmentCalculatorProps {
@@ -979,6 +980,13 @@ export default function CalculatorsNew() {
           </motion.div>
         </div>
       </section>
+
+      {/* Unified CTA Section */}
+      <UnifiedCTASection 
+        buttonText="Започнете днес"
+        headline="Готови ли сте да превърнете числата в резултати?"
+        description="Изберете подходящата система за вашия бизнес и започнете трансформацията с безплатна консултация."
+      />
 
       <Footer />
     </>
