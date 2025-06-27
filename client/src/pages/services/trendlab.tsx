@@ -1,11 +1,14 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
+import { Link } from "wouter";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight, BookOpen, Users, Clock, Handshake, Magnet, Microscope, FileText, Camera, Megaphone, CheckCircle, ArrowLeft } from "lucide-react";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
+import { SEOHead } from "@/components/seo-head";
+import { pageSEOData } from "@/data/seo-pages";
 
 // Content Creation Background
 const TrendlabBackground = () => {
@@ -158,6 +161,7 @@ export default function Trendlab() {
 
   return (
     <div className="min-h-screen bg-slate-900 text-white">
+      <SEOHead seo={pageSEOData["services/trendlab"]} pageSlug="services/trendlab" />
       <Navigation />
       
       {/* Hero Section */}
@@ -218,7 +222,7 @@ export default function Trendlab() {
               animate={heroInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
-              Вие притежавате безценна експертиза и опит. Нашата система Trendlab™ превръща тези ваши знания в автентично съдържание, което изгражда доверие, създава общност и ви превръща в безспорния авторитет във вашата сфера.
+              Вие притежавате безценна експертиза и опит. Нашата система Trendlab™ превръща тези ваши знания в автентично съдържание, което изгражда доверие, създава общност и ви превръща в безспорния авторитет във вашата сфера. Разгледайте <Link href="/case-studies" className="text-[#ECB629] hover:underline">нашите резултати</Link> и <Link href="/calculators" className="text-[#ECB629] hover:underline">изчислете ROI</Link> от съдържанието.
             </motion.p>
 
             <motion.div

@@ -1,3 +1,4 @@
+import { Link } from "wouter";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { Card, CardContent } from "@/components/ui/card";
@@ -142,7 +143,7 @@ export default function CaseStudies() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
               >
-                Разгледайте как нашите клиенти постигнаха измерим растеж с инженерни бизнес системи.
+                Разгледайте как нашите клиенти постигнаха измерим растеж с инженерни бизнес системи. Вижте <Link href="/services" className="text-[#ECB629] hover:underline">всички наши услуги</Link> или <Link href="/calculators" className="text-[#ECB629] hover:underline">изчислете своя ROI</Link>.
               </motion.p>
 
               {/* Stats Preview */}
