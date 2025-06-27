@@ -5,15 +5,22 @@ import { Mail, Phone, MapPin, Facebook, Youtube, Instagram, Linkedin } from "luc
 export const Footer = () => {
   const footerLinks = {
     services: [
-      { href: "/services", label: "SEO Struktor™" },
-      { href: "/services", label: "Clientomat™" },
-      { href: "/services", label: "Sales Engine™" }
+      { href: "/services/seo-struktor", label: "SEO Struktor™" },
+      { href: "/services/trendlab", label: "Trendlab™" },
+      { href: "/services/clickstarter", label: "Clickstarter™" },
+      { href: "/services/clientomat", label: "Clientomat™" }
     ],
     company: [
       { href: "/about", label: "За нас" },
       { href: "/case-studies", label: "Резултати" },
+      { href: "/blog", label: "Блог" },
+      { href: "/calculators", label: "Калкулатори" },
       { href: "/faq", label: "Въпроси" },
       { href: "/contact", label: "Контакти" }
+    ],
+    legal: [
+      { href: "/terms", label: "Условия за ползване" },
+      { href: "/privacy", label: "Политика за поверителност" }
     ],
     contact: [
       { icon: Mail, info: "contact@pravdast.agency" },

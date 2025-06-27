@@ -2,10 +2,14 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Home, Search, ArrowLeft, Target, Wrench } from "lucide-react";
 import { Link } from "wouter";
+import { Navigation } from "@/components/navigation";
+import { Footer } from "@/components/footer";
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen bg-slate-900 flex items-center justify-center relative overflow-hidden">
+    <div className="min-h-screen bg-slate-900">
+      <Navigation />
+      <div className="flex items-center justify-center relative overflow-hidden py-20">
       {/* Subtle Grid Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0" style={{
@@ -147,6 +151,8 @@ export default function NotFound() {
           </motion.div>
         </div>
       </div>
+      </div>
+      <Footer />
     </div>
   );
 }

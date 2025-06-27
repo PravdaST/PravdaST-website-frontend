@@ -1,7 +1,18 @@
 
 User-agent: *
-Disallow: /admin/
+Disallow: /admin-pravda/
 Disallow: /api/
-Disallow: /_*
+Disallow: /strapi-test/
+Disallow: /seo-monitor/
+Disallow: /performance-monitor/
+Disallow: /analytics/
+
+Allow: /services/
+Allow: /blog/
+Allow: /calculators/
+Allow: /contact/
+Allow: /about/
+Allow: /case-studies/
+Allow: /faq/
 
 Sitemap: https://www.pravdagency.eu/sitemap.xml
