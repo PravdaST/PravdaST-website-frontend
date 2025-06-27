@@ -156,9 +156,10 @@
 **Current:** Basic navigation links
 **Improvement:** Contextual internal links between related services
 
-### 4. Image Optimization
-**Current:** Standard images
-**Improvement:** WebP format и alt tags с keywords
+### 4. Technical Clean-up
+**✅ FIXED:** Премахнах 404 грешката за `/prerender.js` script tag
+**Current:** Clean HTML без broken links
+**Improvement:** WebP format за images и alt tags с keywords
 
 ---
 

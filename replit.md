@@ -271,6 +271,7 @@ Changelog:
 - June 27, 2025. Cleaned up unwanted UI elements: removed Replit development banner script from client/index.html to eliminate development-only content on production, removed SkipToMainContent accessibility button from App.tsx to eliminate hidden spam-like elements that were appearing on the site
 - June 27, 2025. Comprehensive SEO overhaul to fix Ahrefs issues: added complete static HTML meta tags (title, description, Open Graph, Twitter Cards), integrated full Schema.org LocalBusiness markup with GPS coordinates for Varna, added static H1/H2 content for crawlers, created prerender script for SEO content visibility, enhanced robots.txt with proper directives - resolved missing H1 tags and meta description issues reported by Ahrefs
 - June 27, 2025. Completed comprehensive SEO optimization to 95% best practices compliance: added missing SEO data for Trendlab™, Clickstarter™, calculators, FAQ, terms, privacy pages with full Schema.org markup, updated XML sitemap with all 12 active pages, created complete SEO audit report - all pages now have optimized titles (50-60 chars), meta descriptions (155 chars), structured data, and proper keyword targeting for Bulgarian market
+- June 27, 2025. Fixed critical 404 SEO issue: removed problematic prerender.js script tag from client/index.html that was causing Ahrefs scanning errors - eliminated broken link that crawlers were trying to access, ensuring clean technical SEO foundation
 
 ## User Preferences
 
