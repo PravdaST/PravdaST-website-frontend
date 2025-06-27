@@ -546,6 +546,45 @@ export default function About() {
         </section>
       </main>
 
+      {/* CTA Section */}
+      <section className="py-20 bg-[#ECB629] relative overflow-hidden">
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute w-1 h-1 bg-black rounded-full" style={{left: '55.2%', top: '37.8%', transform: 'scale(1.3179)'}}></div>
+          <div className="absolute w-1 h-1 bg-black rounded-full" style={{left: '24.8%', top: '13.8%', transform: 'scale(1.49443)'}}></div>
+          <div className="absolute w-1 h-1 bg-black rounded-full" style={{left: '89.6%', top: '48.9%', transform: 'scale(1.08524)'}}></div>
+          <div className="absolute w-1 h-1 bg-black rounded-full" style={{left: '67.3%', top: '82.1%', transform: 'scale(1.26789)'}}></div>
+          <div className="absolute w-1 h-1 bg-black rounded-full" style={{left: '18.4%', top: '65.3%', transform: 'scale(1.15234)'}}></div>
+          <div className="absolute w-1 h-1 bg-black rounded-full" style={{left: '43.7%', top: '91.5%', transform: 'scale(1.42156)'}}></div>
+        </div>
+
+        <div className="container mx-auto px-6 text-center relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-4xl md:text-5xl font-bold text-black mb-6">
+              Готови за системен подход?
+            </h2>
+            <p className="text-xl text-black/80 mb-8 max-w-2xl mx-auto">
+              Спрете да гадаете и започнете да работите с проверени методи. Свържете се с нас за персонална консултация.
+            </p>
+            <motion.a
+              href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 bg-black text-white px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-300 hover:scale-105 hover:-translate-y-1"
+              whileHover={{ scale: 1.05, y: -5 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Свържете се с експертите
+              <ArrowRight className="ml-2 w-5 h-5" />
+            </motion.a>
+          </motion.div>
+        </div>
+      </section>
+
       <Footer />
     </div>
   );

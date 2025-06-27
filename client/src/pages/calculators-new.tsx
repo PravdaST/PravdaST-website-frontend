@@ -942,6 +942,44 @@ export default function CalculatorsNew() {
         </div>
       </div>
 
+      {/* CTA Section */}
+      <section className="py-20 bg-[#ECB629] relative overflow-hidden">
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute w-1 h-1 bg-black rounded-full" style={{left: '30.7%', top: '22.1%', transform: 'scale(1.38)'}}></div>
+          <div className="absolute w-1 h-1 bg-black rounded-full" style={{left: '78.2%', top: '56.4%', transform: 'scale(1.15)'}}></div>
+          <div className="absolute w-1 h-1 bg-black rounded-full" style={{left: '15.9%', top: '73.8%', transform: 'scale(1.42)'}}></div>
+          <div className="absolute w-1 h-1 bg-black rounded-full" style={{left: '64.3%', top: '89.1%', transform: 'scale(1.23)'}}></div>
+          <div className="absolute w-1 h-1 bg-black rounded-full" style={{left: '42.6%', top: '8.5%', transform: 'scale(1.31)'}}></div>
+        </div>
+
+        <div className="container mx-auto px-6 text-center relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-4xl md:text-5xl font-bold text-black mb-6">
+              Готови да постигнете тези резултати?
+            </h2>
+            <p className="text-xl text-black/80 mb-8 max-w-2xl mx-auto">
+              Започнете с безплатна консултация и разберете как точно можем да постигнем тези числа за вашия бизнес.
+            </p>
+            <motion.a
+              href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 bg-black text-white px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-300 hover:scale-105 hover:-translate-y-1"
+              whileHover={{ scale: 1.05, y: -5 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Започнете днес
+              <ArrowRight className="ml-2 w-5 h-5" />
+            </motion.a>
+          </motion.div>
+        </div>
+      </section>
+
       <Footer />
     </>
   );

@@ -3,7 +3,7 @@ import { Footer } from "@/components/footer";
 import { SEOHead } from "@/components/seo-head";
 import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
-import { ChevronDown, HelpCircle } from "lucide-react";
+import { ChevronDown, HelpCircle, ArrowRight } from "lucide-react";
 import { useState } from "react";
 
 interface FAQItem {
@@ -355,6 +355,44 @@ export default function FAQ() {
               </motion.a>
             </motion.div>
           </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-20 bg-[#ECB629] relative overflow-hidden">
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute w-1 h-1 bg-black rounded-full" style={{left: '25.3%', top: '15.6%', transform: 'scale(1.45)'}}></div>
+          <div className="absolute w-1 h-1 bg-black rounded-full" style={{left: '72.8%', top: '43.2%', transform: 'scale(1.18)'}}></div>
+          <div className="absolute w-1 h-1 bg-black rounded-full" style={{left: '48.1%', top: '78.4%', transform: 'scale(1.32)'}}></div>
+          <div className="absolute w-1 h-1 bg-black rounded-full" style={{left: '91.5%', top: '26.7%', transform: 'scale(1.12)'}}></div>
+          <div className="absolute w-1 h-1 bg-black rounded-full" style={{left: '12.4%', top: '64.8%', transform: 'scale(1.28)'}}></div>
+        </div>
+
+        <div className="container mx-auto px-6 text-center relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-4xl md:text-5xl font-bold text-black mb-6">
+              Остана ли ви въпрос?
+            </h2>
+            <p className="text-xl text-black/80 mb-8 max-w-2xl mx-auto">
+              Свържете се с нас за персонална консултация и получете отговори на всички въпроси.
+            </p>
+            <motion.a
+              href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 bg-black text-white px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-300 hover:scale-105 hover:-translate-y-1"
+              whileHover={{ scale: 1.05, y: -5 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Получете отговори
+              <ArrowRight className="ml-2 w-5 h-5" />
+            </motion.a>
+          </motion.div>
         </div>
       </section>
 

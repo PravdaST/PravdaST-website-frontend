@@ -610,6 +610,44 @@ export default function Clickstarter() {
           </div>
         </section>
 
+        {/* CTA Section */}
+        <section className="py-20 bg-[#ECB629] relative overflow-hidden">
+          <div className="absolute inset-0 opacity-20">
+            <div className="absolute w-1 h-1 bg-black rounded-full" style={{left: '28.4%', top: '19.7%', transform: 'scale(1.35)'}}></div>
+            <div className="absolute w-1 h-1 bg-black rounded-full" style={{left: '75.1%', top: '52.3%', transform: 'scale(1.22)'}}></div>
+            <div className="absolute w-1 h-1 bg-black rounded-full" style={{left: '41.8%', top: '76.9%', transform: 'scale(1.48)'}}></div>
+            <div className="absolute w-1 h-1 bg-black rounded-full" style={{left: '86.2%', top: '31.5%', transform: 'scale(1.11)'}}></div>
+            <div className="absolute w-1 h-1 bg-black rounded-full" style={{left: '19.6%', top: '68.4%', transform: 'scale(1.29)'}}></div>
+          </div>
+
+          <div className="container mx-auto px-6 text-center relative z-10">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-4xl md:text-5xl font-bold text-black mb-6">
+                Готови за по-ефективни реклами?
+              </h2>
+              <p className="text-xl text-black/80 mb-8 max-w-2xl mx-auto">
+                Започнете оптимизацията на рекламите си с нашата проверена система за максимална възвърната инвестиция.
+              </p>
+              <motion.a
+                href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 bg-black text-white px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-300 hover:scale-105 hover:-translate-y-1"
+                whileHover={{ scale: 1.05, y: -5 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Заявете разговор
+                <ArrowRight className="ml-2 w-5 h-5" />
+              </motion.a>
+            </motion.div>
+          </div>
+        </section>
+
         <Footer />
       </div>
     </>
