@@ -386,7 +386,7 @@ export default function CaseStudies() {
                     <div className="absolute inset-0 bg-red-500 rounded-full animate-ping opacity-75"></div>
                   </div>
                   <span className="text-sm text-black font-semibold">
-                    Само 3 места за Q1 2025
+                    Само 3 места за 2025
                   </span>
                 </div>
               </motion.div>

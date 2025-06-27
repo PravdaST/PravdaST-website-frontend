@@ -9,77 +9,44 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { injectStructuredData } from "@/lib/seo-schemas";
 
-// ROI Calculator Components
-interface ROICalculatorProps {
-  serviceName: string;
-  monthlyPrice: number;
-  averageResults: {
-    primaryMetricIncrease: number;
-    conversionRate: number;
-    secondaryMetricIncrease: number;
-    revenueMultiplier: number;
-  };
-  metrics: {
-    primary: string;
-    secondary: string;
-    primaryUnit: string;
-    secondaryUnit: string;
-  };
-}
+// Service-specific Calculator Components
 
-function ROICalculator({ serviceName, monthlyPrice, averageResults, metrics }: ROICalculatorProps) {
+// SEO Struktor Calculator
+function SEOStrukturCalculator() {
   const [inputs, setInputs] = useState({
-    currentMonthlyRevenue: '',
-    averageOrderValue: '',
-    currentConversionRate: '',
-    currentMonthlyTraffic: '',
+    currentTraffic: '',
+    currentRanking: '',
+    targetKeywords: '',
     industry: ''
   });
 
   const [results, setResults] = useState({
-    monthlyROI: 0,
-    annualROI: 0,
-    additionalRevenue: 0,
-    paybackPeriod: 0,
-    projectedPrimary: 0,
-    projectedSecondary: 0
+    trafficIncrease: 0,
+    newLeads: 0,
+    rankingImprovement: 0,
+    monthlyROI: 0
   });
 
-  const calculateROI = () => {
-    const revenue = parseFloat(inputs.currentMonthlyRevenue) || 0;
-    const aov = parseFloat(inputs.averageOrderValue) || 0;
-    const conversionRate = parseFloat(inputs.currentConversionRate) || 0;
-    const traffic = parseFloat(inputs.currentMonthlyTraffic) || 0;
+  const calculateSEO = () => {
+    const traffic = parseFloat(inputs.currentTraffic) || 0;
+    const ranking = parseFloat(inputs.currentRanking) || 100;
+    const keywords = parseFloat(inputs.targetKeywords) || 10;
+    
+    const trafficIncrease = traffic * 3.4; // 340% increase
+    const newLeads = trafficIncrease * 0.025; // 2.5% conversion
+    const rankingImprovement = Math.max(1, ranking - 30);
+    const monthlyROI = ((newLeads * 2500) - 1980) / 1980 * 100;
 
-    if (revenue > 0 && aov > 0) {
-      // Calculate projected improvements based on service
-      const projectedPrimary = traffic * (1 + averageResults.primaryMetricIncrease / 100);
-      const improvedConversionRate = conversionRate * (1 + averageResults.conversionRate / 100);
-      const projectedSecondary = (projectedPrimary * improvedConversionRate) / 100;
-      
-      // Calculate additional revenue
-      const currentLeads = (traffic * conversionRate) / 100;
-      const additionalLeads = projectedSecondary - currentLeads;
-      const additionalRevenue = additionalLeads * aov;
-      
-      // Calculate ROI
-      const monthlyROI = ((additionalRevenue - monthlyPrice) / monthlyPrice) * 100;
-      const annualROI = monthlyROI * 12;
-      const paybackPeriod = monthlyPrice / additionalRevenue;
-
-      setResults({
-        monthlyROI,
-        annualROI,
-        additionalRevenue,
-        paybackPeriod,
-        projectedPrimary,
-        projectedSecondary
-      });
-    }
+    setResults({
+      trafficIncrease,
+      newLeads,
+      rankingImprovement,
+      monthlyROI
+    });
   };
 
   useEffect(() => {
-    calculateROI();
+    calculateSEO();
   }, [inputs]);
 
   return (
@@ -88,76 +55,43 @@ function ROICalculator({ serviceName, monthlyPrice, averageResults, metrics }: R
       <Card className="bg-slate-800/50 border-slate-700">
         <CardHeader>
           <CardTitle className="text-white flex items-center gap-2">
-            <Calculator className="w-5 h-5 text-[#ECB629]" />
-            {serviceName} ROI Калкулатор
+            <Target className="w-5 h-5 text-[#ECB629]" />
+            SEO Параметри
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <div>
-            <Label htmlFor="revenue" className="text-white">Текущ месечен оборот (лв.)</Label>
-            <Input
-              id="revenue"
-              type="number"
-              placeholder="напр. 50000"
-              value={inputs.currentMonthlyRevenue}
-              onChange={(e) => setInputs({...inputs, currentMonthlyRevenue: e.target.value})}
-              className="bg-slate-700 border-slate-600 text-white"
-            />
-          </div>
-
-          <div>
-            <Label htmlFor="aov" className="text-white">Средна стойност на поръчка (лв.)</Label>
-            <Input
-              id="aov"
-              type="number"
-              placeholder="напр. 2500"
-              value={inputs.averageOrderValue}
-              onChange={(e) => setInputs({...inputs, averageOrderValue: e.target.value})}
-              className="bg-slate-700 border-slate-600 text-white"
-            />
-          </div>
-
-          <div>
-            <Label htmlFor="conversion" className="text-white">Текущ conversion rate (%)</Label>
-            <Input
-              id="conversion"
-              type="number"
-              placeholder="напр. 2.5"
-              value={inputs.currentConversionRate}
-              onChange={(e) => setInputs({...inputs, currentConversionRate: e.target.value})}
-              className="bg-slate-700 border-slate-600 text-white"
-            />
-          </div>
-
-          <div>
-            <Label htmlFor="traffic" className="text-white">Месечен трафик (посетители)</Label>
+            <Label htmlFor="traffic" className="text-white">Текущ месечен трафик</Label>
             <Input
               id="traffic"
               type="number"
               placeholder="напр. 5000"
-              value={inputs.currentMonthlyTraffic}
-              onChange={(e) => setInputs({...inputs, currentMonthlyTraffic: e.target.value})}
+              value={inputs.currentTraffic}
+              onChange={(e) => setInputs({...inputs, currentTraffic: e.target.value})}
               className="bg-slate-700 border-slate-600 text-white"
             />
           </div>
-
           <div>
-            <Label htmlFor="industry" className="text-white">Индустрия</Label>
-            <Select value={inputs.industry} onValueChange={(value) => setInputs({...inputs, industry: value})}>
-              <SelectTrigger className="bg-slate-700 border-slate-600 text-white">
-                <SelectValue placeholder="Изберете индустрия" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="b2b-services">B2B Услуги</SelectItem>
-                <SelectItem value="ecommerce">E-commerce</SelectItem>
-                <SelectItem value="saas">SaaS</SelectItem>
-                <SelectItem value="manufacturing">Производство</SelectItem>
-                <SelectItem value="real-estate">Недвижими имоти</SelectItem>
-                <SelectItem value="healthcare">Здравеопазване</SelectItem>
-                <SelectItem value="education">Образование</SelectItem>
-                <SelectItem value="other">Друго</SelectItem>
-              </SelectContent>
-            </Select>
+            <Label htmlFor="ranking" className="text-white">Средна позиция в Google</Label>
+            <Input
+              id="ranking"
+              type="number"
+              placeholder="напр. 45"
+              value={inputs.currentRanking}
+              onChange={(e) => setInputs({...inputs, currentRanking: e.target.value})}
+              className="bg-slate-700 border-slate-600 text-white"
+            />
+          </div>
+          <div>
+            <Label htmlFor="keywords" className="text-white">Брой целеви ключови думи</Label>
+            <Input
+              id="keywords"
+              type="number"
+              placeholder="напр. 20"
+              value={inputs.targetKeywords}
+              onChange={(e) => setInputs({...inputs, targetKeywords: e.target.value})}
+              className="bg-slate-700 border-slate-600 text-white"
+            />
           </div>
         </CardContent>
       </Card>
@@ -167,77 +101,481 @@ function ROICalculator({ serviceName, monthlyPrice, averageResults, metrics }: R
         <CardHeader>
           <CardTitle className="text-white flex items-center gap-2">
             <TrendingUp className="w-5 h-5 text-[#ECB629]" />
-            Прогнозирани Резултати
+            SEO Резултати
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-6">
           <div className="grid grid-cols-2 gap-4">
             <div className="text-center p-4 bg-slate-800/50 rounded-lg">
               <div className="text-2xl font-bold text-[#ECB629]">
-                {results.monthlyROI.toFixed(0)}%
+                +{results.trafficIncrease.toFixed(0)}
               </div>
-              <div className="text-sm text-gray-400">Месечен ROI</div>
+              <div className="text-sm text-gray-400">Нов трафик</div>
             </div>
             <div className="text-center p-4 bg-slate-800/50 rounded-lg">
               <div className="text-2xl font-bold text-[#ECB629]">
-                {results.paybackPeriod > 0 ? results.paybackPeriod.toFixed(1) : '0'} мес.
+                +{results.newLeads.toFixed(0)}
               </div>
-              <div className="text-sm text-gray-400">Възвращаемост</div>
+              <div className="text-sm text-gray-400">Нови leads</div>
             </div>
           </div>
 
           <div className="space-y-3">
             <div className="flex justify-between items-center py-2 border-b border-slate-700">
-              <span className="text-gray-300">Допълнителен месечен приход:</span>
+              <span className="text-gray-300">Подобрение в позициите:</span>
               <span className="text-white font-semibold">
-                {results.additionalRevenue.toFixed(0)} лв.
-              </span>
-            </div>
-            <div className="flex justify-between items-center py-2 border-b border-slate-700">
-              <span className="text-gray-300">Годишен ROI:</span>
-              <span className="text-white font-semibold">
-                {results.annualROI.toFixed(0)}%
-              </span>
-            </div>
-            <div className="flex justify-between items-center py-2 border-b border-slate-700">
-              <span className="text-gray-300">{metrics.primary}:</span>
-              <span className="text-white font-semibold">
-                {results.projectedPrimary.toFixed(0)} {metrics.primaryUnit}
+                Позиция #{results.rankingImprovement.toFixed(0)}
               </span>
             </div>
             <div className="flex justify-between items-center py-2">
-              <span className="text-gray-300">{metrics.secondary}:</span>
+              <span className="text-gray-300">Месечен ROI:</span>
               <span className="text-white font-semibold">
-                {results.projectedSecondary.toFixed(0)} {metrics.secondaryUnit}
+                {results.monthlyROI.toFixed(0)}%
               </span>
             </div>
           </div>
 
           {results.monthlyROI > 0 && (
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="mt-6"
+            <Button 
+              asChild
+              className="w-full bg-[#ECB629] text-black hover:bg-[#ECB629]/90 font-semibold"
             >
-              <Button 
-                asChild
-                className="w-full bg-[#ECB629] text-black hover:bg-[#ECB629]/90 font-semibold"
+              <a 
+                href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu"
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                <a 
-                  href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Започнете сега <ArrowRight className="w-4 h-4 ml-2" />
-                </a>
-              </Button>
-            </motion.div>
+                Започнете SEO оптимизацията <ArrowRight className="w-4 h-4 ml-2" />
+              </a>
+            </Button>
           )}
         </CardContent>
       </Card>
     </div>
   );
 }
+
+// Trendlab Calculator
+function TrendlabCalculator() {
+  const [inputs, setInputs] = useState({
+    currentFollowers: '',
+    contentFrequency: '',
+    engagementRate: '',
+    industry: ''
+  });
+
+  const [results, setResults] = useState({
+    newFollowers: 0,
+    monthlyViews: 0,
+    engagementBoost: 0,
+    authorityScore: 0
+  });
+
+  const calculateContent = () => {
+    const followers = parseFloat(inputs.currentFollowers) || 1000;
+    const frequency = parseFloat(inputs.contentFrequency) || 4;
+    const engagement = parseFloat(inputs.engagementRate) || 2;
+    
+    const newFollowers = followers * 4.5; // 450% increase
+    const monthlyViews = newFollowers * frequency * 250;
+    const engagementBoost = engagement * 3.8;
+    const authorityScore = Math.min(95, 40 + (frequency * 8) + (engagement * 5));
+
+    setResults({
+      newFollowers,
+      monthlyViews,
+      engagementBoost,
+      authorityScore
+    });
+  };
+
+  useEffect(() => {
+    calculateContent();
+  }, [inputs]);
+
+  return (
+    <div className="grid md:grid-cols-2 gap-8">
+      <Card className="bg-slate-800/50 border-slate-700">
+        <CardHeader>
+          <CardTitle className="text-white flex items-center gap-2">
+            <BarChart3 className="w-5 h-5 text-[#ECB629]" />
+            Content Параметри
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div>
+            <Label htmlFor="followers" className="text-white">Текущи последователи</Label>
+            <Input
+              id="followers"
+              type="number"
+              placeholder="напр. 2500"
+              value={inputs.currentFollowers}
+              onChange={(e) => setInputs({...inputs, currentFollowers: e.target.value})}
+              className="bg-slate-700 border-slate-600 text-white"
+            />
+          </div>
+          <div>
+            <Label htmlFor="frequency" className="text-white">Публикации седмично</Label>
+            <Input
+              id="frequency"
+              type="number"
+              placeholder="напр. 3"
+              value={inputs.contentFrequency}
+              onChange={(e) => setInputs({...inputs, contentFrequency: e.target.value})}
+              className="bg-slate-700 border-slate-600 text-white"
+            />
+          </div>
+          <div>
+            <Label htmlFor="engagement" className="text-white">Engagement rate (%)</Label>
+            <Input
+              id="engagement"
+              type="number"
+              placeholder="напр. 3.5"
+              value={inputs.engagementRate}
+              onChange={(e) => setInputs({...inputs, engagementRate: e.target.value})}
+              className="bg-slate-700 border-slate-600 text-white"
+            />
+          </div>
+        </CardContent>
+      </Card>
+
+      <Card className="bg-gradient-to-br from-[#ECB629]/10 to-slate-800/50 border-[#ECB629]/30">
+        <CardHeader>
+          <CardTitle className="text-white flex items-center gap-2">
+            <TrendingUp className="w-5 h-5 text-[#ECB629]" />
+            Content Резултати
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-6">
+          <div className="grid grid-cols-2 gap-4">
+            <div className="text-center p-4 bg-slate-800/50 rounded-lg">
+              <div className="text-2xl font-bold text-[#ECB629]">
+                +{results.newFollowers.toFixed(0)}
+              </div>
+              <div className="text-sm text-gray-400">Нови последователи</div>
+            </div>
+            <div className="text-center p-4 bg-slate-800/50 rounded-lg">
+              <div className="text-2xl font-bold text-[#ECB629]">
+                {(results.monthlyViews/1000).toFixed(0)}K
+              </div>
+              <div className="text-sm text-gray-400">Месечни гледания</div>
+            </div>
+          </div>
+
+          <div className="space-y-3">
+            <div className="flex justify-between items-center py-2 border-b border-slate-700">
+              <span className="text-gray-300">Engagement подобрение:</span>
+              <span className="text-white font-semibold">
+                {results.engagementBoost.toFixed(1)}%
+              </span>
+            </div>
+            <div className="flex justify-between items-center py-2">
+              <span className="text-gray-300">Authority Score:</span>
+              <span className="text-white font-semibold">
+                {results.authorityScore.toFixed(0)}/100
+              </span>
+            </div>
+          </div>
+
+          <Button 
+            asChild
+            className="w-full bg-[#ECB629] text-black hover:bg-[#ECB629]/90 font-semibold"
+          >
+            <a 
+              href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Започнете content стратегията <ArrowRight className="w-4 h-4 ml-2" />
+            </a>
+          </Button>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
+
+// Clickstarter Calculator  
+function ClickstarterCalculator() {
+  const [inputs, setInputs] = useState({
+    currentAdSpend: '',
+    currentCPC: '',
+    currentConversions: '',
+    targetROAS: ''
+  });
+
+  const [results, setResults] = useState({
+    newOrders: 0,
+    cpcReduction: 0,
+    roasImprovement: 0,
+    costSavings: 0
+  });
+
+  const calculateAds = () => {
+    const spend = parseFloat(inputs.currentAdSpend) || 5000;
+    const cpc = parseFloat(inputs.currentCPC) || 2.5;
+    const conversions = parseFloat(inputs.currentConversions) || 50;
+    
+    const newOrders = conversions * 0.85; // 85% modest increase
+    const cpcReduction = cpc * 0.25; // 25% CPC reduction
+    const roasImprovement = 2.1; // 2.1x ROAS
+    const costSavings = spend * 0.20; // 20% cost reduction
+
+    setResults({
+      newOrders,
+      cpcReduction,
+      roasImprovement,
+      costSavings
+    });
+  };
+
+  useEffect(() => {
+    calculateAds();
+  }, [inputs]);
+
+  return (
+    <div className="grid md:grid-cols-2 gap-8">
+      <Card className="bg-slate-800/50 border-slate-700">
+        <CardHeader>
+          <CardTitle className="text-white flex items-center gap-2">
+            <Target className="w-5 h-5 text-[#ECB629]" />
+            Реклама Параметри
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div>
+            <Label htmlFor="spend" className="text-white">Месечен ad spend (лв.)</Label>
+            <Input
+              id="spend"
+              type="number"
+              placeholder="напр. 8000"
+              value={inputs.currentAdSpend}
+              onChange={(e) => setInputs({...inputs, currentAdSpend: e.target.value})}
+              className="bg-slate-700 border-slate-600 text-white"
+            />
+          </div>
+          <div>
+            <Label htmlFor="cpc" className="text-white">Текущ CPC (лв.)</Label>
+            <Input
+              id="cpc"
+              type="number"
+              placeholder="напр. 3.20"
+              value={inputs.currentCPC}
+              onChange={(e) => setInputs({...inputs, currentCPC: e.target.value})}
+              className="bg-slate-700 border-slate-600 text-white"
+            />
+          </div>
+          <div>
+            <Label htmlFor="conversions" className="text-white">Месечни конверсии</Label>
+            <Input
+              id="conversions"
+              type="number"
+              placeholder="напр. 75"
+              value={inputs.currentConversions}
+              onChange={(e) => setInputs({...inputs, currentConversions: e.target.value})}
+              className="bg-slate-700 border-slate-600 text-white"
+            />
+          </div>
+        </CardContent>
+      </Card>
+
+      <Card className="bg-gradient-to-br from-[#ECB629]/10 to-slate-800/50 border-[#ECB629]/30">
+        <CardHeader>
+          <CardTitle className="text-white flex items-center gap-2">
+            <TrendingUp className="w-5 h-5 text-[#ECB629]" />
+            Ads Резултати
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-6">
+          <div className="grid grid-cols-2 gap-4">
+            <div className="text-center p-4 bg-slate-800/50 rounded-lg">
+              <div className="text-2xl font-bold text-[#ECB629]">
+                +{results.newOrders.toFixed(0)}
+              </div>
+              <div className="text-sm text-gray-400">Допълнителни поръчки</div>
+            </div>
+            <div className="text-center p-4 bg-slate-800/50 rounded-lg">
+              <div className="text-2xl font-bold text-[#ECB629]">
+                -{results.cpcReduction.toFixed(2)} лв.
+              </div>
+              <div className="text-sm text-gray-400">CPC намаление</div>
+            </div>
+          </div>
+
+          <div className="space-y-3">
+            <div className="flex justify-between items-center py-2 border-b border-slate-700">
+              <span className="text-gray-300">ROAS подобрение:</span>
+              <span className="text-white font-semibold">
+                {results.roasImprovement.toFixed(1)}x
+              </span>
+            </div>
+            <div className="flex justify-between items-center py-2">
+              <span className="text-gray-300">Месечни спестявания:</span>
+              <span className="text-white font-semibold">
+                {results.costSavings.toFixed(0)} лв.
+              </span>
+            </div>
+          </div>
+
+          <Button 
+            asChild
+            className="w-full bg-[#ECB629] text-black hover:bg-[#ECB629]/90 font-semibold"
+          >
+            <a 
+              href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Оптимизирайте рекламите <ArrowRight className="w-4 h-4 ml-2" />
+            </a>
+          </Button>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
+
+// Clientomat Calculator
+function ClientomatCalculator() {
+  const [inputs, setInputs] = useState({
+    monthlyClients: '',
+    averageOrderValue: '',
+    repeatRate: '',
+    retentionRate: ''
+  });
+
+  const [results, setResults] = useState({
+    repeatOrders: 0,
+    ltvIncrease: 0,
+    retentionBoost: 0,
+    monthlyRevenue: 0
+  });
+
+  const calculateAutomation = () => {
+    const clients = parseFloat(inputs.monthlyClients) || 50;
+    const aov = parseFloat(inputs.averageOrderValue) || 2500;
+    const repeat = parseFloat(inputs.repeatRate) || 15;
+    
+    const repeatOrders = repeat * 1.8; // 180% increase in repeat orders
+    const ltvIncrease = aov * 2.2; // 220% LTV increase
+    const retentionBoost = Math.min(85, repeat + 35);
+    const monthlyRevenue = clients * ltvIncrease * 0.3;
+
+    setResults({
+      repeatOrders,
+      ltvIncrease,
+      retentionBoost,
+      monthlyRevenue
+    });
+  };
+
+  useEffect(() => {
+    calculateAutomation();
+  }, [inputs]);
+
+  return (
+    <div className="grid md:grid-cols-2 gap-8">
+      <Card className="bg-slate-800/50 border-slate-700">
+        <CardHeader>
+          <CardTitle className="text-white flex items-center gap-2">
+            <DollarSign className="w-5 h-5 text-[#ECB629]" />
+            Клиент Параметри
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div>
+            <Label htmlFor="clients" className="text-white">Месечни клиенти</Label>
+            <Input
+              id="clients"
+              type="number"
+              placeholder="напр. 80"
+              value={inputs.monthlyClients}
+              onChange={(e) => setInputs({...inputs, monthlyClients: e.target.value})}
+              className="bg-slate-700 border-slate-600 text-white"
+            />
+          </div>
+          <div>
+            <Label htmlFor="aov" className="text-white">Средна поръчка (лв.)</Label>
+            <Input
+              id="aov"
+              type="number"
+              placeholder="напр. 3500"
+              value={inputs.averageOrderValue}
+              onChange={(e) => setInputs({...inputs, averageOrderValue: e.target.value})}
+              className="bg-slate-700 border-slate-600 text-white"
+            />
+          </div>
+          <div>
+            <Label htmlFor="repeat" className="text-white">Repeat rate (%)</Label>
+            <Input
+              id="repeat"
+              type="number"
+              placeholder="напр. 25"
+              value={inputs.repeatRate}
+              onChange={(e) => setInputs({...inputs, repeatRate: e.target.value})}
+              className="bg-slate-700 border-slate-600 text-white"
+            />
+          </div>
+        </CardContent>
+      </Card>
+
+      <Card className="bg-gradient-to-br from-[#ECB629]/10 to-slate-800/50 border-[#ECB629]/30">
+        <CardHeader>
+          <CardTitle className="text-white flex items-center gap-2">
+            <TrendingUp className="w-5 h-5 text-[#ECB629]" />
+            Automation Резултати
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="space-y-6">
+          <div className="grid grid-cols-2 gap-4">
+            <div className="text-center p-4 bg-slate-800/50 rounded-lg">
+              <div className="text-2xl font-bold text-[#ECB629]">
+                {results.repeatOrders.toFixed(0)}%
+              </div>
+              <div className="text-sm text-gray-400">Повторни поръчки</div>
+            </div>
+            <div className="text-center p-4 bg-slate-800/50 rounded-lg">
+              <div className="text-2xl font-bold text-[#ECB629]">
+                +{(results.ltvIncrease/1000).toFixed(1)}K
+              </div>
+              <div className="text-sm text-gray-400">LTV увеличение</div>
+            </div>
+          </div>
+
+          <div className="space-y-3">
+            <div className="flex justify-between items-center py-2 border-b border-slate-700">
+              <span className="text-gray-300">Retention подобрение:</span>
+              <span className="text-white font-semibold">
+                {results.retentionBoost.toFixed(0)}%
+              </span>
+            </div>
+            <div className="flex justify-between items-center py-2">
+              <span className="text-gray-300">Допълнителен приход:</span>
+              <span className="text-white font-semibold">
+                {(results.monthlyRevenue/1000).toFixed(0)}K лв./месец
+              </span>
+            </div>
+          </div>
+
+          <Button 
+            asChild
+            className="w-full bg-[#ECB629] text-black hover:bg-[#ECB629]/90 font-semibold"
+          >
+            <a 
+              href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Автоматизирайте клиентите <ArrowRight className="w-4 h-4 ml-2" />
+            </a>
+          </Button>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
+
+
 
 // SEO Potential Calculator
 function SEOPotentialCalculator() {
@@ -580,22 +918,7 @@ export default function Calculators() {
                   </div>
                 </div>
               </div>
-              <ROICalculator
-                serviceName="SEO Struktor™"
-                monthlyPrice={1980}
-                averageResults={{
-                  primaryMetricIncrease: 340,
-                  conversionRate: 85,
-                  secondaryMetricIncrease: 250,
-                  revenueMultiplier: 2.3
-                }}
-                metrics={{
-                  primary: "Прогнозиран трафик",
-                  secondary: "Прогнозирани leads",
-                  primaryUnit: "посетители",
-                  secondaryUnit: "leads"
-                }}
-              />
+              <SEOStrukturCalculator />
             </TabsContent>
 
             <TabsContent value="trendlab">
@@ -610,22 +933,7 @@ export default function Calculators() {
                   </div>
                 </div>
               </div>
-              <ROICalculator
-                serviceName="Trendlab™"
-                monthlyPrice={3450}
-                averageResults={{
-                  primaryMetricIncrease: 450,
-                  conversionRate: 120,
-                  secondaryMetricIncrease: 380,
-                  revenueMultiplier: 1.8
-                }}
-                metrics={{
-                  primary: "Прогнозирани гледания",
-                  secondary: "Нови последователи",
-                  primaryUnit: "гледания",
-                  secondaryUnit: "фенове"
-                }}
-              />
+              <TrendlabCalculator />
             </TabsContent>
 
             <TabsContent value="clickstarter">
@@ -640,22 +948,7 @@ export default function Calculators() {
                   </div>
                 </div>
               </div>
-              <ROICalculator
-                serviceName="Clickstarter™"
-                monthlyPrice={1570}
-                averageResults={{
-                  primaryMetricIncrease: 85,
-                  conversionRate: 95,
-                  secondaryMetricIncrease: 65,
-                  revenueMultiplier: 2.1
-                }}
-                metrics={{
-                  primary: "Прогнозирани поръчки",
-                  secondary: "Допълнителни продажби",
-                  primaryUnit: "поръчки",
-                  secondaryUnit: "продажби"
-                }}
-              />
+              <ClickstarterCalculator />
             </TabsContent>
 
             <TabsContent value="clientomat">
@@ -670,22 +963,7 @@ export default function Calculators() {
                   </div>
                 </div>
               </div>
-              <ROICalculator
-                serviceName="Clientomat™"
-                monthlyPrice={2890}
-                averageResults={{
-                  primaryMetricIncrease: 180,
-                  conversionRate: 150,
-                  secondaryMetricIncrease: 220,
-                  revenueMultiplier: 2.5
-                }}
-                metrics={{
-                  primary: "Повторни поръчки",
-                  secondary: "Увеличение на LTV",
-                  primaryUnit: "% ръст",
-                  secondaryUnit: "% подобрение"
-                }}
-              />
+              <ClientomatCalculator />
             </TabsContent>
 
             <TabsContent value="seo-potential">
