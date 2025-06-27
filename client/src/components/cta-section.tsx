@@ -108,44 +108,52 @@ export const CTASection = () => {
                 transition={{ duration: 0.6, delay: 0.4 }}
                 viewport={{ once: true }}
               >
-                Нашият инженерен подход изисква пълна отдаденост и дълбок фокус
-                върху бизнеса на всеки наш клиент.
+                Работим само с компании, които са готови за сериозен растеж. 
+                Ние избираме партньорите си внимателно и 
                 <span className="text-[#ECB629] font-semibold">
                   {" "}
-                  Затова работим с ограничен брой компании едновременно.
+                  оценяваме дали сте подходящи за нашите системи.
                 </span>
               </motion.p>
             </motion.div>
 
-            {/* Trust Indicators Grid */}
+            {/* Trust Indicators with Bounce Animation */}
             <motion.div
-              className="grid grid-cols-2 md:grid-cols-5 gap-6 max-w-4xl mx-auto"
+              className="flex flex-wrap justify-center gap-6 mb-8"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.5 }}
               viewport={{ once: true }}
             >
               {[
-                { text: "Безплатна консултация", icon: CheckCircle },
-                { text: "100% поверителност", icon: Shield },
-                { text: "Отговор в 48 часа", icon: Clock },
-                { text: "Попълни за 5 минути", icon: Zap },
-              ].map((item, index) => (
+                "Без ангажименти",
+                "48 часа отговор", 
+                "100% поверителност"
+              ].map((text, index) => (
                 <motion.div
                   key={index}
-                  className="bg-slate-800/50 backdrop-blur-xl border border-slate-600/30 rounded-2xl p-6 text-center hover:border-[#ECB629]/50 transition-all duration-300 group"
+                  className="flex items-center gap-2"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: 0.6 + index * 0.1 }}
                   viewport={{ once: true }}
-                  whileHover={{ scale: 1.05, y: -5 }}
                 >
-                  <div className="w-12 h-12 bg-[#ECB629]/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-[#ECB629]/30 transition-colors">
-                    <item.icon className="w-6 h-6 text-[#ECB629]" />
-                  </div>
-                  <p className="text-white font-medium text-sm leading-tight">
-                    {item.text}
-                  </p>
+                  <motion.div 
+                    className="w-4 h-4 bg-green-500 rounded-full flex items-center justify-center"
+                    animate={{ 
+                      y: [0, -8, 0],
+                    }}
+                    transition={{
+                      duration: 2,
+                      delay: index * 0.5,
+                      repeat: Infinity,
+                      repeatDelay: 4,
+                      ease: "easeInOut"
+                    }}
+                  >
+                    <div className="w-2 h-1 bg-white rounded-full rotate-45"></div>
+                  </motion.div>
+                  <span className="text-white font-medium text-sm">{text}</span>
                 </motion.div>
               ))}
             </motion.div>
@@ -162,12 +170,36 @@ export const CTASection = () => {
                 href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block w-full bg-gradient-to-r from-[#ECB629] to-[#F59E0B] hover:from-[#F59E0B] hover:to-[#ECB629] text-black text-xl font-bold py-6 px-8 rounded-2xl shadow-2xl hover:shadow-[#ECB629]/20 transition-all duration-300 group"
+                className="block w-full relative overflow-hidden bg-black border-2 border-white text-white text-xl font-bold py-6 px-8 rounded-2xl shadow-2xl transition-all duration-300 group"
                 whileHover={{ scale: 1.02, y: -3 }}
                 whileTap={{ scale: 0.98 }}
+                animate={{
+                  boxShadow: [
+                    "0 0 0 rgba(255, 255, 255, 0.5)",
+                    "0 0 20px rgba(255, 255, 255, 0.8)",
+                    "0 0 0 rgba(255, 255, 255, 0.5)"
+                  ]
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
               >
-                <div className="flex items-center justify-center gap-3">
-                  <span>Започнете сега</span>
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 w-full"
+                  animate={{
+                    x: ["-200%", "200%"]
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    repeatDelay: 2,
+                    ease: "easeInOut"
+                  }}
+                />
+                <div className="relative flex items-center justify-center gap-3">
+                  <span>Безплатна консултация</span>
                   <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform duration-300" />
                 </div>
               </motion.a>
@@ -193,17 +225,17 @@ export const CTASection = () => {
                 viewport={{ once: true }}
               >
                 <div className="text-gray-400 font-medium">
-                  Отговаряме на всички запитвания
+                  Прецизна селекция на партньори
                 </div>
                 <div className="flex items-center justify-center gap-8 text-sm text-gray-500">
                   <div className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-green-500" />
-                    <span>48ч. максимум</span>
+                    <span>Детайлна оценка</span>
                   </div>
                   <div className="w-1 h-1 bg-gray-600 rounded-full"></div>
                   <div className="flex items-center gap-2">
                     <Shield className="w-4 h-4 text-green-500" />
-                    <span>100% поверителност</span>
+                    <span>Взаимна подходящост</span>
                   </div>
                 </div>
               </motion.div>
