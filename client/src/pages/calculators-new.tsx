@@ -525,7 +525,10 @@ function ReturnOnInvestmentCalculator({
                 <div className="flex items-center justify-center gap-2 mb-4">
                   <BarChart3 className="w-6 h-6 text-[#ECB629]" />
                   <h3 className="text-xl font-semibold text-white">
-                    SEO Потенциал Оценка
+                    {serviceName === "SEO Struktor™" && "SEO Потенциал Оценка"}
+                    {serviceName === "Trendlab™" && "Content Потенциал Оценка"}
+                    {serviceName === "Clickstarter™" && "Реклама Потенциал Оценка"}
+                    {serviceName === "Clientomat™" && "Клиент Потенциал Оценка"}
                   </h3>
                 </div>
 
@@ -570,7 +573,12 @@ function ReturnOnInvestmentCalculator({
                   <div className="absolute inset-0 rounded-full bg-[#ECB629]/10 blur-xl animate-pulse" />
                 </div>
 
-                <p className="text-gray-400">{serviceName} Потенциал Скор</p>
+                <p className="text-gray-400">
+                  {serviceName === "SEO Struktor™" && "SEO Потенциал Скор"}
+                  {serviceName === "Trendlab™" && "Content Потенциал Скор"}
+                  {serviceName === "Clickstarter™" && "Реклама Потенциал Скор"}
+                  {serviceName === "Clientomat™" && "Клиент Потенциал Скор"}
+                </p>
               </div>
 
               {/* Key Metrics */}
@@ -705,8 +713,10 @@ function ReturnOnInvestmentCalculator({
                 Готови за <span className="text-[#ECB629]">трансформация</span>?
               </h3>
               <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
-                Вашият {serviceName} потенциал е {results.score}/100. Започнете
-                оптимизацията днес и постигнете измерими резултати.
+                {serviceName === "SEO Struktor™" && `Вашият SEO потенциал е ${results.score}/100. Започнете оптимизацията днес и постигнете измерими резултати.`}
+                {serviceName === "Trendlab™" && `Вашият content потенциал е ${results.score}/100. Започнете създаването на съдържание днес и постигнете измерими резултати.`}
+                {serviceName === "Clickstarter™" && `Вашият реклама потенциал е ${results.score}/100. Започнете оптимизацията на рекламите днес и постигнете измерими резултати.`}
+                {serviceName === "Clientomat™" && `Вашият клиент потенциал е ${results.score}/100. Започнете автоматизацията днес и постигнете измерими резултати.`}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button
@@ -917,7 +927,7 @@ export default function CalculatorsNew() {
                   key={index}
                   value={service.name.toLowerCase().replace(/[™\s]/g, "-")}
                 >
-                  <ROICalculator
+                  <ReturnOnInvestmentCalculator
                     serviceName={service.name}
                     monthlyPrice={service.price}
                     description={service.description}
