@@ -7,6 +7,7 @@ import { UnifiedCTASection } from "@/components/unified-cta-section";
 import { useRef, useState, useEffect } from "react";
 import { seoStruktorSchema, injectStructuredData } from "@/lib/seo-schemas";
 import { trackServiceView, trackCTAClick } from "@/lib/tracking";
+import { Link } from "wouter";
 import {
   ArrowRight,
   ArrowLeft,
@@ -1090,7 +1091,14 @@ export default function SeoStruktor() {
               В Google битката се печели не от най-големия, а от най-добре
               структурирания. SEO Struktor™ изгражда вашето онлайн присъствие
               като инженерно съоръжение, проектирано да доминира в търсенето по
-              предвидим и измерим начин.
+              предвидим и измерим начин. Вижте нашите{" "}
+              <Link href="/case-studies" className="text-[var(--pravdast-yellow)] hover:underline">
+                реални резултати
+              </Link>{" "}
+              или{" "}
+              <Link href="/calculators" className="text-[var(--pravdast-yellow)] hover:underline">
+                изчислете вашата възвръщаемост
+              </Link>.
             </motion.p>
 
             <motion.div

@@ -4,6 +4,7 @@ import { SEOHead } from "@/components/seo-head";
 import { UnifiedCTASection } from "@/components/unified-cta-section";
 import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
+import { Link } from "wouter";
 import { ChevronDown, HelpCircle, ArrowRight } from "lucide-react";
 import { useState } from "react";
 
@@ -214,7 +215,14 @@ export default function FAQ() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
             >
-              Отговори на най-честите въпроси за нашите бизнес инженеринг услуги. Всичко което трябва да знаете за системния подход към растеж.
+              Отговори на най-честите въпроси за нашите бизнес инженеринг услуги. Всичко което трябва да знаете за системния подход към растеж. Разгледайте нашите{" "}
+              <Link href="/services">
+                <a className="text-[#ECB629] hover:underline cursor-pointer">услуги</a>
+              </Link>{" "}
+              или{" "}
+              <Link href="/calculators">
+                <a className="text-[#ECB629] hover:underline cursor-pointer">изчислете възвръщаемостта</a>
+              </Link>.
             </motion.p>
 
             {/* Category Filter */}

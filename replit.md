@@ -281,6 +281,7 @@ Changelog:
 - June 27, 2025. Fixed mobile calculator responsive design: improved tab layout with better spacing and vertical stacking on mobile, enhanced input fields with larger height (h-12) and improved typography, optimized result cards with responsive grid layout, made CTA buttons full-width on mobile devices, improved overall mobile user experience for 320px-768px viewports
 - June 27, 2025. Integrated Ahrefs Analytics tracking system: added direct script integration (data-key="7s/ezQNKCvY4HvQHREODIg") in HTML head section, implemented fallback GTM-compatible script for redundancy, updated CSP headers in vercel.json to allow analytics.ahrefs.com domain for script loading and data transmission
 - June 27, 2025. Removed animated black dots from about.tsx CTA section: cleaned up background animation elements that were causing visual clutter, maintained clean yellow background with proper content focus
+- June 27, 2025. Fixed critical SEO issues from Ahrefs audit: resolved duplicate H1 tags by removing static H1 from index.html noscript section, verified unique H1 tags on all service pages (SEO Struktor™, Clickstarter™, Trendlab™), confirmed proper canonical URL configuration via SEOHead component, added contextual internal links to hero section and service pages to fix "Page has no outgoing links" issues - achieved comprehensive internal linking structure for improved SEO performance
 
 ## User Preferences
 

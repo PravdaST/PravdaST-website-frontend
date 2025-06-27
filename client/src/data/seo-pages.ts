@@ -360,5 +360,35 @@ export const pageSEOData: Record<string, Partial<SEOData>> = {
     keywords: "pravdast поверителност, gdpr политика българия, защита лични данни, privacy policy sofia, данни сигурност",
     canonical: "https://www.pravdagency.eu/privacy",
     robots: "index, follow"
+  },
+
+  about: {
+    title: "За Нас - Pravdast | Бизнес Инженери за Растеж",
+    description: "Научете повече за Pravdast - екип от бизнес инженери, които превръщат хаоса в предвидим растеж. История, ценности и подход към бизнес трансформация.",
+    keywords: "pravdast за нас, бизнес инженери българия, екип pravdast, история компания, ценности мисия, about pravdast",
+    canonical: "https://www.pravdagency.eu/about",
+    ogTitle: "За Нас - Екипът на Pravdast",
+    ogDescription: "Ние сме бизнес инженери, които изграждат системи за предвидим растеж.",
+    robots: "index, follow"
+  },
+
+  services: {
+    title: "Услуги - Pravdast | Бизнес Системи за Растеж",
+    description: "Професионални бизнес системи за растеж: SEO Struktor™, Trendlab™, Clickstarter™, Clientomat™. Инженерски подход към маркетинга и продажбите.",
+    keywords: "pravdast услуги, бизнес системи българия, seo услуги, content marketing, реклами оптимизация, клиентска автоматизация",
+    canonical: "https://www.pravdagency.eu/services",
+    ogTitle: "Услуги - Бизнес Системи на Pravdast",
+    ogDescription: "Четири проверени системи за превръщане на хаоса в предвидим растеж.",
+    robots: "index, follow"
+  },
+
+  "case-studies": {
+    title: "Казуси - Pravdast | Успешни Проекти и Резултати",
+    description: "Реални казуси и резултати от внедрени бизнес системи. Вижте как помогнахме на B2B компании да постигнат предвидим растеж с нашите решения.",
+    keywords: "pravdast казуси, успешни проекти българия, резултати клиенти, case studies, примери растеж, success stories",
+    canonical: "https://www.pravdagency.eu/case-studies",
+    ogTitle: "Казуси - Успешни Проекти на Pravdast",
+    ogDescription: "Реални резултати от внедрени бизнес системи за B2B компании.",
+    robots: "index, follow"
   }
 };

@@ -3,6 +3,7 @@ import { Footer } from "@/components/footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
+import { Link } from "wouter";
 import {
   Target,
   Shield,
@@ -192,6 +193,14 @@ export default function About() {
               >
                 Ние изграждаме системи, които работят. Нашата мисия е да
                 превърнем хаотичния растеж в предвидими, измерими резултати.
+                Разгледайте нашите{" "}
+                <Link href="/services">
+                  <a className="text-[#ECB629] hover:underline cursor-pointer">услуги</a>
+                </Link>{" "}
+                и{" "}
+                <Link href="/case-studies">
+                  <a className="text-[#ECB629] hover:underline cursor-pointer">постигнати резултати</a>
+                </Link>.
               </motion.p>
 
               {/* Stats Grid */}

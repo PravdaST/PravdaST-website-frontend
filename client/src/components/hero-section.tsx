@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button"; // Уверете се, че импортвате вашия Button компонент
 import { AnimatedBackground } from "./animated-background"; // И вашия анимиран фон
+import { Link } from "wouter";
 
 export const HeroSection = () => {
   return (
@@ -126,7 +127,14 @@ export const HeroSection = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             Изграждаме системи, които ви дават контрол, носят предвидими приходи
-            и пестят времето ви.
+            и пестят времето ви. Разгледайте нашите{" "}
+            <Link href="/services">
+              <a className="text-[#ECB629] hover:underline cursor-pointer">проверени системи</a>
+            </Link>{" "}
+            и{" "}
+            <Link href="/case-studies">
+              <a className="text-[#ECB629] hover:underline cursor-pointer">реални резултати</a>
+            </Link>.
           </motion.p>
 
           <motion.div

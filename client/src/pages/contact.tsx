@@ -11,6 +11,7 @@ import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
+import { Link } from "wouter";
 import { Mail, Phone, MapPin, Clock, Send, CheckCircle, ArrowRight } from "lucide-react";
 import { SEOHead } from "@/components/seo-head";
 import { pageSEOData } from "@/data/seo-pages";
@@ -231,7 +232,14 @@ export default function Contact() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.4 }}
                 >
-                  Свържете се с нас за безплатна консултация. Ще обсъдим вашите цели и как можем да ви помогнем да ги постигнете.
+                  Свържете се с нас за безплатна консултация. Ще обсъдим вашите цели и как можем да ви помогнем да ги постигнете. Разгледайте нашите{" "}
+                  <Link href="/services">
+                    <a className="text-[#ECB629] hover:underline cursor-pointer">бизнес системи</a>
+                  </Link>{" "}
+                  и{" "}
+                  <Link href="/case-studies">
+                    <a className="text-[#ECB629] hover:underline cursor-pointer">успешни проекти</a>
+                  </Link>.
                 </motion.p>
 
                 {/* Contact Info Cards */}

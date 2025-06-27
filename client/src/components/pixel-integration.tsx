@@ -5,7 +5,7 @@ export function PixelIntegration() {
     // Facebook Pixel Integration
     if (import.meta.env.VITE_FACEBOOK_PIXEL_ID && typeof window !== 'undefined') {
       // Load Facebook Pixel Script
-      !(function(f: any, b: any, e: any, v: any, n?: any, t?: any, s?: any) {
+      (function(f: any, b: any, e: any, v: any, n?: any, t?: any, s?: any) {
         if (f.fbq) return;
         n = f.fbq = function() {
           n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
