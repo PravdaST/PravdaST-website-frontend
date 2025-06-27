@@ -1,0 +1,35 @@
+terms:169 
+            
+            
+            GET https://www.pravdagency.eu/prerender.js net::ERR_ABORTED 404 (Not Found)
+terms:1  Refused to execute script from 'https://www.pravdagency.eu/prerender.js' because its MIME type ('text/plain') is not executable, and strict MIME type checking is enabled.
+[NEW] Explain Console errors by using Copilot in Edge: click
+         
+         to explain an error. 
+        Learn more
+        Don't show again
+index-CWCqjdBP.js:510 Klaviyo: Company ID not configured, skipping load
+index-CWCqjdBP.js:510 Klaviyo loaded successfully
+index-CWCqjdBP.js:510 Klaviyo: Company ID not configured, skipping load
+terms:1  Refused to load the image 'https://d3k81ch9hvuctc.cloudfront.net/company/UTqrCz/images/0e766e89-087a-4267-8142-dc0e80b8f0c4.png' because it violates the following Content Security Policy directive: "img-src 'self' data: https://upload.wikimedia.org https://framerusercontent.com".
+
+terms:1  Refused to load the image 'https://d3k81ch9hvuctc.cloudfront.net/company/Pb3wug/images/9f4a3561-0a89-4507-ad2d-924d657df631.png' because it violates the following Content Security Policy directive: "img-src 'self' data: https://upload.wikimedia.org https://framerusercontent.com".
+
+A bad HTTP response code (404) was received when fetching the script.
+terms:176 SW registration failed: TypeError: Failed to register a ServiceWorker for scope ('https://www.pravdagency.eu/') with script ('https://www.pravdagency.eu/sw-simple.js'): A bad HTTP response code (404) was received when fetching the script.
+manifest.json:1  Manifest: Enctype should be set to either application/x-www-form-urlencoded or multipart/form-data. It currently defaults to application/x-www-form-urlencoded
+index-CWCqjdBP.js:454 SW registered:  ServiceWorkerRegistration {installing: ServiceWorker, waiting: null, active: null, navigationPreload: NavigationPreloadManager, scope: 'https://www.pravdagency.eu/', …}
+sw.js:31 Service Worker: Install Event
+sw.js:36 Service Worker: Caching Static Assets
+index.js:1 
+            
+            
+            GET https://seo-fixer.writesonic.com/site-audit/page_fixes/685a4ad2c5787bfb2fe87e92/https:__www.pravdagency.eu_terms.json 404 (Not Found)
+a @ index.js:1
+(anonymous) @ index.js:1
+sw.js:1  Uncaught (in promise) TypeError: Failed to execute 'addAll' on 'Cache': Request failed
+Promise.then
+(anonymous) @ sw.js:37
+Promise.then
+(anonymous) @ sw.js:35
+index-CWCqjdBP.js:510 Klaviyo loaded successfully
