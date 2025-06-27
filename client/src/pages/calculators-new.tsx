@@ -380,23 +380,23 @@ function ReturnOnInvestmentCalculator({
             <CheckCircle className="w-5 h-5 text-[#ECB629]" />
             Препоръки за подобрение:
           </h4>
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-2">
             <div className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-[#ECB629] rounded-full" />
+              <div className="w-2 h-2 bg-[#ECB629] rounded-full flex-shrink-0" />
               <span className="text-gray-300 text-sm">Органен трафик</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-[#ECB629] rounded-full" />
+              <div className="w-2 h-2 bg-[#ECB629] rounded-full flex-shrink-0" />
               <span className="text-gray-300 text-sm">
                 Техническо подобрение
               </span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-[#ECB629] rounded-full" />
+              <div className="w-2 h-2 bg-[#ECB629] rounded-full flex-shrink-0" />
               <span className="text-gray-300 text-sm">SEO аудит</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-[#ECB629] rounded-full" />
+              <div className="w-2 h-2 bg-[#ECB629] rounded-full flex-shrink-0" />
               <span className="text-gray-300 text-sm">Контент стратегия</span>
             </div>
           </div>
@@ -405,16 +405,19 @@ function ReturnOnInvestmentCalculator({
 
       {/* Input Form */}
       <Card className="bg-slate-800/30 border-slate-700/50 backdrop-blur-lg">
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2 text-white">
-            {icon}
-            {serviceName} - ROI Калкулатор
+        <CardHeader className="pb-4">
+          <CardTitle className="flex flex-col sm:flex-row items-center gap-2 text-white text-lg sm:text-xl">
+            <div className="flex items-center gap-2">
+              {icon}
+              <span className="text-center sm:text-left">{serviceName}</span>
+            </div>
+            <span className="text-sm sm:text-base text-gray-400">ROI Калкулатор</span>
           </CardTitle>
         </CardHeader>
-        <CardContent className="space-y-6">
+        <CardContent className="space-y-4 sm:space-y-6 px-4 sm:px-6">
           <div className="grid grid-cols-1 gap-4 sm:gap-6">
             <div>
-              <Label htmlFor="param1" className="text-white">
+              <Label htmlFor="param1" className="text-white text-sm sm:text-base block mb-2">
                 {serviceInputs.param1.label}
               </Label>
               <Input
@@ -428,12 +431,12 @@ function ReturnOnInvestmentCalculator({
                     [serviceInputs.param1.key]: e.target.value,
                   })
                 }
-                className="bg-slate-900/50 border-slate-600 text-white"
+                className="bg-slate-900/50 border-slate-600 text-white h-12 text-base"
               />
             </div>
 
             <div>
-              <Label htmlFor="param2" className="text-white">
+              <Label htmlFor="param2" className="text-white text-sm sm:text-base block mb-2">
                 {serviceInputs.param2.label}
               </Label>
               <Input
@@ -447,12 +450,12 @@ function ReturnOnInvestmentCalculator({
                     [serviceInputs.param2.key]: e.target.value,
                   })
                 }
-                className="bg-slate-900/50 border-slate-600 text-white"
+                className="bg-slate-900/50 border-slate-600 text-white h-12 text-base"
               />
             </div>
 
             <div>
-              <Label htmlFor="param3" className="text-white">
+              <Label htmlFor="param3" className="text-white text-sm sm:text-base block mb-2">
                 {serviceInputs.param3.label}
               </Label>
               <Input
@@ -466,7 +469,7 @@ function ReturnOnInvestmentCalculator({
                     [serviceInputs.param3.key]: e.target.value,
                   })
                 }
-                className="bg-slate-900/50 border-slate-600 text-white"
+                className="bg-slate-900/50 border-slate-600 text-white h-12 text-base"
               />
             </div>
 
@@ -645,81 +648,81 @@ function ReturnOnInvestmentCalculator({
           </Card>
 
           {/* ROI Details */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             <Card className="bg-slate-800/30 border-slate-700/50 backdrop-blur-lg">
-              <CardContent className="p-6">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 bg-green-500/10 rounded-lg flex items-center justify-center">
-                    <TrendingUp className="w-5 h-5 text-green-500" />
+              <CardContent className="p-4 sm:p-6">
+                <div className="flex items-center gap-3 mb-3 sm:mb-4">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 bg-green-500/10 rounded-lg flex items-center justify-center">
+                    <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5 text-green-500" />
                   </div>
                   <div>
-                    <h4 className="text-white font-semibold">ROI</h4>
-                    <p className="text-gray-400 text-sm">Възвращаемост</p>
+                    <h4 className="text-white font-semibold text-sm sm:text-base">ROI</h4>
+                    <p className="text-gray-400 text-xs sm:text-sm">Възвращаемост</p>
                   </div>
                 </div>
-                <div className="text-2xl font-bold text-green-500 mb-1">
+                <div className="text-xl sm:text-2xl font-bold text-green-500 mb-1">
                   {results.monthlyROI > 0
                     ? `${results.monthlyROI.toFixed(0)}%`
                     : "245%"}
                 </div>
-                <div className="text-gray-400 text-sm">месечно</div>
+                <div className="text-gray-400 text-xs sm:text-sm">месечно</div>
               </CardContent>
             </Card>
 
             <Card className="bg-slate-800/30 border-slate-700/50 backdrop-blur-lg">
-              <CardContent className="p-6">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 bg-blue-500/10 rounded-lg flex items-center justify-center">
-                    <DollarSign className="w-5 h-5 text-blue-500" />
+              <CardContent className="p-4 sm:p-6">
+                <div className="flex items-center gap-3 mb-3 sm:mb-4">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 bg-blue-500/10 rounded-lg flex items-center justify-center">
+                    <DollarSign className="w-4 h-4 sm:w-5 sm:h-5 text-blue-500" />
                   </div>
                   <div>
-                    <h4 className="text-white font-semibold">Приход</h4>
-                    <p className="text-gray-400 text-sm">Допълнителен</p>
+                    <h4 className="text-white font-semibold text-sm sm:text-base">Приход</h4>
+                    <p className="text-gray-400 text-xs sm:text-sm">Допълнителен</p>
                   </div>
                 </div>
-                <div className="text-2xl font-bold text-blue-500 mb-1">
+                <div className="text-xl sm:text-2xl font-bold text-blue-500 mb-1">
                   {results.monthlyROI > 0
                     ? `${Math.round((results.monthlyROI * monthlyPrice) / 100).toLocaleString("bg-BG")} лв.`
                     : "45 000 лв."}
                 </div>
-                <div className="text-gray-400 text-sm">месечно</div>
+                <div className="text-gray-400 text-xs sm:text-sm">месечно</div>
               </CardContent>
             </Card>
 
-            <Card className="bg-slate-800/30 border-slate-700/50 backdrop-blur-lg">
-              <CardContent className="p-6">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 bg-purple-500/10 rounded-lg flex items-center justify-center">
-                    <Clock className="w-5 h-5 text-purple-500" />
+            <Card className="bg-slate-800/30 border-slate-700/50 backdrop-blur-lg sm:col-span-2 lg:col-span-1">
+              <CardContent className="p-4 sm:p-6">
+                <div className="flex items-center gap-3 mb-3 sm:mb-4">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 bg-purple-500/10 rounded-lg flex items-center justify-center">
+                    <Clock className="w-4 h-4 sm:w-5 sm:h-5 text-purple-500" />
                   </div>
                   <div>
-                    <h4 className="text-white font-semibold">Период</h4>
-                    <p className="text-gray-400 text-sm">Възвращаемост</p>
+                    <h4 className="text-white font-semibold text-sm sm:text-base">Период</h4>
+                    <p className="text-gray-400 text-xs sm:text-sm">Възвращаемост</p>
                   </div>
                 </div>
-                <div className="text-2xl font-bold text-purple-500 mb-1">
+                <div className="text-xl sm:text-2xl font-bold text-purple-500 mb-1">
                   {results.paybackPeriod > 0 && results.paybackPeriod < 12
                     ? `${results.paybackPeriod.toFixed(1)} мес.`
                     : "0.8 мес."}
                 </div>
-                <div className="text-gray-400 text-sm">срок</div>
+                <div className="text-gray-400 text-xs sm:text-sm">срок</div>
               </CardContent>
             </Card>
           </div>
 
           {/* CTA Section */}
           <Card className="bg-slate-900/80 border-slate-700/50 backdrop-blur-lg">
-            <CardContent className="p-8 text-center">
-              <h3 className="text-2xl font-bold text-white mb-4">
+            <CardContent className="p-4 sm:p-6 md:p-8 text-center">
+              <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 sm:mb-4">
                 Готови за <span className="text-[#ECB629]">трансформация</span>?
               </h3>
-              <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
+              <p className="text-gray-300 mb-4 sm:mb-6 max-w-2xl mx-auto text-sm sm:text-base">
                 {serviceName === "SEO Struktor™" && `Вашият SEO потенциал е ${results.score}/100. Започнете оптимизацията днес и постигнете измерими резултати.`}
                 {serviceName === "Trendlab™" && `Вашият content потенциал е ${results.score}/100. Започнете създаването на съдържание днес и постигнете измерими резултати.`}
                 {serviceName === "Clickstarter™" && `Вашият реклама потенциал е ${results.score}/100. Започнете оптимизацията на рекламите днес и постигнете измерими резултати.`}
                 {serviceName === "Clientomat™" && `Вашият клиент потенциал е ${results.score}/100. Започнете автоматизацията днес и постигнете измерими резултати.`}
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <div className="flex flex-col gap-3 sm:gap-4 justify-center">
                 <Button
                   onClick={() =>
                     window.open(
@@ -727,7 +730,7 @@ function ReturnOnInvestmentCalculator({
                       "_blank",
                     )
                   }
-                  className="bg-[#ECB629] hover:bg-[#ECB629]/90 text-black font-semibold px-8 py-3 rounded-xl"
+                  className="bg-[#ECB629] hover:bg-[#ECB629]/90 text-black font-semibold px-6 sm:px-8 py-3 rounded-xl w-full sm:w-auto text-sm sm:text-base h-12"
                 >
                   Получете безплатен SEO одит
                   <ArrowRight className="w-4 h-4 ml-2" />
@@ -746,7 +749,7 @@ function ReturnOnInvestmentCalculator({
                       window.location.href = "/services/clientomat";
                     else window.location.href = "/services";
                   }}
-                  className="border-[#ECB629] text-[#ECB629] hover:bg-[#ECB629]/10 px-8 py-3 rounded-xl"
+                  className="border-[#ECB629] text-[#ECB629] hover:bg-[#ECB629]/10 px-6 sm:px-8 py-3 rounded-xl w-full sm:w-auto text-sm sm:text-base h-12"
                 >
                   Научете повече за услугата
                 </Button>
@@ -867,14 +870,14 @@ export default function CalculatorsNew() {
         <div className="relative z-10 pt-20 sm:pt-24 pb-8 sm:pb-12">
           <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
             {/* Header */}
-            <div className="text-center mb-12 sm:mb-16">
+            <div className="text-center mb-8 sm:mb-12 md:mb-16">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="inline-flex items-center gap-2 bg-slate-800/50 backdrop-blur-sm border border-[#ECB629]/30 rounded-full px-4 py-2 mb-6"
+                className="inline-flex items-center gap-2 bg-slate-800/50 backdrop-blur-sm border border-[#ECB629]/30 rounded-full px-3 sm:px-4 py-2 mb-4 sm:mb-6 text-sm"
               >
                 <Calculator className="w-4 h-4 text-[#ECB629]" />
-                <span className="text-sm text-gray-300">
+                <span className="text-xs sm:text-sm text-gray-300">
                   Безплатни ROI калкулатори
                 </span>
               </motion.div>
@@ -883,7 +886,7 @@ export default function CalculatorsNew() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 }}
-                className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 px-2 sm:px-0"
+                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3 sm:mb-4 px-2 sm:px-0 leading-tight"
               >
                 Pravda ST <span className="text-[#ECB629]">Калкулатори</span>
               </motion.h1>
@@ -892,7 +895,7 @@ export default function CalculatorsNew() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
-                className="text-xl text-gray-300 max-w-3xl mx-auto"
+                className="text-base sm:text-lg md:text-xl text-gray-300 max-w-3xl mx-auto px-2 sm:px-0 leading-relaxed"
               >
                 Изчислете{" "}
                 <span className="bg-[#ECB629] text-black px-2 py-1 rounded font-semibold">
@@ -905,17 +908,17 @@ export default function CalculatorsNew() {
 
             {/* Calculator Tabs */}
             <Tabs defaultValue="seo-struktor-" className="space-y-8">
-              <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 bg-slate-800/50 backdrop-blur-sm border border-slate-700/30">
+              <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 bg-slate-800/50 backdrop-blur-sm border border-slate-700/30 h-auto p-2">
                 {services.map((service, index) => (
                   <TabsTrigger
                     key={index}
                     value={service.name.toLowerCase().replace(/[™\s]/g, "-")}
-                    className="data-[state=active]:bg-[#ECB629] data-[state=active]:text-black"
+                    className="data-[state=active]:bg-[#ECB629] data-[state=active]:text-black py-3 px-2 md:px-4 h-auto text-xs md:text-sm"
                   >
-                    <div className="flex items-center gap-2">
-                      {service.icon}
-                      <span className="hidden md:inline">{service.name}</span>
-                      <span className="md:hidden">
+                    <div className="flex flex-col md:flex-row items-center gap-1 md:gap-2">
+                      <div className="text-lg md:text-base">{service.icon}</div>
+                      <span className="hidden md:inline font-medium">{service.name}</span>
+                      <span className="md:hidden text-center font-medium leading-tight">
                         {service.name.split("™")[0]}
                       </span>
                     </div>
