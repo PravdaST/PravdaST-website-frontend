@@ -1,25 +1,51 @@
-// Prerender script for better SEO crawling
-// This ensures critical content is available even before React loads
-
-document.addEventListener('DOMContentLoaded', function() {
-  // Show SEO content temporarily for crawlers
+// Prerender SEO Script - Shows H1/H2 content before React loads
+(function() {
+  'use strict';
+  
+  // Show SEO content immediately for crawlers
   const seoContent = document.getElementById('seo-content');
-  if (seoContent && !document.getElementById('root').hasChildNodes()) {
+  if (seoContent) {
     seoContent.style.opacity = '1';
     seoContent.style.height = 'auto';
     seoContent.style.overflow = 'visible';
-    seoContent.style.padding = '20px';
-    seoContent.style.textAlign = 'center';
-    seoContent.style.fontFamily = 'Arial, sans-serif';
+    seoContent.style.position = 'absolute';
+    seoContent.style.top = '0';
+    seoContent.style.left = '0';
+    seoContent.style.width = '100%';
+    seoContent.style.zIndex = '9999';
     seoContent.style.backgroundColor = '#0f172a';
-    seoContent.style.color = '#ffffff';
-    seoContent.style.minHeight = '100vh';
-    
-    // Hide once React loads
-    setTimeout(() => {
-      if (document.getElementById('root').hasChildNodes()) {
-        seoContent.style.display = 'none';
-      }
-    }, 1000);
+    seoContent.style.color = 'white';
+    seoContent.style.padding = '20px';
   }
-});
+  
+  // Hide SEO content after React loads
+  window.addEventListener('load', function() {
+    setTimeout(function() {
+      if (seoContent && document.getElementById('root').children.length > 0) {
+        seoContent.style.opacity = '0';
+        seoContent.style.height = '0';
+        seoContent.style.overflow = 'hidden';
+        seoContent.style.position = 'static';
+      }
+    }, 100);
+  });
+  
+  // Fallback for React mount
+  const checkReactMount = setInterval(function() {
+    const root = document.getElementById('root');
+    if (root && root.children.length > 0) {
+      if (seoContent) {
+        seoContent.style.opacity = '0';
+        seoContent.style.height = '0';
+        seoContent.style.overflow = 'hidden';
+        seoContent.style.position = 'static';
+      }
+      clearInterval(checkReactMount);
+    }
+  }, 50);
+  
+  // Clear interval after 5 seconds to prevent infinite checking
+  setTimeout(function() {
+    clearInterval(checkReactMount);
+  }, 5000);
+})();
