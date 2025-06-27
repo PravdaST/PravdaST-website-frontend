@@ -37,7 +37,7 @@ import About from "@/pages/about";
 import Contact from "@/pages/contact-new";
 import Terms from "@/pages/terms";
 import Privacy from "@/pages/privacy";
-import Calculators from "@/pages/calculators-new-fixed";
+import Calculators from "@/pages/calculators-new";
 import AnalyticsDashboard from "@/pages/analytics-dashboard";
 import NotFound from "@/pages/not-found";
 
