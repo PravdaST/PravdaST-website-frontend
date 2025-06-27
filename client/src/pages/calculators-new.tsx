@@ -56,44 +56,124 @@ function ROICalculator({
     switch (serviceName) {
       case "SEO Struktor™":
         return {
-          param1: { key: "currentTraffic", label: "Текущ месечен трафик", placeholder: "напр. 5000" },
-          param2: { key: "currentRanking", label: "Средна позиция в Google", placeholder: "напр. 45" },
-          param3: { key: "targetKeywords", label: "Брой целеви ключови думи", placeholder: "напр. 20" },
-          param4: { key: "industry", label: "Индустрия", placeholder: "Изберете индустрия" }
+          param1: {
+            key: "currentTraffic",
+            label: "Текущ месечен трафик",
+            placeholder: "напр. 5000",
+          },
+          param2: {
+            key: "currentRanking",
+            label: "Средна позиция в Google",
+            placeholder: "напр. 45",
+          },
+          param3: {
+            key: "targetKeywords",
+            label: "Брой целеви ключови думи",
+            placeholder: "напр. 20",
+          },
+          param4: {
+            key: "industry",
+            label: "Индустрия",
+            placeholder: "Изберете индустрия",
+          },
         };
       case "Trendlab™":
         return {
-          param1: { key: "currentFollowers", label: "Текущи последователи", placeholder: "напр. 2500" },
-          param2: { key: "postsPerWeek", label: "Публикации седмично", placeholder: "напр. 3" },
-          param3: { key: "engagementRate", label: "Engagement rate (%)", placeholder: "напр. 3.5" },
-          param4: { key: "industry", label: "Индустрия", placeholder: "Изберете индустрия" }
+          param1: {
+            key: "currentFollowers",
+            label: "Текущи последователи",
+            placeholder: "напр. 2500",
+          },
+          param2: {
+            key: "postsPerWeek",
+            label: "Публикации седмично",
+            placeholder: "напр. 3",
+          },
+          param3: {
+            key: "engagementRate",
+            label: "Engagement rate (%)",
+            placeholder: "напр. 3.5",
+          },
+          param4: {
+            key: "industry",
+            label: "Индустрия",
+            placeholder: "Изберете индустрия",
+          },
         };
       case "Clickstarter™":
         return {
-          param1: { key: "monthlyAdSpend", label: "Месечен ad spend (лв.)", placeholder: "напр. 8000" },
-          param2: { key: "currentCPC", label: "Текущ CPC (лв.)", placeholder: "напр. 3.20" },
-          param3: { key: "monthlyConversions", label: "Месечни конверсии", placeholder: "напр. 75" },
-          param4: { key: "industry", label: "Индустрия", placeholder: "Изберете индустрия" }
+          param1: {
+            key: "monthlyAdSpend",
+            label: "Месечен ad spend (лв.)",
+            placeholder: "напр. 8000",
+          },
+          param2: {
+            key: "currentCPC",
+            label: "Текущ CPC (лв.)",
+            placeholder: "напр. 3.20",
+          },
+          param3: {
+            key: "monthlyConversions",
+            label: "Месечни конверсии",
+            placeholder: "напр. 75",
+          },
+          param4: {
+            key: "industry",
+            label: "Индустрия",
+            placeholder: "Изберете индустрия",
+          },
         };
       case "Clientomat™":
         return {
-          param1: { key: "monthlyClients", label: "Месечни клиенти", placeholder: "напр. 80" },
-          param2: { key: "averageOrderValue", label: "Средна поръчка (лв.)", placeholder: "напр. 3500" },
-          param3: { key: "repeatRate", label: "Repeat rate (%)", placeholder: "напр. 25" },
-          param4: { key: "industry", label: "Индустрия", placeholder: "Изберете индустрия" }
+          param1: {
+            key: "monthlyClients",
+            label: "Месечни клиенти",
+            placeholder: "напр. 80",
+          },
+          param2: {
+            key: "averageOrderValue",
+            label: "Средна поръчка (лв.)",
+            placeholder: "напр. 3500",
+          },
+          param3: {
+            key: "repeatRate",
+            label: "Repeat rate (%)",
+            placeholder: "напр. 25",
+          },
+          param4: {
+            key: "industry",
+            label: "Индустрия",
+            placeholder: "Изберете индустрия",
+          },
         };
       default:
         return {
-          param1: { key: "currentMonthlyRevenue", label: "Текущ месечен оборот (лв.)", placeholder: "напр. 25000" },
-          param2: { key: "currentMonthlyTraffic", label: "Месечен трафик", placeholder: "напр. 5000" },
-          param3: { key: "averageOrderValue", label: "Средна поръчка (лв.)", placeholder: "напр. 150" },
-          param4: { key: "industry", label: "Индустрия", placeholder: "Изберете индустрия" }
+          param1: {
+            key: "currentMonthlyRevenue",
+            label: "Текущ месечен оборот (лв.)",
+            placeholder: "напр. 25000",
+          },
+          param2: {
+            key: "currentMonthlyTraffic",
+            label: "Месечен трафик",
+            placeholder: "напр. 5000",
+          },
+          param3: {
+            key: "averageOrderValue",
+            label: "Средна поръчка (лв.)",
+            placeholder: "напр. 150",
+          },
+          param4: {
+            key: "industry",
+            label: "Индустрия",
+            placeholder: "Изберете индустрия",
+          },
         };
     }
   };
 
   const serviceInputs = getServiceInputs();
-  
+
   const [inputs, setInputs] = useState({
     [serviceInputs.param1.key]: "",
     [serviceInputs.param2.key]: "",
@@ -126,51 +206,69 @@ function ROICalculator({
           const newLeads = newTraffic * 0.025; // 2.5% conversion
           const revenuePerLead = 2500; // Average revenue per lead
           const additionalRevenue = newLeads * revenuePerLead;
-          const monthlyROI = ((additionalRevenue - monthlyPrice) / monthlyPrice) * 100;
-          const score = Math.min(95, 40 + (param1 > 1000 ? 15 : 0) + (param2 < 20 ? 20 : 10) + (param3 > 10 ? 15 : 10));
-          
+          const monthlyROI =
+            ((additionalRevenue - monthlyPrice) / monthlyPrice) * 100;
+          const score = Math.min(
+            95,
+            40 +
+              (param1 > 1000 ? 15 : 0) +
+              (param2 < 20 ? 20 : 10) +
+              (param3 > 10 ? 15 : 10),
+          );
+
           return {
             monthlyROI,
             metric1: newTraffic,
             metric2: newLeads,
             score,
             paybackPeriod: monthlyPrice / Math.max(additionalRevenue / 12, 1),
-            timeframe: "3-6 месеца"
+            timeframe: "3-6 месеца",
           };
         }
         case "Trendlab™": {
           // Followers/content/engagement calculations
           const newFollowers = param1 * 4.5; // 450% increase
           const monthlyViews = (newFollowers * param2 * 250) / 1000; // Views in K
-          const authorityScore = Math.min(95, 40 + (param2 * 8) + (param3 * 5));
+          const authorityScore = Math.min(95, 40 + param2 * 8 + param3 * 5);
           const revenueFromContent = newFollowers * 0.5; // Revenue per follower
-          const monthlyROI = ((revenueFromContent - monthlyPrice) / monthlyPrice) * 100;
-          
+          const monthlyROI =
+            ((revenueFromContent - monthlyPrice) / monthlyPrice) * 100;
+
           return {
             monthlyROI,
             metric1: newFollowers,
             metric2: monthlyViews,
             score: authorityScore,
             paybackPeriod: monthlyPrice / Math.max(revenueFromContent / 12, 1),
-            timeframe: "2-4 месеца"
+            timeframe: "2-4 месеца",
           };
         }
         case "Clickstarter™": {
           // Ad spend/CPC/conversions calculations
           const newConversions = param3 * 1.85; // 85% increase
           const newCPC = param2 * 0.75; // 25% CPC reduction
-          const costSavings = param1 * 0.20; // 20% cost savings
+          const costSavings = param1 * 0.2; // 20% cost savings
           const additionalRevenue = (newConversions - param3) * 500; // Revenue per conversion
-          const monthlyROI = ((additionalRevenue + costSavings - monthlyPrice) / monthlyPrice) * 100;
-          const score = Math.min(95, 50 + (param1 > 5000 ? 15 : 10) + (param2 < 2 ? 20 : 15) + (param3 > 50 ? 10 : 5));
-          
+          const monthlyROI =
+            ((additionalRevenue + costSavings - monthlyPrice) / monthlyPrice) *
+            100;
+          const score = Math.min(
+            95,
+            50 +
+              (param1 > 5000 ? 15 : 10) +
+              (param2 < 2 ? 20 : 15) +
+              (param3 > 50 ? 10 : 5),
+          );
+
           return {
             monthlyROI,
             metric1: newConversions,
             metric2: costSavings,
             score,
-            paybackPeriod: monthlyPrice / Math.max((additionalRevenue + costSavings) / 12, 1),
-            timeframe: "1-3 месеца"
+            paybackPeriod:
+              monthlyPrice /
+              Math.max((additionalRevenue + costSavings) / 12, 1),
+            timeframe: "1-3 месеца",
           };
         }
         case "Clientomat™": {
@@ -179,16 +277,23 @@ function ROICalculator({
           const newLTV = param2 * 2.2; // 220% LTV increase
           const additionalClients = param1 * 0.4; // 40% more repeat clients
           const additionalRevenue = additionalClients * newLTV * 0.3; // Monthly portion
-          const monthlyROI = ((additionalRevenue - monthlyPrice) / monthlyPrice) * 100;
-          const score = Math.min(95, 45 + (param1 > 50 ? 15 : 10) + (param2 > 1000 ? 15 : 10) + (param3 > 20 ? 15 : 10));
-          
+          const monthlyROI =
+            ((additionalRevenue - monthlyPrice) / monthlyPrice) * 100;
+          const score = Math.min(
+            95,
+            45 +
+              (param1 > 50 ? 15 : 10) +
+              (param2 > 1000 ? 15 : 10) +
+              (param3 > 20 ? 15 : 10),
+          );
+
           return {
             monthlyROI,
             metric1: newRepeatRate,
             metric2: newLTV / 1000, // In K
             score,
             paybackPeriod: monthlyPrice / Math.max(additionalRevenue / 12, 1),
-            timeframe: "2-5 месеца"
+            timeframe: "2-5 месеца",
           };
         }
         default:
@@ -198,7 +303,7 @@ function ROICalculator({
             metric2: 0,
             score: 0,
             paybackPeriod: 0,
-            timeframe: "3-6 месеца"
+            timeframe: "3-6 месеца",
           };
       }
     }
@@ -208,7 +313,7 @@ function ROICalculator({
       metric2: 0,
       score: 0,
       paybackPeriod: 0,
-      timeframe: "3-6 месеца"
+      timeframe: "3-6 меесеца",
     };
   };
 
@@ -221,7 +326,7 @@ function ROICalculator({
     const param1 = parseFloat(inputs[serviceInputs.param1.key]) || 0;
     const param2 = parseFloat(inputs[serviceInputs.param2.key]) || 0;
     const param3 = parseFloat(inputs[serviceInputs.param3.key]) || 0;
-    
+
     const recs = [];
     switch (serviceName) {
       case "SEO Struktor™":
@@ -264,8 +369,10 @@ function ROICalculator({
           {icon}
           <span className="text-sm text-gray-300">{serviceName}</span>
         </motion.div>
-        <p className="text-gray-300 text-lg max-w-2xl mx-auto mb-4">{description}</p>
-        
+        <p className="text-gray-300 text-lg max-w-2xl mx-auto mb-4">
+          {description}
+        </p>
+
         {/* Recommendations */}
         <div className="bg-slate-800/40 rounded-xl p-4 border border-[#ECB629]/20 max-w-2xl mx-auto">
           <h4 className="text-white font-semibold mb-4 flex items-center gap-2 justify-center">
@@ -279,7 +386,9 @@ function ROICalculator({
             </div>
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 bg-[#ECB629] rounded-full" />
-              <span className="text-gray-300 text-sm">Техническо подобрение</span>
+              <span className="text-gray-300 text-sm">
+                Техническо подобрение
+              </span>
             </div>
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 bg-[#ECB629] rounded-full" />
@@ -472,13 +581,16 @@ function ROICalculator({
                     {serviceName === "Trendlab™" && "+"}
                     {serviceName === "Clickstarter™" && "+"}
                     {serviceName === "Clientomat™" && ""}
-                    {results.metric1 > 0 ? Math.round(results.metric1).toLocaleString("bg-BG") : "0"}
+                    {results.metric1 > 0
+                      ? Math.round(results.metric1).toLocaleString("bg-BG")
+                      : "0"}
                     {serviceName === "Clientomat™" && "%"}
                   </div>
                   <div className="text-gray-400 text-sm">
                     {serviceName === "SEO Struktor™" && "Нов трафик/месец"}
                     {serviceName === "Trendlab™" && "Нови последователи"}
-                    {serviceName === "Clickstarter™" && "Допълнителни конверсии"}
+                    {serviceName === "Clickstarter™" &&
+                      "Допълнителни конверсии"}
                     {serviceName === "Clientomat™" && "Повторни поръчки (%)"}
                   </div>
                 </div>
@@ -489,7 +601,9 @@ function ROICalculator({
                     {serviceName === "Trendlab™" && ""}
                     {serviceName === "Clickstarter™" && "-"}
                     {serviceName === "Clientomat™" && "+"}
-                    {results.metric2 > 0 ? Math.round(results.metric2).toLocaleString("bg-BG") : "0"}
+                    {results.metric2 > 0
+                      ? Math.round(results.metric2).toLocaleString("bg-BG")
+                      : "0"}
                     {serviceName === "Trendlab™" && "K"}
                     {serviceName === "Clickstarter™" && " лв."}
                     {serviceName === "Clientomat™" && "K"}
@@ -507,11 +621,15 @@ function ROICalculator({
               <div>
                 <div className="flex items-center justify-center gap-2 mb-2">
                   <DollarSign className="w-5 h-5 text-[#ECB629]" />
-                  <span className="text-[#ECB629] font-semibold">Стартова инвестиция: {monthlyPrice.toLocaleString('bg-BG')} лв./месец</span>
+                  <span className="text-[#ECB629] font-semibold">
+                    Стартова инвестиция: {monthlyPrice.toLocaleString("bg-BG")}{" "}
+                    лв./месец
+                  </span>
                 </div>
                 <p className="text-gray-400 text-sm text-center">
-                  Това са приходите, които може да ви донесе тази инвестиция на база трафика, който системата генерира. 
-                  Спрете да харчите без план - започнете да строите с цифри.
+                  Това са приходите, които може да ви донесе тази инвестиция на
+                  база трафика, който системата генерира. Спрете да харчите без
+                  план - започнете да строите с цифри.
                 </p>
               </div>
             </CardContent>
