@@ -280,6 +280,7 @@ Changelog:
 - June 27, 2025. Executed comprehensive SEO audit achieving 98/100 score: fixed duplicate object keys in seo-pages.ts, updated all service information for Trendlab™ and Clickstarter™, corrected Varna coordinates (43.2141, 27.9147) in geo markup, verified all 12 pages have optimized titles (50-60 chars), meta descriptions (155 chars), Schema.org markup, robots.txt and sitemap.xml functionality - website 100% ready for Google indexing and ranking in Bulgarian market
 - June 27, 2025. Fixed mobile calculator responsive design: improved tab layout with better spacing and vertical stacking on mobile, enhanced input fields with larger height (h-12) and improved typography, optimized result cards with responsive grid layout, made CTA buttons full-width on mobile devices, improved overall mobile user experience for 320px-768px viewports
 - June 27, 2025. Integrated Ahrefs Analytics tracking system: added direct script integration (data-key="7s/ezQNKCvY4HvQHREODIg") in HTML head section, implemented fallback GTM-compatible script for redundancy, updated CSP headers in vercel.json to allow analytics.ahrefs.com domain for script loading and data transmission
+- June 27, 2025. Removed animated black dots from about.tsx CTA section: cleaned up background animation elements that were causing visual clutter, maintained clean yellow background with proper content focus
 
 ## User Preferences
 
