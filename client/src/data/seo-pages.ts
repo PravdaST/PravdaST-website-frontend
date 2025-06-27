@@ -449,4 +449,153 @@ export const pageSEOData: Record<string, Partial<SEOData>> = {
       "mainEntityOfPage": "https://www.pravdagency.eu/blog/seo-struktor-revolutsionen-podhod"
     }
   },
+
+  "services/trendlab": {
+    title: "Trendlab™ - Система за Авторитетно Съдържание | България",
+    description: "Trendlab™ превръща експертизата ви в авторитетно съдържание, което привлича клиенти. Стратегия, създаване и разпространение на съдържание. ROI 400%+.",
+    keywords: "trendlab, content marketing българия, авторитетно съдържание, експертен контент, content creation sofia, блог стратегия, thought leadership българия, съдържание roi 2025",
+    canonical: "https://www.pravdagency.eu/services/trendlab",
+    ogTitle: "Trendlab™ - Авторитетно Съдържание за Експерти",
+    ogDescription: "Превърнете експертизата си в магнит за клиенти с нашата система за създаване на авторитетно съдържание.",
+    ogImage: "https://www.pravdagency.eu/og-trendlab.jpg",
+    ogType: "product",
+    twitterCard: "summary_large_image",
+    twitterTitle: "Trendlab™ - Система за Авторитетно Съдържание",
+    twitterDescription: "Превърнете експертизата си в магнит за клиенти със съдържание.",
+    twitterImage: "https://www.pravdagency.eu/twitter-trendlab.jpg",
+    robots: "index, follow, max-snippet:-1, max-image-preview:large",
+    structuredData: {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Trendlab™",
+      "description": "Система за създаване и разпространение на авторитетно съдържание",
+      "provider": {
+        "@type": "Organization",
+        "name": "Pravda ST"
+      },
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "BGN",
+        "price": "3450",
+        "priceSpecification": {
+          "@type": "UnitPriceSpecification",
+          "price": "3450",
+          "priceCurrency": "BGN",
+          "billingIncrement": "месечно"
+        }
+      }
+    }
+  },
+
+  "services/clickstarter": {
+    title: "Clickstarter™ - Оптимизация на Реклами | България",
+    description: "Clickstarter™ оптимизира вашите реклами за максимален ROI. Facebook, Google, LinkedIn - всички канали в една система. Намаляване на разходите с 40%+.",
+    keywords: "clickstarter, facebook реклами българия, google ads оптимизация, linkedin реклами sofia, ppc управление, ad optimization, реклама roi, digital advertising 2025",
+    canonical: "https://www.pravdagency.eu/services/clickstarter",
+    ogTitle: "Clickstarter™ - Оптимизация на Реклами за Максимален ROI",
+    ogDescription: "Превърнете рекламните разходи в предсказуеми приходи с нашата оптимизационна система.",
+    ogImage: "https://www.pravdagency.eu/og-clickstarter.jpg",
+    ogType: "product",
+    twitterCard: "summary_large_image",
+    twitterTitle: "Clickstarter™ - Оптимизация на Реклами",
+    twitterDescription: "Превърнете рекламните разходи в предсказуеми приходи.",
+    twitterImage: "https://www.pravdagency.eu/twitter-clickstarter.jpg",
+    robots: "index, follow, max-snippet:-1, max-image-preview:large",
+    structuredData: {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Clickstarter™",
+      "description": "Система за оптимизация на реклами във всички дигитални канали",
+      "provider": {
+        "@type": "Organization",
+        "name": "Pravda ST"
+      },
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "BGN",
+        "price": "1570",
+        "priceSpecification": {
+          "@type": "UnitPriceSpecification",
+          "price": "1570",
+          "priceCurrency": "BGN",
+          "billingIncrement": "месечно"
+        }
+      }
+    }
+  },
+
+  calculators: {
+    title: "ROI Калкулатори - Изчислете Печалбата от Системите | Pravdast",
+    description: "Безплатни ROI калкулатори за всички наши системи. Изчислете точната печалба от SEO Struktor™, Trendlab™, Clickstarter™, Clientomat™. Спрете да гадаете!",
+    keywords: "roi калкулатор българия, seo roi изчисление, маркетинг калкулатор, печалба от реклами, бизнес калкулатор софия, pravdast roi tools, marketing calculator 2025",
+    canonical: "https://www.pravdagency.eu/calculators",
+    ogTitle: "ROI Калкулатори - Изчислете Точната Печалба",
+    ogDescription: "Безплатни калкулатори за изчисляване на ROI от всички наши бизнес системи.",
+    ogImage: "https://www.pravdagency.eu/og-calculators.jpg",
+    ogType: "website",
+    twitterCard: "summary_large_image",
+    twitterTitle: "ROI Калкулатори от Pravdast",
+    twitterDescription: "Изчислете точната печалба от бизнес системите ни.",
+    twitterImage: "https://www.pravdagency.eu/twitter-calculators.jpg",
+    robots: "index, follow, max-snippet:-1, max-image-preview:large",
+    structuredData: {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "ROI Калкулатори",
+      "description": "Безплатни калкулатори за изчисляване на възвращаемост от инвестиция",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web Browser",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "BGN"
+      }
+    }
+  },
+
+  faq: {
+    title: "Често Задавани Въпроси | Pravdast - Бизнес Инженеринг",
+    description: "Отговори на най-честите въпроси за нашите бизнес системи, цени, процеси и резултати. Всичко което трябва да знаете за Pravdast услугите.",
+    keywords: "pravdast въпроси, бизнес инженеринг faq, цени услуги българия, как работи seo struktor, clientomat въпроси, често задавани въпроси sofia",
+    canonical: "https://www.pravdagency.eu/faq",
+    ogTitle: "Често Задавани Въпроси - Pravdast",
+    ogDescription: "Намерете отговори на всички въпроси за нашите бизнес системи и услуги.",
+    ogImage: "https://www.pravdagency.eu/og-faq.jpg",
+    ogType: "website",
+    twitterCard: "summary_large_image",
+    twitterTitle: "FAQ - Pravdast Бизнес Системи",
+    twitterDescription: "Отговори на най-честите въпроси за нашите услуги.",
+    twitterImage: "https://www.pravdagency.eu/twitter-faq.jpg",
+    robots: "index, follow, max-snippet:-1, max-image-preview:large",
+    structuredData: {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Колко време отнема внедряването на системите?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Зависи от системата - SEO Struktor™ стартира за 2-3 седмици, Clientomat™ за 1-2 седмици."
+          }
+        }
+      ]
+    }
+  },
+
+  terms: {
+    title: "Условия за Ползване | Pravdast - Бизнес Инженеринг",
+    description: "Условия за ползване на услугите на Pravdast. Права и задължения, политика за плащания, гаранции и отговорности при използване на нашите бизнес системи.",
+    keywords: "pravdast условия ползване, бизнес услуги договор, terms of service българия, правила използване, юридически условия sofia",
+    canonical: "https://www.pravdagency.eu/terms",
+    robots: "index, follow"
+  },
+
+  privacy: {
+    title: "Политика за Поверителност | Pravdast - Защита на Данни",
+    description: "Политика за поверителност на Pravdast. Как събираме, използваме и защитаваме личните ви данни в съответствие с GDPR и българското законодателство.",
+    keywords: "pravdast поверителност, gdpr политика българия, защита лични данни, privacy policy sofia, данни сигурност",
+    canonical: "https://www.pravdagency.eu/privacy",
+    robots: "index, follow"
+  }
 };
