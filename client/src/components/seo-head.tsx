@@ -59,8 +59,8 @@ export function SEOHead({ seo, pageSlug }: SEOHeadProps) {
     updateMetaTag('language', 'Bulgarian');
     updateMetaTag('geo.region', 'BG');
     updateMetaTag('geo.country', 'Bulgaria'); 
-    updateMetaTag('geo.placename', 'София');
-    updateMetaTag('ICBM', '42.6977, 23.3219'); // София координати
+    updateMetaTag('geo.placename', 'Варна');
+    updateMetaTag('ICBM', '43.2141, 27.9147'); // Варна координати
     updateMetaTag('revisit-after', '7 days');
     updateMetaTag('rating', 'general');
     updateMetaTag('distribution', 'global');

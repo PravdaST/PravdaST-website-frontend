@@ -51,9 +51,14 @@ export const pageSEOData: Record<string, Partial<SEOData>> = {
           "description": "Система за органична видимост и SEO оптимизация"
         },
         {
-          "@type": "Service", 
-          "name": "Sales Engine™",
-          "description": "Автоматизирана система за B2B продажби"
+          "@type": "Service",
+          "name": "Trendlab™",
+          "description": "Система за създаване на съдържание и изграждане на авторитет"
+        },
+        {
+          "@type": "Service",
+          "name": "Clickstarter™",
+          "description": "Оптимизация на рекламни кампании за максимална ефективност"
         },
         {
           "@type": "Service",
@@ -63,172 +68,117 @@ export const pageSEOData: Record<string, Partial<SEOData>> = {
       ]
     }
   },
-  
-  about: {
-    title: "За Нас - Pravdast | Експерти в Бизнес Инженеринг",
-    description: "👥 Екипът на Pravdast - инженери на бизнес растежа с 5+ години опит. 🎯 Специалисти в B2B системи, автоматизация и SEO оптимизация. 📈 300+ успешни проекта в България.",
-    keywords: "pravdast екип, бизнес инженеринг експерти българия, b2b консултанти софия, автоматизация специалисти, seo експерти българия, бизнес трансформация екип",
-    canonical: "https://www.pravdagency.eu/about",
-    ogTitle: "За Екипа на Pravdast - Инженери на Бизнес Растежа",
-    ogDescription: "Запознайте се с екипа от инженери, който превръща бизнес хаоса в предсказуеми системи за растеж от 2020г.",
-    ogImage: "https://www.pravdagency.eu/og-about.jpg",
-    ogType: "website",
-    twitterCard: "summary_large_image",
-    twitterTitle: "За Pravdast - Експерти в Бизнес Инженеринг",
-    twitterDescription: "Екип от специалисти с 5+ години опит в B2B системи и автоматизация.",
-    twitterImage: "https://www.pravdagency.eu/twitter-about.jpg",
-    robots: "index, follow, max-snippet:-1, max-image-preview:large",
-    structuredData: {
-      "@context": "https://schema.org",
-      "@type": "AboutPage",
-      "mainEntity": {
-        "@type": "Organization",
-        "name": "Pravdast",
-        "foundingDate": "2020",
-        "description": "Експертен екип в бизнес инженеринг и автоматизация на B2B процеси",
-        "employee": [
-          {
-            "@type": "Person",
-            "jobTitle": "Бизнес Инженер",
-            "worksFor": "Pravdast"
-          }
-        ],
-        "knowsAbout": [
-          "Бизнес инженеринг",
-          "B2B автоматизация", 
-          "SEO оптимизация",
-          "Продажбени системи",
-          "Клиентски системи"
-        ]
-      }
-    }
-  },
-
-  services: {
-    title: "Услуги - Pravdast | SEO, Продажби, Автоматизация",
-    description: "Професионални B2B услуги: SEO Struktor™, Trendlab™, Clickstarter™, Clientomat™. Проверени системи за предсказуем бизнес успех. Безплатна консултация.",
-    keywords: "b2b услуги българия, seo оптимизация софия, продажбени системи автоматизация, клиентски системи crm, бизнес консултиране pravdast, маркетинг автоматизация 2025",
-    canonical: "https://www.pravdagency.eu/services",
-    ogTitle: "Услуги за B2B Растеж - SEO, Продажби, Клиентски Системи",
-    ogDescription: "Инженерни решения за вашия бизнес: от SEO оптимизация до продажбени системи. Всичко за предсказуем растеж.",
-    ogImage: "https://www.pravdagency.eu/og-services.jpg",
-    ogType: "website",
-    twitterCard: "summary_large_image",
-    twitterTitle: "Pravdast Услуги - SEO, Продажби, Автоматизация",
-    twitterDescription: "Професионални B2B услуги за предсказуем растеж: SEO, продажбени и клиентски системи.",
-    twitterImage: "https://www.pravdagency.eu/twitter-services.jpg",
-    robots: "index, follow, max-snippet:-1, max-image-preview:large",
-    structuredData: {
-      "@context": "https://schema.org",
-      "@type": "Service",
-      "provider": {
-        "@type": "Organization",
-        "name": "Pravdast"
-      },
-      "serviceType": "Business Engineering Services",
-      "description": "Професионални услуги за B2B растеж и автоматизация",
-      "offers": [
-        {
-          "@type": "Offer",
-          "name": "SEO Struktor™",
-          "description": "Система за SEO оптимизация и органична видимост",
-          "category": "SEO Services"
-        },
-        {
-          "@type": "Offer",
-          "name": "Sales Engine™", 
-          "description": "Автоматизирана система за B2B продажби",
-          "category": "Sales Automation"
-        },
-        {
-          "@type": "Offer",
-          "name": "Clientomat™",
-          "description": "Система за автоматизация на клиентския цикъл",
-          "category": "Customer Management"
-        }
-      ]
-    }
-  },
 
   "services/seo-struktor": {
-    title: "SEO Struktor™ - Професионална SEO Система България",
-    description: "SEO Struktor™ - инженерна система за SEO оптимизация. Увеличете видимостта в Google с проверена методология. Технически SEO + съдържание + линк билдинг.",
-    keywords: "seo struktor, професионално seo българия, технически seo оптимизация, google seo система, органично позициониране софия, seo консултиране pravdast, seo аудит 2025",
+    title: "SEO Struktor™ - SEO Система България | Pravdast",
+    description: "SEO Struktor™ - инженерска система за SEO оптимизация и органичен трафик. Технически SEO, съдържание и линк билдинг за B2B компании. ROI 340%+.",
+    keywords: "seo struktor, seo оптимизация българия, технически seo софия, органичен трафик, google позиции, seo услуги pravdast, keyword research българия 2025",
     canonical: "https://www.pravdagency.eu/services/seo-struktor",
-    ogTitle: "SEO Struktor™ - Инженерна SEO Система за Органичен Растеж",
-    ogDescription: "Превърнете SEO от разходи в инвестиция. Проверена система за дългосрочна видимост в Google.",
+    ogTitle: "SEO Struktor™ - Инженерска SEO Система за Растеж",
+    ogDescription: "Превърнете SEO от разходи в предсказуеми приходи с нашата систематична методология.",
     ogImage: "https://www.pravdagency.eu/og-seo-struktor.jpg",
     ogType: "product",
     twitterCard: "summary_large_image",
-    twitterTitle: "SEO Struktor™ - Професионална SEO Система",
-    twitterDescription: "Инженерна система за SEO оптимизация и органична видимост в Google.",
+    twitterTitle: "SEO Struktor™ - Инженерска SEO Система",
+    twitterDescription: "Технически SEO подход за устойчив органичен растеж.",
     twitterImage: "https://www.pravdagency.eu/twitter-seo-struktor.jpg",
     robots: "index, follow, max-snippet:-1, max-image-preview:large",
     structuredData: {
       "@context": "https://schema.org",
-      "@type": "Product",
+      "@type": "Service",
       "name": "SEO Struktor™",
-      "description": "Инженерна система за SEO оптимизация и органична видимост",
-      "brand": {
-        "@type": "Brand",
-        "name": "Pravdast"
-      },
-      "offers": {
-        "@type": "Offer",
-        "priceCurrency": "BGN",
-        "availability": "https://schema.org/InStock",
-        "seller": {
-          "@type": "Organization",
-          "name": "Pravdast"
-        }
-      },
-      "category": "SEO Services",
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.9",
-        "reviewCount": "47"
-      }
-    }
-  },
-
-  "services/sales-engine": {
-    title: "Sales Engine™ - B2B Продажбена Система България",
-    description: "💼 Sales Engine™ - инженерна система за B2B продажби. 🤖 Автоматизация, CRM интеграция и предсказуеми резултати. 📊 Увеличение на конверсиите с 40%+.",
-    keywords: "sales engine, автоматизация продажби българия, b2b продажбена система, crm интеграция софия, продажбени процеси оптимизация, lead management pravdast, sales funnel 2025",
-    canonical: "https://www.pravdagency.eu/services/sales-engine",
-    ogTitle: "Sales Engine™ - Инженерна Система за B2B Продажби",
-    ogDescription: "Превърнете продажбите от хаос в предсказуема система за растеж. Автоматизация и оптимизация на цялия продажбен процес.",
-    ogImage: "https://www.pravdagency.eu/og-sales-engine.jpg",
-    ogType: "product",
-    twitterCard: "summary_large_image",
-    twitterTitle: "Sales Engine™ - Автоматизирана Продажбена Система",
-    twitterDescription: "Инженерна система за B2B продажби с автоматизация и CRM интеграция.",
-    twitterImage: "https://www.pravdagency.eu/twitter-sales-engine.jpg",
-    robots: "index, follow, max-snippet:-1, max-image-preview:large",
-    structuredData: {
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "Sales Engine™",
-      "description": "Автоматизирана система за B2B продажби и CRM управление",
-      "applicationCategory": "BusinessApplication",
-      "operatingSystem": "Web-based",
-      "offers": {
-        "@type": "Offer",
-        "priceCurrency": "BGN",
-        "availability": "https://schema.org/InStock",
-        "seller": {
-          "@type": "Organization",
-          "name": "Pravdast"
-        }
-      },
+      "description": "Инженерска система за SEO оптимизация и органичен трафик",
+      "serviceType": "SEO Services",
       "provider": {
         "@type": "Organization",
         "name": "Pravdast"
       },
+      "offers": {
+        "@type": "Offer",
+        "price": "1980",
+        "priceCurrency": "BGN",
+        "availability": "https://schema.org/InStock"
+      },
       "aggregateRating": {
         "@type": "AggregateRating",
-        "ratingValue": "4.8",
-        "reviewCount": "32"
+        "ratingValue": "4.9",
+        "reviewCount": "42"
+      }
+    }
+  },
+
+  "services/trendlab": {
+    title: "Trendlab™ - Система за Съдържание България",
+    description: "Trendlab™ - професионална система за създаване на съдържание и изграждане на авторитет. Експертно писане, стратегии и измерими резултати за B2B компании.",
+    keywords: "trendlab, създаване съдържание българия, content marketing софия, експертно писане, авторитет изграждане, blog система pravdast, content strategy 2025",
+    canonical: "https://www.pravdagency.eu/services/trendlab",
+    ogTitle: "Trendlab™ - Инженерна Система за Съдържание",
+    ogDescription: "От експертиза до влиятелно съдържание - система за изграждане на авторитет и привличане на квалифицирани клиенти.",
+    ogImage: "https://www.pravdagency.eu/og-trendlab.jpg",
+    ogType: "product",
+    twitterCard: "summary_large_image",
+    twitterTitle: "Trendlab™ - Система за Създаване на Съдържание",
+    twitterDescription: "Професионална система за content marketing и изграждане на авторитет.",
+    twitterImage: "https://www.pravdagency.eu/twitter-trendlab.jpg",
+    robots: "index, follow, max-snippet:-1, max-image-preview:large",
+    structuredData: {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Trendlab™",
+      "description": "Система за създаване на съдържание и изграждане на авторитет",
+      "serviceType": "Content Marketing",
+      "provider": {
+        "@type": "Organization",
+        "name": "Pravdast"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "3450",
+        "priceCurrency": "BGN",
+        "availability": "https://schema.org/InStock"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "28"
+      }
+    }
+  },
+
+  "services/clickstarter": {
+    title: "Clickstarter™ - Реклами Оптимизация България",
+    description: "Clickstarter™ - система за оптимизация на рекламни кампании. Максимална ефективност, по-ниски разходи и по-високи конверсии за Google и Meta реклами.",
+    keywords: "clickstarter, google ads оптимизация българия, facebook реклами софия, ppc управление, реклами оптимизация pravdast, roi подобрение, ad campaigns 2025",
+    canonical: "https://www.pravdagency.eu/services/clickstarter",
+    ogTitle: "Clickstarter™ - Инженерна Система за Реклами",
+    ogDescription: "От разхищение до ефективност - оптимизирайте рекламните си кампании и постигнете максимална възвращаемост.",
+    ogImage: "https://www.pravdagency.eu/og-clickstarter.jpg",
+    ogType: "product",
+    twitterCard: "summary_large_image",
+    twitterTitle: "Clickstarter™ - Оптимизация на Реклами",
+    twitterDescription: "Система за максимизиране ефективността на Google и Meta рекламите.",
+    twitterImage: "https://www.pravdagency.eu/twitter-clickstarter.jpg",
+    robots: "index, follow, max-snippet:-1, max-image-preview:large",
+    structuredData: {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Clickstarter™",
+      "description": "Система за оптимизация на рекламни кампании",
+      "serviceType": "Digital Advertising",
+      "provider": {
+        "@type": "Organization",
+        "name": "Pravdast"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "1570",
+        "priceCurrency": "BGN",
+        "availability": "https://schema.org/InStock"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.7",
+        "reviewCount": "35"
       }
     }
   },
@@ -249,23 +199,19 @@ export const pageSEOData: Record<string, Partial<SEOData>> = {
     robots: "index, follow, max-snippet:-1, max-image-preview:large",
     structuredData: {
       "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
+      "@type": "Service",
       "name": "Clientomat™",
       "description": "Автоматизирана система за управление на клиентския жизнен цикъл",
-      "applicationCategory": "BusinessApplication",
-      "operatingSystem": "Web-based",
-      "offers": {
-        "@type": "Offer",
-        "priceCurrency": "BGN",
-        "availability": "https://schema.org/InStock",
-        "seller": {
-          "@type": "Organization",
-          "name": "Pravdast"
-        }
-      },
+      "serviceType": "Customer Management",
       "provider": {
         "@type": "Organization",
         "name": "Pravdast"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "2890",
+        "priceCurrency": "BGN",
+        "availability": "https://schema.org/InStock"
       },
       "aggregateRating": {
         "@type": "AggregateRating",
@@ -275,251 +221,42 @@ export const pageSEOData: Record<string, Partial<SEOData>> = {
     }
   },
 
-  "case-studies": {
-    title: "Казуси - Pravdast | Успешни B2B Проекти България",
-    description: "Реални казуси от успешни B2B проекти на Pravdast. Вижте как помагаме на компании да постигнат 200%+ растеж. Проверени резултати от 2020г.",
-    keywords: "pravdast казуси, b2b проекти българия, успешни бизнес случаи, клиентски резултати софия, бизнес трансформация примери, roi case studies, растеж резултати 2025",
-    canonical: "https://www.pravdagency.eu/case-studies",
-    ogTitle: "Казуси - Примери за Успешни B2B Трансформации",
-    ogDescription: "Реални истории за компании, които превърнаха хаоса в предсказуем растеж с нашите инженерни системи.",
-    ogImage: "https://www.pravdagency.eu/og-case-studies.jpg",
-    ogType: "website",
-    twitterCard: "summary_large_image",
-    twitterTitle: "Pravdast Казуси - Успешни B2B Проекти",
-    twitterDescription: "Реални примери за компании, които постигнаха 200%+ растеж с нашите системи.",
-    twitterImage: "https://www.pravdagency.eu/twitter-case-studies.jpg",
-    robots: "index, follow, max-snippet:-1, max-image-preview:large",
-    structuredData: {
-      "@context": "https://schema.org",
-      "@type": "CollectionPage",
-      "name": "Казуси и Успешни Проекти",
-      "description": "Колекция от реални примери за успешни B2B трансформации",
-      "provider": {
-        "@type": "Organization",
-        "name": "Pravdast"
-      },
-      "mainEntity": {
-        "@type": "ItemList",
-        "itemListElement": [
-          {
-            "@type": "CaseStudy",
-            "name": "B2B компания - 300% растеж за 12 месеца",
-            "description": "Как една производствена компания постигна тройно увеличение на продажбите"
-          }
-        ]
-      }
-    }
-  },
-
   contact: {
-    title: "Контакти - Pravdast | Безплатна Консултация България",
-    description: "Свържете се с Pravdast за безплатна консултация. Обсъдете вашите бизнес предизвикателства с експертите ни. Отговор в рамките на 24 часа.",
-    keywords: "pravdast контакти, безплатна бизнес консултация софия, b2b експерти България, бизнес съвети правда, консултиране автоматизация, експертна помощ растеж 2025",
+    title: "Контакти - Pravdast | Свържете се с Нас",
+    description: "Свържете се с екипа на Pravdast за безплатна консултация. Офис във Варна, ул. Дебър №58. Тел: +359 879 282 299. Отговаряме в рамките на 24 часа.",
+    keywords: "pravdast контакти, бизнес консултации варна, офис дебър 58, +359 879 282 299, contact@pravdast.agency, консултация софия",
     canonical: "https://www.pravdagency.eu/contact",
-    ogTitle: "Контакти - Започнете Трансформацията на Вашия Бизнес",
-    ogDescription: "Готови сте да превърнете хаоса в предсказуем растеж? Свържете се с нас за безплатна експертна консултация.",
+    ogTitle: "Контакти - Свържете се с Pravdast",
+    ogDescription: "Свържете се с нас за безплатна консултация и започнете трансформацията на вашия бизнес.",
     ogImage: "https://www.pravdagency.eu/og-contact.jpg",
     ogType: "website",
     twitterCard: "summary_large_image",
-    twitterTitle: "Свържете се с Pravdast - Безплатна Консултация",
-    twitterDescription: "Започнете трансформацията на вашия бизнес с експертна консултация от Pravdast.",
+    twitterTitle: "Pravdast Контакти - Безплатна Консултация",
+    twitterDescription: "Свържете се с нас за безплатна консултация и трансформация на бизнеса.",
     twitterImage: "https://www.pravdagency.eu/twitter-contact.jpg",
     robots: "index, follow, max-snippet:-1, max-image-preview:large",
     structuredData: {
       "@context": "https://schema.org",
       "@type": "ContactPage",
       "mainEntity": {
-        "@type": "Organization",
+        "@type": "LocalBusiness",
         "name": "Pravdast",
-        "contactPoint": {
-          "@type": "ContactPoint",
-          "telephone": "+359 879 282 299",
-          "email": "contact@pravdast.agency",
-          "contactType": "customer support",
-          "availableLanguage": "Bulgarian",
-          "areaServed": "BG"
-        },
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "ул. Дебър №58",
-          "addressCountry": "BG",
+          "addressLocality": "Варна",
           "addressRegion": "Варна",
-          "addressLocality": "Варна"
-        }
-      }
-    }
-  },
-
-  blog: {
-    title: "Блог | Pravdast - Експертни съвети за бизнес инженерство",
-    description: "Научете най-новите стратегии за B2B растеж, SEO оптимизация и автоматизация на продажбите. Експертни съвети от водещите консултанти в България.",
-    keywords: "блог, бизнес инженерство, B2B растеж, SEO съвети, автоматизация продажби, маркетинг стратегии, България",
-    canonical: "https://www.pravdagency.eu/blog",
-    ogTitle: "Pravdast Блог - Експертни Съвети за Бизнес Растеж",
-    ogDescription: "Научете проверени стратегии за предсказуем B2B растеж от водещите експерти в България.",
-    ogImage: "https://www.pravdagency.eu/og-blog.jpg",
-    ogType: "website",
-    twitterCard: "summary_large_image",
-    twitterTitle: "Pravdast Блог - Бизнес Инженерство и Растеж",
-    twitterDescription: "Експертни съвети за B2B компании: SEO, автоматизация, продажбени системи.",
-    twitterImage: "https://www.pravdagency.eu/twitter-blog.jpg",
-    robots: "index, follow, max-snippet:-1, max-image-preview:large",
-    structuredData: {
-      "@context": "https://schema.org",
-      "@type": "Blog",
-      "name": "Pravdast Блог",
-      "description": "Експертни съвети за бизнес инженерство и B2B растеж",
-      "publisher": {
-        "@type": "Organization",
-        "name": "Pravdast",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://www.pravdagency.eu/logo.png"
-        }
-      },
-      "author": {
-        "@type": "Organization",
-        "name": "Pravdast"
-      }
-    }
-  },
-
-  "blog/predskazuem-rastezh-b2b-kompanii": {
-    title: "Как да създадете предсказуем растеж в B2B компанията си | Pravdast",
-    description: "Откройте тайните на системния подход към бизнес растежа. Научете как водещите компании строят устойчиви системи за генериране на клиенти.",
-    keywords: "предсказуем растеж, B2B компании, бизнес системи, растеж стратегии, клиенти генериране",
-    canonical: "https://www.pravdagency.eu/blog/predskazuem-rastezh-b2b-kompanii",
-    ogTitle: "Предсказуем Растеж в B2B - Системен Подход",
-    ogDescription: "Научете как да превърнете хаоса в предсказуеми резултати със системния инженерен подход.",
-    ogImage: "https://www.pravdagency.eu/og-blog-growth.jpg",
-    ogType: "article",
-    twitterCard: "summary_large_image",
-    twitterTitle: "Предсказуем B2B Растеж - Системен Подход",
-    twitterDescription: "Тайните на устойчивия бизнес растеж от експертите на Pravdast.",
-    twitterImage: "https://www.pravdagency.eu/twitter-blog-growth.jpg",
-    robots: "index, follow, max-snippet:-1, max-image-preview:large",
-    structuredData: {
-      "@context": "https://schema.org",
-      "@type": "BlogPosting",
-      "headline": "Как да създадете предсказуем растеж в B2B компанията си",
-      "description": "Откройте тайните на системния подход към бизнес растежа",
-      "author": {
-        "@type": "Organization",
-        "name": "Pravdast"
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "Pravdast"
-      },
-      "datePublished": "2024-12-15",
-      "dateModified": "2024-12-15",
-      "mainEntityOfPage": "https://www.pravdagency.eu/blog/predskazuem-rastezh-b2b-kompanii"
-    }
-  },
-
-  "blog/seo-struktor-revolutsionen-podhod": {
-    title: "SEO Struktor™: Революционен подход към търсещата оптимизация | Pravdast",
-    description: "Разберете как нашата собствена методология SEO Struktor™ помага на клиентите ни да достигнат топ позиции в Google за ключови думи с висок търсещ обем.",
-    keywords: "SEO Struktor, търсеща оптимизация, Google SEO, органичен трафик, методология SEO",
-    canonical: "https://www.pravdagency.eu/blog/seo-struktor-revolutsionen-podhod",
-    ogTitle: "SEO Struktor™ - Революционна SEO Методология",
-    ogDescription: "Научете как нашата патентована методология постига топ позиции в Google.",
-    ogImage: "https://www.pravdagency.eu/og-blog-seo.jpg",
-    ogType: "article",
-    twitterCard: "summary_large_image",
-    twitterTitle: "SEO Struktor™ - Революционен SEO Подход",
-    twitterDescription: "Патентована методология за топ позиции в Google от Pravdast.",
-    twitterImage: "https://www.pravdagency.eu/twitter-blog-seo.jpg",
-    robots: "index, follow, max-snippet:-1, max-image-preview:large",
-    structuredData: {
-      "@context": "https://schema.org",
-      "@type": "BlogPosting",
-      "headline": "SEO Struktor™: Революционен подход към търсещата оптимизация",
-      "description": "Разберете как нашата собствена методология SEO Struktor™ помага на клиентите",
-      "author": {
-        "@type": "Organization",
-        "name": "Pravdast"
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "Pravdast"
-      },
-      "datePublished": "2024-12-10",
-      "dateModified": "2024-12-10",
-      "mainEntityOfPage": "https://www.pravdagency.eu/blog/seo-struktor-revolutsionen-podhod"
-    }
-  },
-
-  "services/trendlab": {
-    title: "Trendlab™ - Система за Авторитетно Съдържание | България",
-    description: "Trendlab™ превръща експертизата ви в авторитетно съдържание, което привлича клиенти. Стратегия, създаване и разпространение на съдържание. ROI 400%+.",
-    keywords: "trendlab, content marketing българия, авторитетно съдържание, експертен контент, content creation sofia, блог стратегия, thought leadership българия, съдържание roi 2025",
-    canonical: "https://www.pravdagency.eu/services/trendlab",
-    ogTitle: "Trendlab™ - Авторитетно Съдържание за Експерти",
-    ogDescription: "Превърнете експертизата си в магнит за клиенти с нашата система за създаване на авторитетно съдържание.",
-    ogImage: "https://www.pravdagency.eu/og-trendlab.jpg",
-    ogType: "product",
-    twitterCard: "summary_large_image",
-    twitterTitle: "Trendlab™ - Система за Авторитетно Съдържание",
-    twitterDescription: "Превърнете експертизата си в магнит за клиенти със съдържание.",
-    twitterImage: "https://www.pravdagency.eu/twitter-trendlab.jpg",
-    robots: "index, follow, max-snippet:-1, max-image-preview:large",
-    structuredData: {
-      "@context": "https://schema.org",
-      "@type": "Service",
-      "name": "Trendlab™",
-      "description": "Система за създаване и разпространение на авторитетно съдържание",
-      "provider": {
-        "@type": "Organization",
-        "name": "Pravda ST"
-      },
-      "offers": {
-        "@type": "Offer",
-        "priceCurrency": "BGN",
-        "price": "3450",
-        "priceSpecification": {
-          "@type": "UnitPriceSpecification",
-          "price": "3450",
-          "priceCurrency": "BGN",
-          "billingIncrement": "месечно"
-        }
-      }
-    }
-  },
-
-  "services/clickstarter": {
-    title: "Clickstarter™ - Оптимизация на Реклами | България",
-    description: "Clickstarter™ оптимизира вашите реклами за максимален ROI. Facebook, Google, LinkedIn - всички канали в една система. Намаляване на разходите с 40%+.",
-    keywords: "clickstarter, facebook реклами българия, google ads оптимизация, linkedin реклами sofia, ppc управление, ad optimization, реклама roi, digital advertising 2025",
-    canonical: "https://www.pravdagency.eu/services/clickstarter",
-    ogTitle: "Clickstarter™ - Оптимизация на Реклами за Максимален ROI",
-    ogDescription: "Превърнете рекламните разходи в предсказуеми приходи с нашата оптимизационна система.",
-    ogImage: "https://www.pravdagency.eu/og-clickstarter.jpg",
-    ogType: "product",
-    twitterCard: "summary_large_image",
-    twitterTitle: "Clickstarter™ - Оптимизация на Реклами",
-    twitterDescription: "Превърнете рекламните разходи в предсказуеми приходи.",
-    twitterImage: "https://www.pravdagency.eu/twitter-clickstarter.jpg",
-    robots: "index, follow, max-snippet:-1, max-image-preview:large",
-    structuredData: {
-      "@context": "https://schema.org",
-      "@type": "Service",
-      "name": "Clickstarter™",
-      "description": "Система за оптимизация на реклами във всички дигитални канали",
-      "provider": {
-        "@type": "Organization",
-        "name": "Pravda ST"
-      },
-      "offers": {
-        "@type": "Offer",
-        "priceCurrency": "BGN",
-        "price": "1570",
-        "priceSpecification": {
-          "@type": "UnitPriceSpecification",
-          "price": "1570",
-          "priceCurrency": "BGN",
-          "billingIncrement": "месечно"
-        }
+          "postalCode": "9000",
+          "addressCountry": "BG"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 43.2141,
+          "longitude": 27.9147
+        },
+        "telephone": "+359879282299",
+        "email": "contact@pravdast.agency",
+        "openingHours": "Mo-Fr 09:00-18:00"
       }
     }
   },
@@ -534,37 +271,62 @@ export const pageSEOData: Record<string, Partial<SEOData>> = {
     ogImage: "https://www.pravdagency.eu/og-calculators.jpg",
     ogType: "website",
     twitterCard: "summary_large_image",
-    twitterTitle: "ROI Калкулатори от Pravdast",
-    twitterDescription: "Изчислете точната печалба от бизнес системите ни.",
+    twitterTitle: "Pravdast ROI Калкулатори",
+    twitterDescription: "Изчислете точната печалба от нашите бизнес системи.",
     twitterImage: "https://www.pravdagency.eu/twitter-calculators.jpg",
     robots: "index, follow, max-snippet:-1, max-image-preview:large",
     structuredData: {
       "@context": "https://schema.org",
       "@type": "WebApplication",
-      "name": "ROI Калкулатори",
-      "description": "Безплатни калкулатори за изчисляване на възвращаемост от инвестиция",
+      "name": "Pravdast ROI Калкулатори",
+      "description": "Безплатни калкулатори за изчисляване на ROI от бизнес системи",
       "applicationCategory": "BusinessApplication",
-      "operatingSystem": "Web Browser",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "BGN"
+      "operatingSystem": "Web-based",
+      "provider": {
+        "@type": "Organization",
+        "name": "Pravdast"
+      }
+    }
+  },
+
+  blog: {
+    title: "Блог - Pravdast | Бизнес Инженеринг Статии",
+    description: "Експертни статии за бизнес инженеринг, SEO, автоматизация и растеж. Практични съвети и казуси от екипа на Pravdast за B2B компании в България.",
+    keywords: "pravdast блог, бизнес инженеринг статии, seo съвети българия, автоматизация маркетинг, b2b растеж случаи, експертни статии софия",
+    canonical: "https://www.pravdagency.eu/blog",
+    ogTitle: "Pravdast Блог - Експертни Статии за Бизнес Растеж",
+    ogDescription: "Практични съвети, казуси и експертни статии за превръщане на хаоса в предсказуем растеж.",
+    ogImage: "https://www.pravdagency.eu/og-blog.jpg",
+    ogType: "website",
+    twitterCard: "summary_large_image",
+    twitterTitle: "Pravdast Блог - Бизнес Инженеринг",
+    twitterDescription: "Експертни статии и практични съвети за бизнес растеж.",
+    twitterImage: "https://www.pravdagency.eu/twitter-blog.jpg",
+    robots: "index, follow, max-snippet:-1, max-image-preview:large",
+    structuredData: {
+      "@context": "https://schema.org",
+      "@type": "Blog",
+      "name": "Pravdast Блог",
+      "description": "Експертни статии за бизнес инженеринг и растеж",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Pravdast"
       }
     }
   },
 
   faq: {
     title: "Често Задавани Въпроси | Pravdast - Бизнес Инженеринг",
-    description: "Отговори на най-честите въпроси за нашите бизнес системи, цени, процеси и резултати. Всичко което трябва да знаете за Pravdast услугите.",
-    keywords: "pravdast въпроси, бизнес инженеринг faq, цени услуги българия, как работи seo struktor, clientomat въпроси, често задавани въпроси sofia",
+    description: "Отговори на най-честите въпроси за нашите бизнес системи. Цени, процеси, сроки и резултати от SEO Struktor™, Trendlab™, Clickstarter™, Clientomat™.",
+    keywords: "pravdast faq, често задавани въпроси, цени бизнес системи, сроки результати, как работи seo struktor, въпроси отговори България",
     canonical: "https://www.pravdagency.eu/faq",
-    ogTitle: "Често Задавани Въпроси - Pravdast",
-    ogDescription: "Намерете отговори на всички въпроси за нашите бизнес системи и услуги.",
+    ogTitle: "FAQ - Често Задавани Въпроси за Pravdast",
+    ogDescription: "Намерете отговори на всички въпроси за нашите бизнес системи и процеси.",
     ogImage: "https://www.pravdagency.eu/og-faq.jpg",
     ogType: "website",
     twitterCard: "summary_large_image",
-    twitterTitle: "FAQ - Pravdast Бизнес Системи",
-    twitterDescription: "Отговори на най-честите въпроси за нашите услуги.",
+    twitterTitle: "Pravdast FAQ - Често Задавани Въпроси",
+    twitterDescription: "Отговори на най-честите въпроси за нашите бизнес системи.",
     twitterImage: "https://www.pravdagency.eu/twitter-faq.jpg",
     robots: "index, follow, max-snippet:-1, max-image-preview:large",
     structuredData: {
@@ -573,7 +335,8 @@ export const pageSEOData: Record<string, Partial<SEOData>> = {
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "Колко време отнема внедряването на системите?",
+          "name": "Колко време отнема да видя резултати?",
+          "@context": "https://schema.org",
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Зависи от системата - SEO Struktor™ стартира за 2-3 седмици, Clientomat™ за 1-2 седмици."

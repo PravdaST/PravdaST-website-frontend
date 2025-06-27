@@ -6,7 +6,7 @@ export default async function handler(req, res) {
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>${baseUrl}</loc>
-    <lastmod>2025-06-26</lastmod>
+    <lastmod>2025-06-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
