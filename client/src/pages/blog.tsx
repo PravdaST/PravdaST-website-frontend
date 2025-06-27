@@ -412,21 +412,11 @@ export default function Blog() {
                         viewport={{ once: true }}
                       >
                         <Button
-                          variant="outline"
-                          className="w-full border-[#ECB629] text-[#ECB629] hover:bg-[#ECB629] hover:text-black group-hover:bg-[#ECB629] group-hover:text-black transition-all relative overflow-hidden"
+                          className="bg-[#ECB629] hover:bg-[#ECB629]/90 text-black font-semibold px-8 py-3 rounded-xl transition-all duration-300"
                           asChild
                         >
                           <Link href={`/blog/${post.slug}`}>
-                            <motion.div
-                              className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent opacity-0 group-hover:opacity-20"
-                              animate={{ x: ["-100%", "100%"] }}
-                              transition={{
-                                duration: 1.5,
-                                repeat: Infinity,
-                                repeatType: "loop",
-                              }}
-                            />
-                            Четете повече{" "}
+                            Прочетете повече{" "}
                             <ArrowRight className="ml-2 w-4 h-4" />
                           </Link>
                         </Button>
