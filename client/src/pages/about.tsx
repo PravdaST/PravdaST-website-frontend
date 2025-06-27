@@ -3,7 +3,16 @@ import { Footer } from "@/components/footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { Target, Shield, Zap, Users, Award, TrendingUp, CheckCircle, ArrowRight } from "lucide-react";
+import {
+  Target,
+  Shield,
+  Zap,
+  Users,
+  Award,
+  TrendingUp,
+  CheckCircle,
+  ArrowRight,
+} from "lucide-react";
 import { SEOHead } from "@/components/seo-head";
 import { pageSEOData } from "@/data/seo-pages";
 
@@ -11,62 +20,76 @@ const values = [
   {
     icon: Target,
     title: "Прецизност",
-    description: "Всяко решение е базирано на данни, а не на предположения. Измерваме всичко и оптимизираме постоянно."
+    description:
+      "Всяко решение е базирано на данни, а не на предположения. Измерваме всичко и оптимизираме постоянно.",
   },
   {
     icon: Shield,
-    title: "Прозрачност", 
-    description: "Никакви скрити такси или неясни процеси. Знаете точно какво правим и защо го правим."
+    title: "Прозрачност",
+    description:
+      "Никакви скрити такси или неясни процеси. Знаете точно какво правим и защо го правим.",
   },
   {
     icon: Zap,
     title: "Ефективност",
-    description: "Не губим време с експерименти. Прилагаме проверени системи, които дават предвидими резултати."
-  }
+    description:
+      "Не губим време с експерименти. Прилагаме проверени системи, които дават предвидими резултати.",
+  },
 ];
 
 const teamMembers = [
   {
     name: "Екипът на Pravdast",
     role: "Консултанти по системи за растеж",
-    description: "Специалисти с над 10 години опит в изграждането на автоматизирани системи за растеж в различни индустрии.",
-    expertise: ["Бизнес инженеринг", "Системна автоматизация", "Данни и анализи", "Процесна оптимизация"]
-  }
+    description:
+      "Специалисти с над 10 години опит в изграждането на автоматизирани системи за растеж в различни индустрии.",
+    expertise: [
+      "Бизнес инженеринг",
+      "Системна автоматизация",
+      "Данни и анализи",
+      "Процесна оптимизация",
+    ],
+  },
 ];
 
 const stats = [
   { number: "50+", label: "Успешни проекта" },
   { number: "300%", label: "Средно подобрение" },
-  { number: "95%", label: "Задоволени клиенти" },
-  { number: "24/7", label: "Работещи системи" }
+  { number: "100%", label: "Доволни клиенти" },
+  { number: "24/7", label: "Работещи системи" },
 ];
 
 const milestones = [
   {
     year: "2020",
     title: "Започваме мисията",
-    description: "Основаване на Pravdast с ясна визия за системен подход към бизнес растежа."
+    description:
+      "Основаване на Pravdast с ясна визия за системен подход към бизнес растежа.",
   },
   {
-    year: "2021", 
+    year: "2021",
     title: "Първите системи",
-    description: "Разработка на SEO Struktor™ - първата ни собствена методология за органичен растеж."
+    description:
+      "Разработка на SEO Struktor™ - първата ни собствена методология за органичен растеж.",
   },
   {
     year: "2022",
     title: "Автоматизация",
-    description: "Лансиране на Clientomat™ системата за автоматизирано управление на клиенти."
+    description:
+      "Лансиране на Clientomat™ системата за автоматизирано управление на клиенти.",
   },
   {
     year: "2023",
     title: "Иновации",
-    description: "Въвеждане на Trendlab™ и Clickstarter™ за пълноценно покритие на растежните нужди."
+    description:
+      "Въвеждане на Trendlab™ и Clickstarter™ за пълноценно покритие на растежните нужди.",
   },
   {
     year: "2024",
     title: "Лидерство",
-    description: "Утвърждаване като лидери в България за data-driven бизнес инженерство."
-  }
+    description:
+      "Утвърждаване като лидери в България за data-driven бизнес инженерство.",
+  },
 ];
 
 export default function About() {
@@ -74,7 +97,7 @@ export default function About() {
     <div className="min-h-screen bg-slate-900">
       <SEOHead seo={pageSEOData.about} pageSlug="about" />
       <Navigation />
-      
+
       <main className="pt-20">
         {/* Hero Section */}
         <section className="py-20 relative overflow-hidden">
@@ -82,14 +105,17 @@ export default function About() {
           <div className="absolute inset-0 opacity-20">
             <div className="absolute inset-0">
               {/* Team Grid Pattern */}
-              <div className="absolute inset-0" style={{
-                backgroundImage: `
+              <div
+                className="absolute inset-0"
+                style={{
+                  backgroundImage: `
                   linear-gradient(rgba(236, 182, 40, 0.1) 1px, transparent 1px),
                   linear-gradient(90deg, rgba(236, 182, 40, 0.1) 1px, transparent 1px)
                 `,
-                backgroundSize: '40px 40px'
-              }}></div>
-              
+                  backgroundSize: "40px 40px",
+                }}
+              ></div>
+
               {/* Connection Lines */}
               {[...Array(6)].map((_, i) => (
                 <motion.div
@@ -97,8 +123,8 @@ export default function About() {
                   className="absolute w-px bg-gradient-to-b from-transparent via-[#ECB629] to-transparent"
                   style={{
                     left: `${20 + i * 15}%`,
-                    height: '60%',
-                    top: '20%',
+                    height: "60%",
+                    top: "20%",
                   }}
                   animate={{
                     opacity: [0.3, 1, 0.3],
@@ -115,7 +141,7 @@ export default function About() {
           </div>
 
           <div className="container mx-auto px-6 relative z-10">
-            <motion.div 
+            <motion.div
               className="max-w-4xl mx-auto text-center"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -134,12 +160,13 @@ export default function About() {
                     <div className="absolute inset-0 bg-[#ECB629] rounded-full animate-ping opacity-75"></div>
                   </div>
                   <span className="text-sm text-gray-300 font-medium">
-                    <span className="text-[#ECB629] font-bold">Инженерен</span> подход към бизнеса
+                    <span className="text-[#ECB629] font-bold">Инженерен</span>{" "}
+                    подход към бизнеса
                   </span>
                 </div>
               </motion.div>
 
-              <motion.h1 
+              <motion.h1
                 className="text-5xl md:text-6xl font-bold mb-6 text-white"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -156,18 +183,19 @@ export default function About() {
                   />
                 </span>
               </motion.h1>
-              
-              <motion.p 
+
+              <motion.p
                 className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
               >
-                Ние изграждаме системи, които работят. Нашата мисия е да превърнем хаотичния растеж в предвидими, измерими резултати.
+                Ние изграждаме системи, които работят. Нашата мисия е да
+                превърнем хаотичния растеж в предвидими, измерими резултати.
               </motion.p>
 
               {/* Stats Grid */}
-              <motion.div 
+              <motion.div
                 className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-2xl mx-auto"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -180,7 +208,9 @@ export default function About() {
                     whileHover={{ scale: 1.05 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <div className="text-2xl font-bold text-[#ECB629] mb-1">{stat.number}</div>
+                    <div className="text-2xl font-bold text-[#ECB629] mb-1">
+                      {stat.number}
+                    </div>
                     <div className="text-sm text-gray-400">{stat.label}</div>
                   </motion.div>
                 ))}
@@ -198,7 +228,7 @@ export default function About() {
           </div>
 
           <div className="container mx-auto px-6 relative z-10">
-            <motion.div 
+            <motion.div
               className="text-center mb-16"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -213,7 +243,8 @@ export default function About() {
                 viewport={{ once: true }}
               >
                 <span className="text-sm text-gray-300 font-medium">
-                  <span className="text-[#ECB629] font-bold">Безплатна</span> философия на работа
+                  <span className="text-[#ECB629] font-bold">Рискът</span> е
+                  нулев
                 </span>
               </motion.div>
 
@@ -221,7 +252,8 @@ export default function About() {
                 Нашите принципи
               </h2>
               <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-                Всяко решение, което вземаме, се базира на тези основни принципи.
+                Всяко решение, което вземаме, се базира на тези основни
+                принципи.
               </p>
             </motion.div>
 
@@ -237,23 +269,25 @@ export default function About() {
                   <Card className="relative bg-slate-800/50 border-slate-700 hover:border-[#ECB629]/50 transition-all duration-300 group overflow-hidden h-full">
                     {/* Hover Glow Effect */}
                     <div className="absolute inset-0 bg-gradient-to-r from-[#ECB629]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    
+
                     <CardContent className="p-8 relative z-10 text-center">
                       <div className="relative">
                         <value.icon className="w-12 h-12 text-[#ECB629] mb-4 mx-auto group-hover:scale-110 transition-transform duration-300" />
                         <motion.div
                           className="absolute inset-0 bg-[#ECB629] rounded-full opacity-20 scale-150"
                           animate={{ scale: [1.5, 1.8, 1.5] }}
-                          transition={{ duration: 2, repeat: Infinity, delay: index * 0.5 }}
+                          transition={{
+                            duration: 2,
+                            repeat: Infinity,
+                            delay: index * 0.5,
+                          }}
                         />
                       </div>
-                      
+
                       <h3 className="text-xl font-bold text-white mb-3 group-hover:text-[#ECB629] transition-colors">
                         {value.title}
                       </h3>
-                      <p className="text-gray-300">
-                        {value.description}
-                      </p>
+                      <p className="text-gray-300">{value.description}</p>
                     </CardContent>
                   </Card>
                 </motion.div>
@@ -265,7 +299,7 @@ export default function About() {
         {/* Timeline Section */}
         <section className="py-20 bg-slate-800/30 relative">
           <div className="container mx-auto px-6 relative z-10">
-            <motion.div 
+            <motion.div
               className="text-center mb-16"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -276,7 +310,8 @@ export default function About() {
                 Нашето пътуване
               </h2>
               <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-                От идея до лидер в бизнес инженерството - ето как стигнахме дотук.
+                От идея до лидер в бизнес инженерството - ето как стигнахме
+                дотук.
               </p>
             </motion.div>
 
@@ -292,17 +327,21 @@ export default function About() {
                 >
                   {/* Timeline Line */}
                   <div className="absolute left-1/2 transform -translate-x-1/2 w-px bg-[#ECB629] h-full -z-10"></div>
-                  
+
                   {/* Year Badge */}
                   <div className="absolute left-1/2 transform -translate-x-1/2 bg-[#ECB629] text-black font-bold px-4 py-2 rounded-full text-sm z-10">
                     {milestone.year}
                   </div>
-                  
+
                   {/* Content */}
-                  <div className={`w-5/12 ${index % 2 === 0 ? 'text-right pr-8' : 'ml-auto text-left pl-8'}`}>
+                  <div
+                    className={`w-5/12 ${index % 2 === 0 ? "text-right pr-8" : "ml-auto text-left pl-8"}`}
+                  >
                     <Card className="bg-slate-800/50 border-slate-700">
                       <CardContent className="p-6">
-                        <h3 className="text-xl font-bold text-white mb-2">{milestone.title}</h3>
+                        <h3 className="text-xl font-bold text-white mb-2">
+                          {milestone.title}
+                        </h3>
                         <p className="text-gray-300">{milestone.description}</p>
                       </CardContent>
                     </Card>
@@ -316,7 +355,7 @@ export default function About() {
         {/* Team Section */}
         <section className="py-20 relative">
           <div className="container mx-auto px-6 relative z-10">
-            <motion.div 
+            <motion.div
               className="text-center mb-16"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -327,7 +366,8 @@ export default function About() {
                 Екипът зад системите
               </h2>
               <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-                Специалисти с дългогодишен опит в създаването на работещи бизнес системи.
+                Специалисти с дългогодишен опит в създаването на работещи бизнес
+                системи.
               </p>
             </motion.div>
 
@@ -350,16 +390,18 @@ export default function About() {
                           transition={{ duration: 2, repeat: Infinity }}
                         />
                       </div>
-                      
+
                       <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-[#ECB629] transition-colors">
                         {member.name}
                       </h3>
-                      <p className="text-[#ECB629] font-medium mb-4">{member.role}</p>
+                      <p className="text-[#ECB629] font-medium mb-4">
+                        {member.role}
+                      </p>
                       <p className="text-gray-300 mb-6">{member.description}</p>
-                      
+
                       <div className="flex flex-wrap gap-2 justify-center">
                         {member.expertise.map((skill, skillIndex) => (
-                          <span 
+                          <span
                             key={skillIndex}
                             className="px-3 py-1 bg-slate-700/50 text-gray-300 text-sm rounded-full"
                           >
@@ -426,7 +468,7 @@ export default function About() {
                 </div>
               </motion.div>
 
-              <motion.h2 
+              <motion.h2
                 className="text-4xl md:text-5xl font-bold text-black mb-6"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -435,19 +477,20 @@ export default function About() {
               >
                 Готови за сътрудничество?
               </motion.h2>
-              
-              <motion.p 
+
+              <motion.p
                 className="text-xl text-black/80 mb-8 max-w-2xl mx-auto"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
                 viewport={{ once: true }}
               >
-                Нека заедно изградим системите, които ще направят вашия бизнес по-предвидим и по-печеливш.
+                Нека заедно изградим системите, които ще направят вашия бизнес
+                по-предвидим и по-печеливш.
               </motion.p>
 
               {/* Trust Signals */}
-              <motion.div 
+              <motion.div
                 className="flex flex-wrap justify-center gap-6 mb-8 text-sm text-black/70"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -467,24 +510,32 @@ export default function About() {
                   <span>Проверени методи</span>
                 </div>
               </motion.div>
-              
+
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.5 }}
                 viewport={{ once: true }}
               >
-                <Button 
+                <Button
                   size="lg"
                   variant="outline"
                   className="relative border-2 border-black text-black hover:bg-black hover:text-[#ECB629] px-8 py-4 text-lg font-semibold overflow-hidden group"
                   asChild
                 >
-                  <a href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu" target="_blank" rel="noopener noreferrer">
+                  <a
+                    href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <motion.div
                       className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black opacity-0 group-hover:opacity-10"
-                      animate={{ x: ['-100%', '100%'] }}
-                      transition={{ duration: 1.5, repeat: Infinity, repeatType: 'loop' }}
+                      animate={{ x: ["-100%", "100%"] }}
+                      transition={{
+                        duration: 1.5,
+                        repeat: Infinity,
+                        repeatType: "loop",
+                      }}
                     />
                     Започнете сега <ArrowRight className="ml-2 w-5 h-5" />
                   </a>
@@ -494,7 +545,7 @@ export default function About() {
           </div>
         </section>
       </main>
-      
+
       <Footer />
     </div>
   );
