@@ -29,7 +29,7 @@ import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 // SEO structured data will be injected directly
 
-interface ROICalculatorProps {
+interface ReturnOnInvestmentCalculatorProps {
   serviceName: string;
   monthlyPrice: number;
   description: string;
@@ -43,14 +43,14 @@ interface ROICalculatorProps {
   icon: React.ReactNode;
 }
 
-function ROICalculator({
+function ReturnOnInvestmentCalculator({
   serviceName,
   monthlyPrice,
   description,
   averageResults,
   color,
   icon,
-}: ROICalculatorProps) {
+}: ReturnOnInvestmentCalculatorProps) {
   // Service-specific input states
   const getServiceInputs = () => {
     switch (serviceName) {
@@ -500,10 +500,10 @@ function ROICalculator({
 
           {/* ROI Definition */}
           <div className="bg-slate-900/50 rounded-lg p-4 border border-slate-700/30">
-            <h4 className="text-white font-medium mb-2">Какво е ROI?</h4>
+            <h4 className="text-white font-medium mb-2">Какво е възвърната инвестиция?</h4>
             <p className="text-gray-400 text-sm">
-              ROI (Return on Investment) показва колко лева печелите за всеки
-              лев инвестиран в услугата. Например, 300% ROI означава, че за
+              Възвърната инвестиция показва колко лева печелите за всеки
+              лев инвестиран в услугата. Например, 300% възвърната инвестиция означава, че за
               всеки лев инвестиран, получавате 3 лева обратно.
             </p>
           </div>
@@ -815,9 +815,9 @@ export default function CalculatorsNew() {
     script.textContent = JSON.stringify({
       "@context": "https://schema.org",
       "@type": "WebApplication",
-      name: "ROI Калкулатор - Pravdast",
+      name: "Калкулатор за възвърната инвестиция - Pravdast",
       description:
-        "Интерактивен калкулатор за изчисляване на ROI от дигитален маркетинг услуги",
+        "Интерактивен калкулатор за изчисляване на възвърната инвестиция от дигитален маркетинг услуги",
       url: "https://www.pravdagency.eu/calculators",
       applicationCategory: "BusinessApplication",
       operatingSystem: "Any",
