@@ -45,6 +45,21 @@
     <!-- Klaviyo Email Marketing -->
     <script async type='text/javascript' src='https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=UTqrCz'></script>
     
+    <!-- Ahrefs Analytics -->
+    <script src="https://analytics.ahrefs.com/analytics.js" data-key="7s/ezQNKCvY4HvQHREODIg" async></script>
+    
+    <!-- Alternative Ahrefs Analytics for GTM (fallback) -->
+    <script>
+      // Only load if direct script above fails
+      if (typeof window.ahrefs === 'undefined') {
+        var ahrefs_analytics_script = document.createElement('script');
+        ahrefs_analytics_script.async = true;
+        ahrefs_analytics_script.src = 'https://analytics.ahrefs.com/analytics.js';
+        ahrefs_analytics_script.setAttribute('data-key', '7s/ezQNKCvY4HvQHREODIg');
+        document.getElementsByTagName('head')[0].appendChild(ahrefs_analytics_script);
+      }
+    </script>
+    
     <!-- Schema.org LocalBusiness Markup -->
     <script type="application/ld+json">
     {
