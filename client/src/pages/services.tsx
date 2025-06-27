@@ -172,7 +172,15 @@ const services = [
 
 export default function Services() {
   const philosophyRef = useRef(null);
+  const systemsRef = useRef<HTMLElement>(null);
   const isInView = useInView(philosophyRef);
+
+  const scrollToSystems = () => {
+    systemsRef.current?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    });
+  };
 
   return (
     <div className="min-h-screen bg-slate-900">
@@ -241,21 +249,17 @@ export default function Services() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.6 }}
               >
-                <a
-                  href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group relative"
-                >
+                <div className="group relative">
                   <div className="absolute -inset-1 bg-gradient-to-r from-[#ECB629] to-[#ECB629]/50 rounded-xl blur opacity-30 group-hover:opacity-50 transition duration-300"></div>
                   <Button 
                     size="lg" 
-                    className="relative bg-[#ECB629] text-black hover:bg-[#ECB629]/90 px-8 py-4 md:px-12 md:py-6 text-base md:text-xl font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-105"
+                    onClick={scrollToSystems}
+                    className="relative bg-[#ECB629] text-black hover:bg-[#ECB629]/90 px-8 py-4 md:px-12 md:py-6 text-base md:text-xl font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-105 cursor-pointer"
                   >
-                    Разгледайте системите
+                    Разгледай системите
                     <BarChart3 className="ml-3 h-5 w-5 md:h-6 md:w-6" />
                   </Button>
-                </a>
+                </div>
               </motion.div>
 
               {/* Trust indicators */}
@@ -379,7 +383,7 @@ export default function Services() {
       </section>
 
       {/* Systems Overview Section */}
-      <section className="py-20 bg-slate-900 relative overflow-hidden">
+      <section ref={systemsRef} className="py-20 bg-slate-900 relative overflow-hidden">
         <div className="absolute inset-0 opacity-15">
           <div className="absolute inset-0" style={{
             backgroundImage: `

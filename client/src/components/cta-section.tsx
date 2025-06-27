@@ -65,7 +65,7 @@ export const CTASection = () => {
                 <Zap className="w-5 h-5 text-[#ECB629]" />
               </div>
               <span className="text-white font-bold text-base tracking-wide">
-                Ограничени места за Q1 2025
+                Ограничени места за 2025
               </span>
             </div>
           </motion.div>
@@ -127,10 +127,9 @@ export const CTASection = () => {
             >
               {[
                 { text: "Безплатна консултация", icon: CheckCircle },
-                { text: "Без ангажименти", icon: Shield },
                 { text: "100% поверителност", icon: Shield },
                 { text: "Отговор в 48 часа", icon: Clock },
-                { text: "Попълни само за 5 минути", icon: Zap },
+                { text: "Попълни за 5 минути", icon: Zap },
               ].map((item, index) => (
                 <motion.div
                   key={index}
@@ -199,7 +198,7 @@ export const CTASection = () => {
                 <div className="flex items-center justify-center gap-8 text-sm text-gray-500">
                   <div className="flex items-center gap-2">
                     <CheckCircle className="w-4 h-4 text-green-500" />
-                    <span>24h максимум</span>
+                    <span>48ч. максимум</span>
                   </div>
                   <div className="w-1 h-1 bg-gray-600 rounded-full"></div>
                   <div className="flex items-center gap-2">
