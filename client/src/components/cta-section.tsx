@@ -170,37 +170,13 @@ export const CTASection = () => {
                 href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block w-full relative overflow-hidden bg-black border-2 border-white text-white text-xl font-bold py-6 px-8 rounded-2xl shadow-2xl transition-all duration-300 group"
-                whileHover={{ scale: 1.02, y: -3 }}
-                whileTap={{ scale: 0.98 }}
-                animate={{
-                  boxShadow: [
-                    "0 0 0 rgba(255, 255, 255, 0.5)",
-                    "0 0 20px rgba(255, 255, 255, 0.8)",
-                    "0 0 0 rgba(255, 255, 255, 0.5)"
-                  ]
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
+                className="block w-full bg-black text-white text-xl font-bold py-6 px-8 rounded-2xl shadow-2xl transition-all duration-300 hover:shadow-3xl"
+                whileHover={{ scale: 1.05, y: -5 }}
+                whileTap={{ scale: 0.95 }}
               >
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 w-full"
-                  animate={{
-                    x: ["-200%", "200%"]
-                  }}
-                  transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                    repeatDelay: 2,
-                    ease: "easeInOut"
-                  }}
-                />
-                <div className="relative flex items-center justify-center gap-3">
+                <div className="flex items-center justify-center gap-3">
                   <span>Безплатна консултация</span>
-                  <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform duration-300" />
+                  <ArrowRight className="w-6 h-6" />
                 </div>
               </motion.a>
 
