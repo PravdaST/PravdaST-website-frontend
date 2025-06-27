@@ -704,24 +704,51 @@ export default function Calculators() {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
+            {/* Scarcity Badge */}
+            <motion.div 
+              className="inline-flex items-center gap-2 bg-red-500 text-white px-4 py-2 rounded-full font-bold mb-6"
+              animate={{ scale: [1, 1.05, 1] }}
+              transition={{ duration: 2, repeat: Infinity }}
+            >
+              <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+              <span className="bg-white text-red-500 px-2 py-1 rounded font-black text-sm">3</span>
+              <span>места остават за следващото тримесечие</span>
+            </motion.div>
+
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Готови за measurable резултати?
+              Готови за <span className="bg-black text-[#ECB629] px-2 py-1 rounded">трансформация</span>?
             </h2>
             <p className="text-xl mb-8 max-w-2xl mx-auto">
-              Калкулаторите показват потенциала. Ние го реализираме.
+              Калкулаторите показват потенциала. Ние го реализираме с измерими резултати.
             </p>
-            <Button 
-              asChild
-              className="bg-black text-white hover:bg-gray-800 text-lg px-8 py-6"
-            >
-              <a 
-                href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu"
-                target="_blank"
-                rel="noopener noreferrer"
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-2xl mx-auto">
+              <Button 
+                asChild
+                className="bg-black text-[#ECB629] hover:bg-gray-800 text-lg px-8 py-6 font-bold flex-1"
               >
-                Започнете безплатната консултация <ArrowRight className="w-5 h-5 ml-2" />
-              </a>
-            </Button>
+                <a 
+                  href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Получете безплатен SEO одит <ArrowRight className="w-5 h-5 ml-2" />
+                </a>
+              </Button>
+              
+              <Button 
+                asChild
+                variant="outline"
+                className="border-2 border-black text-black hover:bg-black hover:text-[#ECB629] text-lg px-8 py-6 font-semibold flex-1"
+              >
+                <a 
+                  href="/services/seo-struktor"
+                  rel="noopener noreferrer"
+                >
+                  Научете повече за услугата
+                </a>
+              </Button>
+            </div>
           </motion.div>
         </div>
       </section>
