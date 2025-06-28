@@ -26,48 +26,70 @@ const SeoStruktorBackground = () => {
     const updateMousePosition = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
-    window.addEventListener('mousemove', updateMousePosition);
-    return () => window.removeEventListener('mousemove', updateMousePosition);
+    window.addEventListener("mousemove", updateMousePosition);
+    return () => window.removeEventListener("mousemove", updateMousePosition);
   }, []);
 
   return (
     <div className="absolute inset-0 overflow-hidden opacity-15">
       {/* SEO Structure Grid */}
-      <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
+      <svg
+        className="absolute inset-0 w-full h-full"
+        xmlns="http://www.w3.org/2000/svg"
+      >
         <defs>
-          <pattern id="seo-grid" width="80" height="80" patternUnits="userSpaceOnUse">
-            <path d="M 80 0 L 0 0 0 80" fill="none" stroke="var(--pravdast-yellow)" strokeWidth="0.5" opacity="0.3"/>
-            <circle cx="40" cy="40" r="2" fill="var(--pravdast-yellow)" opacity="0.4"/>
+          <pattern
+            id="seo-grid"
+            width="80"
+            height="80"
+            patternUnits="userSpaceOnUse"
+          >
+            <path
+              d="M 80 0 L 0 0 0 80"
+              fill="none"
+              stroke="var(--pravdast-yellow)"
+              strokeWidth="0.5"
+              opacity="0.3"
+            />
+            <circle
+              cx="40"
+              cy="40"
+              r="2"
+              fill="var(--pravdast-yellow)"
+              opacity="0.4"
+            />
           </pattern>
         </defs>
         <rect width="100%" height="100%" fill="url(#seo-grid)" />
       </svg>
-      
+
       {/* SEO Keywords floating */}
-      {['SEO', 'STRUCTURE', 'SYSTEM', 'RANKING', 'TRAFFIC', 'AUTHORITY'].map((keyword, i) => (
-        <motion.div
-          key={keyword}
-          className="absolute text-[var(--pravdast-yellow)] font-mono text-xs opacity-20"
-          style={{
-            left: `${15 + (i * 12)}%`,
-            top: `${20 + (i % 3) * 25}%`,
-          }}
-          animate={{
-            x: mousePosition.x * 0.015 * (i % 2 === 0 ? 1 : -1),
-            y: mousePosition.y * 0.015 * (i % 2 === 0 ? -1 : 1),
-            opacity: [0.2, 0.4, 0.2],
-          }}
-          transition={{ 
-            type: "spring", 
-            stiffness: 30, 
-            damping: 10,
-            opacity: { duration: 3, repeat: Infinity }
-          }}
-        >
-          {keyword}
-        </motion.div>
-      ))}
-      
+      {["SEO", "STRUCTURE", "SYSTEM", "RANKING", "TRAFFIC", "AUTHORITY"].map(
+        (keyword, i) => (
+          <motion.div
+            key={keyword}
+            className="absolute text-[var(--pravdast-yellow)] font-mono text-xs opacity-20"
+            style={{
+              left: `${15 + i * 12}%`,
+              top: `${20 + (i % 3) * 25}%`,
+            }}
+            animate={{
+              x: mousePosition.x * 0.015 * (i % 2 === 0 ? 1 : -1),
+              y: mousePosition.y * 0.015 * (i % 2 === 0 ? -1 : 1),
+              opacity: [0.2, 0.4, 0.2],
+            }}
+            transition={{
+              type: "spring",
+              stiffness: 30,
+              damping: 10,
+              opacity: { duration: 3, repeat: Infinity },
+            }}
+          >
+            {keyword}
+          </motion.div>
+        ),
+      )}
+
       {/* Network connections representing SEO structure */}
       <motion.svg
         className="absolute inset-0 w-full h-full"
@@ -78,8 +100,14 @@ const SeoStruktorBackground = () => {
         transition={{ type: "spring", stiffness: 40, damping: 15 }}
       >
         {/* Central hub */}
-        <circle cx="50%" cy="50%" r="4" fill="var(--pravdast-yellow)" opacity="0.6"/>
-        
+        <circle
+          cx="50%"
+          cy="50%"
+          r="4"
+          fill="var(--pravdast-yellow)"
+          opacity="0.6"
+        />
+
         {/* Connecting lines to represent SEO structure */}
         <path
           d="M 20% 30% Q 50% 20% 80% 30%"
@@ -114,7 +142,7 @@ const SeoStruktorBackground = () => {
   );
 };
 
-// Philosophy Section Component  
+// Philosophy Section Component
 const PhilosophySection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
@@ -123,9 +151,9 @@ const PhilosophySection = () => {
   useEffect(() => {
     if (isInView) {
       const interval = setInterval(() => {
-        setCurrentStep(prev => prev === 0 ? 1 : 0);
+        setCurrentStep((prev) => (prev === 0 ? 1 : 0));
       }, 3000); // Switch every 3 seconds
-      
+
       return () => clearInterval(interval);
     }
   }, [isInView]);
@@ -145,7 +173,6 @@ const PhilosophySection = () => {
 
           {/* Mobile-first single column design */}
           <div className="space-y-12">
-            
             {/* Transformation Visualization */}
             <motion.div
               className="relative bg-slate-800/80 rounded-2xl p-8 border border-slate-600/30 overflow-hidden"
@@ -160,18 +187,25 @@ const PhilosophySection = () => {
                     <motion.div
                       key={i}
                       className={`rounded-sm h-2 ${
-                        currentStep === 0 
-                          ? 'bg-red-400' 
-                          : 'bg-[var(--pravdast-yellow)]'
+                        currentStep === 0
+                          ? "bg-red-400"
+                          : "bg-[var(--pravdast-yellow)]"
                       }`}
                       initial={{
-                        rotate: currentStep === 0 ? Math.random() * 180 - 90 : 0,
-                        scale: currentStep === 0 ? Math.random() * 0.8 + 0.6 : 1,
+                        rotate:
+                          currentStep === 0 ? Math.random() * 180 - 90 : 0,
+                        scale:
+                          currentStep === 0 ? Math.random() * 0.8 + 0.6 : 1,
                       }}
                       animate={{
-                        rotate: currentStep === 1 ? 0 : Math.random() * 180 - 90,
-                        scale: currentStep === 1 ? 1 : Math.random() * 0.8 + 0.6,
-                        backgroundColor: currentStep === 1 ? 'rgb(236, 182, 40)' : 'rgb(248, 113, 113)'
+                        rotate:
+                          currentStep === 1 ? 0 : Math.random() * 180 - 90,
+                        scale:
+                          currentStep === 1 ? 1 : Math.random() * 0.8 + 0.6,
+                        backgroundColor:
+                          currentStep === 1
+                            ? "rgb(236, 182, 40)"
+                            : "rgb(248, 113, 113)",
                       }}
                       transition={{
                         duration: 2,
@@ -187,29 +221,33 @@ const PhilosophySection = () => {
               <div className="relative z-10 text-center mb-8">
                 <motion.div
                   className={`inline-flex items-center px-4 py-2 rounded-full text-sm font-semibold ${
-                    currentStep === 0 
-                      ? 'bg-red-500/20 text-red-300 border border-red-500/30' 
-                      : 'bg-[var(--pravdast-yellow)]/20 text-[var(--pravdast-yellow)] border border-[var(--pravdast-yellow)]/30'
+                    currentStep === 0
+                      ? "bg-red-500/20 text-red-300 border border-red-500/30"
+                      : "bg-[var(--pravdast-yellow)]/20 text-[var(--pravdast-yellow)] border border-[var(--pravdast-yellow)]/30"
                   }`}
                   animate={{
-                    backgroundColor: currentStep === 1 
-                      ? 'rgba(236, 182, 40, 0.2)' 
-                      : 'rgba(239, 68, 68, 0.2)'
+                    backgroundColor:
+                      currentStep === 1
+                        ? "rgba(236, 182, 40, 0.2)"
+                        : "rgba(239, 68, 68, 0.2)",
                   }}
                   transition={{ duration: 1 }}
                 >
                   <motion.div
                     className={`w-2 h-2 rounded-full mr-2 ${
-                      currentStep === 0 ? 'bg-red-400' : 'bg-[var(--pravdast-yellow)]'
+                      currentStep === 0
+                        ? "bg-red-400"
+                        : "bg-[var(--pravdast-yellow)]"
                     }`}
                     animate={{
-                      backgroundColor: currentStep === 1 
-                        ? 'rgb(236, 182, 40)' 
-                        : 'rgb(248, 113, 113)'
+                      backgroundColor:
+                        currentStep === 1
+                          ? "rgb(236, 182, 40)"
+                          : "rgb(248, 113, 113)",
                     }}
                     transition={{ duration: 1 }}
                   />
-                  {currentStep === 0 ? 'БЕЗ СИСТЕМА' : 'СЪС СИСТЕМА'}
+                  {currentStep === 0 ? "БЕЗ СИСТЕМА" : "СЪС СИСТЕМА"}
                 </motion.div>
               </div>
 
@@ -221,25 +259,29 @@ const PhilosophySection = () => {
                   animate={{ opacity: 1 }}
                   transition={{ delay: 1 }}
                 >
-                  <motion.div 
+                  <motion.div
                     className="w-16 h-0.5"
                     animate={{
-                      background: currentStep === 0 
-                        ? 'linear-gradient(to right, rgb(248, 113, 113), rgb(239, 68, 68))'
-                        : 'linear-gradient(to right, rgb(248, 113, 113), rgb(236, 182, 40))'
+                      background:
+                        currentStep === 0
+                          ? "linear-gradient(to right, rgb(248, 113, 113), rgb(239, 68, 68))"
+                          : "linear-gradient(to right, rgb(248, 113, 113), rgb(236, 182, 40))",
                     }}
                     transition={{ duration: 1.5 }}
                   />
                   <motion.div
                     animate={{
                       x: currentStep === 1 ? [0, 10, 0] : [0, -10, 0],
-                      color: currentStep === 1 ? 'rgb(236, 182, 40)' : 'rgb(248, 113, 113)',
-                      scale: currentStep === 1 ? [1, 1.2, 1] : [1, 0.8, 1]
+                      color:
+                        currentStep === 1
+                          ? "rgb(236, 182, 40)"
+                          : "rgb(248, 113, 113)",
+                      scale: currentStep === 1 ? [1, 1.2, 1] : [1, 0.8, 1],
                     }}
-                    transition={{ 
+                    transition={{
                       duration: 1.5,
                       repeat: Infinity,
-                      repeatType: "loop"
+                      repeatType: "loop",
                     }}
                   >
                     {currentStep === 1 ? (
@@ -248,12 +290,13 @@ const PhilosophySection = () => {
                       <ArrowLeft className="w-6 h-6" />
                     )}
                   </motion.div>
-                  <motion.div 
+                  <motion.div
                     className="w-16 h-0.5"
                     animate={{
-                      background: currentStep === 1 
-                        ? 'linear-gradient(to right, rgb(236, 182, 40), rgb(236, 182, 40))'
-                        : 'linear-gradient(to right, rgb(236, 182, 40), rgb(248, 113, 113))'
+                      background:
+                        currentStep === 1
+                          ? "linear-gradient(to right, rgb(236, 182, 40), rgb(236, 182, 40))"
+                          : "linear-gradient(to right, rgb(236, 182, 40), rgb(248, 113, 113))",
                     }}
                     transition={{ duration: 1.5 }}
                   />
@@ -263,7 +306,6 @@ const PhilosophySection = () => {
 
             {/* Content Cards */}
             <div className="grid gap-8 md:grid-cols-2">
-              
               {/* Problem Card */}
               <motion.div
                 className="bg-slate-800/60 rounded-xl p-6 border border-red-500/20"
@@ -276,10 +318,10 @@ const PhilosophySection = () => {
                   <h3 className="text-lg font-bold text-red-300">Проблемът</h3>
                 </div>
                 <p className="text-gray-300 leading-relaxed">
-                  Повечето уебсайтове се развиват хаотично – добавя се
-                  страница тук, пише се статия там. Липсва единна,
-                  централна структура. Точно това е причината резултатите
-                  да са непредсказуеми и краткотрайни.
+                  Повечето уебсайтове се развиват хаотично – добавя се страница
+                  тук, пише се статия там. Липсва единна, централна структура.
+                  Точно това е причината резултатите да са непредсказуеми и
+                  краткотрайни.
                 </p>
               </motion.div>
 
@@ -292,13 +334,15 @@ const PhilosophySection = () => {
               >
                 <div className="flex items-center mb-4">
                   <div className="w-3 h-3 bg-[var(--pravdast-yellow)] rounded-full mr-3"></div>
-                  <h3 className="text-lg font-bold text-[var(--pravdast-yellow)]">Решението</h3>
+                  <h3 className="text-lg font-bold text-[var(--pravdast-yellow)]">
+                    Решението
+                  </h3>
                 </div>
                 <p className="text-gray-300 leading-relaxed">
                   Ние подхождаме към вашия сайт като архитекти. Преди да
-                  поставим и една \"тухла\" (съдържание), ние създаваме цялостния
-                  инженерен план (SEO Struktor™), който гарантира, че всеки
-                  елемент работи в синхрон с останалите, за да се постигне
+                  поставим и една \"тухла\" (съдържание), ние създаваме
+                  цялостния инженерен план (SEO Struktor™), който гарантира, че
+                  всеки елемент работи в синхрон с останалите, за да се постигне
                   крайната цел – доминация в Google.
                 </p>
               </motion.div>
@@ -319,35 +363,42 @@ const EngineeringProcessSection = () => {
     {
       number: "0",
       title: "Здравият фундамент (Pagekraft™)",
-      description: "Преди да строим, проверяваме терена. Ако вашият сайт е бавен или технически неизправен, ние го изграждаме наново. Това е фундаментът, без който всяка конструкция е нестабилна.",
+      description:
+        "Преди да строим, проверяваме терена. Ако вашият сайт е бавен или технически неизправен, ние го изграждаме наново. Това е фундаментът, без който всяка конструкция е нестабилна.",
       duration: "2-3 седмици",
-      deliverable: "Технически одит + оптимизиран сайт"
+      deliverable: "Технически одит + оптимизиран сайт",
     },
     {
-      number: "1", 
+      number: "1",
       title: "Архитектурен план",
-      description: "Проектираме перфектната вътрешна архитектура, за да може Google лесно да \"разбере\" и оцени стойността на вашия сайт. Това е чертежът, който следваме.",
+      description:
+        'Проектираме перфектната вътрешна архитектура, за да може Google лесно да "разбере" и оцени стойността на вашия сайт. Това е чертежът, който следваме.',
       duration: "1-2 седмици",
-      deliverable: "SEO архитектура + URL структура"
+      deliverable: "SEO архитектура + URL структура",
     },
     {
       number: "2",
-      title: "Архитектура на съдържанието", 
-      description: "Създаваме съдържание, което отговаря на въпросите на клиентите ви и демонстрира вашата експертиза. Всяка страница е структурен елемент, който допринася за здравината и стойността на цялата сграда.",
+      title: "Архитектура на съдържанието",
+      description:
+        "Създаваме съдържание, което отговаря на въпросите на клиентите ви и демонстрира вашата експертиза. Всяка страница е структурен елемент, който допринася за здравината и стойността на цялата сграда.",
       duration: "4-6 седмици",
-      deliverable: "Content стратегия + оптимизирани страници"
+      deliverable: "Content стратегия + оптимизирани страници",
     },
     {
       number: "3",
       title: "Външен авторитет",
-      description: "Систематично изграждаме репутацията на вашия сайт в интернет, превръщайки го в авторитетен източник. Това му придава по-висока стойност и стабилност в очите на Google и пазара.",
+      description:
+        "Систематично изграждаме репутацията на вашия сайт в интернет, превръщайки го в авторитетен източник. Това му придава по-висока стойност и стабилност в очите на Google и пазара.",
       duration: "Непрекъснато",
-      deliverable: "Link building + brand mentions"
-    }
+      deliverable: "Link building + brand mentions",
+    },
   ];
 
   return (
-    <section ref={ref} className="py-20 bg-slate-800/30 relative overflow-hidden">
+    <section
+      ref={ref}
+      className="py-20 bg-slate-800/30 relative overflow-hidden"
+    >
       {/* Dynamic Blueprint Background */}
       <div className="absolute inset-0 opacity-3">
         <div className="grid grid-cols-12 gap-4 h-full p-8">
@@ -356,16 +407,20 @@ const EngineeringProcessSection = () => {
               key={i}
               className="bg-[var(--pravdast-yellow)] rounded-sm h-1"
               initial={{ opacity: 0, scale: 0 }}
-              animate={isInView ? { 
-                opacity: Math.random() * 0.3 + 0.1, 
-                scale: Math.random() * 0.8 + 0.4 
-              } : {}}
+              animate={
+                isInView
+                  ? {
+                      opacity: Math.random() * 0.3 + 0.1,
+                      scale: Math.random() * 0.8 + 0.4,
+                    }
+                  : {}
+              }
               transition={{
                 duration: 2,
                 delay: i * 0.01,
                 repeat: Infinity,
                 repeatType: "reverse",
-                ease: "easeInOut"
+                ease: "easeInOut",
               }}
             />
           ))}
@@ -381,7 +436,9 @@ const EngineeringProcessSection = () => {
             transition={{ duration: 0.8 }}
           >
             <div className="inline-block px-4 py-2 bg-[var(--pravdast-yellow)]/10 rounded-full border border-[var(--pravdast-yellow)]/20 mb-6">
-              <span className="text-[var(--pravdast-yellow)] text-sm font-semibold">СИСТЕМЕН ПРОЦЕС</span>
+              <span className="text-[var(--pravdast-yellow)] text-sm font-semibold">
+                СИСТЕМЕН ПРОЦЕС
+              </span>
             </div>
             <h2 className="text-3xl md:text-5xl font-bold text-white leading-tight">
               От основите до покрива
@@ -411,16 +468,11 @@ const EngineeringProcessSection = () => {
                   />
                 )}
 
-                <motion.div
-                  className="bg-slate-800/60 backdrop-blur-sm rounded-2xl border border-slate-600/30 overflow-hidden transition-all duration-300"
-                >
+                <motion.div className="bg-slate-800/60 backdrop-blur-sm rounded-2xl border border-slate-600/30 overflow-hidden transition-all duration-300">
                   <div className="p-6 md:p-8">
                     <div className="flex flex-col md:flex-row md:items-start gap-6">
-                      
                       {/* Phase Number Circle */}
-                      <motion.div
-                        className="flex-shrink-0"
-                      >
+                      <motion.div className="flex-shrink-0">
                         <div className="relative">
                           <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-[var(--pravdast-yellow)] to-yellow-600 rounded-full flex items-center justify-center shadow-lg">
                             <span className="text-black font-bold text-xl md:text-2xl">
@@ -445,13 +497,21 @@ const EngineeringProcessSection = () => {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-4 border-t border-slate-600/30">
                           <div className="flex items-center space-x-2">
                             <div className="w-2 h-2 bg-[var(--pravdast-yellow)] rounded-full"></div>
-                            <span className="text-sm text-gray-400">Времетраене:</span>
-                            <span className="text-sm font-semibold text-white">{phase.duration}</span>
+                            <span className="text-sm text-gray-400">
+                              Времетраене:
+                            </span>
+                            <span className="text-sm font-semibold text-white">
+                              {phase.duration}
+                            </span>
                           </div>
                           <div className="flex items-center space-x-2">
                             <div className="w-2 h-2 bg-[var(--pravdast-yellow)] rounded-full"></div>
-                            <span className="text-sm text-gray-400">Резултат:</span>
-                            <span className="text-sm font-semibold text-white">{phase.deliverable}</span>
+                            <span className="text-sm text-gray-400">
+                              Резултат:
+                            </span>
+                            <span className="text-sm font-semibold text-white">
+                              {phase.deliverable}
+                            </span>
                           </div>
                         </div>
                       </div>
@@ -462,20 +522,24 @@ const EngineeringProcessSection = () => {
                           className="w-1 h-20 bg-slate-700 rounded-full overflow-hidden"
                           initial={{ height: 0 }}
                           animate={isInView ? { height: 80 } : {}}
-                          transition={{ duration: 1, delay: index * 0.15 + 0.8 }}
+                          transition={{
+                            duration: 1,
+                            delay: index * 0.15 + 0.8,
+                          }}
                         >
                           <motion.div
                             className="w-full bg-gradient-to-t from-[var(--pravdast-yellow)] to-yellow-400"
                             initial={{ height: "0%" }}
                             animate={isInView ? { height: "100%" } : {}}
-                            transition={{ duration: 1.5, delay: index * 0.15 + 1 }}
+                            transition={{
+                              duration: 1.5,
+                              delay: index * 0.15 + 1,
+                            }}
                           />
                         </motion.div>
                       </div>
                     </div>
                   </div>
-
-
                 </motion.div>
               </motion.div>
             ))}
@@ -504,30 +568,33 @@ const ResultsSection = () => {
       icon: <Zap className="w-8 h-8" />,
       title: "Предвидим поток от качествени запитвания",
       description: "От клиенти, които активно търсят вашите решения",
-      metric: "3x повече leads"
+      metric: "10x повече запитвания",
     },
     {
       icon: <BarChart3 className="w-8 h-8" />,
       title: "Дълготраен дигитален актив",
       description: "С нарастваща стойност, който работи за вас 24/7",
-      metric: "365 дни работа"
+      metric: "365 дни работа",
     },
     {
       icon: <TrendingDown className="w-8 h-8" />,
       title: "Намалена зависимост",
       description: "От постоянни и рискови рекламни бюджети",
-      metric: "60% по-малко разходи"
+      metric: "60% по-малко разходи",
     },
     {
       icon: <Crown className="w-8 h-8" />,
-      title: "Установен пазарен авторитет", 
+      title: "Установен пазарен авторитет",
       description: "И разпознаваемост на вашия бранд като експерт в нишата",
-      metric: "Топ 3 позиции"
-    }
+      metric: "Топ 3 позиции",
+    },
   ];
 
   return (
-    <section ref={ref} className="py-20 bg-slate-900/40 relative overflow-hidden">
+    <section
+      ref={ref}
+      className="py-20 bg-slate-900/40 relative overflow-hidden"
+    >
       {/* Enhanced Background */}
       <div className="absolute inset-0 opacity-10">
         <div className="grid grid-cols-8 md:grid-cols-16 gap-2 h-full p-6">
@@ -537,16 +604,20 @@ const ResultsSection = () => {
               className="bg-[var(--pravdast-yellow)] rounded-full"
               style={{ height: Math.random() * 4 + 1 + "px" }}
               initial={{ opacity: 0, scaleY: 0 }}
-              animate={isInView ? { 
-                opacity: Math.random() * 0.6 + 0.2,
-                scaleY: Math.random() * 2 + 0.5
-              } : {}}
+              animate={
+                isInView
+                  ? {
+                      opacity: Math.random() * 0.6 + 0.2,
+                      scaleY: Math.random() * 2 + 0.5,
+                    }
+                  : {}
+              }
               transition={{
                 duration: 1.5,
                 delay: i * 0.01,
                 repeat: Infinity,
                 repeatType: "reverse",
-                ease: "easeInOut"
+                ease: "easeInOut",
               }}
             />
           ))}
@@ -562,13 +633,16 @@ const ResultsSection = () => {
             transition={{ duration: 0.8 }}
           >
             <div className="inline-block px-4 py-2 bg-[var(--pravdast-yellow)]/10 rounded-full border border-[var(--pravdast-yellow)]/20 mb-6">
-              <span className="text-[var(--pravdast-yellow)] text-sm font-semibold">ИЗМЕРИМИ РЕЗУЛТАТИ</span>
+              <span className="text-[var(--pravdast-yellow)] text-sm font-semibold">
+                ИЗМЕРИМИ РЕЗУЛТАТИ
+              </span>
             </div>
             <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight">
               Крайният резултат: Повече от просто \"позиции\"
             </h2>
             <p className="text-gray-300 text-xl max-w-3xl mx-auto leading-relaxed">
-              Системата SEO Struktor™ създава дълготрайна стойност за вашия бизнес
+              Системата SEO Struktor™ създава дълготрайна стойност за вашия
+              бизнес
             </p>
           </motion.div>
 
@@ -581,24 +655,18 @@ const ResultsSection = () => {
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.8, delay: index * 0.15 }}
               >
-                <motion.div
-                  className="bg-slate-800/70 backdrop-blur-sm p-8 rounded-3xl border border-slate-600/30 h-full transition-all duration-300 overflow-hidden relative"
-                >
+                <motion.div className="bg-slate-800/70 backdrop-blur-sm p-8 rounded-3xl border border-slate-600/30 h-full transition-all duration-300 overflow-hidden relative">
                   {/* Floating elements background */}
                   <div className="absolute top-0 right-0 w-20 h-20 bg-[var(--pravdast-yellow)]/5 rounded-full -translate-y-10 translate-x-10" />
-                  
+
                   <div className="relative z-10">
                     {/* Icon with enhanced styling */}
-                    <motion.div
-                      className="relative mb-6"
-                    >
+                    <motion.div className="relative mb-6">
                       <div className="w-16 h-16 bg-gradient-to-br from-[var(--pravdast-yellow)] to-yellow-600 rounded-2xl flex items-center justify-center shadow-lg relative">
-                        <div className="text-black">
-                          {benefit.icon}
-                        </div>
+                        <div className="text-black">{benefit.icon}</div>
                       </div>
                     </motion.div>
-                    
+
                     {/* Metric badge */}
                     <motion.div
                       className="inline-block px-3 py-1 bg-[var(--pravdast-yellow)]/20 border border-[var(--pravdast-yellow)]/30 rounded-full mb-4"
@@ -628,7 +696,9 @@ const ResultsSection = () => {
                       {/* Before progress bar */}
                       <div className="space-y-2">
                         <div className="flex justify-between items-center">
-                          <span className="text-xs text-gray-500 font-medium">Преди</span>
+                          <span className="text-xs text-gray-500 font-medium">
+                            Преди
+                          </span>
                           <span className="text-xs text-gray-400">25%</span>
                         </div>
                         <div className="w-full h-2 bg-slate-700/50 rounded-full overflow-hidden">
@@ -636,7 +706,10 @@ const ResultsSection = () => {
                             className="h-full bg-gradient-to-r from-red-500/70 to-red-400/70 relative"
                             initial={{ width: "0%" }}
                             animate={isInView ? { width: "25%" } : {}}
-                            transition={{ duration: 1.2, delay: index * 0.15 + 0.8 }}
+                            transition={{
+                              duration: 1.2,
+                              delay: index * 0.15 + 0.8,
+                            }}
                           >
                             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12" />
                           </motion.div>
@@ -646,15 +719,22 @@ const ResultsSection = () => {
                       {/* After progress bar */}
                       <div className="space-y-2">
                         <div className="flex justify-between items-center">
-                          <span className="text-xs text-[var(--pravdast-yellow)] font-medium">След SEO Struktor™</span>
-                          <span className="text-xs text-[var(--pravdast-yellow)]">85%</span>
+                          <span className="text-xs text-[var(--pravdast-yellow)] font-medium">
+                            След SEO Struktor™
+                          </span>
+                          <span className="text-xs text-[var(--pravdast-yellow)]">
+                            85%
+                          </span>
                         </div>
                         <div className="w-full h-2 bg-slate-700/50 rounded-full overflow-hidden">
                           <motion.div
                             className="h-full bg-gradient-to-r from-[var(--pravdast-yellow)] via-yellow-400 to-[var(--pravdast-yellow)] relative"
                             initial={{ width: "0%" }}
                             animate={isInView ? { width: "85%" } : {}}
-                            transition={{ duration: 1.5, delay: index * 0.15 + 1.2 }}
+                            transition={{
+                              duration: 1.5,
+                              delay: index * 0.15 + 1.2,
+                            }}
                           >
                             {/* Shimmer effect */}
                             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 animate-pulse" />
@@ -663,8 +743,6 @@ const ResultsSection = () => {
                       </div>
                     </motion.div>
                   </div>
-
-
                 </motion.div>
               </motion.div>
             ))}
@@ -675,7 +753,7 @@ const ResultsSection = () => {
   );
 };
 
-// Investment Section Component  
+// Investment Section Component
 const InvestmentSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
@@ -685,32 +763,60 @@ const InvestmentSection = () => {
     {
       number: "1",
       title: "Персонализирано решение",
-      description: "Всяка система SEO Struktor™ се проектира и изгражда спрямо уникалните цели и състояние на вашия бизнес. Ние не предлагаме готови пакети.",
-      icon: "🎯"
+      description:
+        "Всяка система SEO Struktor™ се проектира и изгражда спрямо уникалните цели и състояние на вашия бизнес. Ние не предлагаме готови пакеa�и.",
+      icon: "🎯",
     },
     {
-      number: "2", 
+      number: "2",
       title: "Бюджетна рамка",
-      description: "За ориентация, базовите инженерни проекти започват от 1980 лв./месечно.",
-      icon: "💰"
+      description:
+        "За ориентация, базовите инженерни проекти започват от 1980 лв./месечно.",
+      icon: "💰",
     },
     {
       number: "3",
-      title: "Техническа спецификация", 
-      description: "Финалната инвестиция се определя след задължителна техническа диагностика. Вие получавате детайлно инженерно предложение, в което всеки компонент е ясно описан и стойностен.",
-      icon: "📋"
-    }
+      title: "Техническа спецификация",
+      description:
+        "Финалната инвестиция се определя след задължителна техническа диагностика. Вие получавате детайлно инженерно предложение, в което всеки компонент е ясно описан и стойностен.",
+      icon: "📋",
+    },
   ];
 
   return (
-    <section ref={ref} className="py-20 bg-slate-900/70 relative overflow-hidden">
+    <section
+      ref={ref}
+      className="py-20 bg-slate-900/70 relative overflow-hidden"
+    >
       {/* Technical Background Pattern */}
       <div className="absolute inset-0 opacity-5">
-        <svg className="w-full h-full" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <svg
+          className="w-full h-full"
+          viewBox="0 0 100 100"
+          xmlns="http://www.w3.org/2000/svg"
+        >
           <defs>
-            <pattern id="tech-pattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-              <circle cx="10" cy="10" r="1" fill="var(--pravdast-yellow)" opacity="0.3"/>
-              <path d="M0,10 L20,10 M10,0 L10,20" stroke="var(--pravdast-yellow)" strokeWidth="0.5" opacity="0.2"/>
+            <pattern
+              id="tech-pattern"
+              x="0"
+              y="0"
+              width="20"
+              height="20"
+              patternUnits="userSpaceOnUse"
+            >
+              <circle
+                cx="10"
+                cy="10"
+                r="1"
+                fill="var(--pravdast-yellow)"
+                opacity="0.3"
+              />
+              <path
+                d="M0,10 L20,10 M10,0 L10,20"
+                stroke="var(--pravdast-yellow)"
+                strokeWidth="0.5"
+                opacity="0.2"
+              />
             </pattern>
           </defs>
           <rect width="100%" height="100%" fill="url(#tech-pattern)" />
@@ -726,13 +832,16 @@ const InvestmentSection = () => {
             transition={{ duration: 0.8 }}
           >
             <div className="inline-block px-4 py-2 bg-[var(--pravdast-yellow)]/10 rounded-full border border-[var(--pravdast-yellow)]/20 mb-6">
-              <span className="text-[var(--pravdast-yellow)] text-sm font-semibold">ПРОЗРАЧНО ЦЕНООБРАЗУВАНЕ</span>
+              <span className="text-[var(--pravdast-yellow)] text-sm font-semibold">
+                ПРОЗРАЧНО ЦЕНООБРАЗУВАНЕ
+              </span>
             </div>
             <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight">
               Структура на инвестицията
             </h2>
             <p className="text-gray-300 text-xl max-w-3xl mx-auto">
-              Инженерно проектиране изисква прецизност и в техническата спецификация
+              Инженерно проектиране изисква прецизност и в техническата
+              спецификация
             </p>
           </motion.div>
 
@@ -743,15 +852,15 @@ const InvestmentSection = () => {
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <motion.div
-              className="inline-block p-8 bg-slate-800/60 backdrop-blur-sm rounded-3xl border border-slate-600/30 relative overflow-hidden"
-            >
+            <motion.div className="inline-block p-8 bg-slate-800/60 backdrop-blur-sm rounded-3xl border border-slate-600/30 relative overflow-hidden">
               <div className="relative z-10">
                 <div className="text-sm text-[var(--pravdast-yellow)] font-semibold mb-2 tracking-wider">
                   ЗАПОЧВА ОТ
                 </div>
                 <div className="text-5xl md:text-6xl font-bold mb-2">
-                  <span className="text-[var(--pravdast-yellow)]">1980 лв.</span>
+                  <span className="text-[var(--pravdast-yellow)]">
+                    1980 лв.
+                  </span>
                   <span className="text-white text-3xl">/месечно</span>
                 </div>
                 <div className="text-gray-400 text-sm">
@@ -773,13 +882,11 @@ const InvestmentSection = () => {
               >
                 <motion.div
                   className={`flex flex-col md:flex-row items-center gap-8 ${
-                    index % 2 === 1 ? 'md:flex-row-reverse' : ''
+                    index % 2 === 1 ? "md:flex-row-reverse" : ""
                   }`}
                 >
                   {/* Number Circle */}
-                  <motion.div
-                    className="flex-shrink-0"
-                  >
+                  <motion.div className="flex-shrink-0">
                     <div className="relative">
                       <div className="w-20 h-20 bg-gradient-to-br from-[var(--pravdast-yellow)] to-yellow-600 rounded-full flex items-center justify-center shadow-xl">
                         <span className="text-black font-bold text-2xl">
@@ -800,9 +907,7 @@ const InvestmentSection = () => {
 
                   {/* Content Card */}
                   <div className="flex-1 w-full">
-                    <motion.div
-                      className="bg-slate-800/60 backdrop-blur-sm p-8 rounded-2xl border border-slate-600/30 transition-all duration-300"
-                    >
+                    <motion.div className="bg-slate-800/60 backdrop-blur-sm p-8 rounded-2xl border border-slate-600/30 transition-all duration-300">
                       <div className="flex items-center gap-4 mb-4">
                         <div className="text-2xl">{principle.icon}</div>
                         <h3 className="text-xl md:text-2xl font-bold text-white">
@@ -848,20 +953,25 @@ const InvestmentSection = () => {
               animate={isInView ? { scaleY: 1 } : {}}
               transition={{ duration: 0.8, delay: 1.5 }}
             />
-            
+
             <div className="p-8 bg-slate-800/40 rounded-3xl border border-[var(--pravdast-yellow)]/20">
               <h3 className="text-2xl font-bold text-white mb-4">
                 Готови за персонализирана оферта?
               </h3>
               <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
-                Всяка инвестиция започва с безплатна техническа диагностика и детайлно планиране.
+                Всяка инвестиция започва с безплатна техническа диагностика и
+                детайлно планиране.
               </p>
               <Button
                 size="lg"
                 className="bg-[var(--pravdast-yellow)] text-black hover:bg-[var(--pravdast-yellow)]/90 px-6 md:px-12 py-4 md:py-6 text-base md:text-xl font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 w-full md:w-auto"
                 asChild
               >
-                <a href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu" target="_blank" rel="noopener noreferrer">
+                <a
+                  href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   Получете персонализирана оферта
                   <ArrowRight className="ml-2 md:ml-3 h-5 w-5 md:h-6 md:w-6" />
                 </a>
@@ -880,16 +990,53 @@ const FinalCTASection = () => {
   const isInView = useInView(ref, { once: true, amount: 0.3 });
 
   return (
-    <section ref={ref} className="py-24 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 relative overflow-hidden">
+    <section
+      ref={ref}
+      className="py-24 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 relative overflow-hidden"
+    >
       {/* Enhanced Technical Background */}
       <div className="absolute inset-0 opacity-5">
-        <svg className="w-full h-full" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <svg
+          className="w-full h-full"
+          viewBox="0 0 200 200"
+          xmlns="http://www.w3.org/2000/svg"
+        >
           <defs>
-            <pattern id="final-cta-pattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
-              <circle cx="20" cy="20" r="2" fill="var(--pravdast-yellow)" opacity="0.4"/>
-              <path d="M0,20 L40,20 M20,0 L20,40" stroke="var(--pravdast-yellow)" strokeWidth="0.5" opacity="0.3"/>
-              <circle cx="5" cy="5" r="0.5" fill="var(--pravdast-yellow)" opacity="0.6"/>
-              <circle cx="35" cy="35" r="0.5" fill="var(--pravdast-yellow)" opacity="0.6"/>
+            <pattern
+              id="final-cta-pattern"
+              x="0"
+              y="0"
+              width="40"
+              height="40"
+              patternUnits="userSpaceOnUse"
+            >
+              <circle
+                cx="20"
+                cy="20"
+                r="2"
+                fill="var(--pravdast-yellow)"
+                opacity="0.4"
+              />
+              <path
+                d="M0,20 L40,20 M20,0 L20,40"
+                stroke="var(--pravdast-yellow)"
+                strokeWidth="0.5"
+                opacity="0.3"
+              />
+              <circle
+                cx="5"
+                cy="5"
+                r="0.5"
+                fill="var(--pravdast-yellow)"
+                opacity="0.6"
+              />
+              <circle
+                cx="35"
+                cy="35"
+                r="0.5"
+                fill="var(--pravdast-yellow)"
+                opacity="0.6"
+              />
             </pattern>
           </defs>
           <rect width="100%" height="100%" fill="url(#final-cta-pattern)" />
@@ -920,7 +1067,9 @@ const FinalCTASection = () => {
             transition={{ duration: 0.8 }}
           >
             <div className="inline-block px-6 py-3 bg-[var(--pravdast-yellow)]/10 rounded-full border border-[var(--pravdast-yellow)]/20 mb-8">
-              <span className="text-[var(--pravdast-yellow)] text-sm font-semibold tracking-wider">ФИНАЛНА СТЪПКА</span>
+              <span className="text-[var(--pravdast-yellow)] text-sm font-semibold tracking-wider">
+                ФИНАЛНА СТЪПКА
+              </span>
             </div>
             <h2 className="text-4xl md:text-6xl font-bold mb-8 text-white leading-tight">
               Готови ли сте да спрете да импровизирате?
@@ -942,7 +1091,9 @@ const FinalCTASection = () => {
                     <h3 className="text-xl font-bold text-white">Проблемът</h3>
                   </div>
                   <p className="text-gray-300 leading-relaxed">
-                    Нашият инженерен процес е задълбочен и изисква пълна отдаденост. Затова работим с ограничен брой нови клиенти всеки месец.
+                    Нашият инженерен процес е задълбочен и изисква пълна
+                    отдаденост. Затова работим с ограничен брой нови клиенти
+                    всеки месец.
                   </p>
                 </div>
 
@@ -952,7 +1103,9 @@ const FinalCTASection = () => {
                     <h3 className="text-xl font-bold text-white">Решението</h3>
                   </div>
                   <p className="text-gray-300 leading-relaxed">
-                    Първата стъпка е нашата експертна диагностика. С нейна помощ ще научите повече за скритите проблеми на вашия сайт и ще получите ясна представа за потенциала му.
+                    Първата стъпка е нашата експертна диагностика. С нейна помощ
+                    ще научите повече за скритите проблеми на вашия сайт и ще
+                    получите ясна представа за потенциала му.
                   </p>
                 </div>
               </div>
@@ -965,15 +1118,21 @@ const FinalCTASection = () => {
                 transition={{ duration: 0.8, delay: 0.6 }}
               >
                 <div className="text-center p-4 bg-slate-800/30 rounded-xl">
-                  <div className="text-2xl font-bold text-[var(--pravdast-yellow)] mb-1">48h</div>
+                  <div className="text-2xl font-bold text-[var(--pravdast-yellow)] mb-1">
+                    48h
+                  </div>
                   <div className="text-xs text-gray-400">Отговор</div>
                 </div>
                 <div className="text-center p-4 bg-slate-800/30 rounded-xl">
-                  <div className="text-2xl font-bold text-[var(--pravdast-yellow)] mb-1">5min</div>
+                  <div className="text-2xl font-bold text-[var(--pravdast-yellow)] mb-1">
+                    5min
+                  </div>
                   <div className="text-xs text-gray-400">Процес</div>
                 </div>
                 <div className="text-center p-4 bg-slate-800/30 rounded-xl">
-                  <div className="text-2xl font-bold text-[var(--pravdast-yellow)] mb-1">100%</div>
+                  <div className="text-2xl font-bold text-[var(--pravdast-yellow)] mb-1">
+                    100%
+                  </div>
                   <div className="text-xs text-gray-400">Безплатно</div>
                 </div>
               </motion.div>
@@ -990,19 +1149,22 @@ const FinalCTASection = () => {
                 {/* Animated background elements */}
                 <div className="absolute inset-0 bg-gradient-to-r from-[var(--pravdast-yellow)]/5 to-transparent"></div>
                 <div className="absolute top-0 right-0 w-32 h-32 bg-[var(--pravdast-yellow)]/10 rounded-full -translate-y-16 translate-x-16"></div>
-                
+
                 <div className="relative z-10 text-center space-y-6">
                   <div className="space-y-4">
                     <div className="inline-block px-4 py-2 bg-[var(--pravdast-yellow)]/20 border border-[var(--pravdast-yellow)]/40 rounded-full">
-                      <span className="text-[var(--pravdast-yellow)] text-sm font-semibold">ОГРАНИЧЕНИ МЕСТА</span>
+                      <span className="text-[var(--pravdast-yellow)] text-sm font-semibold">
+                        ОГРАНИЧЕНИ МЕСТА
+                      </span>
                     </div>
-                    
+
                     <h3 className="text-2xl md:text-3xl font-bold text-white leading-tight">
                       Започнете диагностиката днес
                     </h3>
-                    
+
                     <p className="text-gray-300 text-sm leading-relaxed">
-                      Безплатна техническа диагностика с детайлен анализ на потенциала на вашия сайт
+                      Безплатна техническа диагностика с детайлен анализ на
+                      потенциала на вашия сайт
                     </p>
                   </div>
 
@@ -1012,16 +1174,21 @@ const FinalCTASection = () => {
                   <div className="grid grid-cols-2 gap-4 pt-6 border-t border-slate-600/30">
                     <div className="flex items-center gap-2">
                       <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                      <span className="text-xs text-gray-400">Без ангажименти</span>
+                      <span className="text-xs text-gray-400">
+                        Без ангажименти
+                      </span>
                     </div>
                     <div className="flex items-center gap-2">
                       <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                      <span className="text-xs text-gray-400">100% поверително</span>
+                      <span className="text-xs text-gray-400">
+                        100% поверително
+                      </span>
                     </div>
                   </div>
 
                   <p className="text-xs text-gray-500 mt-4">
-                    Ще се свържем с вас в рамките на 48 часа, ако имаме свободен капацитет за този месец.
+                    Ще се свържем с вас в рамките на 48 часа, ако имаме свободен
+                    капацитет за този месец.
                   </p>
                 </div>
               </div>
@@ -1037,10 +1204,13 @@ const FinalCTASection = () => {
           >
             <div className="flex items-center justify-center gap-3 mb-2">
               <div className="w-3 h-3 bg-red-400 rounded-full animate-pulse"></div>
-              <span className="text-red-400 text-sm font-semibold tracking-wider">ВАЖНО</span>
+              <span className="text-red-400 text-sm font-semibold tracking-wider">
+                ВАЖНО
+              </span>
             </div>
             <p className="text-gray-300 text-sm">
-              Всеки ден на изчакване е изгубена възможност. Вашите конкуренти не спят.
+              Всеки ден на изчакване е изгубена възможност. Вашите конкуренти не
+              спят.
             </p>
           </motion.div>
         </div>
@@ -1052,13 +1222,16 @@ const FinalCTASection = () => {
 export default function SeoStruktor() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-[var(--pravdast-dark)] to-[var(--pravdast-dark-gray)] text-white">
-      <SEOHead seo={pageSEOData["services/seo-struktor"]} pageSlug="services/seo-struktor" />
+      <SEOHead
+        seo={pageSEOData["services/seo-struktor"]}
+        pageSlug="services/seo-struktor"
+      />
       <Navigation />
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center overflow-hidden">
+      <section className="pt-10 relative min-h-screen flex items-center overflow-hidden">
         <SeoStruktorBackground />
-        
+
         {/* Enhanced floating elements */}
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-1/4 left-10 w-2 h-2 bg-[var(--pravdast-yellow)] rounded-full animate-ping opacity-60"></div>
@@ -1081,7 +1254,8 @@ export default function SeoStruktor() {
                 <div className="absolute inset-0 w-3 h-3 bg-green-400 rounded-full animate-ping opacity-60"></div>
               </div>
               <span className="text-white text-sm font-semibold">
-                <span className="text-[var(--pravdast-yellow)]">Ново</span> - Приемаме проекти за 2025
+                <span className="text-[var(--pravdast-yellow)]">Ново</span> -
+                Приемаме проекти за 2025
               </span>
             </motion.div>
 
@@ -1107,13 +1281,20 @@ export default function SeoStruktor() {
               структурирания. SEO Struktor™ изгражда вашето онлайн присъствие
               като инженерно съоръжение, проектирано да доминира в търсенето по
               предвидим и измерим начин. Вижте нашите{" "}
-              <Link href="/case-studies" className="text-[var(--pravdast-yellow)] hover:underline">
+              <Link
+                href="/case-studies"
+                className="text-[var(--pravdast-yellow)] hover:underline"
+              >
                 реални резултати
               </Link>{" "}
               или{" "}
-              <Link href="/calculators" className="text-[var(--pravdast-yellow)] hover:underline">
+              <Link
+                href="/calculators"
+                className="text-[var(--pravdast-yellow)] hover:underline"
+              >
                 изчислете вашата възвръщаемост
-              </Link>.
+              </Link>
+              .
             </motion.p>
 
             <motion.div
@@ -1131,7 +1312,7 @@ export default function SeoStruktor() {
                   href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu"
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={() => trackCTAClick('seo-struktor', 'hero-primary')}
+                  onClick={() => trackCTAClick("seo-struktor", "hero-primary")}
                 >
                   Изпревари конкуренцията
                   <ArrowRight className="ml-2 h-5 w-5" />
@@ -1155,7 +1336,7 @@ export default function SeoStruktor() {
       <InvestmentSection />
 
       {/* Unified CTA Section */}
-      <UnifiedCTASection 
+      <UnifiedCTASection
         buttonText="Започнете диагностиката"
         headline="Готови ли сте да спрете да импровизирате?"
         description="Започнете систематичния подход към SEO с безплатна техническа диагностика."
