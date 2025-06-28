@@ -288,6 +288,7 @@ Changelog:
 - June 28, 2025. Fixed critical SEO issue where Ahrefs detected duplicate meta tags across all pages: identified that service pages (Clickstarter™, SEO Struktor™) and other pages (FAQ, Terms, Privacy, Blog) were hardcoding SEO data instead of using centralized pageSEOData configuration from seo-pages.ts - updated all pages to use centralized configuration to ensure unique meta tags for each page
 - June 28, 2025. Updated sitemap.xml to follow latest Google 2024 standards: removed deprecated priority and changefreq tags that Google ignores, cleaned XML namespaces, updated all 3 sitemaps (main, blog, services) with accurate lastmod dates, optimized for Google's current crawling algorithms
 - June 28, 2025. Added back "изпревари конкуренцията" button to SEO Struktor hero section: restored primary CTA button linking to Typeform with proper tracking, styling consistent with brand colors and hover effects
+- June 28, 2025. Enhanced SEO Struktor results cards with dual progress bars: split single loading bar into separate "преди" (before) and "след" (after) progress indicators showing red gradient (25%) for before state and yellow gradient (85%) for after state, with sequential animations for better comparison visualization
 
 ## User Preferences
 

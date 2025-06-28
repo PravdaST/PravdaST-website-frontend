@@ -618,27 +618,48 @@ const ResultsSection = () => {
                       {benefit.description}
                     </p>
 
-                    {/* Enhanced progress indicator */}
+                    {/* Enhanced dual progress indicators */}
                     <motion.div
-                      className="mt-6 relative"
+                      className="mt-6 space-y-4"
                       initial={{ opacity: 0 }}
                       animate={isInView ? { opacity: 1 } : {}}
                       transition={{ duration: 0.8, delay: index * 0.15 + 0.5 }}
                     >
-                      <div className="w-full h-2 bg-slate-700/50 rounded-full overflow-hidden">
-                        <motion.div
-                          className="h-full bg-gradient-to-r from-[var(--pravdast-yellow)] via-yellow-400 to-[var(--pravdast-yellow)] relative"
-                          initial={{ width: "0%" }}
-                          animate={isInView ? { width: "100%" } : {}}
-                          transition={{ duration: 1.5, delay: index * 0.15 + 0.8 }}
-                        >
-                          {/* Shimmer effect */}
-                          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 animate-pulse" />
-                        </motion.div>
+                      {/* Before progress bar */}
+                      <div className="space-y-2">
+                        <div className="flex justify-between items-center">
+                          <span className="text-xs text-gray-500 font-medium">Преди</span>
+                          <span className="text-xs text-gray-400">25%</span>
+                        </div>
+                        <div className="w-full h-2 bg-slate-700/50 rounded-full overflow-hidden">
+                          <motion.div
+                            className="h-full bg-gradient-to-r from-red-500/70 to-red-400/70 relative"
+                            initial={{ width: "0%" }}
+                            animate={isInView ? { width: "25%" } : {}}
+                            transition={{ duration: 1.2, delay: index * 0.15 + 0.8 }}
+                          >
+                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12" />
+                          </motion.div>
+                        </div>
                       </div>
-                      <div className="flex justify-between mt-2">
-                        <span className="text-xs text-gray-500">Преди</span>
-                        <span className="text-xs text-[var(--pravdast-yellow)]">Със SEO Struktor™</span>
+
+                      {/* After progress bar */}
+                      <div className="space-y-2">
+                        <div className="flex justify-between items-center">
+                          <span className="text-xs text-[var(--pravdast-yellow)] font-medium">След SEO Struktor™</span>
+                          <span className="text-xs text-[var(--pravdast-yellow)]">85%</span>
+                        </div>
+                        <div className="w-full h-2 bg-slate-700/50 rounded-full overflow-hidden">
+                          <motion.div
+                            className="h-full bg-gradient-to-r from-[var(--pravdast-yellow)] via-yellow-400 to-[var(--pravdast-yellow)] relative"
+                            initial={{ width: "0%" }}
+                            animate={isInView ? { width: "85%" } : {}}
+                            transition={{ duration: 1.5, delay: index * 0.15 + 1.2 }}
+                          >
+                            {/* Shimmer effect */}
+                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 animate-pulse" />
+                          </motion.div>
+                        </div>
                       </div>
                     </motion.div>
                   </div>
