@@ -324,28 +324,52 @@ export default function About() {
               </p>
             </motion.div>
 
-            <div className="max-w-4xl mx-auto">
+            <div className="max-w-4xl mx-auto relative">
+              {/* Desktop Timeline Line */}
+              <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-px bg-[#ECB629] h-full"></div>
+              
+              {/* Mobile Timeline Line */}
+              <div className="md:hidden absolute left-8 w-px bg-[#ECB629] h-full"></div>
+              
               {milestones.map((milestone, index) => (
                 <motion.div
                   key={index}
-                  className="relative flex items-center mb-12 last:mb-0"
+                  className="relative mb-12 last:mb-0"
                   initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.8, delay: index * 0.2 }}
                   viewport={{ once: true }}
                 >
-                  {/* Timeline Line */}
-                  <div className="absolute left-1/2 transform -translate-x-1/2 w-px bg-[#ECB629] h-full -z-10"></div>
+                  {/* Desktop Layout */}
+                  <div className="hidden md:flex items-center">
+                    {/* Year Badge - Desktop */}
+                    <div className="absolute left-1/2 transform -translate-x-1/2 bg-[#ECB629] text-black font-bold px-4 py-2 rounded-full text-sm z-10">
+                      {milestone.year}
+                    </div>
 
-                  {/* Year Badge */}
-                  <div className="absolute left-1/2 transform -translate-x-1/2 bg-[#ECB629] text-black font-bold px-4 py-2 rounded-full text-sm z-10">
-                    {milestone.year}
+                    {/* Content - Desktop */}
+                    <div
+                      className={`w-5/12 ${index % 2 === 0 ? "text-right pr-8" : "ml-auto text-left pl-8"}`}
+                    >
+                      <Card className="bg-slate-800/50 border-slate-700">
+                        <CardContent className="p-6">
+                          <h3 className="text-xl font-bold text-white mb-2">
+                            {milestone.title}
+                          </h3>
+                          <p className="text-gray-300">{milestone.description}</p>
+                        </CardContent>
+                      </Card>
+                    </div>
                   </div>
 
-                  {/* Content */}
-                  <div
-                    className={`w-5/12 ${index % 2 === 0 ? "text-right pr-8" : "ml-auto text-left pl-8"}`}
-                  >
+                  {/* Mobile Layout */}
+                  <div className="md:hidden relative pl-16">
+                    {/* Year Badge - Mobile */}
+                    <div className="absolute left-0 top-6 bg-[#ECB629] text-black font-bold w-16 h-16 rounded-full text-sm z-10 flex items-center justify-center">
+                      {milestone.year}
+                    </div>
+
+                    {/* Content - Mobile */}
                     <Card className="bg-slate-800/50 border-slate-700">
                       <CardContent className="p-6">
                         <h3 className="text-xl font-bold text-white mb-2">
