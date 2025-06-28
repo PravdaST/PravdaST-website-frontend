@@ -893,64 +893,7 @@ export default function ClientomatPage() {
       </section>
 
       {/* CTA Section */}
-      <section
-        ref={ctaRef}
-        className="py-20 bg-[#ECB629] text-black relative overflow-hidden"
-      >
-        <div className="container mx-auto px-6 relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
-            <motion.h2
-              className="text-4xl md:text-5xl font-bold mb-8 leading-tight"
-              initial={{ opacity: 0, y: 30 }}
-              animate={ctaInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              Готови ли сте да превърнете <br />
-              всеки контакт в <span className="text-black">успех?</span>
-            </motion.h2>
-
-            <motion.p
-              className="text-xl text-gray-800 mb-12 max-w-3xl mx-auto leading-relaxed"
-              initial={{ opacity: 0, y: 20 }}
-              animate={ctaInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.4 }}
-            >
-              Започнете с безплатна експертна диагностика на вашата клиентска
-              екосистема. Ще ви покажем точно къде губите възможности и как да
-              ги превърнете в растеж.
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={ctaInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.6 }}
-            >
-              <Button
-                size="lg"
-                className="group relative bg-black text-[#ECB629] hover:bg-black/90 font-bold text-xl px-12 py-6 rounded-lg shadow-lg hover:shadow-black/30 transition-all duration-300 overflow-hidden"
-                asChild
-              >
-                <a
-                  href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <span className="relative z-10">
-                    Заявете експертна диагностика
-                  </span>
-                  <ArrowRight className="ml-3 w-6 h-6 relative z-10 group-hover:translate-x-1 transition-transform" />
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-transparent via-[#ECB629]/20 to-transparent"
-                    initial={{ x: "-100%" }}
-                    whileHover={{ x: "100%" }}
-                    transition={{ duration: 0.6 }}
-                  />
-                </a>
-              </Button>
-            </motion.div>
-          </div>
-        </div>
-      </section>
+      
 
       {/* Unified CTA Section */}
       <UnifiedCTASection
