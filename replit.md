@@ -293,6 +293,7 @@ Changelog:
 - June 28, 2025. Removed green check icons from Clickstarter page CTA section trust indicators and results section cards - now displays clean text-only format for better visual simplicity without CheckCircle icons
 - June 28, 2025. Applied SEO Struktor investment section design to Clickstarter page: implemented matching badge, price display format, and numbered principles layout with yellow circles and connecting lines for design consistency across service pages
 - June 28, 2025. Applied SEO Struktor investment section design to Clientomat page: implemented matching badge, price display format (2890 лв./месечно), and numbered principles layout with yellow circles and connecting lines for unified design consistency across all service pages
+- June 28, 2025. Applied SEO Struktor investment section design to Trendlab page: implemented matching badge, price display format (3450 лв./месечно), and numbered principles layout with yellow circles and connecting lines for complete design unification across all four service pages
 
 ## User Preferences
 

@@ -1070,55 +1070,96 @@ export default function Trendlab() {
         </div>
       </section>
 
-      {/* Investment Section */}
-      <section className="py-20 bg-slate-900 relative overflow-hidden">
-        <div className="container mx-auto px-6">
-          <motion.div
-            ref={investmentRef}
-            className="max-w-4xl mx-auto text-center"
-            initial={{ opacity: 0, y: 30 }}
-            animate={investmentInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8 }}
-          >
-            <h2 className="text-4xl md:text-5xl font-bold mb-8">
-              Структура на{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ECB629] to-[#F59E0B]">
-                инвестицията
-              </span>
-            </h2>
+      {/* Investment Structure */}
+      <section
+        ref={investmentRef}
+        className="py-20 relative overflow-hidden"
+      >
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute bottom-1/4 right-1/4 w-48 h-48 bg-purple-500 rounded-full blur-3xl"></div>
+        </div>
 
-            <Card className="bg-slate-800/30 border-slate-600/30 p-8 backdrop-blur-sm mb-8">
-              <div className="text-center">
-                <div className="text-6xl font-bold text-[#ECB629] mb-4">
-                  от 3450 лв.
+        <div className="container mx-auto px-6 relative z-10">
+          <div className="max-w-4xl mx-auto text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={investmentInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8 }}
+            >
+              {/* Badge */}
+              <div className="inline-flex items-center px-6 py-2 bg-slate-800/80 border border-[#ECB629] rounded-full mb-8">
+                <span className="text-[#ECB629] text-sm font-medium tracking-wide">
+                  ПРОЗРАЧНО ЦЕНООБРАЗУВАНЕ
+                </span>
+              </div>
+
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-8">
+                Структура на инвестицията
+              </h2>
+
+              <p className="text-xl text-gray-400 mb-12 max-w-2xl mx-auto">
+                Инженерно проектиране изисква прецизност и в техническата спецификация
+              </p>
+
+              {/* Price Card */}
+              <div className="bg-slate-800/50 rounded-2xl p-8 border border-slate-600/30 mb-16">
+                <div className="text-sm text-[#ECB629] mb-2 tracking-wide">ЗАПОЧВА ОТ</div>
+                <div className="text-6xl md:text-7xl font-bold text-[#ECB629] mb-4">
+                  3450 лв.
+                  <span className="text-2xl text-gray-400">/месечно</span>
                 </div>
-                <div className="text-xl text-gray-300 mb-6">
-                  месечно / базови проекти
-                </div>
-                <p className="text-gray-300 leading-relaxed max-w-2xl mx-auto">
-                  Всяка система Trendlab™ се проектира спрямо вашите цели и
-                  ресурси. Базовите проекти започват от 3450 лв./месец.
-                  Финалната инвестиция се определя след диагностика на текущото
-                  ви състояние и желаните резултати.
+                <p className="text-gray-400">
+                  *Финалната цена се определя след техническа диагностика
                 </p>
               </div>
-            </Card>
 
-            <Button
-              size="lg"
-              className="bg-[#ECB629] text-black hover:bg-[#ECB629]/90 font-semibold px-8 py-4 rounded-full shadow-lg shadow-[#ECB629]/25"
-              asChild
-            >
-              <a
-                href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Заявете диагностика
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </a>
-            </Button>
-          </motion.div>
+              {/* Principles */}
+              <div className="text-left space-y-8">
+                {[
+                  {
+                    number: "1",
+                    title: "Персонализирано решение",
+                    description: "Всяка система Trendlab™ се проектира и изгражда спрямо уникалните цели и състояние на вашия бизнес. Ние не предлагаме готови пакети."
+                  },
+                  {
+                    number: "2", 
+                    title: "Бюджетна рамка",
+                    description: "За ориентация, базовите инженерни проекти започват от 3450 лв./месечно."
+                  },
+                  {
+                    number: "3",
+                    title: "Техническа спецификация", 
+                    description: "Финалната инвестиция се определя след задължителна техническа диагностика. Вие получавате детайлно инженерно предложение, в което всеки компонент е ясно описан и стойностен."
+                  }
+                ].map((principle, index) => (
+                  <motion.div
+                    key={principle.number}
+                    className="flex gap-6"
+                    initial={{ opacity: 0, x: -30 }}
+                    animate={investmentInView ? { opacity: 1, x: 0 } : {}}
+                    transition={{ duration: 0.6, delay: index * 0.2 }}
+                  >
+                    <div className="flex-shrink-0">
+                      <div className="w-12 h-12 bg-[#ECB629] rounded-full flex items-center justify-center text-black font-bold text-lg">
+                        {principle.number}
+                      </div>
+                      {index < 2 && (
+                        <div className="w-0.5 h-16 bg-[#ECB629] mx-auto mt-4"></div>
+                      )}
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-xl font-semibold text-white mb-3">
+                        {principle.title}
+                      </h3>
+                      <p className="text-gray-400 leading-relaxed">
+                        {principle.description}
+                      </p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
