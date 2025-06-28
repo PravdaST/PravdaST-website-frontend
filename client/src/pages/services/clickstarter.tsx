@@ -507,7 +507,6 @@ export default function Clickstarter() {
                         </div>
 
                         <div className="flex items-center justify-center gap-2 mb-3">
-                          <CheckCircle className="w-5 h-5 text-green-400" />
                           <h3 className="text-lg font-semibold text-white">
                             {result.title}
                           </h3>
