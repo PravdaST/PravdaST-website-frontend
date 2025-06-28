@@ -75,15 +75,12 @@ export const UnifiedCTASection = ({
             transition={{ duration: 0.8, delay: 0.6 }}
           >
             <div className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-black/50 rounded-full"></div>
               <span>Безплатна консултация</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-black/50 rounded-full"></div>
               <span>Без ангажименти</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-black/50 rounded-full"></div>
               <span>Отговор в 48 часа</span>
             </div>
           </motion.div>
