@@ -1090,7 +1090,7 @@ export default function Trendlab() {
             <Card className="bg-slate-800/30 border-slate-600/30 p-8 backdrop-blur-sm mb-8">
               <div className="text-center">
                 <div className="text-6xl font-bold text-[#ECB629] mb-4">
-                  3450 лв.
+                  от 3450 лв.
                 </div>
                 <div className="text-xl text-gray-300 mb-6">
                   месечно / базови проекти
