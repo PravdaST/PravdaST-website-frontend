@@ -283,6 +283,7 @@ Changelog:
 - June 27, 2025. Removed animated black dots from about.tsx CTA section: cleaned up background animation elements that were causing visual clutter, maintained clean yellow background with proper content focus
 - June 27, 2025. Fixed critical SEO issues from Ahrefs audit: resolved duplicate H1 tags by removing static H1 from index.html noscript section, verified unique H1 tags on all service pages (SEO Struktor™, Clickstarter™, Trendlab™), confirmed proper canonical URL configuration via SEOHead component, added contextual internal links to hero section and service pages to fix "Page has no outgoing links" issues - achieved comprehensive internal linking structure for improved SEO performance
 - June 28, 2025. Fixed mobile responsiveness issue on /about page timeline: implemented separate desktop and mobile layouts for timeline section, mobile now displays timeline items vertically with year badges on the left side, maintained zigzag pattern for desktop while ensuring proper vertical stacking on mobile devices
+- June 28, 2025. Fixed mobile homepage spacing issue: added padding-top (pt-10) to hero section container specifically for mobile devices to create proper spacing between navigation and content, desktop version remains unchanged with no padding
 
 ## User Preferences
 

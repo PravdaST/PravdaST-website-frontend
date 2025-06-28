@@ -75,7 +75,7 @@ export const HeroSection = () => {
         <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-blue-500 rounded-full blur-3xl"></div>
       </div>
 
-      <div className="container mx-auto px-4 sm:px-6 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10 pt-10 sm:pt-0">
         <div className="max-w-4xl mx-auto text-center">
           {/* Enhanced Status Badge */}
           <motion.div

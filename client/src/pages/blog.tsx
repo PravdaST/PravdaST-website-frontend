@@ -450,98 +450,10 @@ export default function Blog() {
             )}
           </div>
         </section>
-
-        {/* CTA Section */}
-        <section className="py-20 bg-[#ECB629] relative overflow-hidden">
-          {/* Animated Background Elements */}
-          <div className="absolute inset-0 opacity-20">
-            {[...Array(8)].map((_, i) => (
-              <motion.div
-                key={i}
-                className="absolute w-1 h-1 bg-black rounded-full"
-                style={{
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                }}
-                animate={{
-                  scale: [1, 1.5, 1],
-                  opacity: [0.3, 1, 0.3],
-                }}
-                transition={{
-                  duration: 2 + Math.random(),
-                  repeat: Infinity,
-                  delay: Math.random() * 2,
-                }}
-              />
-            ))}
-          </div>
-
-          <div className="container mx-auto px-6 text-center relative z-10">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
-              <motion.h2
-                className="text-4xl md:text-5xl font-bold text-black mb-6"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                viewport={{ once: true }}
-              >
-                Готови да приложите знанията?
-              </motion.h2>
-
-              <motion.p
-                className="text-xl text-black/80 mb-8 max-w-2xl mx-auto"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-                viewport={{ once: true }}
-              >
-                Превърнете четенето в действие. Започнете със системен подход
-                към растежа на вашия бизнес.
-              </motion.p>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-                viewport={{ once: true }}
-              >
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="relative border-2 border-black text-black hover:bg-black hover:text-[#ECB629] px-8 py-4 text-lg font-semibold overflow-hidden group"
-                  asChild
-                >
-                  <a
-                    href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black opacity-0 group-hover:opacity-10"
-                      animate={{ x: ["-100%", "100%"] }}
-                      transition={{
-                        duration: 1.5,
-                        repeat: Infinity,
-                        repeatType: "loop",
-                      }}
-                    />
-                    Безплатна консултация{" "}
-                    <ArrowRight className="ml-2 w-5 h-5" />
-                  </a>
-                </Button>
-              </motion.div>
-            </motion.div>
-          </div>
-        </section>
       </main>
 
       {/* Unified CTA Section */}
-      <UnifiedCTASection 
+      <UnifiedCTASection
         buttonText="Заявете разговор"
         headline="Готови ли сте да приложите това знание?"
         description="Превърнете експертните съвети в реални резултати за вашия бизнес с нашите проверени системи."
