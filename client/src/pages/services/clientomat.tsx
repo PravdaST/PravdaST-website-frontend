@@ -799,126 +799,96 @@ export default function ClientomatPage() {
         </div>
       </section>
 
-      {/* Investment Section */}
+      {/* Investment Structure */}
       <section
         ref={investmentRef}
-        className="py-20 bg-slate-800/30 relative overflow-hidden"
+        className="py-20 relative overflow-hidden"
       >
-        <div className="container mx-auto px-6">
-          <motion.div
-            className="max-w-4xl mx-auto"
-            initial={{ opacity: 0, y: 30 }}
-            animate={investmentInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8 }}
-          >
-            <div className="text-center mb-16">
-              <motion.h2
-                className="text-4xl md:text-5xl font-bold text-white mb-8"
-                initial={{ opacity: 0, y: 20 }}
-                animate={investmentInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.8, delay: 0.2 }}
-              >
-                Инвестиция в бъдещето
-              </motion.h2>
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute bottom-1/4 right-1/4 w-48 h-48 bg-blue-500 rounded-full blur-3xl"></div>
+        </div>
 
-              <motion.p
-                className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed mb-12"
-                initial={{ opacity: 0, y: 20 }}
-                animate={investmentInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.8, delay: 0.4 }}
-              >
-                Clientomat™ не е разход - това е инвестиция, която се изплаща
-                многократно чрез увеличаване стойността на всеки клиент
-              </motion.p>
+        <div className="container mx-auto px-6 relative z-10">
+          <div className="max-w-4xl mx-auto text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={investmentInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8 }}
+            >
+              {/* Badge */}
+              <div className="inline-flex items-center px-6 py-2 bg-slate-800/80 border border-[#ECB629] rounded-full mb-8">
+                <span className="text-[#ECB629] text-sm font-medium tracking-wide">
+                  ПРОЗРАЧНО ЦЕНООБРАЗУВАНЕ
+                </span>
+              </div>
 
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={investmentInView ? { opacity: 1, scale: 1 } : {}}
-                transition={{ duration: 0.8, delay: 0.6 }}
-              >
-                <Card className="bg-slate-800/60 border-[#ECB629]/20 p-12 text-center">
-                  <div className="mb-8">
-                    <div className="text-6xl font-bold text-[#ECB629] mb-4">
-                      2750 лв.
-                    </div>
-                    <div className="text-xl text-gray-300">месечно</div>
-                  </div>
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-8">
+                Структура на инвестицията
+              </h2>
 
-                  <div className="grid md:grid-cols-3 gap-8 text-left mb-8">
-                    <div>
-                      <h4 className="text-lg font-bold text-white mb-3">
-                        Какво включва:
-                      </h4>
-                      <ul className="space-y-2 text-sm text-gray-300">
-                        <li className="flex items-center">
-                          <CheckCircle className="w-4 h-4 text-[#ECB629] mr-2" />
-                          Пълен системен audit
-                        </li>
-                        <li className="flex items-center">
-                          <CheckCircle className="w-4 h-4 text-[#ECB629] mr-2" />
-                          Custom CRM настройка
-                        </li>
-                        <li className="flex items-center">
-                          <CheckCircle className="w-4 h-4 text-[#ECB629] mr-2" />
-                          Marketing automation
-                        </li>
-                        <li className="flex items-center">
-                          <CheckCircle className="w-4 h-4 text-[#ECB629] mr-2" />
-                          Lead nurturing system
-                        </li>
-                      </ul>
+              <p className="text-xl text-gray-400 mb-12 max-w-2xl mx-auto">
+                Инженерно проектиране изисква прецизност и в техническата спецификация
+              </p>
+
+              {/* Price Card */}
+              <div className="bg-slate-800/50 rounded-2xl p-8 border border-slate-600/30 mb-16">
+                <div className="text-sm text-[#ECB629] mb-2 tracking-wide">ЗАПОЧВА ОТ</div>
+                <div className="text-6xl md:text-7xl font-bold text-[#ECB629] mb-4">
+                  2890 лв.
+                  <span className="text-2xl text-gray-400">/месечно</span>
+                </div>
+                <p className="text-gray-400">
+                  *Финалната цена се определя след техническа диагностика
+                </p>
+              </div>
+
+              {/* Principles */}
+              <div className="text-left space-y-8">
+                {[
+                  {
+                    number: "1",
+                    title: "Персонализирано решение",
+                    description: "Всяка система Clientomat™ се проектира и изгражда спрямо уникалните цели и състояние на вашия бизнес. Ние не предлагаме готови пакети."
+                  },
+                  {
+                    number: "2", 
+                    title: "Бюджетна рамка",
+                    description: "За ориентация, базовите инженерни проекти започват от 2890 лв./месечно."
+                  },
+                  {
+                    number: "3",
+                    title: "Техническа спецификация", 
+                    description: "Финалната инвестиция се определя след задължителна техническа диагностика. Вие получавате детайлно инженерно предложение, в което всеки компонент е ясно описан и стойностен."
+                  }
+                ].map((principle, index) => (
+                  <motion.div
+                    key={principle.number}
+                    className="flex gap-6"
+                    initial={{ opacity: 0, x: -30 }}
+                    animate={investmentInView ? { opacity: 1, x: 0 } : {}}
+                    transition={{ duration: 0.6, delay: index * 0.2 }}
+                  >
+                    <div className="flex-shrink-0">
+                      <div className="w-12 h-12 bg-[#ECB629] rounded-full flex items-center justify-center text-black font-bold text-lg">
+                        {principle.number}
+                      </div>
+                      {index < 2 && (
+                        <div className="w-0.5 h-16 bg-[#ECB629] mx-auto mt-4"></div>
+                      )}
                     </div>
-                    <div>
-                      <h4 className="text-lg font-bold text-white mb-3">
-                        Support & Optimization:
-                      </h4>
-                      <ul className="space-y-2 text-sm text-gray-300">
-                        <li className="flex items-center">
-                          <CheckCircle className="w-4 h-4 text-[#ECB629] mr-2" />
-                          Седмични отчети
-                        </li>
-                        <li className="flex items-center">
-                          <CheckCircle className="w-4 h-4 text-[#ECB629] mr-2" />
-                          Постоянна оптимизация
-                        </li>
-                        <li className="flex items-center">
-                          <CheckCircle className="w-4 h-4 text-[#ECB629] mr-2" />
-                          A/B тестване
-                        </li>
-                        <li className="flex items-center">
-                          <CheckCircle className="w-4 h-4 text-[#ECB629] mr-2" />
-                          Performance monitoring
-                        </li>
-                      </ul>
+                    <div className="flex-1">
+                      <h3 className="text-xl font-semibold text-white mb-3">
+                        {principle.title}
+                      </h3>
+                      <p className="text-gray-400 leading-relaxed">
+                        {principle.description}
+                      </p>
                     </div>
-                    <div>
-                      <h4 className="text-lg font-bold text-white mb-3">
-                        Гаранции:
-                      </h4>
-                      <ul className="space-y-2 text-sm text-gray-300">
-                        <li className="flex items-center">
-                          <CheckCircle className="w-4 h-4 text-[#ECB629] mr-2" />
-                          ROI в първите 6 месеца
-                        </li>
-                        <li className="flex items-center">
-                          <CheckCircle className="w-4 h-4 text-[#ECB629] mr-2" />
-                          Измерими резултати
-                        </li>
-                        <li className="flex items-center">
-                          <CheckCircle className="w-4 h-4 text-[#ECB629] mr-2" />
-                          Пълна прозрачност
-                        </li>
-                        <li className="flex items-center">
-                          <CheckCircle className="w-4 h-4 text-[#ECB629] mr-2" />
-                          Flexible terms
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </Card>
-              </motion.div>
-            </div>
-          </motion.div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
