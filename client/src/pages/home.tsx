@@ -6,7 +6,7 @@ import { SolutionSection } from "@/components/solution-section";
 import ProcessSection from "@/components/process-section";
 import { SystemsSection } from "@/components/systems-section";
 import { CaseStudiesSlider } from "@/components/case-studies-slider";
-import { UnifiedCTASection } from "@/components/unified-cta-section";
+import { CTASection } from "@/components/cta-section";
 import { Footer } from "@/components/footer";
 import { SEOHead } from "@/components/seo-head";
 import { pageSEOData } from "@/data/seo-pages";
@@ -34,11 +34,7 @@ export default function Home() {
       <ProcessSection />
       <SystemsSection />
       <CaseStudiesSlider />
-      <UnifiedCTASection 
-        buttonText="Започнете трансформацията"
-        headline="Готови ли сте да спрете да залагате на късмет?"
-        description="Превърнете хаоса в предсказуем растеж с нашите проверени инженерни системи."
-      />
+      <CTASection />
       <Footer />
     </div>
   );
