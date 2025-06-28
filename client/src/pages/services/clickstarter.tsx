@@ -538,26 +538,78 @@ export default function Clickstarter() {
                 transition={{ duration: 0.8 }}
                 viewport={{ once: true }}
               >
+                {/* Badge */}
+                <div className="inline-flex items-center px-6 py-2 bg-slate-800/80 border border-[#ECB629] rounded-full mb-8">
+                  <span className="text-[#ECB629] text-sm font-medium tracking-wide">
+                    ПРОЗРАЧНО ЦЕНООБРАЗУВАНЕ
+                  </span>
+                </div>
+
                 <h2 className="text-4xl md:text-5xl font-bold text-white mb-8">
-                  Инвестиция по чертеж, а не на сляпо.
+                  Структура на инвестицията
                 </h2>
 
-                <div className="bg-slate-800/50 rounded-2xl p-8 border border-slate-600/30 mb-8">
-                  <div className="flex justify-center items-center gap-4 mb-6">
-                    <FileText className="w-12 h-12 text-[#ECB629]" />
-                    <DollarSign className="w-8 h-8 text-[#ECB629]" />
-                  </div>
+                <p className="text-xl text-gray-400 mb-12 max-w-2xl mx-auto">
+                  Инженерно проектиране изисква прецизност и в техническата спецификация
+                </p>
 
-                  <p className="text-xl text-gray-300 leading-relaxed">
-                    Базовата инвестиция за този инженерен проект започва от
-                    <span className="text-[#ECB629] font-bold">
-                      {" "}
-                      2250 лв./месец + рекламен бюджет
-                    </span>
-                    . Крайната стойност се дефинира след техническата
-                    диагностика. Вие получавате прозрачен инженерен план, където
-                    всеки компонент и всеки лев са напълно обосновани.
+                {/* Price Card */}
+                <div className="bg-slate-800/50 rounded-2xl p-8 border border-slate-600/30 mb-16">
+                  <div className="text-sm text-[#ECB629] mb-2 tracking-wide">ЗАПОЧВА ОТ</div>
+                  <div className="text-6xl md:text-7xl font-bold text-[#ECB629] mb-4">
+                    1570 лв.
+                    <span className="text-2xl text-gray-400">/месечно</span>
+                  </div>
+                  <p className="text-gray-400">
+                    *Финалната цена се определя след техническа диагностика
                   </p>
+                </div>
+
+                {/* Principles */}
+                <div className="text-left space-y-8">
+                  {[
+                    {
+                      number: "1",
+                      title: "Персонализирано решение",
+                      description: "Всяка система Clickstarter™ се проектира и изгражда спрямо уникалните цели и състояние на вашия бизнес. Ние не предлагаме готови пакети."
+                    },
+                    {
+                      number: "2", 
+                      title: "Бюджетна рамка",
+                      description: "За ориентация, базовите инженерни проекти започват от 1570 лв./месечно + рекламен бюджет."
+                    },
+                    {
+                      number: "3",
+                      title: "Техническа спецификация", 
+                      description: "Финалната инвестиция се определя след задължителна техническа диагностика. Вие получавате детайлно инженерно предложение, в което всеки компонент е ясно описан и стойностен."
+                    }
+                  ].map((principle, index) => (
+                    <motion.div
+                      key={principle.number}
+                      className="flex gap-6"
+                      initial={{ opacity: 0, x: -30 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.6, delay: index * 0.2 }}
+                      viewport={{ once: true }}
+                    >
+                      <div className="flex-shrink-0">
+                        <div className="w-12 h-12 bg-[#ECB629] rounded-full flex items-center justify-center text-black font-bold text-lg">
+                          {principle.number}
+                        </div>
+                        {index < 2 && (
+                          <div className="w-0.5 h-16 bg-[#ECB629] mx-auto mt-4"></div>
+                        )}
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="text-xl font-semibold text-white mb-3">
+                          {principle.title}
+                        </h3>
+                        <p className="text-gray-400 leading-relaxed">
+                          {principle.description}
+                        </p>
+                      </div>
+                    </motion.div>
+                  ))}
                 </div>
               </motion.div>
             </div>
