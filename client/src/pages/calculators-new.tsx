@@ -411,13 +411,18 @@ function ReturnOnInvestmentCalculator({
               {icon}
               <span className="text-center sm:text-left">{serviceName}</span>
             </div>
-            <span className="text-sm sm:text-base text-gray-400">ROI Калкулатор</span>
+            <span className="text-sm sm:text-base text-gray-400">
+              ROI Калкулатор
+            </span>
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4 sm:space-y-6 px-4 sm:px-6">
           <div className="grid grid-cols-1 gap-4 sm:gap-6">
             <div>
-              <Label htmlFor="param1" className="text-white text-sm sm:text-base block mb-2">
+              <Label
+                htmlFor="param1"
+                className="text-white text-sm sm:text-base block mb-2"
+              >
                 {serviceInputs.param1.label}
               </Label>
               <Input
@@ -436,7 +441,10 @@ function ReturnOnInvestmentCalculator({
             </div>
 
             <div>
-              <Label htmlFor="param2" className="text-white text-sm sm:text-base block mb-2">
+              <Label
+                htmlFor="param2"
+                className="text-white text-sm sm:text-base block mb-2"
+              >
                 {serviceInputs.param2.label}
               </Label>
               <Input
@@ -455,7 +463,10 @@ function ReturnOnInvestmentCalculator({
             </div>
 
             <div>
-              <Label htmlFor="param3" className="text-white text-sm sm:text-base block mb-2">
+              <Label
+                htmlFor="param3"
+                className="text-white text-sm sm:text-base block mb-2"
+              >
                 {serviceInputs.param3.label}
               </Label>
               <Input
@@ -504,11 +515,13 @@ function ReturnOnInvestmentCalculator({
 
           {/* ROI Definition */}
           <div className="bg-slate-900/50 rounded-lg p-4 border border-slate-700/30">
-            <h4 className="text-white font-medium mb-2">Какво е възвърната инвестиция?</h4>
+            <h4 className="text-white font-medium mb-2">
+              Какво е възвърната инвестиция?
+            </h4>
             <p className="text-gray-400 text-sm">
-              Възвърната инвестиция показва колко лева печелите за всеки
-              лев инвестиран в услугата. Например, 300% възвърната инвестиция означава, че за
-              всеки лев инвестиран, получавате 3 лева обратно.
+              Възвърната инвестиция показва колко лева печелите за всеки лев
+              инвестиран в услугата. Например, 300% възвърната инвестиция
+              означава, че за всеки лев инвестиран, получавате 3 лева обратно.
             </p>
           </div>
         </CardContent>
@@ -531,8 +544,10 @@ function ReturnOnInvestmentCalculator({
                   <h3 className="text-xl font-semibold text-white">
                     {serviceName === "SEO Struktor™" && "SEO Потенциал Оценка"}
                     {serviceName === "Trendlab™" && "Content Потенциал Оценка"}
-                    {serviceName === "Clickstarter™" && "Реклама Потенциал Оценка"}
-                    {serviceName === "Clientomat™" && "Клиент Потенциал Оценка"}
+                    {serviceName === "Clickstarter™" &&
+                      "Реклама Потенциал Оценка"}
+                    {serviceName === "Clientomat™" &&
+                      "Клиент Потенциал Оценка"}
                   </h3>
                 </div>
 
@@ -656,8 +671,12 @@ function ReturnOnInvestmentCalculator({
                     <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5 text-green-500" />
                   </div>
                   <div>
-                    <h4 className="text-white font-semibold text-sm sm:text-base">ROI</h4>
-                    <p className="text-gray-400 text-xs sm:text-sm">Възвращаемост</p>
+                    <h4 className="text-white font-semibold text-sm sm:text-base">
+                      ROI
+                    </h4>
+                    <p className="text-gray-400 text-xs sm:text-sm">
+                      Възвращаемост
+                    </p>
                   </div>
                 </div>
                 <div className="text-xl sm:text-2xl font-bold text-green-500 mb-1">
@@ -676,8 +695,12 @@ function ReturnOnInvestmentCalculator({
                     <DollarSign className="w-4 h-4 sm:w-5 sm:h-5 text-blue-500" />
                   </div>
                   <div>
-                    <h4 className="text-white font-semibold text-sm sm:text-base">Приход</h4>
-                    <p className="text-gray-400 text-xs sm:text-sm">Допълнителен</p>
+                    <h4 className="text-white font-semibold text-sm sm:text-base">
+                      Приход
+                    </h4>
+                    <p className="text-gray-400 text-xs sm:text-sm">
+                      Допълнителен
+                    </p>
                   </div>
                 </div>
                 <div className="text-xl sm:text-2xl font-bold text-blue-500 mb-1">
@@ -696,8 +719,12 @@ function ReturnOnInvestmentCalculator({
                     <Clock className="w-4 h-4 sm:w-5 sm:h-5 text-purple-500" />
                   </div>
                   <div>
-                    <h4 className="text-white font-semibold text-sm sm:text-base">Период</h4>
-                    <p className="text-gray-400 text-xs sm:text-sm">Възвращаемост</p>
+                    <h4 className="text-white font-semibold text-sm sm:text-base">
+                      Период
+                    </h4>
+                    <p className="text-gray-400 text-xs sm:text-sm">
+                      Възвращаемост
+                    </p>
                   </div>
                 </div>
                 <div className="text-xl sm:text-2xl font-bold text-purple-500 mb-1">
@@ -717,10 +744,14 @@ function ReturnOnInvestmentCalculator({
                 Готови за <span className="text-[#ECB629]">трансформация</span>?
               </h3>
               <p className="text-gray-300 mb-4 sm:mb-6 max-w-2xl mx-auto text-sm sm:text-base">
-                {serviceName === "SEO Struktor™" && `Вашият SEO потенциал е ${results.score}/100. Започнете оптимизацията днес и постигнете измерими резултати.`}
-                {serviceName === "Trendlab™" && `Вашият content потенциал е ${results.score}/100. Започнете създаването на съдържание днес и постигнете измерими резултати.`}
-                {serviceName === "Clickstarter™" && `Вашият реклама потенциал е ${results.score}/100. Започнете оптимизацията на рекламите днес и постигнете измерими резултати.`}
-                {serviceName === "Clientomat™" && `Вашият клиент потенциал е ${results.score}/100. Започнете автоматизацията днес и постигнете измерими резултати.`}
+                {serviceName === "SEO Struktor™" &&
+                  `Вашият SEO потенциал е ${results.score}/100. Започнете оптимизацията днес и постигнете измерими резултати.`}
+                {serviceName === "Trendlab™" &&
+                  `Вашият content потенциал е ${results.score}/100. Започнете създаването на съдържание днес и постигнете измерими резултати.`}
+                {serviceName === "Clickstarter™" &&
+                  `Вашият реклама потенциал е ${results.score}/100. Започнете оптимизацията на рекламите днес и постигнете измерими резултати.`}
+                {serviceName === "Clientomat™" &&
+                  `Вашият клиент потенциал е ${results.score}/100. Започнете автоматизацията днес и постигнете измерими резултати.`}
               </p>
               <div className="flex flex-col gap-3 sm:gap-4 justify-center">
                 <Button
@@ -917,7 +948,9 @@ export default function CalculatorsNew() {
                   >
                     <div className="flex flex-col md:flex-row items-center gap-1 md:gap-2">
                       <div className="text-lg md:text-base">{service.icon}</div>
-                      <span className="hidden md:inline font-medium">{service.name}</span>
+                      <span className="hidden md:inline font-medium">
+                        {service.name}
+                      </span>
                       <span className="md:hidden text-center font-medium leading-tight">
                         {service.name.split("™")[0]}
                       </span>
@@ -946,46 +979,8 @@ export default function CalculatorsNew() {
         </div>
       </div>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-[#ECB629] relative overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute w-1 h-1 bg-black rounded-full" style={{left: '30.7%', top: '22.1%', transform: 'scale(1.38)'}}></div>
-          <div className="absolute w-1 h-1 bg-black rounded-full" style={{left: '78.2%', top: '56.4%', transform: 'scale(1.15)'}}></div>
-          <div className="absolute w-1 h-1 bg-black rounded-full" style={{left: '15.9%', top: '73.8%', transform: 'scale(1.42)'}}></div>
-          <div className="absolute w-1 h-1 bg-black rounded-full" style={{left: '64.3%', top: '89.1%', transform: 'scale(1.23)'}}></div>
-          <div className="absolute w-1 h-1 bg-black rounded-full" style={{left: '42.6%', top: '8.5%', transform: 'scale(1.31)'}}></div>
-        </div>
-
-        <div className="container mx-auto px-6 text-center relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl md:text-5xl font-bold text-black mb-6">
-              Готови да постигнете тези резултати?
-            </h2>
-            <p className="text-xl text-black/80 mb-8 max-w-2xl mx-auto">
-              Започнете с безплатна консултация и разберете как точно можем да постигнем тези числа за вашия бизнес.
-            </p>
-            <motion.a
-              href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 bg-black text-white px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-300 hover:scale-105 hover:-translate-y-1"
-              whileHover={{ scale: 1.05, y: -5 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Започнете днес
-              <ArrowRight className="ml-2 w-5 h-5" />
-            </motion.a>
-          </motion.div>
-        </div>
-      </section>
-
       {/* Unified CTA Section */}
-      <UnifiedCTASection 
+      <UnifiedCTASection
         buttonText="Започнете днес"
         headline="Готови ли сте да превърнете числата в резултати?"
         description="Изберете подходящата система за вашия бизнес и започнете трансформацията с безплатна консултация."
