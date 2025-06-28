@@ -12,7 +12,15 @@ import { useToast } from "@/hooks/use-toast";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { Link } from "wouter";
-import { Mail, Phone, MapPin, Clock, Send, CheckCircle, ArrowRight } from "lucide-react";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Clock,
+  Send,
+  CheckCircle,
+  ArrowRight,
+} from "lucide-react";
 import { SEOHead } from "@/components/seo-head";
 import { pageSEOData } from "@/data/seo-pages";
 import { z } from "zod";
@@ -20,9 +28,11 @@ import { z } from "zod";
 const contactSchema = z.object({
   name: z.string().min(2, "Името трябва да съдържа поне 2 символа"),
   email: z.string().email("Невалиден имейл адрес"),
-  website: z.string().url("Моля въведете валиден URL (напр. https://example.com)"),
+  website: z
+    .string()
+    .url("Моля въведете валиден URL (напр. https://example.com)"),
   company: z.string().optional(),
-  message: z.string().min(10, "Съобщението трябва да съдържа поне 10 символа")
+  message: z.string().min(10, "Съобщението трябва да съдържа поне 10 символа"),
 });
 
 type ContactFormData = z.infer<typeof contactSchema>;
@@ -32,26 +42,26 @@ const contactInfo = [
     icon: Mail,
     title: "Имейл",
     info: "contact@pravdagency.eu",
-    description: "Отговаряме в рамките на 24 часа"
+    description: "Отговаряме в рамките на 24 часа",
   },
   {
     icon: Phone,
     title: "Телефон",
     info: "+359 879 282 299",
-    description: "Работни дни: 9:00 - 18:00"
+    description: "Работни дни: 9:00 - 18:00",
   },
   {
     icon: MapPin,
     title: "Офис",
     info: "ул. Дебър №58, Варна",
-    description: "Среща по предварително уговаряне"
+    description: "Среща по предварително уговаряне",
   },
   {
     icon: Clock,
     title: "Работно време",
     info: "Понеделник - Петък",
-    description: "09:00 - 18:00 (GMT+2)"
-  }
+    description: "09:00 - 18:00 (GMT+2)",
+  },
 ];
 
 export default function Contact() {
@@ -60,40 +70,40 @@ export default function Contact() {
     email: "",
     website: "",
     company: "",
-    message: ""
+    message: "",
   });
   const [errors, setErrors] = useState<Partial<ContactFormData>>({});
-  
+
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
   const contactMutation = useMutation({
     mutationFn: async (data: ContactFormData) => {
-      console.log('Изпращане на данни:', data);
+      console.log("Изпращане на данни:", data);
       return await apiRequest("/api/contacts", "POST", data);
     },
     onSuccess: (response) => {
-      console.log('Успешен отговор:', response);
+      console.log("Успешен отговор:", response);
       toast({
         title: "Съобщението е изпратено!",
         description: "Благодарим ви! Ще се свържем с вас в най-скоро време.",
       });
-      
+
       // Изчистване на формата
       setFormData({
         name: "",
         email: "",
         website: "",
         company: "",
-        message: ""
+        message: "",
       });
       setErrors({});
-      
+
       // Invalidate контактните заявки
-      queryClient.invalidateQueries({ queryKey: ['/api/contacts'] });
+      queryClient.invalidateQueries({ queryKey: ["/api/contacts"] });
     },
     onError: (error: any) => {
-      console.error('Грешка при изпращане:', error);
+      console.error("Грешка при изпращане:", error);
       toast({
         title: "Грешка при изпращане",
         description: "Моля опитайте отново или се свържете с нас директно.",
@@ -102,29 +112,30 @@ export default function Contact() {
     },
   });
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-    
+    setFormData((prev) => ({ ...prev, [name]: value }));
+
     // Изчистване на грешката при промяна
     if (errors[name as keyof ContactFormData]) {
-      setErrors(prev => ({ ...prev, [name]: undefined }));
+      setErrors((prev) => ({ ...prev, [name]: undefined }));
     }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     try {
       // Валидация на данните
       const validatedData = contactSchema.parse(formData);
-      
+
       // Изчистване на предишни грешки
       setErrors({});
-      
+
       // Изпращане на данните
       contactMutation.mutate(validatedData);
-      
     } catch (error) {
       if (error instanceof z.ZodError) {
         const newErrors: Partial<ContactFormData> = {};
@@ -141,20 +152,23 @@ export default function Contact() {
     <div className="min-h-screen bg-slate-900">
       <SEOHead seo={pageSEOData.contact} pageSlug="contact" />
       <Navigation />
-      
-      <main className="pt-20">
+
+      <main className="pt-10">
         {/* Hero Section */}
         <section className="min-h-screen flex items-center relative overflow-hidden">
           {/* Background Grid */}
           <div className="absolute inset-0 opacity-10">
-            <div className="absolute inset-0" style={{
-              backgroundImage: `
+            <div
+              className="absolute inset-0"
+              style={{
+                backgroundImage: `
                 linear-gradient(rgba(236, 182, 40, 0.1) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(236, 182, 40, 0.1) 1px, transparent 1px)
               `,
-              backgroundSize: '60px 60px'
-            }}></div>
-            
+                backgroundSize: "60px 60px",
+              }}
+            ></div>
+
             {/* Floating elements */}
             {[...Array(8)].map((_, i) => (
               <motion.div
@@ -172,7 +186,7 @@ export default function Contact() {
                   duration: 4 + i * 0.5,
                   repeat: Infinity,
                   delay: i * 0.7,
-                  ease: "easeInOut"
+                  ease: "easeInOut",
                 }}
               />
             ))}
@@ -203,12 +217,15 @@ export default function Contact() {
                       />
                     </div>
                     <span className="text-sm text-gray-300">
-                      <span className="text-[#ECB629] font-bold">Безплатна</span> консултация
+                      <span className="text-[#ECB629] font-bold">
+                        Безплатна
+                      </span>{" "}
+                      консултация
                     </span>
                   </div>
                 </motion.div>
 
-                <motion.h1 
+                <motion.h1
                   className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-white"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -225,25 +242,32 @@ export default function Contact() {
                     />
                   </span>
                 </motion.h1>
-                
-                <motion.p 
+
+                <motion.p
                   className="text-xl text-gray-300 mb-8"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.4 }}
                 >
-                  Свържете се с нас за безплатна консултация. Ще обсъдим вашите цели и как можем да ви помогнем да ги постигнете. Разгледайте нашите{" "}
+                  Свържете се с нас за безплатна консултация. Ще обсъдим вашите
+                  цели и как можем да ви помогнем да ги постигнете. Разгледайте
+                  нашите{" "}
                   <Link href="/services">
-                    <a className="text-[#ECB629] hover:underline cursor-pointer">бизнес системи</a>
+                    <a className="text-[#ECB629] hover:underline cursor-pointer">
+                      бизнес системи
+                    </a>
                   </Link>{" "}
                   и{" "}
                   <Link href="/case-studies">
-                    <a className="text-[#ECB629] hover:underline cursor-pointer">успешни проекти</a>
-                  </Link>.
+                    <a className="text-[#ECB629] hover:underline cursor-pointer">
+                      успешни проекти
+                    </a>
+                  </Link>
+                  .
                 </motion.p>
 
                 {/* Contact Info Cards */}
-                <motion.div 
+                <motion.div
                   className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -262,9 +286,15 @@ export default function Contact() {
                           </div>
                         </div>
                         <div>
-                          <h3 className="font-semibold text-white mb-1">{info.title}</h3>
-                          <p className="text-[#ECB629] font-medium mb-1">{info.info}</p>
-                          <p className="text-sm text-gray-400">{info.description}</p>
+                          <h3 className="font-semibold text-white mb-1">
+                            {info.title}
+                          </h3>
+                          <p className="text-[#ECB629] font-medium mb-1">
+                            {info.info}
+                          </p>
+                          <p className="text-sm text-gray-400">
+                            {info.description}
+                          </p>
                         </div>
                       </div>
                     </motion.div>
@@ -272,22 +302,28 @@ export default function Contact() {
                 </motion.div>
 
                 {/* Trust Indicators */}
-                <motion.div 
+                <motion.div
                   className="grid grid-cols-3 gap-4"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.6 }}
                 >
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-[#ECB629] mb-1">24h</div>
+                    <div className="text-2xl font-bold text-[#ECB629] mb-1">
+                      24h
+                    </div>
                     <div className="text-sm text-gray-400">Отговор</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-[#ECB629] mb-1">0 лв.</div>
+                    <div className="text-2xl font-bold text-[#ECB629] mb-1">
+                      0 лв.
+                    </div>
                     <div className="text-sm text-gray-400">Консултация</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-2xl font-bold text-[#ECB629] mb-1">100%</div>
+                    <div className="text-2xl font-bold text-[#ECB629] mb-1">
+                      100%
+                    </div>
                     <div className="text-sm text-gray-400">Поверителност</div>
                   </div>
                 </motion.div>
@@ -303,14 +339,20 @@ export default function Contact() {
                 <Card className="bg-slate-800/50 border-slate-700/50 backdrop-blur-sm">
                   <CardContent className="p-8">
                     <div className="mb-6">
-                      <h2 className="text-2xl font-bold text-white mb-2">Започнете разговора</h2>
-                      <p className="text-gray-400">Попълнете формата и ще се свържем с вас до 24 часа</p>
+                      <h2 className="text-2xl font-bold text-white mb-2">
+                        Започнете разговора
+                      </h2>
+                      <p className="text-gray-400">
+                        Попълнете формата и ще се свържем с вас до 24 часа
+                      </p>
                     </div>
 
                     <form onSubmit={handleSubmit} className="space-y-6">
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                          <Label htmlFor="name" className="text-white">Име *</Label>
+                          <Label htmlFor="name" className="text-white">
+                            Име *
+                          </Label>
                           <Input
                             id="name"
                             name="name"
@@ -321,11 +363,17 @@ export default function Contact() {
                             className="mt-2 bg-slate-700/50 border-slate-600 text-white placeholder:text-gray-400 focus:border-[#ECB629]"
                             required
                           />
-                          {errors.name && <p className="text-red-400 text-sm mt-1">{errors.name}</p>}
+                          {errors.name && (
+                            <p className="text-red-400 text-sm mt-1">
+                              {errors.name}
+                            </p>
+                          )}
                         </div>
 
                         <div>
-                          <Label htmlFor="company" className="text-white">Компания</Label>
+                          <Label htmlFor="company" className="text-white">
+                            Компания
+                          </Label>
                           <Input
                             id="company"
                             name="company"
@@ -339,7 +387,9 @@ export default function Contact() {
                       </div>
 
                       <div>
-                        <Label htmlFor="email" className="text-white">Имейл *</Label>
+                        <Label htmlFor="email" className="text-white">
+                          Имейл *
+                        </Label>
                         <Input
                           id="email"
                           name="email"
@@ -350,11 +400,17 @@ export default function Contact() {
                           className="mt-2 bg-slate-700/50 border-slate-600 text-white placeholder:text-gray-400 focus:border-[#ECB629]"
                           required
                         />
-                        {errors.email && <p className="text-red-400 text-sm mt-1">{errors.email}</p>}
+                        {errors.email && (
+                          <p className="text-red-400 text-sm mt-1">
+                            {errors.email}
+                          </p>
+                        )}
                       </div>
 
                       <div>
-                        <Label htmlFor="website" className="text-white">Уебсайт *</Label>
+                        <Label htmlFor="website" className="text-white">
+                          Уебсайт *
+                        </Label>
                         <Input
                           id="website"
                           name="website"
@@ -365,11 +421,17 @@ export default function Contact() {
                           className="mt-2 bg-slate-700/50 border-slate-600 text-white placeholder:text-gray-400 focus:border-[#ECB629]"
                           required
                         />
-                        {errors.website && <p className="text-red-400 text-sm mt-1">{errors.website}</p>}
+                        {errors.website && (
+                          <p className="text-red-400 text-sm mt-1">
+                            {errors.website}
+                          </p>
+                        )}
                       </div>
 
                       <div>
-                        <Label htmlFor="message" className="text-white">Съобщение *</Label>
+                        <Label htmlFor="message" className="text-white">
+                          Съобщение *
+                        </Label>
                         <Textarea
                           id="message"
                           name="message"
@@ -380,7 +442,11 @@ export default function Contact() {
                           className="mt-2 bg-slate-700/50 border-slate-600 text-white placeholder:text-gray-400 focus:border-[#ECB629] resize-none"
                           required
                         />
-                        {errors.message && <p className="text-red-400 text-sm mt-1">{errors.message}</p>}
+                        {errors.message && (
+                          <p className="text-red-400 text-sm mt-1">
+                            {errors.message}
+                          </p>
+                        )}
                       </div>
 
                       <Button
@@ -414,13 +480,13 @@ export default function Contact() {
         </section>
 
         {/* Unified CTA Section */}
-        <UnifiedCTASection 
+        <UnifiedCTASection
           buttonText="Получете оферта"
           headline="Първата консултация е безплатна"
           description="Ще анализираме вашия бизнес и ще предложим конкретни решения за растеж. Без ангажименти, само резултати."
         />
       </main>
-      
+
       <Footer />
     </div>
   );

@@ -99,9 +99,9 @@ export default function About() {
       <SEOHead seo={pageSEOData.about} pageSlug="about" />
       <Navigation />
 
-      <main className="pt-20">
+      <main className="pt-10">
         {/* Hero Section */}
-        <section className="py-20 relative overflow-hidden">
+        <section className="relative overflow-hidden">
           {/* Animated Tech Background */}
           <div className="absolute inset-0 opacity-20">
             <div className="absolute inset-0">
@@ -195,12 +195,17 @@ export default function About() {
                 превърнем хаотичния растеж в предвидими, измерими резултати.
                 Разгледайте нашите{" "}
                 <Link href="/services">
-                  <a className="text-[#ECB629] hover:underline cursor-pointer">услуги</a>
+                  <a className="text-[#ECB629] hover:underline cursor-pointer">
+                    услуги
+                  </a>
                 </Link>{" "}
                 и{" "}
                 <Link href="/case-studies">
-                  <a className="text-[#ECB629] hover:underline cursor-pointer">постигнати резултати</a>
-                </Link>.
+                  <a className="text-[#ECB629] hover:underline cursor-pointer">
+                    постигнати резултати
+                  </a>
+                </Link>
+                .
               </motion.p>
 
               {/* Stats Grid */}
@@ -327,10 +332,10 @@ export default function About() {
             <div className="max-w-4xl mx-auto relative">
               {/* Desktop Timeline Line */}
               <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-px bg-[#ECB629] h-full"></div>
-              
+
               {/* Mobile Timeline Line */}
               <div className="md:hidden absolute left-8 w-px bg-[#ECB629] h-full"></div>
-              
+
               {milestones.map((milestone, index) => (
                 <motion.div
                   key={index}
@@ -356,7 +361,9 @@ export default function About() {
                           <h3 className="text-xl font-bold text-white mb-2">
                             {milestone.title}
                           </h3>
-                          <p className="text-gray-300">{milestone.description}</p>
+                          <p className="text-gray-300">
+                            {milestone.description}
+                          </p>
                         </CardContent>
                       </Card>
                     </div>
@@ -452,7 +459,6 @@ export default function About() {
 
         {/* CTA Section */}
         <section className="py-20 bg-[#ECB629] relative overflow-hidden">
-
           <div className="container mx-auto px-6 text-center relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 30 }}

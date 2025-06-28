@@ -157,9 +157,9 @@ export default function Blog() {
       />
       <Navigation />
 
-      <main className="pt-20">
+      <main className="pt-10">
         {/* Hero Section */}
-        <section className="py-20 relative overflow-hidden">
+        <section className="relative overflow-hidden">
           {/* Animated Tech Background */}
           <div className="absolute inset-0 opacity-20">
             <div className="absolute inset-0">

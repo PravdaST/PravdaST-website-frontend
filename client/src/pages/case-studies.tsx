@@ -76,7 +76,7 @@ export default function CaseStudies() {
 
       <main className="pt-10">
         {/* Hero Section */}
-        <section className="py-20 relative overflow-hidden">
+        <section className="py-10 relative overflow-hidden">
           {/* Animated Tech Background */}
           <div className="absolute inset-0 opacity-15">
             <div className="absolute inset-0">

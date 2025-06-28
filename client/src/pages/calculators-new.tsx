@@ -898,7 +898,7 @@ export default function CalculatorsNew() {
           />
         </div>
 
-        <div className="relative z-10 pt-20 sm:pt-24 pb-8 sm:pb-12">
+        <div className="relative z-10 pt-10 sm:pt-24 pb-8 sm:pb-12">
           <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
             {/* Header */}
             <div className="text-center mb-8 sm:mb-12 md:mb-16">
