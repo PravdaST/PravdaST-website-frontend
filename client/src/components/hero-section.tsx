@@ -184,12 +184,65 @@ export const HeroSection = () => {
                 Безплатна анализ
               </span>
             </div>
-            <div className="flex items-center justify-center gap-3 p-4 bg-slate-800/30 backdrop-blur-sm rounded-xl border border-slate-600/20">
-              <div className="w-2 h-2 bg-[var(--pravdast-yellow)] rounded-full"></div>
-              <span className="text-gray-300 text-sm font-medium">
-                Оставащи места - 3
+            <motion.div 
+              className="relative flex items-center justify-center gap-3 p-4 bg-gradient-to-r from-slate-800/50 to-slate-700/50 backdrop-blur-sm rounded-xl border border-[var(--pravdast-yellow)]/30 overflow-hidden group"
+              animate={{
+                borderColor: ["rgba(236, 182, 40, 0.3)", "rgba(236, 182, 40, 0.6)", "rgba(236, 182, 40, 0.3)"],
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            >
+              {/* Subtle glow effect */}
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[var(--pravdast-yellow)]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              
+              {/* Animated background pulse */}
+              <motion.div
+                className="absolute inset-0 bg-[var(--pravdast-yellow)]/5 rounded-xl"
+                animate={{
+                  scale: [1, 1.05, 1],
+                  opacity: [0.5, 1, 0.5],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              />
+              
+              {/* Pulsing dot with ring */}
+              <div className="relative">
+                <motion.div 
+                  className="w-2 h-2 bg-[var(--pravdast-yellow)] rounded-full relative z-10"
+                  animate={{
+                    scale: [1, 1.2, 1],
+                  }}
+                  transition={{
+                    duration: 1.5,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                />
+                <motion.div 
+                  className="absolute inset-0 w-2 h-2 bg-[var(--pravdast-yellow)] rounded-full"
+                  animate={{
+                    scale: [1, 2, 2.5],
+                    opacity: [0.8, 0.4, 0],
+                  }}
+                  transition={{
+                    duration: 1.5,
+                    repeat: Infinity,
+                    ease: "easeOut"
+                  }}
+                />
+              </div>
+              
+              <span className="text-white text-sm font-semibold relative z-10">
+                Оставащи места - <span className="text-[var(--pravdast-yellow)] text-base">3</span>
               </span>
-            </div>
+            </motion.div>
           </motion.div>
         </div>
       </div>
