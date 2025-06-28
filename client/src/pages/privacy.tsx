@@ -3,17 +3,14 @@ import { Footer } from "@/components/footer";
 import { SEOHead } from "@/components/seo-head";
 import { motion } from "framer-motion";
 import { Shield, Lock, Eye, Calendar } from "lucide-react";
+import { pageSEOData } from "@/data/seo-pages";
 
 export default function Privacy() {
   return (
     <div className="min-h-screen bg-slate-900">
       <SEOHead
-        seo={{
-          title: "Политика за поверителност - Pravdast Business Engineering",
-          description: "Политика за поверителност на Pravdast Business Engineering. Как събираме, използваме и защитаваме вашите данни.",
-          keywords: "поверителност, защита на данни, GDPR, лични данни, бизнес инженеринг",
-        }}
-        pageSlug="/privacy"
+        seo={pageSEOData.privacy}
+        pageSlug="privacy"
       />
       
       <Navigation />

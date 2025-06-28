@@ -7,6 +7,7 @@ import { UnifiedCTASection } from "@/components/unified-cta-section";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { pageSEOData } from "@/data/seo-pages";
 import {
   ArrowRight,
   CheckCircle,
@@ -30,11 +31,7 @@ export default function Clickstarter() {
   return (
     <>
       <SEOHead 
-        seo={{
-          title: "Clickstarter™ - Оптимизация на рекламния бюджет | Pravdast",
-          description: "Прецизна настройка на вашия рекламен процес за максимална възвръщаемост. Елиминирайте загубите и максимизирайте резултата от всеки лев.",
-          ogImage: "/og-clickstarter.png",
-        }}
+        seo={pageSEOData["services/clickstarter"]}
         pageSlug="services/clickstarter"
       />
       

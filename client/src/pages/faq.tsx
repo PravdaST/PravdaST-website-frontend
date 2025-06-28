@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { Link } from "wouter";
 import { ChevronDown, HelpCircle, ArrowRight } from "lucide-react";
 import { useState } from "react";
+import { pageSEOData } from "@/data/seo-pages";
 
 interface FAQItem {
   question: string;
@@ -115,14 +116,8 @@ export default function FAQ() {
   return (
     <div className="min-h-screen bg-slate-900">
       <SEOHead
-        seo={{
-          title: "Често задавани въпроси - Pravdast Business Engineering",
-          description:
-            "Отговори на най-честите въпроси за бизнес инженеринг услугите: SEO Struktor™, Clientomat™, Clickstarter™, Trendlab™. Научете повече за процесите и резултатите.",
-          keywords:
-            "FAQ, въпроси отговори, бизнес инженеринг, SEO услуги, автоматизация, продажбени системи",
-        }}
-        pageSlug="/faq"
+        seo={pageSEOData.faq}
+        pageSlug="faq"
       />
 
       <script

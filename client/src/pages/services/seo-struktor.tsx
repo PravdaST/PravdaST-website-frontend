@@ -8,6 +8,7 @@ import { useRef, useState, useEffect } from "react";
 import { seoStruktorSchema, injectStructuredData } from "@/lib/seo-schemas";
 import { trackServiceView, trackCTAClick } from "@/lib/tracking";
 import { Link } from "wouter";
+import { pageSEOData } from "@/data/seo-pages";
 import {
   ArrowRight,
   ArrowLeft,
@@ -1028,16 +1029,9 @@ const FinalCTASection = () => {
 };
 
 export default function SeoStruktor() {
-  const seoData = {
-    title: "SEO Struktor™ - Инженерен подход към SEO оптимизация | Pravdast",
-    description: "Изграждаме вашето онлайн присъствие като инженерно съоръжение. Структуриран SEO подход за предвидими резултати в Google.",
-    keywords: "SEO оптимизация, SEO услуги България, структуриран SEO, инженерен SEO подход",
-    ogImage: "/og-images/seo-struktor.svg"
-  };
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-[var(--pravdast-dark)] to-[var(--pravdast-dark-gray)] text-white">
-      <SEOHead seo={seoData} pageSlug="services/seo-struktor" />
+      <SEOHead seo={pageSEOData["services/seo-struktor"]} pageSlug="services/seo-struktor" />
       <Navigation />
 
       {/* Hero Section */}

@@ -8,6 +8,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
+import { pageSEOData } from "@/data/seo-pages";
 import {
   Calendar,
   Clock,
@@ -147,12 +148,7 @@ export default function Blog() {
   return (
     <div className="min-h-screen bg-slate-900">
       <SEOHead
-        seo={{
-          title: "Блог за бизнес инженерство | Pravdast",
-          description:
-            "Изградете предвидим растеж за вашата компания. Нашите статии ще ви покажат как чрез изпитани системи, автоматизация на дейностите и решения, базирани на данни.",
-          ogImage: "/og-blog.png",
-        }}
+        seo={pageSEOData.blog}
         pageSlug="blog"
       />
       <Navigation />

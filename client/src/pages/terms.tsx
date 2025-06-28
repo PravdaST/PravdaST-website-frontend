@@ -3,17 +3,14 @@ import { Footer } from "@/components/footer";
 import { SEOHead } from "@/components/seo-head";
 import { motion } from "framer-motion";
 import { Shield, Calendar, FileText } from "lucide-react";
+import { pageSEOData } from "@/data/seo-pages";
 
 export default function Terms() {
   return (
     <div className="min-h-screen bg-slate-900">
       <SEOHead
-        seo={{
-          title: "Общи условия - Pravdast Business Engineering",
-          description: "Общи условия за ползване на услугите на Pravdast Business Engineering. Правила, отговорности и условия за сътрудничество.",
-          keywords: "общи условия, правила, сътрудничество, бизнес инженеринг, услуги",
-        }}
-        pageSlug="/terms"
+        seo={pageSEOData.terms}
+        pageSlug="terms"
       />
       
       <Navigation />

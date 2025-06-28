@@ -285,6 +285,7 @@ Changelog:
 - June 28, 2025. Fixed mobile responsiveness issue on /about page timeline: implemented separate desktop and mobile layouts for timeline section, mobile now displays timeline items vertically with year badges on the left side, maintained zigzag pattern for desktop while ensuring proper vertical stacking on mobile devices
 - June 28, 2025. Fixed mobile homepage spacing issue: added padding-top (pt-10) to hero section container specifically for mobile devices to create proper spacing between navigation and content, desktop version remains unchanged with no padding
 - June 28, 2025. Applied same mobile spacing fix to /services page: added padding-top (pt-10) to services hero section container for mobile devices only to ensure consistent spacing across all pages
+- June 28, 2025. Fixed critical SEO issue where Ahrefs detected duplicate meta tags across all pages: identified that service pages (Clickstarter™, SEO Struktor™) and other pages (FAQ, Terms, Privacy, Blog) were hardcoding SEO data instead of using centralized pageSEOData configuration from seo-pages.ts - updated all pages to use centralized configuration to ensure unique meta tags for each page
 
 ## User Preferences
 
