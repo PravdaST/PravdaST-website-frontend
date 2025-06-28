@@ -74,7 +74,7 @@ export default function CaseStudies() {
       <SEOHead seo={pageSEOData["case-studies"]} pageSlug="case-studies" />
       <Navigation />
 
-      <main className="pt-20">
+      <main className="pt-10">
         {/* Hero Section */}
         <section className="py-20 relative overflow-hidden">
           {/* Animated Tech Background */}
