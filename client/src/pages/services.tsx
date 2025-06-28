@@ -213,7 +213,7 @@ export default function Services() {
         <section className="min-h-screen flex items-center relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
           <SystemsBackground />
 
-          <div className="container mx-auto px-6 relative z-10">
+          <div className="container mx-auto px-6 relative z-10 pt-10 sm:pt-0">
             <div className="max-w-5xl mx-auto">
               <div className="text-center mb-16">
                 <motion.div
