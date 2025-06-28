@@ -6,29 +6,36 @@ export class SEOGenerator {
     this.baseUrl = baseUrl;
   }
 
-  // Генерира Google-оптимизиран XML sitemap
+  // Генерира Google-оптимизиран XML sitemap (2024 стандарти)
   generateSitemap(): string {
     const pages = [
-      // Главна страница - най-висок приоритет (последно обновена днес)
-      { url: '/', priority: '1.0', changefreq: 'weekly', lastmod: '2025-06-21' },
+      // Главна страница (последно обновена)
+      { url: '/', lastmod: '2025-06-28' },
       
-      // Услуги - висок приоритет за конверсии (обновени 19-ти)
-      { url: '/services', priority: '0.9', changefreq: 'weekly', lastmod: '2025-06-19' },
-      { url: '/services/seo-struktor', priority: '0.9', changefreq: 'monthly', lastmod: '2025-06-19' },
-      { url: '/services/sales-engine', priority: '0.9', changefreq: 'monthly', lastmod: '2025-06-19' },
-      { url: '/services/clientomat', priority: '0.9', changefreq: 'monthly', lastmod: '2025-06-19' },
+      // Услуги (обновени с SEO корекции)
+      { url: '/services', lastmod: '2025-06-28' },
+      { url: '/services/seo-struktor', lastmod: '2025-06-28' },
+      { url: '/services/clickstarter', lastmod: '2025-06-27' },
+      { url: '/services/trendlab', lastmod: '2025-06-27' },
+      { url: '/services/clientomat', lastmod: '2025-06-25' },
       
-      // Контакти - висок приоритет за lead generation (обновена вчера)
-      { url: '/contact', priority: '0.8', changefreq: 'monthly', lastmod: '2025-06-20' },
+      // Важни страници за конверсии
+      { url: '/contact', lastmod: '2025-06-25' },
+      { url: '/calculators', lastmod: '2025-06-27' },
+      { url: '/blog', lastmod: '2025-06-25' },
       
-      // Казуси - доказателства за резултати (по-стари)
-      { url: '/case-studies', priority: '0.7', changefreq: 'monthly', lastmod: '2025-06-18' },
+      // Информационни страници
+      { url: '/case-studies', lastmod: '2025-06-22' },
+      { url: '/about', lastmod: '2025-06-28' },
+      { url: '/faq', lastmod: '2025-06-27' },
       
-      // За нас - брандинг и доверие (по-стара)
-      { url: '/about', priority: '0.6', changefreq: 'monthly', lastmod: '2025-06-18' }
+      // Правни страници
+      { url: '/terms', lastmod: '2025-06-27' },
+      { url: '/privacy', lastmod: '2025-06-27' }
     ];
 
-    // Clean XML sitemap за съвременни Google стандарти
+    // Модерен XML sitemap според Google 2024 стандарти
+    // Google игнорира <priority> и <changefreq> от 2023г.
     let sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`;
 
@@ -37,8 +44,6 @@ export class SEOGenerator {
   <url>
     <loc>${this.baseUrl}${page.url}</loc>
     <lastmod>${page.lastmod}</lastmod>
-    <changefreq>${page.changefreq}</changefreq>
-    <priority>${page.priority}</priority>
   </url>`;
     });
 

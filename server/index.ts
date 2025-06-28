@@ -65,24 +65,14 @@ app.get("/blog-sitemap.xml", async (req, res) => {
     ];
 
     const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:news="http://www.google.com/schemas/sitemap-news/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml"
-        xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>${baseUrl}/blog</loc>
     <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
-    <mobile:mobile/>
   </url>
 ${blogPosts.map(post => `  <url>
     <loc>${baseUrl}/blog/${post.slug}</loc>
     <lastmod>${post.lastmod}</lastmod>
-    <changefreq>${post.changefreq}</changefreq>
-    <priority>${post.priority}</priority>
-    <mobile:mobile/>
   </url>`).join('\n')}
 </urlset>`;
     
@@ -97,24 +87,21 @@ ${blogPosts.map(post => `  <url>
 
 app.get("/services-sitemap.xml", async (req, res) => {
   try {
-    // Услуги sitemap
+    // Услуги sitemap (Google 2024 стандарти)
     const baseUrl = 'https://www.pravdagency.eu';
     const services = [
-      { slug: 'services', priority: '0.9' },
-      { slug: 'services/seo-struktor', priority: '0.8' },
-      { slug: 'services/clientomat', priority: '0.8' },
-      { slug: 'services/sales-engine', priority: '0.8' }
+      { slug: 'services', lastmod: '2025-06-28' },
+      { slug: 'services/seo-struktor', lastmod: '2025-06-28' },
+      { slug: 'services/clickstarter', lastmod: '2025-06-27' },
+      { slug: 'services/trendlab', lastmod: '2025-06-27' },
+      { slug: 'services/clientomat', lastmod: '2025-06-25' }
     ];
 
     const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${services.map(service => `  <url>
     <loc>${baseUrl}/${service.slug}</loc>
-    <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>${service.priority}</priority>
-    <mobile:mobile/>
+    <lastmod>${service.lastmod}</lastmod>
   </url>`).join('\n')}
 </urlset>`;
     

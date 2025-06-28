@@ -6,87 +6,59 @@ export default async function handler(req, res) {
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>${baseUrl}</loc>
-    <lastmod>2025-06-27</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
+    <lastmod>2025-06-28</lastmod>
   </url>
   <url>
     <loc>${baseUrl}/services</loc>
-    <lastmod>2025-06-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <lastmod>2025-06-28</lastmod>
   </url>
   <url>
     <loc>${baseUrl}/services/seo-struktor</loc>
-    <lastmod>2025-06-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <lastmod>2025-06-28</lastmod>
   </url>
   <url>
     <loc>${baseUrl}/services/clickstarter</loc>
-    <lastmod>2025-06-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <lastmod>2025-06-27</lastmod>
   </url>
   <url>
     <loc>${baseUrl}/services/trendlab</loc>
-    <lastmod>2025-06-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>${baseUrl}/contact</loc>
-    <lastmod>2025-06-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>${baseUrl}/blog</loc>
-    <lastmod>2025-06-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>${baseUrl}/faq</loc>
-    <lastmod>2025-06-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>${baseUrl}/calculators</loc>
-    <lastmod>2025-06-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2025-06-27</lastmod>
   </url>
   <url>
     <loc>${baseUrl}/services/clientomat</loc>
     <lastmod>2025-06-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>${baseUrl}/contact</loc>
+    <lastmod>2025-06-25</lastmod>
+  </url>
+  <url>
+    <loc>${baseUrl}/blog</loc>
+    <lastmod>2025-06-25</lastmod>
+  </url>
+  <url>
+    <loc>${baseUrl}/faq</loc>
+    <lastmod>2025-06-27</lastmod>
+  </url>
+  <url>
+    <loc>${baseUrl}/calculators</loc>
+    <lastmod>2025-06-27</lastmod>
   </url>
   <url>
     <loc>${baseUrl}/case-studies</loc>
     <lastmod>2025-06-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
   </url>
   <url>
     <loc>${baseUrl}/about</loc>
-    <lastmod>2025-06-20</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2025-06-28</lastmod>
   </url>
   <url>
     <loc>${baseUrl}/terms</loc>
-    <lastmod>2025-06-20</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
+    <lastmod>2025-06-27</lastmod>
   </url>
   <url>
     <loc>${baseUrl}/privacy</loc>
-    <lastmod>2025-06-20</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.3</priority>
+    <lastmod>2025-06-27</lastmod>
   </url>
 </urlset>`;
 
