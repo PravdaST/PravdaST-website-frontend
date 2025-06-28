@@ -4,7 +4,20 @@ import { Link } from "wouter";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight, BookOpen, Users, Clock, Handshake, Magnet, Microscope, FileText, Camera, Megaphone, CheckCircle, ArrowLeft } from "lucide-react";
+import {
+  ArrowRight,
+  BookOpen,
+  Users,
+  Clock,
+  Handshake,
+  Magnet,
+  Microscope,
+  FileText,
+  Camera,
+  Megaphone,
+  CheckCircle,
+  ArrowLeft,
+} from "lucide-react";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { SEOHead } from "@/components/seo-head";
@@ -19,33 +32,61 @@ const TrendlabBackground = () => {
     const updateMousePosition = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
-    window.addEventListener('mousemove', updateMousePosition);
-    return () => window.removeEventListener('mousemove', updateMousePosition);
+    window.addEventListener("mousemove", updateMousePosition);
+    return () => window.removeEventListener("mousemove", updateMousePosition);
   }, []);
 
   return (
     <div className="absolute inset-0 overflow-hidden opacity-15">
       {/* Neural Network Grid */}
-      <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
+      <svg
+        className="absolute inset-0 w-full h-full"
+        xmlns="http://www.w3.org/2000/svg"
+      >
         <defs>
-          <pattern id="neural-grid" width="120" height="120" patternUnits="userSpaceOnUse">
-            <circle cx="60" cy="60" r="2" fill="#ECB629" opacity="0.6"/>
-            <circle cx="20" cy="20" r="1.5" fill="#ECB629" opacity="0.4"/>
-            <circle cx="100" cy="20" r="1.5" fill="#ECB629" opacity="0.4"/>
-            <circle cx="20" cy="100" r="1.5" fill="#ECB629" opacity="0.4"/>
-            <circle cx="100" cy="100" r="1.5" fill="#ECB629" opacity="0.4"/>
-            
+          <pattern
+            id="neural-grid"
+            width="120"
+            height="120"
+            patternUnits="userSpaceOnUse"
+          >
+            <circle cx="60" cy="60" r="2" fill="#ECB629" opacity="0.6" />
+            <circle cx="20" cy="20" r="1.5" fill="#ECB629" opacity="0.4" />
+            <circle cx="100" cy="20" r="1.5" fill="#ECB629" opacity="0.4" />
+            <circle cx="20" cy="100" r="1.5" fill="#ECB629" opacity="0.4" />
+            <circle cx="100" cy="100" r="1.5" fill="#ECB629" opacity="0.4" />
+
             {/* Connection Lines */}
-            <path d="M 60 60 L 20 20" stroke="#ECB629" strokeWidth="0.5" opacity="0.3"/>
-            <path d="M 60 60 L 100 20" stroke="#ECB629" strokeWidth="0.5" opacity="0.3"/>
-            <path d="M 60 60 L 20 100" stroke="#ECB629" strokeWidth="0.5" opacity="0.3"/>
-            <path d="M 60 60 L 100 100" stroke="#ECB629" strokeWidth="0.5" opacity="0.3"/>
+            <path
+              d="M 60 60 L 20 20"
+              stroke="#ECB629"
+              strokeWidth="0.5"
+              opacity="0.3"
+            />
+            <path
+              d="M 60 60 L 100 20"
+              stroke="#ECB629"
+              strokeWidth="0.5"
+              opacity="0.3"
+            />
+            <path
+              d="M 60 60 L 20 100"
+              stroke="#ECB629"
+              strokeWidth="0.5"
+              opacity="0.3"
+            />
+            <path
+              d="M 60 60 L 100 100"
+              stroke="#ECB629"
+              strokeWidth="0.5"
+              opacity="0.3"
+            />
           </pattern>
-          
+
           <linearGradient id="dataFlow" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#ECB629" stopOpacity="0"/>
-            <stop offset="50%" stopColor="#ECB629" stopOpacity="0.8"/>
-            <stop offset="100%" stopColor="#ECB629" stopOpacity="0"/>
+            <stop offset="0%" stopColor="#ECB629" stopOpacity="0" />
+            <stop offset="50%" stopColor="#ECB629" stopOpacity="0.8" />
+            <stop offset="100%" stopColor="#ECB629" stopOpacity="0" />
           </linearGradient>
         </defs>
         <rect width="100%" height="100%" fill="url(#neural-grid)" />
@@ -58,7 +99,7 @@ const TrendlabBackground = () => {
             key={i}
             className="absolute"
             style={{
-              left: `${10 + (i * 8)}%`,
+              left: `${10 + i * 8}%`,
               top: `${15 + (i % 4) * 20}%`,
             }}
             animate={{
@@ -75,17 +116,28 @@ const TrendlabBackground = () => {
           >
             {/* Content Type Icons */}
             <div className="w-8 h-8 rounded border border-[#ECB629]/30 bg-[#ECB629]/5 flex items-center justify-center">
-              {i % 4 === 0 && <div className="w-3 h-2 bg-[#ECB629]/40 rounded-sm" />}
-              {i % 4 === 1 && <div className="w-2 h-3 bg-[#ECB629]/40 rounded-full" />}
-              {i % 4 === 2 && <div className="w-3 h-3 bg-[#ECB629]/40 rounded" />}
-              {i % 4 === 3 && <div className="w-4 h-1 bg-[#ECB629]/40 rounded-full" />}
+              {i % 4 === 0 && (
+                <div className="w-3 h-2 bg-[#ECB629]/40 rounded-sm" />
+              )}
+              {i % 4 === 1 && (
+                <div className="w-2 h-3 bg-[#ECB629]/40 rounded-full" />
+              )}
+              {i % 4 === 2 && (
+                <div className="w-3 h-3 bg-[#ECB629]/40 rounded" />
+              )}
+              {i % 4 === 3 && (
+                <div className="w-4 h-1 bg-[#ECB629]/40 rounded-full" />
+              )}
             </div>
           </motion.div>
         ))}
       </div>
 
       {/* Data Flow Streams */}
-      <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
+      <svg
+        className="absolute inset-0 w-full h-full"
+        xmlns="http://www.w3.org/2000/svg"
+      >
         {Array.from({ length: 3 }).map((_, i) => (
           <motion.path
             key={i}
@@ -94,15 +146,15 @@ const TrendlabBackground = () => {
             stroke="url(#dataFlow)"
             strokeWidth="2"
             initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ 
+            animate={{
               pathLength: [0, 1, 0],
               opacity: [0, 0.6, 0],
             }}
-            transition={{ 
+            transition={{
               duration: 4,
               repeat: Infinity,
               delay: i * 1.5,
-              ease: "easeInOut"
+              ease: "easeInOut",
             }}
           />
         ))}
@@ -162,13 +214,16 @@ export default function Trendlab() {
 
   return (
     <div className="min-h-screen bg-slate-900 text-white">
-      <SEOHead seo={pageSEOData["services/trendlab"]} pageSlug="services/trendlab" />
+      <SEOHead
+        seo={pageSEOData["services/trendlab"]}
+        pageSlug="services/trendlab"
+      />
       <Navigation />
-      
+
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <section className="py-10 relative min-h-screen flex items-center justify-center overflow-hidden">
         <TrendlabBackground />
-        
+
         <div className="container mx-auto px-6 relative z-10">
           <motion.div
             ref={heroRef}
@@ -200,7 +255,10 @@ export default function Trendlab() {
                 />
               </div>
               <span className="text-sm font-medium text-gray-300">
-                Приемаме проекти • <span className="text-[#ECB629]">Системен подход към съдържанието</span>
+                Приемаме проекти •{" "}
+                <span className="text-[#ECB629]">
+                  Системен подход към съдържанието
+                </span>
               </span>
             </motion.div>
 
@@ -223,7 +281,24 @@ export default function Trendlab() {
               animate={heroInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
-              Вие притежавате безценна експертиза и опит. Нашата система Trendlab™ превръща тези ваши знания в автентично съдържание, което изгражда доверие, създава общност и ви превръща в безспорния авторитет във вашата сфера. Разгледайте <Link href="/case-studies" className="text-[#ECB629] hover:underline">нашите резултати</Link> и <Link href="/calculators" className="text-[#ECB629] hover:underline">изчислете ROI</Link> от съдържанието.
+              Вие притежавате безценна експертиза и опит. Нашата система
+              Trendlab™ превръща тези ваши знания в автентично съдържание,
+              което изгражда доверие, създава общност и ви превръща в безспорния
+              авторитет във вашата сфера. Разгледайте{" "}
+              <Link
+                href="/case-studies"
+                className="text-[#ECB629] hover:underline"
+              >
+                нашите резултати
+              </Link>{" "}
+              и{" "}
+              <Link
+                href="/calculators"
+                className="text-[#ECB629] hover:underline"
+              >
+                изчислете Възвръщаемост на инвестицията
+              </Link>{" "}
+              от съдържанието.
             </motion.p>
 
             <motion.div
@@ -237,7 +312,11 @@ export default function Trendlab() {
                 className="bg-[#ECB629] text-black hover:bg-[#ECB629]/90 font-semibold text-lg px-8 py-4 rounded-full shadow-lg shadow-[#ECB629]/25 hover:shadow-[#ECB629]/40 transition-all duration-300"
                 asChild
               >
-                <a href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu" target="_blank" rel="noopener noreferrer">
+                <a
+                  href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   Разкажете своята история
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </a>
@@ -266,7 +345,10 @@ export default function Trendlab() {
                 .
               </h2>
               <p className="text-xl text-gray-300 max-w-4xl mx-auto">
-                Всеки може да изброи факти и характеристики. Но хората не се свързват с информация – те се свързват с истории. Една добре разказана история изгражда доверие и превръща пасивните наблюдатели в лоялни последователи.
+                Всеки може да изброи факти и характеристики. Но хората не се
+                свързват с информация – те се свързват с истории. Една добре
+                разказана история изгражда доверие и превръща пасивните
+                наблюдатели в лоялни последователи.
               </p>
             </div>
 
@@ -275,23 +357,26 @@ export default function Trendlab() {
               <Card className="bg-slate-800/30 border-slate-600/30 p-8 backdrop-blur-sm relative overflow-hidden">
                 {/* Factory Background */}
                 <div className="absolute inset-0 opacity-5">
-                  <div className="absolute inset-0" style={{
-                    backgroundImage: `
+                  <div
+                    className="absolute inset-0"
+                    style={{
+                      backgroundImage: `
                       linear-gradient(rgba(236, 182, 40, 0.1) 1px, transparent 1px),
                       linear-gradient(90deg, rgba(236, 182, 40, 0.1) 1px, transparent 1px)
                     `,
-                    backgroundSize: '30px 30px'
-                  }}></div>
+                      backgroundSize: "30px 30px",
+                    }}
+                  ></div>
                 </div>
 
                 <div className="relative z-10">
                   <h3 className="text-2xl font-bold text-center mb-8 text-white">
                     Фабриката за съдържание
                   </h3>
-                  
+
                   <div className="grid md:grid-cols-3 gap-8 items-center">
                     {/* Input */}
-                    <motion.div 
+                    <motion.div
                       className="text-center"
                       initial={{ opacity: 0, x: -50 }}
                       animate={philosophyInView ? { opacity: 1, x: 0 } : {}}
@@ -304,18 +389,22 @@ export default function Trendlab() {
                           <div className="w-7 h-1 bg-gray-400 rounded"></div>
                         </div>
                       </div>
-                      <h4 className="text-lg font-semibold text-gray-300 mb-2">Сурова експертиза</h4>
-                      <p className="text-sm text-gray-400">Знания, опит, факти</p>
+                      <h4 className="text-lg font-semibold text-gray-300 mb-2">
+                        Сурова експертиза
+                      </h4>
+                      <p className="text-sm text-gray-400">
+                        Знания, опит, факти
+                      </p>
                     </motion.div>
 
                     {/* Process */}
-                    <motion.div 
+                    <motion.div
                       className="text-center relative"
                       initial={{ opacity: 0, y: 30 }}
                       animate={philosophyInView ? { opacity: 1, y: 0 } : {}}
                       transition={{ duration: 0.8, delay: 0.4 }}
                     >
-                      <motion.div 
+                      <motion.div
                         className="w-24 h-24 mx-auto bg-[#ECB629]/20 rounded-full flex items-center justify-center mb-4 border-2 border-[#ECB629]/30 relative"
                         animate={{
                           rotate: [0, 360],
@@ -327,25 +416,27 @@ export default function Trendlab() {
                         }}
                       >
                         <Camera className="h-8 w-8 text-[#ECB629]" />
-                        
+
                         {/* Gear teeth */}
                         {Array.from({ length: 8 }).map((_, i) => (
-                          <div 
+                          <div
                             key={i}
                             className="absolute w-2 h-4 bg-[#ECB629]/30 rounded-sm"
                             style={{
                               transform: `rotate(${i * 45}deg) translateY(-14px)`,
-                              transformOrigin: 'center bottom'
+                              transformOrigin: "center bottom",
                             }}
                           />
                         ))}
                       </motion.div>
-                      <h4 className="text-lg font-semibold text-[#ECB629] mb-2">Trendlab™ Система</h4>
+                      <h4 className="text-lg font-semibold text-[#ECB629] mb-2">
+                        Trendlab™ Система
+                      </h4>
                       <p className="text-sm text-gray-400">AI + Креативност</p>
                     </motion.div>
 
                     {/* Output */}
-                    <motion.div 
+                    <motion.div
                       className="text-center"
                       initial={{ opacity: 0, x: 50 }}
                       animate={philosophyInView ? { opacity: 1, x: 0 } : {}}
@@ -368,8 +459,12 @@ export default function Trendlab() {
                           <div className="w-8 h-1 bg-[#ECB629] rounded"></div>
                         </div>
                       </div>
-                      <h4 className="text-lg font-semibold text-[#ECB629] mb-2">Въздействащи истории</h4>
-                      <p className="text-sm text-gray-400">Видео, статии, визии</p>
+                      <h4 className="text-lg font-semibold text-[#ECB629] mb-2">
+                        Въздействащи истории
+                      </h4>
+                      <p className="text-sm text-gray-400">
+                        Видео, статии, визии
+                      </p>
                     </motion.div>
                   </div>
 
@@ -389,7 +484,7 @@ export default function Trendlab() {
                       <ArrowRight className="h-6 w-6 text-[#ECB629]" />
                     </motion.div>
                   </div>
-                  
+
                   <div className="hidden md:block absolute top-1/2 right-1/4 transform -translate-y-1/2">
                     <motion.div
                       animate={{
@@ -411,15 +506,20 @@ export default function Trendlab() {
             </div>
 
             <div className="text-center">
-              <h3 className="text-2xl font-bold mb-4 text-white">Нашият подход</h3>
+              <h3 className="text-2xl font-bold mb-4 text-white">
+                Нашият подход
+              </h3>
               <div className="max-w-4xl mx-auto">
                 <p className="text-lg text-gray-300 mb-6">
-                  Ние не сме просто създатели на съдържание. Ние сме инженери на истории.
+                  Ние не сме просто създатели на съдържание. Ние сме инженери на
+                  истории.
                 </p>
                 <div className="relative">
                   <div className="absolute inset-0 bg-gradient-to-r from-[#ECB629]/5 via-[#ECB629]/10 to-[#ECB629]/5 rounded-lg"></div>
                   <p className="text-xl font-semibold text-[#ECB629] p-6 relative z-10">
-                    Trendlab™ е нашата система, която взима вашата експертиза и я превръща във въздействащ разказ, който отличава вашия бранд от всички останали.
+                    Trendlab™ е нашата система, която взима вашата експертиза и
+                    я превръща във въздействащ разказ, който отличава вашия
+                    бранд от всички останали.
                   </p>
                 </div>
               </div>
@@ -434,16 +534,19 @@ export default function Trendlab() {
         <div className="absolute inset-0 opacity-15">
           <div className="absolute inset-0">
             {/* Production Line Grid */}
-            <div className="absolute inset-0" style={{
-              backgroundImage: `
+            <div
+              className="absolute inset-0"
+              style={{
+                backgroundImage: `
                 linear-gradient(rgba(236, 182, 41, 0.1) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(236, 182, 41, 0.1) 1px, transparent 1px),
                 linear-gradient(rgba(236, 182, 41, 0.05) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(236, 182, 41, 0.05) 1px, transparent 1px)
               `,
-              backgroundSize: '60px 60px, 60px 60px, 20px 20px, 20px 20px'
-            }}></div>
-            
+                backgroundSize: "60px 60px, 60px 60px, 20px 20px, 20px 20px",
+              }}
+            ></div>
+
             {/* Flowing Data Streams */}
             {[...Array(6)].map((_, i) => (
               <motion.div
@@ -462,7 +565,7 @@ export default function Trendlab() {
                   duration: 4 + i * 0.5,
                   repeat: Infinity,
                   delay: i * 0.8,
-                  ease: "easeInOut"
+                  ease: "easeInOut",
                 }}
               />
             ))}
@@ -485,7 +588,7 @@ export default function Trendlab() {
                   duration: 3,
                   repeat: Infinity,
                   delay: i * 0.4,
-                  ease: "easeInOut"
+                  ease: "easeInOut",
                 }}
               />
             ))}
@@ -494,7 +597,7 @@ export default function Trendlab() {
 
         {/* Background Elements */}
         <div className="absolute inset-0 opacity-10">
-          <motion.div 
+          <motion.div
             className="absolute top-1/4 left-1/4 w-64 h-64 bg-gradient-to-r from-[#ECB629]/40 to-orange-500/30 rounded-full blur-3xl"
             animate={{
               scale: [1, 1.3, 1],
@@ -503,14 +606,19 @@ export default function Trendlab() {
             }}
             transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
           />
-          <motion.div 
+          <motion.div
             className="absolute bottom-1/4 right-1/4 w-48 h-48 bg-gradient-to-l from-blue-500/20 to-[#ECB629]/30 rounded-full blur-3xl"
             animate={{
               scale: [1, 1.2, 1],
               opacity: [0.1, 0.25, 0.1],
               y: [0, -20, 0],
             }}
-            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+            transition={{
+              duration: 6,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 2,
+            }}
           />
         </div>
 
@@ -523,7 +631,7 @@ export default function Trendlab() {
             transition={{ duration: 0.8 }}
           >
             {/* Enhanced Header */}
-            <motion.div 
+            <motion.div
               className="text-center mb-20"
               initial={{ opacity: 0, y: 20 }}
               animate={processInView ? { opacity: 1, y: 0 } : {}}
@@ -539,17 +647,23 @@ export default function Trendlab() {
                   <motion.div
                     className="absolute inset-0 w-2 h-2 bg-[#ECB629] rounded-full opacity-40"
                     animate={{ scale: [1, 1.5, 1] }}
-                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
                   />
                 </div>
                 <span className="text-sm text-gray-300 font-medium">
-                  <span className="text-[#ECB629] font-bold">Поточна линия</span> за съдържание
+                  <span className="text-[#ECB629] font-bold">
+                    Поточна линия
+                  </span>{" "}
+                  за съдържание
                 </span>
               </motion.div>
 
               <h2 className="text-4xl md:text-6xl font-bold mb-6 text-white">
-                Нашата поточна линия за съдържание:{" "}
-                <br />
+                Нашата поточна линия за съдържание: <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ECB629] to-[#F59E0B] relative">
                   Процес в 4 фази
                   <motion.div
@@ -566,7 +680,11 @@ export default function Trendlab() {
             <div className="relative">
               {/* Connection Flow */}
               <div className="hidden lg:block absolute inset-0">
-                <svg className="w-full h-full" viewBox="0 0 1200 800" preserveAspectRatio="none">
+                <svg
+                  className="w-full h-full"
+                  viewBox="0 0 1200 800"
+                  preserveAspectRatio="none"
+                >
                   <motion.path
                     d="M200,200 Q400,100 600,200 Q800,300 1000,200"
                     stroke="url(#gradient)"
@@ -578,54 +696,76 @@ export default function Trendlab() {
                     transition={{ duration: 2, delay: 0.5 }}
                   />
                   <defs>
-                    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                      <stop offset="0%" style={{ stopColor: '#ECB629', stopOpacity: 0.3 }} />
-                      <stop offset="50%" style={{ stopColor: '#ECB629', stopOpacity: 0.8 }} />
-                      <stop offset="100%" style={{ stopColor: '#ECB629', stopOpacity: 0.3 }} />
+                    <linearGradient
+                      id="gradient"
+                      x1="0%"
+                      y1="0%"
+                      x2="100%"
+                      y2="0%"
+                    >
+                      <stop
+                        offset="0%"
+                        style={{ stopColor: "#ECB629", stopOpacity: 0.3 }}
+                      />
+                      <stop
+                        offset="50%"
+                        style={{ stopColor: "#ECB629", stopOpacity: 0.8 }}
+                      />
+                      <stop
+                        offset="100%"
+                        style={{ stopColor: "#ECB629", stopOpacity: 0.3 }}
+                      />
                     </linearGradient>
                   </defs>
                 </svg>
               </div>
-              
+
               {/* Modern Process Cards Grid */}
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 relative z-10">
                 {[
                   {
                     phase: "01",
                     title: "Извличане на експертиза",
-                    description: "Провеждаме стратегически сесии с вас, за да извлечем вашите уникални знания, ценности и истории.",
+                    description:
+                      "Провеждаме стратегически сесии с вас, за да извлечем вашите уникални знания, ценности и истории.",
                     icon: Microscope,
                     duration: "2-3 седмици",
-                    deliverables: "Експертен профил, ключови послания, story bank",
-                    color: "from-blue-500/20 to-[#ECB629]/20"
+                    deliverables:
+                      "Експертен профил, ключови послания, story bank",
+                    color: "from-blue-500/20 to-[#ECB629]/20",
                   },
                   {
-                    phase: "02", 
+                    phase: "02",
                     title: "Проектиране на съдържанието",
-                    description: "Превръщаме суровата информация в конкретни формати – сценарии за видеа, структура на статии, концепции за визии.",
+                    description:
+                      "Превръщаме суровата информация в конкретни формати – сценарии за видеа, структура на статии, концепции за визии.",
                     icon: FileText,
                     duration: "1-2 седмици",
-                    deliverables: "Съдържателен календар, готови формати, визуални концепции",
-                    color: "from-[#ECB629]/20 to-orange-500/20"
+                    deliverables:
+                      "Съдържателен календар, готови формати, визуални концепции",
+                    color: "from-[#ECB629]/20 to-orange-500/20",
                   },
                   {
                     phase: "03",
                     title: "Ефективна продукция",
-                    description: "Използваме модерни технологии за създаване на съдържание, които ни позволяват да продуцираме висококачествени видеа и текстове изключително бързо и с оптимизиран бюджет.",
+                    description:
+                      "Използваме модерни технологии за създаване на съдържание, които ни позволяват да продуцираме висококачествени видеа и текстове изключително бързо и с оптимизиран бюджет.",
                     icon: Camera,
                     duration: "Непрекъснато",
-                    deliverables: "Готово съдържание, оптимизирано за всяка платформа",
-                    color: "from-orange-500/20 to-red-500/20"
+                    deliverables:
+                      "Готово съдържание, оптимизирано за всяка платформа",
+                    color: "from-orange-500/20 to-red-500/20",
                   },
                   {
                     phase: "04",
-                    title: "Разпространение и анализ", 
-                    description: "Публикуваме съдържанието в правилните канали и измерваме неговото въздействие върху репутацията ви.",
+                    title: "Разпространение и анализ",
+                    description:
+                      "Публикуваме съдържанието в правилните канали и измерваме неговото въздействие върху репутацията ви.",
                     icon: Megaphone,
                     duration: "Непрекъснато",
                     deliverables: "Публикации, анализи, оптимизации",
-                    color: "from-red-500/20 to-purple-500/20"
-                  }
+                    color: "from-red-500/20 to-purple-500/20",
+                  },
                 ].map((phase, index) => (
                   <motion.div
                     key={index}
@@ -644,18 +784,21 @@ export default function Trendlab() {
                     <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-slate-800/80 to-slate-900/90 border border-[#ECB629]/20 backdrop-blur-sm p-8 hover:border-[#ECB629]/40 transition-all duration-300">
                       {/* Animated Background Pattern */}
                       <div className="absolute inset-0 opacity-5">
-                        <div className="absolute inset-0" style={{
-                          backgroundImage: `
+                        <div
+                          className="absolute inset-0"
+                          style={{
+                            backgroundImage: `
                             linear-gradient(45deg, rgba(236, 182, 41, 0.1) 25%, transparent 25%),
                             linear-gradient(-45deg, rgba(236, 182, 41, 0.1) 25%, transparent 25%)
                           `,
-                          backgroundSize: '30px 30px'
-                        }}></div>
+                            backgroundSize: "30px 30px",
+                          }}
+                        ></div>
                       </div>
 
                       {/* Phase Badge */}
                       <div className="absolute top-6 right-6">
-                        <motion.div 
+                        <motion.div
                           className="flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-[#ECB629]/30 to-orange-500/30 border border-[#ECB629]/50"
                           whileHover={{ scale: 1.05 }}
                           transition={{ duration: 0.2 }}
@@ -664,17 +807,23 @@ export default function Trendlab() {
                             <motion.div
                               className="absolute inset-0 bg-[#ECB629] rounded-full opacity-40"
                               animate={{ scale: [1, 1.5, 1] }}
-                              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                              transition={{
+                                duration: 2,
+                                repeat: Infinity,
+                                ease: "easeInOut",
+                              }}
                             />
                           </div>
-                          <span className="text-xs text-[#ECB629] font-bold">ФАЗА {phase.phase}</span>
+                          <span className="text-xs text-[#ECB629] font-bold">
+                            ФАЗА {phase.phase}
+                          </span>
                         </motion.div>
                       </div>
 
                       <div className="relative z-10">
                         {/* Icon & Number */}
                         <div className="flex items-center gap-4 mb-6">
-                          <motion.div 
+                          <motion.div
                             className="relative"
                             whileHover={{ scale: 1.1, rotate: 5 }}
                             transition={{ duration: 0.3 }}
@@ -684,16 +833,20 @@ export default function Trendlab() {
                               className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#ECB629]/20 to-orange-500/20 border-2 border-[#ECB629]/30 flex items-center justify-center"
                               animate={{
                                 boxShadow: [
-                                  '0 0 20px rgba(236, 182, 41, 0.2)',
-                                  '0 0 30px rgba(236, 182, 41, 0.4)',
-                                  '0 0 20px rgba(236, 182, 41, 0.2)'
+                                  "0 0 20px rgba(236, 182, 41, 0.2)",
+                                  "0 0 30px rgba(236, 182, 41, 0.4)",
+                                  "0 0 20px rgba(236, 182, 41, 0.2)",
                                 ],
                               }}
-                              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                              transition={{
+                                duration: 3,
+                                repeat: Infinity,
+                                ease: "easeInOut",
+                              }}
                             >
                               <phase.icon className="h-8 w-8 text-[#ECB629]" />
                             </motion.div>
-                            
+
                             {/* Orbiting elements */}
                             <motion.div
                               className="absolute -top-1 -right-1 w-3 h-3 bg-[#ECB629] rounded-full"
@@ -704,7 +857,7 @@ export default function Trendlab() {
                               transition={{
                                 duration: 4,
                                 repeat: Infinity,
-                                ease: "linear"
+                                ease: "linear",
                               }}
                             />
                           </motion.div>
@@ -715,7 +868,11 @@ export default function Trendlab() {
                               animate={{
                                 opacity: [0.2, 0.4, 0.2],
                               }}
-                              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                              transition={{
+                                duration: 3,
+                                repeat: Infinity,
+                                ease: "easeInOut",
+                              }}
                             >
                               {phase.phase}
                             </motion.div>
@@ -726,7 +883,7 @@ export default function Trendlab() {
                         <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-[#ECB629] transition-colors duration-300">
                           {phase.title}
                         </h3>
-                        
+
                         <p className="text-gray-300 mb-6 leading-relaxed">
                           {phase.description}
                         </p>
@@ -736,16 +893,24 @@ export default function Trendlab() {
                           <div className="flex items-center gap-3 p-3 rounded-xl bg-slate-800/50 border border-slate-700/50">
                             <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
                             <div>
-                              <span className="text-sm text-gray-400">Времетраене:</span>
-                              <span className="text-white font-semibold ml-2">{phase.duration}</span>
+                              <span className="text-sm text-gray-400">
+                                Времетраене:
+                              </span>
+                              <span className="text-white font-semibold ml-2">
+                                {phase.duration}
+                              </span>
                             </div>
                           </div>
-                          
+
                           <div className="flex items-start gap-3 p-3 rounded-xl bg-slate-800/50 border border-slate-700/50">
                             <div className="w-2 h-2 bg-green-400 rounded-full mt-2"></div>
                             <div>
-                              <span className="text-sm text-gray-400 block">Резултати:</span>
-                              <span className="text-white font-semibold">{phase.deliverables}</span>
+                              <span className="text-sm text-gray-400 block">
+                                Резултати:
+                              </span>
+                              <span className="text-white font-semibold">
+                                {phase.deliverables}
+                              </span>
                             </div>
                           </div>
                         </div>
@@ -753,15 +918,26 @@ export default function Trendlab() {
                         {/* Progress Indicator */}
                         <div className="mt-6 pt-4 border-t border-slate-700/50">
                           <div className="flex items-center justify-between">
-                            <span className="text-sm text-gray-400">Прогрес в процеса</span>
-                            <span className="text-sm text-[#ECB629] font-semibold">{Math.round((index + 1) / 4 * 100)}%</span>
+                            <span className="text-sm text-gray-400">
+                              Прогрес в процеса
+                            </span>
+                            <span className="text-sm text-[#ECB629] font-semibold">
+                              {Math.round(((index + 1) / 4) * 100)}%
+                            </span>
                           </div>
                           <div className="mt-2 w-full bg-slate-700/50 rounded-full h-2">
                             <motion.div
                               className="h-2 bg-gradient-to-r from-[#ECB629] to-orange-500 rounded-full"
                               initial={{ width: 0 }}
-                              animate={processInView ? { width: `${((index + 1) / 4) * 100}%` } : {}}
-                              transition={{ duration: 1, delay: index * 0.2 + 0.5 }}
+                              animate={
+                                processInView
+                                  ? { width: `${((index + 1) / 4) * 100}%` }
+                                  : {}
+                              }
+                              transition={{
+                                duration: 1,
+                                delay: index * 0.2 + 0.5,
+                              }}
                             />
                           </div>
                         </div>
@@ -800,7 +976,11 @@ export default function Trendlab() {
                 className="bg-[#ECB629] text-black hover:bg-[#ECB629]/90 font-semibold px-8 py-4 rounded-full shadow-lg shadow-[#ECB629]/25"
                 asChild
               >
-                <a href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu" target="_blank" rel="noopener noreferrer">
+                <a
+                  href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   Започнете процеса сега
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </a>
@@ -834,24 +1014,28 @@ export default function Trendlab() {
               {[
                 {
                   icon: Magnet,
-                  title: "От просто още една опция на пазара, вие се превръщате в търсен експерт",
-                  description: "На когото клиентите се доверяват и търсят за съвет."
+                  title:
+                    "От просто още една опция на пазара, вие се превръщате в търсен експерт",
+                  description:
+                    "На когото клиентите се доверяват и търсят за съвет.",
                 },
                 {
                   icon: Users,
                   title: "Изграждате лоялна общност",
-                  description: "Около вашия бранд, а не просто случайна аудитория."
+                  description:
+                    "Около вашия бранд, а не просто случайна аудитория.",
                 },
                 {
                   icon: Clock,
                   title: "Вашият продажбен цикъл се скъсява",
-                  description: "Защото клиентите идват при вас с изградено доверие."
+                  description:
+                    "Защото клиентите идват при вас с изградено доверие.",
                 },
                 {
                   icon: Handshake,
                   title: "Привличате по-качествени кадри и партньори",
-                  description: "Които искат да работят с лидера в индустрията."
-                }
+                  description: "Които искат да работят с лидера в индустрията.",
+                },
               ].map((result, index) => (
                 <motion.div
                   key={index}
@@ -896,7 +1080,6 @@ export default function Trendlab() {
             animate={investmentInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8 }}
           >
-
             <h2 className="text-4xl md:text-5xl font-bold mb-8">
               Структура на{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ECB629] to-[#F59E0B]">
@@ -913,7 +1096,10 @@ export default function Trendlab() {
                   месечно / базови проекти
                 </div>
                 <p className="text-gray-300 leading-relaxed max-w-2xl mx-auto">
-                  Всяка система Trendlab™ се проектира спрямо вашите цели и ресурси. Базовите проекти започват от 3450 лв./месец. Финалната инвестиция се определя след диагностика на текущото ви състояние и желаните резултати.
+                  Всяка система Trendlab™ се проектира спрямо вашите цели и
+                  ресурси. Базовите проекти започват от 3450 лв./месец.
+                  Финалната инвестиция се определя след диагностика на текущото
+                  ви състояние и желаните резултати.
                 </p>
               </div>
             </Card>
@@ -923,7 +1109,11 @@ export default function Trendlab() {
               className="bg-[#ECB629] text-black hover:bg-[#ECB629]/90 font-semibold px-8 py-4 rounded-full shadow-lg shadow-[#ECB629]/25"
               asChild
             >
-              <a href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu" target="_blank" rel="noopener noreferrer">
+              <a
+                href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Заявете диагностика
                 <ArrowRight className="ml-2 h-5 w-5" />
               </a>
@@ -933,129 +1123,9 @@ export default function Trendlab() {
       </section>
 
       {/* Final CTA Section */}
-      <section className="py-20 bg-[#ECB629] text-black relative overflow-hidden">
-        {/* Dynamic Background Elements */}
-        <div className="absolute inset-0 opacity-10">
-          {Array.from({ length: 20 }).map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-2 h-2 bg-black rounded-full"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-              }}
-              animate={{
-                scale: [1, 1.5, 1],
-                opacity: [0.3, 1, 0.3],
-                rotate: [0, 180, 360],
-              }}
-              transition={{
-                duration: 3 + Math.random() * 2,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: Math.random() * 2,
-              }}
-            />
-          ))}
-        </div>
-
-        <div className="container mx-auto px-6 relative z-10">
-          <motion.div
-            ref={ctaRef}
-            className="max-w-4xl mx-auto text-center"
-            initial={{ opacity: 0, y: 30 }}
-            animate={ctaInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8 }}
-          >
-            <motion.div
-              className="inline-flex items-center gap-2 bg-black/10 rounded-full px-6 py-3 border border-black/20 mb-8"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={ctaInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 0.6, delay: 0.2 }}
-            >
-              <motion.div
-                className="w-2 h-2 bg-black rounded-full"
-                animate={{
-                  scale: [1, 1.5, 1],
-                  opacity: [1, 0.5, 1],
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              />
-              <span className="text-sm font-medium">
-                Ограничена наличност • Работим с <span className="font-bold">максимум 8 клиента</span> месечно
-              </span>
-            </motion.div>
-
-            <h2 className="text-4xl md:text-5xl font-bold mb-8 leading-tight">
-              Готови ли сте вашият глас да бъде{" "}
-              <span className="relative">
-                чут
-                <motion.div
-                  className="absolute -bottom-2 left-0 right-0 h-1 bg-black/30 rounded-full"
-                  initial={{ scaleX: 0 }}
-                  animate={ctaInView ? { scaleX: 1 } : {}}
-                  transition={{ duration: 0.8, delay: 1 }}
-                />
-              </span>
-              ?
-            </h2>
-            
-            <div className="max-w-3xl mx-auto mb-12">
-              <p className="text-xl mb-6 leading-relaxed">
-                Нашата експертна диагностика ще анализира вашия настоящ авторитет и ще ви даде ясен инженерен план как да се превърнете в лидер на мнение във вашата сфера.
-              </p>
-              
-              <div className="grid md:grid-cols-3 gap-4 text-sm">
-                <div className="bg-black/10 rounded-lg p-4 border border-black/20">
-                  <div className="font-semibold mb-1">🎯 Персонализиран план</div>
-                  <div className="opacity-80">За вашата индустрия</div>
-                </div>
-                <div className="bg-black/10 rounded-lg p-4 border border-black/20">
-                  <div className="font-semibold mb-1">⚡ Бърз старт</div>
-                  <div className="opacity-80">Резултати за 30 дни</div>
-                </div>
-                <div className="bg-black/10 rounded-lg p-4 border border-black/20">
-                  <div className="font-semibold mb-1">🔒 Без ангажименти</div>
-                  <div className="opacity-80">Безплатна диагностика</div>
-                </div>
-              </div>
-            </div>
-
-            <motion.div
-              className="flex flex-col sm:flex-row gap-6 justify-center items-center"
-              initial={{ opacity: 0, y: 20 }}
-              animate={ctaInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: 0.4 }}
-            >
-              <Button
-                size="lg"
-                className="bg-black text-[#ECB629] hover:bg-black/90 font-semibold text-lg px-8 py-4 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 relative overflow-hidden group"
-                asChild
-              >
-                <a href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu" target="_blank" rel="noopener noreferrer">
-                  <span className="relative z-10">
-                    Искам диагностика на авторитета
-                    <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
-                  </span>
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-transparent via-[#ECB629]/20 to-transparent"
-                    initial={{ x: "-100%" }}
-                    whileHover={{ x: "100%" }}
-                    transition={{ duration: 0.6 }}
-                  />
-                </a>
-              </Button>
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
 
       {/* Unified CTA Section */}
-      <UnifiedCTASection 
+      <UnifiedCTASection
         buttonText="Обърнете се към нас"
         headline="Готови ли сте да изградите авторитет?"
         description="Започнете трансформацията на вашия експертен глас в влиятелно съдържание с нашата система."
