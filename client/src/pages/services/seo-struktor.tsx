@@ -1101,7 +1101,21 @@ export default function SeoStruktor() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-
+              <Button
+                size="lg"
+                className="bg-[var(--pravdast-yellow)] text-black hover:bg-[var(--pravdast-yellow)]/90 font-semibold text-lg px-8 py-4 rounded-full shadow-lg shadow-[var(--pravdast-yellow)]/25 hover:shadow-[var(--pravdast-yellow)]/40 transition-all duration-300 hover:scale-105"
+                asChild
+              >
+                <a
+                  href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => trackCTAClick('seo-struktor', 'hero-primary')}
+                >
+                  Изпревари конкуренцията
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </a>
+              </Button>
             </motion.div>
           </div>
         </div>

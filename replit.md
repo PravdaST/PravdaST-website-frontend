@@ -286,6 +286,8 @@ Changelog:
 - June 28, 2025. Fixed mobile homepage spacing issue: added padding-top (pt-10) to hero section container specifically for mobile devices to create proper spacing between navigation and content, desktop version remains unchanged with no padding
 - June 28, 2025. Applied same mobile spacing fix to /services page: added padding-top (pt-10) to services hero section container for mobile devices only to ensure consistent spacing across all pages
 - June 28, 2025. Fixed critical SEO issue where Ahrefs detected duplicate meta tags across all pages: identified that service pages (Clickstarter™, SEO Struktor™) and other pages (FAQ, Terms, Privacy, Blog) were hardcoding SEO data instead of using centralized pageSEOData configuration from seo-pages.ts - updated all pages to use centralized configuration to ensure unique meta tags for each page
+- June 28, 2025. Updated sitemap.xml to follow latest Google 2024 standards: removed deprecated priority and changefreq tags that Google ignores, cleaned XML namespaces, updated all 3 sitemaps (main, blog, services) with accurate lastmod dates, optimized for Google's current crawling algorithms
+- June 28, 2025. Added back "изпревари конкуренцията" button to SEO Struktor hero section: restored primary CTA button linking to Typeform with proper tracking, styling consistent with brand colors and hover effects
 
 ## User Preferences
 
