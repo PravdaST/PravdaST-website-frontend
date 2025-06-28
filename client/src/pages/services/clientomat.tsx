@@ -3,7 +3,20 @@ import { useRef, useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ArrowRight, Network, Users, Clock, Handshake, Magnet, Microscope, FileText, Settings, CheckCircle, Target, TrendingUp } from "lucide-react";
+import {
+  ArrowRight,
+  Network,
+  Users,
+  Clock,
+  Handshake,
+  Magnet,
+  Microscope,
+  FileText,
+  Settings,
+  CheckCircle,
+  Target,
+  TrendingUp,
+} from "lucide-react";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { SEOHead } from "@/components/seo-head";
@@ -15,54 +28,128 @@ const ClientomatBackground = () => {
   return (
     <div className="absolute inset-0 overflow-hidden opacity-10">
       {/* Client Ecosystem Network */}
-      <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
+      <svg
+        className="absolute inset-0 w-full h-full"
+        xmlns="http://www.w3.org/2000/svg"
+      >
         <defs>
           {/* Central Hub Pattern */}
-          <pattern id="client-ecosystem" width="150" height="150" patternUnits="userSpaceOnUse">
+          <pattern
+            id="client-ecosystem"
+            width="150"
+            height="150"
+            patternUnits="userSpaceOnUse"
+          >
             {/* Central Client Hub */}
-            <circle cx="75" cy="75" r="4" fill="#ECB629" opacity="0.8"/>
-            
+            <circle cx="75" cy="75" r="4" fill="#ECB629" opacity="0.8" />
+
             {/* Client Journey Stages (6 points around hub) */}
-            <circle cx="75" cy="25" r="2" fill="#ECB629" opacity="0.5"/>
-            <circle cx="115" cy="50" r="2" fill="#ECB629" opacity="0.5"/>
-            <circle cx="115" cy="100" r="2" fill="#ECB629" opacity="0.5"/>
-            <circle cx="75" cy="125" r="2" fill="#ECB629" opacity="0.5"/>
-            <circle cx="35" cy="100" r="2" fill="#ECB629" opacity="0.5"/>
-            <circle cx="35" cy="50" r="2" fill="#ECB629" opacity="0.5"/>
-            
+            <circle cx="75" cy="25" r="2" fill="#ECB629" opacity="0.5" />
+            <circle cx="115" cy="50" r="2" fill="#ECB629" opacity="0.5" />
+            <circle cx="115" cy="100" r="2" fill="#ECB629" opacity="0.5" />
+            <circle cx="75" cy="125" r="2" fill="#ECB629" opacity="0.5" />
+            <circle cx="35" cy="100" r="2" fill="#ECB629" opacity="0.5" />
+            <circle cx="35" cy="50" r="2" fill="#ECB629" opacity="0.5" />
+
             {/* Connection Lines from Central Hub */}
-            <path d="M 75 75 L 75 25" stroke="#ECB629" strokeWidth="0.5" opacity="0.3"/>
-            <path d="M 75 75 L 115 50" stroke="#ECB629" strokeWidth="0.5" opacity="0.3"/>
-            <path d="M 75 75 L 115 100" stroke="#ECB629" strokeWidth="0.5" opacity="0.3"/>
-            <path d="M 75 75 L 75 125" stroke="#ECB629" strokeWidth="0.5" opacity="0.3"/>
-            <path d="M 75 75 L 35 100" stroke="#ECB629" strokeWidth="0.5" opacity="0.3"/>
-            <path d="M 75 75 L 35 50" stroke="#ECB629" strokeWidth="0.5" opacity="0.3"/>
-            
+            <path
+              d="M 75 75 L 75 25"
+              stroke="#ECB629"
+              strokeWidth="0.5"
+              opacity="0.3"
+            />
+            <path
+              d="M 75 75 L 115 50"
+              stroke="#ECB629"
+              strokeWidth="0.5"
+              opacity="0.3"
+            />
+            <path
+              d="M 75 75 L 115 100"
+              stroke="#ECB629"
+              strokeWidth="0.5"
+              opacity="0.3"
+            />
+            <path
+              d="M 75 75 L 75 125"
+              stroke="#ECB629"
+              strokeWidth="0.5"
+              opacity="0.3"
+            />
+            <path
+              d="M 75 75 L 35 100"
+              stroke="#ECB629"
+              strokeWidth="0.5"
+              opacity="0.3"
+            />
+            <path
+              d="M 75 75 L 35 50"
+              stroke="#ECB629"
+              strokeWidth="0.5"
+              opacity="0.3"
+            />
+
             {/* Client Journey Flow (connecting outer points) */}
-            <path d="M 75 25 Q 95 30 115 50" stroke="#ECB629" strokeWidth="0.3" opacity="0.2" fill="none"/>
-            <path d="M 115 50 Q 120 75 115 100" stroke="#ECB629" strokeWidth="0.3" opacity="0.2" fill="none"/>
-            <path d="M 115 100 Q 95 120 75 125" stroke="#ECB629" strokeWidth="0.3" opacity="0.2" fill="none"/>
-            <path d="M 75 125 Q 55 120 35 100" stroke="#ECB629" strokeWidth="0.3" opacity="0.2" fill="none"/>
-            <path d="M 35 100 Q 30 75 35 50" stroke="#ECB629" strokeWidth="0.3" opacity="0.2" fill="none"/>
-            <path d="M 35 50 Q 55 30 75 25" stroke="#ECB629" strokeWidth="0.3" opacity="0.2" fill="none"/>
+            <path
+              d="M 75 25 Q 95 30 115 50"
+              stroke="#ECB629"
+              strokeWidth="0.3"
+              opacity="0.2"
+              fill="none"
+            />
+            <path
+              d="M 115 50 Q 120 75 115 100"
+              stroke="#ECB629"
+              strokeWidth="0.3"
+              opacity="0.2"
+              fill="none"
+            />
+            <path
+              d="M 115 100 Q 95 120 75 125"
+              stroke="#ECB629"
+              strokeWidth="0.3"
+              opacity="0.2"
+              fill="none"
+            />
+            <path
+              d="M 75 125 Q 55 120 35 100"
+              stroke="#ECB629"
+              strokeWidth="0.3"
+              opacity="0.2"
+              fill="none"
+            />
+            <path
+              d="M 35 100 Q 30 75 35 50"
+              stroke="#ECB629"
+              strokeWidth="0.3"
+              opacity="0.2"
+              fill="none"
+            />
+            <path
+              d="M 35 50 Q 55 30 75 25"
+              stroke="#ECB629"
+              strokeWidth="0.3"
+              opacity="0.2"
+              fill="none"
+            />
           </pattern>
-          
+
           {/* Client Data Flow Gradient */}
           <linearGradient id="clientFlow" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#ECB629" stopOpacity="0"/>
-            <stop offset="30%" stopColor="#ECB629" stopOpacity="0.4"/>
-            <stop offset="70%" stopColor="#ECB629" stopOpacity="0.4"/>
-            <stop offset="100%" stopColor="#ECB629" stopOpacity="0"/>
+            <stop offset="0%" stopColor="#ECB629" stopOpacity="0" />
+            <stop offset="30%" stopColor="#ECB629" stopOpacity="0.4" />
+            <stop offset="70%" stopColor="#ECB629" stopOpacity="0.4" />
+            <stop offset="100%" stopColor="#ECB629" stopOpacity="0" />
           </linearGradient>
-          
+
           {/* Pulsing Hub Effect */}
           <radialGradient id="hubPulse" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#ECB629" stopOpacity="0.6"/>
-            <stop offset="50%" stopColor="#ECB629" stopOpacity="0.3"/>
-            <stop offset="100%" stopColor="#ECB629" stopOpacity="0"/>
+            <stop offset="0%" stopColor="#ECB629" stopOpacity="0.6" />
+            <stop offset="50%" stopColor="#ECB629" stopOpacity="0.3" />
+            <stop offset="100%" stopColor="#ECB629" stopOpacity="0" />
           </radialGradient>
         </defs>
-        
+
         <rect width="100%" height="100%" fill="url(#client-ecosystem)" />
       </svg>
 
@@ -73,7 +160,7 @@ const ClientomatBackground = () => {
             key={i}
             className="absolute"
             style={{
-              left: `${10 + (i * 12)}%`,
+              left: `${10 + i * 12}%`,
               top: `${15 + (i % 3) * 30}%`,
             }}
             animate={{
@@ -93,14 +180,19 @@ const ClientomatBackground = () => {
               {i % 4 === 0 && <Users className="w-3 h-3 text-[#ECB629]/60" />}
               {i % 4 === 1 && <Network className="w-3 h-3 text-[#ECB629]/60" />}
               {i % 4 === 2 && <Target className="w-3 h-3 text-[#ECB629]/60" />}
-              {i % 4 === 3 && <Handshake className="w-3 h-3 text-[#ECB629]/60" />}
+              {i % 4 === 3 && (
+                <Handshake className="w-3 h-3 text-[#ECB629]/60" />
+              )}
             </div>
           </motion.div>
         ))}
       </div>
 
       {/* Client Journey Flow Lines */}
-      <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
+      <svg
+        className="absolute inset-0 w-full h-full"
+        xmlns="http://www.w3.org/2000/svg"
+      >
         {Array.from({ length: 3 }).map((_, i) => (
           <motion.path
             key={i}
@@ -109,15 +201,15 @@ const ClientomatBackground = () => {
             stroke="url(#clientFlow)"
             strokeWidth="1.5"
             initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ 
+            animate={{
               pathLength: [0, 1, 0],
               opacity: [0, 0.6, 0],
             }}
-            transition={{ 
+            transition={{
               duration: 5,
               repeat: Infinity,
               delay: i * 1.8,
-              ease: "easeInOut"
+              ease: "easeInOut",
             }}
           />
         ))}
@@ -143,13 +235,19 @@ export default function ClientomatPage() {
 
   return (
     <div className="min-h-screen bg-slate-900">
-      <SEOHead seo={pageSEOData["services/clientomat"]} pageSlug="services/clientomat" />
+      <SEOHead
+        seo={pageSEOData["services/clientomat"]}
+        pageSlug="services/clientomat"
+      />
       <Navigation />
-      
+
       {/* Hero Section */}
-      <section ref={heroRef} className="min-h-screen flex items-center relative overflow-hidden">
+      <section
+        ref={heroRef}
+        className="min-h-screen flex items-center relative overflow-hidden"
+      >
         <ClientomatBackground />
-        
+
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-16">
@@ -160,40 +258,42 @@ export default function ClientomatPage() {
                 transition={{ duration: 0.6 }}
               >
                 <div className="flex items-center gap-2">
-                  <motion.div 
+                  <motion.div
                     className="w-2 h-2 bg-[#ECB629] rounded-full"
-                    animate={{ 
+                    animate={{
                       boxShadow: [
                         "0 0 0 0 rgba(236, 182, 40, 0.7)",
                         "0 0 0 4px rgba(236, 182, 40, 0)",
-                        "0 0 0 0 rgba(236, 182, 40, 0)"
-                      ]
+                        "0 0 0 0 rgba(236, 182, 40, 0)",
+                      ],
                     }}
                     transition={{ duration: 2, repeat: Infinity }}
                   />
                   <span className="text-sm text-gray-300 font-medium">
-                    Clientomat™ <span className="text-[#ECB629] font-bold">система</span>
+                    Clientomat™{" "}
+                    <span className="text-[#ECB629] font-bold">система</span>
                   </span>
                 </div>
               </motion.div>
 
-              <motion.h1 
+              <motion.h1
                 className="text-5xl md:text-7xl font-bold mb-8 text-white leading-tight"
                 initial={{ opacity: 0, y: 30 }}
                 animate={heroInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.8, delay: 0.2 }}
               >
-                Превърнете всеки контакт <br />
-                в <span className="text-[#ECB629]">лоялен клиент</span>
+                Превърнете всеки контакт <br />в{" "}
+                <span className="text-[#ECB629]">лоялен клиент</span>
               </motion.h1>
-              
-              <motion.p 
+
+              <motion.p
                 className="text-xl md:text-2xl text-gray-300 mb-12 max-w-4xl mx-auto leading-relaxed"
                 initial={{ opacity: 0, y: 20 }}
                 animate={heroInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.8, delay: 0.4 }}
               >
-                Clientomat™ е системата, която автоматизира цялата клиентска екосистема - от първия контакт до доживотна лоялност.
+                Clientomat™ е системата, която автоматизира цялата клиентска
+                екосистема - от първия контакт до доживотна лоялност.
               </motion.p>
 
               <motion.div
@@ -207,8 +307,14 @@ export default function ClientomatPage() {
                   className="group relative bg-[#ECB629] text-black hover:bg-[#ECB629]/90 font-semibold text-lg px-8 py-4 rounded-lg shadow-lg hover:shadow-[#ECB629]/25 transition-all duration-300 overflow-hidden"
                   asChild
                 >
-                  <a href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu" target="_blank" rel="noopener noreferrer">
-                    <span className="relative z-10">Заявете експертна диагностика</span>
+                  <a
+                    href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <span className="relative z-10">
+                      Заявете експертна диагностика
+                    </span>
                     <ArrowRight className="ml-2 w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" />
                     <motion.div
                       className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
@@ -241,10 +347,12 @@ export default function ClientomatPage() {
                 transition={{ duration: 0.6, delay: 0.1 }}
               >
                 <div className="w-2 h-2 bg-[#ECB629] rounded-full animate-pulse" />
-                <span className="text-[#ECB629] font-semibold text-sm">СИСТЕМНА</span>
+                <span className="text-[#ECB629] font-semibold text-sm">
+                  СИСТЕМНА
+                </span>
               </motion.div>
-              
-              <motion.h2 
+
+              <motion.h2
                 className="text-4xl md:text-5xl font-bold text-white mb-8"
                 initial={{ opacity: 0, y: 20 }}
                 animate={philosophyInView ? { opacity: 1, y: 0 } : {}}
@@ -252,14 +360,16 @@ export default function ClientomatPage() {
               >
                 Защо губите клиенти?
               </motion.h2>
-              
-              <motion.p 
+
+              <motion.p
                 className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed"
                 initial={{ opacity: 0, y: 20 }}
                 animate={philosophyInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.8, delay: 0.4 }}
               >
-                Повечето компании фокусират само върху привличането на нови клиенти. Истинският растеж идва от системното управление на целия клиентски цикъл.
+                Повечето компании фокусират само върху привличането на нови
+                клиенти. Истинският растеж идва от системното управление на
+                целия клиентски цикъл.
               </motion.p>
             </div>
 
@@ -270,22 +380,22 @@ export default function ClientomatPage() {
                   title: "Разпокъсана комуникация",
                   description: "Клиентите получават непоследователни съобщения",
                   status: "ПРОБЛЕМ",
-                  color: "red"
+                  color: "red",
                 },
                 {
                   icon: Clock,
                   title: "Забавени отговори",
                   description: "Дълги времена за реакция на запитвания",
-                  status: "ПРОБЛЕМ", 
-                  color: "red"
+                  status: "ПРОБЛЕМ",
+                  color: "red",
                 },
                 {
                   icon: Target,
                   title: "Липса на проследяване",
                   description: "Не знаете къде точно губите клиенти",
                   status: "ПРОБЛЕМ",
-                  color: "red"
-                }
+                  color: "red",
+                },
               ].map((problem, index) => (
                 <motion.div
                   key={index}
@@ -295,7 +405,10 @@ export default function ClientomatPage() {
                 >
                   <Card className="relative bg-slate-800/50 border-red-600/30 h-full group hover:border-red-500/50 transition-all duration-300">
                     <div className="absolute top-4 right-4">
-                      <Badge variant="destructive" className="bg-red-600/20 text-red-400 border-red-600/30">
+                      <Badge
+                        variant="destructive"
+                        className="bg-red-600/20 text-red-400 border-red-600/30"
+                      >
                         {problem.status}
                       </Badge>
                     </div>
@@ -303,7 +416,9 @@ export default function ClientomatPage() {
                       <div className="w-16 h-16 bg-red-600/20 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                         <problem.icon className="w-8 h-8 text-red-400" />
                       </div>
-                      <h3 className="text-xl font-bold text-white mb-4">{problem.title}</h3>
+                      <h3 className="text-xl font-bold text-white mb-4">
+                        {problem.title}
+                      </h3>
                       <p className="text-gray-300">{problem.description}</p>
                     </div>
                   </Card>
@@ -331,18 +446,22 @@ export default function ClientomatPage() {
                     Clientomat™ ви дава контрол
                   </h3>
                   <p className="text-xl text-gray-300 mb-8">
-                    Единна система, която превръща хаоса в клиентското обслужване в предсказуем, автоматизиран процес за растеж
+                    Единна система, която превръща хаоса в клиентското
+                    обслужване в предсказуем, автоматизиран процес за растеж
                   </p>
-                  
+
                   <div className="grid md:grid-cols-3 gap-8 text-left">
                     <div className="flex items-start space-x-4">
                       <div className="w-8 h-8 bg-[#ECB629]/20 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
                         <Magnet className="w-4 h-4 text-[#ECB629]" />
                       </div>
                       <div>
-                        <h4 className="text-lg font-bold text-white mb-2">Привличане на клиенти</h4>
+                        <h4 className="text-lg font-bold text-white mb-2">
+                          Привличане на клиенти
+                        </h4>
                         <p className="text-gray-300 text-sm">
-                          Автоматизирани системи за генериране на качествени leads
+                          Автоматизирани системи за качествени потенциални
+                          клиенти{" "}
                         </p>
                       </div>
                     </div>
@@ -351,9 +470,11 @@ export default function ClientomatPage() {
                         <Handshake className="w-4 h-4 text-[#ECB629]" />
                       </div>
                       <div>
-                        <h4 className="text-lg font-bold text-white mb-2">Nurturing процеси</h4>
+                        <h4 className="text-lg font-bold text-white mb-2">
+                          Процеси на развитие
+                        </h4>
                         <p className="text-gray-300 text-sm">
-                          Персонализирани journey-та за всеки клиентски сегмент
+                          Персонализирани пътешествия за всеки клиентски сегмент
                         </p>
                       </div>
                     </div>
@@ -362,9 +483,12 @@ export default function ClientomatPage() {
                         <TrendingUp className="w-4 h-4 text-[#ECB629]" />
                       </div>
                       <div>
-                        <h4 className="text-lg font-bold text-white mb-2">Retention & Growth</h4>
+                        <h4 className="text-lg font-bold text-white mb-2">
+                          Задържане и растеж
+                        </h4>
                         <p className="text-gray-300 text-sm">
-                          Системи за задържане и увеличаване стойността на клиента
+                          Системи за запазване и повишаване стойността на
+                          клиента
                         </p>
                       </div>
                     </div>
@@ -377,7 +501,10 @@ export default function ClientomatPage() {
       </section>
 
       {/* Process Section */}
-      <section ref={processRef} className="py-20 bg-slate-800/30 relative overflow-hidden">
+      <section
+        ref={processRef}
+        className="py-20 bg-slate-800/30 relative overflow-hidden"
+      >
         <div className="container mx-auto px-6">
           <motion.div
             className="max-w-6xl mx-auto"
@@ -393,10 +520,12 @@ export default function ClientomatPage() {
                 transition={{ duration: 0.6, delay: 0.1 }}
               >
                 <Settings className="w-4 h-4 text-[#ECB629]" />
-                <span className="text-[#ECB629] font-semibold text-sm">ИНЖЕНЕРЕН ПРОЦЕС</span>
+                <span className="text-[#ECB629] font-semibold text-sm">
+                  ИНЖЕНЕРЕН ПРОЦЕС
+                </span>
               </motion.div>
-              
-              <motion.h2 
+
+              <motion.h2
                 className="text-4xl md:text-5xl font-bold text-white mb-8"
                 initial={{ opacity: 0, y: 20 }}
                 animate={processInView ? { opacity: 1, y: 0 } : {}}
@@ -404,14 +533,15 @@ export default function ClientomatPage() {
               >
                 Как работи Clientomat™?
               </motion.h2>
-              
-              <motion.p 
+
+              <motion.p
                 className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed"
                 initial={{ opacity: 0, y: 20 }}
                 animate={processInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.8, delay: 0.4 }}
               >
-                Четири инженерни етапа, които превръщат всеки touchpoint в система за растеж
+                Четири инженерни етапа, които превръщат всеки touchpoint в
+                система за растеж
               </motion.p>
             </div>
 
@@ -419,32 +549,56 @@ export default function ClientomatPage() {
               {[
                 {
                   phase: "01",
-                  title: "Audit & Discovery",
+                  title: "Одит и анализ",
                   duration: "2 седмици",
-                  description: "Анализираме вашия клиентски journey от A до Z. Идентифицираме всички точки на търкане и възможности за оптимизация.",
-                  deliverables: ["Пълен анализ на клиентския цикъл", "Идентификация на bottleneck-ове", "Mapping на customer journey", "Конкурентен анализ"]
+                  description:
+                    "Анализираме вашия клиентски път и откриваме възможности за подобрение.",
+                  deliverables: [
+                    "Анализ на клиентския цикъл",
+                    "Идентифициране на проблемни точки",
+                    "Картографиране на клиентския път",
+                    "Анализ на конкуренцията",
+                  ],
                 },
                 {
-                  phase: "02", 
-                  title: "System Architecture",
+                  phase: "02",
+                  title: "Системна архитектура",
                   duration: "3 седмици",
-                  description: "Проектираме персонализираната екосистема от инструменти и процеси, която ще автоматизира и оптимизира всеки етап.",
-                  deliverables: ["Техническа архитектура", "Integration план", "Workflow диаграми", "ROI прогнози"]
+                  description:
+                    "Създаваме персонализирана система от инструменти за автоматизация.",
+                  deliverables: [
+                    "Техническа архитектура",
+                    "План за интеграция",
+                    "Работни процеси",
+                    "Прогнозна възвръщаемост",
+                  ],
                 },
                 {
                   phase: "03",
-                  title: "Implementation",
-                  duration: "4-6 седмици", 
-                  description: "Внедряваме системата поетапно. Всеки компонент се тества и оптимизира преди да премине към следващия етап.",
-                  deliverables: ["CRM setup & optimization", "Marketing automation", "Lead nurturing sequences", "Analytics dashboard"]
+                  title: "Внедряване",
+                  duration: "4-6 седмици",
+                  description:
+                    "Поетапно внедряваме системата с тестване на всеки компонент.",
+                  deliverables: [
+                    "Настройка на CRM",
+                    "Маркетинг автоматизация",
+                    "Последователности за развитие на контакти",
+                    "f�налитично табло",
+                  ],
                 },
                 {
                   phase: "04",
-                  title: "Optimization",
-                  duration: "Постоянно",
-                  description: "Непрекъсната оптимизация базирана на данни. Всяка седмица анализираме performance-а и правим подобрения.",
-                  deliverables: ["Performance отчети", "A/B тестване", "Conversion optimization", "Scaling стратегии"]
-                }
+                  title: "Оптимизация",
+                  duration: "Постоянна",
+                  description:
+                    "Непрекъснато подобряваме системата въз основа на събраните данни.",
+                  deliverables: [
+                    "Отчети за ефективност",
+                    "A/B тестване",
+                    "Оптимизация на конверсиите",
+                    "Стратегии за растеж",
+                  ],
+                },
               ].map((step, index) => (
                 <motion.div
                   key={index}
@@ -458,18 +612,28 @@ export default function ClientomatPage() {
                     </div>
                     <div className="p-8 pt-12">
                       <div className="flex items-center justify-between mb-4">
-                        <h3 className="text-2xl font-bold text-white">{step.title}</h3>
-                        <Badge variant="outline" className="border-[#ECB629]/30 text-[#ECB629]">
+                        <h3 className="text-2xl font-bold text-white">
+                          {step.title}
+                        </h3>
+                        <Badge
+                          variant="outline"
+                          className="border-[#ECB629]/30 text-[#ECB629]"
+                        >
                           {step.duration}
                         </Badge>
                       </div>
                       <p className="text-gray-300 mb-6">{step.description}</p>
-                      
+
                       <div>
-                        <h4 className="text-lg font-bold text-white mb-3">Ключови Deliverable-и:</h4>
+                        <h4 className="text-lg font-bold text-white mb-3">
+                          Ключови Deliverable-и:
+                        </h4>
                         <ul className="space-y-2">
                           {step.deliverables.map((item, i) => (
-                            <li key={i} className="flex items-center text-gray-300">
+                            <li
+                              key={i}
+                              className="flex items-center text-gray-300"
+                            >
                               <CheckCircle className="w-4 h-4 text-[#ECB629] mr-2 flex-shrink-0" />
                               <span className="text-sm">{item}</span>
                             </li>
@@ -502,10 +666,12 @@ export default function ClientomatPage() {
                 transition={{ duration: 0.6, delay: 0.1 }}
               >
                 <TrendingUp className="w-4 h-4 text-green-400" />
-                <span className="text-green-400 font-semibold text-sm">ПРОВЕРЕНИ РЕЗУЛТАТИ</span>
+                <span className="text-green-400 font-semibold text-sm">
+                  ПРОВЕРЕНИ РЕЗУЛТАТИ
+                </span>
               </motion.div>
-              
-              <motion.h2 
+
+              <motion.h2
                 className="text-4xl md:text-5xl font-bold text-white mb-8"
                 initial={{ opacity: 0, y: 20 }}
                 animate={resultsInView ? { opacity: 1, y: 0 } : {}}
@@ -513,14 +679,15 @@ export default function ClientomatPage() {
               >
                 Какви резултати да очаквате?
               </motion.h2>
-              
-              <motion.p 
+
+              <motion.p
                 className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed"
                 initial={{ opacity: 0, y: 20 }}
                 animate={resultsInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.8, delay: 0.4 }}
               >
-                Реални метрики от клиенти, които вече използват Clientomat™ системата
+                Реални метрики от клиенти, които вече използват Clientomat™
+                системата
               </motion.p>
             </div>
 
@@ -529,24 +696,27 @@ export default function ClientomatPage() {
                 {
                   metric: "60%+",
                   label: "Увеличение на клиентската база",
-                  description: "За първите 6 месеца от внедряването",
-                  timeline: "6-месечен период",
-                  color: "green"
+                  description:
+                    "За първите 6 седмици след внедряване на нашата система.",
+                  timeline: "2-месечен период",
+                  color: "green",
                 },
                 {
                   metric: "85%",
-                  label: "По-висок retention rate",
-                  description: "Клиентите остават по-дълго време",
-                  timeline: "12-месечен период", 
-                  color: "blue"
+                  label: "По-висока задържаемост на клиенти",
+                  description:
+                    "Клиентите използват услугите ни значително по-дълго.",
+                  timeline: "6-месечен период",
+                  color: "blue",
                 },
                 {
                   metric: "40%",
-                  label: "Намаление на Customer Acquisition Cost",
-                  description: "Оптимизирани процеси = по-ниски разходи",
+                  label: "Намаление на разходите за привличане на клиенти",
+                  description:
+                    "Оптимизираните процеси водят до значително по-ниски разходи",
                   timeline: "3-месечен период",
-                  color: "purple"
-                }
+                  color: "purple",
+                },
               ].map((result, index) => (
                 <motion.div
                   key={index}
@@ -556,7 +726,7 @@ export default function ClientomatPage() {
                 >
                   <Card className="bg-slate-800/50 border-slate-600/30 h-full text-center group hover:border-[#ECB629]/50 transition-all duration-300">
                     <div className="p-8">
-                      <motion.div 
+                      <motion.div
                         className="text-5xl font-bold text-[#ECB629] mb-4"
                         initial={{ scale: 0.5, opacity: 0 }}
                         animate={resultsInView ? { scale: 1, opacity: 1 } : {}}
@@ -564,9 +734,14 @@ export default function ClientomatPage() {
                       >
                         {result.metric}
                       </motion.div>
-                      <h3 className="text-xl font-bold text-white mb-4">{result.label}</h3>
+                      <h3 className="text-xl font-bold text-white mb-4">
+                        {result.label}
+                      </h3>
                       <p className="text-gray-300 mb-4">{result.description}</p>
-                      <Badge variant="outline" className="border-slate-600 text-slate-400">
+                      <Badge
+                        variant="outline"
+                        className="border-slate-600 text-slate-400"
+                      >
                         {result.timeline}
                       </Badge>
                     </div>
@@ -587,29 +762,33 @@ export default function ClientomatPage() {
                     <Users className="w-10 h-10 text-[#ECB629]" />
                   </div>
                   <h3 className="text-3xl font-bold text-white mb-6">
-                    Вашият клиентски портфейл става ваш най-голям актив
+                    Клиентите ви са вашият най-ценен актив
                   </h3>
                   <p className="text-xl text-gray-300 mb-8">
-                    Вместо да разчитате на постоянно привличане на нови клиенти, изграждате система, която превръща всеки контакт в дългосрочна стойност
+                    Вместо постоянно да търсите нови клиенти, изграждате
+                    система, която превръща всеки контакт в дългосрочна
+                    стойност.
                   </p>
-                  
+
                   <div className="grid md:grid-cols-2 gap-8 text-left">
                     <div>
                       <h4 className="text-xl font-bold text-white mb-4 flex items-center">
                         <Microscope className="w-6 h-6 text-[#ECB629] mr-3" />
-                        Predictable Growth
+                        Предвидим растеж
                       </h4>
                       <p className="text-gray-300">
-                        Знаете точно колко нови клиенти ще привлечете всеки месец и каква ще бъде тяхната lifetime value.
+                        Знаете точно колко нови клиенти ще привлечете месечно и
+                        каква ще бъде тяхната обща стойност с времето.
                       </p>
                     </div>
                     <div>
                       <h4 className="text-xl font-bold text-white mb-4 flex items-center">
                         <FileText className="w-6 h-6 text-[#ECB629] mr-3" />
-                        Automated Excellence
+                        Автоматизирано обслужване
                       </h4>
                       <p className="text-gray-300">
-                        Всеки клиент получава върхово обслужване без да се налага ръчна намеса във всеки процес.
+                        Всеки клиент получава отлично обслужване – без нужда от
+                        постоянна ръчна намеса.
                       </p>
                     </div>
                   </div>
@@ -621,7 +800,10 @@ export default function ClientomatPage() {
       </section>
 
       {/* Investment Section */}
-      <section ref={investmentRef} className="py-20 bg-slate-800/30 relative overflow-hidden">
+      <section
+        ref={investmentRef}
+        className="py-20 bg-slate-800/30 relative overflow-hidden"
+      >
         <div className="container mx-auto px-6">
           <motion.div
             className="max-w-4xl mx-auto"
@@ -630,7 +812,7 @@ export default function ClientomatPage() {
             transition={{ duration: 0.8 }}
           >
             <div className="text-center mb-16">
-              <motion.h2 
+              <motion.h2
                 className="text-4xl md:text-5xl font-bold text-white mb-8"
                 initial={{ opacity: 0, y: 20 }}
                 animate={investmentInView ? { opacity: 1, y: 0 } : {}}
@@ -638,14 +820,15 @@ export default function ClientomatPage() {
               >
                 Инвестиция в бъдещето
               </motion.h2>
-              
-              <motion.p 
+
+              <motion.p
                 className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed mb-12"
                 initial={{ opacity: 0, y: 20 }}
                 animate={investmentInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.8, delay: 0.4 }}
               >
-                Clientomat™ не е разход - това е инвестиция, която се изплаща многократно чрез увеличаване стойността на всеки клиент
+                Clientomat™ не е разход - това е инвестиция, която се изплаща
+                многократно чрез увеличаване стойността на всеки клиент
               </motion.p>
 
               <motion.div
@@ -655,13 +838,17 @@ export default function ClientomatPage() {
               >
                 <Card className="bg-slate-800/60 border-[#ECB629]/20 p-12 text-center">
                   <div className="mb-8">
-                    <div className="text-6xl font-bold text-[#ECB629] mb-4">2750 лв.</div>
+                    <div className="text-6xl font-bold text-[#ECB629] mb-4">
+                      2750 лв.
+                    </div>
                     <div className="text-xl text-gray-300">месечно</div>
                   </div>
-                  
+
                   <div className="grid md:grid-cols-3 gap-8 text-left mb-8">
                     <div>
-                      <h4 className="text-lg font-bold text-white mb-3">Какво включва:</h4>
+                      <h4 className="text-lg font-bold text-white mb-3">
+                        Какво включва:
+                      </h4>
                       <ul className="space-y-2 text-sm text-gray-300">
                         <li className="flex items-center">
                           <CheckCircle className="w-4 h-4 text-[#ECB629] mr-2" />
@@ -682,7 +869,9 @@ export default function ClientomatPage() {
                       </ul>
                     </div>
                     <div>
-                      <h4 className="text-lg font-bold text-white mb-3">Support & Optimization:</h4>
+                      <h4 className="text-lg font-bold text-white mb-3">
+                        Support & Optimization:
+                      </h4>
                       <ul className="space-y-2 text-sm text-gray-300">
                         <li className="flex items-center">
                           <CheckCircle className="w-4 h-4 text-[#ECB629] mr-2" />
@@ -703,7 +892,9 @@ export default function ClientomatPage() {
                       </ul>
                     </div>
                     <div>
-                      <h4 className="text-lg font-bold text-white mb-3">Гаранции:</h4>
+                      <h4 className="text-lg font-bold text-white mb-3">
+                        Гаранции:
+                      </h4>
                       <ul className="space-y-2 text-sm text-gray-300">
                         <li className="flex items-center">
                           <CheckCircle className="w-4 h-4 text-[#ECB629] mr-2" />
@@ -732,10 +923,13 @@ export default function ClientomatPage() {
       </section>
 
       {/* CTA Section */}
-      <section ref={ctaRef} className="py-20 bg-[#ECB629] text-black relative overflow-hidden">
+      <section
+        ref={ctaRef}
+        className="py-20 bg-[#ECB629] text-black relative overflow-hidden"
+      >
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <motion.h2 
+            <motion.h2
               className="text-4xl md:text-5xl font-bold mb-8 leading-tight"
               initial={{ opacity: 0, y: 30 }}
               animate={ctaInView ? { opacity: 1, y: 0 } : {}}
@@ -745,13 +939,15 @@ export default function ClientomatPage() {
               всеки контакт в <span className="text-black">успех?</span>
             </motion.h2>
 
-            <motion.p 
+            <motion.p
               className="text-xl text-gray-800 mb-12 max-w-3xl mx-auto leading-relaxed"
               initial={{ opacity: 0, y: 20 }}
               animate={ctaInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              Започнете с безплатна експертна диагностика на вашата клиентска екосистема. Ще ви покажем точно къде губите възможности и как да ги превърнете в растеж.
+              Започнете с безплатна експертна диагностика на вашата клиентска
+              екосистема. Ще ви покажем точно къде губите възможности и как да
+              ги превърнете в растеж.
             </motion.p>
 
             <motion.div
@@ -764,8 +960,14 @@ export default function ClientomatPage() {
                 className="group relative bg-black text-[#ECB629] hover:bg-black/90 font-bold text-xl px-12 py-6 rounded-lg shadow-lg hover:shadow-black/30 transition-all duration-300 overflow-hidden"
                 asChild
               >
-                <a href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu" target="_blank" rel="noopener noreferrer">
-                  <span className="relative z-10">Заявете експертна диагностика</span>
+                <a
+                  href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span className="relative z-10">
+                    Заявете експертна диагностика
+                  </span>
                   <ArrowRight className="ml-3 w-6 h-6 relative z-10 group-hover:translate-x-1 transition-transform" />
                   <motion.div
                     className="absolute inset-0 bg-gradient-to-r from-transparent via-[#ECB629]/20 to-transparent"
@@ -781,7 +983,7 @@ export default function ClientomatPage() {
       </section>
 
       {/* Unified CTA Section */}
-      <UnifiedCTASection 
+      <UnifiedCTASection
         buttonText="Свържете се с експертите"
         headline="Готови ли сте да автоматизирате клиентския цикъл?"
         description="Изградете система, която работи 24/7 за привличане и задържане на клиенти с нашата проверена методология."
