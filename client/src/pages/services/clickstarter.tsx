@@ -541,7 +541,7 @@ export default function Clickstarter() {
                     ЗАПОЧВА ОТ
                   </div>
                   <div className="text-6xl md:text-7xl font-bold text-[#ECB629] mb-4">
-                    2250 лв.
+                    1570 лв.
                     <span className="text-2xl text-gray-400">/месечно</span>
                   </div>
                   <p className="text-gray-400">
