@@ -450,7 +450,7 @@ export default function Blog() {
 
       {/* Unified CTA Section */}
       <UnifiedCTASection
-        buttonText="Заявете разговор"
+        buttonText="Кандидатствайте за диагностика"
         headline="Готови ли сте да приложите това знание?"
         description="Превърнете експертните съвети в реални резултати за вашия бизнес с нашите проверени системи."
       />
