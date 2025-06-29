@@ -54,8 +54,8 @@ const teamMembers = [
 ];
 
 const stats = [
-  { number: "50+", label: "Успешни проекта" },
-  { number: "300%", label: "Средно подобрение" },
+  { number: "47+", label: "Успешни проекта" },
+  { number: "270%", label: "Средно подобрение" },
   { number: "100%", label: "Доволни клиенти" },
   { number: "24/7", label: "Работещи системи" },
 ];
