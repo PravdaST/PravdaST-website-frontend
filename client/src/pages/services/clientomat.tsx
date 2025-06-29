@@ -834,7 +834,7 @@ export default function ClientomatPage() {
               <div className="bg-slate-800/50 rounded-2xl p-8 border border-slate-600/30 mb-16">
                 <div className="text-sm text-[#ECB629] mb-2 tracking-wide">ЗАПОЧВА ОТ</div>
                 <div className="text-6xl md:text-7xl font-bold text-[#ECB629] mb-4">
-                  2890 лв.
+                  2750 лв.
                   <span className="text-2xl text-gray-400">/месечно</span>
                 </div>
                 <p className="text-gray-400">
@@ -853,7 +853,7 @@ export default function ClientomatPage() {
                   {
                     number: "2", 
                     title: "Бюджетна рамка",
-                    description: "За ориентация, базовите инженерни проекти започват от 2890 лв./месечно."
+                    description: "За ориентация, базовите инженерни проекти започват от 2750 лв./месечно."
                   },
                   {
                     number: "3",
