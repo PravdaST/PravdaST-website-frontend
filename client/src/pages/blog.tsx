@@ -148,10 +148,7 @@ export default function Blog() {
 
   return (
     <div className="min-h-screen bg-slate-900">
-      <SEOHead
-        seo={pageSEOData.blog}
-        pageSlug="blog"
-      />
+      <SEOHead seo={pageSEOData.blog} pageSlug="blog" />
       <Navigation />
 
       <main className="pt-10">
@@ -460,16 +457,19 @@ export default function Blog() {
           >
             <div className="inline-flex items-center gap-2 bg-black/10 px-4 py-2 rounded-full border border-black/20 mb-6">
               <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
-              <span className="text-black font-medium">Остават 3 места за 2025</span>
+              <span className="text-black font-medium">
+                Остават 3 места за 2025
+              </span>
             </div>
 
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            <h2 className="text-3xl text-black md:text-4xl font-bold mb-6">
               Готови ли сте да приложите това знание?
             </h2>
             <p className="text-xl text-black/80 mb-8 max-w-2xl mx-auto">
-              Превърнете експертните съвети в реални резултати за вашия бизнес с нашите проверени системи.
+              Превърнете експертните съвети в реални резултати за вашия бизнес с
+              нашите проверени системи.
             </p>
-            
+
             {/* Trust Signals */}
             <motion.div
               className="flex flex-wrap justify-center gap-6 mb-8 text-sm text-black/70"
@@ -503,7 +503,7 @@ export default function Blog() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-3 bg-black text-white px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-300"
-                whileHover={{ 
+                whileHover={{
                   y: -8,
                 }}
                 transition={{
