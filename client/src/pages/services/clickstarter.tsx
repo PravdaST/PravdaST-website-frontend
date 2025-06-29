@@ -173,9 +173,9 @@ export default function Clickstarter() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.1 }}
               >
-                Вашият рекламен бюджет е мощен двигател.{" "}
+                Двигателят на вашия растеж има нужда от{" "}
                 <span className="text-[#ECB629] relative">
-                  Работи ли на пълни обороти?
+                  настройка, а не само от повече гориво.
                   <motion.div
                     className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-[#ECB629] to-[#ECB629]/50 rounded-full"
                     initial={{ scaleX: 0 }}
@@ -191,25 +191,8 @@ export default function Clickstarter() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
               >
-                Много компании харчат пари за реклама, но малко от тях извличат
-                максималната възвръщаемост от всеки лев. Нашата система
-                Clickstarter™ е инженерното решение, което прецизно настройва
-                вашия рекламен процес, за да елиминира загубите и да максимизира
-                резултата. Вижте нашите{" "}
-                <Link
-                  href="/case-studies"
-                  className="text-[var(--pravdast-yellow)] hover:underline"
-                >
-                  доказани резултати
-                </Link>{" "}
-                или{" "}
-                <Link
-                  href="/calculators"
-                  className="text-[var(--pravdast-yellow)] hover:underline"
-                >
-                  изчислете възвръщаемостта
-                </Link>
-                .
+                Влагането на още пари в рекламен процес, който не е добре настроен, е най-бързият начин да ги похарчите напразно.
+                По-големият брой кликове не винаги води до по-голяма печалба. Това прилича на форсиране на автомобилен двигател, без да сте включили на скорост – създава шум, изразходва гориво, но не ви придвижва напред.
               </motion.p>
 
               <motion.div
@@ -262,8 +245,7 @@ export default function Clickstarter() {
                 viewport={{ once: true }}
               >
                 <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-                  Двигателят на вашия растеж има нужда от настройка, а не само
-                  от повече гориво.
+                  Нашият подход
                 </h2>
               </motion.div>
 
@@ -276,7 +258,7 @@ export default function Clickstarter() {
                   transition={{ duration: 0.8 }}
                   viewport={{ once: true }}
                 >
-                  {/* Problem */}
+                  {/* Problem Card */}
                   <Card className="bg-red-900/20 border-red-500/30">
                     <CardContent className="p-6">
                       <div className="flex items-center gap-4 mb-4">
@@ -293,13 +275,13 @@ export default function Clickstarter() {
                         </div>
                       </div>
                       <p className="text-gray-300">
-                        Разпилени монети, шумен процес, хабене на гориво без
-                        движение напред
+                        Влагането на още пари в рекламен процес, който не е добре настроен, е най-бързият начин да ги похарчите напразно.
+                        По-големият брой кликове не винаги води до по-голяма печалба. Това прилича на форсиране на автомобилен двигател, без да сте включили на скорост – създава шум, изразходва гориво, но не ви придвижва напред.
                       </p>
                     </CardContent>
                   </Card>
 
-                  {/* Solution */}
+                  {/* Solution Card */}
                   <Card className="bg-[#ECB629]/10 border-[#ECB629]/30">
                     <CardContent className="p-6">
                       <div className="flex items-center gap-4 mb-4">
@@ -316,8 +298,8 @@ export default function Clickstarter() {
                         </div>
                       </div>
                       <p className="text-gray-300">
-                        Инженерска оптимизация с ръката на експерт за максимална
-                        ефективност
+                        Ние не просто „зареждаме с гориво".
+                        Ние сме като инженери, които разглобяват, анализират и прецизно настройват всеки елемент на вашия двигател за растеж – от рекламното съобщение до процеса след клика.
                       </p>
                     </CardContent>
                   </Card>
@@ -331,25 +313,12 @@ export default function Clickstarter() {
                   viewport={{ once: true }}
                 >
                   <div className="space-y-6">
-                    <p className="text-lg text-gray-300 leading-relaxed">
-                      Да наливате повече пари (гориво) в рекламен процес, който
-                      не е прецизно настроен, е най-бързият начин да ги
-                      изхабите. Повечето кликове не винаги означават повече
-                      печалба. Това е като да форсирате двигателя, без да сте на
-                      скорост – шумно е, хаби гориво, но не ви движи напред.
-                    </p>
-
                     <div className="bg-slate-800/50 rounded-xl p-6 border border-slate-600/30">
                       <h4 className="text-xl font-semibold text-[#ECB629] mb-4">
-                        Нашият подход:
+                        Нашата цел:
                       </h4>
-                      <p className="text-gray-300 leading-relaxed">
-                        Ние не просто „доставяме гориво". Ние сме инженерите,
-                        които разглобяват, анализират и настройват всеки
-                        компонент на вашия двигател за растеж – от рекламното
-                        послание до процеса след клика. Целта ни е всяка капка
-                        гориво (всеки лев) да се превърне в максимална, измерима
-                        мощност.
+                      <p className="text-gray-300 leading-relaxed text-lg">
+                        Всеки изразходван лев да донесе максимална и измерима възвръщаемост.
                       </p>
                     </div>
                   </div>

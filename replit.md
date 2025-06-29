@@ -295,6 +295,7 @@ Changelog:
 - June 28, 2025. Applied SEO Struktor investment section design to Clientomat page: implemented matching badge, price display format (2890 лв./месечно), and numbered principles layout with yellow circles and connecting lines for unified design consistency across all service pages
 - June 28, 2025. Applied SEO Struktor investment section design to Trendlab page: implemented matching badge, price display format (3450 лв./месечно), and numbered principles layout with yellow circles and connecting lines for complete design unification across all four service pages
 - June 28, 2025. Replaced UnifiedCTASection with CTASection on homepage: reverted to original CTA design with yellow background, "Готови ли сте да спрете да залагате на късмет?" headline, and "Приемаме до 3 нови партньори" messaging as requested by user
+- June 29, 2025. Updated Clickstarter page content with new automotive engine metaphor: replaced hero title with "Двигателят на вашия растеж има нужда от настройка, а не само от повече гориво", updated description with user-provided text about wasted advertising spend and engine optimization analogy, restructured philosophy section with problem/solution cards featuring complete engine metaphor content, focused "Нашата цел" on maximum measurable return on investment
 
 ## User Preferences
 
