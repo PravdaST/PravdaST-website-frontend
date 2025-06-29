@@ -682,8 +682,7 @@ export default function Services() {
                 transition={{ duration: 0.8, delay: 0.3 }}
                 viewport={{ once: true }}
               >
-                Започнете с безплатна консултация и разберете коя система е
-                най-подходяща за вашия бизнес.
+                Започнете с първия разговор и разберете коя система е най-подходяща за вашия бизнес.
               </motion.p>
 
               {/* Trust Signals */}
@@ -698,19 +697,19 @@ export default function Services() {
                   <div className="w-4 h-4 bg-green-500 rounded-full flex items-center justify-center">
                     <div className="w-2 h-1 bg-white rounded-full rotate-45"></div>
                   </div>
-                  <span>Безплатна консултация</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-4 h-4 bg-green-500 rounded-full flex items-center justify-center">
-                    <div className="w-2 h-1 bg-white rounded-full rotate-45"></div>
-                  </div>
-                  <span>Без ангажименти</span>
+                  <span>Прецизна селекция на клиенти</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <div className="w-4 h-4 bg-green-500 rounded-full flex items-center justify-center">
                     <div className="w-2 h-1 bg-white rounded-full rotate-45"></div>
                   </div>
                   <span>48 часа отговор</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-4 h-4 bg-green-500 rounded-full flex items-center justify-center">
+                    <div className="w-2 h-1 bg-white rounded-full rotate-45"></div>
+                  </div>
+                  <span>100% поверителност</span>
                 </div>
               </motion.div>
 
@@ -720,30 +719,24 @@ export default function Services() {
                 transition={{ duration: 0.8, delay: 0.5 }}
                 viewport={{ once: true }}
               >
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="relative border-2 border-black text-black hover:bg-black hover:text-[#ECB629] px-8 py-4 text-lg font-semibold overflow-hidden group"
-                  asChild
+                <motion.a
+                  href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-3 bg-black text-white px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-300"
+                  whileHover={{ 
+                    y: -8,
+                  }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 400,
+                    damping: 17,
+                  }}
+                  whileTap={{ scale: 0.95 }}
                 >
-                  <a
-                    href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black opacity-0 group-hover:opacity-10"
-                      animate={{ x: ["-100%", "100%"] }}
-                      transition={{
-                        duration: 1.5,
-                        repeat: Infinity,
-                        repeatType: "loop",
-                      }}
-                    />
-                    Безплатна консултация{" "}
-                    <ArrowRight className="ml-2 w-5 h-5" />
-                  </a>
-                </Button>
+                  <span>Безплатна консултация</span>
+                  <ArrowRight className="w-5 h-5" />
+                </motion.a>
               </motion.div>
             </motion.div>
           </div>
