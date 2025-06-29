@@ -537,8 +537,8 @@ export default function Calculators() {
               className="mb-8"
             >
               <div className="inline-flex items-center gap-2 bg-[#ECB629]/10 px-4 py-2 rounded-full border border-[#ECB629]/20 mb-6">
-                <Calculator className="w-4 h-4 text-[#ECB629]" />
-                <span className="text-[#ECB629] font-medium">Безплатни Калкулатори</span>
+                <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
+                <span className="text-[#ECB629] font-medium">Остават 3 места за 2025</span>
               </div>
               
               <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
@@ -705,23 +705,61 @@ export default function Calculators() {
             viewport={{ once: true }}
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Готови за measurable резултати?
+              Готови ли сте да превърнете 
+              числата в резултати?
             </h2>
-            <p className="text-xl mb-8 max-w-2xl mx-auto">
-              Калкулаторите показват потенциала. Ние го реализираме.
+            <p className="text-xl text-black/80 mb-8 max-w-2xl mx-auto">
+              Изберете подходящата система за вашия бизнес и започнете 
+              трансформацията с безплатна консултация.
             </p>
-            <Button 
-              asChild
-              className="bg-black text-white hover:bg-gray-800 text-lg px-8 py-6"
+            
+            {/* Trust Signals */}
+            <motion.div
+              className="flex flex-wrap justify-center gap-6 mb-8 text-sm text-black/70"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              viewport={{ once: true }}
             >
-              <a 
+              <div className="flex items-center gap-2">
+                <CheckCircle className="w-4 h-4 text-green-600" />
+                <span>Безплатна консултация</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle className="w-4 h-4 text-green-600" />
+                <span>Без ангажименти</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle className="w-4 h-4 text-green-600" />
+                <span>Отговор в 48 часа</span>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+              viewport={{ once: true }}
+            >
+              <motion.a
                 href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu"
                 target="_blank"
                 rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 bg-black text-white px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-300"
+                whileHover={{ 
+                  y: -8,
+                }}
+                transition={{
+                  type: "spring",
+                  stiffness: 400,
+                  damping: 17,
+                }}
+                whileTap={{ scale: 0.95 }}
               >
-                Започнете безплатната консултация <ArrowRight className="w-5 h-5 ml-2" />
-              </a>
-            </Button>
+                <span>Започнете днес</span>
+                <ArrowRight className="w-5 h-5" />
+              </motion.a>
+            </motion.div>
           </motion.div>
         </div>
       </section>
