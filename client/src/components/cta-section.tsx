@@ -108,12 +108,7 @@ export const CTASection = () => {
                 transition={{ duration: 0.6, delay: 0.4 }}
                 viewport={{ once: true }}
               >
-                Работим само с компании, които са готови за сериозен растеж. 
-                Ние избираме партньорите си внимателно и 
-                <span className="text-[#ECB629] font-semibold">
-                  {" "}
-                  оценяваме дали сте подходящи за нашите системи.
-                </span>
+                Започнете с първия разговор и разберете коя система е най-подходяща за вашия бизнес.
               </motion.p>
             </motion.div>
 
@@ -126,7 +121,7 @@ export const CTASection = () => {
               viewport={{ once: true }}
             >
               {[
-                "Без ангажименти",
+                "Прецизна селекция на клиенти",
                 "48 часа отговор", 
                 "100% поверителност"
               ].map((text, index) => (
@@ -170,8 +165,15 @@ export const CTASection = () => {
                 href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block w-full bg-black text-white text-xl font-bold py-6 px-8 rounded-2xl shadow-2xl transition-all duration-300 hover:shadow-3xl"
-                whileHover={{ scale: 1.05, y: -5 }}
+                className="block w-full bg-black text-white text-xl font-bold py-6 px-8 rounded-2xl shadow-2xl transition-all duration-300"
+                whileHover={{ 
+                  y: -8,
+                }}
+                transition={{
+                  type: "spring",
+                  stiffness: 400,
+                  damping: 17,
+                }}
                 whileTap={{ scale: 0.95 }}
               >
                 <div className="flex items-center justify-center gap-3">
@@ -201,18 +203,10 @@ export const CTASection = () => {
                 viewport={{ once: true }}
               >
                 <div className="text-gray-400 font-medium">
-                  Прецизна селекция на партньори
+                  Ние работим прецизно и внимателно преценяваме всеки случай.
                 </div>
-                <div className="flex items-center justify-center gap-8 text-sm text-gray-500">
-                  <div className="flex items-center gap-2">
-                    <CheckCircle className="w-4 h-4 text-green-500" />
-                    <span>Детайлна оценка</span>
-                  </div>
-                  <div className="w-1 h-1 bg-gray-600 rounded-full"></div>
-                  <div className="flex items-center gap-2">
-                    <Shield className="w-4 h-4 text-green-500" />
-                    <span>Взаимна подходящост</span>
-                  </div>
+                <div className="text-sm text-gray-500 max-w-2xl mx-auto">
+                  Процесът на консултация не е просто услуга, а детайлна проверка дали клиентът е подходящ за нашия подход и дали можем да постигнем заедно желаните резултати.
                 </div>
               </motion.div>
             </motion.div>
