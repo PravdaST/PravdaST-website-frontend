@@ -906,6 +906,7 @@ const InvestmentSection = () => {
                   <div className="flex-1 w-full">
                     <motion.div className="bg-slate-800/60 backdrop-blur-sm p-8 rounded-2xl border border-slate-600/30 transition-all duration-300">
                       <div className="flex items-center gap-4 mb-4">
+                        <div className="text-2xl">{principle.icon}</div>
                         <h3 className="text-xl md:text-2xl font-bold text-white">
                           {principle.title}
                         </h3>
