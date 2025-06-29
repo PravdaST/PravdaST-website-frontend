@@ -129,12 +129,17 @@ export const HeroSection = () => {
             Изграждаме системи, които ви дават контрол, носят предвидими приходи
             и пестят времето ви. Разгледайте нашите{" "}
             <Link href="/services">
-              <a className="text-[#ECB629] hover:underline cursor-pointer">проверени системи</a>
+              <a className="text-[#ECB629] hover:underline cursor-pointer">
+                проверени системи
+              </a>
             </Link>{" "}
             и{" "}
             <Link href="/case-studies">
-              <a className="text-[#ECB629] hover:underline cursor-pointer">реални резултати</a>
-            </Link>.
+              <a className="text-[#ECB629] hover:underline cursor-pointer">
+                реални резултати
+              </a>
+            </Link>
+            .
           </motion.p>
 
           <motion.div
@@ -173,31 +178,29 @@ export const HeroSection = () => {
 
           {/* Trust indicators */}
           <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-6 max-w-3xl mx-auto px-4 sm:px-0"
+            className="grid grid-cols-1 sm:grid-cols-1 gap-3 sm:gap-6 max-w-3xl mx-auto px-4 sm:px-0"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
           >
-            <div className="flex items-center justify-center gap-3 p-4 bg-slate-800/30 backdrop-blur-sm rounded-xl border border-slate-600/20">
-              <div className="w-2 h-2 bg-[var(--pravdast-yellow)] rounded-full"></div>
-              <span className="text-gray-300 text-sm font-medium">
-                Безплатна анализ
-              </span>
-            </div>
-            <motion.div 
+            <motion.div
               className="relative flex items-center justify-center gap-3 p-4 bg-gradient-to-r from-slate-800/50 to-slate-700/50 backdrop-blur-sm rounded-xl border border-[var(--pravdast-yellow)]/30 overflow-hidden group"
               animate={{
-                borderColor: ["rgba(236, 182, 40, 0.3)", "rgba(236, 182, 40, 0.6)", "rgba(236, 182, 40, 0.3)"],
+                borderColor: [
+                  "rgba(236, 182, 40, 0.3)",
+                  "rgba(236, 182, 40, 0.6)",
+                  "rgba(236, 182, 40, 0.3)",
+                ],
               }}
               transition={{
                 duration: 2,
                 repeat: Infinity,
-                ease: "easeInOut"
+                ease: "easeInOut",
               }}
             >
               {/* Subtle glow effect */}
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[var(--pravdast-yellow)]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              
+
               {/* Animated background pulse */}
               <motion.div
                 className="absolute inset-0 bg-[var(--pravdast-yellow)]/5 rounded-xl"
@@ -208,13 +211,13 @@ export const HeroSection = () => {
                 transition={{
                   duration: 3,
                   repeat: Infinity,
-                  ease: "easeInOut"
+                  ease: "easeInOut",
                 }}
               />
-              
+
               {/* Pulsing dot with ring */}
               <div className="relative">
-                <motion.div 
+                <motion.div
                   className="w-2 h-2 bg-[var(--pravdast-yellow)] rounded-full relative z-10"
                   animate={{
                     scale: [1, 1.2, 1],
@@ -222,10 +225,10 @@ export const HeroSection = () => {
                   transition={{
                     duration: 1.5,
                     repeat: Infinity,
-                    ease: "easeInOut"
+                    ease: "easeInOut",
                   }}
                 />
-                <motion.div 
+                <motion.div
                   className="absolute inset-0 w-2 h-2 bg-[var(--pravdast-yellow)] rounded-full"
                   animate={{
                     scale: [1, 2, 2.5],
@@ -234,13 +237,16 @@ export const HeroSection = () => {
                   transition={{
                     duration: 1.5,
                     repeat: Infinity,
-                    ease: "easeOut"
+                    ease: "easeOut",
                   }}
                 />
               </div>
-              
+
               <span className="text-white text-sm font-semibold relative z-10">
-                Оставащи места - <span className="text-[var(--pravdast-yellow)] text-base">3</span>
+                Оставащи места -{" "}
+                <span className="text-[var(--pravdast-yellow)] text-base">
+                  3
+                </span>
               </span>
             </motion.div>
           </motion.div>
