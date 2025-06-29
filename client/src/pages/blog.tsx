@@ -17,6 +17,7 @@ import {
   Search,
   BookOpen,
   TrendingUp,
+  CheckCircle,
 } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -448,12 +449,77 @@ export default function Blog() {
         </section>
       </main>
 
-      {/* Unified CTA Section */}
-      <UnifiedCTASection
-        buttonText="Кандидатствайте за диагностика"
-        headline="Готови ли сте да приложите това знание?"
-        description="Превърнете експертните съвети в реални резултати за вашия бизнес с нашите проверени системи."
-      />
+      {/* CTA Section */}
+      <section className="py-20 bg-[#ECB629] text-black">
+        <div className="container mx-auto px-6 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <div className="inline-flex items-center gap-2 bg-black/10 px-4 py-2 rounded-full border border-black/20 mb-6">
+              <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
+              <span className="text-black font-medium">Остават 3 места за 2025</span>
+            </div>
+
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+              Готови ли сте да приложите това знание?
+            </h2>
+            <p className="text-xl text-black/80 mb-8 max-w-2xl mx-auto">
+              Превърнете експертните съвети в реални резултати за вашия бизнес с нашите проверени системи.
+            </p>
+            
+            {/* Trust Signals */}
+            <motion.div
+              className="flex flex-wrap justify-center gap-6 mb-8 text-sm text-black/70"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              <div className="flex items-center gap-2">
+                <CheckCircle className="w-4 h-4 text-green-600" />
+                <span>Безплатна консултация</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle className="w-4 h-4 text-green-600" />
+                <span>Без ангажименти</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle className="w-4 h-4 text-green-600" />
+                <span>Отговор в 48 часа</span>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+              viewport={{ once: true }}
+            >
+              <motion.a
+                href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 bg-black text-white px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-300"
+                whileHover={{ 
+                  y: -8,
+                }}
+                transition={{
+                  type: "spring",
+                  stiffness: 400,
+                  damping: 17,
+                }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <span>Кандидатствайте за диагностика</span>
+                <ArrowRight className="w-5 h-5" />
+              </motion.a>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
 
       <Footer />
     </div>
