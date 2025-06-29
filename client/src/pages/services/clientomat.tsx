@@ -834,7 +834,7 @@ export default function ClientomatPage() {
               <div className="bg-slate-800/50 rounded-2xl p-8 border border-slate-600/30 mb-16">
                 <div className="text-sm text-[#ECB629] mb-2 tracking-wide">ЗАПОЧВА ОТ</div>
                 <div className="text-6xl md:text-7xl font-bold text-[#ECB629] mb-4">
-                  2750 лв.
+                  2890 лв.
                   <span className="text-2xl text-gray-400">/месечно</span>
                 </div>
                 <p className="text-gray-400">
@@ -893,14 +893,51 @@ export default function ClientomatPage() {
       </section>
 
       {/* CTA Section */}
-      
-
-      {/* Unified CTA Section */}
-      <UnifiedCTASection
-        buttonText="Свържете се с експертите"
-        headline="Готови ли сте да автоматизирате клиентския цикъл?"
-        description="Изградете система, която работи 24/7 за привличане и задържане на клиенти с нашата проверена методология."
-      />
+      <section className="py-20 bg-[#ECB629] relative overflow-hidden">
+        <div className="container mx-auto px-6 text-center relative z-10">
+          <div className="max-w-4xl mx-auto">
+            <div className="inline-flex items-center gap-2 bg-black/10 px-4 py-2 rounded-full border border-black/20 mb-6">
+              <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
+              <span className="text-black font-medium">Остават 3 места за 2025</span>
+            </div>
+            
+            <h2 className="text-4xl md:text-5xl font-bold text-black mb-6">
+              Готови ли сте да автоматизирате клиентския цикъл?
+            </h2>
+            
+            <p className="text-xl text-black/80 mb-8 max-w-2xl mx-auto">
+              Изградете система, която работи 24/7 за привличане и задържане на клиенти с нашата проверена методология.
+            </p>
+            
+            <div className="flex flex-wrap justify-center gap-6 mb-8 text-sm text-black/70">
+              <div className="flex items-center gap-2">
+                <CheckCircle className="w-4 h-4 text-green-600" />
+                <span>Безплатна консултация</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle className="w-4 h-4 text-green-600" />
+                <span>Без ангажименти</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle className="w-4 h-4 text-green-600" />
+                <span>Отговор в 48 часа</span>
+              </div>
+            </div>
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <a
+                href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 bg-black text-white px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-300 hover:-translate-y-2"
+              >
+                <span>Свържете се с експертите</span>
+                <ArrowRight className="w-5 h-5" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <Footer />
     </div>

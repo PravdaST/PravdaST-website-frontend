@@ -21,7 +21,7 @@ import {
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { SEOHead } from "@/components/seo-head";
-import { UnifiedCTASection } from "@/components/unified-cta-section";
+
 import { pageSEOData } from "@/data/seo-pages";
 
 // Content Creation Background
@@ -1163,14 +1163,52 @@ export default function Trendlab() {
         </div>
       </section>
 
-      {/* Final CTA Section */}
-
-      {/* Unified CTA Section */}
-      <UnifiedCTASection
-        buttonText="Обърнете се към нас"
-        headline="Готови ли сте да изградите авторитет?"
-        description="Започнете трансформацията на вашия експертен глас в влиятелно съдържание с нашата система."
-      />
+      {/* CTA Section */}
+      <section className="py-20 bg-[#ECB629] relative overflow-hidden">
+        <div className="container mx-auto px-6 text-center relative z-10">
+          <div className="max-w-4xl mx-auto">
+            <div className="inline-flex items-center gap-2 bg-black/10 px-4 py-2 rounded-full border border-black/20 mb-6">
+              <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
+              <span className="text-black font-medium">Остават 3 места за 2025</span>
+            </div>
+            
+            <h2 className="text-4xl md:text-5xl font-bold text-black mb-6">
+              Готови ли сте да изградите авторитет?
+            </h2>
+            
+            <p className="text-xl text-black/80 mb-8 max-w-2xl mx-auto">
+              Започнете трансформацията на вашия експертен глас в влиятелно съдържание с нашата система.
+            </p>
+            
+            <div className="flex flex-wrap justify-center gap-6 mb-8 text-sm text-black/70">
+              <div className="flex items-center gap-2">
+                <CheckCircle className="w-4 h-4 text-green-600" />
+                <span>Безплатна консултация</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle className="w-4 h-4 text-green-600" />
+                <span>Без ангажименти</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle className="w-4 h-4 text-green-600" />
+                <span>Отговор в 48 часа</span>
+              </div>
+            </div>
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <a
+                href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 bg-black text-white px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-300 hover:-translate-y-2"
+              >
+                <span>Обърнете се към нас</span>
+                <ArrowRight className="w-5 h-5" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <Footer />
     </div>
