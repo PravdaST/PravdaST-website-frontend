@@ -682,8 +682,7 @@ export default function Services() {
                 transition={{ duration: 0.8, delay: 0.3 }}
                 viewport={{ once: true }}
               >
-                Започнете с безплатна консултация и разберете коя система е
-                най-подходяща за вашия бизнес.
+                Ние работим прецизно и внимателно преценяваме всеки случай. Първата консултация е процес, чрез който проверяваме дали клиентът е подходящ за нашия подход.
               </motion.p>
 
               {/* Trust Signals */}
@@ -720,30 +719,24 @@ export default function Services() {
                 transition={{ duration: 0.8, delay: 0.5 }}
                 viewport={{ once: true }}
               >
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="relative border-2 border-black text-black hover:bg-black hover:text-[#ECB629] px-8 py-4 text-lg font-semibold overflow-hidden group"
-                  asChild
+                <motion.a
+                  href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-3 bg-black text-white px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-300"
+                  whileHover={{ 
+                    y: -8,
+                  }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 400,
+                    damping: 17,
+                  }}
+                  whileTap={{ scale: 0.95 }}
                 >
-                  <a
-                    href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black opacity-0 group-hover:opacity-10"
-                      animate={{ x: ["-100%", "100%"] }}
-                      transition={{
-                        duration: 1.5,
-                        repeat: Infinity,
-                        repeatType: "loop",
-                      }}
-                    />
-                    Безплатна консултация{" "}
-                    <ArrowRight className="ml-2 w-5 h-5" />
-                  </a>
-                </Button>
+                  <span>Безплатна консултация</span>
+                  <ArrowRight className="w-5 h-5" />
+                </motion.a>
               </motion.div>
             </motion.div>
           </div>
