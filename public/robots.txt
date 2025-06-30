@@ -9,7 +9,6 @@ Disallow: /analytics/
 
 Allow: /services/
 Allow: /blog/
-Allow: /calculators/
 Allow: /contact/
 Allow: /about/
 Allow: /case-studies/

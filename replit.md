@@ -311,6 +311,7 @@ Changelog:
 - June 30, 2025. Removed all calculator references from website: eliminated buttons and links to /calculators from Case Studies, Trendlab, SEO Struktor, FAQ, Blog, Blog Post pages, Footer navigation, and Hero Section - replaced "Изчисли печалба" with "Научи повече" button redirecting to services page
 - June 30, 2025. Added "Обади се сега" call-to-action buttons across all service pages: implemented secondary CTA buttons with phone icon linking to tel:+359879282299, used outline style with yellow border and hover effects, positioned alongside primary form buttons on Clickstarter, Clientomat, Trendlab, and SEO Struktor pages for immediate contact option
 - June 30, 2025. Fixed team member images on /about page: copied original team photos from attached_assets to public root with simplified names (simo.webp, tomi.webp, jivko.png, koko.png, viki.webp, petio.png), set proper file permissions (chmod 644), updated image paths in about.tsx to use direct references, confirmed HTTP 200 status for all images, eliminated display issues with team member photos
+- June 30, 2025. Added ads.txt file for domain protection: created /public/ads.txt to prevent unauthorized ad inventory sales, included Bulgarian comments for future monetization options, verified HTTP 200 loading status, enhanced website legitimacy and trust signals for search engines
 
 ## User Preferences
 

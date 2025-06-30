@@ -1,0 +1,15 @@
+# ads.txt file for www.pravdagency.eu
+# This file authorizes who can sell advertising space on this domain
+# For more information: https://iabtechlab.com/ads-txt/
+
+# Google AdSense (if you plan to use it in the future)
+# google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0
+
+# Currently no authorized sellers - this prevents unauthorized ad sales
+# Remove the comment above and add your publisher ID if you start using ads
+
+# Direct sellers only - no resellers authorized
+# FORMAT: <SSP/Exchange Domain>, <Publisher's Account ID>, <Type of Relationship>, <Certification Authority ID>
+
+# This empty ads.txt file protects against unauthorized ad inventory sales
+# Last updated: June 30, 2025

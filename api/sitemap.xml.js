@@ -41,16 +41,12 @@ export default async function handler(req, res) {
     <lastmod>2025-06-27</lastmod>
   </url>
   <url>
-    <loc>${baseUrl}/calculators</loc>
-    <lastmod>2025-06-27</lastmod>
-  </url>
-  <url>
     <loc>${baseUrl}/case-studies</loc>
-    <lastmod>2025-06-22</lastmod>
+    <lastmod>2025-06-30</lastmod>
   </url>
   <url>
     <loc>${baseUrl}/about</loc>
-    <lastmod>2025-06-28</lastmod>
+    <lastmod>2025-06-30</lastmod>
   </url>
   <url>
     <loc>${baseUrl}/terms</loc>
