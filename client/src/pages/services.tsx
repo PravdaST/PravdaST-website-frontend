@@ -165,7 +165,7 @@ const services = [
     subtitle: "Нашата система за ускорен растеж",
     description:
       "Когато имате нужда от бързи и предвидими резултати, тази система използва платени канали, за да постави вашето послание директно пред идеалните ви клиенти – в точния момент, когато те са готови да купят.",
-    price: "от 2250 лв. / месец",
+    price: "от 1570 лв. / месец",
     icon: Zap,
     slug: "clickstarter",
     benefits: [
@@ -682,7 +682,9 @@ export default function Services() {
                 transition={{ duration: 0.8, delay: 0.3 }}
                 viewport={{ once: true }}
               >
-                Ние работим прецизно и внимателно преценяваме всеки случай. Първата консултация е процес, чрез който проверяваме дали клиентът е подходящ за нашия подход.
+                Ние работим прецизно и внимателно преценяваме всеки случай.
+                Първата консултация е процес, чрез който проверяваме дали
+                клиентът е подходящ за нашия подход.
               </motion.p>
 
               {/* Trust Signals */}
@@ -724,7 +726,7 @@ export default function Services() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-3 bg-black text-white px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-300"
-                  whileHover={{ 
+                  whileHover={{
                     y: -8,
                   }}
                   transition={{
