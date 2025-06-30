@@ -43,7 +43,7 @@ const teamMembers = [
     name: "Екипът на Pravdast",
     role: "Консултанти по системи за растеж",
     description:
-      "Специалисти с над 10 години опит в изграждането на автоматизирани системи за растеж в различни индустрии.",
+      "Специалисти с над 3 години опит в изграждането на автоматизирани системи за растеж в различни индустрии.",
     expertise: [
       "Бизнес инженеринг",
       "Системна автоматизация",
@@ -55,7 +55,7 @@ const teamMembers = [
 
 const stats = [
   { number: "47+", label: "Успешни проекта" },
-  { number: "270%", label: "Средно подобрение" },
+  { number: "250%", label: "Средно подобрение" },
   { number: "100%", label: "Доволни клиенти" },
   { number: "24/7", label: "Работещи системи" },
 ];
@@ -468,7 +468,9 @@ export default function About() {
             >
               <div className="inline-flex items-center gap-2 bg-black/10 px-4 py-2 rounded-full border border-black/20 mb-6">
                 <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
-                <span className="text-black font-medium">Остават 3 места за 2025</span>
+                <span className="text-black font-medium">
+                  Остават 3 места за 2025
+                </span>
               </div>
 
               <motion.h2
@@ -525,7 +527,7 @@ export default function About() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-3 bg-black text-white px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-300"
-                  whileHover={{ 
+                  whileHover={{
                     y: -8,
                   }}
                   transition={{
