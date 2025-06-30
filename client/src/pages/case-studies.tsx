@@ -225,13 +225,6 @@ export default function CaseStudies() {
                   className="text-[#ECB629] hover:underline"
                 >
                   всички наши услуги
-                </Link>{" "}
-                или{" "}
-                <Link
-                  href="/calculators"
-                  className="text-[#ECB629] hover:underline"
-                >
-                  изчислете своята възвърната инвестиция
                 </Link>
                 .
               </motion.p>

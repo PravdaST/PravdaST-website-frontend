@@ -308,6 +308,7 @@ Changelog:
 - June 30, 2025. Simplified service links in blog post per user request: removed detailed descriptions from service links, now displaying only clean service names as clickable links (SEO Struktor™, Clientomat™, Clickstarter™, Trendlab™) for cleaner presentation and better user experience
 - June 30, 2025. Added Ice Tub Co. and DeJaVu Gym case studies to /case-studies page: completed all 4 case studies from homepage slider (Бачо Илия, Euphoria Beauty, Ice Tub Co., DeJaVu Gym) with detailed challenge/solution descriptions, measurable results, systems used, and authentic testimonials for comprehensive case study showcase
 - June 30, 2025. Created comprehensive team section for /about page: added 6 team members with professional photos in 3-column grid layout - Симеон Сираков (Бизнес директор), Томи Сапунджиев (Креативен директор), Живомир Арнаудов (Програмен мениджър), Калоян Богданов (AI девелопър), Виктория Петрова (Маркетинг експерт), Петър Петров (SEO експерт) - with hover effects, professional descriptions, and modern card design matching site aesthetic
+- June 30, 2025. Removed all calculator references from website: eliminated buttons and links to /calculators from Case Studies, Trendlab, SEO Struktor, FAQ, Blog, Blog Post pages, Footer navigation, and Hero Section - replaced "Изчисли печалба" with "Научи повече" button redirecting to services page
 
 ## User Preferences
 

@@ -172,7 +172,7 @@ export const HeroSection = () => {
               className="border-[var(--pravdast-yellow)] text-[var(--pravdast-yellow)] hover:bg-[var(--pravdast-yellow)]/10 px-6 md:px-12 py-4 md:py-6 text-base md:text-xl font-semibold transition-all duration-300 w-full sm:w-auto min-h-[56px]"
               asChild
             >
-              <a href="/calculators">Изчисли печалба</a>
+              <a href="/services">Научи повече</a>
             </Button>
           </motion.div>
 

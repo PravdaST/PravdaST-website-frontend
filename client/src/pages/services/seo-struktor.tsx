@@ -1258,13 +1258,6 @@ export default function SeoStruktor() {
                 className="text-[var(--pravdast-yellow)] hover:underline"
               >
                 реални резултати
-              </Link>{" "}
-              или{" "}
-              <Link
-                href="/calculators"
-                className="text-[var(--pravdast-yellow)] hover:underline"
-              >
-                изчислете вашата възвръщаемост
               </Link>
               .
             </motion.p>

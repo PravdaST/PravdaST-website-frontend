@@ -213,10 +213,6 @@ export default function FAQ() {
               Отговори на най-честите въпроси за нашите бизнес инженеринг услуги. Всичко което трябва да знаете за системния подход към растеж. Разгледайте нашите{" "}
               <Link href="/services">
                 <a className="text-[#ECB629] hover:underline cursor-pointer">услуги</a>
-              </Link>{" "}
-              или{" "}
-              <Link href="/calculators">
-                <a className="text-[#ECB629] hover:underline cursor-pointer">изчислете възвръщаемостта</a>
               </Link>.
             </motion.p>
 

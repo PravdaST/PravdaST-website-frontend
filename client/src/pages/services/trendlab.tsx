@@ -291,13 +291,6 @@ export default function Trendlab() {
               >
                 нашите резултати
               </Link>{" "}
-              и{" "}
-              <Link
-                href="/calculators"
-                className="text-[#ECB629] hover:underline"
-              >
-                изчислете Възвръщаемост на инвестицията
-              </Link>{" "}
               от съдържанието.
             </motion.p>
 

@@ -14,7 +14,7 @@ export const Footer = () => {
       { href: "/about", label: "За нас" },
       { href: "/case-studies", label: "Резултати" },
       { href: "/blog", label: "Блог" },
-      { href: "/calculators", label: "Калкулатори" },
+
       { href: "/faq", label: "Въпроси" },
       { href: "/contact", label: "Контакти" }
     ],
