@@ -272,7 +272,7 @@ export default function Trendlab() {
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ECB629] to-[#F59E0B]">
                 вашата
               </span>
-              . Време е да я разкажем.
+              .Време е да я разкажем.
             </motion.h1>
 
             <motion.p
@@ -281,10 +281,10 @@ export default function Trendlab() {
               animate={heroInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
-              Вие притежавате безценна експертиза и опит. Нашата система
+              Вие притежавате безценна експертиза и опит.Нашата система
               Trendlab™ превръща тези ваши знания в автентично съдържание,
               което изгражда доверие, създава общност и ви превръща в безспорния
-              авторитет във вашата сфера. Разгледайте{" "}
+              авторитет във вашата сфера.Разгледайте{" "}
               <Link
                 href="/case-studies"
                 className="text-[#ECB629] hover:underline"
@@ -338,8 +338,8 @@ export default function Trendlab() {
                 .
               </h2>
               <p className="text-xl text-gray-300 max-w-4xl mx-auto">
-                Всеки може да изброи факти и характеристики. Но хората не се
-                свързват с информация – те се свързват с истории. Една добре
+                Всеки може да изброи факти и характеристики.Но хората не се
+                свързват с информация – те се свързват с истории.Една добре
                 разказана история изгражда доверие и превръща пасивните
                 наблюдатели в лоялни последователи.
               </p>
@@ -504,7 +504,7 @@ export default function Trendlab() {
               </h3>
               <div className="max-w-4xl mx-auto">
                 <p className="text-lg text-gray-300 mb-6">
-                  Ние не сме просто създатели на съдържание. Ние сме инженери на
+                  Ние не сме просто създатели на съдържание.Ние сме инженери на
                   истории.
                 </p>
                 <div className="relative">
@@ -1064,10 +1064,7 @@ export default function Trendlab() {
       </section>
 
       {/* Investment Structure */}
-      <section
-        ref={investmentRef}
-        className="py-20 relative overflow-hidden"
-      >
+      <section ref={investmentRef} className="py-20 relative overflow-hidden">
         <div className="absolute inset-0 opacity-5">
           <div className="absolute bottom-1/4 right-1/4 w-48 h-48 bg-purple-500 rounded-full blur-3xl"></div>
         </div>
@@ -1091,12 +1088,15 @@ export default function Trendlab() {
               </h2>
 
               <p className="text-xl text-gray-400 mb-12 max-w-2xl mx-auto">
-                Инженерно проектиране изисква прецизност и в техническата спецификация
+                Инженерно проектиране изисква прецизност и в техническата
+                спецификация
               </p>
 
               {/* Price Card */}
               <div className="bg-slate-800/50 rounded-2xl p-8 border border-slate-600/30 mb-16">
-                <div className="text-sm text-[#ECB629] mb-2 tracking-wide">ЗАПОЧВА ОТ</div>
+                <div className="text-sm text-[#ECB629] mb-2 tracking-wide">
+                  ЗАПОЧВА ОТ
+                </div>
                 <div className="text-6xl md:text-7xl font-bold text-[#ECB629] mb-4">
                   3450 лв.
                   <span className="text-2xl text-gray-400">/месечно</span>
@@ -1112,18 +1112,21 @@ export default function Trendlab() {
                   {
                     number: "1",
                     title: "Персонализирано решение",
-                    description: "Всяка система Trendlab™ се проектира и изгражда спрямо уникалните цели и състояние на вашия бизнес. Ние не предлагаме готови пакети."
+                    description:
+                      "Всяка система Trendlab™ се проектира и изгражда спрямо уникалните цели и състояние на вашия бизнес.Ние не предлагаме готови пакети.",
                   },
                   {
-                    number: "2", 
+                    number: "2",
                     title: "Бюджетна рамка",
-                    description: "За ориентация, базовите инженерни проекти започват от 3450 лв./месечно."
+                    description:
+                      "За ориентация, базовите инженерни проекти започват от 3450 лв./месечно.",
                   },
                   {
                     number: "3",
-                    title: "Техническа спецификация", 
-                    description: "Финалната инвестиция се определя след задължителна техническа диагностика. Вие получавате детайлно инженерно предложение, в което всеки компонент е ясно описан и стойностен."
-                  }
+                    title: "Техническа спецификация",
+                    description:
+                      "Финалната инвестиция се определя след задължителна техническа диагностика.Вие получавате детайлно инженерно предложение, в което всеки компонент е ясно описан и стойностен.",
+                  },
                 ].map((principle, index) => (
                   <motion.div
                     key={principle.number}
@@ -1162,17 +1165,20 @@ export default function Trendlab() {
           <div className="max-w-4xl mx-auto">
             <div className="inline-flex items-center gap-2 bg-black/10 px-4 py-2 rounded-full border border-black/20 mb-6">
               <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
-              <span className="text-black font-medium">Остават 3 места за 2025</span>
+              <span className="text-black font-medium">
+                Остават 3 места за 2025
+              </span>
             </div>
-            
+
             <h2 className="text-4xl md:text-5xl font-bold text-black mb-6">
               Готови ли сте да изградите авторитет?
             </h2>
-            
+
             <p className="text-xl text-black/80 mb-8 max-w-2xl mx-auto">
-              Започнете трансформацията на вашия експертен глас в влиятелно съдържание с нашата система.
+              Започнете трансформацията на вашия експертен глас във влиятелно
+              съдържание с нашата система.
             </p>
-            
+
             <div className="flex flex-wrap justify-center gap-6 mb-8 text-sm text-black/70">
               <div className="flex items-center gap-2">
                 <CheckCircle className="w-4 h-4 text-green-600" />
@@ -1187,7 +1193,7 @@ export default function Trendlab() {
                 <span>Отговор в 48 часа</span>
               </div>
             </div>
-            
+
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <a
                 href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu"
