@@ -17,13 +17,7 @@ import {
 import { SEOHead } from "@/components/seo-head";
 import { pageSEOData } from "@/data/seo-pages";
 
-// Import team member images
-import simoImage from "@assets/simo_1751267493118.webp";
-import tomiImage from "@assets/tomi_1751267493117.webp";
-import jivkoImage from "@assets/jivko_1751267493117.png";
-import kokoImage from "@assets/koko_1751267493116.png";
-import vikiImage from "@assets/viki-email-marketing_1751267493116.webp";
-import petioImage from "@assets/petio-seo_1751267493115.png";
+// Team member images
 
 const values = [
   {
@@ -51,42 +45,42 @@ const teamMembers = [
     id: "simo",
     name: "Симеон Сираков",
     role: "Бизнес директор",
-    image: simoImage,
+    image: "/team-simo.webp",
     description: "Ръководи стратегическото развитие и бизнес операциите на агенцията.",
   },
   {
     id: "tomi",
     name: "Томи Сапунджиев",
     role: "Креативен директор",
-    image: tomiImage,
+    image: "/team-tomi.webp",
     description: "Отговаря за креативната визия и дизайн стратегията на проектите.",
   },
   {
     id: "jivko",
     name: "Живомир Арнаудов",
     role: "Програмен мениджър",
-    image: jivkoImage,
+    image: "/team-jivko.png",
     description: "Управлява техническите проекти и координира развойните процеси.",
   },
   {
     id: "koko",
     name: "Калоян Богданов",
     role: "AI девелопър",
-    image: kokoImage,
+    image: "/team-koko.png",
     description: "Специализира в изкуствен интелект и автоматизация на бизнес процеси.",
   },
   {
     id: "viki",
     name: "Виктория Петрова",
     role: "Маркетинг експерт",
-    image: vikiImage,
+    image: "/team-viki.webp",
     description: "Експерт по дигитален маркетинг и имейл кампании за растеж.",
   },
   {
     id: "petio",
     name: "Петър Петров",
     role: "SEO експерт",
-    image: petioImage,
+    image: "/team-petio.png",
     description: "Специалист по органично позициониране и SEO оптимизация.",
   },
 ];
