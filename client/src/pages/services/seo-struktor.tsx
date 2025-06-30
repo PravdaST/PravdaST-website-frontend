@@ -16,6 +16,8 @@ import {
   TrendingDown,
   Crown,
   Zap,
+  Phone,
+  CheckCircle,
 } from "lucide-react";
 
 // SEO Struktor Background Component
@@ -1300,12 +1302,110 @@ export default function SeoStruktor() {
       {/* Investment Section */}
       <InvestmentSection />
 
-      {/* Unified CTA Section */}
-      <UnifiedCTASection
-        buttonText="Започнете диагностиката"
-        headline="Готови ли сте да спрете да импровизирате?"
-        description="Започнете систематичния подход към SEO с безплатна техническа диагностика."
-      />
+      {/* CTA Section */}
+      <section className="py-20 bg-[#ECB629] relative overflow-hidden">
+        <div className="container mx-auto px-6 text-center relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <div className="inline-flex items-center gap-2 bg-black/10 px-4 py-2 rounded-full border border-black/20 mb-6">
+              <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
+              <span className="text-black font-medium">
+                Остават 3 места за 2025
+              </span>
+            </div>
+
+            <motion.h2
+              className="text-4xl md:text-5xl font-bold text-black mb-6"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              Готови ли сте да спрете да импровизирате?
+            </motion.h2>
+
+            <motion.p
+              className="text-xl text-black/80 mb-8 max-w-2xl mx-auto"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              viewport={{ once: true }}
+            >
+              Започнете систематичния подход към SEO с безплатна техническа диагностика.
+            </motion.p>
+
+            {/* Trust Signals */}
+            <motion.div
+              className="flex flex-wrap justify-center gap-6 mb-8 text-sm text-black/70"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              viewport={{ once: true }}
+            >
+              <div className="flex items-center gap-2">
+                <CheckCircle className="w-4 h-4 text-green-600" />
+                <span>Безплатна диагностика</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle className="w-4 h-4 text-green-600" />
+                <span>Без ангажименти</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle className="w-4 h-4 text-green-600" />
+                <span>48 часа отговор</span>
+              </div>
+            </motion.div>
+
+            <motion.div
+              className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+              viewport={{ once: true }}
+            >
+              <motion.a
+                href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 bg-black text-white px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-300"
+                whileHover={{
+                  y: -8,
+                }}
+                transition={{
+                  type: "spring",
+                  stiffness: 400,
+                  damping: 17,
+                }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <span>Започнете диагностиката</span>
+                <ArrowRight className="w-5 h-5" />
+              </motion.a>
+              
+              <motion.a
+                href="tel:+359879282299"
+                className="inline-flex items-center gap-3 border-2 border-black text-black px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-300 hover:bg-black hover:text-white"
+                whileHover={{
+                  y: -8,
+                }}
+                transition={{
+                  type: "spring",
+                  stiffness: 400,
+                  damping: 17,
+                }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Phone className="w-5 h-5" />
+                <span>Обади се сега</span>
+              </motion.a>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
 
       <Footer />
     </div>

@@ -22,6 +22,7 @@ import {
   FileText,
   DollarSign,
   Clock,
+  Phone,
 } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -644,6 +645,14 @@ export default function Clickstarter() {
                 >
                   <span>Запишете консултация</span>
                   <ArrowRight className="w-5 h-5" />
+                </a>
+                
+                <a
+                  href="tel:+359879282299"
+                  className="inline-flex items-center gap-3 border-2 border-black text-black px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-300 hover:bg-black hover:text-white hover:-translate-y-2"
+                >
+                  <Phone className="w-5 h-5" />
+                  <span>Обади се сега</span>
                 </a>
               </div>
             </div>

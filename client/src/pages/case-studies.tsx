@@ -14,6 +14,7 @@ import {
   CheckCircle,
   Eye,
   Star,
+  Phone,
 } from "lucide-react";
 import { SEOHead } from "@/components/seo-head";
 import { pageSEOData } from "@/data/seo-pages";
@@ -540,6 +541,7 @@ export default function CaseStudies() {
               </motion.div>
 
               <motion.div
+                className="flex flex-col sm:flex-row gap-4 justify-center items-center"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.5 }}
@@ -562,6 +564,23 @@ export default function CaseStudies() {
                 >
                   <span>Започнете сега</span>
                   <ArrowRight className="w-5 h-5" />
+                </motion.a>
+                
+                <motion.a
+                  href="tel:+359879282299"
+                  className="inline-flex items-center gap-3 border-2 border-black text-black px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-300 hover:bg-black hover:text-white"
+                  whileHover={{
+                    y: -8,
+                  }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 400,
+                    damping: 17,
+                  }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Phone className="w-5 h-5" />
+                  <span>Обади се сега</span>
                 </motion.a>
               </motion.div>
             </motion.div>
