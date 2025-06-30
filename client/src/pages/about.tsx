@@ -40,16 +40,46 @@ const values = [
 
 const teamMembers = [
   {
-    name: "Екипът на Pravdast",
-    role: "Консултанти по системи за растеж",
-    description:
-      "Специалисти с над 3 години опит в изграждането на автоматизирани системи за растеж в различни индустрии.",
-    expertise: [
-      "Бизнес инженеринг",
-      "Системна автоматизация",
-      "Данни и анализи",
-      "Процесна оптимизация",
-    ],
+    id: "simo",
+    name: "Симеон Сираков",
+    role: "Бизнес директор",
+    image: "/attached_assets/simo_1751267493118.webp",
+    description: "Ръководи стратегическото развитие и бизнес операциите на агенцията.",
+  },
+  {
+    id: "tomi",
+    name: "Томи Сапунджиев",
+    role: "Креативен директор",
+    image: "/attached_assets/tomi_1751267493117.webp",
+    description: "Отговаря за креативната визия и дизайн стратегията на проектите.",
+  },
+  {
+    id: "jivko",
+    name: "Живомир Арнаудов",
+    role: "Програмен мениджър",
+    image: "/attached_assets/jivko_1751267493117.png",
+    description: "Управлява техническите проекти и координира развойните процеси.",
+  },
+  {
+    id: "koko",
+    name: "Калоян Богданов",
+    role: "AI девелопър",
+    image: "/attached_assets/koko_1751267493116.png",
+    description: "Специализира в изкуствен интелект и автоматизация на бизнес процеси.",
+  },
+  {
+    id: "viki",
+    name: "Виктория Петрова",
+    role: "Маркетинг експерт",
+    image: "/attached_assets/viki-email-marketing_1751267493116.webp",
+    description: "Експерт по дигитален маркетинг и имейл кампании за растеж.",
+  },
+  {
+    id: "petio",
+    name: "Петър Петров",
+    role: "SEO експерт",
+    image: "/attached_assets/petio-seo_1751267493115.png",
+    description: "Специалист по органично позициониране и SEO оптимизация.",
   },
 ];
 
@@ -411,44 +441,45 @@ export default function About() {
               </p>
             </motion.div>
 
-            <div className="max-w-4xl mx-auto">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
               {teamMembers.map((member, index) => (
                 <motion.div
-                  key={index}
+                  key={member.id}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: index * 0.2 }}
+                  transition={{ duration: 0.8, delay: index * 0.1 }}
                   viewport={{ once: true }}
                 >
-                  <Card className="bg-slate-800/50 border-slate-700 hover:border-[#ECB629]/50 transition-all duration-300 group">
-                    <CardContent className="p-8 text-center">
-                      <div className="relative inline-block mb-6">
-                        <Users className="w-16 h-16 text-[#ECB629] mx-auto group-hover:scale-110 transition-transform duration-300" />
-                        <motion.div
-                          className="absolute inset-0 bg-[#ECB629] rounded-full opacity-20 scale-150"
-                          animate={{ scale: [1.5, 1.8, 1.5] }}
-                          transition={{ duration: 2, repeat: Infinity }}
-                        />
+                  <Card className="bg-slate-800/50 border-slate-700 hover:border-[#ECB629]/50 transition-all duration-300 group h-full">
+                    {/* Hover Glow Effect */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-[#ECB629]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
+                    
+                    <CardContent className="p-6 text-center relative z-10">
+                      {/* Profile Image */}
+                      <div className="relative mb-4">
+                        <div className="w-24 h-24 mx-auto mb-4 relative">
+                          <img
+                            src={member.image}
+                            alt={member.name}
+                            className="w-full h-full rounded-full object-cover border-3 border-[#ECB629]/30 group-hover:border-[#ECB629] transition-all duration-300"
+                          />
+                          <motion.div
+                            className="absolute inset-0 rounded-full bg-[#ECB629]/20 opacity-0 group-hover:opacity-100"
+                            animate={{ scale: [1, 1.1, 1] }}
+                            transition={{ duration: 2, repeat: Infinity }}
+                          />
+                        </div>
                       </div>
 
-                      <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-[#ECB629] transition-colors">
+                      <h3 className="text-xl font-bold text-white mb-1 group-hover:text-[#ECB629] transition-colors">
                         {member.name}
                       </h3>
-                      <p className="text-[#ECB629] font-medium mb-4">
+                      <p className="text-[#ECB629] font-medium mb-3 text-sm">
                         {member.role}
                       </p>
-                      <p className="text-gray-300 mb-6">{member.description}</p>
-
-                      <div className="flex flex-wrap gap-2 justify-center">
-                        {member.expertise.map((skill, skillIndex) => (
-                          <span
-                            key={skillIndex}
-                            className="px-3 py-1 bg-slate-700/50 text-gray-300 text-sm rounded-full"
-                          >
-                            {skill}
-                          </span>
-                        ))}
-                      </div>
+                      <p className="text-gray-300 text-sm leading-relaxed">
+                        {member.description}
+                      </p>
                     </CardContent>
                   </Card>
                 </motion.div>
