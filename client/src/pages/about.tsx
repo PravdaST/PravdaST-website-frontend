@@ -17,6 +17,14 @@ import {
 import { SEOHead } from "@/components/seo-head";
 import { pageSEOData } from "@/data/seo-pages";
 
+// Import team member images
+import simoImage from "@assets/simo_1751267493118.webp";
+import tomiImage from "@assets/tomi_1751267493117.webp";
+import jivkoImage from "@assets/jivko_1751267493117.png";
+import kokoImage from "@assets/koko_1751267493116.png";
+import vikiImage from "@assets/viki-email-marketing_1751267493116.webp";
+import petioImage from "@assets/petio-seo_1751267493115.png";
+
 const values = [
   {
     icon: Target,
@@ -43,42 +51,42 @@ const teamMembers = [
     id: "simo",
     name: "Симеон Сираков",
     role: "Бизнес директор",
-    image: "/attached_assets/simo_1751267493118.webp",
+    image: simoImage,
     description: "Ръководи стратегическото развитие и бизнес операциите на агенцията.",
   },
   {
     id: "tomi",
     name: "Томи Сапунджиев",
     role: "Креативен директор",
-    image: "/attached_assets/tomi_1751267493117.webp",
+    image: tomiImage,
     description: "Отговаря за креативната визия и дизайн стратегията на проектите.",
   },
   {
     id: "jivko",
     name: "Живомир Арнаудов",
     role: "Програмен мениджър",
-    image: "/attached_assets/jivko_1751267493117.png",
+    image: jivkoImage,
     description: "Управлява техническите проекти и координира развойните процеси.",
   },
   {
     id: "koko",
     name: "Калоян Богданов",
     role: "AI девелопър",
-    image: "/attached_assets/koko_1751267493116.png",
+    image: kokoImage,
     description: "Специализира в изкуствен интелект и автоматизация на бизнес процеси.",
   },
   {
     id: "viki",
     name: "Виктория Петрова",
     role: "Маркетинг експерт",
-    image: "/attached_assets/viki-email-marketing_1751267493116.webp",
+    image: vikiImage,
     description: "Експерт по дигитален маркетинг и имейл кампании за растеж.",
   },
   {
     id: "petio",
     name: "Петър Петров",
     role: "SEO експерт",
-    image: "/attached_assets/petio-seo_1751267493115.png",
+    image: petioImage,
     description: "Специалист по органично позициониране и SEO оптимизация.",
   },
 ];
