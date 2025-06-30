@@ -22,7 +22,7 @@ export const Navigation = () => {
   const navItems = [
     { href: "/", label: "Начало" },
     { href: "/services", label: "Услуги" },
-    {/* href: "/calculators", label: "Калкулатори" */},
+    { href: "/calculators", label: "Калкулатори" },
     { href: "/case-studies", label: "Резултати" },
     { href: "/blog", label: "Блог" },
     { href: "/about", label: "За нас" },
@@ -40,14 +40,17 @@ export const Navigation = () => {
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0">
           {/* Navigation Grid Pattern */}
-          <div className="absolute inset-0" style={{
-            backgroundImage: `
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `
               linear-gradient(90deg, rgba(236, 182, 40, 0.1) 1px, transparent 1px),
               linear-gradient(rgba(236, 182, 40, 0.1) 1px, transparent 1px)
             `,
-            backgroundSize: '30px 30px'
-          }}></div>
-          
+              backgroundSize: "30px 30px",
+            }}
+          ></div>
+
           {/* Status Indicators */}
           {[...Array(8)].map((_, i) => (
             <motion.div
@@ -55,7 +58,7 @@ export const Navigation = () => {
               className="absolute w-1 h-1 bg-[#ECB629] rounded-full"
               style={{
                 left: `${10 + i * 12}%`,
-                top: '50%',
+                top: "50%",
               }}
               animate={{
                 opacity: [0.3, 1, 0.3],
@@ -119,7 +122,7 @@ export const Navigation = () => {
                 </Link>
               </motion.div>
             ))}
-            
+
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -130,13 +133,20 @@ export const Navigation = () => {
               <Button
                 className="bg-[#ECB629] text-black hover:bg-[#ECB629]/90 font-semibold relative overflow-hidden group"
                 onClick={() => {
-                  window.open("https://form.typeform.com/to/GXLaGY98", "_blank");
+                  window.open(
+                    "https://form.typeform.com/to/GXLaGY98",
+                    "_blank",
+                  );
                 }}
               >
                 <motion.div
                   className="absolute inset-0 bg-gradient-to-r from-[#ECB629] via-white to-[#ECB629] opacity-0 group-hover:opacity-20"
-                  animate={{ x: ['-100%', '100%'] }}
-                  transition={{ duration: 1.5, repeat: Infinity, repeatType: 'loop' }}
+                  animate={{ x: ["-100%", "100%"] }}
+                  transition={{
+                    duration: 1.5,
+                    repeat: Infinity,
+                    repeatType: "loop",
+                  }}
                 />
                 <span className="relative z-10">ЗАПОЧНЕТЕ СЕГА</span>
               </Button>
