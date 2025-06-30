@@ -47,28 +47,32 @@ const teamMembers = [
     name: "Симеон Сираков",
     role: "Бизнес директор",
     image: "/team-simo.webp",
-    description: "Ръководи стратегическото развитие и бизнес операциите на агенцията.",
+    description:
+      "Ръководи стратегическото развитие и бизнес операциите на агенцията.",
   },
   {
     id: "tomi",
     name: "Томи Сапунджиев",
     role: "Креативен директор",
     image: "/team-tomi.webp",
-    description: "Отговаря за креативната визия и дизайн стратегията на проектите.",
+    description:
+      "Отговаря за креативната визия и дизайн стратегията на проектите.",
   },
   {
     id: "jivko",
     name: "Живомир Арнаудов",
     role: "Програмен мениджър",
     image: "/team-jivko.png",
-    description: "Управлява техническите проекти и координира развойните процеси.",
+    description:
+      "Управлява техническите проекти и координира развойните процеси.",
   },
   {
     id: "koko",
     name: "Калоян Богданов",
     role: "AI девелопър",
-    image: "/team-koko.png",
-    description: "Специализира в изкуствен интелект и автоматизация на бизнес процеси.",
+    image: "public/team-koko.png",
+    description:
+      "Специализира в изкуствен интелект и автоматизация на бизнес процеси.",
   },
   {
     id: "viki",
@@ -456,7 +460,7 @@ export default function About() {
                   <Card className="bg-slate-800/50 border-slate-700 hover:border-[#ECB629]/50 transition-all duration-300 group h-full">
                     {/* Hover Glow Effect */}
                     <div className="absolute inset-0 bg-gradient-to-r from-[#ECB629]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
-                    
+
                     <CardContent className="p-6 text-center relative z-10">
                       {/* Profile Image */}
                       <div className="relative mb-4">
@@ -575,7 +579,7 @@ export default function About() {
                   <span>Започнете сега</span>
                   <ArrowRight className="w-5 h-5" />
                 </motion.a>
-                
+
                 <motion.a
                   href="tel:+359879282299"
                   className="inline-flex items-center gap-3 border-2 border-black text-black px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-300 hover:bg-black hover:text-white"
