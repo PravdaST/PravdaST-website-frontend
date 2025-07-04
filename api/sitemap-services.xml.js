@@ -5,35 +5,23 @@ export default async function handler(req, res) {
     const sitemapContent = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
    <url>
-      <loc>${baseUrl}/</loc>
+      <loc>${baseUrl}/services</loc>
       <lastmod>2025-06-30</lastmod>
    </url>
    <url>
-      <loc>${baseUrl}/about</loc>
+      <loc>${baseUrl}/services/seo-struktor</loc>
       <lastmod>2025-06-30</lastmod>
    </url>
    <url>
-      <loc>${baseUrl}/case-studies</loc>
+      <loc>${baseUrl}/services/clickstarter</loc>
       <lastmod>2025-06-30</lastmod>
    </url>
    <url>
-      <loc>${baseUrl}/blog</loc>
+      <loc>${baseUrl}/services/trendlab</loc>
       <lastmod>2025-06-30</lastmod>
    </url>
    <url>
-      <loc>${baseUrl}/contact</loc>
-      <lastmod>2025-06-30</lastmod>
-   </url>
-   <url>
-      <loc>${baseUrl}/faq</loc>
-      <lastmod>2025-06-30</lastmod>
-   </url>
-   <url>
-      <loc>${baseUrl}/terms</loc>
-      <lastmod>2025-06-30</lastmod>
-   </url>
-   <url>
-      <loc>${baseUrl}/privacy</loc>
+      <loc>${baseUrl}/services/clientomat</loc>
       <lastmod>2025-06-30</lastmod>
    </url>
 </urlset>`;
@@ -42,7 +30,7 @@ export default async function handler(req, res) {
     res.setHeader('Cache-Control', 'public, max-age=86400');
     res.send(sitemapContent);
   } catch (error) {
-    console.error('Sitemap generation error:', error);
-    res.status(500).send('Error generating sitemap');
+    console.error('Services sitemap generation error:', error);
+    res.status(500).send('Error generating services sitemap');
   }
 }

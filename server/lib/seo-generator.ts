@@ -9,42 +9,38 @@ export class SEOGenerator {
   // Генерира Google-оптимизиран XML sitemap (2024 стандарти)
   generateSitemap(): string {
     const pages = [
-      // Главна страница (последно обновена)
-      { url: '/', lastmod: '2025-06-28' },
+      // Главна страница
+      { url: '/', lastmod: '2025-06-30' },
       
-      // Услуги (обновени с SEO корекции)
-      { url: '/services', lastmod: '2025-06-28' },
-      { url: '/services/seo-struktor', lastmod: '2025-06-28' },
-      { url: '/services/clickstarter', lastmod: '2025-06-27' },
-      { url: '/services/trendlab', lastmod: '2025-06-27' },
-      { url: '/services/clientomat', lastmod: '2025-06-25' },
+      // Услуги страници
+      { url: '/services', lastmod: '2025-06-30' },
+      { url: '/services/seo-struktor', lastmod: '2025-06-30' },
+      { url: '/services/clickstarter', lastmod: '2025-06-30' },
+      { url: '/services/trendlab', lastmod: '2025-06-30' },
+      { url: '/services/clientomat', lastmod: '2025-06-30' },
       
-      // Важни страници за конверсии
-      { url: '/contact', lastmod: '2025-06-25' },
-      { url: '/calculators', lastmod: '2025-06-27' },
-      { url: '/blog', lastmod: '2025-06-25' },
-      
-      // Информационни страници
-      { url: '/case-studies', lastmod: '2025-06-22' },
-      { url: '/about', lastmod: '2025-06-28' },
-      { url: '/faq', lastmod: '2025-06-27' },
+      // Основни страници
+      { url: '/about', lastmod: '2025-06-30' },
+      { url: '/case-studies', lastmod: '2025-06-30' },
+      { url: '/blog', lastmod: '2025-06-30' },
+      { url: '/contact', lastmod: '2025-06-30' },
+      { url: '/faq', lastmod: '2025-06-30' },
       
       // Правни страници
-      { url: '/terms', lastmod: '2025-06-27' },
-      { url: '/privacy', lastmod: '2025-06-27' }
+      { url: '/terms', lastmod: '2025-06-30' },
+      { url: '/privacy', lastmod: '2025-06-30' }
     ];
 
-    // Модерен XML sitemap според Google 2024 стандарти
-    // Google игнорира <priority> и <changefreq> от 2023г.
+    // XML sitemap според sitemaps.org стандарти 2025
     let sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`;
 
     pages.forEach(page => {
       sitemap += `
-  <url>
-    <loc>${this.baseUrl}${page.url}</loc>
-    <lastmod>${page.lastmod}</lastmod>
-  </url>`;
+   <url>
+      <loc>${this.baseUrl}${page.url}</loc>
+      <lastmod>${page.lastmod}</lastmod>
+   </url>`;
     });
 
     sitemap += `
