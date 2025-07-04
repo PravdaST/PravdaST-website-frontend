@@ -9,6 +9,26 @@ export default async function handler(req, res) {
       <lastmod>2025-06-30</lastmod>
    </url>
    <url>
+      <loc>${baseUrl}/services</loc>
+      <lastmod>2025-06-30</lastmod>
+   </url>
+   <url>
+      <loc>${baseUrl}/services/seo-struktor</loc>
+      <lastmod>2025-06-30</lastmod>
+   </url>
+   <url>
+      <loc>${baseUrl}/services/clickstarter</loc>
+      <lastmod>2025-06-30</lastmod>
+   </url>
+   <url>
+      <loc>${baseUrl}/services/trendlab</loc>
+      <lastmod>2025-06-30</lastmod>
+   </url>
+   <url>
+      <loc>${baseUrl}/services/clientomat</loc>
+      <lastmod>2025-06-30</lastmod>
+   </url>
+   <url>
       <loc>${baseUrl}/about</loc>
       <lastmod>2025-06-30</lastmod>
    </url>
@@ -27,6 +47,10 @@ export default async function handler(req, res) {
    <url>
       <loc>${baseUrl}/faq</loc>
       <lastmod>2025-06-30</lastmod>
+   </url>
+   <url>
+      <loc>${baseUrl}/blog/biznes-inzhenering-haos-v-predskazuem-rastezh</loc>
+      <lastmod>2025-06-29</lastmod>
    </url>
    <url>
       <loc>${baseUrl}/terms</loc>
