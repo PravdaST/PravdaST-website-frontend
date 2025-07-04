@@ -26,6 +26,9 @@ export class SEOGenerator {
       { url: '/contact', lastmod: '2025-06-30' },
       { url: '/faq', lastmod: '2025-06-30' },
       
+      // Блог публикации
+      { url: '/blog/biznes-inzhenering-haos-v-predskazuem-rastezh', lastmod: '2025-06-29' },
+      
       // Правни страници
       { url: '/terms', lastmod: '2025-06-30' },
       { url: '/privacy', lastmod: '2025-06-30' }
