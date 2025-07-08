@@ -86,7 +86,7 @@ export default function ContactNew() {
     {
       icon: <Mail className="w-6 h-6" />,
       title: "Имейл",
-      value: "contact@pravdagency.eu",
+      value: "contact@pravda.agency",
       subtitle: "Отговаряме в рамките на 24 часа",
       color: "text-[#ECB629]",
     },
