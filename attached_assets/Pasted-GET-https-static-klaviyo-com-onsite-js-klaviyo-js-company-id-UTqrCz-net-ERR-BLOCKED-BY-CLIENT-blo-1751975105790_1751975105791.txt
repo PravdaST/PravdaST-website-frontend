@@ -1,0 +1,66 @@
+GET https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=UTqrCz net::ERR_BLOCKED_BY_CLIENT
+blog:53  GET https://analytics.ahrefs.com/analytics.js net::ERR_BLOCKED_BY_CLIENT
+index-B-nqv0Bu.js:531 Klaviyo: Company ID not configured, skipping load
+index-B-nqv0Bu.js:531 Klaviyo: Company ID UTqrCz configured, script loading...
+contentScript.js:1 content boot.
+index-B-nqv0Bu.js:49  GET https://www.pravdagency.eu/api/blog/posts 404 (Not Found)
+(anonymous) @ index-B-nqv0Bu.js:49
+a @ index-B-nqv0Bu.js:49
+j @ index-B-nqv0Bu.js:49
+start @ index-B-nqv0Bu.js:49
+fetch @ index-B-nqv0Bu.js:49
+Oo @ index-B-nqv0Bu.js:49
+onSubscribe @ index-B-nqv0Bu.js:49
+subscribe @ index-B-nqv0Bu.js:49
+(anonymous) @ index-B-nqv0Bu.js:49
+Uw @ index-B-nqv0Bu.js:39
+ju @ index-B-nqv0Bu.js:41
+ja @ index-B-nqv0Bu.js:41
+Og @ index-B-nqv0Bu.js:41
+Kr @ index-B-nqv0Bu.js:39
+a3 @ index-B-nqv0Bu.js:41
+ti @ index-B-nqv0Bu.js:41
+w1 @ index-B-nqv0Bu.js:41
+C @ index-B-nqv0Bu.js:26
+M @ index-B-nqv0Bu.js:26
+blog:2  GET https://www.pravdagency.eu/sw-simple.js 404 (Not Found)
+navigator.serviceWorker.register @ blog:2
+(anonymous) @ index-B-nqv0Bu.js:477
+blog:2  GET https://www.pravdagency.eu/sw-simple.js 404 (Not Found)
+navigator.serviceWorker.register @ blog:2
+(anonymous) @ blog:190
+manifest.json:1 Manifest: Enctype should be set to either application/x-www-form-urlencoded or multipart/form-data. It currently defaults to application/x-www-form-urlencoded
+A bad HTTP response code (404) was received when fetching the script.
+index-B-nqv0Bu.js:477 SW registration failed:  TypeError: Failed to register a ServiceWorker for scope ('https://www.pravdagency.eu/') with script ('https://www.pravdagency.eu/sw-simple.js'): A bad HTTP response code (404) was received when fetching the script.
+(anonymous) @ index-B-nqv0Bu.js:477
+Promise.catch
+(anonymous) @ index-B-nqv0Bu.js:477
+blog:192 SW registration failed: TypeError: Failed to register a ServiceWorker for scope ('https://www.pravdagency.eu/') with script ('https://www.pravdagency.eu/sw-simple.js'): A bad HTTP response code (404) was received when fetching the script.
+index-B-nqv0Bu.js:49  GET https://www.pravdagency.eu/api/blog/posts 404 (Not Found)
+(anonymous) @ index-B-nqv0Bu.js:49
+a @ index-B-nqv0Bu.js:49
+j @ index-B-nqv0Bu.js:49
+(anonymous) @ index-B-nqv0Bu.js:49
+Promise.then
+(anonymous) @ index-B-nqv0Bu.js:49
+Promise.catch
+j @ index-B-nqv0Bu.js:49
+start @ index-B-nqv0Bu.js:49
+fetch @ index-B-nqv0Bu.js:49
+Oo @ index-B-nqv0Bu.js:49
+onSubscribe @ index-B-nqv0Bu.js:49
+subscribe @ index-B-nqv0Bu.js:49
+(anonymous) @ index-B-nqv0Bu.js:49
+Uw @ index-B-nqv0Bu.js:39
+ju @ index-B-nqv0Bu.js:41
+ja @ index-B-nqv0Bu.js:41
+Og @ index-B-nqv0Bu.js:41
+Kr @ index-B-nqv0Bu.js:39
+a3 @ index-B-nqv0Bu.js:41
+ti @ index-B-nqv0Bu.js:41
+w1 @ index-B-nqv0Bu.js:41
+C @ index-B-nqv0Bu.js:26
+M @ index-B-nqv0Bu.js:26
+index-B-nqv0Bu.js:531 Klaviyo: Company ID UTqrCz configured, script loading...
+blog:1 Uncaught (in promise) Error: A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received
+index-B-nqv0Bu.js:49  GET https://www.pravdagency.eu/api/blog/posts 404 (Not Found)

@@ -1,72 +1,62 @@
-// Simple Service Worker for Pravdast Website
-const CACHE_NAME = 'pravdast-cache-v1';
-const STATIC_ASSETS = [
+// Simple service worker for caching static assets
+const CACHE_NAME = 'pravda-agency-v1';
+const urlsToCache = [
   '/',
-  '/manifest.json',
-  '/favicon-192.png',
-  '/apple-touch-icon.png'
+  '/blog',
+  '/services',
+  '/about',
+  '/contact',
+  '/manifest.json'
 ];
 
-// Install Event
+// Install event - cache resources
 self.addEventListener('install', (event) => {
-  console.log('Service Worker: Install Event');
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then((cache) => {
-        console.log('Service Worker: Caching Static Assets');
-        return cache.addAll(STATIC_ASSETS.map(url => new Request(url, {cache: 'reload'})));
+        return Promise.allSettled(
+          urlsToCache.map(url => 
+            cache.add(url).catch(err => {
+              console.warn(`Failed to cache ${url}:`, err);
+              return null;
+            })
+          )
+        );
       })
-      .catch(error => {
-        console.warn('Service Worker: Cache failed for some assets', error);
-        return Promise.resolve(); // Don't fail completely
+      .catch((error) => {
+        console.error('Service worker install failed:', error);
       })
   );
-  self.skipWaiting();
 });
 
-// Activate Event
+// Fetch event - serve from cache when offline
+self.addEventListener('fetch', (event) => {
+  event.respondWith(
+    caches.match(event.request)
+      .then((response) => {
+        // Return cached version or fetch from network
+        return response || fetch(event.request);
+      })
+      .catch(() => {
+        // If both cache and network fail, return a fallback
+        if (event.request.destination === 'document') {
+          return caches.match('/');
+        }
+      })
+  );
+});
+
+// Activate event - cleanup old caches
 self.addEventListener('activate', (event) => {
-  console.log('Service Worker: Activate Event');
   event.waitUntil(
     caches.keys().then((cacheNames) => {
       return Promise.all(
         cacheNames.map((cacheName) => {
           if (cacheName !== CACHE_NAME) {
-            console.log('Service Worker: Clearing Old Cache');
             return caches.delete(cacheName);
           }
         })
       );
     })
-  );
-  self.clients.claim();
-});
-
-// Fetch Event
-self.addEventListener('fetch', (event) => {
-  // Only handle GET requests
-  if (event.request.method !== 'GET') return;
-  
-  // Skip non-http requests
-  if (!event.request.url.startsWith('http')) return;
-  
-  event.respondWith(
-    fetch(event.request)
-      .then(response => {
-        // If request was successful, clone and cache
-        if (response.status === 200) {
-          const responseClone = response.clone();
-          caches.open(CACHE_NAME)
-            .then(cache => {
-              cache.put(event.request, responseClone);
-            })
-            .catch(() => {}); // Silent fail for cache errors
-        }
-        return response;
-      })
-      .catch(() => {
-        // If network fails, try to serve from cache
-        return caches.match(event.request);
-      })
   );
 });
