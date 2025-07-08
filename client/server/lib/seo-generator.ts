@@ -84,11 +84,8 @@ User-agent: YandexBot
 Allow: /
 Crawl-delay: 3
 
-# XML Sitemaps за Google Search Console
+# XML Sitemap за Google Search Console
 Sitemap: ${this.baseUrl}/sitemap.xml
-Sitemap: ${this.baseUrl}/sitemap-index.xml
-Sitemap: ${this.baseUrl}/blog-sitemap.xml
-Sitemap: ${this.baseUrl}/services-sitemap.xml
 
 # Хост директива
 Host: ${this.baseUrl.replace('https://', '').replace('http://', '')}

@@ -16,13 +16,11 @@ export interface KeywordPerformance {
   position: number;
 }
 
-// Генериране на enhanced sitemap за Search Console
+// Генериране на unified sitemap за Search Console
 export const generateSitemapIndex = () => {
   const baseUrl = 'https://www.pravdagency.eu';
   const sitemaps = [
-    { loc: `${baseUrl}/sitemap.xml`, lastmod: new Date().toISOString() },
-    { loc: `${baseUrl}/blog-sitemap.xml`, lastmod: new Date().toISOString() },
-    { loc: `${baseUrl}/services-sitemap.xml`, lastmod: new Date().toISOString() }
+    { loc: `${baseUrl}/sitemap.xml`, lastmod: new Date().toISOString() }
   ];
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>

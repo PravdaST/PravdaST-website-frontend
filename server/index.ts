@@ -26,120 +26,24 @@ app.get("/sitemap.xml", async (req, res) => {
   }
 });
 
-// Специализирани sitemap файлове за Google Search Console
-app.get("/blog-sitemap.xml", async (req, res) => {
-  try {
-    // Блог sitemap с всички статии
-    const baseUrl = 'https://www.pravdagency.eu';
-    const blogPosts = [
-      {
-        slug: 'predskazuem-rastezh-b2b-kompanii',
-        lastmod: '2024-12-15',
-        priority: '0.8',
-        changefreq: 'monthly'
-      },
-      {
-        slug: 'seo-struktor-revolutsionen-podhod', 
-        lastmod: '2024-12-10',
-        priority: '0.8',
-        changefreq: 'monthly'
-      },
-      {
-        slug: 'clientomat-avtomatiziran-sistem',
-        lastmod: '2024-12-05',
-        priority: '0.8', 
-        changefreq: 'monthly'
-      },
-      {
-        slug: 'sales-engine-prodazhbi-sistema',
-        lastmod: '2024-12-01',
-        priority: '0.8',
-        changefreq: 'monthly'
-      },
-      {
-        slug: 'biznes-inzhenering-budeshte',
-        lastmod: '2024-11-25',
-        priority: '0.8',
-        changefreq: 'monthly'
-      }
-    ];
-
-    const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>${baseUrl}/blog</loc>
-    <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>
-  </url>
-${blogPosts.map(post => `  <url>
-    <loc>${baseUrl}/blog/${post.slug}</loc>
-    <lastmod>${post.lastmod}</lastmod>
-  </url>`).join('\n')}
-</urlset>`;
-    
-    res.setHeader('Content-Type', 'text/xml; charset=utf-8');
-    res.setHeader('Cache-Control', 'public, max-age=86400');
-    res.send(xml);
-  } catch (error) {
-    console.error('Blog sitemap generation error:', error);
-    res.status(500).send('Error generating blog sitemap');
-  }
+// Sitemap route използва SEOGenerator класа
+// Explicit 404 routes за legacy sitemap URLs  
+app.get("/blog-sitemap.xml", (req, res) => {
+  res.status(404).send('Not Found');
 });
 
-app.get("/services-sitemap.xml", async (req, res) => {
-  try {
-    // Услуги sitemap (Google 2024 стандарти)
-    const baseUrl = 'https://www.pravdagency.eu';
-    const services = [
-      { slug: 'services', lastmod: '2025-06-28' },
-      { slug: 'services/seo-struktor', lastmod: '2025-06-28' },
-      { slug: 'services/clickstarter', lastmod: '2025-06-27' },
-      { slug: 'services/trendlab', lastmod: '2025-06-27' },
-      { slug: 'services/clientomat', lastmod: '2025-06-25' }
-    ];
-
-    const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${services.map(service => `  <url>
-    <loc>${baseUrl}/${service.slug}</loc>
-    <lastmod>${service.lastmod}</lastmod>
-  </url>`).join('\n')}
-</urlset>`;
-    
-    res.setHeader('Content-Type', 'text/xml; charset=utf-8');
-    res.setHeader('Cache-Control', 'public, max-age=86400');
-    res.send(xml);
-  } catch (error) {
-    console.error('Services sitemap generation error:', error);
-    res.status(500).send('Error generating services sitemap');
-  }
+app.get("/services-sitemap.xml", (req, res) => {
+  res.status(404).send('Not Found');
 });
 
-app.get("/sitemap-index.xml", async (req, res) => {
-  try {
-    // Sitemap index за Google Search Console
-    const baseUrl = 'https://www.pravdagency.eu';
-    const sitemaps = [
-      { loc: `${baseUrl}/sitemap.xml`, lastmod: new Date().toISOString() },
-      { loc: `${baseUrl}/blog-sitemap.xml`, lastmod: new Date().toISOString() },
-      { loc: `${baseUrl}/services-sitemap.xml`, lastmod: new Date().toISOString() }
-    ];
-
-    const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${sitemaps.map(sitemap => `  <sitemap>
-    <loc>${sitemap.loc}</loc>
-    <lastmod>${sitemap.lastmod}</lastmod>
-  </sitemap>`).join('\n')}
-</sitemapindex>`;
-    
-    res.setHeader('Content-Type', 'text/xml; charset=utf-8');
-    res.setHeader('Cache-Control', 'public, max-age=86400');
-    res.send(xml);
-  } catch (error) {
-    console.error('Sitemap index generation error:', error);
-    res.status(500).send('Error generating sitemap index');
-  }
+app.get("/sitemap-index.xml", (req, res) => {
+  res.status(404).send('Not Found');
 });
+
+
+
+
+
 
 // Security middleware (след sitemap route)
 app.use(helmet({
