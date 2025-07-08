@@ -48,7 +48,7 @@ const contactInfo = [
     icon: Phone,
     title: "Телефон",
     info: "+359 879 282 299",
-    description: "Работни дни: 9:00 - 18:00",
+    description: "Работни дни: 9:00 - 18:01",
   },
   {
     icon: MapPin,
