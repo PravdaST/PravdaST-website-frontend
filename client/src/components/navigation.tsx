@@ -145,7 +145,7 @@ export const Navigation = () => {
                     {/* Dropdown Menu */}
                     <div
                       className="absolute top-full left-0 pt-2"
-                      style={{ zIndex: 99999 }}
+                      style={{ zIndex: 999999 }}
                     >
                       {isServicesDropdownOpen && (
                         <motion.div
