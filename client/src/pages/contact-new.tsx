@@ -131,7 +131,7 @@ export default function ContactNew() {
           />
         </div>
 
-        <div className="relative z-10 pt-10 sm:pt-24 pb-8 sm:pb-12">
+        <div className="relative z-1 pt-10 sm:pt-24 pb-8 sm:pb-12">
           <div className="container mx-auto px-4 sm:px-6 max-w-7xl">
             {/* Header */}
             <div className="text-center mb-12 sm:mb-16">
