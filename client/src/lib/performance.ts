@@ -198,14 +198,14 @@ export function inlineCriticalCSS() {
 
 // Service Worker registration
 export function registerServiceWorker() {
-  if ('serviceWorker' in navigator && process.env.NODE_ENV === 'production') {
+  if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/sw.js')
+      navigator.serviceWorker.register('/sw-simple.js')
         .then((registration) => {
           console.log('SW registered: ', registration);
         })
         .catch((registrationError) => {
-          console.log('SW registration failed: ', registrationError);
+          console.warn('SW registration failed: ', registrationError);
         });
     });
   }
