@@ -162,7 +162,7 @@ export default function Blog() {
             </div>
           </div>
 
-          <div className="container mx-auto px-6 relative z-10">
+          <div className="container mx-auto px-6 relative z-1">
             <motion.div
               className="max-w-4xl mx-auto text-center"
               initial={{ opacity: 0, y: 30 }}
@@ -278,7 +278,7 @@ export default function Blog() {
             <div className="absolute bottom-1/4 right-1/4 w-48 h-48 bg-blue-500 rounded-full blur-3xl"></div>
           </div>
 
-          <div className="container mx-auto px-6 relative z-10">
+          <div className="container mx-auto px-6 relative z-1">
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {filteredPosts.map((post, index) => (
                 <motion.div
@@ -292,7 +292,7 @@ export default function Blog() {
                     {/* Hover Glow Effect */}
                     <div className="absolute inset-0 bg-gradient-to-r from-[#ECB629]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 
-                    <CardContent className="p-6 relative z-10 h-full flex flex-col">
+                    <CardContent className="p-6 relative z-1 h-full flex flex-col">
                       {/* Category Badge */}
                       <motion.div
                         className="mb-4"

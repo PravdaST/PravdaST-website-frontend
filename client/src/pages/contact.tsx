@@ -192,7 +192,7 @@ export default function Contact() {
             ))}
           </div>
 
-          <div className="container mx-auto px-6 relative z-10">
+          <div className="container mx-auto px-6 relative z-1">
             <div className="grid lg:grid-cols-2 gap-16 items-center max-w-7xl mx-auto">
               {/* Left Content */}
               <motion.div

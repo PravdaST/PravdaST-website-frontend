@@ -161,7 +161,7 @@ export default function CaseStudies() {
             </div>
           </div>
 
-          <div className="container mx-auto px-6 relative z-10">
+          <div className="container mx-auto px-6 relative z-1">
             <motion.div
               className="max-w-4xl mx-auto text-center"
               initial={{ opacity: 0, y: 30 }}
@@ -268,7 +268,7 @@ export default function CaseStudies() {
             <div className="absolute bottom-1/4 right-1/4 w-48 h-48 bg-green-500 rounded-full blur-3xl"></div>
           </div>
 
-          <div className="container mx-auto px-6 relative z-10">
+          <div className="container mx-auto px-6 relative z-1">
             <div className="space-y-16">
               {caseStudies.map((study, index) => (
                 <motion.div
@@ -282,7 +282,7 @@ export default function CaseStudies() {
                     {/* Hover Glow Effect */}
                     <div className="absolute inset-0 bg-gradient-to-r from-[#ECB629]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 
-                    <CardContent className="p-0 relative z-10">
+                    <CardContent className="p-0 relative z-1">
                       <div className="grid lg:grid-cols-2 gap-0">
                         {/* Content */}
                         <div className="p-8 lg:p-12">
@@ -391,7 +391,7 @@ export default function CaseStudies() {
                             ></div>
                           </div>
 
-                          <div className="w-full relative z-10">
+                          <div className="w-full relative z-1">
                             <motion.h4
                               className="text-xl font-bold text-white mb-6 text-center"
                               initial={{ opacity: 0, y: 20 }}
@@ -466,7 +466,7 @@ export default function CaseStudies() {
             ))}
           </div>
 
-          <div className="container mx-auto px-6 text-center relative z-10">
+          <div className="container mx-auto px-6 text-center relative z-1">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}

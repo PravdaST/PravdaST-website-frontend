@@ -178,7 +178,7 @@ export default function About() {
             </div>
           </div>
 
-          <div className="container mx-auto px-6 relative z-10">
+          <div className="container mx-auto px-6 relative z-1">
             <motion.div
               className="max-w-4xl mx-auto text-center"
               initial={{ opacity: 0, y: 30 }}
@@ -278,7 +278,7 @@ export default function About() {
             <div className="absolute bottom-1/4 right-1/4 w-48 h-48 bg-blue-500 rounded-full blur-3xl"></div>
           </div>
 
-          <div className="container mx-auto px-6 relative z-10">
+          <div className="container mx-auto px-6 relative z-1">
             <motion.div
               className="text-center mb-16"
               initial={{ opacity: 0, y: 30 }}
@@ -321,7 +321,7 @@ export default function About() {
                     {/* Hover Glow Effect */}
                     <div className="absolute inset-0 bg-gradient-to-r from-[#ECB629]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 
-                    <CardContent className="p-8 relative z-10 text-center">
+                    <CardContent className="p-8 relative z-1 text-center">
                       <div className="relative">
                         <value.icon className="w-12 h-12 text-[#ECB629] mb-4 mx-auto group-hover:scale-110 transition-transform duration-300" />
                         <motion.div
@@ -349,7 +349,7 @@ export default function About() {
 
         {/* Timeline Section */}
         <section className="py-20 bg-slate-800/30 relative">
-          <div className="container mx-auto px-6 relative z-10">
+          <div className="container mx-auto px-6 relative z-1">
             <motion.div
               className="text-center mb-16"
               initial={{ opacity: 0, y: 30 }}
@@ -431,7 +431,7 @@ export default function About() {
 
         {/* Team Section */}
         <section className="py-20 relative">
-          <div className="container mx-auto px-6 relative z-10">
+          <div className="container mx-auto px-6 relative z-1">
             <motion.div
               className="text-center mb-16"
               initial={{ opacity: 0, y: 30 }}
@@ -461,7 +461,7 @@ export default function About() {
                     {/* Hover Glow Effect */}
                     <div className="absolute inset-0 bg-gradient-to-r from-[#ECB629]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
 
-                    <CardContent className="p-6 text-center relative z-10">
+                    <CardContent className="p-6 text-center relative z-1">
                       {/* Profile Image */}
                       <div className="relative mb-4">
                         <div className="w-24 h-24 mx-auto mb-4 relative">
@@ -497,7 +497,7 @@ export default function About() {
 
         {/* CTA Section */}
         <section className="py-20 bg-[#ECB629] relative overflow-hidden">
-          <div className="container mx-auto px-6 text-center relative z-10">
+          <div className="container mx-auto px-6 text-center relative z-1">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
