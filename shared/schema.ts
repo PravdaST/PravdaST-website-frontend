@@ -33,7 +33,6 @@ export const blogPosts = pgTable("blog_posts", {
   category: text("category").notNull(),
   tags: text("tags").array().default([]),
   isPublished: boolean("is_published").default(false).notNull(),
-  authorId: integer("author_id").notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });
@@ -104,7 +103,6 @@ export const insertBlogPostSchema = createInsertSchema(blogPosts).pick({
   category: true,
   tags: true,
   isPublished: true,
-  authorId: true,
 });
 
 export const insertAdminSessionSchema = createInsertSchema(adminSessions).pick({

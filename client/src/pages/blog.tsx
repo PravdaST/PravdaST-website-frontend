@@ -9,6 +9,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { pageSEOData } from "@/data/seo-pages";
+import { useQuery } from "@tanstack/react-query";
+import { BlogPost } from "@shared/schema";
 import {
   Calendar,
   Clock,
@@ -22,8 +24,9 @@ import {
 } from "lucide-react";
 import { motion } from "framer-motion";
 
-interface BlogPost {
-  id: string;
+// Blog post interface for frontend display
+interface BlogPostDisplay {
+  id: number;
   title: string;
   excerpt: string;
   content: string;
@@ -36,72 +39,40 @@ interface BlogPost {
   featuredImage?: string;
 }
 
-// Български блог постове за бизнес инженерство
-const blogPosts: BlogPost[] = [
-  {
-    id: "7",
-    title: "Бизнес инженеринг: Как да превърнете хаоса в предсказуем растеж",
-    excerpt:
-      "Открийте как бизнес инженерингът може да трансформира хаоса във вашия бизнес в предсказуем растеж. Научете за оптимизация на процеси, предсказуем растеж и конкурентно предимство.",
-    content: `
-В днешния динамичен бизнес свят, много компании се сблъскват с предизвикателството да поддържат стабилен растеж и да управляват ефективно своите операции. Често пъти, това, което изглежда като спорадични успехи или случайни провали, всъщност е резултат от липсата на стратегически подход към управлението на бизнеса.
-
-## Какво е бизнес инженеринг?
-
-Бизнес инженерингът не е просто модна дума, а стратегически подход, който трансформира начина, по който една организация функционира. Той включва систематичен анализ на съществуващите процеси, идентифициране на неефективности и възможности за подобрение, и проектиране на нови системи, които могат да доведат до по-добри резултати.
-
-В основата на бизнес инженеринга стои идеята, че бизнесът, подобно на сложна машина, може да бъде проектиран и оптимизиран за максимална производителност. Това включва всичко – от начина, по който се управляват взаимоотношенията с клиентите, до вътрешните операции и дори стратегическото планиране.
-
-## Защо е важен бизнес инженерингът за вашия бизнес?
-
-Много бизнеси разчитат на интуиция, късмет или ad-hoc решения, което води до нестабилни резултати. Бизнес инженерингът предлага алтернатива – път към **контрол и предвидимост**. Ето няколко ключови причини, поради които този подход е от съществено значение:
-
-1. **Оптимизация на процесите:** Чрез детайлен анализ и препроектиране, бизнес инженерингът елиминира излишните стъпки, намалява разходите и повишава ефективността. Това води до по-бързо изпълнение на задачите и по-високо качество на продуктите или услугите.
-
-2. **Предсказуем растеж:** Когато процесите са стандартизирани и измерими, става възможно да се прогнозират резултатите с по-голяма точност. Това позволява на бизнеса да планира по-добре, да инвестира разумно и да мащабира операциите си без риск от претоварване или срив.
-
-3. **Подобрено вземане на решения:** Бизнес инженерингът предоставя ясни данни и метрики, които подкрепят информираното вземане на решения. Вместо да се разчита на догадки, мениджърите могат да базират своите стратегии на конкретни факти и тенденции.
-
-4. **Конкурентно предимство:** Компаниите, които прилагат бизнес инженеринг, са по-гъвкави и адаптивни към промените на пазара. Те могат бързо да реагират на нови възможности и предизвикателства, изпреварвайки конкуренцията.
-
-5. **Повишена удовлетвореност на клиентите:** Оптимизираните процеси водят до по-добро обслужване, по-бърза доставка и по-високо качество, което пряко влияе върху удовлетвореността и лоялността на клиентите.
-
-## Как Pravda Agency може да ви помогне?
-
-В Pravda Agency ние сме **бизнес инженери**. Нашата мисия е да превърнем хаотичния растеж във вашата компания в предвидима система за растеж. Ние не просто предлагаме маркетингови услуги; ние изграждаме цялостни системи, които работят за вас 24/7, носят измерими резултати и осигуряват устойчиво конкурентно предимство.
-
-Нашите специализирани системи включват:
-
-- **[SEO Struktor™](/services/seo-struktor)** - Инженерна система за търсачка оптимизация, която преобразува видимостта ви онлайн чрез структурни подходи
-- **[Clientomat™](/services/clientomat)** - Автоматизирана система за управление на клиентския жизнен цикъл, която превръща интересуващите се в лоялни клиенти
-- **[Clickstarter™](/services/clickstarter)** - Оптимизационна система за онлайн реклами, която максимизира възвращаемостта от всяка инвестиция в реклама
-- **[Trendlab™](/services/trendlab)** - Система за изграждане на авторитет чрез стратегическо създаване на съдържание и позициониране като експерт
-
-Всяка от тези системи е проектирана да работи като инженерно решение - с ясни входни данни, измерими процеси и предвидими резултати. Разгледайте [нашите случаи](/case-studies) от реални клиенти, за да видите как прилагаме принципите на бизнес инженеринга във всеки аспект от работата си.
-
-## Заключение
-
-Бизнес инженерингът е ключът към устойчив и предсказуем растеж в съвременния бизнес пейзаж. Чрез систематично проектиране и оптимизация на процесите, компаниите могат да постигнат по-висока ефективност, да намалят рисковете и да изградят силно конкурентно предимство.
-    `,
+// Transform database BlogPost to frontend BlogPostDisplay
+function transformBlogPost(post: BlogPost): BlogPostDisplay {
+  return {
+    id: post.id,
+    title: post.title,
+    excerpt: post.excerpt,
+    content: post.content,
     author: "Екипът на Pravda Agency",
-    publishedAt: "2025-06-29",
-    readTime: 7,
-    category: "Бизнес инженеринг",
-    slug: "biznes-inzhenering-haos-v-predskazuem-rastezh",
-    tags: ["бизнес инженеринг", "растеж", "оптимизация", "процеси", "систематизация"],
-  },
-];
-
-const categories = [
-  "Всички",
-  "Бизнес инженеринг",
-];
+    publishedAt: post.createdAt.toISOString().split('T')[0],
+    readTime: Math.ceil(post.content.length / 1000), // Estimate reading time
+    category: post.category,
+    slug: post.slug,
+    tags: post.tags || [],
+    featuredImage: undefined
+  };
+}
 
 export default function Blog() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("Всички");
 
-  const filteredPosts = blogPosts.filter((post) => {
+  // Fetch published blog posts from database
+  const { data: blogPosts = [], isLoading, error } = useQuery<BlogPost[]>({
+    queryKey: ["/api/blog/posts"],
+    retry: 2,
+  });
+
+  // Transform posts for frontend display
+  const displayPosts = blogPosts.map(transformBlogPost);
+
+  // Get unique categories from posts
+  const categories = ["Всички", ...new Set(displayPosts.map(post => post.category))];
+
+  const filteredPosts = displayPosts.filter((post) => {
     const matchesSearch =
       post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
       post.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -112,6 +83,28 @@ export default function Blog() {
       selectedCategory === "Всички" || post.category === selectedCategory;
     return matchesSearch && matchesCategory;
   });
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-slate-900 flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-8 h-8 border-4 border-[#ECB629] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-white">Зареждане на блог постове...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-slate-900 flex items-center justify-center">
+        <div className="text-center">
+          <p className="text-red-400 mb-4">Грешка при зареждане на блог постовете</p>
+          <Button onClick={() => window.location.reload()}>Опитай отново</Button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-slate-900">
