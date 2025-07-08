@@ -26,10 +26,7 @@ import {
   Users,
   BarChart3,
   Settings,
-  Calendar,
-  Download,
-  GitBranch,
-  Upload
+  Calendar
 } from "lucide-react";
 
 // Login form schema
@@ -348,50 +345,6 @@ export default function AdminPravdaPage() {
     },
   });
 
-  // Git Export mutation
-  const exportMutation = useMutation({
-    mutationFn: async () => {
-      const response = await fetch('/api/admin/blog/export', {
-        headers: {
-          'Authorization': `Bearer ${token}`,
-        },
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to export blog posts');
-      }
-
-      // Get the JSON data
-      const data = await response.json();
-      
-      // Create and download the file
-      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `blog-posts-export-${new Date().toISOString().split('T')[0]}.json`;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-
-      return data;
-    },
-    onSuccess: (data) => {
-      toast({
-        title: "Git Export успешен",
-        description: `Изтеглени ${data.totalPosts} блог поста (${data.publishedPosts} публикувани)`,
-      });
-    },
-    onError: (error) => {
-      toast({
-        title: "Git Export неуспешен",
-        description: error.message,
-        variant: "destructive",
-      });
-    },
-  });
-
   // Handle form submissions
   const handleLogin = (data: LoginForm) => {
     loginMutation.mutate(data);
@@ -622,33 +575,13 @@ export default function AdminPravdaPage() {
             <div>
               <div className="flex items-center justify-between mb-8">
                 <h2 className="text-3xl font-bold text-white">Blog Posts</h2>
-                <div className="flex gap-3">
-                  <Button
-                    onClick={() => exportMutation.mutate()}
-                    variant="outline"
-                    className="border-slate-600 text-slate-300 hover:bg-slate-700"
-                    disabled={exportMutation.isPending}
-                  >
-                    {exportMutation.isPending ? (
-                      <>
-                        <Upload className="w-4 h-4 mr-2 animate-spin" />
-                        Exporting...
-                      </>
-                    ) : (
-                      <>
-                        <GitBranch className="w-4 h-4 mr-2" />
-                        Git Export
-                      </>
-                    )}
-                  </Button>
-                  <Button
-                    onClick={() => setShowBlogForm(true)}
-                    className="bg-[#ECB629] text-black hover:bg-[#ECB629]/90"
-                  >
-                    <Plus className="w-4 h-4 mr-2" />
-                    New Post
-                  </Button>
-                </div>
+                <Button
+                  onClick={() => setShowBlogForm(true)}
+                  className="bg-[#ECB629] text-black hover:bg-[#ECB629]/90"
+                >
+                  <Plus className="w-4 h-4 mr-2" />
+                  New Post
+                </Button>
               </div>
 
               {showBlogForm && (

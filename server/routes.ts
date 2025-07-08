@@ -175,7 +175,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post("/api/admin/blog/posts", authenticateAdmin, async (req: any, res) => {
     try {
       const { insertBlogPostSchema } = require("@shared/schema");
-      const postData = insertBlogPostSchema.parse(req.body);
+      const postData = insertBlogPostSchema.parse({
+        ...req.body,
+        authorId: req.adminUserId,
+      });
       const post = await storage.createBlogPost(postData);
       res.json({ message: "Blog post created successfully", post });
     } catch (error: any) {
@@ -191,6 +194,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const id = parseInt(req.params.id);
       const updateData = req.body;
+      delete updateData.authorId; // Don't allow changing author
       
       const post = await storage.updateBlogPost(id, updateData);
       res.json({ message: "Blog post updated successfully", post });
@@ -233,37 +237,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error: any) {
       console.error("Error unpublishing blog post:", error);
       res.status(500).json({ message: "Failed to unpublish blog post" });
-    }
-  });
-
-  // Git Export endpoint for blog posts
-  app.get("/api/admin/blog/export", authenticateAdmin, async (req, res) => {
-    try {
-      const posts = await storage.getAllBlogPosts();
-      const exportData = {
-        posts: posts.map(post => ({
-          id: post.id,
-          title: post.title,
-          slug: post.slug,
-          excerpt: post.excerpt,
-          content: post.content,
-          category: post.category,
-          tags: post.tags,
-          isPublished: post.isPublished,
-          createdAt: post.createdAt,
-          updatedAt: post.updatedAt
-        })),
-        exportedAt: new Date().toISOString(),
-        totalPosts: posts.length,
-        publishedPosts: posts.filter(p => p.isPublished).length
-      };
-      
-      res.setHeader('Content-Type', 'application/json');
-      res.setHeader('Content-Disposition', 'attachment; filename="blog-posts-export.json"');
-      res.json(exportData);
-    } catch (error: any) {
-      console.error("Error exporting blog posts:", error);
-      res.status(500).json({ message: "Failed to export blog posts" });
     }
   });
 
