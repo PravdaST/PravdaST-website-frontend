@@ -19,6 +19,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Mail, Phone, MapPin, Clock, Send } from "lucide-react";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
+import { trackContactForm, trackPhoneCall } from "@/lib/analytics";
 
 const contactSchema = z.object({
   name: z.string().min(2, "Името трябва да бъде поне 2 символа"),
@@ -60,6 +61,9 @@ export default function ContactNew() {
       if (!response.ok) {
         throw new Error("Failed to send message");
       }
+
+      // Track successful contact form submission
+      trackContactForm(data);
 
       toast({
         title: "Съобщението е изпратено!",
@@ -347,9 +351,19 @@ export default function ContactNew() {
                           <h3 className="text-white font-semibold mb-1">
                             {info.title}
                           </h3>
-                          <p className={`${info.color} font-medium mb-1`}>
-                            {info.value}
-                          </p>
+                          {info.title === "Телефон" ? (
+                            <a
+                              href={`tel:+359879282299`}
+                              className={`${info.color} font-medium mb-1 hover:text-[#ECB629] transition-colors block`}
+                              onClick={() => trackPhoneCall(info.value)}
+                            >
+                              {info.value}
+                            </a>
+                          ) : (
+                            <p className={`${info.color} font-medium mb-1`}>
+                              {info.value}
+                            </p>
+                          )}
                           <p className="text-gray-400 text-sm">
                             {info.subtitle}
                           </p>

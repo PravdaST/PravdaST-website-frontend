@@ -1,24 +1,33 @@
 // src/hooks/usePageTracking.ts
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useLocation } from 'wouter';
-import ReactGA from 'react-ga4';
+
+declare global {
+  interface Window {
+    gtag: (...args: any[]) => void;
+  }
+}
 
 const usePageTracking = () => {
   const [location] = useLocation();
-  const [initialized, setInitialized] = useState(false);
 
   useEffect(() => {
-    if (import.meta.env.VITE_GA_MEASUREMENT_ID && import.meta.env.VITE_GA_MEASUREMENT_ID !== 'G-XXXXXXXXXX') {
-      ReactGA.initialize(import.meta.env.VITE_GA_MEASUREMENT_ID);
-      setInitialized(true);
+    // Проследяване на page view с gtag (GA4 вече е инициализиран в HTML)
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('config', 'G-JQ8F0NZDX0', {
+        page_path: location,
+        page_title: document.title,
+        page_location: window.location.href
+      });
+      
+      // Проследяване на page_view event
+      window.gtag('event', 'page_view', {
+        page_title: document.title,
+        page_location: window.location.href,
+        page_path: location
+      });
     }
-  }, []);
-
-  useEffect(() => {
-    if (initialized) {
-      ReactGA.send({ hitType: "pageview", page: location });
-    }
-  }, [initialized, location]);
+  }, [location]);
 };
 
 export default usePageTracking;

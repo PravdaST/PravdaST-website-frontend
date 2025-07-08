@@ -7,6 +7,7 @@ import {
   Clock,
   Shield,
 } from "lucide-react";
+import { trackCTAClick, trackPhoneCall } from "@/lib/analytics";
 
 export const CTASection = () => {
   return (
@@ -173,6 +174,7 @@ export const CTASection = () => {
                 className="block w-full bg-black text-white text-xl font-bold py-6 px-8 rounded-2xl shadow-2xl transition-all duration-300 hover:shadow-3xl"
                 whileHover={{ scale: 1.05, y: -5 }}
                 whileTap={{ scale: 0.95 }}
+                onClick={() => trackCTAClick('Безплатна консултация', '/homepage-cta')}
               >
                 <div className="flex items-center justify-center gap-3">
                   <span>Безплатна консултация</span>
@@ -185,6 +187,7 @@ export const CTASection = () => {
                 className="block w-full bg-slate-800/80 border-2 border-slate-600/50 hover:border-[#ECB629]/50 hover:bg-slate-700/80 text-white font-semibold py-4 px-8 rounded-xl transition-all duration-300 backdrop-blur-xl"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
+                onClick={() => trackPhoneCall('+359879282299')}
               >
                 <div className="flex items-center justify-center gap-3">
                   <Phone className="w-5 h-5" />

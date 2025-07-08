@@ -6,7 +6,7 @@ import { SEOHead } from "@/components/seo-head";
 import { UnifiedCTASection } from "@/components/unified-cta-section";
 import { useRef, useState, useEffect } from "react";
 import { seoStruktorSchema, injectStructuredData } from "@/lib/seo-schemas";
-import { trackServiceView, trackCTAClick } from "@/lib/tracking";
+import { trackServiceView, trackCTAClick } from "@/lib/analytics";
 import { Link } from "wouter";
 import { pageSEOData } from "@/data/seo-pages";
 import {
@@ -1194,6 +1194,11 @@ const FinalCTASection = () => {
 };
 
 export default function SeoStruktor() {
+  // Track service view on page load
+  useEffect(() => {
+    trackServiceView('SEO Struktor™');
+  }, []);
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-[var(--pravdast-dark)] to-[var(--pravdast-dark-gray)] text-white">
       <SEOHead
