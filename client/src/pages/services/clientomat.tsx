@@ -249,7 +249,7 @@ export default function ClientomatPage() {
       >
         <ClientomatBackground />
 
-        <div className="container mx-auto px-6 relative z-10">
+        <div className="container mx-auto px-6 relative z-1">
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-16">
               <motion.div

@@ -1219,7 +1219,7 @@ export default function SeoStruktor() {
           <div className="absolute bottom-1/3 right-1/4 w-1 h-1 bg-[var(--pravdast-yellow)] rounded-full animate-ping opacity-70"></div>
         </div>
 
-        <div className="container mx-auto px-6 relative z-10">
+        <div className="container mx-auto px-6 relative z-1">
           <div className="max-w-4xl mx-auto text-center">
             {/* Status badge */}
             <motion.div
