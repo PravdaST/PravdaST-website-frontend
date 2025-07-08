@@ -41,7 +41,7 @@ const contactInfo = [
   {
     icon: Mail,
     title: "Имейл",
-    info: "contact@pravdagency.eu",
+    info: "contact@pravdа.agency",
     description: "Отговаряме в рамките на 24 часа",
   },
   {
