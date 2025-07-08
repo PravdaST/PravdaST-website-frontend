@@ -46,7 +46,7 @@ const teamMembers = [
     id: "simo",
     name: "Симеон Сираков",
     role: "Бизнес директор",
-    image: "/simo.webp",
+    image: "/Simo.webp",
     description:
       "Ръководи стратегическото развитие и бизнес операциите на агенцията.",
   },
@@ -54,7 +54,7 @@ const teamMembers = [
     id: "tomi",
     name: "Томи Сапунджиев",
     role: "Креативен директор",
-    image: "/tomi.webp",
+    image: "/Tomi.webp",
     description:
       "Отговаря за креативната визия и дизайн стратегията на проектите.",
   },
@@ -62,7 +62,7 @@ const teamMembers = [
     id: "jivko",
     name: "Живомир Арнаудов",
     role: "Програмен мениджър",
-    image: "/jivko.png",
+    image: "/Jivko.webp",
     description:
       "Управлява техническите проекти и координира развойните процеси.",
   },
@@ -70,7 +70,7 @@ const teamMembers = [
     id: "koko",
     name: "Калоян Богданов",
     role: "AI девелопър",
-    image: "/koko.png",
+    image: "/Koko.png",
     description:
       "Специализира в изкуствен интелект и автоматизация на бизнес процеси.",
   },
@@ -78,14 +78,14 @@ const teamMembers = [
     id: "viki",
     name: "Виктория Петрова",
     role: "Маркетинг експерт",
-    image: "/viki.webp",
+    image: "/Viki.webp",
     description: "Експерт по дигитален маркетинг и имейл кампании за растеж.",
   },
   {
     id: "petio",
     name: "Петър Петров",
     role: "SEO експерт",
-    image: "/petio.png",
+    image: "/Petio.png",
     description: "Специалист по органично позициониране и SEO оптимизация.",
   },
 ];
