@@ -108,14 +108,17 @@ export const CaseStudiesSlider = () => {
       <div className="absolute inset-0 opacity-15">
         <div className="absolute inset-0">
           {/* Success Grid Pattern */}
-          <div className="absolute inset-0" style={{
-            backgroundImage: `
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `
               linear-gradient(rgba(236, 182, 40, 0.1) 1px, transparent 1px),
               linear-gradient(90deg, rgba(236, 182, 40, 0.1) 1px, transparent 1px)
             `,
-            backgroundSize: '60px 60px'
-          }}></div>
-          
+              backgroundSize: "60px 60px",
+            }}
+          ></div>
+
           {/* Success Indicators */}
           {[...Array(8)].map((_, i) => (
             <motion.div
@@ -167,16 +170,21 @@ export const CaseStudiesSlider = () => {
                 <motion.div
                   className="absolute inset-0 w-2 h-2 bg-green-500 rounded-full opacity-20"
                   animate={{ scale: [1, 1.3, 1] }}
-                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
                 />
               </div>
               <span className="text-sm text-gray-300 font-medium">
-                <span className="text-[#ECB629] font-bold">Проследими</span> резултати от реални клиенти
+                <span className="text-[#ECB629] font-bold">Проследими</span>{" "}
+                резултати от реални клиенти
               </span>
             </div>
           </motion.div>
 
-          <motion.h2 
+          <motion.h2
             className="text-4xl md:text-5xl font-bold mb-6 text-white"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -196,14 +204,15 @@ export const CaseStudiesSlider = () => {
             </span>
           </motion.h2>
 
-          <motion.p 
+          <motion.p
             className="text-xl text-gray-300 max-w-3xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
             viewport={{ once: true }}
           >
-            Вижте как компании превърнаха хаоса в предсказуем растеж с нашите инженерни системи
+            Вижте как компании превърнаха хаоса в предсказуем растеж с нашите
+            инженерни системи
           </motion.p>
         </motion.div>
 
@@ -221,24 +230,27 @@ export const CaseStudiesSlider = () => {
               <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-slate-800/80 to-slate-900/90 border border-[#ECB629]/20 backdrop-blur-sm">
                 {/* Animated Background Pattern */}
                 <div className="absolute inset-0 opacity-10">
-                  <div className="absolute inset-0" style={{
-                    backgroundImage: `
+                  <div
+                    className="absolute inset-0"
+                    style={{
+                      backgroundImage: `
                       linear-gradient(rgba(34, 197, 94, 0.1) 1px, transparent 1px),
                       linear-gradient(90deg, rgba(34, 197, 94, 0.1) 1px, transparent 1px)
                     `,
-                    backgroundSize: '30px 30px'
-                  }}></div>
+                      backgroundSize: "30px 30px",
+                    }}
+                  ></div>
                 </div>
-                
+
                 {/* Success Badge */}
-                <div className="absolute top-6 right-6">
+                {/*<div className="absolute top-6 right-6">
                   <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-green-500/20 border border-green-500/40">
                     <div className="w-2 h-2 bg-green-500 rounded-full">
                       <div className="absolute inset-0 bg-green-500 rounded-full animate-ping opacity-75"></div>
                     </div>
                     <span className="text-xs text-green-400 font-medium">УСПЕХ</span>
                   </div>
-                </div>
+                </div>*/}
 
                 <div className="p-8 md:p-12 relative z-10">
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -280,7 +292,9 @@ export const CaseStudiesSlider = () => {
 
                       {/* Enhanced Testimonial */}
                       <div className="relative">
-                        <div className="absolute -left-2 -top-2 text-4xl text-[#ECB629]/20 font-serif">"</div>
+                        <div className="absolute -left-2 -top-2 text-4xl text-[#ECB629]/20 font-serif">
+                          "
+                        </div>
                         <blockquote className="text-lg italic text-gray-200 border-l-4 border-[#ECB629] pl-6 bg-slate-800/30 rounded-r-lg p-4">
                           {currentCase.testimonial}
                         </blockquote>
@@ -300,15 +314,18 @@ export const CaseStudiesSlider = () => {
                           >
                             {/* Success indicator background */}
                             <div className="absolute inset-0 opacity-10">
-                              <div className="absolute inset-0" style={{
-                                backgroundImage: `
+                              <div
+                                className="absolute inset-0"
+                                style={{
+                                  backgroundImage: `
                                   linear-gradient(45deg, rgba(34, 197, 94, 0.1) 25%, transparent 25%),
                                   linear-gradient(-45deg, rgba(34, 197, 94, 0.1) 25%, transparent 25%)
                                 `,
-                                backgroundSize: '15px 15px'
-                              }}></div>
+                                  backgroundSize: "15px 15px",
+                                }}
+                              ></div>
                             </div>
-                            
+
                             <div className="relative z-10">
                               <div className="flex items-center justify-center mb-3">
                                 <div className="w-10 h-10 rounded-full bg-gradient-to-r from-green-500 to-green-400 flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300">
@@ -324,7 +341,7 @@ export const CaseStudiesSlider = () => {
                                 {result.description}
                               </p>
                             </div>
-                            
+
                             {/* Floating elements */}
                             <div className="absolute bottom-2 right-2 opacity-20">
                               <motion.div

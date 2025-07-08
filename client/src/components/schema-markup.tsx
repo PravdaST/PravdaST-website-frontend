@@ -1,150 +1,152 @@
-import { useEffect } from 'react';
+import { useEffect } from "react";
 
 interface SchemaMarkupProps {
-  type: 'organization' | 'website' | 'service' | 'breadcrumb';
+  type: "organization" | "website" | "service" | "breadcrumb";
   data?: any;
 }
 
 export function SchemaMarkup({ type, data }: SchemaMarkupProps) {
   useEffect(() => {
     const addSchemaScript = (schema: object) => {
-      const script = document.createElement('script');
-      script.type = 'application/ld+json';
+      const script = document.createElement("script");
+      script.type = "application/ld+json";
       script.textContent = JSON.stringify(schema);
       script.id = `schema-${type}`;
-      
+
       // Премахваме предишен script ако съществува
       const existing = document.getElementById(`schema-${type}`);
       if (existing) {
         existing.remove();
       }
-      
+
       document.head.appendChild(script);
     };
 
-    if (type === 'organization') {
+    if (type === "organization") {
       const organizationSchema = {
         "@context": "https://schema.org",
         "@type": "Organization",
-        "name": "Pravda ST",
-        "description": "Business Engineering консултантска компания за предсказуем растеж и системен подход към бизнеса в България",
-        "url": "https://pravdast.vercel.app",
-        "logo": {
+        name: "Pravda ST",
+        description:
+          "Business Engineering консултантска компания за предсказуем растеж и системен подход към бизнеса в България",
+        url: "https://pravdagency.eu",
+        logo: {
           "@type": "ImageObject",
-          "url": "https://pravdast.vercel.app/pravda-st-logo.png"
+          url: "https://pravdagency.eu/pravda-st-logo.png",
         },
-        "contactPoint": {
+        contactPoint: {
           "@type": "ContactPoint",
-          "contactType": "customer service",
-          "availableLanguage": "Bulgarian"
+          contactType: "customer service",
+          availableLanguage: "Bulgarian",
         },
-        "address": {
+        address: {
           "@type": "PostalAddress",
-          "addressCountry": "BG",
-          "addressRegion": "София",
-          "addressLocality": "София"
+          addressCountry: "BG",
+          addressRegion: "София",
+          addressLocality: "София",
         },
-        "sameAs": [
+        sameAs: [
           "https://www.linkedin.com/company/pravda-st",
-          "https://www.facebook.com/pravdast"
+          "https://www.facebook.com/pravdast",
         ],
-        "offers": [
+        offers: [
           {
             "@type": "Service",
-            "name": "SEO Struktor™",
-            "description": "Система за органична видимост и SEO оптимизация"
-          },
-          {
-            "@type": "Service", 
-            "name": "Clientomat™",
-            "description": "Автоматизирана система за генериране на клиенти"
+            name: "SEO Struktor™",
+            description: "Система за органична видимост и SEO оптимизация",
           },
           {
             "@type": "Service",
-            "name": "Sales Engine™", 
-            "description": "Система за автоматизиране на продажбите"
-          }
-        ]
+            name: "Clientomat™",
+            description: "Автоматизирана система за генериране на клиенти",
+          },
+          {
+            "@type": "Service",
+            name: "Sales Engine™",
+            description: "Система за автоматизиране на продажбите",
+          },
+        ],
       };
       addSchemaScript(organizationSchema);
     }
 
-    if (type === 'website') {
+    if (type === "website") {
       const websiteSchema = {
         "@context": "https://schema.org",
         "@type": "WebSite",
-        "name": "Pravda ST - Business Engineering",
-        "description": "Спрете да залагате на късмет в бизнеса. Изграждаме предсказуеми системи за растеж.",
-        "url": "https://pravdast.vercel.app",
-        "potentialAction": {
+        name: "Pravda ST - Business Engineering",
+        description:
+          "Спрете да залагате на късмет в бизнеса. Изграждаме предсказуеми системи за растеж.",
+        url: "https://pravdagency.eu",
+        potentialAction: {
           "@type": "SearchAction",
-          "target": {
+          target: {
             "@type": "EntryPoint",
-            "urlTemplate": "https://pravdast.vercel.app/search?q={search_term_string}"
+            urlTemplate: "https://pravdagency.eu/search?q={search_term_string}",
           },
-          "query-input": "required name=search_term_string"
+          "query-input": "required name=search_term_string",
         },
-        "publisher": {
+        publisher: {
           "@type": "Organization",
-          "name": "Pravda ST",
-          "url": "https://pravdast.vercel.app"
+          name: "Pravda ST",
+          url: "https://pravdagency.eu",
         },
-        "inLanguage": "bg-BG",
-        "copyrightYear": new Date().getFullYear(),
-        "copyrightHolder": {
+        inLanguage: "bg-BG",
+        copyrightYear: new Date().getFullYear(),
+        copyrightHolder: {
           "@type": "Organization",
-          "name": "Pravda ST"
-        }
+          name: "Pravda ST",
+        },
       };
       addSchemaScript(websiteSchema);
     }
 
-    if (type === 'service' && data) {
+    if (type === "service" && data) {
       const serviceSchema = {
         "@context": "https://schema.org",
         "@type": "Service",
-        "name": data.name,
-        "description": data.description,
-        "provider": {
+        name: data.name,
+        description: data.description,
+        provider: {
           "@type": "Organization",
-          "name": "Pravda ST",
-          "url": "https://pravdast.vercel.app"
+          name: "Pravda ST",
+          url: "https://pravdagency.eu",
         },
-        "areaServed": {
+        areaServed: {
           "@type": "Country",
-          "name": "Bulgaria"
+          name: "Bulgaria",
         },
-        "hasOfferCatalog": {
+        hasOfferCatalog: {
           "@type": "OfferCatalog",
-          "name": `${data.name} Packages`,
-          "itemListElement": [
+          name: `${data.name} Packages`,
+          itemListElement: [
             {
               "@type": "Offer",
-              "itemOffered": {
+              itemOffered: {
                 "@type": "Service",
-                "name": data.name
+                name: data.name,
               },
-              "price": data.price,
-              "priceCurrency": "BGN"
-            }
-          ]
+              price: data.price,
+              priceCurrency: "BGN",
+            },
+          ],
         },
-        "category": "Business Consulting",
-        "serviceType": "Business Engineering"
+        category: "Business Consulting",
+        serviceType: "Business Engineering",
       };
       addSchemaScript(serviceSchema);
     }
 
-    if (type === 'breadcrumb' && data?.breadcrumbs) {
+    if (type === "breadcrumb" && data?.breadcrumbs) {
       const breadcrumbSchema = {
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
-        "itemListElement": data.breadcrumbs.map((crumb: any, index: number) => ({
+        itemListElement: data.breadcrumbs.map((crumb: any, index: number) => ({
           "@type": "ListItem",
-          "position": index + 1,
-          "name": crumb.name,
-          "item": `https://pravdast.vercel.app${crumb.url}`
-        }))
+          position: index + 1,
+          name: crumb.name,
+          item: `https://pravdagency.eu${crumb.url}`,
+        })),
       };
       addSchemaScript(breadcrumbSchema);
     }
@@ -165,15 +167,19 @@ export function SchemaMarkup({ type, data }: SchemaMarkupProps) {
 export function useSchemaMarkup() {
   const addOrganizationSchema = () => <SchemaMarkup type="organization" />;
   const addWebsiteSchema = () => <SchemaMarkup type="website" />;
-  const addServiceSchema = (serviceData: { name: string; description: string; price: string }) => 
-    <SchemaMarkup type="service" data={serviceData} />;
-  const addBreadcrumbSchema = (breadcrumbs: Array<{name: string, url: string}>) => 
-    <SchemaMarkup type="breadcrumb" data={{ breadcrumbs }} />;
+  const addServiceSchema = (serviceData: {
+    name: string;
+    description: string;
+    price: string;
+  }) => <SchemaMarkup type="service" data={serviceData} />;
+  const addBreadcrumbSchema = (
+    breadcrumbs: Array<{ name: string; url: string }>,
+  ) => <SchemaMarkup type="breadcrumb" data={{ breadcrumbs }} />;
 
   return {
     OrganizationSchema: addOrganizationSchema,
     WebsiteSchema: addWebsiteSchema,
     ServiceSchema: addServiceSchema,
-    BreadcrumbSchema: addBreadcrumbSchema
+    BreadcrumbSchema: addBreadcrumbSchema,
   };
 }
