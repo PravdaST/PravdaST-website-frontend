@@ -22,10 +22,10 @@ export const Navigation = () => {
   }, []);
 
   const serviceItems = [
-    { href: "/services/seo-struktor", label: "SEO Struktor™", price: "1980 лв./месечно" },
-    { href: "/services/trendlab", label: "Trendlab™", price: "3450 лв./месечно" },
-    { href: "/services/clickstarter", label: "Clickstarter™", price: "1570 лв./месечно" },
-    { href: "/services/clientomat", label: "Clientomat™", price: "2890 лв./месечно" },
+    { href: "/services/seo-struktor", label: "SEO Struktor™", description: "SEO оптимизация и растеж" },
+    { href: "/services/trendlab", label: "Trendlab™", description: "Съдържание и авторитет" },
+    { href: "/services/clickstarter", label: "Clickstarter™", description: "Реклами и конверсии" },
+    { href: "/services/clientomat", label: "Clientomat™", description: "Автоматизация на клиенти" },
   ];
 
   const navItems = [
@@ -173,7 +173,7 @@ export const Navigation = () => {
                                     {service.label}
                                   </h3>
                                   <p className="text-gray-400 text-sm mt-1">
-                                    {service.price}
+                                    {service.description}
                                   </p>
                                 </div>
                               </div>
@@ -319,7 +319,7 @@ export const Navigation = () => {
                                 }}
                               >
                                 <div className="font-medium">{service.label}</div>
-                                <div className="text-sm text-gray-400">{service.price}</div>
+                                <div className="text-sm text-gray-400">{service.description}</div>
                               </div>
                             </Link>
                           ))}
