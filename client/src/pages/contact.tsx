@@ -155,7 +155,7 @@ export default function Contact() {
 
       <main className="pt-10">
         {/* Hero Section */}
-        <section className="min-h-screen flex items-center relative overflow-hidden z-1">
+        <section className="min-h-screen flex items-center relative overflow-hidden">
           {/* Background Grid */}
           <div className="absolute inset-0 opacity-10">
             <div
@@ -192,7 +192,7 @@ export default function Contact() {
             ))}
           </div>
 
-          <div className="container mx-auto px-6 relative z-1">
+          <div className="container mx-auto px-6 relative">
             <div className="grid lg:grid-cols-2 gap-16 items-center max-w-7xl mx-auto">
               {/* Left Content */}
               <motion.div
