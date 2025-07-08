@@ -339,7 +339,7 @@ export default function Trendlab() {
                 .
               </h2>
               <p className="text-xl text-gray-300 max-w-4xl mx-auto">
-                Всеки може да изброи факти и характеристики.Но хората не се
+                Всеки може да изброи факти и характеристики, но хората не се
                 свързват с информация – те се свързват с истории.Една добре
                 разказана история изгражда доверие и превръща пасивните
                 наблюдатели в лоялни последователи.
@@ -1205,7 +1205,7 @@ export default function Trendlab() {
                 <span>Обърнете се към нас</span>
                 <ArrowRight className="w-5 h-5" />
               </a>
-              
+
               <a
                 href="tel:+359879282299"
                 className="inline-flex items-center gap-3 border-2 border-black text-black px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-300 hover:bg-black hover:text-white hover:-translate-y-2"
