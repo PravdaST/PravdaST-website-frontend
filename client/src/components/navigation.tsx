@@ -40,7 +40,7 @@ export const Navigation = () => {
 
   return (
     <motion.nav
-      className="w-full bg-slate-900 border-b border-[#ECB629]/20 relative overflow-hidden"
+      className="w-full bg-slate-900 border-b border-[#ECB629]/20 relative"
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6 }}
@@ -143,16 +143,21 @@ export const Navigation = () => {
                     </Link>
 
                     {/* Dropdown Menu */}
-                    <motion.div
-                      className="absolute top-full mt-2 left-0 bg-slate-800 border border-slate-600 rounded-lg p-3 shadow-xl z-50 min-w-[280px]"
-                      initial={{ opacity: 0, y: -10 }}
-                      animate={{ 
-                        opacity: isServicesDropdownOpen ? 1 : 0,
-                        y: isServicesDropdownOpen ? 0 : -10,
-                        display: isServicesDropdownOpen ? 'block' : 'none'
-                      }}
-                      transition={{ duration: 0.2 }}
-                    >
+                    {isServicesDropdownOpen && (
+                      <motion.div
+                        className="absolute top-full mt-2 left-0 bg-slate-800/95 backdrop-blur-sm border border-slate-600 rounded-lg p-3 shadow-2xl min-w-[280px]"
+                        style={{ 
+                          zIndex: 9999
+                        }}
+                        initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                        animate={{ 
+                          opacity: 1,
+                          y: 0,
+                          scale: 1
+                        }}
+                        exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                        transition={{ duration: 0.2 }}
+                      >
                       <div className="space-y-2">
                         {serviceItems.map((service) => (
                           <Link key={service.href} href={service.href}>
@@ -188,6 +193,7 @@ export const Navigation = () => {
                         </div>
                       </div>
                     </motion.div>
+                    )}
                   </div>
                 ) : (
                   <Link href={item.href}>
