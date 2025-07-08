@@ -113,7 +113,7 @@ export const Navigation = () => {
               >
                 {item.hasDropdown ? (
                   <div 
-                    className="relative"
+                    className="relative group"
                     onMouseEnter={() => setIsServicesDropdownOpen(true)}
                     onMouseLeave={() => setIsServicesDropdownOpen(false)}
                   >
@@ -143,21 +143,22 @@ export const Navigation = () => {
                     </Link>
 
                     {/* Dropdown Menu */}
-                    {isServicesDropdownOpen && (
-                      <motion.div
-                        className="absolute top-full mt-2 left-0 bg-slate-800/95 backdrop-blur-sm border border-slate-600 rounded-lg p-3 shadow-2xl min-w-[280px]"
-                        style={{ 
-                          zIndex: 9999
-                        }}
-                        initial={{ opacity: 0, y: -10, scale: 0.95 }}
-                        animate={{ 
-                          opacity: 1,
-                          y: 0,
-                          scale: 1
-                        }}
-                        exit={{ opacity: 0, y: -10, scale: 0.95 }}
-                        transition={{ duration: 0.2 }}
-                      >
+                    <div
+                      className="absolute top-full left-0 pt-2"
+                      style={{ zIndex: 99999 }}
+                    >
+                      {isServicesDropdownOpen && (
+                        <motion.div
+                          className="bg-slate-800/98 backdrop-blur-md border border-slate-600 rounded-lg p-3 shadow-2xl min-w-[300px]"
+                          initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                          animate={{ 
+                            opacity: 1,
+                            y: 0,
+                            scale: 1
+                          }}
+                          exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                          transition={{ duration: 0.2 }}
+                        >
                       <div className="space-y-2">
                         {serviceItems.map((service) => (
                           <Link key={service.href} href={service.href}>
@@ -192,8 +193,9 @@ export const Navigation = () => {
                           </Link>
                         </div>
                       </div>
-                    </motion.div>
-                    )}
+                        </motion.div>
+                      )}
+                    </div>
                   </div>
                 ) : (
                   <Link href={item.href}>
