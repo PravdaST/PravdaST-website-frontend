@@ -70,7 +70,7 @@ const teamMembers = [
     id: "koko",
     name: "Калоян Богданов",
     role: "AI девелопър",
-    image: "/Koko.png",
+    image: "/Koko.webp",
     description:
       "Специализира в изкуствен интелект и автоматизация на бизнес процеси.",
   },
@@ -85,7 +85,7 @@ const teamMembers = [
     id: "petio",
     name: "Петър Петров",
     role: "SEO експерт",
-    image: "/Petio.png",
+    image: "/Petio.webp",
     description: "Специалист по органично позициониране и SEO оптимизация.",
   },
 ];
