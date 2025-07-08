@@ -155,7 +155,7 @@ export default function Contact() {
 
       <main className="pt-10">
         {/* Hero Section */}
-        <section className="min-h-screen flex items-center relative overflow-hidden">
+        <section className="min-h-screen flex items-center relative overflow-hidden z-1">
           {/* Background Grid */}
           <div className="absolute inset-0 opacity-10">
             <div
