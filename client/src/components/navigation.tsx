@@ -2,12 +2,14 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { Link, useLocation } from "wouter";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { trackCTAClick } from "@/lib/analytics";
 
 export const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false);
+  const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
   const [location] = useLocation();
 
   useEffect(() => {
@@ -19,9 +21,16 @@ export const Navigation = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const serviceItems = [
+    { href: "/services/seo-struktor", label: "SEO Struktor™", price: "1980 лв./месечно" },
+    { href: "/services/trendlab", label: "Trendlab™", price: "3450 лв./месечно" },
+    { href: "/services/clickstarter", label: "Clickstarter™", price: "1570 лв./месечно" },
+    { href: "/services/clientomat", label: "Clientomat™", price: "2890 лв./месечно" },
+  ];
+
   const navItems = [
     { href: "/", label: "Начало" },
-    { href: "/services", label: "Услуги" },
+    { href: "/services", label: "Услуги", hasDropdown: true },
     { href: "/calculators", label: "Калкулатори" },
     { href: "/case-studies", label: "Резултати" },
     { href: "/blog", label: "Блог" },
@@ -100,26 +109,107 @@ export const Navigation = () => {
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="relative"
               >
-                <Link href={item.href}>
-                  <motion.span
-                    className={`cursor-pointer transition-colors relative ${
-                      location === item.href
-                        ? "text-[#ECB629] font-semibold"
-                        : "text-white hover:text-[#ECB629]"
-                    }`}
-                    whileHover={{ y: -2 }}
-                    transition={{ duration: 0.2 }}
+                {item.hasDropdown ? (
+                  <div 
+                    className="relative"
+                    onMouseEnter={() => setIsServicesDropdownOpen(true)}
+                    onMouseLeave={() => setIsServicesDropdownOpen(false)}
                   >
-                    {item.label}
-                    {location === item.href && (
-                      <motion.div
-                        className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#ECB629]"
-                        layoutId="activeTab"
-                      />
-                    )}
-                  </motion.span>
-                </Link>
+                    <Link href={item.href}>
+                      <motion.span
+                        className={`cursor-pointer transition-colors relative flex items-center gap-1 ${
+                          location === item.href || location.startsWith('/services/')
+                            ? "text-[#ECB629] font-semibold"
+                            : "text-white hover:text-[#ECB629]"
+                        }`}
+                        whileHover={{ y: -2 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        {item.label}
+                        <ChevronDown 
+                          className={`w-4 h-4 transition-transform ${
+                            isServicesDropdownOpen ? 'rotate-180' : ''
+                          }`} 
+                        />
+                        {(location === item.href || location.startsWith('/services/')) && (
+                          <motion.div
+                            className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#ECB629]"
+                            layoutId="activeTab"
+                          />
+                        )}
+                      </motion.span>
+                    </Link>
+
+                    {/* Dropdown Menu */}
+                    <motion.div
+                      className="absolute top-full mt-2 left-0 bg-slate-800 border border-slate-600 rounded-lg p-3 shadow-xl z-50 min-w-[280px]"
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ 
+                        opacity: isServicesDropdownOpen ? 1 : 0,
+                        y: isServicesDropdownOpen ? 0 : -10,
+                        display: isServicesDropdownOpen ? 'block' : 'none'
+                      }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <div className="space-y-2">
+                        {serviceItems.map((service) => (
+                          <Link key={service.href} href={service.href}>
+                            <motion.div
+                              className="p-3 rounded-lg hover:bg-slate-700 transition-colors cursor-pointer group"
+                              whileHover={{ x: 4 }}
+                              transition={{ duration: 0.2 }}
+                            >
+                              <div className="flex justify-between items-start">
+                                <div>
+                                  <h3 className="text-white font-semibold group-hover:text-[#ECB629] transition-colors">
+                                    {service.label}
+                                  </h3>
+                                  <p className="text-gray-400 text-sm mt-1">
+                                    {service.price}
+                                  </p>
+                                </div>
+                              </div>
+                            </motion.div>
+                          </Link>
+                        ))}
+                        <div className="border-t border-slate-600 pt-2 mt-2">
+                          <Link href="/services">
+                            <motion.div
+                              className="p-2 rounded-lg hover:bg-slate-700 transition-colors cursor-pointer text-center"
+                              whileHover={{ scale: 1.02 }}
+                            >
+                              <span className="text-[#ECB629] font-semibold text-sm">
+                                Всички услуги →
+                              </span>
+                            </motion.div>
+                          </Link>
+                        </div>
+                      </div>
+                    </motion.div>
+                  </div>
+                ) : (
+                  <Link href={item.href}>
+                    <motion.span
+                      className={`cursor-pointer transition-colors relative ${
+                        location === item.href
+                          ? "text-[#ECB629] font-semibold"
+                          : "text-white hover:text-[#ECB629]"
+                      }`}
+                      whileHover={{ y: -2 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      {item.label}
+                      {location === item.href && (
+                        <motion.div
+                          className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#ECB629]"
+                          layoutId="activeTab"
+                        />
+                      )}
+                    </motion.span>
+                  </Link>
+                )}
               </motion.div>
             ))}
 
@@ -175,18 +265,74 @@ export const Navigation = () => {
           >
             <div className="flex flex-col space-y-3 pt-4">
               {navItems.map((item) => (
-                <Link key={item.href} href={item.href}>
-                  <span
-                    className={`block cursor-pointer transition-colors hover:text-[var(--pravdast-yellow)] ${
-                      location === item.href
-                        ? "text-[var(--pravdast-yellow)] font-semibold"
-                        : "text-white"
-                    }`}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    {item.label}
-                  </span>
-                </Link>
+                <div key={item.href}>
+                  {item.hasDropdown ? (
+                    <div>
+                      <div className="flex items-center justify-between">
+                        <Link href={item.href}>
+                          <span
+                            className={`block cursor-pointer transition-colors hover:text-[#ECB629] ${
+                              location === item.href || location.startsWith('/services/')
+                                ? "text-[#ECB629] font-semibold"
+                                : "text-white"
+                            }`}
+                            onClick={() => setIsMobileMenuOpen(false)}
+                          >
+                            {item.label}
+                          </span>
+                        </Link>
+                        <button
+                          onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
+                          className="text-white hover:text-[#ECB629] transition-colors p-1"
+                        >
+                          <ChevronDown 
+                            className={`w-4 h-4 transition-transform ${
+                              isMobileServicesOpen ? 'rotate-180' : ''
+                            }`} 
+                          />
+                        </button>
+                      </div>
+                      
+                      {isMobileServicesOpen && (
+                        <motion.div
+                          className="mt-2 ml-4 space-y-2"
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: "auto" }}
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{ duration: 0.2 }}
+                        >
+                          {serviceItems.map((service) => (
+                            <Link key={service.href} href={service.href}>
+                              <div
+                                className="block cursor-pointer transition-colors hover:text-[#ECB629] text-gray-300 py-2 border-l-2 border-slate-600 pl-3"
+                                onClick={() => {
+                                  setIsMobileMenuOpen(false);
+                                  setIsMobileServicesOpen(false);
+                                }}
+                              >
+                                <div className="font-medium">{service.label}</div>
+                                <div className="text-sm text-gray-400">{service.price}</div>
+                              </div>
+                            </Link>
+                          ))}
+                        </motion.div>
+                      )}
+                    </div>
+                  ) : (
+                    <Link href={item.href}>
+                      <span
+                        className={`block cursor-pointer transition-colors hover:text-[#ECB629] ${
+                          location === item.href
+                            ? "text-[#ECB629] font-semibold"
+                            : "text-white"
+                        }`}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        {item.label}
+                      </span>
+                    </Link>
+                  )}
+                </div>
               ))}
               <Button
                 className="bg-[var(--pravdast-yellow)] text-[var(--pravdast-dark)] hover:bg-[#d4a426] font-semibold w-full"
