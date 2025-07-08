@@ -214,7 +214,7 @@ export default function Services() {
         <section className="min-h-screen flex items-center relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
           <SystemsBackground />
 
-          <div className="container mx-auto px-6 relative z-10 pt-10 sm:pt-0">
+          <div className="container mx-auto px-6 relative z-1 pt-10 sm:pt-0">
             <div className="max-w-5xl mx-auto">
               <div className="text-center mb-16">
                 <motion.div
@@ -342,7 +342,7 @@ export default function Services() {
             ></div>
           </div>
 
-          <div className="container mx-auto px-6 relative z-10">
+          <div className="container mx-auto px-6 relative z-1">
             <motion.div
               className="text-center mb-16"
               initial={{ opacity: 0, y: 30 }}
@@ -456,7 +456,7 @@ export default function Services() {
             ></div>
           </div>
 
-          <div className="container mx-auto px-6 relative z-10">
+          <div className="container mx-auto px-6 relative z-1">
             <motion.div
               className="text-center mb-16"
               initial={{ opacity: 0, y: 30 }}
@@ -514,7 +514,7 @@ export default function Services() {
                     {/* Hover Glow Effect */}
                     <div className="absolute inset-0 bg-gradient-to-r from-[#ECB629]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
-                    <CardContent className="p-8 relative z-10 h-full flex flex-col">
+                    <CardContent className="p-8 relative z-1 h-full flex flex-col">
                       {/* Header with Icon */}
                       <div className="flex items-center gap-4 mb-6">
                         <div className="relative">
@@ -592,7 +592,7 @@ export default function Services() {
                             className="w-full bg-[#ECB629] text-black hover:bg-[#ECB629]/90 font-semibold py-3 px-6 rounded-lg transition-all duration-300 group/btn relative overflow-hidden"
                             size="lg"
                           >
-                            <span className="relative z-10 flex items-center justify-center gap-2">
+                            <span className="relative z-1 flex items-center justify-center gap-2">
                               Научете повече
                               <service.icon
                                 size={18}
@@ -640,7 +640,7 @@ export default function Services() {
             ))}
           </div>
 
-          <div className="container mx-auto px-6 text-center relative z-10">
+          <div className="container mx-auto px-6 text-center relative z-1">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
