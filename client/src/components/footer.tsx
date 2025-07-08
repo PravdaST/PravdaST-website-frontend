@@ -25,7 +25,7 @@ export const Footer = () => {
     contact: [
       { icon: Mail, info: "contact@pravdast.agency" },
       { icon: Phone, info: "+359 879 282 299" },
-      { icon: MapPin, info: "гр.Варна ул. Дебър №58" }
+      { icon: MapPin, info: "гр. Варна ул. Дебър №58" }
     ]
   };
 
