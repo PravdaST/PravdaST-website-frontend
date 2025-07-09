@@ -393,8 +393,8 @@ function ReturnOnInvestmentCalculator({
         )}
       </div>
 
-      {/* Input Form */}
-      <Card className="bg-slate-800/30 border-slate-700/50 backdrop-blur-lg">
+      {/* Calculator Section - Split Layout */}
+      <Card className="bg-slate-800/30 border-slate-700/50 backdrop-blur-lg overflow-hidden">
         <CardHeader className="pb-4">
           <CardTitle className="flex flex-col sm:flex-row items-center gap-2 text-white text-lg sm:text-xl">
             <div className="flex items-center gap-2">
@@ -406,122 +406,268 @@ function ReturnOnInvestmentCalculator({
             </span>
           </CardTitle>
         </CardHeader>
-        <CardContent className="space-y-4 sm:space-y-6 px-4 sm:px-6">
-          <div className="grid grid-cols-1 gap-4 sm:gap-6">
-            <div>
-              <Label
-                htmlFor="param1"
-                className="text-white text-sm sm:text-base block mb-2"
-              >
-                {serviceInputs.param1.label}
-              </Label>
-              <Input
-                id="param1"
-                type="number"
-                placeholder={serviceInputs.param1.placeholder}
-                value={inputs[serviceInputs.param1.key]}
-                onChange={(e) =>
-                  setInputs({
-                    ...inputs,
-                    [serviceInputs.param1.key]: e.target.value,
-                  })
-                }
-                className="bg-slate-900/50 border-slate-600 text-white h-12 text-base"
-              />
+        <CardContent className="p-0">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
+            {/* Left Side - Input Form */}
+            <div className="p-4 sm:p-6 border-b lg:border-b-0 lg:border-r border-slate-700/30">
+              <h3 className="text-white font-semibold mb-4 flex items-center gap-2">
+                <Calculator className="w-4 h-4 text-[#ECB629]" />
+                Въведете данни
+              </h3>
+              
+              <div className="space-y-4">
+                <div>
+                  <Label
+                    htmlFor="param1"
+                    className="text-white text-sm block mb-2"
+                  >
+                    {serviceInputs.param1.label}
+                  </Label>
+                  <Input
+                    id="param1"
+                    type="number"
+                    placeholder={serviceInputs.param1.placeholder}
+                    value={inputs[serviceInputs.param1.key]}
+                    onChange={(e) =>
+                      setInputs({
+                        ...inputs,
+                        [serviceInputs.param1.key]: e.target.value,
+                      })
+                    }
+                    className="bg-slate-900/50 border-slate-600 text-white h-11 text-base"
+                  />
+                </div>
+
+                <div>
+                  <Label
+                    htmlFor="param2"
+                    className="text-white text-sm block mb-2"
+                  >
+                    {serviceInputs.param2.label}
+                  </Label>
+                  <Input
+                    id="param2"
+                    type="number"
+                    placeholder={serviceInputs.param2.placeholder}
+                    value={inputs[serviceInputs.param2.key]}
+                    onChange={(e) =>
+                      setInputs({
+                        ...inputs,
+                        [serviceInputs.param2.key]: e.target.value,
+                      })
+                    }
+                    className="bg-slate-900/50 border-slate-600 text-white h-11 text-base"
+                  />
+                </div>
+
+                <div>
+                  <Label
+                    htmlFor="param3"
+                    className="text-white text-sm block mb-2"
+                  >
+                    {serviceInputs.param3.label}
+                  </Label>
+                  <Input
+                    id="param3"
+                    type="number"
+                    placeholder={serviceInputs.param3.placeholder}
+                    value={inputs[serviceInputs.param3.key]}
+                    onChange={(e) =>
+                      setInputs({
+                        ...inputs,
+                        [serviceInputs.param3.key]: e.target.value,
+                      })
+                    }
+                    className="bg-slate-900/50 border-slate-600 text-white h-11 text-base"
+                  />
+                </div>
+
+                <div>
+                  <Label htmlFor="industry" className="text-white text-sm block mb-2">
+                    {serviceInputs.param4.label}
+                  </Label>
+                  <Select
+                    value={inputs[serviceInputs.param4.key]}
+                    onValueChange={(value) =>
+                      setInputs({ ...inputs, [serviceInputs.param4.key]: value })
+                    }
+                  >
+                    <SelectTrigger className="bg-slate-900/50 border-slate-600 text-white h-11">
+                      <SelectValue placeholder="Изберете индустрия" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="ecommerce">Онлайн Магазин</SelectItem>
+                      <SelectItem value="services">Услуги</SelectItem>
+                      <SelectItem value="manufacturing">Производство</SelectItem>
+                      <SelectItem value="construction">Стройтелство</SelectItem>
+                      <SelectItem value="hospitality">Хотелиерство</SelectItem>
+                      <SelectItem value="Restaurant">Ресторантьорство</SelectItem>
+                      <SelectItem value="retail">Търговия</SelectItem>
+                      <SelectItem value="consulting">
+                        Консултантски услуги
+                      </SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
+
+              {/* Service-Specific ROI Definition */}
+              <div className="bg-slate-900/50 rounded-lg p-3 border border-slate-700/30 mt-4">
+                <h4 className="text-white font-medium mb-2 text-sm">
+                  {serviceName === "SEO Struktor™" && "Как се изчислява SEO възвръщаемостта?"}
+                  {serviceName === "Trendlab™" && "Как се изчислява контент възвръщаемостта?"}
+                  {serviceName === "Clickstarter™" && "Как се изчислява рекламна възвръщаемост?"}
+                  {serviceName === "Clientomat™" && "Как се изчислява клиент възвръщаемост?"}
+                </h4>
+                <p className="text-gray-400 text-xs">
+                  {serviceName === "SEO Struktor™" && "Базирано на органичен трафик увеличение от 340%, конверсии от 2.5% и средна стойност на lead от 2500 лв. Показва реалната печалба от SEO инвестицията."}
+                  {serviceName === "Trendlab™" && "Базирано на 450% увеличение на последователи, месечни гледания и приходи от авторитет. Показва стойността на качественото съдържание."}
+                  {serviceName === "Clickstarter™" && "Базирано на 85% повече конверсии, 25% по-нисък CPC и 20% спестени разходи. Показва оптимизацията на рекламните кампании."}
+                  {serviceName === "Clientomat™" && "Базирано на 180% по-висок repeat rate, 220% LTV увеличение и автоматизирани процеси. Показва стойността на всеки клиент."}
+                </p>
+              </div>
             </div>
 
-            <div>
-              <Label
-                htmlFor="param2"
-                className="text-white text-sm sm:text-base block mb-2"
-              >
-                {serviceInputs.param2.label}
-              </Label>
-              <Input
-                id="param2"
-                type="number"
-                placeholder={serviceInputs.param2.placeholder}
-                value={inputs[serviceInputs.param2.key]}
-                onChange={(e) =>
-                  setInputs({
-                    ...inputs,
-                    [serviceInputs.param2.key]: e.target.value,
-                  })
-                }
-                className="bg-slate-900/50 border-slate-600 text-white h-12 text-base"
-              />
-            </div>
+            {/* Right Side - Results */}
+            <div className="p-4 sm:p-6">
+              {(results.score > 0 || results.monthlyROI > 0) ? (
+                <motion.div
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  className="space-y-4"
+                >
+                  <h3 className="text-white font-semibold mb-4 flex items-center gap-2">
+                    <BarChart3 className="w-4 h-4 text-[#ECB629]" />
+                    Резултати
+                  </h3>
 
-            <div>
-              <Label
-                htmlFor="param3"
-                className="text-white text-sm sm:text-base block mb-2"
-              >
-                {serviceInputs.param3.label}
-              </Label>
-              <Input
-                id="param3"
-                type="number"
-                placeholder={serviceInputs.param3.placeholder}
-                value={inputs[serviceInputs.param3.key]}
-                onChange={(e) =>
-                  setInputs({
-                    ...inputs,
-                    [serviceInputs.param3.key]: e.target.value,
-                  })
-                }
-                className="bg-slate-900/50 border-slate-600 text-white h-12 text-base"
-              />
-            </div>
+                  {/* Main Score Circle */}
+                  <div className="text-center mb-4">
+                    <div className="relative w-32 h-32 mx-auto mb-3">
+                      {/* Background Circle */}
+                      <svg
+                        className="w-full h-full transform -rotate-90"
+                        viewBox="0 0 100 100"
+                      >
+                        <circle
+                          cx="50"
+                          cy="50"
+                          r="35"
+                          stroke="rgb(51 65 85 / 0.5)"
+                          strokeWidth="6"
+                          fill="none"
+                        />
+                        {/* Progress Circle */}
+                        <circle
+                          cx="50"
+                          cy="50"
+                          r="35"
+                          stroke="#ECB629"
+                          strokeWidth="6"
+                          fill="none"
+                          strokeLinecap="round"
+                          strokeDasharray={`${2 * Math.PI * 35}`}
+                          strokeDashoffset={`${2 * Math.PI * 35 * (1 - results.score / 100)}`}
+                          className="transition-all duration-1000 ease-in-out"
+                        />
+                      </svg>
+                      {/* Center Content */}
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="text-center">
+                          <div className="text-2xl font-bold text-[#ECB629]">
+                            {results.score}
+                          </div>
+                          <div className="text-xs text-gray-400">от 100</div>
+                        </div>
+                      </div>
+                    </div>
 
-            <div>
-              <Label htmlFor="industry" className="text-white">
-                {serviceInputs.param4.label}
-              </Label>
-              <Select
-                value={inputs[serviceInputs.param4.key]}
-                onValueChange={(value) =>
-                  setInputs({ ...inputs, [serviceInputs.param4.key]: value })
-                }
-              >
-                <SelectTrigger className="bg-slate-900/50 border-slate-600 text-white">
-                  <SelectValue placeholder="Изберете индустрия" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="ecommerce">Онлайн Магазин</SelectItem>
-                  <SelectItem value="services">Услуги</SelectItem>
-                  <SelectItem value="manufacturing">Производство</SelectItem>
-                  <SelectItem value="construction">Стройтелство</SelectItem>
-                  <SelectItem value="hospitality">Хотелиерство</SelectItem>
-                  <SelectItem value="Restaurant">Ресторантьорство</SelectItem>
-                  <SelectItem value="retail">Търговия</SelectItem>
-                  <SelectItem value="consulting">
-                    Консултантски услуги
-                  </SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-          </div>
+                    <p className="text-gray-400 text-sm mb-4">
+                      {serviceName === "SEO Struktor™" && "SEO Потенциал Скор"}
+                      {serviceName === "Trendlab™" && "Content Потенциал Скор"}
+                      {serviceName === "Clickstarter™" && "Реклама Потенциал Скор"}
+                      {serviceName === "Clientomat™" && "Клиент Потенциал Скор"}
+                    </p>
+                  </div>
 
-          {/* Service-Specific ROI Definition */}
-          <div className="bg-slate-900/50 rounded-lg p-4 border border-slate-700/30">
-            <h4 className="text-white font-medium mb-2">
-              {serviceName === "SEO Struktor™" && "Как се изчислява SEO възвръщаемостта?"}
-              {serviceName === "Trendlab™" && "Как се изчислява контент възвръщаемостта?"}
-              {serviceName === "Clickstarter™" && "Как се изчислява рекламна възвръщаемост?"}
-              {serviceName === "Clientomat™" && "Как се изчислява клиент възвръщаемост?"}
-            </h4>
-            <p className="text-gray-400 text-sm">
-              {serviceName === "SEO Struktor™" && "Базирано на органичен трафик увеличение от 340%, конверсии от 2.5% и средна стойност на lead от 2500 лв. Показва реалната печалба от SEO инвестицията."}
-              {serviceName === "Trendlab™" && "Базирано на 450% увеличение на последователи, месечни гледания и приходи от авторитет. Показва стойността на качественото съдържание."}
-              {serviceName === "Clickstarter™" && "Базирано на 85% повече конверсии, 25% по-нисък CPC и 20% спестени разходи. Показва оптимизацията на рекламните кампании."}
-              {serviceName === "Clientomat™" && "Базирано на 180% по-висок repeat rate, 220% LTV увеличение и автоматизирани процеси. Показва стойността на всеки клиент."}
-            </p>
+                  {/* Key Metrics */}
+                  <div className="space-y-3">
+                    <div className="bg-slate-900/50 rounded-lg p-3 border border-slate-700/20">
+                      <div className="text-lg font-bold text-[#ECB629] mb-1">
+                        {serviceName === "SEO Struktor™" && "+"}
+                        {serviceName === "Trendlab™" && "+"}
+                        {serviceName === "Clickstarter™" && "+"}
+                        {serviceName === "Clientomat™" && ""}
+                        {results.metric1 > 0
+                          ? Math.round(results.metric1).toLocaleString("bg-BG")
+                          : "0"}
+                        {serviceName === "Clientomat™" && "%"}
+                      </div>
+                      <div className="text-gray-400 text-xs">
+                        {serviceName === "SEO Struktor™" && "Нов трафик/месец"}
+                        {serviceName === "Trendlab™" && "Нови последователи"}
+                        {serviceName === "Clickstarter™" && "Допълнителни конверсии"}
+                        {serviceName === "Clientomat™" && "Повторни поръчки (%)"}
+                      </div>
+                    </div>
+
+                    <div className="bg-slate-900/50 rounded-lg p-3 border border-slate-700/20">
+                      <div className="text-lg font-bold text-[#ECB629] mb-1">
+                        {serviceName === "SEO Struktor™" && "+"}
+                        {serviceName === "Trendlab™" && ""}
+                        {serviceName === "Clickstarter™" && "-"}
+                        {serviceName === "Clientomat™" && "+"}
+                        {results.metric2 > 0
+                          ? Math.round(results.metric2).toLocaleString("bg-BG")
+                          : "0"}
+                        {serviceName === "Trendlab™" && "K"}
+                        {serviceName === "Clickstarter™" && " лв."}
+                        {serviceName === "Clientomat™" && "K"}
+                      </div>
+                      <div className="text-gray-400 text-xs">
+                        {serviceName === "SEO Struktor™" && "Нови leads/месец"}
+                        {serviceName === "Trendlab™" && "Месечни гледания"}
+                        {serviceName === "Clickstarter™" && "Спестени разходи"}
+                        {serviceName === "Clientomat™" && "LTV увеличение"}
+                      </div>
+                    </div>
+
+                    <div className="bg-slate-900/50 rounded-lg p-3 border border-slate-700/20">
+                      <div className="text-lg font-bold text-green-500 mb-1">
+                        {results.monthlyROI > 0
+                          ? `${results.monthlyROI.toFixed(0)}%`
+                          : "245%"}
+                      </div>
+                      <div className="text-gray-400 text-xs">ROI месечно</div>
+                    </div>
+                  </div>
+
+                  {/* Investment Info */}
+                  <div className="bg-slate-900/50 rounded-lg p-3 border border-slate-700/20 text-center">
+                    <div className="text-[#ECB629] font-semibold text-sm mb-1">
+                      Стартова инвестиция: {monthlyPrice.toLocaleString("bg-BG")} лв./месец
+                    </div>
+                    <p className="text-gray-400 text-xs">
+                      Спрете да харчите без план - започнете да строите с цифри.
+                    </p>
+                  </div>
+                </motion.div>
+              ) : (
+                <div className="flex items-center justify-center h-full text-center">
+                  <div>
+                    <Calculator className="w-12 h-12 text-gray-500 mx-auto mb-3" />
+                    <p className="text-gray-400 text-sm">
+                      Въведете данните си за да видите вашия ROI потенциал
+                    </p>
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         </CardContent>
       </Card>
 
-      {/* Results Section - Modern Design */}
+      {/* Extended Results Section */}
       {(results.score > 0 || results.monthlyROI > 0) && (
         <motion.div
           initial={{ opacity: 0, y: 20 }}
