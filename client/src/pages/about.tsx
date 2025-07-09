@@ -456,12 +456,13 @@ export default function About() {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: index * 0.1 }}
                   viewport={{ once: true }}
+                  className="h-full"
                 >
-                  <Card className="bg-slate-800/50 border-slate-700 hover:border-[#ECB629]/50 transition-all duration-300 group h-full">
-                    {/* Hover Glow Effect */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-[#ECB629]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
+                  <Card className="bg-slate-800/50 border-slate-700 hover:border-[#ECB629]/50 transition-all duration-300 h-full relative group">
+                    {/* Hover Glow Effect - Only on individual card hover */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-[#ECB629]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg pointer-events-none"></div>
 
-                    <CardContent className="p-6 text-center relative z-1">
+                    <CardContent className="p-6 text-center relative z-10">
                       {/* Profile Image */}
                       <div className="relative mb-4">
                         <div className="w-24 h-24 mx-auto mb-4 relative">
@@ -470,11 +471,7 @@ export default function About() {
                             alt={member.name}
                             className="w-full h-full rounded-full object-cover border-3 border-[#ECB629]/30 group-hover:border-[#ECB629] transition-all duration-300"
                           />
-                          <motion.div
-                            className="absolute inset-0 rounded-full bg-[#ECB629]/20 opacity-0 group-hover:opacity-100"
-                            animate={{ scale: [1, 1.1, 1] }}
-                            transition={{ duration: 2, repeat: Infinity }}
-                          />
+                          <div className="absolute inset-0 rounded-full bg-[#ECB629]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                         </div>
                       </div>
 
