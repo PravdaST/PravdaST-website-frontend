@@ -50,6 +50,13 @@ self.addEventListener('fetch', (event) => {
   // Skip non-http requests
   if (!event.request.url.startsWith('http')) return;
   
+  // Skip external scripts that cause issues
+  const url = new URL(event.request.url);
+  const skipDomains = ['static.klaviyo.com', 'analytics.ahrefs.com', 'googletagmanager.com'];
+  if (skipDomains.some(domain => url.hostname.includes(domain))) {
+    return; // Let browser handle these directly
+  }
+  
   event.respondWith(
     fetch(event.request)
       .then(response => {
