@@ -1754,7 +1754,7 @@ function ProfitCalculator({
           </Card>
 
           {/* Profit Details */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+          {/*<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             <Card className="bg-slate-800/30 border-slate-700/50 backdrop-blur-lg">
               <CardContent className="p-4 sm:p-6">
                 <div className="flex items-center gap-3 mb-3 sm:mb-4">
@@ -1826,7 +1826,7 @@ function ProfitCalculator({
                 <div className="text-gray-400 text-xs sm:text-sm">срок</div>
               </CardContent>
             </Card>
-          </div>
+          </div>*/}
 
           {/* CTA Section */}
           <Card className="bg-slate-900/80 border-slate-700/50 backdrop-blur-lg">
