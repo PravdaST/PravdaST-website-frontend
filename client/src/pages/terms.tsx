@@ -13,9 +13,9 @@ export default function Terms() {
         seo={pageSEOData.terms}
         pageSlug="terms"
       />
-      
+
       <Navigation />
-      
+
       <main className="pt-20">
         {/* Hero Section */}
         <section className="min-h-screen flex items-center relative overflow-hidden">
@@ -28,7 +28,7 @@ export default function Terms() {
               `,
               backgroundSize: '60px 60px'
             }}></div>
-            
+
             {/* Floating elements */}
             {[...Array(6)].map((_, i) => (
               <motion.div
@@ -132,6 +132,8 @@ export default function Terms() {
                     Използването на нашите <Link href="/services" className="text-[#ECB629] hover:text-[#ECB629]/80 underline">услуги</Link> означава пълно приемане на настоящите условия. За въпроси относно поверителността прочетете нашата <Link href="/privacy" className="text-[#ECB629] hover:text-[#ECB629]/80 underline">политика за поверителност</Link>.
                   </p>
 
+                  <p>За повече информация за нашите услуги, моля посетете <Link href="/services" className="text-blue-400 hover:text-blue-300">страницата с услуги</Link> или се <Link href="/contact-new" className="text-blue-400 hover:text-blue-300">свържете с нас</Link>.</p>
+
                   <h2 className="text-3xl font-bold text-white mb-6">2. Услуги</h2>
                   <p className="text-gray-300 mb-4">Доставчикът предоставя следните основни услуги:</p>
                   <ul className="text-gray-300 mb-8 space-y-2">
@@ -234,7 +236,7 @@ export default function Terms() {
               >
                 Готови за сътрудничество?
               </motion.h2>
-              
+
               <motion.p
                 className="text-xl text-black/80 mb-8 max-w-2xl mx-auto"
                 initial={{ opacity: 0, y: 30 }}
@@ -264,7 +266,7 @@ export default function Terms() {
           </div>
         </section>
       </main>
-      
+
       <Footer />
     </div>
   );

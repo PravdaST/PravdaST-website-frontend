@@ -3,8 +3,14 @@ export default async function handler(req, res) {
   try {
     const baseUrl = 'https://www.pravdagency.eu';
     
+    // Set proper headers before generating content
+    res.setHeader('Content-Type', 'application/xml; charset=utf-8');
+    res.setHeader('Cache-Control', 'public, max-age=3600, s-maxage=3600');
+    
     const sitemapContent = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
    <url>
       <loc>${baseUrl}/</loc>
       <lastmod>2025-01-09</lastmod>
@@ -73,8 +79,6 @@ export default async function handler(req, res) {
    </url>
 </urlset>`;
 
-    res.setHeader('Content-Type', 'text/xml; charset=utf-8');
-    res.setHeader('Cache-Control', 'public, max-age=3600');
     res.status(200).send(sitemapContent);
   } catch (error) {
     console.error('Sitemap generation error:', error);

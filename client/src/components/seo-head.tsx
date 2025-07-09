@@ -33,7 +33,7 @@ export function SEOHead({ seo, pageSlug }: SEOHeadProps) {
     const updateMetaTag = (name: string, content: string, property?: boolean) => {
       const selector = property ? `meta[property="${name}"]` : `meta[name="${name}"]`;
       let meta = document.querySelector(selector) as HTMLMetaElement;
-      
+
       if (!meta) {
         meta = document.createElement('meta');
         if (property) {
@@ -54,7 +54,7 @@ export function SEOHead({ seo, pageSlug }: SEOHeadProps) {
     } else {
       updateMetaTag('robots', robots);
     }
-    
+
     // Допълнителни SEO тагове
     updateMetaTag('author', 'Pravdast');
     updateMetaTag('language', 'Bulgarian');
@@ -65,12 +65,12 @@ export function SEOHead({ seo, pageSlug }: SEOHeadProps) {
     updateMetaTag('revisit-after', '7 days');
     updateMetaTag('rating', 'general');
     updateMetaTag('distribution', 'global');
-    
+
     // Viewport и мобилна оптимизация (ако не са зададени)
     if (!document.querySelector('meta[name="viewport"]')) {
       updateMetaTag('viewport', 'width=device-width, initial-scale=1.0, maximum-scale=5.0');
     }
-    
+
     // Тема цвят за мобилни браузъри
     updateMetaTag('theme-color', '#ECB628');
     updateMetaTag('msapplication-TileColor', '#ECB628');
@@ -91,14 +91,14 @@ export function SEOHead({ seo, pageSlug }: SEOHeadProps) {
     // Standard favicon
     updateLinkTag('icon', '/favicon-192.png', '192x192', 'image/png');
     updateLinkTag('shortcut icon', '/favicon-192.png');
-    
+
     // Apple touch icons
     updateLinkTag('apple-touch-icon', '/apple-touch-icon.png', '180x180');
     updateLinkTag('apple-touch-icon-precomposed', '/apple-touch-icon.png');
-    
+
     // Manifest for PWA
     updateLinkTag('manifest', '/manifest.json');
-    
+
     // Microsoft tiles
     updateMetaTag('msapplication-TileImage', '/icon-512.png');
     updateMetaTag('msapplication-config', 'none');
@@ -113,17 +113,21 @@ export function SEOHead({ seo, pageSlug }: SEOHeadProps) {
     updateMetaTag('og:title', ogTitle, true);
     updateMetaTag('og:description', ogDescription, true);
     updateMetaTag('og:image', ogImage, true);
+    updateMetaTag('og:image:width', "1200", true);
+    updateMetaTag('og:image:height', "630", true);
+    updateMetaTag('og:site_name', "Pravda ST", true);
+    updateMetaTag('og:locale', "bg_BG", true);
     updateMetaTag('og:url', canonical, true);
     updateMetaTag('og:type', ogType, true);
-    updateMetaTag('og:site_name', defaultSEOConfig.siteName, true);
-    updateMetaTag('og:locale', defaultSEOConfig.locale, true);
 
     // Twitter Card тагове
     updateMetaTag('twitter:card', twitterCard);
-    updateMetaTag('twitter:site', defaultSEOConfig.twitterHandle);
+    updateMetaTag('twitter:site', "@pravdast");
+    updateMetaTag('twitter:creator', "@pravdast");
     updateMetaTag('twitter:title', twitterTitle);
     updateMetaTag('twitter:description', twitterDescription);
     updateMetaTag('twitter:image', twitterImage);
+    updateMetaTag('twitter:image:alt', title);
 
     // Canonical URL
     let canonicalLink = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;

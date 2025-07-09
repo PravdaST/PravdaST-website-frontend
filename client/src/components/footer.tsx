@@ -42,7 +42,7 @@ export const Footer = () => {
             `,
             backgroundSize: '60px 60px'
           }}></div>
-          
+
           {/* Connection Lines */}
           {[...Array(4)].map((_, i) => (
             <motion.div
@@ -94,7 +94,7 @@ export const Footer = () => {
             <p className="text-gray-400 text-sm mb-6">
               Консултантска компания за бизнес инженеринг. Изграждаме системи за предвидим растеж.
             </p>
-            
+
             {/* Social Media Links */}
             <motion.div 
               className="flex items-center space-x-4 mb-6"
@@ -127,7 +127,7 @@ export const Footer = () => {
                 </motion.a>
               ))}
             </motion.div>
-            
+
             <div className="text-xs text-gray-500">
               © 2025 Pravda ST. Всички права запазени.
             </div>
@@ -222,7 +222,7 @@ export const Footer = () => {
             <ul className="space-y-2 text-gray-400 text-sm">
               {[
                 { text: "ул. Дебър №58, Варна 9000", type: "address" },
-                { text: "contact@pravdst.agency", href: "mailto:contact@pravdst.agency", type: "email" },
+                { text: "contact@pravdast.agency", href: "mailto:contact@pravdast.agency", type: "email" },
                 { text: "+359 879 282 299", href: "tel:+359879282299", type: "phone" },
                 { text: "Viber чат", href: "viber://chat?number=+359879282299", type: "viber" },
                 { text: "WhatsApp чат", href: "https://wa.me/359879282299", type: "whatsapp" }
@@ -270,7 +270,7 @@ export const Footer = () => {
             >
               © 2025 Pravda Agency. Всички права запазени.
             </motion.p>
-            
+
             <motion.div 
               className="flex items-center space-x-6"
               initial={{ opacity: 0 }}

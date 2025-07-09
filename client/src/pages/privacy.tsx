@@ -13,9 +13,9 @@ export default function Privacy() {
         seo={pageSEOData.privacy}
         pageSlug="privacy"
       />
-      
+
       <Navigation />
-      
+
       <main className="pt-20">
         {/* Hero Section */}
         <section className="min-h-screen flex items-center relative overflow-hidden">
@@ -28,7 +28,7 @@ export default function Privacy() {
               `,
               backgroundSize: '60px 60px'
             }}></div>
-            
+
             {/* Floating elements */}
             {[...Array(6)].map((_, i) => (
               <motion.div
@@ -261,7 +261,7 @@ export default function Privacy() {
               >
                 Вашата поверителност е приоритет
               </motion.h2>
-              
+
               <motion.p
                 className="text-xl text-black/80 mb-8 max-w-2xl mx-auto"
                 initial={{ opacity: 0, y: 30 }}
@@ -289,7 +289,7 @@ export default function Privacy() {
           </div>
         </section>
       </main>
-      
+
       <Footer />
     </div>
   );
