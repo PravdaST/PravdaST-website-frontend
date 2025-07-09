@@ -1,44 +1,27 @@
-modules = ["nodejs-20", "web", "postgresql-16"]
+# .replit
 run = "npm run dev"
-hidden = [".config", ".git", "generated-icon.png", "node_modules", "dist"]
+entrypoint = "pravda-next-app/src/app/page.tsx"
+
+[packager]
+# Enable caching to speed up installing packages.
+caching = true
+
+[env]
+# Set the development server port.
+PORT = "3000"
+
+[unitTest]
+# Configure a command to run tests if you have them.
+command = "npm run test"
 
 [nix]
-channel = "stable-24_05"
+# The Nix channel to use.
+channel = "stable-23_11"
 
 [deployment]
-deploymentTarget = "autoscale"
-build = ["npm", "run", "build"]
-run = ["npm", "run", "start"]
-
-[[ports]]
-localPort = 80
-externalPort = 3000
-
-[[ports]]
-localPort = 3001
-externalPort = 3001
-
-[[ports]]
-localPort = 5000
-externalPort = 80
-
-[workflows]
-runButton = "Project"
-
-[[workflows.workflow]]
-name = "Project"
-mode = "parallel"
-author = "agent"
-
-[[workflows.workflow.tasks]]
-task = "workflow.run"
-args = "Start application"
-
-[[workflows.workflow]]
-name = "Start application"
-author = "agent"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "npm run dev"
-waitForPort = 5000
+# The command to run before deploying.
+build_command = "npm run build"
+# The command to run to start the server.
+run_command = "npm run start"
+# The deployment target.
+deployment_target = "cloudrun"
