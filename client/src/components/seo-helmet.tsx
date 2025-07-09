@@ -171,11 +171,25 @@ export function SEOHelmet({ seo, pageSlug }: SEOHelmetProps) {
 
   return (
     <Helmet prioritizeSeoTags>
-      {/* Title */}
+      {/* Critical SEO tags first for better indexing */}
       <title>{title}</title>
-
-      {/* Basic SEO meta tags */}
       <meta name="description" content={description} />
+      <link rel="canonical" href={canonical} />
+      
+      {/* Open Graph tags (high priority for social sharing) */}
+      <meta property="og:title" content={ogTitle} />
+      <meta property="og:description" content={ogDescription} />
+      <meta property="og:image" content={ogImage} />
+      <meta property="og:url" content={canonical} />
+      <meta property="og:type" content={ogType} />
+      
+      {/* Twitter Card tags */}
+      <meta name="twitter:card" content={twitterCard} />
+      <meta name="twitter:title" content={twitterTitle} />
+      <meta name="twitter:description" content={twitterDescription} />
+      <meta name="twitter:image" content={twitterImage} />
+
+      {/* Additional SEO meta tags */}
       {keywords && <meta name="keywords" content={keywords} />}
       <meta name="robots" content={noIndex ? 'noindex, nofollow' : robots} />
       
@@ -201,24 +215,11 @@ export function SEOHelmet({ seo, pageSlug }: SEOHelmetProps) {
         <meta name="google-site-verification" content={import.meta.env.VITE_GOOGLE_SITE_VERIFICATION} />
       )}
 
-      {/* Open Graph tags */}
-      <meta property="og:title" content={ogTitle} />
-      <meta property="og:description" content={ogDescription} />
-      <meta property="og:image" content={ogImage} />
-      <meta property="og:url" content={canonical} />
-      <meta property="og:type" content={ogType} />
       <meta property="og:site_name" content={defaultSEOConfig.siteName} />
       <meta property="og:locale" content={defaultSEOConfig.locale} />
-
-      {/* Twitter Card tags */}
-      <meta name="twitter:card" content={twitterCard} />
+      
+      {/* Twitter site and handle */}
       <meta name="twitter:site" content={defaultSEOConfig.twitterHandle} />
-      <meta name="twitter:title" content={twitterTitle} />
-      <meta name="twitter:description" content={twitterDescription} />
-      <meta name="twitter:image" content={twitterImage} />
-
-      {/* Canonical URL */}
-      <link rel="canonical" href={canonical} />
 
       {/* Favicons and app icons */}
       <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png" />

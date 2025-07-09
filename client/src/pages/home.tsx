@@ -8,7 +8,7 @@ import { SystemsSection } from "@/components/systems-section";
 import { CaseStudiesSlider } from "@/components/case-studies-slider";
 import { CTASection } from "@/components/cta-section";
 import { Footer } from "@/components/footer";
-import { SEOHelmet } from "@/components/seo-helmet";
+import { EnhancedSEO } from "@/components/seo/enhanced-seo";
 import { pageSEOData } from "@/data/seo-pages";
 import { useEffect } from "react";
 import { tracking, ConversionStage } from "@/lib/tracking";
@@ -21,7 +21,12 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-slate-900">
-      <SEOHelmet seo={pageSEOData.home} pageSlug="" />
+      <EnhancedSEO 
+        seo={pageSEOData.home} 
+        pageSlug="" 
+        pageType="home"
+        includeWebsiteSchema={true}
+      />
       <Navigation />
       <HeroSection />
       <PartnersCarousel />

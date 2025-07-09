@@ -2,10 +2,9 @@ import { motion, useInView } from "framer-motion";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { Button } from "@/components/ui/button";
-import { SEOHelmet } from "@/components/seo-helmet";
+import { EnhancedSEO } from "@/components/seo/enhanced-seo";
 import { UnifiedCTASection } from "@/components/unified-cta-section";
 import { useRef, useState, useEffect } from "react";
-import { seoStruktorSchema, injectStructuredData } from "@/lib/seo-schemas";
 import { trackServiceView, trackCTAClick } from "@/lib/analytics";
 import { Link } from "wouter";
 import { pageSEOData } from "@/data/seo-pages";
@@ -1201,9 +1200,27 @@ export default function SeoStruktor() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[var(--pravdast-dark)] to-[var(--pravdast-dark-gray)] text-white">
-      <SEOHead
+      <EnhancedSEO
         seo={pageSEOData["services/seo-struktor"]}
         pageSlug="services/seo-struktor"
+        pageType="service"
+        breadcrumbs={[
+          { name: "Начало", url: "https://www.pravdagency.eu" },
+          { name: "Услуги", url: "https://www.pravdagency.eu/services" },
+          { name: "SEO Struktor™", url: "https://www.pravdagency.eu/services/seo-struktor" }
+        ]}
+        serviceData={{
+          name: "SEO Struktor™",
+          description: "Инженерни SEO системи за предвидим растеж и доминация в търсенето",
+          price: "1980 лв./месец",
+          features: [
+            "Техническа SEO основа",
+            "Keyword стратегия",
+            "Content оптимизация",
+            "Link building",
+            "Tracking и анализ"
+          ]
+        }}
       />
       <Navigation />
 
