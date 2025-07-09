@@ -623,7 +623,7 @@ function ProfitCalculator({
                       </SelectItem>
                     </SelectContent>
                   </Select>
-                </div>
+                </motion.div>
               </div>
 
               {/* Service-Specific Profit Definition */}
@@ -1425,7 +1425,7 @@ function ProfitCalculator({
                 {serviceName === "Trendlab™" &&
                   `Вашият потенциал за съдържание е ${results.score}/100. Започнете създаването на съдържание днес и постигнете измерими резултати.`}
                 {serviceName === "Clickstarter™" &&
-                  `Вашият рекламен потенциал е ${results.score}/100. Començвете оптимизацията на рекламите днес и постигнете измерими резултати.`}
+                  `Вашият рекламен потенциал е ${results.score}/100. Започнете оптимизацията на рекламите днес и постигнете измерими резултати.`}
                 {serviceName === "Clientomat™" &&
                   `Вашият потенциал за клиенти е ${results.score}/100. Започнете автоматизацията днес и постигнете измерими резултати.`}
               </p>
