@@ -4,10 +4,20 @@ import { Home, Search, ArrowLeft, Target, Wrench } from "lucide-react";
 import { Link } from "wouter";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
+import { HelmetSEO } from "@/components/seo/helmet-seo";
 
 export default function NotFound() {
+  const seoData = {
+    title: "Страница не е намерена - 404 | Pravdast Agency",
+    description: "Търсената страница не съществува. Разгледайте нашите системи за предсказуем растеж: SEO Struktor™, Clientomat™, Trendlab™, Clickstarter™.",
+    keywords: "404 error, страница не е намерена, pravdast systems, business engineering bulgaria",
+    canonical: "https://www.pravdagency.eu/404",
+    robots: "noindex, follow"
+  };
+
   return (
     <div className="min-h-screen bg-slate-900">
+      <HelmetSEO seo={seoData} pageSlug="404" />
       <Navigation />
       <div className="flex items-center justify-center relative overflow-hidden py-20">
       {/* Subtle Grid Pattern */}
@@ -120,13 +130,13 @@ export default function NotFound() {
                   </div>
                 </div>
               </Link>
-              <Link href="/services/sales-engine">
+              <Link href="/services/trendlab">
                 <div className="group p-4 rounded-xl border border-slate-600 hover:border-[#ECB628] transition-all duration-200 cursor-pointer hover:bg-slate-700">
                   <div className="text-[#ECB628] font-bold group-hover:text-white transition-colors">
-                    Sales Engine™
+                    Trendlab™
                   </div>
                   <div className="text-slate-400 text-sm mt-1">
-                    Продажбена система
+                    Система за съдържание
                   </div>
                 </div>
               </Link>

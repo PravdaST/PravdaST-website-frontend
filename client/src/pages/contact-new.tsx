@@ -20,6 +20,9 @@ import { Mail, Phone, MapPin, Clock, Send } from "lucide-react";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { trackContactForm, trackPhoneCall } from "@/lib/analytics";
+import { HelmetSEO } from "@/components/seo/helmet-seo";
+import { pageSEOData } from "@/data/seo-pages";
+import { Link } from "wouter";
 
 const contactSchema = z.object({
   name: z.string().min(2, "Името трябва да бъде поне 2 символа"),
@@ -113,8 +116,11 @@ export default function ContactNew() {
     },
   ];
 
+  const seoData = pageSEOData.contact;
+
   return (
     <div className="min-h-screen bg-slate-900">
+      <HelmetSEO seo={seoData} pageSlug="contact" />
       <Navigation />
       <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
         {/* Background Pattern */}
@@ -149,7 +155,7 @@ export default function ContactNew() {
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
                 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 px-2 sm:px-0"
               >
                 Свържете се с <span className="text-[#ECB629]">нас</span>
@@ -294,6 +300,35 @@ export default function ContactNew() {
                       )}
                     />
 
+                    {/* Обратни линкове към услуги */}
+                    <div className="text-center mb-6">
+                      <p className="text-gray-400 text-sm mb-4">
+                        Интересувате се от конкретна система?
+                      </p>
+                      <div className="flex flex-wrap gap-2 justify-center">
+                        <Link href="/services/seo-struktor">
+                          <span className="text-[#ECB629] hover:text-white text-sm cursor-pointer border border-[#ECB629]/30 px-3 py-1 rounded-full hover:bg-[#ECB629]/10 transition-colors">
+                            SEO Struktor™
+                          </span>
+                        </Link>
+                        <Link href="/services/trendlab">
+                          <span className="text-[#ECB629] hover:text-white text-sm cursor-pointer border border-[#ECB629]/30 px-3 py-1 rounded-full hover:bg-[#ECB629]/10 transition-colors">
+                            Trendlab™
+                          </span>
+                        </Link>
+                        <Link href="/services/clickstarter">
+                          <span className="text-[#ECB629] hover:text-white text-sm cursor-pointer border border-[#ECB629]/30 px-3 py-1 rounded-full hover:bg-[#ECB629]/10 transition-colors">
+                            Clickstarter™
+                          </span>
+                        </Link>
+                        <Link href="/services/clientomat">
+                          <span className="text-[#ECB629] hover:text-white text-sm cursor-pointer border border-[#ECB629]/30 px-3 py-1 rounded-full hover:bg-[#ECB629]/10 transition-colors">
+                            Clientomat™
+                          </span>
+                        </Link>
+                      </div>
+                    </div>
+
                     <Button
                       type="submit"
                       disabled={isSubmitting}
@@ -313,6 +348,35 @@ export default function ContactNew() {
                     </Button>
                   </form>
                 </Form>
+                
+                {/* Допълнителни обратни линкове в дъното на формата */}
+                <div className="mt-6 pt-6 border-t border-slate-700/50">
+                  <p className="text-center text-gray-400 text-sm mb-3">
+                    Или разгледайте нашите решения:
+                  </p>
+                  <div className="flex justify-center gap-4 text-sm">
+                    <Link href="/about">
+                      <span className="text-[#ECB629] hover:text-white cursor-pointer transition-colors">
+                        За нас
+                      </span>
+                    </Link>
+                    <Link href="/case-studies">
+                      <span className="text-[#ECB629] hover:text-white cursor-pointer transition-colors">
+                        Казуси
+                      </span>
+                    </Link>
+                    <Link href="/blog">
+                      <span className="text-[#ECB629] hover:text-white cursor-pointer transition-colors">
+                        Блог
+                      </span>
+                    </Link>
+                    <Link href="/faq">
+                      <span className="text-[#ECB629] hover:text-white cursor-pointer transition-colors">
+                        Въпроси
+                      </span>
+                    </Link>
+                  </div>
+                </div>
               </motion.div>
 
               {/* Contact Information */}
@@ -330,6 +394,28 @@ export default function ContactNew() {
                   <p className="text-gray-400">
                     Можете да се свържете с нас по всеки от следните начини:
                   </p>
+                  
+                  {/* CTA секция */}
+                  <div className="mt-8 p-6 bg-[#ECB629]/10 border border-[#ECB629]/30 rounded-2xl">
+                    <h3 className="text-lg font-bold text-white mb-2">
+                      Готови за безплатна консултация?
+                    </h3>
+                    <p className="text-gray-300 text-sm mb-4">
+                      Запишете си 30-минутна консултация и научете как можем да трансформираме вашия бизнес.
+                    </p>
+                    <div className="flex gap-3">
+                      <Link href="/">
+                        <Button className="bg-[#ECB629] hover:bg-[#ECB629]/90 text-black text-sm px-4 py-2">
+                          Научете повече
+                        </Button>
+                      </Link>
+                      <Link href="/case-studies">
+                        <Button variant="outline" className="border-[#ECB629] text-[#ECB629] hover:bg-[#ECB629]/10 text-sm px-4 py-2">
+                          Казуси за успех
+                        </Button>
+                      </Link>
+                    </div>
+                  </div>
                 </div>
 
                 <div className="space-y-4">

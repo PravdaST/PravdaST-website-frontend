@@ -34,15 +34,20 @@ export class SEOGenerator {
       { url: '/privacy', lastmod: '2025-06-30' }
     ];
 
-    // XML sitemap според sitemaps.org стандарти 2025
+    // XML sitemap според sitemaps.org стандарти 2025 - Google оптимизиран
     let sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`;
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">`;
 
     pages.forEach(page => {
       sitemap += `
    <url>
       <loc>${this.baseUrl}${page.url}</loc>
       <lastmod>${page.lastmod}</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>${page.url === '/' ? '1.0' : page.url.includes('/services/') ? '0.9' : '0.7'}</priority>
    </url>`;
     });
 
@@ -55,61 +60,17 @@ export class SEOGenerator {
   // Генерира Google-оптимизиран robots.txt
   generateRobotsTxt(): string {
     return `# Robots.txt за Pravdast Business Engineering Platform
-# Генериран автоматично на ${new Date().toISOString().split('T')[0]}
-
-# Разрешаване на всички бот агенти за основното съдържание
 User-agent: *
-Allow: /
-Allow: /services/
-Allow: /case-studies
-Allow: /about
-Allow: /contact
-
-# Блокиране на административни файлове
-Disallow: /admin/
-Disallow: /api/
-Disallow: /.well-known/
-Disallow: /private/
-Disallow: /temp/
-Disallow: /node_modules/
-Disallow: /*.json$
-Disallow: /*.log$
-
-# Специални правила за различни бот агенти
-User-agent: Googlebot
-Allow: /
-Crawl-delay: 1
-
-User-agent: Bingbot  
-Allow: /
-Crawl-delay: 2
-
-User-agent: YandexBot
-Allow: /
-Crawl-delay: 3
-
-# XML Sitemap за Google Search Console
-Sitemap: ${this.baseUrl}/sitemap.xml
-
-# Хост директива
-Host: ${this.baseUrl.replace('https://', '').replace('http://', '')}
-
-# Disallow admin and development paths
 Disallow: /admin/
 Disallow: /api/
 Disallow: /strapi-test
 Disallow: /seo-monitor
+Disallow: /analytics
+Disallow: /*.json$
+Disallow: /*.log$
 
-# Allow important pages
-Allow: /
-Allow: /services
-Allow: /case-studies
-Allow: /about
-Allow: /contact
-Allow: /blog
-
-# Crawl delay
-Crawl-delay: 1`;
+# XML Sitemap
+Sitemap: ${this.baseUrl}/sitemap.xml`;
   }
 
   // Генерира JSON-LD schema за организация с локален бизнес markup
