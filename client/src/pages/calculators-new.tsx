@@ -1305,7 +1305,7 @@ function ProfitCalculator({
               >
                 <div className="text-center mb-8">
                   <h4 className="text-white font-bold text-lg md:text-xl mb-2">
-                    Преди vs След <br>система</br>
+                    Преди vs След <br />система
                   </h4>
                   <div className="w-20 h-1 bg-gradient-to-r from-transparent via-[#ECB629] to-transparent mx-auto rounded-full"></div>
                 </div>
