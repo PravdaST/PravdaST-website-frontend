@@ -613,11 +613,11 @@ function ReturnOnInvestmentCalculator({
                       </div>
                     </div>
 
-                    <p className="text-gray-400 text-sm mb-4">
-                      {serviceName === "SEO Struktor™" && "SEO Потенциал Скор"}
-                      {serviceName === "Trendlab™" && "Content Потенциал Скор"}
-                      {serviceName === "Clickstarter™" && "Реклама Потенциал Скор"}
-                      {serviceName === "Clientomat™" && "Клиент Потенциал Скор"}
+                    <p className="text-gray-400">
+                      {serviceName === "SEO Struktor™" && "SEO Потенциал Резултат"}
+                      {serviceName === "Trendlab™" && "Content Потенциал Резултат"}
+                      {serviceName === "Clickstarter™" && "Реклама Потенциал Резултат"}
+                      {serviceName === "Clientomat™" && "Клиент Потенциал Резултат"}
                     </p>
                   </div>
 
@@ -764,10 +764,10 @@ function ReturnOnInvestmentCalculator({
                 </div>
 
                 <p className="text-gray-400">
-                  {serviceName === "SEO Struktor™" && "SEO Потенциал Скор"}
-                  {serviceName === "Trendlab™" && "Content Потенциал Скор"}
-                  {serviceName === "Clickstarter™" && "Реклама Потенциал Скор"}
-                  {serviceName === "Clientomat™" && "Клиент Потенциал Скор"}
+                  {serviceName === "SEO Struktor™" && "SEO Потенциал Резултат"}
+                  {serviceName === "Trendlab™" && "Content Потенциал Резултат"}
+                  {serviceName === "Clickstarter™" && "Реклама Потенциал Резултат"}
+                  {serviceName === "Clientomat™" && "Клиент Потенциал Резултат"}
                 </p>
               </div>
 
