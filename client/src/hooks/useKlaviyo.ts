@@ -6,10 +6,12 @@ export function useKlaviyo() {
     // Check if Klaviyo is loaded and company ID is configured
     if (typeof window !== 'undefined' && window.klaviyo) {
       // Klaviyo is loaded
+      console.log('Klaviyo loaded successfully');
     } else {
       // Wait for Klaviyo to load
       const checkKlaviyo = setInterval(() => {
         if (window.klaviyo) {
+          console.log('Klaviyo loaded successfully');
           clearInterval(checkKlaviyo);
         }
       }, 1000);

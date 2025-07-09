@@ -230,7 +230,7 @@ class TrackingManager {
     // Update user profile
     this.updateUserProfile({ stage });
 
-
+    console.log(`Funnel stage tracked: ${stage}`, metadata || {});
   }
 
   // Track specific events
