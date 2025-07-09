@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   Calculator,
   TrendingUp,
@@ -13,6 +13,11 @@ import {
   Users,
   Award,
   Clock,
+  Play,
+  Pause,
+  RotateCcw,
+  Sparkles,
+  TrendingDown,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -409,81 +414,191 @@ function ProfitCalculator({
         <CardContent className="p-0">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
             {/* Left Side - Input Form */}
-            <div className="p-4 sm:p-6 border-b lg:border-b-0 lg:border-r border-slate-700/30">
-              <h3 className="text-white font-semibold mb-4 flex items-center gap-2">
-                <Calculator className="w-4 h-4 text-[#ECB629]" />
-                Въведете данни
-              </h3>
+            <div className="p-4 sm:p-6 border-b lg:border-b-0 lg:border-r border-slate-700/30 relative overflow-hidden">
+              {/* Animated Background Pattern */}
+              <div className="absolute inset-0 opacity-5">
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-br from-[#ECB629]/5 via-transparent to-blue-500/5"
+                  animate={{
+                    backgroundPosition: ["0% 0%", "100% 100%"],
+                  }}
+                  transition={{
+                    duration: 8,
+                    repeat: Infinity,
+                    repeatType: "reverse",
+                    ease: "linear",
+                  }}
+                />
+              </div>
 
-              <div className="space-y-4">
-                <div>
+              <motion.h3 
+                className="text-white font-semibold mb-6 flex items-center gap-3 relative z-10"
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5 }}
+              >
+                <motion.div
+                  className="p-2 bg-[#ECB629]/20 rounded-lg"
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                >
+                  <Calculator className="w-5 h-5 text-[#ECB629]" />
+                </motion.div>
+                <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                  Въведете данни за анализ
+                </span>
+              </motion.h3>
+
+              <div className="space-y-5 relative z-10">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.1 }}
+                  className="group"
+                >
                   <Label
                     htmlFor="param1"
-                    className="text-white text-sm block mb-2"
+                    className="text-white text-sm block mb-3 flex items-center gap-2 font-medium"
                   >
+                    <motion.div
+                      className="w-2 h-2 bg-[#ECB629] rounded-full"
+                      animate={{ scale: [1, 1.2, 1] }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                    />
                     {serviceInputs.param1.label}
                   </Label>
-                  <Input
-                    id="param1"
-                    type="number"
-                    placeholder={serviceInputs.param1.placeholder}
-                    value={inputs[serviceInputs.param1.key]}
-                    onChange={(e) =>
-                      setInputs({
-                        ...inputs,
-                        [serviceInputs.param1.key]: e.target.value,
-                      })
-                    }
-                    className="bg-slate-900/50 border-slate-600 text-white h-11 text-base"
-                  />
-                </div>
+                  <div className="relative">
+                    <Input
+                      id="param1"
+                      type="number"
+                      placeholder={serviceInputs.param1.placeholder}
+                      value={inputs[serviceInputs.param1.key]}
+                      onChange={(e) =>
+                        setInputs({
+                          ...inputs,
+                          [serviceInputs.param1.key]: e.target.value,
+                        })
+                      }
+                      className="bg-slate-900/70 backdrop-blur-sm border-slate-600/50 text-white h-12 text-base transition-all duration-300 focus:border-[#ECB629] focus:bg-slate-800/70 focus:shadow-lg focus:shadow-[#ECB629]/10 group-hover:border-slate-500"
+                    />
+                    <motion.div
+                      className="absolute inset-0 rounded-md bg-gradient-to-r from-[#ECB629]/0 via-[#ECB629]/5 to-[#ECB629]/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+                      animate={{
+                        backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+                      }}
+                      transition={{
+                        duration: 3,
+                        repeat: Infinity,
+                        ease: "linear",
+                      }}
+                    />
+                  </div>
+                </motion.div>
 
-                <div>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                  className="group"
+                >
                   <Label
                     htmlFor="param2"
-                    className="text-white text-sm block mb-2"
+                    className="text-white text-sm block mb-3 flex items-center gap-2 font-medium"
                   >
+                    <motion.div
+                      className="w-2 h-2 bg-[#ECB629] rounded-full"
+                      animate={{ scale: [1, 1.2, 1] }}
+                      transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
+                    />
                     {serviceInputs.param2.label}
                   </Label>
-                  <Input
-                    id="param2"
-                    type="number"
-                    placeholder={serviceInputs.param2.placeholder}
-                    value={inputs[serviceInputs.param2.key]}
-                    onChange={(e) =>
-                      setInputs({
-                        ...inputs,
-                        [serviceInputs.param2.key]: e.target.value,
-                      })
-                    }
-                    className="bg-slate-900/50 border-slate-600 text-white h-11 text-base"
-                  />
-                </div>
+                  <div className="relative">
+                    <Input
+                      id="param2"
+                      type="number"
+                      placeholder={serviceInputs.param2.placeholder}
+                      value={inputs[serviceInputs.param2.key]}
+                      onChange={(e) =>
+                        setInputs({
+                          ...inputs,
+                          [serviceInputs.param2.key]: e.target.value,
+                        })
+                      }
+                      className="bg-slate-900/70 backdrop-blur-sm border-slate-600/50 text-white h-12 text-base transition-all duration-300 focus:border-[#ECB629] focus:bg-slate-800/70 focus:shadow-lg focus:shadow-[#ECB629]/10 group-hover:border-slate-500"
+                    />
+                    <motion.div
+                      className="absolute inset-0 rounded-md bg-gradient-to-r from-[#ECB629]/0 via-[#ECB629]/5 to-[#ECB629]/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+                      animate={{
+                        backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+                      }}
+                      transition={{
+                        duration: 3,
+                        repeat: Infinity,
+                        ease: "linear",
+                        delay: 0.5,
+                      }}
+                    />
+                  </div>
+                </motion.div>
 
-                <div>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.3 }}
+                  className="group"
+                >
                   <Label
                     htmlFor="param3"
-                    className="text-white text-sm block mb-2"
+                    className="text-white text-sm block mb-3 flex items-center gap-2 font-medium"
                   >
+                    <motion.div
+                      className="w-2 h-2 bg-[#ECB629] rounded-full"
+                      animate={{ scale: [1, 1.2, 1] }}
+                      transition={{ duration: 2, repeat: Infinity, delay: 1 }}
+                    />
                     {serviceInputs.param3.label}
                   </Label>
-                  <Input
-                    id="param3"
-                    type="number"
-                    placeholder={serviceInputs.param3.placeholder}
-                    value={inputs[serviceInputs.param3.key]}
-                    onChange={(e) =>
-                      setInputs({
-                        ...inputs,
-                        [serviceInputs.param3.key]: e.target.value,
-                      })
-                    }
-                    className="bg-slate-900/50 border-slate-600 text-white h-11 text-base"
-                  />
-                </div>
+                  <div className="relative">
+                    <Input
+                      id="param3"
+                      type="number"
+                      placeholder={serviceInputs.param3.placeholder}
+                      value={inputs[serviceInputs.param3.key]}
+                      onChange={(e) =>
+                        setInputs({
+                          ...inputs,
+                          [serviceInputs.param3.key]: e.target.value,
+                        })
+                      }
+                      className="bg-slate-900/70 backdrop-blur-sm border-slate-600/50 text-white h-12 text-base transition-all duration-300 focus:border-[#ECB629] focus:bg-slate-800/70 focus:shadow-lg focus:shadow-[#ECB629]/10 group-hover:border-slate-500"
+                    />
+                    <motion.div
+                      className="absolute inset-0 rounded-md bg-gradient-to-r from-[#ECB629]/0 via-[#ECB629]/5 to-[#ECB629]/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+                      animate={{
+                        backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+                      }}
+                      transition={{
+                        duration: 3,
+                        repeat: Infinity,
+                        ease: "linear",
+                        delay: 1,
+                      }}
+                    />
+                  </div>
+                </motion.div>
 
-                <div>
-                  <Label htmlFor="industry" className="text-white text-sm block mb-2">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.4 }}
+                  className="group"
+                >
+                  <Label htmlFor="industry" className="text-white text-sm block mb-3 flex items-center gap-2 font-medium">
+                    <motion.div
+                      className="w-2 h-2 bg-[#ECB629] rounded-full"
+                      animate={{ scale: [1, 1.2, 1] }}
+                      transition={{ duration: 2, repeat: Infinity, delay: 1.5 }}
+                    />
                     {serviceInputs.param4.label}
                   </Label>
                   <Select
@@ -492,7 +607,7 @@ function ProfitCalculator({
                       setInputs({ ...inputs, [serviceInputs.param4.key]: value })
                     }
                   >
-                    <SelectTrigger className="bg-slate-900/50 border-slate-600 text-white h-11">
+                    <SelectTrigger className="bg-slate-900/70 backdrop-blur-sm border-slate-600/50 text-white h-12 transition-all duration-300 hover:border-slate-500 focus:border-[#ECB629] focus:bg-slate-800/70">
                       <SelectValue placeholder="Изберете индустрия" />
                     </SelectTrigger>
                     <SelectContent>
@@ -512,47 +627,171 @@ function ProfitCalculator({
               </div>
 
               {/* Service-Specific Profit Definition */}
-              <div className="bg-slate-900/50 rounded-lg p-3 border border-slate-700/30 mt-4">
-                <h4 className="text-white font-medium mb-2 text-sm">
-                  {serviceName === "SEO Struktor™" && "Как се изчислява печалбата от търсене?"}
-                  {serviceName === "Trendlab™" && "Как се изчислява печалбата от съдържание?"}
-                  {serviceName === "Clickstarter™" && "Как се изчислява печалбата от реклами?"}
-                  {serviceName === "Clientomat™" && "Как се изчислява печалбата от клиенти?"}
-                </h4>
-                <p className="text-gray-400 text-xs">
+              <motion.div 
+                className="bg-gradient-to-br from-slate-900/70 via-slate-800/50 to-slate-900/70 backdrop-blur-sm rounded-xl p-4 border border-[#ECB629]/20 mt-6 relative overflow-hidden"
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: 0.5 }}
+              >
+                <motion.div
+                  className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#ECB629] to-transparent"
+                  animate={{
+                    backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+                  }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "linear",
+                  }}
+                />
+                
+                <div className="flex items-center gap-3 mb-3">
+                  <motion.div
+                    className="p-2 bg-[#ECB629]/20 rounded-lg"
+                    whileHover={{ rotate: 360 }}
+                    transition={{ duration: 0.8 }}
+                  >
+                    <Sparkles className="w-4 h-4 text-[#ECB629]" />
+                  </motion.div>
+                  <h4 className="text-white font-semibold text-sm bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                    {serviceName === "SEO Struktor™" && "Как се изчислява печалбата от търсене?"}
+                    {serviceName === "Trendlab™" && "Как се изчислява печалбата от съдържание?"}
+                    {serviceName === "Clickstarter™" && "Как се изчислява печалбата от реклами?"}
+                    {serviceName === "Clientomat™" && "Как се изчислява печалбата от клиенти?"}
+                  </h4>
+                </div>
+                
+                <motion.p 
+                  className="text-gray-300 text-xs leading-relaxed"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.7 }}
+                >
                   {serviceName === "SEO Struktor™" && "Базирано на органичен трафик увеличение от 340%, продажби от 2.5% и средна стойност на клиент от 2500 лв. Показва реалната печалба от инвестицията в търсене."}
                   {serviceName === "Trendlab™" && "Базирано на 450% увеличение на последователи, месечни гледания и приходи от авторитет. Показва стойността на качественото съдържание."}
                   {serviceName === "Clickstarter™" && "Базирано на 85% повече продажби, 25% по-нисък разход за клик и 20% спестени разходи. Показва оптимизацията на рекламните кампании."}
                   {serviceName === "Clientomat™" && "Базирано на 180% по-висок процент връщащи се клиенти, 220% увеличение стойност на клиент и автоматизирани процеси. Показва стойността на всеки клиент."}
-                </p>
-              </div>
+                </motion.p>
+
+                {/* Floating decorative elements */}
+                <motion.div
+                  className="absolute -top-1 -right-1 w-8 h-8 bg-[#ECB629]/10 rounded-full"
+                  animate={{
+                    scale: [1, 1.2, 1],
+                    opacity: [0.3, 0.6, 0.3],
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                />
+                <motion.div
+                  className="absolute bottom-2 left-2 w-4 h-4 bg-[#ECB629]/20 rounded-full"
+                  animate={{
+                    scale: [1, 1.3, 1],
+                    opacity: [0.2, 0.5, 0.2],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: 1,
+                  }}
+                />
+              </motion.div>
             </div>
 
             {/* Right Side - Results */}
-            <div className="p-4 sm:p-6">
+            <div className="p-4 sm:p-6 relative overflow-hidden">
+              {/* Animated Background Pattern */}
+              <div className="absolute inset-0 opacity-5">
+                <motion.div
+                  className="absolute inset-0"
+                  style={{
+                    backgroundImage: `
+                      radial-gradient(circle at 20% 30%, rgba(236, 182, 41, 0.15) 0%, transparent 50%),
+                      radial-gradient(circle at 80% 70%, rgba(59, 130, 246, 0.1) 0%, transparent 50%)
+                    `,
+                  }}
+                  animate={{
+                    backgroundPosition: ["0% 0%", "100% 100%"],
+                  }}
+                  transition={{
+                    duration: 12,
+                    repeat: Infinity,
+                    repeatType: "reverse",
+                    ease: "linear",
+                  }}
+                />
+              </div>
+
               {(results.score > 0 || results.monthlyProfit > 0) ? (
                 <motion.div
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
-                  className="space-y-4"
+                  className="space-y-6 relative z-10"
                 >
                    {/* Before/After Comparison */}
-              <div className="bg-slate-900/50 rounded-lg p-4 border border-slate-700/20 mb-4">
-                <h4 className="text-white font-semibold text-sm mb-3 text-center">
+              <motion.div 
+                className="bg-gradient-to-br from-slate-900/80 via-slate-800/60 to-slate-900/80 backdrop-blur-sm rounded-xl p-5 border border-slate-700/30 mb-6 relative overflow-hidden"
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5 }}
+              >
+                <motion.div
+                  className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-red-500 via-[#ECB629] to-green-500"
+                  animate={{
+                    backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+                  }}
+                  transition={{
+                    duration: 5,
+                    repeat: Infinity,
+                    ease: "linear",
+                  }}
+                />
+                
+                <h4 className="text-white font-semibold text-sm mb-4 text-center flex items-center justify-center gap-2">
+                  <motion.div
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                  >
+                    <RotateCcw className="w-4 h-4 text-[#ECB629]" />
+                  </motion.div>
                   Преди vs След {serviceName.replace("™", "")}
                 </h4>
-                <div className="grid grid-cols-2 gap-3">
-                  <div className="text-center">
-                    <div className="text-red-400 font-bold text-lg mb-1">
+                <div className="grid grid-cols-2 gap-4">
+                  <motion.div 
+                    className="text-center p-3 bg-red-500/10 rounded-lg border border-red-500/20 relative"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                  >
+                    <motion.div
+                      className="text-red-400 font-bold text-lg mb-1"
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: 0.2 }}
+                    >
                       {serviceName === "SEO Struktor™" && Math.round(parseFloat(inputs.currentTraffic) || 5000).toLocaleString("bg-BG")}
                       {serviceName === "Trendlab™" && Math.round(parseFloat(inputs.currentFollowers) || 2500).toLocaleString("bg-BG")}
                       {serviceName === "Clickstarter™" && Math.round(parseFloat(inputs.monthlyConversions) || 75).toLocaleString("bg-BG")}
                       {serviceName === "Clientomat™" && `${parseFloat(inputs.repeatRate) || 25}%`}
-                    </div>
-                    <div className="text-gray-400 text-xs">ПРЕДИ</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-[#ECB629] font-bold text-lg mb-1">
+                    </motion.div>
+                    <div className="text-gray-400 text-xs font-medium">ПРЕДИ</div>
+                    <TrendingDown className="w-3 h-3 text-red-400 mx-auto mt-1" />
+                  </motion.div>
+                  
+                  <motion.div 
+                    className="text-center p-3 bg-[#ECB629]/10 rounded-lg border border-[#ECB629]/20 relative"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                  >
+                    <motion.div
+                      className="text-[#ECB629] font-bold text-lg mb-1"
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: 0.4 }}
+                    >
                       {serviceName === "SEO Struktor™" && "+"}
                       {serviceName === "Trendlab™" && "+"}
                       {serviceName === "Clickstarter™" && "+"}
@@ -561,20 +800,69 @@ function ProfitCalculator({
                         ? Math.round(results.metric1).toLocaleString("bg-BG")
                         : "17000"}
                       {serviceName === "Clientomat™" && "%"}
-                    </div>
-                    <div className="text-gray-400 text-xs">СЛЕД</div>
-                  </div>
+                    </motion.div>
+                    <div className="text-gray-400 text-xs font-medium">СЛЕД</div>
+                    <TrendingUp className="w-3 h-3 text-[#ECB629] mx-auto mt-1" />
+                  </motion.div>
                 </div>
-              </div>
 
-                  <h3 className="text-white font-semibold mb-4 flex items-center gap-2">
-                    <BarChart3 className="w-4 h-4 text-[#ECB629]" />
-                    Резултати
-                  </h3>
+                {/* Animated arrow between before/after */}
+                <motion.div
+                  className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10"
+                  animate={{
+                    x: [0, 5, 0],
+                    opacity: [0.6, 1, 0.6],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                >
+                  <ArrowRight className="w-6 h-6 text-[#ECB629] bg-slate-800 rounded-full p-1" />
+                </motion.div>
+              </motion.div>
+
+                  <motion.h3 
+                    className="text-white font-semibold mb-6 flex items-center gap-3"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.5 }}
+                  >
+                    <motion.div
+                      className="p-2 bg-[#ECB629]/20 rounded-lg"
+                      whileHover={{ scale: 1.1, rotate: 5 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                    >
+                      <BarChart3 className="w-5 h-5 text-[#ECB629]" />
+                    </motion.div>
+                    <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                      Анализ на резултатите
+                    </span>
+                  </motion.h3>
 
                   {/* Main Score Circle */}
-                  <div className="text-center mb-4">
-                    <div className="relative w-32 h-32 mx-auto mb-3">
+                  <motion.div 
+                    className="text-center mb-6"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.8, delay: 0.2 }}
+                  >
+                    <div className="relative w-40 h-40 mx-auto mb-4 group">
+                      {/* Glowing background effect */}
+                      <motion.div
+                        className="absolute inset-0 bg-[#ECB629]/10 rounded-full blur-xl"
+                        animate={{
+                          scale: [1, 1.2, 1],
+                          opacity: [0.3, 0.6, 0.3],
+                        }}
+                        transition={{
+                          duration: 3,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                        }}
+                      />
+                      
                       {/* Background Circle */}
                       <svg
                         className="w-full h-full transform -rotate-90"
@@ -585,103 +873,289 @@ function ProfitCalculator({
                           cy="50"
                           r="35"
                           stroke="rgb(51 65 85 / 0.5)"
-                          strokeWidth="6"
+                          strokeWidth="4"
                           fill="none"
                         />
                         {/* Progress Circle */}
-                        <circle
+                        <motion.circle
                           cx="50"
                           cy="50"
                           r="35"
                           stroke="#ECB629"
-                          strokeWidth="6"
+                          strokeWidth="4"
                           fill="none"
                           strokeLinecap="round"
                           strokeDasharray={`${2 * Math.PI * 35}`}
-                          strokeDashoffset={`${2 * Math.PI * 35 * (1 - results.score / 100)}`}
-                          className="transition-all duration-1000 ease-in-out"
+                          initial={{ strokeDashoffset: `${2 * Math.PI * 35}` }}
+                          animate={{ 
+                            strokeDashoffset: `${2 * Math.PI * 35 * (1 - results.score / 100)}`,
+                          }}
+                          transition={{
+                            duration: 2,
+                            ease: "easeInOut",
+                            delay: 0.5,
+                          }}
+                          className="drop-shadow-lg"
+                          style={{
+                            filter: "drop-shadow(0 0 8px rgba(236, 182, 41, 0.3))",
+                          }}
+                        />
+                        
+                        {/* Animated dots on the circle */}
+                        <motion.circle
+                          cx="85"
+                          cy="50"
+                          r="2"
+                          fill="#ECB629"
+                          animate={{
+                            opacity: [0, 1, 0],
+                            scale: [0.8, 1.2, 0.8],
+                          }}
+                          transition={{
+                            duration: 2,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                          }}
                         />
                       </svg>
+                      
                       {/* Center Content */}
                       <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="text-center">
-                          <div className="text-2xl font-bold text-[#ECB629]">
+                        <motion.div
+                          className="text-center"
+                          initial={{ opacity: 0, scale: 0.5 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ duration: 0.5, delay: 1 }}
+                        >
+                          <motion.div 
+                            className="text-3xl font-bold text-[#ECB629] mb-1"
+                            animate={{
+                              scale: [1, 1.05, 1],
+                            }}
+                            transition={{
+                              duration: 2,
+                              repeat: Infinity,
+                              ease: "easeInOut",
+                              delay: 2,
+                            }}
+                          >
                             {results.score}
-                          </div>
-                          <div className="text-xs text-gray-400">от 100</div>
-                        </div>
+                          </motion.div>
+                          <div className="text-xs text-gray-400 font-medium">от 100</div>
+                        </motion.div>
                       </div>
+
+                      {/* Floating sparkles */}
+                      <motion.div
+                        className="absolute -top-2 -right-2 w-3 h-3"
+                        animate={{
+                          rotate: 360,
+                          scale: [1, 1.3, 1],
+                        }}
+                        transition={{
+                          duration: 4,
+                          repeat: Infinity,
+                          ease: "linear",
+                        }}
+                      >
+                        <Sparkles className="w-3 h-3 text-[#ECB629]" />
+                      </motion.div>
                     </div>
 
-                    <p className="text-gray-400">
+                    <motion.p 
+                      className="text-gray-300 text-sm bg-gradient-to-r from-gray-300 to-gray-400 bg-clip-text text-transparent"
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: 1.2 }}
+                    >
                       {serviceName === "SEO Struktor™" && "Потенциален резултат за търсене"}
                       {serviceName === "Trendlab™" && "Потенциален резултат за съдържание"}
                       {serviceName === "Clickstarter™" && "Потенциален резултат за реклами"}
                       {serviceName === "Clientomat™" && "Потенциален резултат за клиенти"}
-                    </p>
-                  </div>
+                    </motion.p>
+                  </motion.div>
 
                   {/* Key Metrics */}
-                  <div className="space-y-3">
-                    <div className="bg-slate-900/50 rounded-lg p-3 border border-slate-700/20">
-                      <div className="text-lg font-bold text-[#ECB629] mb-1">
-                        {serviceName === "SEO Struktor™" && "+"}
-                        {serviceName === "Trendlab™" && "+"}
-                        {serviceName === "Clickstarter™" && "+"}
-                        {serviceName === "Clientomat™" && ""}
-                        {results.metric1 > 0
-                          ? Math.round(results.metric1).toLocaleString("bg-BG")
-                          : "0"}
-                        {serviceName === "Clientomat™" && "%"}
+                  <div className="space-y-4">
+                    <motion.div 
+                      className="bg-gradient-to-br from-slate-900/70 via-slate-800/50 to-slate-900/70 backdrop-blur-sm rounded-xl p-4 border border-slate-700/30 hover:border-[#ECB629]/40 transition-all duration-300 group relative overflow-hidden"
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.5, delay: 0.3 }}
+                      whileHover={{ scale: 1.02 }}
+                    >
+                      <motion.div
+                        className="absolute top-0 left-0 w-full h-0.5 bg-[#ECB629] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
+                      />
+                      <div className="flex items-center gap-3 mb-2">
+                        <TrendingUp className="w-4 h-4 text-[#ECB629]" />
+                        <motion.div 
+                          className="text-lg font-bold text-[#ECB629]"
+                          animate={{
+                            scale: [1, 1.05, 1],
+                          }}
+                          transition={{
+                            duration: 2,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                            delay: 1,
+                          }}
+                        >
+                          {serviceName === "SEO Struktor™" && "+"}
+                          {serviceName === "Trendlab™" && "+"}
+                          {serviceName === "Clickstarter™" && "+"}
+                          {serviceName === "Clientomat™" && ""}
+                          {results.metric1 > 0
+                            ? Math.round(results.metric1).toLocaleString("bg-BG")
+                            : "0"}
+                          {serviceName === "Clientomat™" && "%"}
+                        </motion.div>
                       </div>
-                      <div className="text-gray-400 text-xs">
+                      <div className="text-gray-300 text-xs font-medium">
                         {serviceName === "SEO Struktor™" && "Нов трафик/месец"}
                         {serviceName === "Trendlab™" && "Нови последователи"}
                         {serviceName === "Clickstarter™" && "Допълнителни продажби"}
                         {serviceName === "Clientomat™" && "Повторни поръчки (%)"}
                       </div>
-                    </div>
+                    </motion.div>
 
-                    <div className="bg-slate-900/50 rounded-lg p-3 border border-slate-700/20">
-                      <div className="text-lg font-bold text-[#ECB629] mb-1">
-                        {serviceName === "SEO Struktor™" && "+"}
-                        {serviceName === "Trendlab™" && ""}
-                        {serviceName === "Clickstarter™" && "-"}
-                        {serviceName === "Clientomat™" && "+"}
-                        {results.metric2 > 0
-                          ? Math.round(results.metric2).toLocaleString("bg-BG")
-                          : "0"}
-                        {serviceName === "Trendlab™" && "К"}
-                        {serviceName === "Clickstarter™" && " лв."}
-                        {serviceName === "Clientomat™" && "К"}
+                    <motion.div 
+                      className="bg-gradient-to-br from-slate-900/70 via-slate-800/50 to-slate-900/70 backdrop-blur-sm rounded-xl p-4 border border-slate-700/30 hover:border-[#ECB629]/40 transition-all duration-300 group relative overflow-hidden"
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.5, delay: 0.4 }}
+                      whileHover={{ scale: 1.02 }}
+                    >
+                      <motion.div
+                        className="absolute top-0 left-0 w-full h-0.5 bg-[#ECB629] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
+                      />
+                      <div className="flex items-center gap-3 mb-2">
+                        <BarChart3 className="w-4 h-4 text-[#ECB629]" />
+                        <motion.div 
+                          className="text-lg font-bold text-[#ECB629]"
+                          animate={{
+                            scale: [1, 1.05, 1],
+                          }}
+                          transition={{
+                            duration: 2,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                            delay: 1.5,
+                          }}
+                        >
+                          {serviceName === "SEO Struktor™" && "+"}
+                          {serviceName === "Trendlab™" && ""}
+                          {serviceName === "Clickstarter™" && "-"}
+                          {serviceName === "Clientomat™" && "+"}
+                          {results.metric2 > 0
+                            ? Math.round(results.metric2).toLocaleString("bg-BG")
+                            : "0"}
+                          {serviceName === "Trendlab™" && "К"}
+                          {serviceName === "Clickstarter™" && " лв."}
+                          {serviceName === "Clientomat™" && "К"}
+                        </motion.div>
                       </div>
-                      <div className="text-gray-400 text-xs">
+                      <div className="text-gray-300 text-xs font-medium">
                         {serviceName === "SEO Struktor™" && "Нови заявки/месец"}
                         {serviceName === "Trendlab™" && "Месечни гледания"}
                         {serviceName === "Clickstarter™" && "Спестени разходи"}
                         {serviceName === "Clientomat™" && "Стойност на клиент увеличение"}
                       </div>
-                    </div>
+                    </motion.div>
 
-                    <div className="bg-slate-900/50 rounded-lg p-3 border border-slate-700/20">
-                      <div className="text-lg font-bold text-green-500 mb-1">
-                        {results.monthlyProfit > 0
-                          ? `${results.monthlyProfit.toFixed(0)}%`
-                          : "245%"}
+                    <motion.div 
+                      className="bg-gradient-to-br from-green-900/20 via-green-800/10 to-green-900/20 backdrop-blur-sm rounded-xl p-4 border border-green-500/30 hover:border-green-400/50 transition-all duration-300 group relative overflow-hidden"
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.5, delay: 0.5 }}
+                      whileHover={{ scale: 1.02 }}
+                    >
+                      <motion.div
+                        className="absolute top-0 left-0 w-full h-0.5 bg-green-500 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
+                      />
+                      <div className="flex items-center gap-3 mb-2">
+                        <DollarSign className="w-4 h-4 text-green-500" />
+                        <motion.div 
+                          className="text-lg font-bold text-green-500"
+                          animate={{
+                            scale: [1, 1.08, 1],
+                          }}
+                          transition={{
+                            duration: 1.5,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                            delay: 2,
+                          }}
+                        >
+                          {results.monthlyProfit > 0
+                            ? `${results.monthlyProfit.toFixed(0)}%`
+                            : "245%"}
+                        </motion.div>
                       </div>
-                      <div className="text-gray-400 text-xs">Печалба месечно (процент от вложеното)</div>
-                    </div>
+                      <div className="text-gray-300 text-xs font-medium">Печалба месечно (процент от вложеното)</div>
+                    </motion.div>
                   </div>
 
                   {/* Investment Info */}
-                  <div className="bg-slate-900/50 rounded-lg p-3 border border-slate-700/20 text-center">
-                    <div className="text-[#ECB629] font-semibold text-sm mb-1">
-                      Стартова инвестиция: {monthlyPrice.toLocaleString("bg-BG")} лв./месец
+                  <motion.div 
+                    className="bg-gradient-to-br from-[#ECB629]/10 via-[#ECB629]/5 to-[#ECB629]/10 backdrop-blur-sm rounded-xl p-4 border border-[#ECB629]/30 text-center relative overflow-hidden group"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.6 }}
+                    whileHover={{ scale: 1.02 }}
+                  >
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-[#ECB629]/0 via-[#ECB629]/10 to-[#ECB629]/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                      animate={{
+                        backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+                      }}
+                      transition={{
+                        duration: 4,
+                        repeat: Infinity,
+                        ease: "linear",
+                      }}
+                    />
+                    
+                    <div className="flex items-center justify-center gap-2 mb-2">
+                      <Target className="w-4 h-4 text-[#ECB629]" />
+                      <motion.div 
+                        className="text-[#ECB629] font-bold text-sm"
+                        animate={{
+                          scale: [1, 1.05, 1],
+                        }}
+                        transition={{
+                          duration: 3,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                        }}
+                      >
+                        Стартова инвестиция: {monthlyPrice.toLocaleString("bg-BG")} лв./месец
+                      </motion.div>
                     </div>
-                    <p className="text-gray-400 text-xs">
+                    
+                    <motion.p 
+                      className="text-gray-300 text-xs leading-relaxed"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 0.5, delay: 0.8 }}
+                    >
                       Спрете да харчите без план - започнете да строите с цифри.
-                    </p>
-                  </div>
+                    </motion.p>
+
+                    {/* Floating elements */}
+                    <motion.div
+                      className="absolute -top-1 -right-1 w-6 h-6 bg-[#ECB629]/20 rounded-full"
+                      animate={{
+                        scale: [1, 1.3, 1],
+                        opacity: [0.5, 0.8, 0.5],
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                      }}
+                    />
+                  </motion.div>
                 </motion.div>
               ) : (
                 <div className="flex items-center justify-center h-full text-center">
