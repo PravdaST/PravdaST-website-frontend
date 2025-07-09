@@ -6,7 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import { Link } from "wouter";
 import { ChevronDown, HelpCircle, ArrowRight } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { pageSEOData } from "@/data/seo-pages";
 
 interface FAQItem {
@@ -100,29 +100,48 @@ export default function FAQ() {
       ? faqData
       : faqData.filter((item) => item.category === selectedCategory);
 
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqData.map((item) => ({
-      "@type": "Question",
-      name: item.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: item.answer,
-      },
-    })),
-  };
+  // Добавяне на FAQ schema директно в HEAD
+  useEffect(() => {
+    const faqSchema = {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": faqData.map((item) => ({
+        "@type": "Question",
+        "name": item.question,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": item.answer,
+        },
+      })),
+    };
+
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.textContent = JSON.stringify(faqSchema);
+    script.setAttribute('data-schema-source', 'faq-component');
+    script.id = 'faq-schema';
+    
+    // Премахни съществуващи FAQ schema ако има
+    const existingFAQSchema = document.getElementById('faq-schema');
+    if (existingFAQSchema) {
+      existingFAQSchema.remove();
+    }
+    
+    document.head.appendChild(script);
+
+    return () => {
+      const schemaToRemove = document.getElementById('faq-schema');
+      if (schemaToRemove) {
+        schemaToRemove.remove();
+      }
+    };
+  }, []);
 
   return (
     <div className="min-h-screen bg-slate-900">
       <SEOHead
         seo={pageSEOData.faq}
         pageSlug="faq"
-      />
-
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
 
       <Navigation />
