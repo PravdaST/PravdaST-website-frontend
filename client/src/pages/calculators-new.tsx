@@ -1181,160 +1181,427 @@ function ProfitCalculator({
         >
           {/* Transformation Preview Section */}
           <Card className="bg-slate-900/80 border-slate-700/50 backdrop-blur-lg overflow-hidden relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-slate-800/50 to-slate-900/30" />
-            <CardContent className="p-8 relative z-10">
-              <div className="text-center mb-8">
-                <div className="flex items-center justify-center gap-2 mb-4">
-                  <Zap className="w-6 h-6 text-[#ECB629]" />
-                  <h3 className="text-xl font-semibold text-white">
+            <div className="absolute inset-0 bg-gradient-to-br from-slate-800/30 via-transparent to-[#ECB629]/5" />
+            <CardContent className="p-6 md:p-8 relative z-10">
+              {/* Header */}
+              <motion.div 
+                className="text-center mb-8"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+              >
+                <div className="inline-flex items-center gap-3 bg-slate-800/50 backdrop-blur-sm border border-[#ECB629]/30 rounded-full px-6 py-3 mb-6">
+                  <motion.div
+                    animate={{ 
+                      scale: [1, 1.2, 1],
+                      rotate: [0, 180, 360]
+                    }}
+                    transition={{ 
+                      duration: 3,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                  >
+                    <Zap className="w-6 h-6 text-[#ECB629]" />
+                  </motion.div>
+                  <h3 className="text-xl md:text-2xl font-bold text-white">
                     Вашата трансформация в действие
                   </h3>
                 </div>
-                <p className="text-gray-300 mb-6">
-                  Ето как ще изглежда бизнесът ви след {results.timeframe}:
+                <p className="text-gray-300 text-base md:text-lg max-w-2xl mx-auto">
+                  Ето как ще изглежда бизнесът ви след <span className="text-[#ECB629] font-semibold">{results.timeframe}</span>:
                 </p>
-              </div>
+              </motion.div>
 
-              {/* Before/After Infographic */}
-              <div className="bg-slate-800/40 rounded-2xl p-6 mb-8 border border-slate-700/30">
-                <h4 className="text-white font-semibold text-center mb-6">Преди vs След визуализация</h4>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  {/* Before */}
-                  <div className="text-center">
-                    <div className="bg-red-500/10 rounded-xl p-6 border border-red-500/20 mb-4">
-                      <div className="text-red-400 text-sm mb-2">ПРЕДИ</div>
-                      <div className="space-y-3">
-                        <div className="flex justify-between">
-                          <span className="text-gray-400 text-sm">
-                            {serviceName === "SEO Struktor™" && "Месечен трафик:"}
-                            {serviceName === "Trendlab™" && "Последователи:"}
-                            {serviceName === "Clickstarter™" && "Продажби:"}
-                            {serviceName === "Clientomat™" && "Повторни клиенти:"}
+              {/* Before/After Comparison - Improved Layout */}
+              <motion.div 
+                className="bg-gradient-to-r from-slate-800/40 via-slate-800/30 to-slate-800/40 rounded-3xl p-6 md:p-8 mb-8 border border-slate-700/50 backdrop-blur-sm"
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.7, delay: 0.2 }}
+              >
+                <div className="text-center mb-8">
+                  <h4 className="text-white font-bold text-lg md:text-xl mb-2">Преди vs След визуализация</h4>
+                  <div className="w-20 h-1 bg-gradient-to-r from-transparent via-[#ECB629] to-transparent mx-auto rounded-full"></div>
+                </div>
+                
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 items-center">
+                  {/* Before - Left */}
+                  <motion.div 
+                    className="order-1"
+                    initial={{ opacity: 0, x: -30 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6, delay: 0.3 }}
+                  >
+                    <div className="bg-gradient-to-br from-red-500/10 to-red-600/5 rounded-2xl p-6 border border-red-500/20 backdrop-blur-sm relative overflow-hidden">
+                      <div className="absolute top-2 right-2">
+                        <TrendingDown className="w-5 h-5 text-red-400/60" />
+                      </div>
+                      <div className="text-center mb-4">
+                        <div className="inline-flex items-center gap-2 bg-red-500/20 backdrop-blur-sm rounded-full px-3 py-1 mb-3">
+                          <div className="w-2 h-2 bg-red-400 rounded-full animate-pulse"></div>
+                          <span className="text-red-400 text-sm font-semibold">ПРЕДИ</span>
+                        </div>
+                      </div>
+                      <div className="space-y-4">
+                        <div className="flex justify-between items-center py-2 border-b border-red-500/10">
+                          <span className="text-gray-300 text-sm font-medium">
+                            {serviceName === "SEO Struktor™" && "Месечен трафик"}
+                            {serviceName === "Trendlab™" && "Последователи"}
+                            {serviceName === "Clickstarter™" && "Продажби"}
+                            {serviceName === "Clientomat™" && "Повторни клиенти"}
                           </span>
-                          <span className="text-red-400 font-bold">
+                          <span className="text-red-400 font-bold text-lg">
                             {serviceName === "SEO Struktor™" && Math.round(parseFloat(inputs.currentTraffic) || 5000).toLocaleString("bg-BG")}
                             {serviceName === "Trendlab™" && Math.round(parseFloat(inputs.currentFollowers) || 2500).toLocaleString("bg-BG")}
                             {serviceName === "Clickstarter™" && Math.round(parseFloat(inputs.monthlyConversions) || 75).toLocaleString("bg-BG")}
                             {serviceName === "Clientomat™" && `${parseFloat(inputs.repeatRate) || 25}%`}
                           </span>
                         </div>
-                        <div className="flex justify-between">
-                          <span className="text-gray-400 text-sm">Контрол върху печалбата:</span>
+                        <div className="flex justify-between items-center py-2 border-b border-red-500/10">
+                          <span className="text-gray-300 text-sm font-medium">Контрол</span>
                           <span className="text-red-400 font-bold">Липсва</span>
                         </div>
-                        <div className="flex justify-between">
-                          <span className="text-gray-400 text-sm">Прогнозируемост:</span>
+                        <div className="flex justify-between items-center py-2">
+                          <span className="text-gray-300 text-sm font-medium">Прогнозируемост</span>
                           <span className="text-red-400 font-bold">Ниска</span>
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </motion.div>
 
-                  {/* Arrow */}
-                  <div className="hidden md:flex items-center justify-center">
-                    <ArrowRight className="w-8 h-8 text-[#ECB629]" />
-                  </div>
-                  <div className="md:hidden flex justify-center">
-                    <div className="w-px h-8 bg-[#ECB629]"></div>
-                  </div>
+                  {/* Arrow - Center */}
+                  <motion.div 
+                    className="order-2 lg:order-2 flex justify-center"
+                    initial={{ opacity: 0, scale: 0.5 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.5, delay: 0.6 }}
+                  >
+                    <div className="hidden lg:flex items-center justify-center">
+                      <div className="relative">
+                        <motion.div
+                          className="w-16 h-16 bg-gradient-to-r from-[#ECB629] to-yellow-500 rounded-full flex items-center justify-center shadow-lg shadow-[#ECB629]/25"
+                          animate={{ 
+                            scale: [1, 1.1, 1],
+                            boxShadow: [
+                              "0 10px 30px rgba(236, 182, 40, 0.25)",
+                              "0 20px 60px rgba(236, 182, 40, 0.4)",
+                              "0 10px 30px rgba(236, 182, 40, 0.25)"
+                            ]
+                          }}
+                          transition={{ 
+                            duration: 2,
+                            repeat: Infinity,
+                            ease: "easeInOut"
+                          }}
+                        >
+                          <ArrowRight className="w-8 h-8 text-black font-bold" />
+                        </motion.div>
+                      </div>
+                    </div>
+                    <div className="lg:hidden flex justify-center py-4">
+                      <motion.div
+                        className="w-1 h-12 bg-gradient-to-b from-[#ECB629] to-yellow-500 rounded-full"
+                        animate={{ 
+                          scaleY: [1, 1.2, 1],
+                          opacity: [0.7, 1, 0.7]
+                        }}
+                        transition={{ 
+                          duration: 2,
+                          repeat: Infinity,
+                          ease: "easeInOut"
+                        }}
+                      />
+                    </div>
+                  </motion.div>
 
-                  {/* After */}
-                  <div className="text-center">
-                    <div className="bg-[#ECB629]/10 rounded-xl p-6 border border-[#ECB629]/20 mb-4">
-                      <div className="text-[#ECB629] text-sm mb-2">СЛЕД</div>
-                      <div className="space-y-3">
-                        <div className="flex justify-between">
-                          <span className="text-gray-400 text-sm">
-                            {serviceName === "SEO Struktor™" && "Месечен трафик:"}
-                            {serviceName === "Trendlab™" && "Последователи:"}
-                            {serviceName === "Clickstarter™" && "Продажби:"}
-                            {serviceName === "Clientomat™" && "Повторни клиенти:"}
+                  {/* After - Right */}
+                  <motion.div 
+                    className="order-3"
+                    initial={{ opacity: 0, x: 30 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6, delay: 0.4 }}
+                  >
+                    <div className="bg-gradient-to-br from-[#ECB629]/10 to-yellow-500/5 rounded-2xl p-6 border border-[#ECB629]/30 backdrop-blur-sm relative overflow-hidden">
+                      <div className="absolute top-2 right-2">
+                        <TrendingUp className="w-5 h-5 text-[#ECB629]/60" />
+                      </div>
+                      <div className="text-center mb-4">
+                        <div className="inline-flex items-center gap-2 bg-[#ECB629]/20 backdrop-blur-sm rounded-full px-3 py-1 mb-3">
+                          <motion.div 
+                            className="w-2 h-2 bg-[#ECB629] rounded-full"
+                            animate={{ scale: [1, 1.3, 1] }}
+                            transition={{ duration: 1.5, repeat: Infinity }}
+                          />
+                          <span className="text-[#ECB629] text-sm font-semibold">СЛЕД</span>
+                        </div>
+                      </div>
+                      <div className="space-y-4">
+                        <div className="flex justify-between items-center py-2 border-b border-[#ECB629]/10">
+                          <span className="text-gray-300 text-sm font-medium">
+                            {serviceName === "SEO Struktor™" && "Месечен трафик"}
+                            {serviceName === "Trendlab™" && "Последователи"}
+                            {serviceName === "Clickstarter™" && "Продажби"}
+                            {serviceName === "Clientomat™" && "Повторни клиенти"}
                           </span>
-                          <span className="text-[#ECB629] font-bold">
+                          <span className="text-[#ECB629] font-bold text-lg">
                             {results.metric1 > 0
                               ? `+${Math.round(results.metric1).toLocaleString("bg-BG")}${serviceName === "Clientomat™" ? "%" : ""}`
                               : "+340%"}
                           </span>
                         </div>
-                        <div className="flex justify-between">
-                          <span className="text-gray-400 text-sm">Контрол върху печалбата:</span>
+                        <div className="flex justify-between items-center py-2 border-b border-[#ECB629]/10">
+                          <span className="text-gray-300 text-sm font-medium">Контрол</span>
                           <span className="text-[#ECB629] font-bold">Пълен</span>
                         </div>
-                        <div className="flex justify-between">
-                          <span className="text-gray-400 text-sm">Прогнозируемост:</span>
+                        <div className="flex justify-between items-center py-2">
+                          <span className="text-gray-300 text-sm font-medium">Прогнозируемост</span>
                           <span className="text-[#ECB629] font-bold">100%</span>
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </motion.div>
                 </div>
-              </div>
+              </motion.div>
 
-              {/* Timeline Section */}
-              <div className="bg-slate-800/40 rounded-2xl p-6 mb-8 border border-slate-700/30">
-                <h4 className="text-white font-semibold text-center mb-6">График на резултатите</h4>
-                <div className="relative">
-                  <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-[#ECB629]/30"></div>
-                  <div className="space-y-6">
-                    <div className="flex items-start gap-4">
-                      <div className="w-8 h-8 bg-[#ECB629] rounded-full flex items-center justify-center text-black font-bold text-sm">1</div>
-                      <div>
-                        <div className="text-white font-semibold">Първи месец</div>
-                        <div className="text-gray-400 text-sm">
+              {/* Timeline Section - Enhanced */}
+              <motion.div 
+                className="bg-gradient-to-r from-slate-800/40 via-slate-800/30 to-slate-800/40 rounded-3xl p-6 md:p-8 mb-8 border border-slate-700/50 backdrop-blur-sm"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.4 }}
+              >
+                <div className="text-center mb-8">
+                  <div className="inline-flex items-center gap-3 bg-slate-800/50 backdrop-blur-sm border border-[#ECB629]/30 rounded-full px-6 py-3 mb-4">
+                    <Clock className="w-5 h-5 text-[#ECB629]" />
+                    <h4 className="text-white font-bold text-lg md:text-xl">График на резултатите</h4>
+                  </div>
+                  <div className="w-20 h-1 bg-gradient-to-r from-transparent via-[#ECB629] to-transparent mx-auto rounded-full"></div>
+                </div>
+                
+                <div className="relative max-w-4xl mx-auto">
+                  {/* Timeline Line */}
+                  <div className="absolute left-6 md:left-8 top-8 bottom-8 w-0.5 bg-gradient-to-b from-[#ECB629]/20 via-[#ECB629]/60 to-[#ECB629]/20 rounded-full"></div>
+                  
+                  <div className="space-y-8 md:space-y-12">
+                    {/* Month 1 */}
+                    <motion.div 
+                      className="flex items-start gap-6 md:gap-8"
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.6, delay: 0.5 }}
+                    >
+                      <div className="relative">
+                        <motion.div
+                          className="w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-[#ECB629] to-yellow-500 rounded-full flex items-center justify-center text-black font-bold text-lg md:text-xl shadow-lg shadow-[#ECB629]/25 z-10 relative"
+                          animate={{ 
+                            boxShadow: [
+                              "0 8px 25px rgba(236, 182, 40, 0.25)",
+                              "0 15px 35px rgba(236, 182, 40, 0.4)",
+                              "0 8px 25px rgba(236, 182, 40, 0.25)"
+                            ]
+                          }}
+                          transition={{ duration: 3, repeat: Infinity, delay: 0 }}
+                        >
+                          1
+                        </motion.div>
+                      </div>
+                      <div className="flex-1 bg-slate-800/30 rounded-2xl p-4 md:p-6 border border-slate-700/30 backdrop-blur-sm">
+                        <div className="flex items-center gap-3 mb-3">
+                          <h5 className="text-white font-bold text-lg md:text-xl">Първи месец</h5>
+                          <div className="px-3 py-1 bg-[#ECB629]/20 rounded-full border border-[#ECB629]/30">
+                            <span className="text-[#ECB629] text-xs font-semibold">СТАРТ</span>
+                          </div>
+                        </div>
+                        <p className="text-gray-300 text-sm md:text-base leading-relaxed">
                           {serviceName === "SEO Struktor™" && "Техническа оптимизация, изследване на ключови думи, първи подобрения"}
                           {serviceName === "Trendlab™" && "Стратегия за съдържание, първо качествено съдържание"}
                           {serviceName === "Clickstarter™" && "Преглед на кампании, нова структура, първи оптимизации"}
                           {serviceName === "Clientomat™" && "Преглед на процеси, първи автоматизации, настройка на система за управление на клиенти"}
-                        </div>
+                        </p>
                       </div>
-                    </div>
-                    <div className="flex items-start gap-4">
-                      <div className="w-8 h-8 bg-[#ECB629] rounded-full flex items-center justify-center text-black font-bold text-sm">3</div>
-                      <div>
-                        <div className="text-white font-semibold">Трети месец</div>
-                        <div className="text-gray-400 text-sm">
+                    </motion.div>
+
+                    {/* Month 3 */}
+                    <motion.div 
+                      className="flex items-start gap-6 md:gap-8"
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.6, delay: 0.6 }}
+                    >
+                      <div className="relative">
+                        <motion.div
+                          className="w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-[#ECB629] to-yellow-500 rounded-full flex items-center justify-center text-black font-bold text-lg md:text-xl shadow-lg shadow-[#ECB629]/25 z-10 relative"
+                          animate={{ 
+                            boxShadow: [
+                              "0 8px 25px rgba(236, 182, 40, 0.25)",
+                              "0 15px 35px rgba(236, 182, 40, 0.4)",
+                              "0 8px 25px rgba(236, 182, 40, 0.25)"
+                            ]
+                          }}
+                          transition={{ duration: 3, repeat: Infinity, delay: 1 }}
+                        >
+                          3
+                        </motion.div>
+                      </div>
+                      <div className="flex-1 bg-slate-800/30 rounded-2xl p-4 md:p-6 border border-slate-700/30 backdrop-blur-sm">
+                        <div className="flex items-center gap-3 mb-3">
+                          <h5 className="text-white font-bold text-lg md:text-xl">Трети месец</h5>
+                          <div className="px-3 py-1 bg-[#ECB629]/20 rounded-full border border-[#ECB629]/30">
+                            <span className="text-[#ECB629] text-xs font-semibold">РАСТЕЖ</span>
+                          </div>
+                        </div>
+                        <p className="text-gray-300 text-sm md:text-base leading-relaxed">
                           {serviceName === "SEO Struktor™" && "Видими позиции в Google, 40-60% увеличение на трафика"}
                           {serviceName === "Trendlab™" && "50% увеличение на ангажираност, изградена аудитория"}
                           {serviceName === "Clickstarter™" && "25-35% по-нисък разход за клик, 40% повече продажби"}
                           {serviceName === "Clientomat™" && "30% по-висок процент връщащи се клиенти, автоматизирани процеси"}
-                        </div>
+                        </p>
                       </div>
-                    </div>
-                    <div className="flex items-start gap-4">
-                      <div className="w-8 h-8 bg-[#ECB629] rounded-full flex items-center justify-center text-black font-bold text-sm">6</div>
-                      <div>
-                        <div className="text-white font-semibold">Шести месец</div>
-                        <div className="text-gray-400 text-sm">
-                          Пълни резултати: {results.monthlyProfit > 0 ? `${Math.round(results.monthlyProfit)}%` : "250%"} печалба спрямо вложеното, 
-                          устойчив растеж, системата работи самостоятелно
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                    </motion.div>
 
-              {/* Social Proof */}
-              <div className="bg-slate-800/40 rounded-2xl p-6 border border-slate-700/30">
-                <div className="flex items-center justify-center gap-2 mb-4">
-                  <Award className="w-5 h-5 text-[#ECB629]" />
-                  <span className="text-white font-semibold">Доказани резултати</span>
+                    {/* Month 6 */}
+                    <motion.div 
+                      className="flex items-start gap-6 md:gap-8"
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.6, delay: 0.7 }}
+                    >
+                      <div className="relative">
+                        <motion.div
+                          className="w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-[#ECB629] to-yellow-500 rounded-full flex items-center justify-center text-black font-bold text-lg md:text-xl shadow-lg shadow-[#ECB629]/25 z-10 relative"
+                          animate={{ 
+                            boxShadow: [
+                              "0 8px 25px rgba(236, 182, 40, 0.25)",
+                              "0 15px 35px rgba(236, 182, 40, 0.4)",
+                              "0 8px 25px rgba(236, 182, 40, 0.25)"
+                            ]
+                          }}
+                          transition={{ duration: 3, repeat: Infinity, delay: 2 }}
+                        >
+                          6
+                        </motion.div>
+                      </div>
+                      <div className="flex-1 bg-gradient-to-br from-[#ECB629]/10 to-yellow-500/5 rounded-2xl p-4 md:p-6 border border-[#ECB629]/30 backdrop-blur-sm">
+                        <div className="flex items-center gap-3 mb-3">
+                          <h5 className="text-white font-bold text-lg md:text-xl">Шести месец</h5>
+                          <div className="px-3 py-1 bg-[#ECB629]/30 rounded-full border border-[#ECB629]/50">
+                            <span className="text-[#ECB629] text-xs font-bold">РЕЗУЛТАТ</span>
+                          </div>
+                        </div>
+                        <p className="text-gray-300 text-sm md:text-base leading-relaxed">
+                          <span className="text-[#ECB629] font-semibold">
+                            Пълни резултати: {results.monthlyProfit > 0 ? `${Math.round(results.monthlyProfit)}%` : "250%"} печалба спрямо вложеното
+                          </span>
+                          <br />
+                          Устойчив растеж, системата работи самостоятелно
+                        </p>
+                      </div>
+                    </motion.div>
+                  </div>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-                  <div>
-                    <div className="text-2xl font-bold text-[#ECB629] mb-1">47+</div>
-                    <div className="text-gray-400 text-sm">Успешни проекта</div>
+              </motion.div>
+
+              {/* Social Proof - Enhanced */}
+              <motion.div 
+                className="bg-gradient-to-r from-slate-800/40 via-slate-800/30 to-slate-800/40 rounded-3xl p-6 md:p-8 border border-slate-700/50 backdrop-blur-sm"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.6 }}
+              >
+                <div className="text-center mb-8">
+                  <div className="inline-flex items-center gap-3 bg-slate-800/50 backdrop-blur-sm border border-[#ECB629]/30 rounded-full px-6 py-3 mb-4">
+                    <motion.div
+                      animate={{ 
+                        rotate: [0, 360],
+                        scale: [1, 1.1, 1]
+                      }}
+                      transition={{ 
+                        duration: 4,
+                        repeat: Infinity,
+                        ease: "easeInOut"
+                      }}
+                    >
+                      <Award className="w-6 h-6 text-[#ECB629]" />
+                    </motion.div>
+                    <span className="text-white font-bold text-lg md:text-xl">Доказани резултати</span>
                   </div>
-                  <div>
-                    <div className="text-2xl font-bold text-[#ECB629] mb-1">285%</div>
-                    <div className="text-gray-400 text-sm">Средна печалба</div>
-                  </div>
-                  <div>
-                    <div className="text-2xl font-bold text-[#ECB629] mb-1">95%</div>
-                    <div className="text-gray-400 text-sm">Задоволени клиенти</div>
-                  </div>
+                  <div className="w-20 h-1 bg-gradient-to-r from-transparent via-[#ECB629] to-transparent mx-auto rounded-full"></div>
                 </div>
-              </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+                  <motion.div 
+                    className="text-center bg-slate-800/30 rounded-2xl p-6 border border-slate-700/30 backdrop-blur-sm"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.7 }}
+                  >
+                    <motion.div 
+                      className="text-3xl md:text-4xl font-bold text-[#ECB629] mb-2"
+                      animate={{ 
+                        scale: [1, 1.05, 1],
+                      }}
+                      transition={{ 
+                        duration: 2,
+                        repeat: Infinity,
+                        ease: "easeInOut"
+                      }}
+                    >
+                      47+
+                    </motion.div>
+                    <div className="text-gray-300 text-sm md:text-base font-medium">Успешни проекта</div>
+                    <div className="w-12 h-1 bg-[#ECB629]/30 mx-auto mt-3 rounded-full"></div>
+                  </motion.div>
+                  
+                  <motion.div 
+                    className="text-center bg-slate-800/30 rounded-2xl p-6 border border-slate-700/30 backdrop-blur-sm"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.8 }}
+                  >
+                    <motion.div 
+                      className="text-3xl md:text-4xl font-bold text-[#ECB629] mb-2"
+                      animate={{ 
+                        scale: [1, 1.05, 1],
+                      }}
+                      transition={{ 
+                        duration: 2,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                        delay: 0.5
+                      }}
+                    >
+                      285%
+                    </motion.div>
+                    <div className="text-gray-300 text-sm md:text-base font-medium">Средна печалба</div>
+                    <div className="w-12 h-1 bg-[#ECB629]/30 mx-auto mt-3 rounded-full"></div>
+                  </motion.div>
+                  
+                  <motion.div 
+                    className="text-center bg-slate-800/30 rounded-2xl p-6 border border-slate-700/30 backdrop-blur-sm"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.9 }}
+                  >
+                    <motion.div 
+                      className="text-3xl md:text-4xl font-bold text-[#ECB629] mb-2"
+                      animate={{ 
+                        scale: [1, 1.05, 1],
+                      }}
+                      transition={{ 
+                        duration: 2,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                        delay: 1
+                      }}
+                    >
+                      95%
+                    </motion.div>
+                    <div className="text-gray-300 text-sm md:text-base font-medium">Задоволени клиенти</div>
+                    <div className="w-12 h-1 bg-[#ECB629]/30 mx-auto mt-3 rounded-full"></div>
+                  </motion.div>
+                </div>
+              </motion.div>
             </CardContent>
           </Card>
 
