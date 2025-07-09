@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Calculator,
@@ -177,7 +177,7 @@ function ProfitCalculator({
     }
   };
 
-  const serviceInputs = getServiceInputs();
+  const serviceInputs = useMemo(() => getServiceInputs(), [serviceName]);
 
   const [inputs, setInputs] = useState({
     [serviceInputs.param1.key]: "",
@@ -199,9 +199,20 @@ function ProfitCalculator({
 
   // Service-specific calculations
   const calculateResults = () => {
-    const param1 = parseFloat(inputs[serviceInputs.param1.key]) || 0;
-    const param2 = parseFloat(inputs[serviceInputs.param2.key]) || 0;
-    const param3 = parseFloat(inputs[serviceInputs.param3.key]) || 0;
+    if (!serviceInputs || !inputs) {
+      return {
+        monthlyProfit: 0,
+        metric1: 0,
+        metric2: 0,
+        score: 0,
+        paybackPeriod: 0,
+        timeframe: "3-6 месеца",
+      };
+    }
+    
+    const param1 = parseFloat(String(inputs[serviceInputs.param1.key] || "0")) || 0;
+    const param2 = parseFloat(String(inputs[serviceInputs.param2.key] || "0")) || 0;
+    const param3 = parseFloat(String(inputs[serviceInputs.param3.key] || "0")) || 0;
 
     if (param1 > 0) {
       switch (serviceName) {
@@ -328,9 +339,9 @@ function ProfitCalculator({
     setResults(newResults);
 
     // Generate service-specific recommendations
-    const param1 = parseFloat(inputs[serviceInputs.param1.key]) || 0;
-    const param2 = parseFloat(inputs[serviceInputs.param2.key]) || 0;
-    const param3 = parseFloat(inputs[serviceInputs.param3.key]) || 0;
+    const param1 = parseFloat(String(inputs[serviceInputs.param1.key] || "0")) || 0;
+    const param2 = parseFloat(String(inputs[serviceInputs.param2.key] || "0")) || 0;
+    const param3 = parseFloat(String(inputs[serviceInputs.param3.key] || "0")) || 0;
 
     const recs = [];
     switch (serviceName) {
@@ -360,7 +371,7 @@ function ProfitCalculator({
         break;
     }
     setRecommendations(recs.slice(0, 4));
-  }, [inputs, serviceName, monthlyPrice]);
+  }, [inputs[serviceInputs.param1.key], inputs[serviceInputs.param2.key], inputs[serviceInputs.param3.key], serviceName, monthlyPrice]);
 
   return (
     <div className="space-y-8">
