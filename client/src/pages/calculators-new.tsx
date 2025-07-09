@@ -923,7 +923,7 @@ function ReturnOnInvestmentCalculator({
                       window.location.href = "/services/clientomat";
                     else window.location.href = "/services";
                   }}
-                  className="border-[#ECB629] text-[#ECB629] hover:bg-[#ECB629]/10 px-6 sm:px-8 py-3 rounded-xl w-full sm:text-base h-12"
+                  className="border-[#ECB629] text-black hover:bg-[#ECB629]/10 px-6 sm:px-8 py-3 rounded-xl w-full sm:text-base h-12"
                 >
                   {serviceName === "SEO Struktor™" && "Научете повече за SEO системата"}
                   {serviceName === "Trendlab™" && "Научете повече за контент системата"}
