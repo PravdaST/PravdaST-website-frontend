@@ -2067,7 +2067,7 @@ export default function CalculatorsNew() {
                   <div className="absolute inset-0 w-2 h-2 bg-red-500 rounded-full animate-ping opacity-75"></div>
                 </div>
                 <span className="text-white text-sm font-semibold">
-                  Остават места -{" "}
+                  Остават места
                   <span className="text-[#ECB629] text-base">3</span>
                 </span>
               </motion.div>
