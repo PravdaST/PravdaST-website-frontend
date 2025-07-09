@@ -1,16 +1,18 @@
+"use client";
+
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { Link, useLocation } from "wouter";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Menu, X, ChevronDown } from "lucide-react";
-import { trackCTAClick } from "@/lib/analytics";
 
 export const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false);
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
-  const [location] = useLocation();
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -120,7 +122,7 @@ export const Navigation = () => {
                     <Link href={item.href}>
                       <motion.span
                         className={`cursor-pointer transition-colors relative flex items-center gap-1 ${
-                          location === item.href || location.startsWith('/services/')
+                          pathname === item.href || pathname.startsWith('/services/')
                             ? "text-[#ECB629] font-semibold"
                             : "text-white hover:text-[#ECB629]"
                         }`}
@@ -133,7 +135,7 @@ export const Navigation = () => {
                             isServicesDropdownOpen ? 'rotate-180' : ''
                           }`} 
                         />
-                        {(location === item.href || location.startsWith('/services/')) && (
+                        {(pathname === item.href || pathname.startsWith('/services/')) && (
                           <motion.div
                             className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#ECB629]"
                             layoutId="activeTab"
@@ -201,7 +203,7 @@ export const Navigation = () => {
                   <Link href={item.href}>
                     <motion.span
                       className={`cursor-pointer transition-colors relative ${
-                        location === item.href
+                        pathname === item.href
                           ? "text-[#ECB629] font-semibold"
                           : "text-white hover:text-[#ECB629]"
                       }`}
@@ -209,7 +211,7 @@ export const Navigation = () => {
                       transition={{ duration: 0.2 }}
                     >
                       {item.label}
-                      {location === item.href && (
+                      {pathname === item.href && (
                         <motion.div
                           className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#ECB629]"
                           layoutId="activeTab"
@@ -280,7 +282,7 @@ export const Navigation = () => {
                         <Link href={item.href}>
                           <span
                             className={`block cursor-pointer transition-colors hover:text-[#ECB629] ${
-                              location === item.href || location.startsWith('/services/')
+                              pathname === item.href || pathname.startsWith('/services/')
                                 ? "text-[#ECB629] font-semibold"
                                 : "text-white"
                             }`}
@@ -330,7 +332,7 @@ export const Navigation = () => {
                     <Link href={item.href}>
                       <span
                         className={`block cursor-pointer transition-colors hover:text-[#ECB629] ${
-                          location === item.href
+                          pathname === item.href
                             ? "text-[#ECB629] font-semibold"
                             : "text-white"
                         }`}

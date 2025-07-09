@@ -1,5 +1,8 @@
+"use client";
+
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'wouter';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Badge } from '@/components/ui/badge';
@@ -22,7 +25,7 @@ interface MobileNavigationProps {
 }
 
 export function MobileNavigation({ className }: MobileNavigationProps) {
-  const [location] = useLocation();
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -99,8 +102,8 @@ export function MobileNavigation({ className }: MobileNavigationProps) {
   const closeMenu = () => setIsOpen(false);
 
   const isActiveRoute = (href: string) => {
-    if (href === '/') return location === '/';
-    return location.startsWith(href);
+    if (href === '/') return pathname === '/';
+    return pathname.startsWith(href);
   };
 
   return (
