@@ -34,12 +34,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-slate-900">
-      {/* <HelmetSEO seo={seoData} pageSlug="" /> */}
-      <Helmet>
-        <title>АКО ТОВА РАБОТИ, ПРОБЛЕМЪТ Е В КОМПОНЕНТИТЕ</title>
-        <meta name="description" content="Тестово описание." />
-        <meta name="test-helmet" content="helmet-is-working" />
-      </Helmet>
+      <HelmetSEO seo={seoData} pageSlug="" />
       <Navigation />
       <HeroSection />
       <PartnersCarousel />
