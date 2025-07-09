@@ -1,7 +1,7 @@
 
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
-import { SEOHead } from "@/components/seo-head";
+import { SEOHelmet } from "@/components/seo-helmet";
 import { UnifiedCTASection } from "@/components/unified-cta-section";
 import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";

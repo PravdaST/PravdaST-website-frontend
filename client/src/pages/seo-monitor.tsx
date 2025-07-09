@@ -7,7 +7,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { ExternalLink, CheckCircle, AlertTriangle, XCircle, TrendingUp, Search, Globe } from 'lucide-react';
 import { checkPageSEOHealth } from '@/lib/search-console';
-import { SEOHead } from '@/components/seo-head';
+import { SEOHelmet } from '@/components/seo-helmet';
 
 interface SEOHealthCheck {
   url: string;
@@ -76,7 +76,7 @@ export default function SEOMonitor() {
 
   return (
     <div className="min-h-screen bg-background">
-      <SEOHead 
+      <SEOHelmet 
         seo={{
           title: 'SEO Мониторинг | Pravdast Business Engineering',
           description: 'Мониторинг на SEO здравето, Google Search Console интеграция и проследяване на производителността за правдагency.eu',

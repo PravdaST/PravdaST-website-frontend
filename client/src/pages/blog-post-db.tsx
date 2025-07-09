@@ -8,7 +8,7 @@ import { Link } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
-import { SEOHead } from "@/components/seo-head";
+import { SEOHelmet } from "@/components/seo-helmet";
 
 // Fetch individual blog post from database
 interface BlogPost {
@@ -74,7 +74,7 @@ export default function BlogPost() {
 
   return (
     <div className="min-h-screen bg-slate-900">
-      <SEOHead 
+      <SEOHelmet 
         title={`${post.title} | Pravdast Blog`}
         description={post.excerpt}
         canonicalUrl={`https://www.pravdagency.eu/blog/${post.slug}`}

@@ -1,6 +1,6 @@
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
-import { SEOHead } from "@/components/seo-head";
+import { SEOHelmet } from "@/components/seo-helmet";
 import { motion } from "framer-motion";
 import { Shield, Calendar, FileText } from "lucide-react";
 import { pageSEOData } from "@/data/seo-pages";

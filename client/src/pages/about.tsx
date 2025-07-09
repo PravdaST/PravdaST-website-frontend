@@ -25,7 +25,7 @@ import {
   Star,
   Clock,
 } from "lucide-react";
-import { SEOHead } from "@/components/seo-head";
+import { SEOHelmet } from "@/components/seo-helmet";
 import { pageSEOData } from "@/data/seo-pages";
 import { useState } from "react";
 
@@ -192,7 +192,7 @@ export default function About() {
 
   return (
     <div className="min-h-screen bg-slate-900">
-      <SEOHead seo={pageSEOData.about} pageSlug="about" />
+      <SEOHelmet seo={pageSEOData.about} pageSlug="about" />
       <Navigation />
 
       <main className="pt-10">

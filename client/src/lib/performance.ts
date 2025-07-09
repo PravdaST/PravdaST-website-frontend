@@ -198,14 +198,14 @@ export function inlineCriticalCSS() {
 
 // Service Worker registration
 export function registerServiceWorker() {
-  if ('serviceWorker' in navigator) {
+  if ('serviceWorker' in navigator && window.location.protocol === 'https:') {
     window.addEventListener('load', () => {
       navigator.serviceWorker.register('/sw-simple.js')
         .then((registration) => {
-          console.log('SW registered: ', registration);
+          console.log('SW registered successfully');
         })
         .catch((registrationError) => {
-          console.warn('SW registration failed: ', registrationError);
+          console.warn('SW registration failed (normal in development):', registrationError.message);
         });
     });
   }

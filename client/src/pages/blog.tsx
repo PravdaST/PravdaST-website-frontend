@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "wouter";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
-import { SEOHead } from "@/components/seo-head";
+import { SEOHelmet } from "@/components/seo-helmet";
 import { UnifiedCTASection } from "@/components/unified-cta-section";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -115,7 +115,7 @@ export default function Blog() {
 
   return (
     <div className="min-h-screen bg-slate-900">
-      <SEOHead seo={pageSEOData.blog} pageSlug="blog" />
+      <SEOHelmet seo={pageSEOData.blog} pageSlug="blog" />
       <Navigation />
 
       <main className="pt-10">

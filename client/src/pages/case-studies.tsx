@@ -16,7 +16,7 @@ import {
   Star,
   Phone,
 } from "lucide-react";
-import { SEOHead } from "@/components/seo-head";
+import { SEOHelmet } from "@/components/seo-helmet";
 import { pageSEOData } from "@/data/seo-pages";
 import { motion } from "framer-motion";
 
@@ -117,7 +117,7 @@ const caseStudies = [
 export default function CaseStudies() {
   return (
     <div className="min-h-screen bg-slate-900">
-      <SEOHead seo={pageSEOData["case-studies"]} pageSlug="case-studies" />
+      <SEOHelmet seo={pageSEOData["case-studies"]} pageSlug="case-studies" />
       <Navigation />
 
       <main className="pt-10">

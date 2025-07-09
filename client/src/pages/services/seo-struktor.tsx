@@ -2,7 +2,7 @@ import { motion, useInView } from "framer-motion";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { Button } from "@/components/ui/button";
-import { SEOHead } from "@/components/seo-head";
+import { SEOHelmet } from "@/components/seo-helmet";
 import { UnifiedCTASection } from "@/components/unified-cta-section";
 import { useRef, useState, useEffect } from "react";
 import { seoStruktorSchema, injectStructuredData } from "@/lib/seo-schemas";

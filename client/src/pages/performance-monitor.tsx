@@ -7,7 +7,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Activity, Zap, Globe, Image, Code, AlertTriangle, CheckCircle } from 'lucide-react';
 import { performanceMonitor } from '@/lib/performance';
-import { SEOHead } from '@/components/seo-head';
+import { SEOHelmet } from '@/components/seo-helmet';
 
 interface ResourceAnalysis {
   totalSize: number;
@@ -122,7 +122,7 @@ export default function PerformanceMonitor() {
 
   return (
     <div className="min-h-screen bg-background">
-      <SEOHead 
+      <SEOHelmet 
         seo={{
           title: 'Performance Мониторинг | Pravdast Business Engineering',
           description: 'Мониторинг на Web Vitals, анализ на производителността и оптимизация за по-бързо зареждане',

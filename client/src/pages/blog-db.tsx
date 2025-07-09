@@ -8,7 +8,7 @@ import { Link } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
-import { SEOHead } from "@/components/seo-head";
+import { SEOHelmet } from "@/components/seo-helmet";
 
 // Fetch blog posts from database
 interface BlogPost {
@@ -81,7 +81,7 @@ export default function Blog() {
 
   return (
     <div className="min-h-screen bg-slate-900">
-      <SEOHead 
+      <SEOHelmet 
         title="Бизнес Инженерство Блог | Pravdast"
         description="Научете как да създадете предсказуем растеж в B2B компанията си с нашите експертни статии за системи, автоматизация и data-driven подходи."
         canonicalUrl="https://www.pravdagency.eu/blog"
