@@ -275,7 +275,7 @@ function ReturnOnInvestmentCalculator({
         case "Clientomat™": {
           // Clients/AOV/repeat rate calculations
           const newRepeatRate = param3 * 1.8; // 180% increase in repeat rate
-          const newLTV = param2 * 2.2; // 220% LTV increase
+          const newLTV = param2 * 2.2; // 220% LTV (стойност на клиент) increase
           const additionalClients = param1 * 0.4; // 40% more repeat clients
           const additionalRevenue = additionalClients * newLTV * 0.3; // Monthly portion
           const monthlyROI =
