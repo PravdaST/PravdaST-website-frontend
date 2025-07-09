@@ -52,9 +52,22 @@ self.addEventListener('fetch', (event) => {
   
   // Skip external scripts that cause issues
   const url = new URL(event.request.url);
-  const skipDomains = ['static.klaviyo.com', 'analytics.ahrefs.com', 'googletagmanager.com'];
+  const skipDomains = [
+    'static.klaviyo.com', 
+    'analytics.ahrefs.com', 
+    'googletagmanager.com',
+    'fonts.googleapis.com',
+    'fonts.gstatic.com',
+    'framerusercontent.com',
+    'google-analytics.com'
+  ];
   if (skipDomains.some(domain => url.hostname.includes(domain))) {
     return; // Let browser handle these directly
+  }
+  
+  // Skip if it's not our domain
+  if (url.origin !== location.origin) {
+    return; // Let browser handle external requests directly
   }
   
   event.respondWith(
