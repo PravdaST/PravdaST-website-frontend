@@ -414,7 +414,7 @@ function ReturnOnInvestmentCalculator({
                 <Calculator className="w-4 h-4 text-[#ECB629]" />
                 Въведете данни
               </h3>
-              
+
               <div className="space-y-4">
                 <div>
                   <Label
@@ -536,6 +536,37 @@ function ReturnOnInvestmentCalculator({
                   animate={{ opacity: 1, x: 0 }}
                   className="space-y-4"
                 >
+                   {/* Before/After Comparison */}
+              <div className="bg-slate-900/50 rounded-lg p-4 border border-slate-700/20 mb-4">
+                <h4 className="text-white font-semibold text-sm mb-3 text-center">
+                  Преди vs След {serviceName.replace("™", "")}
+                </h4>
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="text-center">
+                    <div className="text-red-400 font-bold text-lg mb-1">
+                      {serviceName === "SEO Struktor™" && Math.round(parseFloat(inputs.currentTraffic) || 5000).toLocaleString("bg-BG")}
+                      {serviceName === "Trendlab™" && Math.round(parseFloat(inputs.currentFollowers) || 2500).toLocaleString("bg-BG")}
+                      {serviceName === "Clickstarter™" && Math.round(parseFloat(inputs.monthlyConversions) || 75).toLocaleString("bg-BG")}
+                      {serviceName === "Clientomat™" && `${parseFloat(inputs.repeatRate) || 25}%`}
+                    </div>
+                    <div className="text-gray-400 text-xs">ПРЕДИ</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-[#ECB629] font-bold text-lg mb-1">
+                      {serviceName === "SEO Struktor™" && "+"}
+                      {serviceName === "Trendlab™" && "+"}
+                      {serviceName === "Clickstarter™" && "+"}
+                      {serviceName === "Clientomat™" && ""}
+                      {results.metric1 > 0
+                        ? Math.round(results.metric1).toLocaleString("bg-BG")
+                        : "17000"}
+                      {serviceName === "Clientomat™" && "%"}
+                    </div>
+                    <div className="text-gray-400 text-xs">СЛЕД</div>
+                  </div>
+                </div>
+              </div>
+
                   <h3 className="text-white font-semibold mb-4 flex items-center gap-2">
                     <BarChart3 className="w-4 h-4 text-[#ECB629]" />
                     Резултати
