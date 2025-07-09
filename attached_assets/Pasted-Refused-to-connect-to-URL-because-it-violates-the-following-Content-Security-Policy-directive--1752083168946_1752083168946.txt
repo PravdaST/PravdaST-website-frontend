@@ -1,0 +1,198 @@
+Refused to connect to '<URL>' because it violates the following Content Security Policy directive: "connect-src 'self' <URL> <URL> <URL> <URL> <URL> <URL> <URL> <URL> <URL> <URL> <URL>".
+Understand this error
+sw-simple.js:29 Fetch API cannot load https://static-tracking.klaviyo.com/onsite/js/fender_analytics.c61482660e7765378c94.js?cb=1. Refused to connect because it violates the document's Content Security Policy.
+(anonymous) @ sw-simple.js:29
+Promise.then
+(anonymous) @ sw-simple.js:25Understand this error
+6The FetchEvent for "<URL>" resulted in a network error response: the promise was rejected.Understand this warning
+sw-simple.js:29 Fetch API cannot load https://static-tracking.klaviyo.com/onsite/js/static.b75b0459cacc803751b4.js?cb=1. Refused to connect because it violates the document's Content Security Policy.
+(anonymous) @ sw-simple.js:29
+Promise.then
+(anonymous) @ sw-simple.js:25Understand this error
+2sw-simple.js:29 Uncaught (in promise) TypeError: Failed to fetch. Refused to connect because it violates the document's Content Security Policy.
+    at sw-simple.js:29:16
+(anonymous) @ sw-simple.js:29
+Promise.then
+(anonymous) @ sw-simple.js:25Understand this error
+klaviyo.js?company_id=UTqrCz:1  GET https://static-tracking.klaviyo.com/onsite/js/fender_analytics.c61482660e7765378c94.js?cb=1 net::ERR_FAILED
+k @ klaviyo.js?company_id=UTqrCz:1
+(anonymous) @ klaviyo.js?company_id=UTqrCz:1
+(anonymous) @ klaviyo.js?company_id=UTqrCz:1
+(anonymous) @ klaviyo.js?company_id=UTqrCz:1Understand this error
+klaviyo.js?company_id=UTqrCz:1  GET https://static-tracking.klaviyo.com/onsite/js/static.b75b0459cacc803751b4.js?cb=1 net::ERR_FAILED
+k @ klaviyo.js?company_id=UTqrCz:1
+(anonymous) @ klaviyo.js?company_id=UTqrCz:1
+(anonymous) @ klaviyo.js?company_id=UTqrCz:1
+(anonymous) @ klaviyo.js?company_id=UTqrCz:1Understand this error
+index-odVoHdP5.js:588 Funnel stage tracked: landing {}
+index-odVoHdP5.js:546 Klaviyo: Company ID not configured, skipping load
+index-odVoHdP5.js:546 Klaviyo loaded successfully
+index-odVoHdP5.js:588 Funnel stage tracked: landing {}
+sw-simple.js:29 Fetch API cannot load https://fonts.gstatic.com/s/inter/v19/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7.woff2. Refused to connect because it violates the document's Content Security Policy.
+(anonymous) @ sw-simple.js:29
+Promise.then
+(anonymous) @ sw-simple.js:25Understand this error
+sw-simple.js:29 Fetch API cannot load https://fonts.gstatic.com/s/inter/v19/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa0ZL7SUc.woff2. Refused to connect because it violates the document's Content Security Policy.
+(anonymous) @ sw-simple.js:29
+Promise.then
+(anonymous) @ sw-simple.js:25Understand this error
+2sw-simple.js:29 Uncaught (in promise) TypeError: Failed to fetch. Refused to connect because it violates the document's Content Security Policy.
+    at sw-simple.js:29:16
+(anonymous) @ sw-simple.js:29
+Promise.then
+(anonymous) @ sw-simple.js:25Understand this error
+css2:1  GET https://fonts.gstatic.com/s/inter/v19/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7.woff2 net::ERR_FAILEDUnderstand this error
+css2:1  GET https://fonts.gstatic.com/s/inter/v19/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa0ZL7SUc.woff2 net::ERR_FAILEDUnderstand this error
+(index):192 SW registered
+index-odVoHdP5.js:546 Klaviyo loaded successfully
+index-odVoHdP5.js:546 Klaviyo: Company ID not configured, skipping load
+sw-simple.js:29 Fetch API cannot load https://d3k81ch9hvuctc.cloudfront.net/company/UTqrCz/images/0e766e89-087a-4267-8142-dc0e80b8f0c4.png. Refused to connect because it violates the document's Content Security Policy.
+(anonymous) @ sw-simple.js:29
+Promise.then
+(anonymous) @ sw-simple.js:25Understand this error
+sw-simple.js:29 Fetch API cannot load https://d3k81ch9hvuctc.cloudfront.net/company/Pb3wug/images/9f4a3561-0a89-4507-ad2d-924d657df631.png. Refused to connect because it violates the document's Content Security Policy.
+(anonymous) @ sw-simple.js:29
+Promise.then
+(anonymous) @ sw-simple.js:25Understand this error
+2sw-simple.js:29 Uncaught (in promise) TypeError: Failed to fetch. Refused to connect because it violates the document's Content Security Policy.
+    at sw-simple.js:29:16
+(anonymous) @ sw-simple.js:29
+Promise.then
+(anonymous) @ sw-simple.js:25Understand this error
+d3k81ch9hvuctc.cloudfront.net/company/UTqrCz/images/0e766e89-087a-4267-8142-dc0e80b8f0c4.png:1  GET https://d3k81ch9hvuctc.cloudfront.net/company/UTqrCz/images/0e766e89-087a-4267-8142-dc0e80b8f0c4.png net::ERR_FAILED
+Image
+F @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+V @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+I @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+H @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+I @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+H @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+V @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+I @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+H @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+I @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+H @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+V @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+I @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+H @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+I @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+H @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+I @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+H @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+I @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+H @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+V @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+I @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+H @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+I @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+H @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+I @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+H @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+V @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+I @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+H @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+I @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+H @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+V @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+I @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+H @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+I @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+H @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+V @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+I @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+H @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+I @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+H @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+V @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+I @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+H @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+I @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+H @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+I @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+H @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+I @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+H @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+I @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+H @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+V @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+I @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+H @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+I @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+H @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+I @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+H @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+V @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+I @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+H @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+I @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+H @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+V @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+I @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+H @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+I @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+H @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+I @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+U @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+Promise.then
+R @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+x.setState @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+_.__c._.__ @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+(anonymous) @ Render.3a27c84b1625345ddbc2.js:502
+T @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+U @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+setTimeout
+t @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+requestAnimationFrame
+O @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+a.diffed @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+r.options.diffed @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+I @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+H @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+I @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+H @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+I @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+q @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+U @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+B @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+I @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+H @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+I @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+H @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+I @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+H @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+I @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+H @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+I @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+H @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+I @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+H @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+I @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+H @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+I @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+H @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+I @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+q @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+M @ vendors~in_app_forms~signup_forms~reviews~atlas.0201e888d834a3782e3a.js?cb=1:1
+X @ Render.3a27c84b1625345ddbc2.js:546
+(anonymous) @ default~in_app_forms~signup_forms.72aa8132dbdb206e8773.js?cb=1:1
+Promise.then
+t.Z @ default~in_app_forms~signup_forms.72aa8132dbdb206e8773.js?cb=1:1
+oe @ default~Render~ClientStore~.e04a64ac51bea7864f92.js:1
+c @ default~in_app_forms~signup_forms.72aa8132dbdb206e8773.js?cb=1:1
+await in c
+callback @ default~in_app_forms~signup_forms.72aa8132dbdb206e8773.js?cb=1:1
+Pr @ default~in_app_forms~signup_forms~onsite-triggering.c2eb866f47c2d0a283e6.js?cb=1:1
+(anonymous) @ default~in_app_forms~signup_forms~onsite-triggering.c2eb866f47c2d0a283e6.js?cb=1:1
+setTimeout
+(anonymous) @ default~in_app_forms~signup_forms~onsite-triggering.c2eb866f47c2d0a283e6.js?cb=1:1
+DELAY @ default~in_app_forms~signup_forms~onsite-triggering.c2eb866f47c2d0a283e6.js?cb=1:1
+callback @ default~in_app_forms~signup_forms~onsite-triggering.c2eb866f47c2d0a283e6.js?cb=1:1
+yr @ default~in_app_forms~signup_forms~onsite-triggering.c2eb866f47c2d0a283e6.js?cb=1:1
+Er @ default~in_app_forms~signup_forms~onsite-triggering.c2eb866f47c2d0a283e6.js?cb=1:1
+c @ default~in_app_forms~signup_forms~onsite-triggering.c2eb866f47c2d0a283e6.js?cb=1:1
+(anonymous) @ default~in_app_forms~signup_forms~onsite-triggering.c2eb866f47c2d0a283e6.js?cb=1:1
+(anonymous) @ default~in_app_forms~signup_forms~onsite-triggering.c2eb866f47c2d0a283e6.js?cb=1:1
+Rr @ default~in_app_forms~signup_forms~onsite-triggering.c2eb866f47c2d0a283e6.js?cb=1:1
+_r @ default~in_app_forms~signup_forms~onsite-triggering.c2eb866f47c2d0a283e6.js?cb=1:1
+n @ default~in_app_forms~signup_forms~onsite-triggering.c2eb866f47c2d0a283e6.js?cb=1:1Understand this error
+d3k81ch9hvuctc.cloudfront.net/company/Pb3wug/images/9f4a3561-0a89-4507-ad2d-924d657df631.png:1  GET https://d3k81ch9hvuctc.cloudfront.net/company/Pb3wug/images/9f4a3561-0a89-4507-ad2d-924d657df631.png net::ERR_FAILED

@@ -53,11 +53,11 @@ app.use(helmet({
   contentSecurityPolicy: {
     directives: {
       defaultSrc: ["'self'"],
-      styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
+      styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com", "https://static.klaviyo.com"],
       fontSrc: ["'self'", "https://fonts.gstatic.com"],
-      imgSrc: ["'self'", "data:", "https:"],
-      scriptSrc: ["'self'", "'unsafe-inline'", "https://www.googletagmanager.com", "https://region1.google-analytics.com"],
-      connectSrc: ["'self'", "https:", "http://localhost:*", "http://127.0.0.1:*", "https://www.google-analytics.com", "https://region1.google-analytics.com"],
+      imgSrc: ["'self'", "data:", "https:", "https://d3k81ch9hvuctc.cloudfront.net"],
+      scriptSrc: ["'self'", "'unsafe-inline'", "https://www.googletagmanager.com", "https://region1.google-analytics.com", "https://static.klaviyo.com", "https://analytics.ahrefs.com"],
+      connectSrc: ["'self'", "https:", "http://localhost:*", "http://127.0.0.1:*", "https://www.google-analytics.com", "https://region1.google-analytics.com", "https://static.klaviyo.com", "https://static-tracking.klaviyo.com", "https://d3k81ch9hvuctc.cloudfront.net"],
     },
   },
   crossOriginEmbedderPolicy: false,
