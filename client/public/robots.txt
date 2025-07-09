@@ -1,26 +1,12 @@
-
-# Robots.txt за Pravda ST - Business Engineering
-# Оптимизиран за български пазар - 2025
+# Robots.txt за Pravda Agency
+# Последна редакция: 2025-07-09
 
 User-agent: *
-Allow: /
 
-# Позволяване на основни страници
-Allow: /services/
-Allow: /services/seo-struktor
-Allow: /services/trendlab  
-Allow: /services/clickstarter
-Allow: /services/clientomat
-Allow: /about
-Allow: /case-studies
-Allow: /blog
-Allow: /contact
-Allow: /faq
-Allow: /calculators
-Allow: /terms
-Allow: /privacy
+# Позволяваме достъп до sitemap файла, преди да блокираме други .xml файлове
+Allow: /sitemap.xml
 
-# Блокиране на административни директории
+# Блокиране на административни, системни и чувствителни директории
 Disallow: /admin/
 Disallow: /api/
 Disallow: /_next/
@@ -29,25 +15,16 @@ Disallow: /.git/
 Disallow: /server/
 Disallow: /src/
 
-# Блокиране на технически файлове
+# Блокиране на технически файлове и файлове с логове
 Disallow: /*.json$
 Disallow: /*.log$
 Disallow: /*.xml$
 Disallow: /sw.js
 Disallow: /sw-simple.js
 
-# Googlebot оптимизация
-User-agent: Googlebot
-Allow: /
-Crawl-delay: 1
-
-# Bing оптимизация
+# Тази секция е специфична за Bing. Можете да я премахнете, ако не ви е нужна.
 User-agent: Bingbot
-Allow: /
 Crawl-delay: 2
 
-# Sitemap за Google Search Console
+# Местоположение на картата на сайта (sitemap)
 Sitemap: https://www.pravdagency.eu/sitemap.xml
-
-# Host директива
-Host: www.pravdagency.eu
