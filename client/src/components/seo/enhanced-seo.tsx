@@ -41,6 +41,9 @@ export function EnhancedSEO({
   includeWebsiteSchema = false
 }: EnhancedSEOProps) {
   const currentUrl = `https://www.pravdagency.eu${pageSlug ? `/${pageSlug}` : ''}`;
+  
+  // Debug log 
+  console.log('EnhancedSEO rendering:', { pageType, seo: seo?.title, pageSlug });
 
   return (
     <>

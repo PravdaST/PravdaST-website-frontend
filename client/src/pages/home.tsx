@@ -8,25 +8,22 @@ import { SystemsSection } from "@/components/systems-section";
 import { CaseStudiesSlider } from "@/components/case-studies-slider";
 import { CTASection } from "@/components/cta-section";
 import { Footer } from "@/components/footer";
-import { EnhancedSEO } from "@/components/seo/enhanced-seo";
+import { SEOHead } from "@/components/seo-head";
 import { pageSEOData } from "@/data/seo-pages";
 import { useEffect } from "react";
 import { tracking, ConversionStage } from "@/lib/tracking";
 
 export default function Home() {
   useEffect(() => {
+    console.log('HOME PAGE LOADED - REACT IS WORKING');
+    document.title = 'REACT WORKING - HOME PAGE LOADED';
     // Track page view
     tracking.trackFunnelStage(ConversionStage.LANDING);
   }, []);
 
   return (
     <div className="min-h-screen bg-slate-900">
-      <EnhancedSEO 
-        seo={pageSEOData.home} 
-        pageSlug="" 
-        pageType="home"
-        includeWebsiteSchema={true}
-      />
+      <SEOHead {...pageSEOData.home} />
       <Navigation />
       <HeroSection />
       <PartnersCarousel />

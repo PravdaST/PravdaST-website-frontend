@@ -25,6 +25,7 @@ export function SEOHead({ seo, pageSlug }: SEOHeadProps) {
   const noIndex = seo?.noIndex || false;
 
   useEffect(() => {
+    console.log('SEOHead useEffect executing, title:', title);
     // Обновяване на title
     document.title = title;
 

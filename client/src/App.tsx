@@ -5,7 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ScrollToTop } from "@/components/scroll-to-top";
 import { SpeedInsights } from "@vercel/speed-insights/react";
-import { HelmetAppProvider } from "@/components/helmet-provider";
+
 import {
   registerServiceWorker,
   preloadCriticalResources,
@@ -94,21 +94,19 @@ function App() {
   }, []);
 
   return (
-    <HelmetAppProvider>
-      <QueryClientProvider client={queryClient}>
-        <TooltipProvider>
-          <KlaviyoSetup />
-          <KlaviyoIntegration />
-          <PixelIntegration />
-          {/* <ProgressiveProiling trigger="time" delay={45000} /> */}
-          <ScrollToTop />
-          <Toaster />
-          <Router />
-          <AccessibilityPanel />
-          <SpeedInsights />
-        </TooltipProvider>
-      </QueryClientProvider>
-    </HelmetAppProvider>
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <KlaviyoSetup />
+        <KlaviyoIntegration />
+        <PixelIntegration />
+        {/* <ProgressiveProiling trigger="time" delay={45000} /> */}
+        <ScrollToTop />
+        <Toaster />
+        <Router />
+        <AccessibilityPanel />
+        <SpeedInsights />
+      </TooltipProvider>
+    </QueryClientProvider>
   );
 }
 
