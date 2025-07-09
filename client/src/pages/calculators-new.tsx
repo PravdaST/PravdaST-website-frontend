@@ -374,33 +374,23 @@ function ReturnOnInvestmentCalculator({
           {description}
         </p>
 
-        {/* Recommendations */}
-        <div className="bg-slate-800/40 rounded-xl p-4 border border-[#ECB629]/20 max-w-2xl mx-auto">
-          <h4 className="text-white font-semibold mb-4 flex items-center gap-2 justify-center">
-            <CheckCircle className="w-5 h-5 text-[#ECB629]" />
-            Препоръки за подобрение:
-          </h4>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-2">
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-[#ECB629] rounded-full flex-shrink-0" />
-              <span className="text-gray-300 text-sm">Органен трафик</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-[#ECB629] rounded-full flex-shrink-0" />
-              <span className="text-gray-300 text-sm">
-                Техническо подобрение
-              </span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-[#ECB629] rounded-full flex-shrink-0" />
-              <span className="text-gray-300 text-sm">SEO аудит</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-[#ECB629] rounded-full flex-shrink-0" />
-              <span className="text-gray-300 text-sm">Контент стратегия</span>
+        {/* Service-Specific Recommendations */}
+        {recommendations.length > 0 && (
+          <div className="bg-slate-800/40 rounded-xl p-4 border border-[#ECB629]/20 max-w-2xl mx-auto">
+            <h4 className="text-white font-semibold mb-4 flex items-center gap-2 justify-center">
+              <CheckCircle className="w-5 h-5 text-[#ECB629]" />
+              Препоръки за {serviceName.replace("™", "")}:
+            </h4>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-2">
+              {recommendations.map((rec, index) => (
+                <div key={index} className="flex items-center gap-2">
+                  <div className="w-2 h-2 bg-[#ECB629] rounded-full flex-shrink-0" />
+                  <span className="text-gray-300 text-sm">{rec}</span>
+                </div>
+              ))}
             </div>
           </div>
-        </div>
+        )}
       </div>
 
       {/* Input Form */}
@@ -513,15 +503,19 @@ function ReturnOnInvestmentCalculator({
             </div>
           </div>
 
-          {/* ROI Definition */}
+          {/* Service-Specific ROI Definition */}
           <div className="bg-slate-900/50 rounded-lg p-4 border border-slate-700/30">
             <h4 className="text-white font-medium mb-2">
-              Какво е възвърната инвестиция?
+              {serviceName === "SEO Struktor™" && "Как се изчислява SEO възвръщаемостта?"}
+              {serviceName === "Trendlab™" && "Как се изчислява контент възвръщаемостта?"}
+              {serviceName === "Clickstarter™" && "Как се изчислява рекламна възвръщаемост?"}
+              {serviceName === "Clientomat™" && "Как се изчислява клиент възвръщаемост?"}
             </h4>
             <p className="text-gray-400 text-sm">
-              Възвърната инвестиция показва колко лева печелите за всеки лев
-              инвестиран в услугата. Например, 300% възвърната инвестиция
-              означава, че за всеки лев инвестиран, получавате 3 лева обратно.
+              {serviceName === "SEO Struktor™" && "Базирано на органичен трафик увеличение от 340%, конверсии от 2.5% и средна стойност на lead от 2500 лв. Показва реалната печалба от SEO инвестицията."}
+              {serviceName === "Trendlab™" && "Базирано на 450% увеличение на последователи, месечни гледания и приходи от авторитет. Показва стойността на качественото съдържание."}
+              {serviceName === "Clickstarter™" && "Базирано на 85% повече конверсии, 25% по-нисък CPC и 20% спестени разходи. Показва оптимизацията на рекламните кампании."}
+              {serviceName === "Clientomat™" && "Базирано на 180% по-висок repeat rate, 220% LTV увеличение и автоматизирани процеси. Показва стойността на всеки клиент."}
             </p>
           </div>
         </CardContent>
@@ -763,7 +757,10 @@ function ReturnOnInvestmentCalculator({
                   }
                   className="bg-[#ECB629] hover:bg-[#ECB629]/90 text-black font-semibold px-6 sm:px-8 py-3 rounded-xl w-full sm:w-auto text-sm sm:text-base h-12"
                 >
-                  Получете безплатен SEO одит
+                  {serviceName === "SEO Struktor™" && "Получете безплатен SEO одит"}
+                  {serviceName === "Trendlab™" && "Получете безплатен контент аудит"}
+                  {serviceName === "Clickstarter™" && "Получете безплатен рекламен аудит"}
+                  {serviceName === "Clientomat™" && "Получете безплатен клиент аудит"}
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
                 <Button
@@ -780,9 +777,12 @@ function ReturnOnInvestmentCalculator({
                       window.location.href = "/services/clientomat";
                     else window.location.href = "/services";
                   }}
-                  className="border-[#ECB629] text-[#ECB629] hover:bg-[#ECB629]/10 px-6 sm:px-8 py-3 rounded-xl w-full sm:w-auto text-sm sm:text-base h-12"
+                  className="border-[#ECB629] text-[#ECB629] hover:bg-[#ECB629]/10 px-6 sm:px-8 py-3 rounded-xl w-full sm:text-base h-12"
                 >
-                  Научете повече за услугата
+                  {serviceName === "SEO Struktor™" && "Научете повече за SEO системата"}
+                  {serviceName === "Trendlab™" && "Научете повече за контент системата"}
+                  {serviceName === "Clickstarter™" && "Научете повече за рекламната система"}
+                  {serviceName === "Clientomat™" && "Научете повече за клиент системата"}
                 </Button>
               </div>
             </CardContent>
