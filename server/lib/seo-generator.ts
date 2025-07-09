@@ -35,24 +35,20 @@ export class SEOGenerator {
     ];
 
     // XML sitemap според sitemaps.org стандарти 2025 - Google оптимизиран
-    let sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">`;
+    let sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n';
+    sitemap += '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n';
 
     pages.forEach(page => {
-      sitemap += `
-   <url>
-      <loc>${this.baseUrl}${page.url}</loc>
-      <lastmod>${page.lastmod}</lastmod>
-      <changefreq>monthly</changefreq>
-      <priority>${page.url === '/' ? '1.0' : page.url.includes('/services/') ? '0.9' : '0.7'}</priority>
-   </url>`;
+      const priority = page.url === '/' ? '1.0' : page.url.includes('/services/') ? '0.9' : '0.7';
+      sitemap += '   <url>\n';
+      sitemap += `      <loc>${this.baseUrl}${page.url}</loc>\n`;
+      sitemap += `      <lastmod>${page.lastmod}</lastmod>\n`;
+      sitemap += '      <changefreq>monthly</changefreq>\n';
+      sitemap += `      <priority>${priority}</priority>\n`;
+      sitemap += '   </url>\n';
     });
 
-    sitemap += `
-</urlset>`;
+    sitemap += '</urlset>';
 
     return sitemap;
   }

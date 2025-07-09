@@ -322,6 +322,7 @@ Changelog:
 - July 09, 2025. Fixed critical React errors: resolved React error #137 in calculators-new.tsx by replacing invalid `<br>система</br>` with proper `<br />система`, fixed SVG path errors in services.tsx by converting percentage-based coordinates to absolute values (M 20% 30% → M 200 300), eliminated all console errors for clean production deployment
 - July 09, 2025. Resolved CSP and Service Worker issues: updated vercel.json CSP headers to allow Framer images (https://framerusercontent.com), Google Analytics, and external fonts, enhanced Service Worker to properly skip external domains and prevent fetch errors, cleared build cache and restarted application for clean deployment state
 - July 09, 2025. Cleaned up debug console messages: removed specific React testing messages ("HOME PAGE LOADED - REACT IS WORKING", "Helmet should be working now...", "Test helmet meta: undefined") from home.tsx while preserving important SEO and tracking console messages for Klaviyo, Google Analytics, and funnel tracking functionality
+- July 09, 2025. Fixed critical XML sitemap parsing error "XML declaration allowed only at the start of the document" by refactoring generateSitemap() method in server/lib/seo-generator.ts to properly construct XML string without template literals, added proper Content-Type header (application/xml) in server/index.ts sitemap route, and implemented .trim() to eliminate whitespace before XML declaration - sitemap.xml now validates correctly with 14 URLs and proper Google-compliant formatting
 
 ## User Preferences
 

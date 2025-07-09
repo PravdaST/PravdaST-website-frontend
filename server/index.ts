@@ -17,9 +17,12 @@ app.get("/sitemap.xml", async (req, res) => {
     const { seoGenerator } = await import("./lib/seo-generator");
     const xmlContent = seoGenerator.generateSitemap();
     
-    res.setHeader('Content-Type', 'text/xml; charset=utf-8');
+    // Премахване на всички whitespace преди XML декларацията
+    const cleanXml = xmlContent.trim();
+    
+    res.setHeader('Content-Type', 'application/xml; charset=utf-8');
     res.setHeader('Cache-Control', 'public, max-age=86400');
-    res.send(xmlContent);
+    res.send(cleanXml);
   } catch (error) {
     console.error('Sitemap generation error:', error);
     res.status(500).send('Error generating sitemap');
