@@ -59,7 +59,7 @@ function ReturnOnInvestmentCalculator({
         return {
           param1: {
             key: "currentTraffic",
-            label: "Текущ месечен трафик",
+            label: "Текущ месечен трафик (посетители)",
             placeholder: "напр. 5000",
           },
           param2: {
@@ -92,7 +92,7 @@ function ReturnOnInvestmentCalculator({
           },
           param3: {
             key: "engagementRate",
-            label: "Engagement rate (%)",
+            label: "Ангажираност (% хора които реагират)",
             placeholder: "напр. 3.5",
           },
           param4: {
@@ -105,17 +105,17 @@ function ReturnOnInvestmentCalculator({
         return {
           param1: {
             key: "monthlyAdSpend",
-            label: "Месечен ad spend (лв.)",
+            label: "Месечен рекламен бюджет (лв.)",
             placeholder: "напр. 8000",
           },
           param2: {
             key: "currentCPC",
-            label: "Текущ CPC (лв.)",
+            label: "Цена за клик (лв. за всеки клик)",
             placeholder: "напр. 3.20",
           },
           param3: {
             key: "monthlyConversions",
-            label: "Месечни конверсии",
+            label: "Месечни продажби/заявки",
             placeholder: "напр. 75",
           },
           param4: {
@@ -138,7 +138,7 @@ function ReturnOnInvestmentCalculator({
           },
           param3: {
             key: "repeatRate",
-            label: "Repeat rate (%)",
+            label: "Връщащи се клиенти (% които пазаруват отново)",
             placeholder: "напр. 25",
           },
           param4: {
@@ -659,7 +659,7 @@ function ReturnOnInvestmentCalculator({
                         {serviceName === "SEO Struktor™" && "Нови leads/месец"}
                         {serviceName === "Trendlab™" && "Месечни гледания"}
                         {serviceName === "Clickstarter™" && "Спестени разходи"}
-                        {serviceName === "Clientomat™" && "LTV увеличение"}
+                        {serviceName === "Clientomat™" && "Стойност на клиент увеличение"}
                       </div>
                     </div>
 
@@ -810,7 +810,7 @@ function ReturnOnInvestmentCalculator({
                     {serviceName === "SEO Struktor™" && "Нови leads/месец"}
                     {serviceName === "Trendlab™" && "Месечни гледания"}
                     {serviceName === "Clickstarter™" && "Спестени разходи"}
-                    {serviceName === "Clientomat™" && "LTV увеличение"}
+                    {serviceName === "Clientomat™" && "Стойност на клиент увеличение"}
                   </div>
                 </div>
               </div>
