@@ -5,11 +5,11 @@ const KlaviyoSetup = () => {
 
   // Само зарежда Klaviyo ако има валиден API ключ
   if (!KLAVIYO_COMPANY_ID || KLAVIYO_COMPANY_ID === "UTqrCz") {
-    console.log("Klaviyo: Company ID not configured, skipping load");
+
     return null;
   }
 
-  console.log("Klaviyo: Loading with Company ID:", KLAVIYO_COMPANY_ID);
+
 
   return (
     <Helmet>

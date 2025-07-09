@@ -19,7 +19,7 @@ export function KlaviyoIntegration() {
       // Check if Klaviyo script is loaded
       const checkKlaviyo = () => {
         if (window.klaviyo) {
-          console.log('Klaviyo loaded successfully');
+
           // Track page view
           if (window._learnq) {
             window._learnq.push(['track', 'Viewed Page', {
@@ -29,7 +29,7 @@ export function KlaviyoIntegration() {
             }]);
           }
         } else {
-          console.log('Klaviyo: Company ID UTqrCz configured, script loading...');
+
         }
       };
 

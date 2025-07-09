@@ -16,16 +16,6 @@ import { Helmet } from "react-helmet-async";
 
 export default function Home() {
   useEffect(() => {
-    console.log("HOME PAGE LOADED - REACT IS WORKING");
-    console.log("Helmet should be working now...");
-    
-    // Check if Helmet is working after a delay
-    setTimeout(() => {
-      console.log("Document title:", document.title);
-      console.log("Meta description:", document.querySelector('meta[name="description"]')?.getAttribute('content'));
-      console.log("Test helmet meta:", document.querySelector('meta[name="test-helmet"]')?.getAttribute('content'));
-    }, 1000);
-    
     // Track page view
     tracking.trackFunnelStage(ConversionStage.LANDING);
   }, []);
