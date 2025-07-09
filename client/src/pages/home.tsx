@@ -25,7 +25,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-slate-900">
-      <HelmetSEO seo={seoData} pageSlug="" />
+      {/* <HelmetSEO seo={seoData} pageSlug="" /> */}
       <Helmet>
         <title>АКО ТОВА РАБОТИ, ПРОБЛЕМЪТ Е В КОМПОНЕНТИТЕ</title>
         <meta name="description" content="Тестово описание." />
