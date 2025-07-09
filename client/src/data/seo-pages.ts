@@ -209,7 +209,7 @@ export const pageSEOData: Record<string, Partial<SEOData>> = {
       },
       "offers": {
         "@type": "Offer",
-        "price": "2890",
+        "price": "2750",
         "priceCurrency": "BGN",
         "availability": "https://schema.org/InStock"
       },

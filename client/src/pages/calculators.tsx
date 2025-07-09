@@ -666,13 +666,13 @@ export default function Calculators() {
                     Автоматизация на клиентския процес с фокус върху повторни поръчки и увеличаване на стойността на клиента през времето (LTV).
                   </p>
                   <div className="inline-block bg-[#ECB629]/10 px-3 py-1 rounded-full border border-[#ECB629]/20">
-                    <span className="text-[#ECB629] font-semibold">Инвестиция: 2890 лв./месец</span>
+                    <span className="text-[#ECB629] font-semibold">Инвестиция: 2750 лв./месец</span>
                   </div>
                 </div>
               </div>
               <ROICalculator
                 serviceName="Clientomat™"
-                monthlyPrice={2890}
+                monthlyPrice={2750}
                 averageResults={{
                   primaryMetricIncrease: 180,
                   conversionRate: 150,

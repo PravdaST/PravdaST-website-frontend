@@ -839,7 +839,7 @@ export default function CalculatorsNew() {
     },
     {
       name: "Clientomat™",
-      price: 2890,
+      price: 2750,
       description:
         "Автоматизирана система за привличане и превръщане на посетители в платящи клиенти.",
       averageResults: {
