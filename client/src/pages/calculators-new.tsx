@@ -705,130 +705,161 @@ function ReturnOnInvestmentCalculator({
           animate={{ opacity: 1, y: 0 }}
           className="space-y-6"
         >
-          {/* Main Score Card */}
+          {/* Transformation Preview Section */}
           <Card className="bg-slate-900/80 border-slate-700/50 backdrop-blur-lg overflow-hidden relative">
             <div className="absolute inset-0 bg-gradient-to-r from-slate-800/50 to-slate-900/30" />
             <CardContent className="p-8 relative z-10">
               <div className="text-center mb-8">
                 <div className="flex items-center justify-center gap-2 mb-4">
-                  <BarChart3 className="w-6 h-6 text-[#ECB629]" />
+                  <Zap className="w-6 h-6 text-[#ECB629]" />
                   <h3 className="text-xl font-semibold text-white">
-                    {serviceName === "SEO Struktor™" && "SEO Потенциална Оценка"}
-                    {serviceName === "Trendlab™" && "Content Потенциална Оценка"}
-                    {serviceName === "Clickstarter™" &&
-                      "Реклама Потенциална Оценка"}
-                    {serviceName === "Clientomat™" &&
-                      "Клиент Потенциална Оценка"}
+                    Вашата трансформация в действие
                   </h3>
                 </div>
+                <p className="text-gray-300 mb-6">
+                  Ето как ще изглежда бизнесът ви след {results.timeframe}:
+                </p>
+              </div>
 
-                <div className="relative w-40 h-40 mx-auto mb-4">
-                  {/* Background Circle */}
-                  <svg
-                    className="w-full h-full transform -rotate-90"
-                    viewBox="0 0 100 100"
-                  >
-                    <circle
-                      cx="50"
-                      cy="50"
-                      r="40"
-                      stroke="rgb(51 65 85 / 0.5)"
-                      strokeWidth="8"
-                      fill="none"
-                    />
-                    {/* Progress Circle */}
-                    <circle
-                      cx="50"
-                      cy="50"
-                      r="40"
-                      stroke="#ECB629"
-                      strokeWidth="8"
-                      fill="none"
-                      strokeLinecap="round"
-                      strokeDasharray={`${2 * Math.PI * 40}`}
-                      strokeDashoffset={`${2 * Math.PI * 40 * (1 - results.score / 100)}`}
-                      className="transition-all duration-1000 ease-in-out"
-                    />
-                  </svg>
-                  {/* Center Content */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="text-center">
-                      <div className="text-4xl font-bold text-[#ECB629]">
-                        {results.score}
+              {/* Before/After Infographic */}
+              <div className="bg-slate-800/40 rounded-2xl p-6 mb-8 border border-slate-700/30">
+                <h4 className="text-white font-semibold text-center mb-6">Преди vs След визуализация</h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  {/* Before */}
+                  <div className="text-center">
+                    <div className="bg-red-500/10 rounded-xl p-6 border border-red-500/20 mb-4">
+                      <div className="text-red-400 text-sm mb-2">ПРЕДИ</div>
+                      <div className="space-y-3">
+                        <div className="flex justify-between">
+                          <span className="text-gray-400 text-sm">
+                            {serviceName === "SEO Struktor™" && "Месечен трафик:"}
+                            {serviceName === "Trendlab™" && "Последователи:"}
+                            {serviceName === "Clickstarter™" && "Конверсии:"}
+                            {serviceName === "Clientomat™" && "Повторни клиенти:"}
+                          </span>
+                          <span className="text-red-400 font-bold">
+                            {serviceName === "SEO Struktor™" && Math.round(parseFloat(inputs.currentTraffic) || 5000).toLocaleString("bg-BG")}
+                            {serviceName === "Trendlab™" && Math.round(parseFloat(inputs.currentFollowers) || 2500).toLocaleString("bg-BG")}
+                            {serviceName === "Clickstarter™" && Math.round(parseFloat(inputs.monthlyConversions) || 75).toLocaleString("bg-BG")}
+                            {serviceName === "Clientomat™" && `${parseFloat(inputs.repeatRate) || 25}%`}
+                          </span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-gray-400 text-sm">ROI контрол:</span>
+                          <span className="text-red-400 font-bold">Липсва</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-gray-400 text-sm">Прогнозируемост:</span>
+                          <span className="text-red-400 font-bold">Ниска</span>
+                        </div>
                       </div>
-                      <div className="text-sm text-gray-400">от 100</div>
                     </div>
                   </div>
-                  {/* Glow Effect */}
-                  <div className="absolute inset-0 rounded-full bg-[#ECB629]/10 blur-xl animate-pulse" />
-                </div>
 
-                <p className="text-gray-400">
-                  {serviceName === "SEO Struktor™" && "SEO Потенциален Резултат"}
-                  {serviceName === "Trendlab™" && "Content Потенциален Резултат"}
-                  {serviceName === "Clickstarter™" && "Реклама Потенциален Резултат"}
-                  {serviceName === "Clientomat™" && "Клиент Потенциален Резултат"}
-                </p>
-              </div>
+                  {/* Arrow */}
+                  <div className="hidden md:flex items-center justify-center">
+                    <ArrowRight className="w-8 h-8 text-[#ECB629]" />
+                  </div>
+                  <div className="md:hidden flex justify-center">
+                    <div className="w-px h-8 bg-[#ECB629]"></div>
+                  </div>
 
-              {/* Key Metrics */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                <div className="bg-slate-800/40 rounded-2xl p-6 text-center border border-slate-700/30">
-                  <div className="text-2xl font-bold text-[#ECB629] mb-1">
-                    {serviceName === "SEO Struktor™" && "+"}
-                    {serviceName === "Trendlab™" && "+"}
-                    {serviceName === "Clickstarter™" && "+"}
-                    {serviceName === "Clientomat™" && ""}
-                    {results.metric1 > 0
-                      ? Math.round(results.metric1).toLocaleString("bg-BG")
-                      : "0"}
-                    {serviceName === "Clientomat™" && "%"}
-                  </div>
-                  <div className="text-gray-400 text-sm">
-                    {serviceName === "SEO Struktor™" && "Нов трафик/месец"}
-                    {serviceName === "Trendlab™" && "Нови последователи"}
-                    {serviceName === "Clickstarter™" &&
-                      "Допълнителни конверсии"}
-                    {serviceName === "Clientomat™" && "Повторни поръчки (%)"}
-                  </div>
-                </div>
-
-                <div className="bg-slate-800/40 rounded-2xl p-6 text-center border border-slate-700/30">
-                  <div className="text-2xl font-bold text-[#ECB629] mb-1">
-                    {serviceName === "SEO Struktor™" && "+"}
-                    {serviceName === "Trendlab™" && ""}
-                    {serviceName === "Clickstarter™" && "-"}
-                    {serviceName === "Clientomat™" && "+"}
-                    {results.metric2 > 0
-                      ? Math.round(results.metric2).toLocaleString("bg-BG")
-                      : "0"}
-                    {serviceName === "Trendlab™" && "K"}
-                    {serviceName === "Clickstarter™" && " лв."}
-                    {serviceName === "Clientomat™" && "K"}
-                  </div>
-                  <div className="text-gray-400 text-sm">
-                    {serviceName === "SEO Struktor™" && "Нови leads/месец"}
-                    {serviceName === "Trendlab™" && "Месечни гледания"}
-                    {serviceName === "Clickstarter™" && "Спестени разходи"}
-                    {serviceName === "Clientomat™" && "Стойност на клиент увеличение"}
+                  {/* After */}
+                  <div className="text-center">
+                    <div className="bg-[#ECB629]/10 rounded-xl p-6 border border-[#ECB629]/20 mb-4">
+                      <div className="text-[#ECB629] text-sm mb-2">СЛЕД</div>
+                      <div className="space-y-3">
+                        <div className="flex justify-between">
+                          <span className="text-gray-400 text-sm">
+                            {serviceName === "SEO Struktor™" && "Месечен трафик:"}
+                            {serviceName === "Trendlab™" && "Последователи:"}
+                            {serviceName === "Clickstarter™" && "Конверсии:"}
+                            {serviceName === "Clientomat™" && "Повторни клиенти:"}
+                          </span>
+                          <span className="text-[#ECB629] font-bold">
+                            {results.metric1 > 0
+                              ? `+${Math.round(results.metric1).toLocaleString("bg-BG")}${serviceName === "Clientomat™" ? "%" : ""}`
+                              : "+340%"}
+                          </span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-gray-400 text-sm">ROI контрол:</span>
+                          <span className="text-[#ECB629] font-bold">Пълен</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-gray-400 text-sm">Прогнозируемост:</span>
+                          <span className="text-[#ECB629] font-bold">100%</span>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
 
-              {/* Recommendations */}
-              <div>
-                <div className="flex items-center justify-center gap-2 mb-2">
-                  <DollarSign className="w-5 h-5 text-[#ECB629]" />
-                  <span className="text-[#ECB629] font-semibold">
-                    Стартова инвестиция: {monthlyPrice.toLocaleString("bg-BG")}{" "}
-                    лв./месец
-                  </span>
+              {/* Timeline Section */}
+              <div className="bg-slate-800/40 rounded-2xl p-6 mb-8 border border-slate-700/30">
+                <h4 className="text-white font-semibold text-center mb-6">Timeline на резултатите</h4>
+                <div className="relative">
+                  <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-[#ECB629]/30"></div>
+                  <div className="space-y-6">
+                    <div className="flex items-start gap-4">
+                      <div className="w-8 h-8 bg-[#ECB629] rounded-full flex items-center justify-center text-black font-bold text-sm">1</div>
+                      <div>
+                        <div className="text-white font-semibold">Първи месец</div>
+                        <div className="text-gray-400 text-sm">
+                          {serviceName === "SEO Struktor™" && "Техническа оптимизация, keyword research, първи подобрения"}
+                          {serviceName === "Trendlab™" && "Стратегия за съдържание, първо качествено съдържание"}
+                          {serviceName === "Clickstarter™" && "Audit на кампании, нова структура, първи оптимизации"}
+                          {serviceName === "Clientomat™" && "Audit на процеси, първи автоматизации, CRM setup"}
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-4">
+                      <div className="w-8 h-8 bg-[#ECB629] rounded-full flex items-center justify-center text-black font-bold text-sm">3</div>
+                      <div>
+                        <div className="text-white font-semibold">Трети месец</div>
+                        <div className="text-gray-400 text-sm">
+                          {serviceName === "SEO Struktor™" && "Видими позиции в Google, 40-60% увеличение на трафика"}
+                          {serviceName === "Trendlab™" && "50% увеличение на engagement, изградена аудитория"}
+                          {serviceName === "Clickstarter™" && "25-35% по-нисък CPC, 40% повече конверсии"}
+                          {serviceName === "Clientomat™" && "30% по-висок repeat rate, автоматизирани процеси"}
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-4">
+                      <div className="w-8 h-8 bg-[#ECB629] rounded-full flex items-center justify-center text-black font-bold text-sm">6</div>
+                      <div>
+                        <div className="text-white font-semibold">Шести месец</div>
+                        <div className="text-gray-400 text-sm">
+                          Пълни резултати: {results.monthlyROI > 0 ? `${Math.round(results.monthlyROI)}%` : "250%"} ROI, 
+                          устойчив растеж, система работи автономно
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <p className="text-gray-400 text-sm text-center">
-                  Това са приходите, които може да ви донесе тази инвестиция на
-                  база трафика, който системата генерира. Спрете да харчите без
-                  план - започнете да строите с цифри.
-                </p>
+              </div>
+
+              {/* Social Proof */}
+              <div className="bg-slate-800/40 rounded-2xl p-6 border border-slate-700/30">
+                <div className="flex items-center justify-center gap-2 mb-4">
+                  <Award className="w-5 h-5 text-[#ECB629]" />
+                  <span className="text-white font-semibold">Доказани резултати</span>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                  <div>
+                    <div className="text-2xl font-bold text-[#ECB629] mb-1">47+</div>
+                    <div className="text-gray-400 text-sm">Успешни проекта</div>
+                  </div>
+                  <div>
+                    <div className="text-2xl font-bold text-[#ECB629] mb-1">285%</div>
+                    <div className="text-gray-400 text-sm">Среден ROI</div>
+                  </div>
+                  <div>
+                    <div className="text-2xl font-bold text-[#ECB629] mb-1">95%</div>
+                    <div className="text-gray-400 text-sm">Задоволени клиенти</div>
+                  </div>
+                </div>
               </div>
             </CardContent>
           </Card>
