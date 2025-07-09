@@ -220,7 +220,7 @@ export const Footer = () => {
                 { text: "contact@pravdst.agency", href: "mailto:contact@pravdst.agency", type: "email" },
                 { text: "+359 879 282 299", href: "tel:+359879282299", type: "phone" },
                 { text: "Viber чат", href: "viber://chat?number=+359879282299", type: "viber" },
-                { text: "WhatsApp чат", href: "https://wa.me/359879282299", type: "whatsapp" }
+                { text: "WhatsApp чат (+359 879 282 299)", href: "https://wa.me/359879282299", type: "whatsapp" }
               ].map((item, index) => (
                 <motion.li
                   key={index}
