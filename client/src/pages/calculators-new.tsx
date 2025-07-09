@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import {
@@ -27,10 +28,9 @@ import {
 } from "@/components/ui/select";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
-import { UnifiedCTASection } from "@/components/unified-cta-section";
 // SEO structured data will be injected directly
 
-interface ReturnOnInvestmentCalculatorProps {
+interface ProfitCalculatorProps {
   serviceName: string;
   monthlyPrice: number;
   description: string;
@@ -44,14 +44,14 @@ interface ReturnOnInvestmentCalculatorProps {
   icon: React.ReactNode;
 }
 
-function ReturnOnInvestmentCalculator({
+function ProfitCalculator({
   serviceName,
   monthlyPrice,
   description,
   averageResults,
   color,
   icon,
-}: ReturnOnInvestmentCalculatorProps) {
+}: ProfitCalculatorProps) {
   // Service-specific input states
   const getServiceInputs = () => {
     switch (serviceName) {
@@ -183,7 +183,7 @@ function ReturnOnInvestmentCalculator({
   });
 
   const [results, setResults] = useState({
-    monthlyROI: 0,
+    monthlyProfit: 0,
     metric1: 0,
     metric2: 0,
     score: 0,
@@ -207,7 +207,7 @@ function ReturnOnInvestmentCalculator({
           const newLeads = newTraffic * 0.025; // 2.5% conversion
           const revenuePerLead = 2500; // Average revenue per lead
           const additionalRevenue = newLeads * revenuePerLead;
-          const monthlyROI =
+          const monthlyProfit =
             ((additionalRevenue - monthlyPrice) / monthlyPrice) * 100;
           const score = Math.min(
             95,
@@ -218,7 +218,7 @@ function ReturnOnInvestmentCalculator({
           );
 
           return {
-            monthlyROI,
+            monthlyProfit,
             metric1: newTraffic,
             metric2: newLeads,
             score,
@@ -232,11 +232,11 @@ function ReturnOnInvestmentCalculator({
           const monthlyViews = (newFollowers * param2 * 250) / 1000; // Views in K
           const authorityScore = Math.min(95, 40 + param2 * 8 + param3 * 5);
           const revenueFromContent = newFollowers * 0.5; // Revenue per follower
-          const monthlyROI =
+          const monthlyProfit =
             ((revenueFromContent - monthlyPrice) / monthlyPrice) * 100;
 
           return {
-            monthlyROI,
+            monthlyProfit,
             metric1: newFollowers,
             metric2: monthlyViews,
             score: authorityScore,
@@ -250,7 +250,7 @@ function ReturnOnInvestmentCalculator({
           const newCPC = param2 * 0.75; // 25% CPC reduction
           const costSavings = param1 * 0.2; // 20% cost savings
           const additionalRevenue = (newConversions - param3) * 500; // Revenue per conversion
-          const monthlyROI =
+          const monthlyProfit =
             ((additionalRevenue + costSavings - monthlyPrice) / monthlyPrice) *
             100;
           const score = Math.min(
@@ -262,7 +262,7 @@ function ReturnOnInvestmentCalculator({
           );
 
           return {
-            monthlyROI,
+            monthlyProfit,
             metric1: newConversions,
             metric2: costSavings,
             score,
@@ -275,10 +275,10 @@ function ReturnOnInvestmentCalculator({
         case "Clientomat™": {
           // Clients/AOV/repeat rate calculations
           const newRepeatRate = param3 * 1.8; // 180% increase in repeat rate
-          const newLTV = param2 * 2.2; // 220% LTV (стойност на клиент) increase
+          const newClientValue = param2 * 2.2; // 220% client value increase
           const additionalClients = param1 * 0.4; // 40% more repeat clients
-          const additionalRevenue = additionalClients * newLTV * 0.3; // Monthly portion
-          const monthlyROI =
+          const additionalRevenue = additionalClients * newClientValue * 0.3; // Monthly portion
+          const monthlyProfit =
             ((additionalRevenue - monthlyPrice) / monthlyPrice) * 100;
           const score = Math.min(
             95,
@@ -289,9 +289,9 @@ function ReturnOnInvestmentCalculator({
           );
 
           return {
-            monthlyROI,
+            monthlyProfit,
             metric1: newRepeatRate,
-            metric2: newLTV / 1000, // In K
+            metric2: newClientValue / 1000, // In K
             score,
             paybackPeriod: monthlyPrice / Math.max(additionalRevenue / 12, 1),
             timeframe: "2-5 месеца",
@@ -299,7 +299,7 @@ function ReturnOnInvestmentCalculator({
         }
         default:
           return {
-            monthlyROI: 0,
+            monthlyProfit: 0,
             metric1: 0,
             metric2: 0,
             score: 0,
@@ -309,16 +309,16 @@ function ReturnOnInvestmentCalculator({
       }
     }
     return {
-      monthlyROI: 0,
+      monthlyProfit: 0,
       metric1: 0,
       metric2: 0,
       score: 0,
       paybackPeriod: 0,
-      timeframe: "3-6 меесеца",
+      timeframe: "3-6 месеца",
     };
   };
 
-  // Calculate ROI when inputs change
+  // Calculate profit when inputs change
   useEffect(() => {
     const newResults = calculateResults();
     setResults(newResults);
@@ -334,7 +334,7 @@ function ReturnOnInvestmentCalculator({
         if (param1 < 5000) recs.push("Органичен трафик");
         if (param2 > 30) recs.push("Подобрение на позиции");
         if (param3 < 15) recs.push("Изследване на ключови думи");
-        if (newResults.score < 70) recs.push("Технически SEO оптимизация");
+        if (newResults.score < 70) recs.push("Технически оптимизация");
         break;
       case "Trendlab™":
         if (param1 < 10000) recs.push("Изграждане на аудитория");
@@ -402,7 +402,7 @@ function ReturnOnInvestmentCalculator({
               <span className="text-center sm:text-left">{serviceName}</span>
             </div>
             <span className="text-sm sm:text-base text-gray-400">
-              ROI Калкулатор
+              Калкулатор за печалба
             </span>
           </CardTitle>
         </CardHeader>
@@ -511,26 +511,26 @@ function ReturnOnInvestmentCalculator({
                 </div>
               </div>
 
-              {/* Service-Specific ROI Definition */}
+              {/* Service-Specific Profit Definition */}
               <div className="bg-slate-900/50 rounded-lg p-3 border border-slate-700/30 mt-4">
                 <h4 className="text-white font-medium mb-2 text-sm">
-                  {serviceName === "SEO Struktor™" && "Как се изчислява SEO възвръщаемостта?"}
-                  {serviceName === "Trendlab™" && "Как се изчислява контент възвръщаемостта?"}
-                  {serviceName === "Clickstarter™" && "Как се изчислява рекламна възвръщаемост?"}
-                  {serviceName === "Clientomat™" && "Как се изчислява клиент възвръщаемост?"}
+                  {serviceName === "SEO Struktor™" && "Как се изчислява печалбата от търсене?"}
+                  {serviceName === "Trendlab™" && "Как се изчислява печалбата от съдържание?"}
+                  {serviceName === "Clickstarter™" && "Как се изчислява печалбата от реклами?"}
+                  {serviceName === "Clientomat™" && "Как се изчислява печалбата от клиенти?"}
                 </h4>
                 <p className="text-gray-400 text-xs">
-                  {serviceName === "SEO Struktor™" && "Базирано на органичен трафик увеличение от 340%, конверсии от 2.5% и средна стойност на lead от 2500 лв. Показва реалната печалба от SEO инвестицията."}
+                  {serviceName === "SEO Struktor™" && "Базирано на органичен трафик увеличение от 340%, продажби от 2.5% и средна стойност на клиент от 2500 лв. Показва реалната печалба от инвестицията в търсене."}
                   {serviceName === "Trendlab™" && "Базирано на 450% увеличение на последователи, месечни гледания и приходи от авторитет. Показва стойността на качественото съдържание."}
-                  {serviceName === "Clickstarter™" && "Базирано на 85% повече конверсии, 25% по-нисък CPC и 20% спестени разходи. Показва оптимизацията на рекламните кампании."}
-                  {serviceName === "Clientomat™" && "Базирано на 180% по-висок repeat rate, 220% LTV увеличение и автоматизирани процеси. Показва стойността на всеки клиент."}
+                  {serviceName === "Clickstarter™" && "Базирано на 85% повече продажби, 25% по-нисък разход за клик и 20% спестени разходи. Показва оптимизацията на рекламните кампании."}
+                  {serviceName === "Clientomat™" && "Базирано на 180% по-висок процент връщащи се клиенти, 220% увеличение стойност на клиент и автоматизирани процеси. Показва стойността на всеки клиент."}
                 </p>
               </div>
             </div>
 
             {/* Right Side - Results */}
             <div className="p-4 sm:p-6">
-              {(results.score > 0 || results.monthlyROI > 0) ? (
+              {(results.score > 0 || results.monthlyProfit > 0) ? (
                 <motion.div
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
@@ -614,10 +614,10 @@ function ReturnOnInvestmentCalculator({
                     </div>
 
                     <p className="text-gray-400">
-                      {serviceName === "SEO Struktor™" && "SEO Потенциален Резултат"}
-                      {serviceName === "Trendlab™" && "Content Потенциален Резултат"}
-                      {serviceName === "Clickstarter™" && "Реклама Потенциален Резултат"}
-                      {serviceName === "Clientomat™" && "Клиент Потенциален Резултат"}
+                      {serviceName === "SEO Struktor™" && "Потенциален резултат за търсене"}
+                      {serviceName === "Trendlab™" && "Потенциален резултат за съдържание"}
+                      {serviceName === "Clickstarter™" && "Потенциален резултат за реклами"}
+                      {serviceName === "Clientomat™" && "Потенциален резултат за клиенти"}
                     </p>
                   </div>
 
@@ -637,7 +637,7 @@ function ReturnOnInvestmentCalculator({
                       <div className="text-gray-400 text-xs">
                         {serviceName === "SEO Struktor™" && "Нов трафик/месец"}
                         {serviceName === "Trendlab™" && "Нови последователи"}
-                        {serviceName === "Clickstarter™" && "Допълнителни конверсии"}
+                        {serviceName === "Clickstarter™" && "Допълнителни продажби"}
                         {serviceName === "Clientomat™" && "Повторни поръчки (%)"}
                       </div>
                     </div>
@@ -651,12 +651,12 @@ function ReturnOnInvestmentCalculator({
                         {results.metric2 > 0
                           ? Math.round(results.metric2).toLocaleString("bg-BG")
                           : "0"}
-                        {serviceName === "Trendlab™" && "K"}
+                        {serviceName === "Trendlab™" && "К"}
                         {serviceName === "Clickstarter™" && " лв."}
-                        {serviceName === "Clientomat™" && "K"}
+                        {serviceName === "Clientomat™" && "К"}
                       </div>
                       <div className="text-gray-400 text-xs">
-                        {serviceName === "SEO Struktor™" && "Нови leads/месец"}
+                        {serviceName === "SEO Struktor™" && "Нови заявки/месец"}
                         {serviceName === "Trendlab™" && "Месечни гледания"}
                         {serviceName === "Clickstarter™" && "Спестени разходи"}
                         {serviceName === "Clientomat™" && "Стойност на клиент увеличение"}
@@ -665,11 +665,11 @@ function ReturnOnInvestmentCalculator({
 
                     <div className="bg-slate-900/50 rounded-lg p-3 border border-slate-700/20">
                       <div className="text-lg font-bold text-green-500 mb-1">
-                        {results.monthlyROI > 0
-                          ? `${results.monthlyROI.toFixed(0)}%`
+                        {results.monthlyProfit > 0
+                          ? `${results.monthlyProfit.toFixed(0)}%`
                           : "245%"}
                       </div>
-                      <div className="text-gray-400 text-xs">ROI месечно</div>
+                      <div className="text-gray-400 text-xs">Печалба месечно (процент от вложеното)</div>
                     </div>
                   </div>
 
@@ -688,7 +688,7 @@ function ReturnOnInvestmentCalculator({
                   <div>
                     <Calculator className="w-12 h-12 text-gray-500 mx-auto mb-3" />
                     <p className="text-gray-400 text-sm">
-                      Въведете данните си за да видите вашия ROI потенциал
+                      Въведете данните си за да видите вашия потенциал за печалба
                     </p>
                   </div>
                 </div>
@@ -699,7 +699,7 @@ function ReturnOnInvestmentCalculator({
       </Card>
 
       {/* Extended Results Section */}
-      {(results.score > 0 || results.monthlyROI > 0) && (
+      {(results.score > 0 || results.monthlyProfit > 0) && (
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -734,7 +734,7 @@ function ReturnOnInvestmentCalculator({
                           <span className="text-gray-400 text-sm">
                             {serviceName === "SEO Struktor™" && "Месечен трафик:"}
                             {serviceName === "Trendlab™" && "Последователи:"}
-                            {serviceName === "Clickstarter™" && "Конверсии:"}
+                            {serviceName === "Clickstarter™" && "Продажби:"}
                             {serviceName === "Clientomat™" && "Повторни клиенти:"}
                           </span>
                           <span className="text-red-400 font-bold">
@@ -745,7 +745,7 @@ function ReturnOnInvestmentCalculator({
                           </span>
                         </div>
                         <div className="flex justify-between">
-                          <span className="text-gray-400 text-sm">ROI контрол:</span>
+                          <span className="text-gray-400 text-sm">Контрол върху печалбата:</span>
                           <span className="text-red-400 font-bold">Липсва</span>
                         </div>
                         <div className="flex justify-between">
@@ -773,7 +773,7 @@ function ReturnOnInvestmentCalculator({
                           <span className="text-gray-400 text-sm">
                             {serviceName === "SEO Struktor™" && "Месечен трафик:"}
                             {serviceName === "Trendlab™" && "Последователи:"}
-                            {serviceName === "Clickstarter™" && "Конверсии:"}
+                            {serviceName === "Clickstarter™" && "Продажби:"}
                             {serviceName === "Clientomat™" && "Повторни клиенти:"}
                           </span>
                           <span className="text-[#ECB629] font-bold">
@@ -783,7 +783,7 @@ function ReturnOnInvestmentCalculator({
                           </span>
                         </div>
                         <div className="flex justify-between">
-                          <span className="text-gray-400 text-sm">ROI контрол:</span>
+                          <span className="text-gray-400 text-sm">Контрол върху печалбата:</span>
                           <span className="text-[#ECB629] font-bold">Пълен</span>
                         </div>
                         <div className="flex justify-between">
@@ -798,7 +798,7 @@ function ReturnOnInvestmentCalculator({
 
               {/* Timeline Section */}
               <div className="bg-slate-800/40 rounded-2xl p-6 mb-8 border border-slate-700/30">
-                <h4 className="text-white font-semibold text-center mb-6">Timeline на резултатите</h4>
+                <h4 className="text-white font-semibold text-center mb-6">График на резултатите</h4>
                 <div className="relative">
                   <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-[#ECB629]/30"></div>
                   <div className="space-y-6">
@@ -807,10 +807,10 @@ function ReturnOnInvestmentCalculator({
                       <div>
                         <div className="text-white font-semibold">Първи месец</div>
                         <div className="text-gray-400 text-sm">
-                          {serviceName === "SEO Struktor™" && "Техническа оптимизация, keyword research, първи подобрения"}
+                          {serviceName === "SEO Struktor™" && "Техническа оптимизация, изследване на ключови думи, първи подобрения"}
                           {serviceName === "Trendlab™" && "Стратегия за съдържание, първо качествено съдържание"}
-                          {serviceName === "Clickstarter™" && "Audit на кампании, нова структура, първи оптимизации"}
-                          {serviceName === "Clientomat™" && "Audit на процеси, първи автоматизации, CRM setup"}
+                          {serviceName === "Clickstarter™" && "Преглед на кампании, нова структура, първи оптимизации"}
+                          {serviceName === "Clientomat™" && "Преглед на процеси, първи автоматизации, настройка на система за управление на клиенти"}
                         </div>
                       </div>
                     </div>
@@ -820,9 +820,9 @@ function ReturnOnInvestmentCalculator({
                         <div className="text-white font-semibold">Трети месец</div>
                         <div className="text-gray-400 text-sm">
                           {serviceName === "SEO Struktor™" && "Видими позиции в Google, 40-60% увеличение на трафика"}
-                          {serviceName === "Trendlab™" && "50% увеличение на engagement, изградена аудитория"}
-                          {serviceName === "Clickstarter™" && "25-35% по-нисък CPC, 40% повече конверсии"}
-                          {serviceName === "Clientomat™" && "30% по-висок repeat rate, автоматизирани процеси"}
+                          {serviceName === "Trendlab™" && "50% увеличение на ангажираност, изградена аудитория"}
+                          {serviceName === "Clickstarter™" && "25-35% по-нисък разход за клик, 40% повече продажби"}
+                          {serviceName === "Clientomat™" && "30% по-висок процент връщащи се клиенти, автоматизирани процеси"}
                         </div>
                       </div>
                     </div>
@@ -831,8 +831,8 @@ function ReturnOnInvestmentCalculator({
                       <div>
                         <div className="text-white font-semibold">Шести месец</div>
                         <div className="text-gray-400 text-sm">
-                          Пълни резултати: {results.monthlyROI > 0 ? `${Math.round(results.monthlyROI)}%` : "250%"} ROI, 
-                          устойчив растеж, система работи автономно
+                          Пълни резултати: {results.monthlyProfit > 0 ? `${Math.round(results.monthlyProfit)}%` : "250%"} печалба спрямо вложеното, 
+                          устойчив растеж, системата работи самостоятелно
                         </div>
                       </div>
                     </div>
@@ -853,7 +853,7 @@ function ReturnOnInvestmentCalculator({
                   </div>
                   <div>
                     <div className="text-2xl font-bold text-[#ECB629] mb-1">285%</div>
-                    <div className="text-gray-400 text-sm">Среден ROI</div>
+                    <div className="text-gray-400 text-sm">Средна печалба</div>
                   </div>
                   <div>
                     <div className="text-2xl font-bold text-[#ECB629] mb-1">95%</div>
@@ -864,7 +864,7 @@ function ReturnOnInvestmentCalculator({
             </CardContent>
           </Card>
 
-          {/* ROI Details */}
+          {/* Profit Details */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             <Card className="bg-slate-800/30 border-slate-700/50 backdrop-blur-lg">
               <CardContent className="p-4 sm:p-6">
@@ -874,16 +874,16 @@ function ReturnOnInvestmentCalculator({
                   </div>
                   <div>
                     <h4 className="text-white font-semibold text-sm sm:text-base">
-                      ROI
+                      Печалба
                     </h4>
                     <p className="text-gray-400 text-xs sm:text-sm">
-                      Възвращаемост
+                      Процент от вложеното
                     </p>
                   </div>
                 </div>
                 <div className="text-xl sm:text-2xl font-bold text-green-500 mb-1">
-                  {results.monthlyROI > 0
-                    ? `${results.monthlyROI.toFixed(0)}%`
+                  {results.monthlyProfit > 0
+                    ? `${results.monthlyProfit.toFixed(0)}%`
                     : "245%"}
                 </div>
                 <div className="text-gray-400 text-xs sm:text-sm">месечно</div>
@@ -906,8 +906,8 @@ function ReturnOnInvestmentCalculator({
                   </div>
                 </div>
                 <div className="text-xl sm:text-2xl font-bold text-blue-500 mb-1">
-                  {results.monthlyROI > 0
-                    ? `${Math.round((results.monthlyROI * monthlyPrice) / 100).toLocaleString("bg-BG")} лв.`
+                  {results.monthlyProfit > 0
+                    ? `${Math.round((results.monthlyProfit * monthlyPrice) / 100).toLocaleString("bg-BG")} лв.`
                     : "45 000 лв."}
                 </div>
                 <div className="text-gray-400 text-xs sm:text-sm">месечно</div>
@@ -947,11 +947,11 @@ function ReturnOnInvestmentCalculator({
               </h3>
               <p className="text-gray-300 mb-4 sm:mb-6 max-w-2xl mx-auto text-sm sm:text-base">
                 {serviceName === "SEO Struktor™" &&
-                  `Вашият SEO потенциал е ${results.score}/100. Започнете оптимизацията днес и постигнете измерими резултати.`}
+                  `Вашият потенциал за търсене е ${results.score}/100. Започнете оптимизацията днес и постигнете измерими резултати.`}
                 {serviceName === "Trendlab™" &&
                   `Вашият потенциал за съдържание е ${results.score}/100. Започнете създаването на съдържание днес и постигнете измерими резултати.`}
                 {serviceName === "Clickstarter™" &&
-                  `Вашият рекламен потенциал е ${results.score}/100. Започнете оптимизацията на рекламите днес и постигнете измерими резултати.`}
+                  `Вашият рекламен потенциал е ${results.score}/100. Començвете оптимизацията на рекламите днес и постигнете измерими резултати.`}
                 {serviceName === "Clientomat™" &&
                   `Вашият потенциал за клиенти е ${results.score}/100. Започнете автоматизацията днес и постигнете измерими резултати.`}
               </p>
@@ -965,10 +965,10 @@ function ReturnOnInvestmentCalculator({
                   }
                   className="bg-[#ECB629] hover:bg-[#ECB629]/90 text-black font-semibold px-6 sm:px-8 py-3 rounded-xl w-full sm:w-auto text-sm sm:text-base h-12"
                 >
-                  {serviceName === "SEO Struktor™" && "Получете безплатен SEO одит"}
-                  {serviceName === "Trendlab™" && "Получете безплатен контент аудит"}
-                  {serviceName === "Clickstarter™" && "Получете безплатен рекламен аудит"}
-                  {serviceName === "Clientomat™" && "Получете безплатен клиент аудит"}
+                  {serviceName === "SEO Struktor™" && "Получете безплатен преглед за търсене"}
+                  {serviceName === "Trendlab™" && "Получете безплатен преглед за съдържание"}
+                  {serviceName === "Clickstarter™" && "Получете безплатен преглед на рекламите"}
+                  {serviceName === "Clientomat™" && "Получете безплатен преглед за клиенти"}
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
                 <Button
@@ -987,10 +987,10 @@ function ReturnOnInvestmentCalculator({
                   }}
                   className="border-[#ECB629] text-black hover:bg-[#ECB629]/10 hover:text-[#ECB629] px-6 sm:px-8 py-3 rounded-xl w-full sm:text-base h-12"
                 >
-                  {serviceName === "SEO Struktor™" && "Научете повече за SEO системата"}
-                  {serviceName === "Trendlab™" && "Научете повече за контент системата"}
+                  {serviceName === "SEO Struktor™" && "Научете повече за системата за търсене"}
+                  {serviceName === "Trendlab™" && "Научете повече за системата за съдържание"}
                   {serviceName === "Clickstarter™" && "Научете повече за рекламната система"}
-                  {serviceName === "Clientomat™" && "Научете повече за клиент системата"}
+                  {serviceName === "Clientomat™" && "Научете повече за системата за клиенти"}
                 </Button>
               </div>
             </CardContent>
@@ -1007,7 +1007,7 @@ export default function CalculatorsNew() {
       name: "SEO Struktor™",
       price: 1980,
       description:
-        "Системна SEO оптимизация за устойчив органичен трафик и по-високи позиции в Google.",
+        "Системна оптимизация за търсене за устойчив органичен трафик и по-високи позиции в Google.",
       averageResults: {
         trafficIncrease: 150,
         conversionRate: 25,
@@ -1035,7 +1035,7 @@ export default function CalculatorsNew() {
       name: "Clickstarter™",
       price: 1570,
       description:
-        "Оптимизация на рекламните кампании за максимална ефективност и възвращаемост на инвестицията.",
+        "Оптимизация на рекламните кампании за максимална ефективност и печалба от инвестицията.",
       averageResults: {
         trafficIncrease: 80,
         conversionRate: 45,
@@ -1068,9 +1068,9 @@ export default function CalculatorsNew() {
     script.textContent = JSON.stringify({
       "@context": "https://schema.org",
       "@type": "WebApplication",
-      name: "Калкулатор за възвърната инвестиция - Pravdast",
+      name: "Калкулатор за печалба от инвестиция - Pravdast",
       description:
-        "Интерактивен калкулатор за изчисляване на възвърната инвестиция от дигитален маркетинг услуги",
+        "Интерактивен калкулатор за изчисляване на печалбата от дигитален маркетинг услуги",
       url: "https://www.pravdagency.eu/calculators",
       applicationCategory: "BusinessApplication",
       operatingSystem: "Any",
@@ -1106,19 +1106,32 @@ export default function CalculatorsNew() {
           />
         </div>
 
-        <div className="relative z-10 pt-10 sm:pt-24 pb-8 sm:pb-12">
+        <div className="relative z-1 pt-10 sm:pt-24 pb-8 sm:pb-12">
           <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
-            {/* Header */}
+            {/* Header - matching main site style */}
             <div className="text-center mb-8 sm:mb-12 md:mb-16">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="inline-flex items-center gap-2 bg-slate-800/50 backdrop-blur-sm border border-[#ECB629]/30 rounded-full px-3 sm:px-4 py-2 mb-4 sm:mb-6 text-sm"
+                className="inline-flex items-center gap-3 px-6 py-3 rounded-full mb-8 bg-gradient-to-r from-slate-800/80 to-slate-700/60 border border-[#ECB629]/20 backdrop-blur-sm"
               >
-                <Calculator className="w-4 h-4 text-[#ECB629]" />
-                <span className="text-xs sm:text-sm text-gray-300">
-                  Безплатни ROI калкулатори
-                </span>
+                <div className="flex items-center gap-2">
+                  <div className="relative">
+                    <div className="w-2 h-2 bg-[#ECB629] rounded-full"></div>
+                    <motion.div
+                      className="absolute inset-0 w-2 h-2 bg-[#ECB629] rounded-full opacity-20"
+                      animate={{ scale: [1, 1.3, 1] }}
+                      transition={{
+                        duration: 4,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                      }}
+                    />
+                  </div>
+                  <span className="text-sm text-gray-300 font-medium">
+                    <span className="text-[#ECB629] font-bold">Безплатни</span> калкулатори за печалба
+                  </span>
+                </div>
               </motion.div>
 
               <motion.h1
@@ -1143,6 +1156,22 @@ export default function CalculatorsNew() {
                 от нашите системи. Спрете да гадаете - започнете да планирате с
                 реални числа.
               </motion.p>
+
+              {/* Availability Message */}
+              <motion.div
+                className="inline-flex items-center gap-2 bg-slate-800/50 backdrop-blur-sm border border-[#ECB629]/30 rounded-full px-4 py-2 mt-6"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+              >
+                <div className="relative">
+                  <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+                  <div className="absolute inset-0 w-2 h-2 bg-red-500 rounded-full animate-ping opacity-75"></div>
+                </div>
+                <span className="text-white text-sm font-semibold">
+                  Остават места - <span className="text-[#ECB629] text-base">3</span>
+                </span>
+              </motion.div>
             </div>
 
             {/* Calculator Tabs */}
@@ -1172,7 +1201,7 @@ export default function CalculatorsNew() {
                   key={index}
                   value={service.name.toLowerCase().replace(/[™\s]/g, "-")}
                 >
-                  <ReturnOnInvestmentCalculator
+                  <ProfitCalculator
                     serviceName={service.name}
                     monthlyPrice={service.price}
                     description={service.description}
@@ -1187,12 +1216,93 @@ export default function CalculatorsNew() {
         </div>
       </div>
 
-      {/* Unified CTA Section */}
-      <UnifiedCTASection
-        buttonText="Започнете днес"
-        headline="Готови ли сте да превърнете числата в резултати?"
-        description="Изберете подходящата система за вашия бизнес и започнете трансформацията с безплатна консултация."
-      />
+      {/* CTA Section - matching main site design */}
+      <section className="py-20 bg-[#ECB629] relative overflow-hidden">
+        <div className="container mx-auto px-6 text-center relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <div className="inline-flex items-center gap-2 bg-black/10 px-4 py-2 rounded-full border border-black/20 mb-6">
+              <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
+              <span className="text-black font-medium">
+                Остават 3 места за 2025
+              </span>
+            </div>
+
+            <motion.h2
+              className="text-4xl md:text-5xl font-bold text-black mb-6"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              Готови ли сте да превърнете числата в резултати?
+            </motion.h2>
+
+            <motion.p
+              className="text-xl text-black/80 mb-8 max-w-2xl mx-auto"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              viewport={{ once: true }}
+            >
+              Изберете подходящата система за вашия бизнес и започнете трансформацията с безплатна консултация.
+            </motion.p>
+
+            {/* Trust Signals */}
+            <motion.div
+              className="flex flex-wrap justify-center gap-6 mb-8 text-sm text-black/70"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              viewport={{ once: true }}
+            >
+              <div className="flex items-center gap-2">
+                <CheckCircle className="w-4 h-4 text-green-600" />
+                <span>Безплатна диагностика</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle className="w-4 h-4 text-green-600" />
+                <span>Без ангажименти</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle className="w-4 h-4 text-green-600" />
+                <span>48 часа отговор</span>
+              </div>
+            </motion.div>
+
+            <motion.div
+              className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+              viewport={{ once: true }}
+            >
+              <motion.a
+                href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 bg-black text-white px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-300"
+                whileHover={{
+                  y: -8,
+                }}
+                transition={{
+                  type: "spring",
+                  stiffness: 400,
+                  damping: 17,
+                }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <span>Започнете днес</span>
+                <ArrowRight className="w-5 h-5" />
+              </motion.a>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
 
       <Footer />
     </>
