@@ -142,13 +142,7 @@ export const Footer = () => {
           >
             <h4 className="text-white font-semibold mb-4">Услуги</h4>
             <ul className="space-y-2">
-              {[
-                { href: "/services/seo-struktor", label: "SEO Struktor™" },
-                { href: "/services/clientomat", label: "Clientomat™" },
-                { href: "/services/clickstarter", label: "Clickstarter™" },
-                { href: "/services/trendlab", label: "Trendlab™" },
-                { href: "/services", label: "Всички услуги" }
-              ].map((item, index) => (
+              {footerLinks.services.map((item, index) => (
                 <motion.li
                   key={index}
                   initial={{ opacity: 0, x: -10 }}
@@ -167,6 +161,22 @@ export const Footer = () => {
                   </Link>
                 </motion.li>
               ))}
+              <motion.li
+                initial={{ opacity: 0, x: -10 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.4, delay: 0.5 }}
+                viewport={{ once: true }}
+              >
+                <Link href="/services">
+                  <motion.span 
+                    className="text-gray-400 hover:text-[#ECB629] transition-colors cursor-pointer text-sm relative"
+                    whileHover={{ x: 5 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    Всички услуги
+                  </motion.span>
+                </Link>
+              </motion.li>
             </ul>
           </motion.div>
 
@@ -179,12 +189,7 @@ export const Footer = () => {
           >
             <h4 className="text-white font-semibold mb-4">За нас</h4>
             <ul className="space-y-2">
-              {[
-                { href: "/about", label: "За компанията" },
-                { href: "/case-studies", label: "Казуси" },
-                { href: "/blog", label: "Блог" },
-                { href: "/faq", label: "FAQ" }
-              ].map((item, index) => (
+              {footerLinks.company.map((item, index) => (
                 <motion.li
                   key={index}
                   initial={{ opacity: 0, x: -10 }}
@@ -273,10 +278,7 @@ export const Footer = () => {
               transition={{ duration: 0.6, delay: 0.6 }}
               viewport={{ once: true }}
             >
-              {[
-                { href: "/terms", label: "Условия за ползване" },
-                { href: "/privacy", label: "Поверителност" }
-              ].map((item, index) => (
+              {footerLinks.legal.map((item, index) => (
                 <Link key={index} href={item.href}>
                   <motion.span 
                     className="text-gray-400 hover:text-[#ECB629] transition-colors cursor-pointer text-sm"
@@ -287,6 +289,15 @@ export const Footer = () => {
                   </motion.span>
                 </Link>
               ))}
+              <Link href="/calculators">
+                <motion.span 
+                  className="text-gray-400 hover:text-[#ECB629] transition-colors cursor-pointer text-sm"
+                  whileHover={{ y: -1 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  Калкулатори
+                </motion.span>
+              </Link>
             </motion.div>
           </div>
         </motion.div>

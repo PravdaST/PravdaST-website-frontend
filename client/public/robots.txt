@@ -1,7 +1,53 @@
 
+# Robots.txt за Pravda ST - Business Engineering
+# Оптимизиран за български пазар - 2025
+
 User-agent: *
+Allow: /
+
+# Позволяване на основни страници
+Allow: /services/
+Allow: /services/seo-struktor
+Allow: /services/trendlab  
+Allow: /services/clickstarter
+Allow: /services/clientomat
+Allow: /about
+Allow: /case-studies
+Allow: /blog
+Allow: /contact
+Allow: /faq
+Allow: /calculators
+Allow: /terms
+Allow: /privacy
+
+# Блокиране на административни директории
 Disallow: /admin/
 Disallow: /api/
-Disallow: /_*
+Disallow: /_next/
+Disallow: /node_modules/
+Disallow: /.git/
+Disallow: /server/
+Disallow: /src/
 
+# Блокиране на технически файлове
+Disallow: /*.json$
+Disallow: /*.log$
+Disallow: /*.xml$
+Disallow: /sw.js
+Disallow: /sw-simple.js
+
+# Googlebot оптимизация
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+# Bing оптимизация
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 2
+
+# Sitemap за Google Search Console
 Sitemap: https://www.pravdagency.eu/sitemap.xml
+
+# Host директива
+Host: www.pravdagency.eu
