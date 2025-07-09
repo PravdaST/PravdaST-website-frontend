@@ -614,10 +614,10 @@ function ReturnOnInvestmentCalculator({
                     </div>
 
                     <p className="text-gray-400">
-                      {serviceName === "SEO Struktor™" && "SEO Потенциал Резултат"}
-                      {serviceName === "Trendlab™" && "Content Потенциал Резултат"}
-                      {serviceName === "Clickstarter™" && "Реклама Потенциал Резултат"}
-                      {serviceName === "Clientomat™" && "Клиент Потенциал Резултат"}
+                      {serviceName === "SEO Struktor™" && "SEO Потенциален Резултат"}
+                      {serviceName === "Trendlab™" && "Content Потенциален Резултат"}
+                      {serviceName === "Clickstarter™" && "Реклама Потенциален Резултат"}
+                      {serviceName === "Clientomat™" && "Клиент Потенциален Резултат"}
                     </p>
                   </div>
 
@@ -713,12 +713,12 @@ function ReturnOnInvestmentCalculator({
                 <div className="flex items-center justify-center gap-2 mb-4">
                   <BarChart3 className="w-6 h-6 text-[#ECB629]" />
                   <h3 className="text-xl font-semibold text-white">
-                    {serviceName === "SEO Struktor™" && "SEO Потенциал Оценка"}
-                    {serviceName === "Trendlab™" && "Content Потенциал Оценка"}
+                    {serviceName === "SEO Struktor™" && "SEO Потенциална Оценка"}
+                    {serviceName === "Trendlab™" && "Content Потенциална Оценка"}
                     {serviceName === "Clickstarter™" &&
-                      "Реклама Потенциал Оценка"}
+                      "Реклама Потенциална Оценка"}
                     {serviceName === "Clientomat™" &&
-                      "Клиент Потенциал Оценка"}
+                      "Клиент Потенциална Оценка"}
                   </h3>
                 </div>
 
@@ -764,10 +764,10 @@ function ReturnOnInvestmentCalculator({
                 </div>
 
                 <p className="text-gray-400">
-                  {serviceName === "SEO Struktor™" && "SEO Потенциал Резултат"}
-                  {serviceName === "Trendlab™" && "Content Потенциал Резултат"}
-                  {serviceName === "Clickstarter™" && "Реклама Потенциал Резултат"}
-                  {serviceName === "Clientomat™" && "Клиент Потенциал Резултат"}
+                  {serviceName === "SEO Struktor™" && "SEO Потенциален Резултат"}
+                  {serviceName === "Trendlab™" && "Content Потенциален Резултат"}
+                  {serviceName === "Clickstarter™" && "Реклама Потенциален Резултат"}
+                  {serviceName === "Clientomat™" && "Клиент Потенциален Резултат"}
                 </p>
               </div>
 
@@ -918,11 +918,11 @@ function ReturnOnInvestmentCalculator({
                 {serviceName === "SEO Struktor™" &&
                   `Вашият SEO потенциал е ${results.score}/100. Започнете оптимизацията днес и постигнете измерими резултати.`}
                 {serviceName === "Trendlab™" &&
-                  `Вашият content потенциал е ${results.score}/100. Започнете създаването на съдържание днес и постигнете измерими резултати.`}
+                  `Вашият потенциал за съдържание е ${results.score}/100. Започнете създаването на съдържание днес и постигнете измерими резултати.`}
                 {serviceName === "Clickstarter™" &&
-                  `Вашият реклама потенциал е ${results.score}/100. Започнете оптимизацията на рекламите днес и постигнете измерими резултати.`}
+                  `Вашият рекламен потенциал е ${results.score}/100. Започнете оптимизацията на рекламите днес и постигнете измерими резултати.`}
                 {serviceName === "Clientomat™" &&
-                  `Вашият клиент потенциал е ${results.score}/100. Започнете автоматизацията днес и постигнете измерими резултати.`}
+                  `Вашият потенциал за клиенти е ${results.score}/100. Започнете автоматизацията днес и постигнете измерими резултати.`}
               </p>
               <div className="flex flex-col gap-3 sm:gap-4 justify-center">
                 <Button
