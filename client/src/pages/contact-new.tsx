@@ -168,7 +168,19 @@ export default function ContactNew() {
                 className="text-lg text-gray-300 max-w-2xl mx-auto"
               >
                 Готови сме да обсъдим как можем да трансформираме вашия бизнес в
-                предсказуема система за растеж
+                предсказуема система за растеж. Разгледайте нашите{" "}
+                <Link href="/services">
+                  <a className="text-[#ECB629] hover:underline cursor-pointer">
+                    бизнес системи
+                  </a>
+                </Link>{" "}
+                и{" "}
+                <Link href="/case-studies">
+                  <a className="text-[#ECB629] hover:underline cursor-pointer">
+                    успешни проекти
+                  </a>
+                </Link>
+                .
               </motion.p>
             </div>
 

@@ -296,7 +296,37 @@ export default function FAQ() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
             >
-              Отговори на най-честите въпроси за SEO Struktor™, Clientomat™, Clickstarter™ и Trendlab™. Всичко което трябва да знаете за нашите бизнес инженеринг системи за растеж в България.
+              Отговори на най-честите въпроси за{" "}
+              <Link href="/services/seo-struktor">
+                <a className="text-[#ECB629] hover:underline cursor-pointer">
+                  SEO Struktor™
+                </a>
+              </Link>
+              ,{" "}
+              <Link href="/services/clientomat">
+                <a className="text-[#ECB629] hover:underline cursor-pointer">
+                  Clientomat™
+                </a>
+              </Link>
+              ,{" "}
+              <Link href="/services/clickstarter">
+                <a className="text-[#ECB629] hover:underline cursor-pointer">
+                  Clickstarter™
+                </a>
+              </Link>{" "}
+              и{" "}
+              <Link href="/services/trendlab">
+                <a className="text-[#ECB629] hover:underline cursor-pointer">
+                  Trendlab™
+                </a>
+              </Link>
+              . Всичко което трябва да знаете за нашите{" "}
+              <Link href="/services">
+                <a className="text-[#ECB629] hover:underline cursor-pointer">
+                  бизнес инженеринг системи
+                </a>
+              </Link>{" "}
+              за растеж в България.
             </motion.p>
 
             {/* Category Filter */}

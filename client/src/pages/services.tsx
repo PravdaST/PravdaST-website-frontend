@@ -270,7 +270,19 @@ export default function Services() {
                   transition={{ duration: 0.8, delay: 0.4 }}
                 >
                   Спрете да залагате на късмет. Изграждаме системи, които
-                  работят предвидимо и носят измерими резултати за вашия бизнес.
+                  работят предвидимо и носят измерими резултати за вашия бизнес. Вижте нашите{" "}
+                  <Link href="/case-studies">
+                    <a className="text-[#ECB629] hover:underline cursor-pointer">
+                      успешни проекти
+                    </a>
+                  </Link>{" "}
+                  и{" "}
+                  <Link href="/about">
+                    <a className="text-[#ECB629] hover:underline cursor-pointer">
+                      екипа ни
+                    </a>
+                  </Link>
+                  .
                 </motion.p>
 
                 <motion.div

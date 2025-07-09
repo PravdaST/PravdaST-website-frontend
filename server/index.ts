@@ -5,6 +5,7 @@ import cors from "cors";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 import { securityManager } from "./lib/security";
+import { seoMiddleware } from "./lib/seo-middleware";
 
 const app = express();
 
@@ -138,6 +139,11 @@ app.use((req, res, next) => {
     res.status(status).json({ message });
     throw err;
   });
+
+  // SEO middleware only for production
+  if (app.get("env") !== "development") {
+    app.get('*', seoMiddleware);
+  }
 
   // importantly only setup vite in development and after
   // setting up all the other routes so the catch-all route

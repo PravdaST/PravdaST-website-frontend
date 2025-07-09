@@ -7,6 +7,9 @@ interface HelmetSEOProps {
 }
 
 export function HelmetSEO({ seo, pageSlug }: HelmetSEOProps) {
+  // Debug log to see if component is rendering
+  console.log('HelmetSEO rendering:', seo.title);
+  
   return (
     <Helmet prioritizeSeoTags>
       <title>{seo.title}</title>
