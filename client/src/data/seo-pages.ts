@@ -422,6 +422,14 @@ export const pageSEOData: Record<string, Partial<SEOData>> = {
     description: "Условия за ползване на услугите на Pravdast. Права и задължения, политика за плащания, гаранции и отговорности при използване на нашите бизнес системи.",
     keywords: "pravdast условия ползване, бизнес услуги договор, terms of service българия, правила използване, юридически условия sofia",
     canonical: "https://www.pravdagency.eu/terms",
+    ogTitle: "Условия за Ползване | Pravdast",
+    ogDescription: "Права и задължения при използване на нашите бизнес системи.",
+    ogImage: "https://www.pravdagency.eu/og-terms.jpg",
+    ogType: "website",
+    twitterCard: "summary_large_image",
+    twitterTitle: "Условия за Ползване | Pravdast",
+    twitterDescription: "Права и задължения при използване на нашите бизнес системи.",
+    twitterImage: "https://www.pravdagency.eu/twitter-terms.jpg",
     robots: "index, follow"
   },
 
@@ -430,6 +438,14 @@ export const pageSEOData: Record<string, Partial<SEOData>> = {
     description: "Политика за поверителност на Pravdast. Как събираме, използваме и защитаваме личните ви данни в съответствие с GDPR и българското законодателство.",
     keywords: "pravdast поверителност, gdpr политика българия, защита лични данни, privacy policy sofia, данни сигурност",
     canonical: "https://www.pravdagency.eu/privacy",
+    ogTitle: "Политика за Поверителност | Pravdast",
+    ogDescription: "Как защитаваме личните ви данни в съответствие с GDPR.",
+    ogImage: "https://www.pravdagency.eu/og-privacy.jpg",
+    ogType: "website",
+    twitterCard: "summary_large_image",
+    twitterTitle: "Политика за Поверителност | Pravdast",
+    twitterDescription: "Как защитаваме личните ви данни в съответствие с GDPR.",
+    twitterImage: "https://www.pravdagency.eu/twitter-privacy.jpg",
     robots: "index, follow"
   },
 
@@ -440,6 +456,12 @@ export const pageSEOData: Record<string, Partial<SEOData>> = {
     canonical: "https://www.pravdagency.eu/about",
     ogTitle: "За Нас - Екипът на Pravdast",
     ogDescription: "Ние сме бизнес инженери, които изграждат системи за предвидим растеж.",
+    ogImage: "https://www.pravdagency.eu/og-about.jpg",
+    ogType: "website",
+    twitterCard: "summary_large_image",
+    twitterTitle: "За Нас - Екипът на Pravdast",
+    twitterDescription: "Ние сме бизнес инженери, които изграждат системи за предвидим растеж.",
+    twitterImage: "https://www.pravdagency.eu/twitter-about.jpg",
     robots: "index, follow"
   },
 
@@ -450,6 +472,12 @@ export const pageSEOData: Record<string, Partial<SEOData>> = {
     canonical: "https://www.pravdagency.eu/services",
     ogTitle: "Услуги - Бизнес Системи на Pravdast",
     ogDescription: "Четири проверени системи за превръщане на хаоса в предвидим растеж.",
+    ogImage: "https://www.pravdagency.eu/og-services.jpg",
+    ogType: "website",
+    twitterCard: "summary_large_image",
+    twitterTitle: "Услуги - Бизнес Системи на Pravdast",
+    twitterDescription: "Четири проверени системи за превръщане на хаоса в предвидим растеж.",
+    twitterImage: "https://www.pravdagency.eu/twitter-services.jpg",
     robots: "index, follow"
   },
 
@@ -460,6 +488,12 @@ export const pageSEOData: Record<string, Partial<SEOData>> = {
     canonical: "https://www.pravdagency.eu/case-studies",
     ogTitle: "Казуси - Успешни Проекти на Pravdast",
     ogDescription: "Реални резултати от внедрени бизнес системи за B2B компании.",
+    ogImage: "https://www.pravdagency.eu/og-case-studies.jpg",
+    ogType: "website",
+    twitterCard: "summary_large_image",
+    twitterTitle: "Казуси - Успешни Проекти на Pravdast",
+    twitterDescription: "Реални резултати от внедрени бизнес системи за B2B компании.",
+    twitterImage: "https://www.pravdagency.eu/twitter-case-studies.jpg",
     robots: "index, follow"
   }
 };

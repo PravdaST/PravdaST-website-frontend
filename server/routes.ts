@@ -3,7 +3,7 @@ import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertContactSchema } from "@shared/schema";
 import { z } from "zod";
-import { seoGenerator } from "./lib/seo-generator";
+// seoGenerator импортиран dynamic където е необходимо
 import { sanitizeInput, validateContentType } from "./middleware/security";
 import { emailService } from "./lib/email-service";
 import { trackBlogView, trackBlogLike, trackBlogShare, getBlogStats } from "./blog-analytics";
@@ -302,6 +302,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Robots.txt endpoint
   app.get("/robots.txt", async (req: Request, res: Response) => {
     try {
+      const { seoGenerator } = await import("./lib/seo-generator");
       const robotsContent = seoGenerator.generateRobotsTxt();
 
       res.setHeader('Content-Type', 'text/plain');
@@ -316,6 +317,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Schema.org JSON-LD endpoint за организацията
   app.get("/api/schema/organization", async (req: Request, res: Response) => {
     try {
+      const { seoGenerator } = await import("./lib/seo-generator");
       const schema = seoGenerator.generateOrganizationSchema();
       res.setHeader('Content-Type', 'application/ld+json');
       res.setHeader('Cache-Control', 'public, max-age=86400');
@@ -329,6 +331,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Schema.org JSON-LD endpoint за уеб сайта
   app.get("/api/schema/website", async (req: Request, res: Response) => {
     try {
+      const { seoGenerator } = await import("./lib/seo-generator");
       const schema = seoGenerator.generateWebsiteSchema();
       res.setHeader('Content-Type', 'application/ld+json');
       res.setHeader('Cache-Control', 'public, max-age=86400');

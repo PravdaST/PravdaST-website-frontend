@@ -3,6 +3,7 @@ import { Footer } from "@/components/footer";
 import { HelmetSEO } from "@/components/seo/helmet-seo";
 import { motion } from "framer-motion";
 import { Shield, Lock, Eye, Calendar } from "lucide-react";
+import { Link } from "wouter";
 import { pageSEOData } from "@/data/seo-pages";
 
 export default function Privacy() {
@@ -125,14 +126,14 @@ export default function Privacy() {
                     1. Обща информация
                   </h2>
                   <p className="text-gray-300 mb-6">
-                    Pravdast Agency ("ние", "нашият", "нас") зачита поверителността на вашите лични данни и се ангажира да ги защитава в съответствие с приложимото законодателство, включително Общия регламент за защита на данните (GDPR).
+                    Pravdast Agency ("ние", "нашият", "нас") зачита поверителността на вашите лични данни и се ангажира да ги защитава в съответствие с приложимото законодателство, включително Общия регламент за защита на данните (GDPR). Научете повече <Link href="/about" className="text-[#ECB629] hover:text-[#ECB629]/80 underline">за нас</Link> и нашите ценности.
                   </p>
                   <p className="text-gray-300 mb-8">
-                    Настоящата политика обяснява как събираме, използваме, съхраняваме и защитаваме вашите лични данни.
+                    Настоящата политика обяснява как събираме, използваме, съхраняваме и защитаваме вашите лични данни при използването на нашите <Link href="/services" className="text-[#ECB629] hover:text-[#ECB629]/80 underline">услуги</Link>. За общи условия прочетете <Link href="/terms" className="text-[#ECB629] hover:text-[#ECB629]/80 underline">условията за ползване</Link>.
                   </p>
 
                   <h2 className="text-3xl font-bold text-white mb-6">2. Какви данни събираме</h2>
-                  <p className="text-gray-300 mb-4">Събираме следните видове лични данни:</p>
+                  <p className="text-gray-300 mb-4">Събираме следните видове лични данни при предоставянето на нашите <Link href="/services" className="text-[#ECB629] hover:text-[#ECB629]/80 underline">услуги</Link>:</p>
                   <ul className="text-gray-300 mb-8 space-y-2">
                     <li>• <strong>Контактна информация:</strong> име, имейл адрес, телефонен номер</li>
                     <li>• <strong>Бизнес информация:</strong> име на компанията, уебсайт, позиция</li>
@@ -213,10 +214,11 @@ export default function Privacy() {
 
                   <h2 className="text-3xl font-bold text-white mb-6">11. Контакт за въпроси относно данните</h2>
                   <div className="text-gray-300 space-y-2">
-                    <p>За всякакви въпроси относно обработката на вашите лични данни:</p>
+                    <p>За всякакви въпроси относно обработката на вашите лични данни или за да се <Link href="/contact" className="text-[#ECB629] hover:text-[#ECB629]/80 underline">свържете с нас</Link>:</p>
                     <p><strong>Email:</strong> contact@pravdagency.eu</p>
                     <p><strong>Телефон:</strong> +359 879 282 299</p>
                     <p><strong>Адрес:</strong> ул. Дебър №58, Варна, България</p>
+                    <p>Научете повече за успешните ни проекти в <Link href="/case-studies" className="text-[#ECB629] hover:text-[#ECB629]/80 underline">казусите</Link>.</p>
                   </div>
 
                   <div className="mt-8 p-6 bg-slate-700/50 rounded-lg border border-[#ECB629]/20">

@@ -3,6 +3,7 @@ import { Footer } from "@/components/footer";
 import { HelmetSEO } from "@/components/seo/helmet-seo";
 import { motion } from "framer-motion";
 import { Shield, Calendar, FileText } from "lucide-react";
+import { Link } from "wouter";
 import { pageSEOData } from "@/data/seo-pages";
 
 export default function Terms() {
@@ -125,19 +126,19 @@ export default function Terms() {
                     1. Общи положения
                   </h2>
                   <p className="text-gray-300 mb-6">
-                    Настоящите общи условия регулират предоставянето на бизнес инженеринг услуги от Pravdast Agency (наричано по-долу "Доставчик") на клиентите (наричани по-долу "Клиент").
+                    Настоящите общи условия регулират предоставянето на бизнес инженеринг услуги от Pravdast Agency (наричано по-долу "Доставчик") на клиентите (наричани по-долу "Клиент"). Научете повече <Link href="/about" className="text-[#ECB629] hover:text-[#ECB629]/80 underline">за нас</Link> и нашия подход.
                   </p>
                   <p className="text-gray-300 mb-8">
-                    Използването на нашите услуги означава пълно приемане на настоящите условия.
+                    Използването на нашите <Link href="/services" className="text-[#ECB629] hover:text-[#ECB629]/80 underline">услуги</Link> означава пълно приемане на настоящите условия. За въпроси относно поверителността прочетете нашата <Link href="/privacy" className="text-[#ECB629] hover:text-[#ECB629]/80 underline">политика за поверителност</Link>.
                   </p>
 
                   <h2 className="text-3xl font-bold text-white mb-6">2. Услуги</h2>
                   <p className="text-gray-300 mb-4">Доставчикът предоставя следните основни услуги:</p>
                   <ul className="text-gray-300 mb-8 space-y-2">
-                    <li>• SEO Struktor™ - Системна SEO оптимизация</li>
-                    <li>• Clientomat™ - Автоматизация на клиентски процеси</li>
-                    <li>• Clickstarter™ - Платени реклами и конверсии</li>
-                    <li>• Trendlab™ - Съдържание и брандиране</li>
+                    <li>• <Link href="/services/seo-struktor" className="text-[#ECB629] hover:text-[#ECB629]/80 underline">SEO Struktor™</Link> - Системна SEO оптимизация</li>
+                    <li>• <Link href="/services/clientomat" className="text-[#ECB629] hover:text-[#ECB629]/80 underline">Clientomat™</Link> - Автоматизация на клиентски процеси</li>
+                    <li>• <Link href="/services/clickstarter" className="text-[#ECB629] hover:text-[#ECB629]/80 underline">Clickstarter™</Link> - Платени реклами и конверсии</li>
+                    <li>• <Link href="/services/trendlab" className="text-[#ECB629] hover:text-[#ECB629]/80 underline">Trendlab™</Link> - Съдържание и брандиране</li>
                     <li>• Консултации и стратегическо планиране</li>
                   </ul>
 
@@ -194,7 +195,7 @@ export default function Terms() {
 
                   <h2 className="text-3xl font-bold text-white mb-6">9. Приложимо право</h2>
                   <p className="text-gray-300 mb-8">
-                    Настоящите условия се регулират от българското законодателство. Всички спорове се решават от компетентните български съдилища.
+                    Настоящите условия се регулират от българското законодателство. Всички спорове се решават от компетентните български съдилища. За допълнителна информация относно успешни проекти вижте нашите <Link href="/case-studies" className="text-[#ECB629] hover:text-[#ECB629]/80 underline">казуси</Link>.
                   </p>
 
                   <h2 className="text-3xl font-bold text-white mb-6">10. Контакти</h2>
