@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -644,7 +643,7 @@ function ProfitCalculator({
                     ease: "linear",
                   }}
                 />
-                
+
                 <div className="flex items-center gap-3 mb-3">
                   <motion.div
                     className="p-2 bg-[#ECB629]/20 rounded-lg"
@@ -660,7 +659,7 @@ function ProfitCalculator({
                     {serviceName === "Clientomat™" && "Как се изчислява печалбата от клиенти?"}
                   </h4>
                 </div>
-                
+
                 <motion.p 
                   className="text-gray-300 text-xs leading-relaxed"
                   initial={{ opacity: 0, y: 10 }}
@@ -750,7 +749,7 @@ function ProfitCalculator({
                     ease: "linear",
                   }}
                 />
-                
+
                 <h4 className="text-white font-semibold text-sm mb-4 text-center flex items-center justify-center gap-2">
                   <motion.div
                     animate={{ rotate: 360 }}
@@ -780,7 +779,7 @@ function ProfitCalculator({
                     <div className="text-gray-400 text-xs font-medium">ПРЕДИ</div>
                     <TrendingDown className="w-3 h-3 text-red-400 mx-auto mt-1" />
                   </motion.div>
-                  
+
                   <motion.div 
                     className="text-center p-3 bg-[#ECB629]/10 rounded-lg border border-[#ECB629]/20 relative"
                     whileHover={{ scale: 1.05 }}
@@ -797,9 +796,12 @@ function ProfitCalculator({
                       {serviceName === "Clickstarter™" && "+"}
                       {serviceName === "Clientomat™" && ""}
                       {results.metric1 > 0
-                        ? Math.round(results.metric1).toLocaleString("bg-BG")
-                        : "17000"}
-                      {serviceName === "Clientomat™" && "%"}
+                            ? Math.round(results.metric1).toLocaleString("bg-BG")
+                            : (serviceName === "SEO Struktor™" && "17 000") ||
+                              (serviceName === "Trendlab™" && "11 250") ||
+                              (serviceName === "Clickstarter™" && "139") ||
+                              (serviceName === "Clientomat™" && "45")}
+                          {serviceName === "Clientomat™" && "%"}
                     </motion.div>
                     <div className="text-gray-400 text-xs font-medium">СЛЕД</div>
                     <TrendingUp className="w-3 h-3 text-[#ECB629] mx-auto mt-1" />
@@ -862,7 +864,7 @@ function ProfitCalculator({
                           ease: "easeInOut",
                         }}
                       />
-                      
+
                       {/* Background Circle */}
                       <svg
                         className="w-full h-full transform -rotate-90"
@@ -900,7 +902,7 @@ function ProfitCalculator({
                             filter: "drop-shadow(0 0 8px rgba(236, 182, 41, 0.3))",
                           }}
                         />
-                        
+
                         {/* Animated dots on the circle */}
                         <motion.circle
                           cx="85"
@@ -918,7 +920,7 @@ function ProfitCalculator({
                           }}
                         />
                       </svg>
-                      
+
                       {/* Center Content */}
                       <div className="absolute inset-0 flex items-center justify-center">
                         <motion.div
@@ -1007,7 +1009,10 @@ function ProfitCalculator({
                           {serviceName === "Clientomat™" && ""}
                           {results.metric1 > 0
                             ? Math.round(results.metric1).toLocaleString("bg-BG")
-                            : "0"}
+                            : (serviceName === "SEO Struktor™" && "17 000") ||
+                              (serviceName === "Trendlab™" && "11 250") ||
+                              (serviceName === "Clickstarter™" && "139") ||
+                              (serviceName === "Clientomat™" && "45")}
                           {serviceName === "Clientomat™" && "%"}
                         </motion.div>
                       </div>
@@ -1115,7 +1120,7 @@ function ProfitCalculator({
                         ease: "linear",
                       }}
                     />
-                    
+
                     <div className="flex items-center justify-center gap-2 mb-2">
                       <Target className="w-4 h-4 text-[#ECB629]" />
                       <motion.div 
@@ -1132,7 +1137,7 @@ function ProfitCalculator({
                         Стартова инвестиция: {monthlyPrice.toLocaleString("bg-BG")} лв./месец
                       </motion.div>
                     </div>
-                    
+
                     <motion.p 
                       className="text-gray-300 text-xs leading-relaxed"
                       initial={{ opacity: 0 }}
@@ -1224,7 +1229,7 @@ function ProfitCalculator({
                   <h4 className="text-white font-bold text-lg md:text-xl mb-2">Преди vs След визуализация</h4>
                   <div className="w-20 h-1 bg-gradient-to-r from-transparent via-[#ECB629] to-transparent mx-auto rounded-full"></div>
                 </div>
-                
+
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 items-center">
                   {/* Before - Left */}
                   <motion.div 
@@ -1378,11 +1383,11 @@ function ProfitCalculator({
                   </div>
                   <div className="w-20 h-1 bg-gradient-to-r from-transparent via-[#ECB629] to-transparent mx-auto rounded-full"></div>
                 </div>
-                
+
                 <div className="relative max-w-4xl mx-auto">
                   {/* Timeline Line */}
                   <div className="absolute left-6 md:left-8 top-8 bottom-8 w-0.5 bg-gradient-to-b from-[#ECB629]/20 via-[#ECB629]/60 to-[#ECB629]/20 rounded-full"></div>
-                  
+
                   <div className="space-y-8 md:space-y-12">
                     {/* Month 1 */}
                     <motion.div 
@@ -1528,7 +1533,7 @@ function ProfitCalculator({
                   </div>
                   <div className="w-20 h-1 bg-gradient-to-r from-transparent via-[#ECB629] to-transparent mx-auto rounded-full"></div>
                 </div>
-                
+
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
                   <motion.div 
                     className="text-center bg-slate-800/30 rounded-2xl p-6 border border-slate-700/30 backdrop-blur-sm"
@@ -1552,7 +1557,7 @@ function ProfitCalculator({
                     <div className="text-gray-300 text-sm md:text-base font-medium">Успешни проекта</div>
                     <div className="w-12 h-1 bg-[#ECB629]/30 mx-auto mt-3 rounded-full"></div>
                   </motion.div>
-                  
+
                   <motion.div 
                     className="text-center bg-slate-800/30 rounded-2xl p-6 border border-slate-700/30 backdrop-blur-sm"
                     initial={{ opacity: 0, y: 20 }}
@@ -1576,7 +1581,7 @@ function ProfitCalculator({
                     <div className="text-gray-300 text-sm md:text-base font-medium">Средна печалба</div>
                     <div className="w-12 h-1 bg-[#ECB629]/30 mx-auto mt-3 rounded-full"></div>
                   </motion.div>
-                  
+
                   <motion.div 
                     className="text-center bg-slate-800/30 rounded-2xl p-6 border border-slate-700/30 backdrop-blur-sm"
                     initial={{ opacity: 0, y: 20 }}
