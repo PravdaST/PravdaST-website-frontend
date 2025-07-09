@@ -10,6 +10,9 @@ interface SEOHelmetProps {
 export function SEOHelmet({ seo, pageSlug }: SEOHelmetProps) {
   const title = seo?.title || defaultSEOConfig.defaultTitle;
   const description = seo?.description || defaultSEOConfig.defaultDescription;
+  
+  // Debug log to check if SEO is working
+  console.log('SEOHelmet loaded:', { title, description, pageSlug });
   const keywords = seo?.keywords;
   const canonical = seo?.canonical || `${defaultSEOConfig.siteUrl}${pageSlug ? `/${pageSlug}` : ''}`;
   const ogTitle = seo?.ogTitle || title;
