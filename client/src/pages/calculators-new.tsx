@@ -919,7 +919,7 @@ export default function CalculatorsNew() {
                 transition={{ delay: 0.1 }}
                 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3 sm:mb-4 px-2 sm:px-0 leading-tight"
               >
-                Pravda ST <span className="text-[#ECB629]">Калкулатори</span>
+                Pravda <span className="text-[#ECB629]">Калкулатори</span>
               </motion.h1>
 
               <motion.p
