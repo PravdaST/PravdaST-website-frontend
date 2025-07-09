@@ -104,25 +104,25 @@ const SystemsBackground = () => {
         transition={{ type: "spring", stiffness: 40, damping: 15 }}
       >
         {/* Central hub */}
-        <circle cx="50%" cy="50%" r="4" fill="#ECB629" opacity="0.6" />
+        <circle cx="500" cy="400" r="4" fill="#ECB629" opacity="0.6" />
 
         {/* Connecting lines representing system architecture */}
         <path
-          d="M 20% 30% Q 50% 20% 80% 30%"
+          d="M 200 300 Q 500 200 800 300"
           fill="none"
           stroke="#ECB629"
           strokeWidth="1.5"
           opacity="0.4"
         />
         <path
-          d="M 20% 70% Q 50% 80% 80% 70%"
+          d="M 200 700 Q 500 800 800 700"
           fill="none"
           stroke="#ECB629"
           strokeWidth="1.5"
           opacity="0.4"
         />
         <path
-          d="M 30% 20% L 50% 50% L 70% 20%"
+          d="M 300 200 L 500 500 L 700 200"
           fill="none"
           stroke="#ECB629"
           strokeWidth="1"
