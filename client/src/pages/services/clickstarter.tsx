@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "wouter";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
-import { SEOHelmet } from "@/components/seo-helmet";
+import { HelmetSEO } from "@/components/seo/helmet-seo";
 
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -29,7 +29,7 @@ import { motion } from "framer-motion";
 export default function Clickstarter() {
   return (
     <>
-      <SEOHead
+      <HelmetSEO
         seo={pageSEOData["services/clickstarter"]}
         pageSlug="services/clickstarter"
       />

@@ -20,7 +20,7 @@ import {
 } from "lucide-react";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
-import { SEOHelmet } from "@/components/seo-helmet";
+import { HelmetSEO } from "@/components/seo/helmet-seo";
 import { UnifiedCTASection } from "@/components/unified-cta-section";
 import { pageSEOData } from "@/data/seo-pages";
 
@@ -236,7 +236,7 @@ export default function ClientomatPage() {
 
   return (
     <div className="min-h-screen bg-slate-900">
-      <SEOHead
+      <HelmetSEO
         seo={pageSEOData["services/clientomat"]}
         pageSlug="services/clientomat"
       />

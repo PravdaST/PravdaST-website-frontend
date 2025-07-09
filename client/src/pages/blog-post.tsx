@@ -4,7 +4,7 @@ import { motion, useInView } from "framer-motion";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
-import { SEOHelmet } from "@/components/seo-helmet";
+import { HelmetSEO } from "@/components/seo/helmet-seo";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import {
@@ -390,7 +390,7 @@ export default function BlogPost() {
 
   return (
     <div className="min-h-screen bg-slate-900">
-      <SEOHead
+      <HelmetSEO
         seo={{
           title: post.title,
           description: post.excerpt,

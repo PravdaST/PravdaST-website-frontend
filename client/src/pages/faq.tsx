@@ -1,7 +1,7 @@
 
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
-import { SEOHelmet } from "@/components/seo-helmet";
+import { HelmetSEO } from "@/components/seo/helmet-seo";
 import { UnifiedCTASection } from "@/components/unified-cta-section";
 import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
@@ -206,7 +206,7 @@ export default function FAQ() {
 
   return (
     <div className="min-h-screen bg-slate-900">
-      <SEOHead
+      <HelmetSEO
         seo={pageSEOData.faq}
         pageSlug="faq"
       />

@@ -3,7 +3,7 @@ import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { SEOHelmet } from "@/components/seo-helmet";
+import { HelmetSEO } from "@/components/seo/helmet-seo";
 import { pageSEOData } from "@/data/seo-pages";
 import { useRef, useState, useEffect } from "react";
 import {
@@ -206,7 +206,7 @@ export default function Services() {
 
   return (
     <div className="min-h-screen bg-slate-900">
-      <SEOHelmet seo={pageSEOData.services} pageSlug="services" />
+      <HelmetSEO seo={pageSEOData.services} pageSlug="services" />
       <Navigation />
 
       <main>

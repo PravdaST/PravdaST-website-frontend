@@ -1,6 +1,6 @@
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
-import { SEOHelmet } from "@/components/seo-helmet";
+import { HelmetSEO } from "@/components/seo/helmet-seo";
 import { motion } from "framer-motion";
 import { Shield, Calendar, FileText } from "lucide-react";
 import { pageSEOData } from "@/data/seo-pages";
@@ -8,7 +8,7 @@ import { pageSEOData } from "@/data/seo-pages";
 export default function Terms() {
   return (
     <div className="min-h-screen bg-slate-900">
-      <SEOHead
+      <HelmetSEO
         seo={pageSEOData.terms}
         pageSlug="terms"
       />
