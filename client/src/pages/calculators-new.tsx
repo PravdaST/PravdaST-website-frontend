@@ -430,7 +430,7 @@ function ProfitCalculator({
                 />
               </div>
 
-              <motion.h3 
+              <motion.h3
                 className="text-white font-semibold mb-6 flex items-center gap-3 relative z-10"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -592,7 +592,10 @@ function ProfitCalculator({
                   transition={{ duration: 0.5, delay: 0.4 }}
                   className="group"
                 >
-                  <Label htmlFor="industry" className="text-white text-sm block mb-3 flex items-center gap-2 font-medium">
+                  <Label
+                    htmlFor="industry"
+                    className="text-white text-sm block mb-3 flex items-center gap-2 font-medium"
+                  >
                     <motion.div
                       className="w-2 h-2 bg-[#ECB629] rounded-full"
                       animate={{ scale: [1, 1.2, 1] }}
@@ -603,7 +606,10 @@ function ProfitCalculator({
                   <Select
                     value={inputs[serviceInputs.param4.key]}
                     onValueChange={(value) =>
-                      setInputs({ ...inputs, [serviceInputs.param4.key]: value })
+                      setInputs({
+                        ...inputs,
+                        [serviceInputs.param4.key]: value,
+                      })
                     }
                   >
                     <SelectTrigger className="bg-slate-900/70 backdrop-blur-sm border-slate-600/50 text-white h-12 transition-all duration-300 hover:border-slate-500 focus:border-[#ECB629] focus:bg-slate-800/70">
@@ -612,10 +618,14 @@ function ProfitCalculator({
                     <SelectContent>
                       <SelectItem value="ecommerce">Онлайн Магазин</SelectItem>
                       <SelectItem value="services">Услуги</SelectItem>
-                      <SelectItem value="manufacturing">Производство</SelectItem>
+                      <SelectItem value="manufacturing">
+                        Производство
+                      </SelectItem>
                       <SelectItem value="construction">Стройтелство</SelectItem>
                       <SelectItem value="hospitality">Хотелиерство</SelectItem>
-                      <SelectItem value="Restaurant">Ресторантьорство</SelectItem>
+                      <SelectItem value="Restaurant">
+                        Ресторантьорство
+                      </SelectItem>
                       <SelectItem value="retail">Търговия</SelectItem>
                       <SelectItem value="consulting">
                         Консултантски услуги
@@ -626,7 +636,7 @@ function ProfitCalculator({
               </div>
 
               {/* Service-Specific Profit Definition */}
-              <motion.div 
+              <motion.div
                 className="bg-gradient-to-br from-slate-900/70 via-slate-800/50 to-slate-900/70 backdrop-blur-sm rounded-xl p-4 border border-[#ECB629]/20 mt-6 relative overflow-hidden"
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -653,23 +663,31 @@ function ProfitCalculator({
                     <Sparkles className="w-4 h-4 text-[#ECB629]" />
                   </motion.div>
                   <h4 className="text-white font-semibold text-sm bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-                    {serviceName === "SEO Struktor™" && "Как се изчислява печалбата от търсене?"}
-                    {serviceName === "Trendlab™" && "Как се изчислява печалбата от съдържание?"}
-                    {serviceName === "Clickstarter™" && "Как се изчислява печалбата от реклами?"}
-                    {serviceName === "Clientomat™" && "Как се изчислява печалбата от клиенти?"}
+                    {serviceName === "SEO Struktor™" &&
+                      "Как се изчислява печалбата от търсене?"}
+                    {serviceName === "Trendlab™" &&
+                      "Как се изчислява печалбата от съдържание?"}
+                    {serviceName === "Clickstarter™" &&
+                      "Как се изчислява печалбата от реклами?"}
+                    {serviceName === "Clientomat™" &&
+                      "Как се изчислява печалбата от клиенти?"}
                   </h4>
                 </div>
 
-                <motion.p 
+                <motion.p
                   className="text-gray-300 text-xs leading-relaxed"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.7 }}
                 >
-                  {serviceName === "SEO Struktor™" && "Базирано на органичен трафик увеличение от 340%, продажби от 2.5% и средна стойност на клиент от 2500 лв. Показва реалната печалба от инвестицията в търсене."}
-                  {serviceName === "Trendlab™" && "Базирано на 450% увеличение на последователи, месечни гледания и приходи от авторитет. Показва стойността на качественото съдържание."}
-                  {serviceName === "Clickstarter™" && "Базирано на 85% повече продажби, 25% по-нисък разход за клик и 20% спестени разходи. Показва оптимизацията на рекламните кампании."}
-                  {serviceName === "Clientomat™" && "Базирано на 180% по-висок процент връщащи се клиенти, 220% увеличение стойност на клиент и автоматизирани процеси. Показва стойността на всеки клиент."}
+                  {serviceName === "SEO Struktor™" &&
+                    "Базирано на органичен трафик увеличение от 340%, продажби от 2.5% и средна стойност на клиент от 2500 лв. Показва реалната печалба от инвестицията в търсене."}
+                  {serviceName === "Trendlab™" &&
+                    "Базирано на 450% увеличение на последователи, месечни гледания и приходи от авторитет. Показва стойността на качественото съдържание."}
+                  {serviceName === "Clickstarter™" &&
+                    "Базирано на 85% повече продажби, 25% по-нисък разход за клик и 20% спестени разходи. Показва оптимизацията на рекламните кампании."}
+                  {serviceName === "Clientomat™" &&
+                    "Базирано на 180% по-висок процент връщащи се клиенти, 220% увеличение стойност на клиент и автоматизирани процеси. Показва стойността на всеки клиент."}
                 </motion.p>
 
                 {/* Floating decorative elements */}
@@ -725,107 +743,135 @@ function ProfitCalculator({
                 />
               </div>
 
-              {(results.score > 0 || results.monthlyProfit > 0) ? (
+              {results.score > 0 || results.monthlyProfit > 0 ? (
                 <motion.div
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   className="space-y-6 relative z-10"
                 >
-                   {/* Before/After Comparison */}
-              <motion.div 
-                className="bg-gradient-to-br from-slate-900/80 via-slate-800/60 to-slate-900/80 backdrop-blur-sm rounded-xl p-5 border border-slate-700/30 mb-6 relative overflow-hidden"
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5 }}
-              >
-                <motion.div
-                  className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-red-500 via-[#ECB629] to-green-500"
-                  animate={{
-                    backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-                  }}
-                  transition={{
-                    duration: 5,
-                    repeat: Infinity,
-                    ease: "linear",
-                  }}
-                />
-
-                <h4 className="text-white font-semibold text-sm mb-4 text-center flex items-center justify-center gap-2">
+                  {/* Before/After Comparison */}
                   <motion.div
-                    animate={{ rotate: 360 }}
-                    transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-                  >
-                    <RotateCcw className="w-4 h-4 text-[#ECB629]" />
-                  </motion.div>
-                  Преди vs След {serviceName.replace("™", "")}
-                </h4>
-                <div className="grid grid-cols-2 gap-4">
-                  <motion.div 
-                    className="text-center p-3 bg-red-500/10 rounded-lg border border-red-500/20 relative"
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                    className="bg-gradient-to-br from-slate-900/80 via-slate-800/60 to-slate-900/80 backdrop-blur-sm rounded-xl p-5 border border-slate-700/30 mb-6 relative overflow-hidden"
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.5 }}
                   >
                     <motion.div
-                      className="text-red-400 font-bold text-lg mb-1"
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.5, delay: 0.2 }}
-                    >
-                      {serviceName === "SEO Struktor™" && Math.round(parseFloat(inputs.currentTraffic) || 5000).toLocaleString("bg-BG")}
-                      {serviceName === "Trendlab™" && Math.round(parseFloat(inputs.currentFollowers) || 2500).toLocaleString("bg-BG")}
-                      {serviceName === "Clickstarter™" && Math.round(parseFloat(inputs.monthlyConversions) || 75).toLocaleString("bg-BG")}
-                      {serviceName === "Clientomat™" && `${parseFloat(inputs.repeatRate) || 25}%`}
-                    </motion.div>
-                    <div className="text-gray-400 text-xs font-medium">ПРЕДИ</div>
-                    <TrendingDown className="w-3 h-3 text-red-400 mx-auto mt-1" />
-                  </motion.div>
+                      className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-red-500 via-[#ECB629] to-green-500"
+                      animate={{
+                        backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+                      }}
+                      transition={{
+                        duration: 5,
+                        repeat: Infinity,
+                        ease: "linear",
+                      }}
+                    />
 
-                  <motion.div 
-                    className="text-center p-3 bg-[#ECB629]/10 rounded-lg border border-[#ECB629]/20 relative"
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                  >
-                    <motion.div
-                      className="text-[#ECB629] font-bold text-lg mb-1"
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.5, delay: 0.4 }}
-                    >
-                      {serviceName === "SEO Struktor™" && "+"}
-                      {serviceName === "Trendlab™" && "+"}
-                      {serviceName === "Clickstarter™" && "+"}
-                      {serviceName === "Clientomat™" && ""}
-                      {results.metric1 > 0
-                            ? Math.round(results.metric1).toLocaleString("bg-BG")
+                    <h4 className="text-white font-semibold text-sm mb-4 text-center flex items-center justify-center gap-2">
+                      <motion.div
+                        animate={{ rotate: 360 }}
+                        transition={{
+                          duration: 8,
+                          repeat: Infinity,
+                          ease: "linear",
+                        }}
+                      >
+                        <RotateCcw className="w-4 h-4 text-[#ECB629]" />
+                      </motion.div>
+                      Преди vs След {serviceName.replace("™", "")}
+                    </h4>
+                    <div className="grid grid-cols-2 gap-4">
+                      <motion.div
+                        className="text-center p-3 bg-red-500/10 rounded-lg border border-red-500/20 relative"
+                        whileHover={{ scale: 1.05 }}
+                        transition={{
+                          type: "spring",
+                          stiffness: 400,
+                          damping: 10,
+                        }}
+                      >
+                        <motion.div
+                          className="text-red-400 font-bold text-lg mb-1"
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.5, delay: 0.2 }}
+                        >
+                          {serviceName === "SEO Struktor™" &&
+                            Math.round(
+                              parseFloat(inputs.currentTraffic) || 5000,
+                            ).toLocaleString("bg-BG")}
+                          {serviceName === "Trendlab™" &&
+                            Math.round(
+                              parseFloat(inputs.currentFollowers) || 2500,
+                            ).toLocaleString("bg-BG")}
+                          {serviceName === "Clickstarter™" &&
+                            Math.round(
+                              parseFloat(inputs.monthlyConversions) || 75,
+                            ).toLocaleString("bg-BG")}
+                          {serviceName === "Clientomat™" &&
+                            `${parseFloat(inputs.repeatRate) || 25}%`}
+                        </motion.div>
+                        <div className="text-gray-400 text-xs font-medium">
+                          ПРЕДИ
+                        </div>
+                        <TrendingDown className="w-3 h-3 text-red-400 mx-auto mt-1" />
+                      </motion.div>
+
+                      <motion.div
+                        className="text-center p-3 bg-[#ECB629]/10 rounded-lg border border-[#ECB629]/20 relative"
+                        whileHover={{ scale: 1.05 }}
+                        transition={{
+                          type: "spring",
+                          stiffness: 400,
+                          damping: 10,
+                        }}
+                      >
+                        <motion.div
+                          className="text-[#ECB629] font-bold text-lg mb-1"
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.5, delay: 0.4 }}
+                        >
+                          {serviceName === "SEO Struktor™" && "+"}
+                          {serviceName === "Trendlab™" && "+"}
+                          {serviceName === "Clickstarter™" && "+"}
+                          {serviceName === "Clientomat™" && ""}
+                          {results.metric1 > 0
+                            ? Math.round(results.metric1).toLocaleString(
+                                "bg-BG",
+                              )
                             : (serviceName === "SEO Struktor™" && "17 000") ||
                               (serviceName === "Trendlab™" && "11 250") ||
                               (serviceName === "Clickstarter™" && "139") ||
                               (serviceName === "Clientomat™" && "45")}
                           {serviceName === "Clientomat™" && "%"}
+                        </motion.div>
+                        <div className="text-gray-400 text-xs font-medium">
+                          СЛЕД
+                        </div>
+                        <TrendingUp className="w-3 h-3 text-[#ECB629] mx-auto mt-1" />
+                      </motion.div>
+                    </div>
+
+                    {/* Animated arrow between before/after */}
+                    <motion.div
+                      className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10"
+                      animate={{
+                        x: [0, 5, 0],
+                        opacity: [0.6, 1, 0.6],
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                      }}
+                    >
+                      <ArrowRight className="w-6 h-6 text-[#ECB629] bg-slate-800 rounded-full p-1" />
                     </motion.div>
-                    <div className="text-gray-400 text-xs font-medium">СЛЕД</div>
-                    <TrendingUp className="w-3 h-3 text-[#ECB629] mx-auto mt-1" />
                   </motion.div>
-                </div>
 
-                {/* Animated arrow between before/after */}
-                <motion.div
-                  className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10"
-                  animate={{
-                    x: [0, 5, 0],
-                    opacity: [0.6, 1, 0.6],
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                >
-                  <ArrowRight className="w-6 h-6 text-[#ECB629] bg-slate-800 rounded-full p-1" />
-                </motion.div>
-              </motion.div>
-
-                  <motion.h3 
+                  <motion.h3
                     className="text-white font-semibold mb-6 flex items-center gap-3"
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -834,7 +880,11 @@ function ProfitCalculator({
                     <motion.div
                       className="p-2 bg-[#ECB629]/20 rounded-lg"
                       whileHover={{ scale: 1.1, rotate: 5 }}
-                      transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 400,
+                        damping: 10,
+                      }}
                     >
                       <BarChart3 className="w-5 h-5 text-[#ECB629]" />
                     </motion.div>
@@ -844,7 +894,7 @@ function ProfitCalculator({
                   </motion.h3>
 
                   {/* Main Score Circle */}
-                  <motion.div 
+                  <motion.div
                     className="text-center mb-6"
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
@@ -889,7 +939,7 @@ function ProfitCalculator({
                           strokeLinecap="round"
                           strokeDasharray={`${2 * Math.PI * 35}`}
                           initial={{ strokeDashoffset: `${2 * Math.PI * 35}` }}
-                          animate={{ 
+                          animate={{
                             strokeDashoffset: `${2 * Math.PI * 35 * (1 - results.score / 100)}`,
                           }}
                           transition={{
@@ -899,7 +949,8 @@ function ProfitCalculator({
                           }}
                           className="drop-shadow-lg"
                           style={{
-                            filter: "drop-shadow(0 0 8px rgba(236, 182, 41, 0.3))",
+                            filter:
+                              "drop-shadow(0 0 8px rgba(236, 182, 41, 0.3))",
                           }}
                         />
 
@@ -929,7 +980,7 @@ function ProfitCalculator({
                           animate={{ opacity: 1, scale: 1 }}
                           transition={{ duration: 0.5, delay: 1 }}
                         >
-                          <motion.div 
+                          <motion.div
                             className="text-3xl font-bold text-[#ECB629] mb-1"
                             animate={{
                               scale: [1, 1.05, 1],
@@ -943,7 +994,9 @@ function ProfitCalculator({
                           >
                             {results.score}
                           </motion.div>
-                          <div className="text-xs text-gray-400 font-medium">от 100</div>
+                          <div className="text-xs text-gray-400 font-medium">
+                            от 100
+                          </div>
                         </motion.div>
                       </div>
 
@@ -964,34 +1017,36 @@ function ProfitCalculator({
                       </motion.div>
                     </div>
 
-                    <motion.p 
+                    <motion.p
                       className="text-gray-300 text-sm bg-gradient-to-r from-gray-300 to-gray-400 bg-clip-text text-transparent"
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.5, delay: 1.2 }}
                     >
-                      {serviceName === "SEO Struktor™" && "Потенциален резултат за търсене"}
-                      {serviceName === "Trendlab™" && "Потенциален резултат за съдържание"}
-                      {serviceName === "Clickstarter™" && "Потенциален резултат за реклами"}
-                      {serviceName === "Clientomat™" && "Потенциален резултат за клиенти"}
+                      {serviceName === "SEO Struktor™" &&
+                        "Потенциален резултат за търсене"}
+                      {serviceName === "Trendlab™" &&
+                        "Потенциален резултат за съдържание"}
+                      {serviceName === "Clickstarter™" &&
+                        "Потенциален резултат за реклами"}
+                      {serviceName === "Clientomat™" &&
+                        "Потенциален резултат за клиенти"}
                     </motion.p>
                   </motion.div>
 
                   {/* Key Metrics */}
                   <div className="space-y-4">
-                    <motion.div 
+                    <motion.div
                       className="bg-gradient-to-br from-slate-900/70 via-slate-800/50 to-slate-900/70 backdrop-blur-sm rounded-xl p-4 border border-slate-700/30 hover:border-[#ECB629]/40 transition-all duration-300 group relative overflow-hidden"
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.5, delay: 0.3 }}
                       whileHover={{ scale: 1.02 }}
                     >
-                      <motion.div
-                        className="absolute top-0 left-0 w-full h-0.5 bg-[#ECB629] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
-                      />
+                      <motion.div className="absolute top-0 left-0 w-full h-0.5 bg-[#ECB629] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
                       <div className="flex items-center gap-3 mb-2">
                         <TrendingUp className="w-4 h-4 text-[#ECB629]" />
-                        <motion.div 
+                        <motion.div
                           className="text-lg font-bold text-[#ECB629]"
                           animate={{
                             scale: [1, 1.05, 1],
@@ -1008,7 +1063,9 @@ function ProfitCalculator({
                           {serviceName === "Clickstarter™" && "+"}
                           {serviceName === "Clientomat™" && ""}
                           {results.metric1 > 0
-                            ? Math.round(results.metric1).toLocaleString("bg-BG")
+                            ? Math.round(results.metric1).toLocaleString(
+                                "bg-BG",
+                              )
                             : (serviceName === "SEO Struktor™" && "17 000") ||
                               (serviceName === "Trendlab™" && "11 250") ||
                               (serviceName === "Clickstarter™" && "139") ||
@@ -1019,24 +1076,24 @@ function ProfitCalculator({
                       <div className="text-gray-300 text-xs font-medium">
                         {serviceName === "SEO Struktor™" && "Нов трафик/месец"}
                         {serviceName === "Trendlab™" && "Нови последователи"}
-                        {serviceName === "Clickstarter™" && "Допълнителни продажби"}
-                        {serviceName === "Clientomat™" && "Повторни поръчки (%)"}
+                        {serviceName === "Clickstarter™" &&
+                          "Допълнителни продажби"}
+                        {serviceName === "Clientomat™" &&
+                          "Повторни поръчки (%)"}
                       </div>
                     </motion.div>
 
-                    <motion.div 
+                    <motion.div
                       className="bg-gradient-to-br from-slate-900/70 via-slate-800/50 to-slate-900/70 backdrop-blur-sm rounded-xl p-4 border border-slate-700/30 hover:border-[#ECB629]/40 transition-all duration-300 group relative overflow-hidden"
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.5, delay: 0.4 }}
                       whileHover={{ scale: 1.02 }}
                     >
-                      <motion.div
-                        className="absolute top-0 left-0 w-full h-0.5 bg-[#ECB629] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
-                      />
+                      <motion.div className="absolute top-0 left-0 w-full h-0.5 bg-[#ECB629] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
                       <div className="flex items-center gap-3 mb-2">
                         <BarChart3 className="w-4 h-4 text-[#ECB629]" />
-                        <motion.div 
+                        <motion.div
                           className="text-lg font-bold text-[#ECB629]"
                           animate={{
                             scale: [1, 1.05, 1],
@@ -1053,7 +1110,9 @@ function ProfitCalculator({
                           {serviceName === "Clickstarter™" && "-"}
                           {serviceName === "Clientomat™" && "+"}
                           {results.metric2 > 0
-                            ? Math.round(results.metric2).toLocaleString("bg-BG")
+                            ? Math.round(results.metric2).toLocaleString(
+                                "bg-BG",
+                              )
                             : "0"}
                           {serviceName === "Trendlab™" && "К"}
                           {serviceName === "Clickstarter™" && " лв."}
@@ -1061,26 +1120,26 @@ function ProfitCalculator({
                         </motion.div>
                       </div>
                       <div className="text-gray-300 text-xs font-medium">
-                        {serviceName === "SEO Struktor™" && "Нови заявки/месец"}
+                        {serviceName === "SEO Struktor™" &&
+                          "Нови заявки/месец"}
                         {serviceName === "Trendlab™" && "Месечни гледания"}
                         {serviceName === "Clickstarter™" && "Спестени разходи"}
-                        {serviceName === "Clientomat™" && "Стойност на клиент увеличение"}
+                        {serviceName === "Clientomat™" &&
+                          "Стойност на клиент увеличение"}
                       </div>
                     </motion.div>
 
-                    <motion.div 
+                    <motion.div
                       className="bg-gradient-to-br from-green-900/20 via-green-800/10 to-green-900/20 backdrop-blur-sm rounded-xl p-4 border border-green-500/30 hover:border-green-400/50 transition-all duration-300 group relative overflow-hidden"
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.5, delay: 0.5 }}
                       whileHover={{ scale: 1.02 }}
                     >
-                      <motion.div
-                        className="absolute top-0 left-0 w-full h-0.5 bg-green-500 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
-                      />
+                      <motion.div className="absolute top-0 left-0 w-full h-0.5 bg-green-500 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
                       <div className="flex items-center gap-3 mb-2">
                         <DollarSign className="w-4 h-4 text-green-500" />
-                        <motion.div 
+                        <motion.div
                           className="text-lg font-bold text-green-500"
                           animate={{
                             scale: [1, 1.08, 1],
@@ -1097,12 +1156,14 @@ function ProfitCalculator({
                             : "245%"}
                         </motion.div>
                       </div>
-                      <div className="text-gray-300 text-xs font-medium">Печалба месечно (процент от вложеното)</div>
+                      <div className="text-gray-300 text-xs font-medium">
+                        Печалба месечно (процент от вложеното)
+                      </div>
                     </motion.div>
                   </div>
 
                   {/* Investment Info */}
-                  <motion.div 
+                  <motion.div
                     className="bg-gradient-to-br from-[#ECB629]/10 via-[#ECB629]/5 to-[#ECB629]/10 backdrop-blur-sm rounded-xl p-4 border border-[#ECB629]/30 text-center relative overflow-hidden group"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -1123,7 +1184,7 @@ function ProfitCalculator({
 
                     <div className="flex items-center justify-center gap-2 mb-2">
                       <Target className="w-4 h-4 text-[#ECB629]" />
-                      <motion.div 
+                      <motion.div
                         className="text-[#ECB629] font-bold text-sm"
                         animate={{
                           scale: [1, 1.05, 1],
@@ -1134,11 +1195,12 @@ function ProfitCalculator({
                           ease: "easeInOut",
                         }}
                       >
-                        Стартова инвестиция: {monthlyPrice.toLocaleString("bg-BG")} лв./месец
+                        Стартова инвестиция:{" "}
+                        {monthlyPrice.toLocaleString("bg-BG")} лв./месец
                       </motion.div>
                     </div>
 
-                    <motion.p 
+                    <motion.p
                       className="text-gray-300 text-xs leading-relaxed"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
@@ -1167,7 +1229,8 @@ function ProfitCalculator({
                   <div>
                     <Calculator className="w-12 h-12 text-gray-500 mx-auto mb-3" />
                     <p className="text-gray-400 text-sm">
-                      Въведете данните си за да видите вашия потенциал за печалба
+                      Въведете данните си за да видите вашия потенциал за
+                      печалба
                     </p>
                   </div>
                 </div>
@@ -1189,7 +1252,7 @@ function ProfitCalculator({
             <div className="absolute inset-0 bg-gradient-to-br from-slate-800/30 via-transparent to-[#ECB629]/5" />
             <CardContent className="p-6 md:p-8 relative z-10">
               {/* Header */}
-              <motion.div 
+              <motion.div
                 className="text-center mb-8"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -1197,14 +1260,14 @@ function ProfitCalculator({
               >
                 <div className="inline-flex items-center gap-3 bg-slate-800/50 backdrop-blur-sm border border-[#ECB629]/30 rounded-full px-6 py-3 mb-6">
                   <motion.div
-                    animate={{ 
+                    animate={{
                       scale: [1, 1.2, 1],
-                      rotate: [0, 180, 360]
+                      rotate: [0, 180, 360],
                     }}
-                    transition={{ 
+                    transition={{
                       duration: 3,
                       repeat: Infinity,
-                      ease: "easeInOut"
+                      ease: "easeInOut",
                     }}
                   >
                     <Zap className="w-6 h-6 text-[#ECB629]" />
@@ -1214,25 +1277,31 @@ function ProfitCalculator({
                   </h3>
                 </div>
                 <p className="text-gray-300 text-base md:text-lg max-w-2xl mx-auto">
-                  Ето как ще изглежда бизнесът ви след <span className="text-[#ECB629] font-semibold">{results.timeframe}</span>:
+                  Ето как ще изглежда бизнесът ви след{" "}
+                  <span className="text-[#ECB629] font-semibold">
+                    {results.timeframe}
+                  </span>
+                  :
                 </p>
               </motion.div>
 
               {/* Before/After Comparison - Improved Layout */}
-              <motion.div 
+              <motion.div
                 className="bg-gradient-to-r from-slate-800/40 via-slate-800/30 to-slate-800/40 rounded-3xl p-6 md:p-8 mb-8 border border-slate-700/50 backdrop-blur-sm"
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.7, delay: 0.2 }}
               >
                 <div className="text-center mb-8">
-                  <h4 className="text-white font-bold text-lg md:text-xl mb-2">Преди vs След визуализация</h4>
+                  <h4 className="text-white font-bold text-lg md:text-xl mb-2">
+                    Преди vs След <br>система</br>
+                  </h4>
                   <div className="w-20 h-1 bg-gradient-to-r from-transparent via-[#ECB629] to-transparent mx-auto rounded-full"></div>
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 items-center">
                   {/* Before - Left */}
-                  <motion.div 
+                  <motion.div
                     className="order-1"
                     initial={{ opacity: 0, x: -30 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -1245,30 +1314,48 @@ function ProfitCalculator({
                       <div className="text-center mb-4">
                         <div className="inline-flex items-center gap-2 bg-red-500/20 backdrop-blur-sm rounded-full px-3 py-1 mb-3">
                           <div className="w-2 h-2 bg-red-400 rounded-full animate-pulse"></div>
-                          <span className="text-red-400 text-sm font-semibold">ПРЕДИ</span>
+                          <span className="text-red-400 text-sm font-semibold">
+                            ПРЕДИ
+                          </span>
                         </div>
                       </div>
                       <div className="space-y-4">
                         <div className="flex justify-between items-center py-2 border-b border-red-500/10">
                           <span className="text-gray-300 text-sm font-medium">
-                            {serviceName === "SEO Struktor™" && "Месечен трафик"}
+                            {serviceName === "SEO Struktor™" &&
+                              "Месечен трафик"}
                             {serviceName === "Trendlab™" && "Последователи"}
                             {serviceName === "Clickstarter™" && "Продажби"}
-                            {serviceName === "Clientomat™" && "Повторни клиенти"}
+                            {serviceName === "Clientomat™" &&
+                              "Повторни клиенти"}
                           </span>
                           <span className="text-red-400 font-bold text-lg">
-                            {serviceName === "SEO Struktor™" && Math.round(parseFloat(inputs.currentTraffic) || 5000).toLocaleString("bg-BG")}
-                            {serviceName === "Trendlab™" && Math.round(parseFloat(inputs.currentFollowers) || 2500).toLocaleString("bg-BG")}
-                            {serviceName === "Clickstarter™" && Math.round(parseFloat(inputs.monthlyConversions) || 75).toLocaleString("bg-BG")}
-                            {serviceName === "Clientomat™" && `${parseFloat(inputs.repeatRate) || 25}%`}
+                            {serviceName === "SEO Struktor™" &&
+                              Math.round(
+                                parseFloat(inputs.currentTraffic) || 5000,
+                              ).toLocaleString("bg-BG")}
+                            {serviceName === "Trendlab™" &&
+                              Math.round(
+                                parseFloat(inputs.currentFollowers) || 2500,
+                              ).toLocaleString("bg-BG")}
+                            {serviceName === "Clickstarter™" &&
+                              Math.round(
+                                parseFloat(inputs.monthlyConversions) || 75,
+                              ).toLocaleString("bg-BG")}
+                            {serviceName === "Clientomat™" &&
+                              `${parseFloat(inputs.repeatRate) || 25}%`}
                           </span>
                         </div>
                         <div className="flex justify-between items-center py-2 border-b border-red-500/10">
-                          <span className="text-gray-300 text-sm font-medium">Контрол</span>
+                          <span className="text-gray-300 text-sm font-medium">
+                            Контрол
+                          </span>
                           <span className="text-red-400 font-bold">Липсва</span>
                         </div>
                         <div className="flex justify-between items-center py-2">
-                          <span className="text-gray-300 text-sm font-medium">Прогнозируемост</span>
+                          <span className="text-gray-300 text-sm font-medium">
+                            Прогнозируемост
+                          </span>
                           <span className="text-red-400 font-bold">Ниска</span>
                         </div>
                       </div>
@@ -1276,7 +1363,7 @@ function ProfitCalculator({
                   </motion.div>
 
                   {/* Arrow - Center */}
-                  <motion.div 
+                  <motion.div
                     className="order-2 lg:order-2 flex justify-center"
                     initial={{ opacity: 0, scale: 0.5 }}
                     animate={{ opacity: 1, scale: 1 }}
@@ -1286,18 +1373,18 @@ function ProfitCalculator({
                       <div className="relative">
                         <motion.div
                           className="w-16 h-16 bg-gradient-to-r from-[#ECB629] to-yellow-500 rounded-full flex items-center justify-center shadow-lg shadow-[#ECB629]/25"
-                          animate={{ 
+                          animate={{
                             scale: [1, 1.1, 1],
                             boxShadow: [
                               "0 10px 30px rgba(236, 182, 40, 0.25)",
                               "0 20px 60px rgba(236, 182, 40, 0.4)",
-                              "0 10px 30px rgba(236, 182, 40, 0.25)"
-                            ]
+                              "0 10px 30px rgba(236, 182, 40, 0.25)",
+                            ],
                           }}
-                          transition={{ 
+                          transition={{
                             duration: 2,
                             repeat: Infinity,
-                            ease: "easeInOut"
+                            ease: "easeInOut",
                           }}
                         >
                           <ArrowRight className="w-8 h-8 text-black font-bold" />
@@ -1307,21 +1394,21 @@ function ProfitCalculator({
                     <div className="lg:hidden flex justify-center py-4">
                       <motion.div
                         className="w-1 h-12 bg-gradient-to-b from-[#ECB629] to-yellow-500 rounded-full"
-                        animate={{ 
+                        animate={{
                           scaleY: [1, 1.2, 1],
-                          opacity: [0.7, 1, 0.7]
+                          opacity: [0.7, 1, 0.7],
                         }}
-                        transition={{ 
+                        transition={{
                           duration: 2,
                           repeat: Infinity,
-                          ease: "easeInOut"
+                          ease: "easeInOut",
                         }}
                       />
                     </div>
                   </motion.div>
 
                   {/* After - Right */}
-                  <motion.div 
+                  <motion.div
                     className="order-3"
                     initial={{ opacity: 0, x: 30 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -1333,21 +1420,25 @@ function ProfitCalculator({
                       </div>
                       <div className="text-center mb-4">
                         <div className="inline-flex items-center gap-2 bg-[#ECB629]/20 backdrop-blur-sm rounded-full px-3 py-1 mb-3">
-                          <motion.div 
+                          <motion.div
                             className="w-2 h-2 bg-[#ECB629] rounded-full"
                             animate={{ scale: [1, 1.3, 1] }}
                             transition={{ duration: 1.5, repeat: Infinity }}
                           />
-                          <span className="text-[#ECB629] text-sm font-semibold">СЛЕД</span>
+                          <span className="text-[#ECB629] text-sm font-semibold">
+                            СЛЕД
+                          </span>
                         </div>
                       </div>
                       <div className="space-y-4">
                         <div className="flex justify-between items-center py-2 border-b border-[#ECB629]/10">
                           <span className="text-gray-300 text-sm font-medium">
-                            {serviceName === "SEO Struktor™" && "Месечен трафик"}
+                            {serviceName === "SEO Struktor™" &&
+                              "Месечен трафик"}
                             {serviceName === "Trendlab™" && "Последователи"}
                             {serviceName === "Clickstarter™" && "Продажби"}
-                            {serviceName === "Clientomat™" && "Повторни клиенти"}
+                            {serviceName === "Clientomat™" &&
+                              "Повторни клиенти"}
                           </span>
                           <span className="text-[#ECB629] font-bold text-lg">
                             {results.metric1 > 0
@@ -1356,11 +1447,17 @@ function ProfitCalculator({
                           </span>
                         </div>
                         <div className="flex justify-between items-center py-2 border-b border-[#ECB629]/10">
-                          <span className="text-gray-300 text-sm font-medium">Контрол</span>
-                          <span className="text-[#ECB629] font-bold">Пълен</span>
+                          <span className="text-gray-300 text-sm font-medium">
+                            Контрол
+                          </span>
+                          <span className="text-[#ECB629] font-bold">
+                            Пълен
+                          </span>
                         </div>
                         <div className="flex justify-between items-center py-2">
-                          <span className="text-gray-300 text-sm font-medium">Прогнозируемост</span>
+                          <span className="text-gray-300 text-sm font-medium">
+                            Прогнозируемост
+                          </span>
                           <span className="text-[#ECB629] font-bold">100%</span>
                         </div>
                       </div>
@@ -1370,7 +1467,7 @@ function ProfitCalculator({
               </motion.div>
 
               {/* Timeline Section - Enhanced */}
-              <motion.div 
+              <motion.div
                 className="bg-gradient-to-r from-slate-800/40 via-slate-800/30 to-slate-800/40 rounded-3xl p-6 md:p-8 mb-8 border border-slate-700/50 backdrop-blur-sm"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -1379,7 +1476,9 @@ function ProfitCalculator({
                 <div className="text-center mb-8">
                   <div className="inline-flex items-center gap-3 bg-slate-800/50 backdrop-blur-sm border border-[#ECB629]/30 rounded-full px-6 py-3 mb-4">
                     <Clock className="w-5 h-5 text-[#ECB629]" />
-                    <h4 className="text-white font-bold text-lg md:text-xl">График на резултатите</h4>
+                    <h4 className="text-white font-bold text-lg md:text-xl">
+                      График на резултатите
+                    </h4>
                   </div>
                   <div className="w-20 h-1 bg-gradient-to-r from-transparent via-[#ECB629] to-transparent mx-auto rounded-full"></div>
                 </div>
@@ -1390,7 +1489,7 @@ function ProfitCalculator({
 
                   <div className="space-y-8 md:space-y-12">
                     {/* Month 1 */}
-                    <motion.div 
+                    <motion.div
                       className="flex items-start gap-6 md:gap-8"
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
@@ -1399,36 +1498,48 @@ function ProfitCalculator({
                       <div className="relative">
                         <motion.div
                           className="w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-[#ECB629] to-yellow-500 rounded-full flex items-center justify-center text-black font-bold text-lg md:text-xl shadow-lg shadow-[#ECB629]/25 z-10 relative"
-                          animate={{ 
+                          animate={{
                             boxShadow: [
                               "0 8px 25px rgba(236, 182, 40, 0.25)",
                               "0 15px 35px rgba(236, 182, 40, 0.4)",
-                              "0 8px 25px rgba(236, 182, 40, 0.25)"
-                            ]
+                              "0 8px 25px rgba(236, 182, 40, 0.25)",
+                            ],
                           }}
-                          transition={{ duration: 3, repeat: Infinity, delay: 0 }}
+                          transition={{
+                            duration: 3,
+                            repeat: Infinity,
+                            delay: 0,
+                          }}
                         >
                           1
                         </motion.div>
                       </div>
                       <div className="flex-1 bg-slate-800/30 rounded-2xl p-4 md:p-6 border border-slate-700/30 backdrop-blur-sm">
                         <div className="flex items-center gap-3 mb-3">
-                          <h5 className="text-white font-bold text-lg md:text-xl">Първи месец</h5>
+                          <h5 className="text-white font-bold text-lg md:text-xl">
+                            Първи месец
+                          </h5>
                           <div className="px-3 py-1 bg-[#ECB629]/20 rounded-full border border-[#ECB629]/30">
-                            <span className="text-[#ECB629] text-xs font-semibold">СТАРТ</span>
+                            <span className="text-[#ECB629] text-xs font-semibold">
+                              СТАРТ
+                            </span>
                           </div>
                         </div>
                         <p className="text-gray-300 text-sm md:text-base leading-relaxed">
-                          {serviceName === "SEO Struktor™" && "Техническа оптимизация, изследване на ключови думи, първи подобрения"}
-                          {serviceName === "Trendlab™" && "Стратегия за съдържание, първо качествено съдържание"}
-                          {serviceName === "Clickstarter™" && "Преглед на кампании, нова структура, първи оптимизации"}
-                          {serviceName === "Clientomat™" && "Преглед на процеси, първи автоматизации, настройка на система за управление на клиенти"}
+                          {serviceName === "SEO Struktor™" &&
+                            "Техническа оптимизация, изследване на ключови думи, първи подобрения"}
+                          {serviceName === "Trendlab™" &&
+                            "Стратегия за съдържание, първо качествено съдържание"}
+                          {serviceName === "Clickstarter™" &&
+                            "Преглед на кампании, нова структура, първи оптимизации"}
+                          {serviceName === "Clientomat™" &&
+                            "Преглед на процеси, първи автоматизации, настройка на система за управление на клиенти"}
                         </p>
                       </div>
                     </motion.div>
 
                     {/* Month 3 */}
-                    <motion.div 
+                    <motion.div
                       className="flex items-start gap-6 md:gap-8"
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
@@ -1437,36 +1548,48 @@ function ProfitCalculator({
                       <div className="relative">
                         <motion.div
                           className="w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-[#ECB629] to-yellow-500 rounded-full flex items-center justify-center text-black font-bold text-lg md:text-xl shadow-lg shadow-[#ECB629]/25 z-10 relative"
-                          animate={{ 
+                          animate={{
                             boxShadow: [
                               "0 8px 25px rgba(236, 182, 40, 0.25)",
                               "0 15px 35px rgba(236, 182, 40, 0.4)",
-                              "0 8px 25px rgba(236, 182, 40, 0.25)"
-                            ]
+                              "0 8px 25px rgba(236, 182, 40, 0.25)",
+                            ],
                           }}
-                          transition={{ duration: 3, repeat: Infinity, delay: 1 }}
+                          transition={{
+                            duration: 3,
+                            repeat: Infinity,
+                            delay: 1,
+                          }}
                         >
                           3
                         </motion.div>
                       </div>
                       <div className="flex-1 bg-slate-800/30 rounded-2xl p-4 md:p-6 border border-slate-700/30 backdrop-blur-sm">
                         <div className="flex items-center gap-3 mb-3">
-                          <h5 className="text-white font-bold text-lg md:text-xl">Трети месец</h5>
+                          <h5 className="text-white font-bold text-lg md:text-xl">
+                            Трети месец
+                          </h5>
                           <div className="px-3 py-1 bg-[#ECB629]/20 rounded-full border border-[#ECB629]/30">
-                            <span className="text-[#ECB629] text-xs font-semibold">РАСТЕЖ</span>
+                            <span className="text-[#ECB629] text-xs font-semibold">
+                              РАСТЕЖ
+                            </span>
                           </div>
                         </div>
                         <p className="text-gray-300 text-sm md:text-base leading-relaxed">
-                          {serviceName === "SEO Struktor™" && "Видими позиции в Google, 40-60% увеличение на трафика"}
-                          {serviceName === "Trendlab™" && "50% увеличение на ангажираност, изградена аудитория"}
-                          {serviceName === "Clickstarter™" && "25-35% по-нисък разход за клик, 40% повече продажби"}
-                          {serviceName === "Clientomat™" && "30% по-висок процент връщащи се клиенти, автоматизирани процеси"}
+                          {serviceName === "SEO Struktor™" &&
+                            "Видими позиции в Google, 40-60% увеличение на трафика"}
+                          {serviceName === "Trendlab™" &&
+                            "50% увеличение на ангажираност, изградена аудитория"}
+                          {serviceName === "Clickstarter™" &&
+                            "25-35% по-нисък разход за клик, 40% повече продажби"}
+                          {serviceName === "Clientomat™" &&
+                            "30% по-висок процент връщащи се клиенти, автоматизирани процеси"}
                         </p>
                       </div>
                     </motion.div>
 
                     {/* Month 6 */}
-                    <motion.div 
+                    <motion.div
                       className="flex items-start gap-6 md:gap-8"
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
@@ -1475,28 +1598,40 @@ function ProfitCalculator({
                       <div className="relative">
                         <motion.div
                           className="w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-[#ECB629] to-yellow-500 rounded-full flex items-center justify-center text-black font-bold text-lg md:text-xl shadow-lg shadow-[#ECB629]/25 z-10 relative"
-                          animate={{ 
+                          animate={{
                             boxShadow: [
                               "0 8px 25px rgba(236, 182, 40, 0.25)",
                               "0 15px 35px rgba(236, 182, 40, 0.4)",
-                              "0 8px 25px rgba(236, 182, 40, 0.25)"
-                            ]
+                              "0 8px 25px rgba(236, 182, 40, 0.25)",
+                            ],
                           }}
-                          transition={{ duration: 3, repeat: Infinity, delay: 2 }}
+                          transition={{
+                            duration: 3,
+                            repeat: Infinity,
+                            delay: 2,
+                          }}
                         >
                           6
                         </motion.div>
                       </div>
                       <div className="flex-1 bg-gradient-to-br from-[#ECB629]/10 to-yellow-500/5 rounded-2xl p-4 md:p-6 border border-[#ECB629]/30 backdrop-blur-sm">
                         <div className="flex items-center gap-3 mb-3">
-                          <h5 className="text-white font-bold text-lg md:text-xl">Шести месец</h5>
+                          <h5 className="text-white font-bold text-lg md:text-xl">
+                            Шести месец
+                          </h5>
                           <div className="px-3 py-1 bg-[#ECB629]/30 rounded-full border border-[#ECB629]/50">
-                            <span className="text-[#ECB629] text-xs font-bold">РЕЗУЛТАТ</span>
+                            <span className="text-[#ECB629] text-xs font-bold">
+                              РЕЗУЛТАТ
+                            </span>
                           </div>
                         </div>
                         <p className="text-gray-300 text-sm md:text-base leading-relaxed">
                           <span className="text-[#ECB629] font-semibold">
-                            Пълни резултати: {results.monthlyProfit > 0 ? `${Math.round(results.monthlyProfit)}%` : "250%"} печалба спрямо вложеното
+                            Пълни резултати:{" "}
+                            {results.monthlyProfit > 0
+                              ? `${Math.round(results.monthlyProfit)}%`
+                              : "250%"}{" "}
+                            печалба спрямо вложеното
                           </span>
                           <br />
                           Устойчив растеж, системата работи самостоятелно
@@ -1508,7 +1643,7 @@ function ProfitCalculator({
               </motion.div>
 
               {/* Social Proof - Enhanced */}
-              <motion.div 
+              <motion.div
                 className="bg-gradient-to-r from-slate-800/40 via-slate-800/30 to-slate-800/40 rounded-3xl p-6 md:p-8 border border-slate-700/50 backdrop-blur-sm"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -1517,92 +1652,100 @@ function ProfitCalculator({
                 <div className="text-center mb-8">
                   <div className="inline-flex items-center gap-3 bg-slate-800/50 backdrop-blur-sm border border-[#ECB629]/30 rounded-full px-6 py-3 mb-4">
                     <motion.div
-                      animate={{ 
+                      animate={{
                         rotate: [0, 360],
-                        scale: [1, 1.1, 1]
+                        scale: [1, 1.1, 1],
                       }}
-                      transition={{ 
+                      transition={{
                         duration: 4,
                         repeat: Infinity,
-                        ease: "easeInOut"
+                        ease: "easeInOut",
                       }}
                     >
                       <Award className="w-6 h-6 text-[#ECB629]" />
                     </motion.div>
-                    <span className="text-white font-bold text-lg md:text-xl">Доказани резултати</span>
+                    <span className="text-white font-bold text-lg md:text-xl">
+                      Доказани резултати
+                    </span>
                   </div>
                   <div className="w-20 h-1 bg-gradient-to-r from-transparent via-[#ECB629] to-transparent mx-auto rounded-full"></div>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-                  <motion.div 
+                  <motion.div
                     className="text-center bg-slate-800/30 rounded-2xl p-6 border border-slate-700/30 backdrop-blur-sm"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.7 }}
                   >
-                    <motion.div 
+                    <motion.div
                       className="text-3xl md:text-4xl font-bold text-[#ECB629] mb-2"
-                      animate={{ 
+                      animate={{
                         scale: [1, 1.05, 1],
                       }}
-                      transition={{ 
+                      transition={{
                         duration: 2,
                         repeat: Infinity,
-                        ease: "easeInOut"
+                        ease: "easeInOut",
                       }}
                     >
                       47+
                     </motion.div>
-                    <div className="text-gray-300 text-sm md:text-base font-medium">Успешни проекта</div>
+                    <div className="text-gray-300 text-sm md:text-base font-medium">
+                      Успешни проекта
+                    </div>
                     <div className="w-12 h-1 bg-[#ECB629]/30 mx-auto mt-3 rounded-full"></div>
                   </motion.div>
 
-                  <motion.div 
+                  <motion.div
                     className="text-center bg-slate-800/30 rounded-2xl p-6 border border-slate-700/30 backdrop-blur-sm"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.8 }}
                   >
-                    <motion.div 
+                    <motion.div
                       className="text-3xl md:text-4xl font-bold text-[#ECB629] mb-2"
-                      animate={{ 
+                      animate={{
                         scale: [1, 1.05, 1],
                       }}
-                      transition={{ 
+                      transition={{
                         duration: 2,
                         repeat: Infinity,
                         ease: "easeInOut",
-                        delay: 0.5
+                        delay: 0.5,
                       }}
                     >
                       285%
                     </motion.div>
-                    <div className="text-gray-300 text-sm md:text-base font-medium">Средна печалба</div>
+                    <div className="text-gray-300 text-sm md:text-base font-medium">
+                      Средна печалба
+                    </div>
                     <div className="w-12 h-1 bg-[#ECB629]/30 mx-auto mt-3 rounded-full"></div>
                   </motion.div>
 
-                  <motion.div 
+                  <motion.div
                     className="text-center bg-slate-800/30 rounded-2xl p-6 border border-slate-700/30 backdrop-blur-sm"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.9 }}
                   >
-                    <motion.div 
+                    <motion.div
                       className="text-3xl md:text-4xl font-bold text-[#ECB629] mb-2"
-                      animate={{ 
+                      animate={{
                         scale: [1, 1.05, 1],
                       }}
-                      transition={{ 
+                      transition={{
                         duration: 2,
                         repeat: Infinity,
                         ease: "easeInOut",
-                        delay: 1
+                        delay: 1,
                       }}
                     >
                       95%
                     </motion.div>
-                    <div className="text-gray-300 text-sm md:text-base font-medium">Задоволени клиенти</div>
+                    <div className="text-gray-300 text-sm md:text-base font-medium">
+                      Задоволени клиенти
+                    </div>
                     <div className="w-12 h-1 bg-[#ECB629]/30 mx-auto mt-3 rounded-full"></div>
                   </motion.div>
                 </div>
@@ -1711,10 +1854,14 @@ function ProfitCalculator({
                   }
                   className="bg-[#ECB629] hover:bg-[#ECB629]/90 text-black font-semibold px-6 sm:px-8 py-3 rounded-xl w-full sm:w-auto text-sm sm:text-base h-12"
                 >
-                  {serviceName === "SEO Struktor™" && "Получете безплатен преглед за търсене"}
-                  {serviceName === "Trendlab™" && "Получете безплатен преглед за съдържание"}
-                  {serviceName === "Clickstarter™" && "Получете безплатен преглед на рекламите"}
-                  {serviceName === "Clientomat™" && "Получете безплатен преглед за клиенти"}
+                  {serviceName === "SEO Struktor™" &&
+                    "Получете безплатен преглед за търсене"}
+                  {serviceName === "Trendlab™" &&
+                    "Получете безплатен преглед за съдържание"}
+                  {serviceName === "Clickstarter™" &&
+                    "Получете безплатен преглед на рекламите"}
+                  {serviceName === "Clientomat™" &&
+                    "Получете безплатен преглед за клиенти"}
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
                 <Button
@@ -1733,10 +1880,14 @@ function ProfitCalculator({
                   }}
                   className="border-[#ECB629] text-black hover:bg-[#ECB629]/10 hover:text-[#ECB629] px-6 sm:px-8 py-3 rounded-xl w-full sm:text-base h-12"
                 >
-                  {serviceName === "SEO Struktor™" && "Научете повече за системата за търсене"}
-                  {serviceName === "Trendlab™" && "Научете повече за системата за съдържание"}
-                  {serviceName === "Clickstarter™" && "Научете повече за рекламната система"}
-                  {serviceName === "Clientomat™" && "Научете повече за системата за клиенти"}
+                  {serviceName === "SEO Struktor™" &&
+                    "Научете повече за системата за търсене"}
+                  {serviceName === "Trendlab™" &&
+                    "Научете повече за системата за съдържание"}
+                  {serviceName === "Clickstarter™" &&
+                    "Научете повече за рекламната система"}
+                  {serviceName === "Clientomat™" &&
+                    "Научете повече за системата за клиенти"}
                 </Button>
               </div>
             </CardContent>
@@ -1875,7 +2026,8 @@ export default function CalculatorsNew() {
                     />
                   </div>
                   <span className="text-sm text-gray-300 font-medium">
-                    <span className="text-[#ECB629] font-bold">Безплатни</span> калкулатори за печалба
+                    <span className="text-[#ECB629] font-bold">Безплатни</span>{" "}
+                    калкулатори за печалба
                   </span>
                 </div>
               </motion.div>
@@ -1915,7 +2067,8 @@ export default function CalculatorsNew() {
                   <div className="absolute inset-0 w-2 h-2 bg-red-500 rounded-full animate-ping opacity-75"></div>
                 </div>
                 <span className="text-white text-sm font-semibold">
-                  Остават места - <span className="text-[#ECB629] text-base">3</span>
+                  Остават места -{" "}
+                  <span className="text-[#ECB629] text-base">3</span>
                 </span>
               </motion.div>
             </div>
@@ -1995,7 +2148,8 @@ export default function CalculatorsNew() {
               transition={{ duration: 0.8, delay: 0.3 }}
               viewport={{ once: true }}
             >
-              Изберете подходящата система за вашия бизнес и започнете трансформацията с безплатна консултация.
+              Изберете подходящата система за вашия бизнес и започнете
+              трансформацията с безплатна консултация.
             </motion.p>
 
             {/* Trust Signals */}
