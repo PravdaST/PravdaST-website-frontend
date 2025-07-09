@@ -1,3 +1,4 @@
+
 export default async function handler(req, res) {
   try {
     const baseUrl = 'https://www.pravdagency.eu';
@@ -6,65 +7,75 @@ export default async function handler(req, res) {
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
    <url>
       <loc>${baseUrl}/</loc>
-      <lastmod>2025-06-30</lastmod>
+      <lastmod>2025-01-09</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>1.0</priority>
    </url>
    <url>
       <loc>${baseUrl}/services</loc>
-      <lastmod>2025-06-30</lastmod>
+      <lastmod>2025-01-09</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.9</priority>
    </url>
    <url>
       <loc>${baseUrl}/services/seo-struktor</loc>
-      <lastmod>2025-06-30</lastmod>
-   </url>
-   <url>
-      <loc>${baseUrl}/services/clickstarter</loc>
-      <lastmod>2025-06-30</lastmod>
-   </url>
-   <url>
-      <loc>${baseUrl}/services/trendlab</loc>
-      <lastmod>2025-06-30</lastmod>
+      <lastmod>2025-01-09</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.8</priority>
    </url>
    <url>
       <loc>${baseUrl}/services/clientomat</loc>
-      <lastmod>2025-06-30</lastmod>
+      <lastmod>2025-01-09</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.8</priority>
+   </url>
+   <url>
+      <loc>${baseUrl}/services/trendlab</loc>
+      <lastmod>2025-01-09</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.8</priority>
    </url>
    <url>
       <loc>${baseUrl}/about</loc>
-      <lastmod>2025-06-30</lastmod>
+      <lastmod>2025-01-09</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.7</priority>
    </url>
    <url>
       <loc>${baseUrl}/case-studies</loc>
-      <lastmod>2025-06-30</lastmod>
-   </url>
-   <url>
-      <loc>${baseUrl}/blog</loc>
-      <lastmod>2025-06-30</lastmod>
+      <lastmod>2025-01-09</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>0.7</priority>
    </url>
    <url>
       <loc>${baseUrl}/contact</loc>
-      <lastmod>2025-06-30</lastmod>
+      <lastmod>2025-01-09</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.6</priority>
    </url>
    <url>
       <loc>${baseUrl}/faq</loc>
-      <lastmod>2025-06-30</lastmod>
-   </url>
-   <url>
-      <loc>${baseUrl}/blog/biznes-inzhenering-haos-v-predskazuem-rastezh</loc>
-      <lastmod>2025-06-29</lastmod>
+      <lastmod>2025-01-09</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.6</priority>
    </url>
    <url>
       <loc>${baseUrl}/terms</loc>
-      <lastmod>2025-06-30</lastmod>
+      <lastmod>2025-01-09</lastmod>
+      <changefreq>yearly</changefreq>
+      <priority>0.3</priority>
    </url>
    <url>
       <loc>${baseUrl}/privacy</loc>
-      <lastmod>2025-06-30</lastmod>
+      <lastmod>2025-01-09</lastmod>
+      <changefreq>yearly</changefreq>
+      <priority>0.3</priority>
    </url>
 </urlset>`;
 
     res.setHeader('Content-Type', 'text/xml; charset=utf-8');
-    res.setHeader('Cache-Control', 'public, max-age=86400');
-    res.send(sitemapContent);
+    res.setHeader('Cache-Control', 'public, max-age=3600');
+    res.status(200).send(sitemapContent);
   } catch (error) {
     console.error('Sitemap generation error:', error);
     res.status(500).send('Error generating sitemap');
