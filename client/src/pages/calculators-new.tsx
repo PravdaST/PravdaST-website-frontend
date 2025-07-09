@@ -331,28 +331,28 @@ function ReturnOnInvestmentCalculator({
     const recs = [];
     switch (serviceName) {
       case "SEO Struktor™":
-        if (param1 < 5000) recs.push("Органен трафик");
-        if (param2 > 30) recs.push("Позиции подобрение");
-        if (param3 < 15) recs.push("Keyword research");
-        if (newResults.score < 70) recs.push("Технически SEO");
+        if (param1 < 5000) recs.push("Органичен трафик");
+        if (param2 > 30) recs.push("Подобрение на позиции");
+        if (param3 < 15) recs.push("Изследване на ключови думи");
+        if (newResults.score < 70) recs.push("Технически SEO оптимизация");
         break;
       case "Trendlab™":
-        if (param1 < 10000) recs.push("Audience building");
-        if (param2 < 5) recs.push("Content frequency");
-        if (param3 < 5) recs.push("Engagement стратегия");
-        if (newResults.score < 70) recs.push("Authority building");
+        if (param1 < 10000) recs.push("Изграждане на аудитория");
+        if (param2 < 5) recs.push("Честота на съдържание");
+        if (param3 < 5) recs.push("Стратегия за ангажираност");
+        if (newResults.score < 70) recs.push("Изграждане на авторитет");
         break;
       case "Clickstarter™":
-        if (param2 > 3) recs.push("CPC оптимизация");
-        if (param3 < 100) recs.push("Conversion rate");
-        if (param1 > 10000) recs.push("Budget ефективност");
-        if (newResults.score < 70) recs.push("Campaign структура");
+        if (param2 > 3) recs.push("Оптимизация на цена за клик");
+        if (param3 < 100) recs.push("Подобрение на конверсии");
+        if (param1 > 10000) recs.push("Ефективност на бюджета");
+        if (newResults.score < 70) recs.push("Структура на кампании");
         break;
       case "Clientomat™":
-        if (param3 < 30) recs.push("Retention стратегия");
-        if (param2 < 2000) recs.push("LTV оптимизация");
-        if (param1 < 100) recs.push("Client acquisition");
-        if (newResults.score < 70) recs.push("CRM автоматизация");
+        if (param3 < 30) recs.push("Стратегия за задържане");
+        if (param2 < 2000) recs.push("Оптимизация на стойност на клиент");
+        if (param1 < 100) recs.push("Привличане на клиенти");
+        if (newResults.score < 70) recs.push("Автоматизация на управление");
         break;
     }
     setRecommendations(recs.slice(0, 4));
