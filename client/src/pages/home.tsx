@@ -12,10 +12,11 @@ import { HelmetSEO } from "@/components/seo/helmet-seo";
 import { pageSEOData } from "@/data/seo-pages";
 import { useEffect } from "react";
 import { tracking, ConversionStage } from "@/lib/tracking";
+import { Helmet } from "react-helmet-async";
 
 export default function Home() {
   useEffect(() => {
-    console.log('HOME PAGE LOADED - REACT IS WORKING');
+    console.log("HOME PAGE LOADED - REACT IS WORKING");
     // Track page view
     tracking.trackFunnelStage(ConversionStage.LANDING);
   }, []);
@@ -25,6 +26,10 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-slate-900">
       <HelmetSEO seo={seoData} pageSlug="" />
+      <Helmet>
+        <title>АКО ТОВА РАБОТИ, ПРОБЛЕМЪТ Е В КОМПОНЕНТИТЕ</title>
+        <meta name="description" content="Тестово описание." />
+      </Helmet>
       <Navigation />
       <HeroSection />
       <PartnersCarousel />
