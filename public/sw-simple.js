@@ -1,92 +1,106 @@
-// Simple Service Worker for Pravdast Website
-const CACHE_NAME = 'pravdast-cache-v1';
+
+// Simple Service Worker with CSP-compliant caching
+const CACHE_NAME = 'pravdast-cache-v2';
 const STATIC_ASSETS = [
   '/',
   '/manifest.json',
-  '/favicon-192.png',
-  '/apple-touch-icon.png'
+  '/favicon.ico'
 ];
 
-// Install Event
 self.addEventListener('install', (event) => {
-  console.log('Service Worker: Install Event');
+  console.log('SW: Installing...');
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then((cache) => {
-        console.log('Service Worker: Caching Static Assets');
-        return cache.addAll(STATIC_ASSETS.map(url => new Request(url, {cache: 'reload'})));
+        console.log('SW: Cache opened');
+        return cache.addAll(STATIC_ASSETS);
       })
-      .catch(error => {
-        console.warn('Service Worker: Cache failed for some assets', error);
-        return Promise.resolve(); // Don't fail completely
+      .catch((error) => {
+        console.log('SW: Cache install failed:', error);
       })
   );
-  self.skipWaiting();
 });
 
-// Activate Event
+self.addEventListener('fetch', (event) => {
+  const url = new URL(event.request.url);
+  
+  // Skip external domains that might violate CSP
+  const allowedDomains = [
+    'pravdagency.eu',
+    'www.pravdagency.eu',
+    'localhost',
+    '127.0.0.1'
+  ];
+  
+  const isAllowedDomain = allowedDomains.some(domain => 
+    url.hostname === domain || url.hostname.endsWith('.' + domain)
+  );
+  
+  if (!isAllowedDomain) {
+    // Let external requests pass through without caching
+    return;
+  }
+  
+  // Only cache GET requests
+  if (event.request.method !== 'GET') {
+    return;
+  }
+  
+  event.respondWith(
+    caches.match(event.request)
+      .then((response) => {
+        if (response) {
+          return response;
+        }
+        
+        return fetch(event.request.clone())
+          .then((response) => {
+            // Don't cache if not a valid response
+            if (!response || response.status !== 200 || response.type !== 'basic') {
+              return response;
+            }
+            
+            // Clone the response for caching
+            const responseToCache = response.clone();
+            
+            caches.open(CACHE_NAME)
+              .then((cache) => {
+                cache.put(event.request, responseToCache);
+              })
+              .catch((error) => {
+                // Silently handle cache errors
+                console.log('SW: Cache put failed:', error);
+              });
+            
+            return response;
+          })
+          .catch((error) => {
+            console.log('SW: Fetch failed, serving fallback:', error);
+            // Return a basic fallback for failed requests
+            return new Response('Offline', {
+              status: 200,
+              statusText: 'OK',
+              headers: new Headers({
+                'Content-Type': 'text/html'
+              })
+            });
+          });
+      })
+  );
+});
+
 self.addEventListener('activate', (event) => {
-  console.log('Service Worker: Activate Event');
+  console.log('SW: Activating...');
   event.waitUntil(
     caches.keys().then((cacheNames) => {
       return Promise.all(
         cacheNames.map((cacheName) => {
           if (cacheName !== CACHE_NAME) {
-            console.log('Service Worker: Clearing Old Cache');
+            console.log('SW: Deleting old cache:', cacheName);
             return caches.delete(cacheName);
           }
         })
       );
     })
-  );
-  self.clients.claim();
-});
-
-// Fetch Event
-self.addEventListener('fetch', (event) => {
-  // Only handle GET requests
-  if (event.request.method !== 'GET') return;
-  
-  // Skip non-http requests
-  if (!event.request.url.startsWith('http')) return;
-  
-  // Skip external scripts that cause issues
-  const url = new URL(event.request.url);
-  const skipDomains = [
-    'static.klaviyo.com', 
-    'analytics.ahrefs.com', 
-    'googletagmanager.com',
-    'fonts.googleapis.com',
-    'fonts.gstatic.com',
-    'framerusercontent.com',
-    'google-analytics.com'
-  ];
-  if (skipDomains.some(domain => url.hostname.includes(domain))) {
-    return; // Let browser handle these directly
-  }
-  
-  // Skip if it's not our domain
-  if (url.origin !== location.origin) {
-    return; // Let browser handle external requests directly
-  }
-  
-  event.respondWith(
-    fetch(event.request)
-      .then(response => {
-        // If request was successful, clone and cache
-        if (response.status === 200) {
-          const responseClone = response.clone();
-          caches.open(CACHE_NAME)
-            .then(cache => {
-              cache.put(event.request, responseClone);
-            })
-            .catch(() => {}); // Silent fail for cache errors
-        }
-        return response;
-      })
-      .catch(() => {
-        // If network fails, try to serve from cache
-        return caches.match(event.request);
-      })
   );
 });
