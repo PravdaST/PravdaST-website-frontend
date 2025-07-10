@@ -99,3 +99,104 @@ export default function FAQPage() {
     </div>
   )
 }
+import type { Metadata } from 'next';
+import { EnhancedSEO } from '@/components/seo/EnhancedSEO';
+import { FAQSchema } from '@/components/seo/FAQSchema';
+
+export const metadata: Metadata = {
+  title: 'Често задавани въпроси | Pravda Agency',
+  description: '🤔 Отговори на най-честите въпроси за SEO услугите, Clientomat™ и бизнес разработката. Научете повече за нашите решения.',
+  openGraph: {
+    title: 'FAQ - Често задавани въпроси | Pravda Agency',
+    description: '🤔 Отговори на най-честите въпроси за SEO услугите, Clientomat™ и бизнес разработката.',
+    url: 'https://www.pravdagency.eu/faq/',
+  },
+};
+
+const faqData = [
+  {
+    question: "Какво включват вашите SEO услуги?",
+    answer: "Нашите SEO услуги включват техническо SEO, оптимизация на съдържанието, ключови думи анализ, създаване на backlinks и месечни отчети за напредъка."
+  },
+  {
+    question: "Колко време отнема да видя резултати?",
+    answer: "Първите резултати могат да се видят след 3-6 месеца, докато значителни подобрения обикновено се постигат след 6-12 месеца постоянна работа."
+  },
+  {
+    question: "Какво е Clientomat™?",
+    answer: "Clientomat™ е нашата собствена система за автоматизиране на процесите по привличане и управление на клиенти чрез дигитални канали."
+  },
+  {
+    question: "Работите ли само с B2B компании?",
+    answer: "Специализираме се в B2B сектора, но работим и с B2C компании, които имат нужда от професионални дигитални решения."
+  },
+  {
+    question: "Предлагате ли поддръжка след завършване на проекта?",
+    answer: "Да, предлагаме различни пакети за поддръжка и развитие, адаптирани към нуждите на всеки клиент."
+  }
+];
+
+export default function FAQPage() {
+  return (
+    <>
+      <EnhancedSEO 
+        title="FAQ - Често задавани въпроси | Pravda Agency"
+        description="🤔 Отговори на най-честите въпроси за SEO услугите, Clientomat™ и бизнес разработката. Научете повече за нашите решения."
+        canonical="https://www.pravdagency.eu/faq/"
+        structuredData={{
+          "@type": "FAQPage",
+          "mainEntity": faqData.map(item => ({
+            "@type": "Question",
+            "name": item.question,
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": item.answer
+            }
+          }))
+        }}
+      />
+      <FAQSchema faqData={faqData} />
+      
+      <div className="min-h-screen pt-20 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+        <div className="container mx-auto px-6 py-16">
+          <div className="max-w-4xl mx-auto">
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-8 text-center">
+              Често задавани въпроси
+            </h1>
+            <p className="text-xl text-slate-300 text-center mb-16 max-w-3xl mx-auto">
+              Намерете отговори на най-честите въпроси за нашите услуги и процеси
+            </p>
+
+            <div className="space-y-6">
+              {faqData.map((item, index) => (
+                <div key={index} className="bg-slate-800 rounded-lg p-6 border border-slate-700">
+                  <h3 className="text-xl font-semibold text-white mb-4">
+                    {item.question}
+                  </h3>
+                  <p className="text-slate-300 leading-relaxed">
+                    {item.answer}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-16 text-center">
+              <h2 className="text-2xl font-bold text-white mb-4">
+                Имате други въпроси?
+              </h2>
+              <p className="text-slate-300 mb-8">
+                Свържете се с нас и ще отговорим на всички ваши въпроси
+              </p>
+              <a 
+                href="/contact/"
+                className="inline-block bg-yellow-500 text-black px-8 py-3 rounded-lg font-semibold hover:bg-yellow-400 transition-colors"
+              >
+                Свържете се с нас
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}

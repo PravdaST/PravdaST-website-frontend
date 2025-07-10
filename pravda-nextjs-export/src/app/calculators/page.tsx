@@ -317,3 +317,181 @@ export default function CalculatorsPage() {
     </div>
   )
 }
+import type { Metadata } from 'next';
+import { EnhancedSEO } from '@/components/seo/EnhancedSEO';
+
+export const metadata: Metadata = {
+  title: 'SEO и Маркетинг Калкулатори | Pravda Agency',
+  description: '🧮 Безплатни калкулатори за SEO ROI, маркетингов бюджет и конверсии. Изчислете потенциала на вашия бизнес с нашите инструменти.',
+  openGraph: {
+    title: 'SEO и Маркетинг Калкулатори | Pravda Agency',
+    description: '🧮 Безплатни калкулатори за SEO ROI, маркетингов бюджет и конверсии.',
+    url: 'https://www.pravdagency.eu/calculators/',
+  },
+};
+
+export default function CalculatorsPage() {
+  return (
+    <>
+      <EnhancedSEO 
+        title="SEO и Маркетинг Калкулатори | Pravda Agency"
+        description="🧮 Безплатни калкулатори за SEO ROI, маркетингов бюджет и конверсии. Изчислете потенциала на вашия бизнес с нашите инструменти."
+        canonical="https://www.pravdagency.eu/calculators/"
+        structuredData={{
+          "@type": "WebApplication",
+          "name": "SEO и Маркетинг Калкулатори",
+          "applicationCategory": "BusinessApplication",
+          "operatingSystem": "Web Browser",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "BGN"
+          }
+        }}
+      />
+      
+      <div className="min-h-screen pt-20 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+        <div className="container mx-auto px-6 py-16">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-16">
+              <h1 className="text-4xl md:text-5xl font-bold text-white mb-8">
+                SEO и Маркетинг Калкулатори
+              </h1>
+              <p className="text-xl text-slate-300 max-w-3xl mx-auto">
+                Безплатни инструменти за изчисляване на ROI, бюджети и потенциал за растеж
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {/* SEO ROI Calculator */}
+              <div className="bg-slate-800 rounded-lg p-8 border border-slate-700 hover:border-yellow-500 transition-colors">
+                <div className="text-center mb-6">
+                  <div className="w-16 h-16 bg-yellow-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <span className="text-2xl">📈</span>
+                  </div>
+                  <h3 className="text-xl font-semibold text-white mb-2">
+                    SEO ROI Калкулатор
+                  </h3>
+                  <p className="text-slate-300">
+                    Изчислете възвращаемостта от SEO инвестициите
+                  </p>
+                </div>
+                <button className="w-full bg-yellow-500 text-black px-6 py-3 rounded-lg font-semibold hover:bg-yellow-400 transition-colors">
+                  Изчисли ROI
+                </button>
+              </div>
+
+              {/* Marketing Budget Calculator */}
+              <div className="bg-slate-800 rounded-lg p-8 border border-slate-700 hover:border-yellow-500 transition-colors">
+                <div className="text-center mb-6">
+                  <div className="w-16 h-16 bg-yellow-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <span className="text-2xl">💰</span>
+                  </div>
+                  <h3 className="text-xl font-semibold text-white mb-2">
+                    Маркетингов Бюджет
+                  </h3>
+                  <p className="text-slate-300">
+                    Планирайте оптималния маркетингов бюджет
+                  </p>
+                </div>
+                <button className="w-full bg-yellow-500 text-black px-6 py-3 rounded-lg font-semibold hover:bg-yellow-400 transition-colors">
+                  Изчисли Бюджет
+                </button>
+              </div>
+
+              {/* Conversion Rate Calculator */}
+              <div className="bg-slate-800 rounded-lg p-8 border border-slate-700 hover:border-yellow-500 transition-colors">
+                <div className="text-center mb-6">
+                  <div className="w-16 h-16 bg-yellow-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <span className="text-2xl">🎯</span>
+                  </div>
+                  <h3 className="text-xl font-semibold text-white mb-2">
+                    Конверсии Калкулатор
+                  </h3>
+                  <p className="text-slate-300">
+                    Анализирайте коефициентите на конверсия
+                  </p>
+                </div>
+                <button className="w-full bg-yellow-500 text-black px-6 py-3 rounded-lg font-semibold hover:bg-yellow-400 transition-colors">
+                  Изчисли Конверсии
+                </button>
+              </div>
+
+              {/* Traffic Value Calculator */}
+              <div className="bg-slate-800 rounded-lg p-8 border border-slate-700 hover:border-yellow-500 transition-colors">
+                <div className="text-center mb-6">
+                  <div className="w-16 h-16 bg-yellow-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <span className="text-2xl">🚀</span>
+                  </div>
+                  <h3 className="text-xl font-semibold text-white mb-2">
+                    Стойност на Трафика
+                  </h3>
+                  <p className="text-slate-300">
+                    Оценете стойността на органичния трафик
+                  </p>
+                </div>
+                <button className="w-full bg-yellow-500 text-black px-6 py-3 rounded-lg font-semibold hover:bg-yellow-400 transition-colors">
+                  Изчисли Стойност
+                </button>
+              </div>
+
+              {/* Keyword Difficulty Calculator */}
+              <div className="bg-slate-800 rounded-lg p-8 border border-slate-700 hover:border-yellow-500 transition-colors">
+                <div className="text-center mb-6">
+                  <div className="w-16 h-16 bg-yellow-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <span className="text-2xl">🔍</span>
+                  </div>
+                  <h3 className="text-xl font-semibold text-white mb-2">
+                    Трудност Ключови Думи
+                  </h3>
+                  <p className="text-slate-300">
+                    Анализирайте трудността на ключови думи
+                  </p>
+                </div>
+                <button className="w-full bg-yellow-500 text-black px-6 py-3 rounded-lg font-semibold hover:bg-yellow-400 transition-colors">
+                  Анализирай KW
+                </button>
+              </div>
+
+              {/* Growth Potential Calculator */}
+              <div className="bg-slate-800 rounded-lg p-8 border border-slate-700 hover:border-yellow-500 transition-colors">
+                <div className="text-center mb-6">
+                  <div className="w-16 h-16 bg-yellow-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <span className="text-2xl">📊</span>
+                  </div>
+                  <h3 className="text-xl font-semibold text-white mb-2">
+                    Потенциал за Растеж
+                  </h3>
+                  <p className="text-slate-300">
+                    Оценете потенциала за растеж на бизнеса
+                  </p>
+                </div>
+                <button className="w-full bg-yellow-500 text-black px-6 py-3 rounded-lg font-semibold hover:bg-yellow-400 transition-colors">
+                  Изчисли Потенциал
+                </button>
+              </div>
+            </div>
+
+            <div className="mt-16 text-center">
+              <div className="bg-slate-800 rounded-lg p-8 border border-slate-700">
+                <h2 className="text-2xl font-bold text-white mb-4">
+                  Нужна ви е професионална консултация?
+                </h2>
+                <p className="text-slate-300 mb-6 max-w-2xl mx-auto">
+                  Нашите експерти могат да ви помогнат с детайлен анализ и стратегия, 
+                  адаптирана специално за вашия бизнес.
+                </p>
+                <a 
+                  href="/contact/"
+                  className="inline-block bg-yellow-500 text-black px-8 py-3 rounded-lg font-semibold hover:bg-yellow-400 transition-colors"
+                >
+                  Заявете консултация
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}

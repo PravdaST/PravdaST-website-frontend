@@ -155,3 +155,121 @@ export default function PrivacyPage() {
     </div>
   )
 }
+import type { Metadata } from 'next';
+import { EnhancedSEO } from '@/components/seo/EnhancedSEO';
+
+export const metadata: Metadata = {
+  title: 'Политика за поверителност | Pravda Agency',
+  description: '🔒 Политика за поверителност на Pravda Agency. Как обработваме и защитаваме вашите лични данни в съответствие с GDPR.',
+  robots: 'noindex, nofollow',
+};
+
+export default function PrivacyPage() {
+  return (
+    <>
+      <EnhancedSEO 
+        title="Политика за поверителност | Pravda Agency"
+        description="🔒 Политика за поверителност на Pravda Agency. Как обработваме и защитаваме вашите лични данни в съответствие с GDPR."
+        canonical="https://www.pravdagency.eu/privacy/"
+        robots="noindex, nofollow"
+      />
+      
+      <div className="min-h-screen pt-20 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+        <div className="container mx-auto px-6 py-16">
+          <div className="max-w-4xl mx-auto prose prose-invert">
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-8">
+              Политика за поверителност
+            </h1>
+            
+            <div className="text-slate-300 space-y-8 text-lg leading-relaxed">
+              <section>
+                <h2 className="text-2xl font-semibold text-white mb-4">1. Обща информация</h2>
+                <p>
+                  Pravda Agency се ангажира да защитава поверителността и сигурността на личните данни на нашите клиенти и потребители. Тази политика обяснява как събираме, използваме и защитаваме вашата информация в съответствие с Общия регламент за защита на данните (GDPR).
+                </p>
+              </section>
+
+              <section>
+                <h2 className="text-2xl font-semibold text-white mb-4">2. Какви данни събираме</h2>
+                <ul className="list-disc pl-6 space-y-2">
+                  <li>Име и контактна информация</li>
+                  <li>Имейл адрес и телефонен номер</li>
+                  <li>Информация за компанията</li>
+                  <li>Данни за използването на уебсайта</li>
+                  <li>Cookies и технически данни</li>
+                </ul>
+              </section>
+
+              <section>
+                <h2 className="text-2xl font-semibold text-white mb-4">3. Как използваме данните</h2>
+                <ul className="list-disc pl-6 space-y-2">
+                  <li>За предоставяне на нашите услуги</li>
+                  <li>За комуникация с клиенти</li>
+                  <li>За подобряване на нашите услуги</li>
+                  <li>За маркетингови цели (с ваше съгласие)</li>
+                  <li>За спазване на законови изисквания</li>
+                </ul>
+              </section>
+
+              <section>
+                <h2 className="text-2xl font-semibold text-white mb-4">4. Споделяне на данни</h2>
+                <p>
+                  Не споделяме вашите лични данни с трети страни, освен когато това е необходимо за предоставяне на нашите услуги или когато сме задължени по закон.
+                </p>
+              </section>
+
+              <section>
+                <h2 className="text-2xl font-semibold text-white mb-4">5. Вашите права</h2>
+                <ul className="list-disc pl-6 space-y-2">
+                  <li>Право на достъп до вашите данни</li>
+                  <li>Право на корекция на неточни данни</li>
+                  <li>Право на изтриване</li>
+                  <li>Право на ограничаване на обработката</li>
+                  <li>Право на преносимост на данните</li>
+                  <li>Право на възражение</li>
+                </ul>
+              </section>
+
+              <section>
+                <h2 className="text-2xl font-semibold text-white mb-4">6. Сигурност на данните</h2>
+                <p>
+                  Прилагаме подходящи технически и организационни мерки за защита на вашите лични данни срещу неоторизиран достъп, промяна, разкриване или унищожаване.
+                </p>
+              </section>
+
+              <section>
+                <h2 className="text-2xl font-semibold text-white mb-4">7. Cookies</h2>
+                <p>
+                  Използваме cookies за подобряване на функционалността на нашия уебсайт и анализиране на трафика. Можете да управлявате cookie настройките във вашия браузър.
+                </p>
+              </section>
+
+              <section>
+                <h2 className="text-2xl font-semibold text-white mb-4">8. Контакт</h2>
+                <p>
+                  За въпроси относно тази политика за поверителност, моля свържете се с нас:
+                </p>
+                <div className="bg-slate-800 p-4 rounded-lg mt-4">
+                  <p><strong>Pravda Agency</strong></p>
+                  <p>Адрес: ул. Дебър №58, Варна, България</p>
+                  <p>Имейл: contact@pravdagency.eu</p>
+                  <p>Телефон: +359 879 282 299</p>
+                </div>
+              </section>
+
+              <section>
+                <h2 className="text-2xl font-semibold text-white mb-4">9. Промени в политиката</h2>
+                <p>
+                  Запазваме си правото да актуализираме тази политика за поверителност. Всички промени ще бъдат публикувани на тази страница.
+                </p>
+                <p className="text-sm text-slate-400 mt-4">
+                  Последна актуализация: януари 2025
+                </p>
+              </section>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
