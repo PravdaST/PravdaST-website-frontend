@@ -1,65 +1,102 @@
 
-"use client"
+'use client';
 
-import { useState, useEffect } from 'react'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent } from '@/components/ui/card'
-import { useLocalStorage } from '@/hooks/useLocalStorage'
-import { Cookie, X } from 'lucide-react'
+import { useState, useEffect } from 'react';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { X } from 'lucide-react';
 
-export function CookieBanner() {
-  const [cookieConsent, setCookieConsent] = useLocalStorage('cookie-consent', null)
-  const [showBanner, setShowBanner] = useState(false)
+export default function CookieBanner() {
+  const [showBanner, setShowBanner] = useState(false);
 
   useEffect(() => {
-    if (cookieConsent === null) {
-      setShowBanner(true)
+    // Check if user has already made a choice
+    const cookieConsent = localStorage.getItem('cookie-consent');
+    if (!cookieConsent) {
+      setShowBanner(true);
     }
-  }, [cookieConsent])
+  }, []);
 
-  const acceptCookies = () => {
-    setCookieConsent('accepted')
-    setShowBanner(false)
-  }
+  const handleAccept = () => {
+    localStorage.setItem('cookie-consent', 'accepted');
+    setShowBanner(false);
+    
+    // Enable tracking
+    if (typeof window !== 'undefined') {
+      // Enable Google Analytics
+      if (window.gtag) {
+        window.gtag('consent', 'update', {
+          analytics_storage: 'granted',
+          ad_storage: 'granted',
+        });
+      }
+      
+      // Enable other tracking
+      if (window.fbq) {
+        window.fbq('consent', 'grant');
+      }
+    }
+  };
 
-  const declineCookies = () => {
-    setCookieConsent('declined')
-    setShowBanner(false)
-  }
+  const handleDecline = () => {
+    localStorage.setItem('cookie-consent', 'declined');
+    setShowBanner(false);
+    
+    // Disable tracking
+    if (typeof window !== 'undefined') {
+      if (window.gtag) {
+        window.gtag('consent', 'update', {
+          analytics_storage: 'denied',
+          ad_storage: 'denied',
+        });
+      }
+      
+      if (window.fbq) {
+        window.fbq('consent', 'revoke');
+      }
+    }
+  };
 
-  if (!showBanner) return null
+  if (!showBanner) return null;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 p-4 bg-black/80 backdrop-blur-sm">
-      <Card className="mx-auto max-w-4xl bg-slate-800 border-slate-700">
-        <CardContent className="flex flex-col sm:flex-row items-start sm:items-center gap-4 p-6">
-          <div className="flex items-start gap-3 flex-1">
-            <Cookie className="h-6 w-6 text-yellow-500 flex-shrink-0 mt-1" />
-            <div className="space-y-2">
-              <h3 className="font-semibold text-white">Използване на бисквитки</h3>
-              <p className="text-sm text-gray-300">
-                Използваме бисквитки за подобряване на вашето изживяване, анализ на трафика и персонализирано съдържание. 
-                Можете да управлявате предпочитанията си по всяко време.
-              </p>
-            </div>
-          </div>
-          <div className="flex gap-3 w-full sm:w-auto">
+    <div className="fixed bottom-4 left-4 right-4 z-50 md:left-auto md:right-4 md:max-w-md">
+      <Card className="bg-slate-900 border-slate-700 shadow-xl">
+        <CardHeader className="pb-3">
+          <div className="flex items-center justify-between">
+            <CardTitle className="text-white text-lg">Бисквитки</CardTitle>
             <Button
-              variant="outline"
-              onClick={declineCookies}
-              className="flex-1 sm:flex-none border-gray-600 text-gray-300 hover:bg-gray-700"
+              variant="ghost"
+              size="sm"
+              onClick={handleDecline}
+              className="text-slate-400 hover:text-white"
             >
-              Откажи
+              <X className="h-4 w-4" />
+            </Button>
+          </div>
+        </CardHeader>
+        <CardContent className="pt-0">
+          <CardDescription className="text-slate-300 mb-4">
+            Използваме бисквитки за подобряване на вашето изживяване и анализиране на трафика. 
+            Можете да управлявате предпочитанията си по всяко време.
+          </CardDescription>
+          <div className="flex gap-2">
+            <Button
+              onClick={handleAccept}
+              className="bg-[var(--pravdast-yellow)] text-black hover:bg-yellow-400 flex-1"
+            >
+              Приемам
             </Button>
             <Button
-              onClick={acceptCookies}
-              className="flex-1 sm:flex-none bg-yellow-500 text-black hover:bg-yellow-400"
+              onClick={handleDecline}
+              variant="outline"
+              className="border-slate-600 text-slate-300 hover:bg-slate-800 flex-1"
             >
-              Приеми всички
+              Отказвам
             </Button>
           </div>
         </CardContent>
       </Card>
     </div>
-  )
+  );
 }

@@ -1,19 +1,32 @@
 
 'use client';
 
+import { useEffect } from 'react';
 import Script from 'next/script';
 
 interface PixelIntegrationProps {
-  facebookPixelId?: string;
+  fbPixelId?: string;
   linkedInPartnerId?: string;
 }
 
-export default function PixelIntegration({ facebookPixelId, linkedInPartnerId }: PixelIntegrationProps) {
+export default function PixelIntegration({ fbPixelId, linkedInPartnerId }: PixelIntegrationProps) {
+  useEffect(() => {
+    // Initialize Facebook Pixel
+    if (fbPixelId && typeof window !== 'undefined' && window.fbq) {
+      window.fbq('init', fbPixelId);
+      window.fbq('track', 'PageView');
+    }
+  }, [fbPixelId]);
+
   return (
     <>
       {/* Facebook Pixel */}
-      {facebookPixelId && (
+      {fbPixelId && (
         <>
+          <Script
+            strategy="afterInteractive"
+            src="https://connect.facebook.net/en_US/fbevents.js"
+          />
           <Script
             id="facebook-pixel"
             strategy="afterInteractive"
@@ -25,22 +38,13 @@ export default function PixelIntegration({ facebookPixelId, linkedInPartnerId }:
                 if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
                 n.queue=[];t=b.createElement(e);t.async=!0;
                 t.src=v;s=b.getElementsByTagName(e)[0];
-                s.parentNode.insertBefore(t,s)}(window, document,'script',
+                s.parentNode.insertBefore(t,s)}(window,document,'script',
                 'https://connect.facebook.net/en_US/fbevents.js');
-                fbq('init', '${facebookPixelId}');
+                fbq('init', '${fbPixelId}');
                 fbq('track', 'PageView');
-              `
+              `,
             }}
           />
-          <noscript>
-            <img
-              height="1"
-              width="1"
-              style={{ display: 'none' }}
-              src={`https://www.facebook.com/tr?id=${facebookPixelId}&ev=PageView&noscript=1`}
-              alt=""
-            />
-          </noscript>
         </>
       )}
 
@@ -62,7 +66,7 @@ export default function PixelIntegration({ facebookPixelId, linkedInPartnerId }:
                 b.type = "text/javascript";b.async = true;
                 b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
                 s.parentNode.insertBefore(b, s);})(window.lintrk);
-            `
+            `,
           }}
         />
       )}

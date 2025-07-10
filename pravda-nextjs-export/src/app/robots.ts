@@ -1,12 +1,10 @@
 
-import { MetadataRoute } from 'next';
-
-export default function robots(): MetadataRoute.Robots {
+export default function robots() {
   return {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: ['/admin/', '/api/', '/private/'],
+      disallow: ['/api/', '/admin-pravda/', '/_next/'],
     },
     sitemap: 'https://www.pravdagency.eu/sitemap.xml',
   };
