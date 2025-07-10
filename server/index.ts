@@ -12,38 +12,49 @@ const app = express();
 
 // Debug logging за Prerender integration
 app.use((req, res, next) => {
-  const userAgent = req.get('User-Agent') || '';
-  if (userAgent.includes('Prerender') || userAgent.includes('bot') || userAgent.includes('Bot')) {
-    console.log('🤖 Bot detected:', userAgent);
-    console.log('📍 IP:', req.ip);
-    console.log('🔗 URL:', req.url);
-    console.log('🎫 Token exists:', !!process.env.PRERENDER_TOKEN);
+  const userAgent = req.get("User-Agent") || "";
+  if (
+    userAgent.includes("Prerender") ||
+    userAgent.includes("bot") ||
+    userAgent.includes("Bot")
+  ) {
+    console.log("🤖 Bot detected:", userAgent);
+    console.log("📍 IP:", req.ip);
+    console.log("🔗 URL:", req.url);
+    console.log("🎫 Token exists:", !!process.env.PRERENDER_TOKEN);
   }
   next();
 });
 
 // Test endpoint за проверка на Prerender интеграция
-app.get('/test-prerender', (req, res) => {
-  const userAgent = req.get('User-Agent') || '';
-  const isBot = userAgent.includes('bot') || userAgent.includes('Bot') || userAgent.includes('Prerender');
-  
+app.get("/test-prerender", (req, res) => {
+  const userAgent = req.get("User-Agent") || "";
+  const isBot =
+    userAgent.includes("bot") ||
+    userAgent.includes("Bot") ||
+    userAgent.includes("Prerender");
+
   res.json({
-    status: 'Prerender integration test',
+    status: "Prerender integration test",
     userAgent: userAgent,
     isBotDetected: isBot,
     hasToken: !!process.env.PRERENDER_TOKEN,
-    middleware: process.env.PRERENDER_TOKEN ? 'active' : 'inactive (development)',
-    timestamp: new Date().toISOString()
+    middleware: process.env.PRERENDER_TOKEN
+      ? "active"
+      : "inactive (development)",
+    timestamp: new Date().toISOString(),
   });
 });
 
 // Prerender.io middleware за SEO
 if (process.env.PRERENDER_TOKEN) {
-  console.log('✅ Prerender.io middleware активен с token');
-  app.use((prerender as any).set('prerenderToken', process.env.PRERENDER_TOKEN));
+  console.log("✅ Prerender.io middleware активен с token");
+  app.use(
+    (prerender as any).set("prerenderToken", process.env.PRERENDER_TOKEN),
+  );
 } else {
-  console.log('⚠️ Prerender.io middleware неактивен (липсва token)');
-  console.log('ℹ️ За тестване на интеграцията посетете: /test-prerender');
+  console.log("⚠️ Prerender.io middleware неактивен (липсва token)");
+  console.log("ℹ️ За тестване на интеграцията посетете: /test-prerender");
 }
 
 // Trust proxy for rate limiting
@@ -52,29 +63,33 @@ app.set("trust proxy", 1);
 // Security headers для production
 app.use((req, res, next) => {
   // Basic security headers
-  res.header('X-Content-Type-Options', 'nosniff');
-  res.header('X-Frame-Options', 'SAMEORIGIN');
-  res.header('Referrer-Policy', 'strict-origin-when-cross-origin');
-  
+  res.header("X-Content-Type-Options", "nosniff");
+  res.header("X-Frame-Options", "SAMEORIGIN");
+  res.header("Referrer-Policy", "strict-origin-when-cross-origin");
+
   // CSP header for production
-  res.header('Content-Security-Policy', 
+  res.header(
+    "Content-Security-Policy",
     "default-src 'self'; " +
-    "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://static.klaviyo.com https://static-tracking.klaviyo.com https://www.googletagmanager.com https://region1.google-analytics.com https://analytics.ahrefs.com; " +
-    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://static-tracking.klaviyo.com https://static.klaviyo.com; " +
-    "img-src 'self' data: https://upload.wikimedia.org https://framerusercontent.com https://d3k81ch9hvuctc.cloudfront.net; " +
-    "font-src 'self' data: https://fonts.gstatic.com https://fonts.googleapis.com; " +
-    "connect-src 'self' https://vitals.vercel-insights.com https://a.klaviyo.com https://fast.a.klaviyo.com https://static-forms.klaviyo.com https://www.google-analytics.com https://region1.google-analytics.com https://analytics.ahrefs.com https://www.googletagmanager.com https://static.klaviyo.com https://fonts.googleapis.com https://framerusercontent.com https://fonts.gstatic.com https://service.prerender.io; " +
-    "frame-src 'self' https://www.google.com; " +
-    "object-src 'none'; " +
-    "base-uri 'self'; " +
-    "worker-src 'self'"
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://static.klaviyo.com https://static-tracking.klaviyo.com https://www.googletagmanager.com https://region1.google-analytics.com https://analytics.ahrefs.com; " +
+      "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://static-tracking.klaviyo.com https://static.klaviyo.com; " +
+      "img-src 'self' data: https://upload.wikimedia.org https://framerusercontent.com https://d3k81ch9hvuctc.cloudfront.net; " +
+      "font-src 'self' data: https://fonts.gstatic.com https://fonts.googleapis.com; " +
+      "connect-src 'self' https://vitals.vercel-insights.com https://a.klaviyo.com https://fast.a.klaviyo.com https://static-forms.klaviyo.com https://www.google-analytics.com https://region1.google-analytics.com https://analytics.ahrefs.com https://www.googletagmanager.com https://static.klaviyo.com https://fonts.googleapis.com https://framerusercontent.com https://fonts.gstatic.com https://service.prerender.io; " +
+      "frame-src 'self' https://www.google.com; " +
+      "object-src 'none'; " +
+      "base-uri 'self'; " +
+      "worker-src 'self'",
   );
-  
+
   // Bot-specific cache headers
-  if (req.get('User-Agent')?.includes('bot') || req.get('User-Agent')?.includes('Bot')) {
-    res.header('Cache-Control', 'no-cache, no-store, must-revalidate');
-    res.header('Pragma', 'no-cache');
-    res.header('Expires', '0');
+  if (
+    req.get("User-Agent")?.includes("bot") ||
+    req.get("User-Agent")?.includes("Bot")
+  ) {
+    res.header("Cache-Control", "no-cache, no-store, must-revalidate");
+    res.header("Pragma", "no-cache");
+    res.header("Expires", "0");
   }
   next();
 });
@@ -161,26 +176,27 @@ app.use(
     origin: (origin, callback) => {
       // Allow requests with no origin (mobile apps, curl, etc.)
       if (!origin) return callback(null, true);
-      
-      const allowedOrigins = process.env.NODE_ENV === "production"
-        ? [
-            "https://www.pravdagency.eu",
-            "https://pravdagency.eu", 
-            "https://pravdast.vercel.app",
-            "https://service.prerender.io"
-          ]
-        : [
-            "http://localhost:5000",
-            "http://127.0.0.1:5000",
-            "http://localhost:1337",
-            "http://127.0.0.1:1337",
-            "https://service.prerender.io"
-          ];
-      
+
+      const allowedOrigins =
+        process.env.NODE_ENV === "production"
+          ? [
+              "https://www.pravdagency.eu",
+              "https://pravdagency.eu",
+              "https://pravdast.vercel.app",
+              "https://service.prerender.io",
+            ]
+          : [
+              "http://localhost:5000",
+              "http://127.0.0.1:5000",
+              "http://localhost:1337",
+              "http://127.0.0.1:1337",
+              "https://service.prerender.io",
+            ];
+
       if (allowedOrigins.includes(origin)) {
         callback(null, true);
       } else {
-        callback(new Error('Not allowed by CORS'));
+        callback(new Error("Not allowed by CORS"));
       }
     },
     credentials: true,
@@ -200,19 +216,22 @@ if (process.env.NODE_ENV === "production") {
     skip: (req) => {
       // Whitelist Prerender.io official IP ranges
       const clientIP = req.ip;
-      const userAgent = req.get('User-Agent') || '';
-      
+      const userAgent = req.get("User-Agent") || "";
+
       // Check for Prerender user agent
-      if (userAgent.includes('Prerender') || userAgent.includes('prerender')) {
+      if (userAgent.includes("Prerender") || userAgent.includes("prerender")) {
         return true;
       }
-      
+
       // Check official IP ranges - with null check
-      if (clientIP && typeof clientIP === 'string' && 
-          (clientIP.startsWith('103.207.4') || clientIP.startsWith('104.224.1'))) {
+      if (
+        clientIP &&
+        typeof clientIP === "string" &&
+        (clientIP.startsWith("103.207.4") || clientIP.startsWith("104.224.1"))
+      ) {
         return true;
       }
-      
+
       return false;
     },
   });
@@ -226,19 +245,22 @@ if (process.env.NODE_ENV === "production") {
     skip: (req) => {
       // Whitelist Prerender.io official IP ranges
       const clientIP = req.ip;
-      const userAgent = req.get('User-Agent') || '';
-      
+      const userAgent = req.get("User-Agent") || "";
+
       // Check for Prerender user agent
-      if (userAgent.includes('Prerender') || userAgent.includes('prerender')) {
+      if (userAgent.includes("Prerender") || userAgent.includes("prerender")) {
         return true;
       }
-      
+
       // Check official IP ranges with null check
-      if (clientIP && typeof clientIP === 'string' && 
-          (clientIP.startsWith('103.207.4') || clientIP.startsWith('104.224.1'))) {
+      if (
+        clientIP &&
+        typeof clientIP === "string" &&
+        (clientIP.startsWith("103.207.4") || clientIP.startsWith("104.224.1"))
+      ) {
         return true;
       }
-      
+
       return false;
     },
   });
