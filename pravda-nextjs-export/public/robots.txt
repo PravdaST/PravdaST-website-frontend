@@ -46,3 +46,24 @@ Disallow: /*.json$
 
 # Sitemap location
 Sitemap: https://www.pravdagency.eu/sitemap.xml
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://www.pravdagency.eu/sitemap.xml
+
+# Allow search engines to crawl all content
+Allow: /services/
+Allow: /about/
+Allow: /contact/
+Allow: /case-studies/
+Allow: /blog/
+Allow: /calculators/
+Allow: /faq/
+
+# Block admin areas (if any)
+Disallow: /admin/
+Disallow: /api/
+
+# Crawl delay for respectful crawling
+Crawl-delay: 1

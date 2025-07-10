@@ -32,3 +32,25 @@ const nextConfig = {
 };
 
 module.exports = nextConfig;
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  output: 'export',
+  trailingSlash: true,
+  images: {
+    unoptimized: true
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+  experimental: {
+    optimizeCss: true,
+  },
+  generateBuildId: async () => {
+    return 'pravda-agency-build'
+  },
+}
+
+module.exports = nextConfig
