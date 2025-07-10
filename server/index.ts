@@ -2,12 +2,16 @@ import express, { type Request, Response, NextFunction } from "express";
 import rateLimit from "express-rate-limit";
 import helmet from "helmet";
 import cors from "cors";
+import prerender from "prerender-node";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 import { securityManager } from "./lib/security";
 import { seoMiddleware } from "./lib/seo-middleware";
 
 const app = express();
+
+// Prerender.io middleware за SEO
+app.use(prerender.set('prerenderToken', process.env.PRERENDER_TOKEN));
 
 // Trust proxy for rate limiting
 app.set('trust proxy', 1);
