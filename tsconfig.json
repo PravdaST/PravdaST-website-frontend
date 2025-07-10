@@ -1,5 +1,5 @@
 {
-  "include": ["src/**/*", "shared/**/*", "server/**/*"],
+  "include": ["src/**/*", "shared/**/*", "server/**/*", "types/**/*"],
   "exclude": ["node_modules", "build", "dist", "**/*.test.ts"],
   "compilerOptions": {
     "incremental": true,
@@ -15,6 +15,7 @@
     "moduleResolution": "bundler",
     "baseUrl": ".",
     "types": ["node", "vite/client"],
+    "typeRoots": ["./types", "./node_modules/@types"],
     "paths": {
       "@/*": ["./src/*"],
       "@shared/*": ["./shared/*"],

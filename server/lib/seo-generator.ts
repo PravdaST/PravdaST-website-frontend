@@ -1,4 +1,49 @@
 export class SEOGenerator {
+  generateOrganizationSchema(): object {
+    return {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Pravdast - Бизнес инженеринг",
+      "description": "Бизнес инженеринг за предсказуем растеж в България",
+      "url": "https://www.pravdagency.eu",
+      "telephone": "+359879282299",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "ул. Дебър №58",
+        "addressLocality": "Варна",
+        "addressCountry": "BG"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "43.2141",
+        "longitude": "27.9147"
+      },
+      "sameAs": [
+        "https://www.facebook.com/pravdagency",
+        "https://www.linkedin.com/company/pravdagency"
+      ]
+    };
+  }
+
+  generateWebsiteSchema(): object {
+    return {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Pravdast - Бизнес инженеринг",
+      "description": "Бизнес инженеринг за предсказуем растеж в България",
+      "url": "https://www.pravdagency.eu",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://www.pravdagency.eu/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    };
+  }
+
+  generateLocalBusinessSchema(): object {
+    return this.generateOrganizationSchema();
+  }
+
   generateSitemap(): string {
     const baseUrl = 'https://www.pravdagency.eu';
     const lastmod = '2025-07-09';
