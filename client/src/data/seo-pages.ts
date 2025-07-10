@@ -140,7 +140,7 @@ export const pageSEOData: Record<string, SEOData> = {
     robots: "index, follow"
   },
 
-  "seo-struktor": {
+  "services/seo-struktor": {
     title: "SEO Struktor™ - Системен SEO за България | Pravdast - 1980лв/месец",
     description: "SEO Struktor™ - нашата флагманска система за органична видимост. От 0 до топ позиции с инженерен подход. 1980 лв./месечно. Безплатна диагностика.",
     keywords: "seo struktor pravdast, системен seo българия, органична видимост софия, seo оптимизация цена, топ позиции google българия, seo услуги варна",
@@ -156,7 +156,7 @@ export const pageSEOData: Record<string, SEOData> = {
     robots: "index, follow, max-snippet:-1, max-image-preview:large"
   },
 
-  "trendlab": {
+  "services/trendlab": {
     title: "Trendlab™ - Система за Съдържание и Авторитет | Pravdast - 3450лв/месец",
     description: "Trendlab™ - система за създаване на съдържание и изграждане на авторитет. Content factory + AI креативност. 3450 лв./месечно. Консултация безплатно.",
     keywords: "trendlab pravdast, content creation българия, авторитет изграждане софия, съдържание маркетинг, content factory ai, креативно съдържание варна",
@@ -172,7 +172,7 @@ export const pageSEOData: Record<string, SEOData> = {
     robots: "index, follow, max-snippet:-1, max-image-preview:large"
   },
 
-  "clickstarter": {
+  "services/clickstarter": {
     title: "Clickstarter™ - Реклами с Измерим ROI | Pravdast - 1570лв/месец",
     description: "Clickstarter™ - системно управление на рекламни кампании. Google/Meta Ads оптимизация за максимален ROI. 1570 лв./месечно. Безплатен анализ.",
     keywords: "clickstarter pravdast, google ads българия, facebook ads оптимизация, roi рекламни кампании, ppc управление софия, реклами optimizatsiya варна",
@@ -188,7 +188,7 @@ export const pageSEOData: Record<string, SEOData> = {
     robots: "index, follow, max-snippet:-1, max-image-preview:large"
   },
 
-  "clientomat": {
+  "services/clientomat": {
     title: "Clientomat™ - Автоматизация на Клиентски Цикъл | Pravdast - 2890лв/месец",
     description: "Clientomat™ - автоматизирана система за управление на целия клиентски жизнен цикъл. CRM интеграция + персонализация. 2890 лв./месечно.",
     keywords: "clientomat pravdast, crm автоматизация българия, клиентски жизнен цикъл, персонализирани кампании софия, lead scoring система варна",

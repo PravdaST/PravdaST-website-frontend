@@ -7,38 +7,43 @@ interface HelmetSEOProps {
 }
 
 export function HelmetSEO({ seo, pageSlug }: HelmetSEOProps) {
-  // Debug log to see if component is rendering
-  console.log('HelmetSEO rendering:', seo.title);
+  const canonicalUrl = seo.canonical || `https://www.pravdagency.eu/${pageSlug || ''}`;
+  
+  // Test if helmet meta tags are dynamically changing
+  console.log('Test helmet meta:', seo.title);
   
   return (
     <Helmet prioritizeSeoTags>
       <title>{seo.title}</title>
       <meta name="description" content={seo.description} />
       {seo.keywords && <meta name="keywords" content={seo.keywords} />}
-      {seo.canonical && <link rel="canonical" href={seo.canonical} />}
+      <link rel="canonical" href={canonicalUrl} />
       
-      {/* Open Graph Tags */}
-      {seo.ogTitle && <meta property="og:title" content={seo.ogTitle} />}
-      {seo.ogDescription && <meta property="og:description" content={seo.ogDescription} />}
-      {seo.ogImage && <meta property="og:image" content={seo.ogImage} />}
-      {seo.canonical && <meta property="og:url" content={seo.canonical} />}
-      {seo.ogType && <meta property="og:type" content={seo.ogType} />}
-      <meta property="og:site_name" content="Pravdast" />
+      {/* Open Graph Tags - Always include */}
+      <meta property="og:title" content={seo.ogTitle || seo.title} />
+      <meta property="og:description" content={seo.ogDescription || seo.description} />
+      <meta property="og:image" content={seo.ogImage || 'https://www.pravdagency.eu/og-home.jpg'} />
+      <meta property="og:url" content={canonicalUrl} />
+      <meta property="og:type" content={seo.ogType || 'website'} />
+      <meta property="og:site_name" content="Pravdast - Бизнес Инженеринг" />
       <meta property="og:locale" content="bg_BG" />
       
-      {/* Twitter Cards */}
-      {seo.twitterCard && <meta name="twitter:card" content={seo.twitterCard} />}
-      {seo.twitterTitle && <meta name="twitter:title" content={seo.twitterTitle} />}
-      {seo.twitterDescription && <meta name="twitter:description" content={seo.twitterDescription} />}
-      {seo.twitterImage && <meta name="twitter:image" content={seo.twitterImage} />}
+      {/* Twitter Cards - Always include */}
+      <meta name="twitter:card" content={seo.twitterCard || 'summary_large_image'} />
+      <meta name="twitter:title" content={seo.twitterTitle || seo.title} />
+      <meta name="twitter:description" content={seo.twitterDescription || seo.description} />
+      <meta name="twitter:image" content={seo.twitterImage || 'https://www.pravdagency.eu/twitter-home.jpg'} />
+      <meta name="twitter:site" content="@pravdast" />
+      <meta name="twitter:creator" content="@pravdast" />
       
       {/* Additional SEO */}
       <meta name="robots" content={seo.robots || "index, follow"} />
-      <meta name="author" content="Pravdast" />
+      <meta name="author" content="Pravdast Team" />
       <meta name="language" content="Bulgarian" />
-      <meta name="geo.region" content="BG" />
+      <meta name="geo.region" content="BG-VAR" />
       <meta name="geo.country" content="Bulgaria" />
-      <meta name="geo.placename" content="Варна" />
+      <meta name="geo.placename" content="Varna, Bulgaria" />
+      <meta name="geo.position" content="43.2141;27.9147" />
       <meta name="ICBM" content="43.2141, 27.9147" />
       
       {/* Schema.org JSON-LD */}

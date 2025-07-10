@@ -142,6 +142,7 @@ app.use((req, res, next) => {
 
   // SEO middleware only for production
   if (app.get("env") !== "development") {
+    const { seoMiddleware } = await import('./lib/seo-middleware.js');
     app.get('*', seoMiddleware);
   }
 
