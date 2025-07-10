@@ -1,58 +1,51 @@
-
-import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
-import './globals.css'
-import Navigation from '@/components/Navigation'
-import Footer from '@/components/Footer'
-
-const inter = Inter({ subsets: ['latin'] })
+import type { Metadata } from "next";
+import "./globals.css";
+import Navigation from "@/components/Navigation";
+import Footer from "@/components/Footer";
+import { Suspense } from "react";
+import { HelmetProvider } from 'react-helmet-async';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { useState } from 'react';
 
 export const metadata: Metadata = {
-  title: 'Pravda Agency - Бизнес Инженеринг за Растеж',
-  description: 'Превръщаме хаоса в предвидим растеж с нашите 4 системи: SEO Struktor™, Clientomat™, Trendlab™, Clickstarter™.',
-  keywords: 'pravda agency, бизнес инженеринг, seo, автоматизация, растеж, българия',
-  authors: [{ name: 'Pravda Agency' }],
-  creator: 'Pravda Agency',
-  publisher: 'Pravda Agency',
-  robots: 'index, follow',
-  viewport: 'width=device-width, initial-scale=1',
-  openGraph: {
-    type: 'website',
-    siteName: 'Pravda Agency',
-    title: 'Pravda Agency - Бизнес Инженеринг за Растеж',
-    description: 'Превръщаме хаоса в предвидим растеж с нашите 4 системи: SEO Struktor™, Clientomat™, Trendlab™, Clickstarter™.',
-    url: 'https://www.pravdagency.eu',
-    images: [
-      {
-        url: 'https://www.pravdagency.eu/og-image.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'Pravda Agency - Бизнес Инженеринг за Растеж'
-      }
-    ]
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Pravda Agency - Бизнес Инженеринг за Растеж',
-    description: 'Превръщаме хаоса в предвидим растеж с нашите 4 системи: SEO Struktor™, Clientomat™, Trendlab™, Clickstarter™.',
-    images: ['https://www.pravdagency.eu/twitter-image.jpg']
-  }
-}
+  title: "Pravdast | Business Engineering Platform",
+  description: "Създаваме предсказуем растеж за B2B компании с нашите три системи: SEO Struktor™, Clientomat™ и Sales Engine™",
+};
+'use client';
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
+  const [queryClient] = useState(() => new QueryClient({
+    defaultOptions: {
+      queries: {
+        staleTime: 1000 * 60 * 5, // 5 minutes
+        retry: 2,
+      },
+    },
+  }));
+
   return (
     <html lang="bg">
-      <body className={inter.className}>
-        <Navigation />
-        <main className="pt-16">
-          {children}
-        </main>
-        <Footer />
+      <body className="bg-slate-900 text-white">
+        <QueryClientProvider client={queryClient}>
+          <HelmetProvider>
+            <Navigation />
+            <main>
+              <Suspense fallback={
+                <div className="min-h-screen flex items-center justify-center">
+                  <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-[var(--pravdast-yellow)]"></div>
+                </div>
+              }>
+                {children}
+              </Suspense>
+            </main>
+            <Footer />
+          </HelmetProvider>
+        </QueryClientProvider>
       </body>
     </html>
-  )
+  );
 }
