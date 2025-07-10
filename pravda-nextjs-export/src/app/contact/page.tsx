@@ -173,3 +173,258 @@ export default function ContactPage() {
     </>
   );
 }
+import { Metadata } from 'next'
+import { Navigation } from '@/components/Navigation'
+import { Footer } from '@/components/Footer'
+import { SEOHead } from '@/components/SEOHead'
+import { Badge } from '@/components/ui/badge'
+import { Card } from '@/components/ui/card'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Textarea } from '@/components/ui/textarea'
+import { Label } from '@/components/ui/label'
+
+export const metadata: Metadata = {
+  title: 'Контакти - Pravda Agency | Свържете се с нас',
+  description: 'Свържете се с екипа на Pravda Agency за безплатна консултация по SEO, дигитален маркетинг и автоматизация на продажбите.',
+  openGraph: {
+    title: 'Контакти - Pravda Agency | Свържете се с нас',
+    description: 'Свържете се с екипа на Pravda Agency за безплатна консултация по SEO, дигитален маркетинг и автоматизация на продажбите.',
+    url: 'https://www.pravdagency.eu/contact',
+    type: 'website',
+  },
+}
+
+export default function ContactPage() {
+  return (
+    <>
+      <SEOHead 
+        title="Контакти - Pravda Agency | Свържете се с нас"
+        description="Свържете се с екипа на Pravda Agency за безплатна консултация по SEO, дигитален маркетинг и автоматизация на продажбите."
+        canonicalUrl="https://www.pravdagency.eu/contact"
+      />
+      
+      <div className="min-h-screen bg-black text-white">
+        <Navigation />
+        
+        {/* Hero Section */}
+        <section className="pt-32 pb-20 px-6">
+          <div className="max-w-6xl mx-auto text-center">
+            <Badge className="mb-6 bg-yellow-400 text-black">
+              Контакти
+            </Badge>
+            <h1 className="text-5xl md:text-6xl font-bold mb-6">
+              Започнете вашия <span className="text-yellow-400">успех</span>
+            </h1>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              Готови сме да ви помогнем да постигнете целите си. Свържете се с нас за безплатна 
+              консултация и открийте как можем да трансформираме вашия бизнес.
+            </p>
+          </div>
+        </section>
+
+        {/* Contact Form & Info */}
+        <section className="py-20 px-6">
+          <div className="max-w-6xl mx-auto">
+            <div className="grid lg:grid-cols-2 gap-12">
+              {/* Contact Form */}
+              <Card className="bg-gray-900 border-gray-800 p-8">
+                <h2 className="text-3xl font-bold mb-6">Изпратете ни съобщение</h2>
+                <form className="space-y-6">
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div>
+                      <Label htmlFor="firstName" className="text-white">Име *</Label>
+                      <Input 
+                        id="firstName"
+                        type="text" 
+                        placeholder="Вашето име"
+                        className="bg-black border-gray-600 text-white"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="lastName" className="text-white">Фамилия *</Label>
+                      <Input 
+                        id="lastName"
+                        type="text" 
+                        placeholder="Вашата фамилия"
+                        className="bg-black border-gray-600 text-white"
+                        required
+                      />
+                    </div>
+                  </div>
+                  
+                  <div>
+                    <Label htmlFor="email" className="text-white">Имейл адрес *</Label>
+                    <Input 
+                      id="email"
+                      type="email" 
+                      placeholder="your@email.com"
+                      className="bg-black border-gray-600 text-white"
+                      required
+                    />
+                  </div>
+                  
+                  <div>
+                    <Label htmlFor="phone" className="text-white">Телефон</Label>
+                    <Input 
+                      id="phone"
+                      type="tel" 
+                      placeholder="+359 888 123 456"
+                      className="bg-black border-gray-600 text-white"
+                    />
+                  </div>
+                  
+                  <div>
+                    <Label htmlFor="company" className="text-white">Компания</Label>
+                    <Input 
+                      id="company"
+                      type="text" 
+                      placeholder="Вашата компания"
+                      className="bg-black border-gray-600 text-white"
+                    />
+                  </div>
+                  
+                  <div>
+                    <Label htmlFor="service" className="text-white">Интересувате се от</Label>
+                    <select 
+                      id="service"
+                      className="w-full p-3 bg-black border border-gray-600 rounded-md text-white"
+                    >
+                      <option value="">Изберете услуга</option>
+                      <option value="seo">SEO Struktor™</option>
+                      <option value="clientomat">Clientomat™</option>
+                      <option value="clickstarter">Clickstarter™</option>
+                      <option value="trendlab">Trendlab™</option>
+                      <option value="consultation">Безплатна консултация</option>
+                      <option value="other">Друго</option>
+                    </select>
+                  </div>
+                  
+                  <div>
+                    <Label htmlFor="message" className="text-white">Съобщение *</Label>
+                    <Textarea 
+                      id="message"
+                      placeholder="Разкажете ни повече за вашия проект..."
+                      className="bg-black border-gray-600 text-white min-h-[120px]"
+                      required
+                    />
+                  </div>
+                  
+                  <div className="flex items-start gap-3">
+                    <input 
+                      type="checkbox" 
+                      id="privacy" 
+                      className="mt-1"
+                      required
+                    />
+                    <Label htmlFor="privacy" className="text-sm text-gray-300">
+                      Съгласен/на съм с <a href="/privacy" className="text-yellow-400 hover:underline">условията за поверителност</a> и обработката на личните ми данни. *
+                    </Label>
+                  </div>
+                  
+                  <Button className="w-full bg-yellow-400 text-black hover:bg-yellow-300 py-3 text-lg font-semibold">
+                    Изпрати съобщението
+                  </Button>
+                </form>
+              </Card>
+
+              {/* Contact Info */}
+              <div className="space-y-8">
+                <Card className="bg-gray-900 border-gray-800 p-8">
+                  <h3 className="text-2xl font-bold mb-6">Информация за контакт</h3>
+                  <div className="space-y-6">
+                    <div className="flex items-center gap-4">
+                      <div className="w-12 h-12 bg-yellow-400 rounded-full flex items-center justify-center">
+                        <span className="text-xl">📧</span>
+                      </div>
+                      <div>
+                        <div className="font-semibold">Имейл</div>
+                        <div className="text-gray-300">hello@pravdagency.eu</div>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-center gap-4">
+                      <div className="w-12 h-12 bg-yellow-400 rounded-full flex items-center justify-center">
+                        <span className="text-xl">📱</span>
+                      </div>
+                      <div>
+                        <div className="font-semibold">Телефон</div>
+                        <div className="text-gray-300">+359 888 123 456</div>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-center gap-4">
+                      <div className="w-12 h-12 bg-yellow-400 rounded-full flex items-center justify-center">
+                        <span className="text-xl">📍</span>
+                      </div>
+                      <div>
+                        <div className="font-semibold">Адрес</div>
+                        <div className="text-gray-300">София, България</div>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-center gap-4">
+                      <div className="w-12 h-12 bg-yellow-400 rounded-full flex items-center justify-center">
+                        <span className="text-xl">⏰</span>
+                      </div>
+                      <div>
+                        <div className="font-semibold">Работно време</div>
+                        <div className="text-gray-300">Пон-Пет: 9:00 - 18:00</div>
+                      </div>
+                    </div>
+                  </div>
+                </Card>
+
+                <Card className="bg-yellow-400 text-black p-8">
+                  <h3 className="text-2xl font-bold mb-4">Безплатна консултация</h3>
+                  <p className="mb-6">
+                    Получете професионална оценка на вашия уебсайт и персонализирани препоръки 
+                    за подобрение - напълно безплатно!
+                  </p>
+                  <ul className="space-y-2 mb-6">
+                    <li className="flex items-center gap-2">
+                      <span>✓</span> SEO одит на уебсайта
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <span>✓</span> Анализ на конкуренцията
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <span>✓</span> Стратегически препоръки
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <span>✓</span> ROI прогнози
+                    </li>
+                  </ul>
+                  <Button className="w-full bg-black text-white hover:bg-gray-800">
+                    Резервирайте консултация
+                  </Button>
+                </Card>
+
+                <Card className="bg-gray-900 border-gray-800 p-8">
+                  <h3 className="text-2xl font-bold mb-4">Често задавани въпроси</h3>
+                  <div className="space-y-4">
+                    <div>
+                      <div className="font-semibold mb-2">Колко време отнема SEO проект?</div>
+                      <div className="text-gray-300 text-sm">Обикновено първите резултати се виждат след 3-6 месеца, но зависи от конкуренцията и текущото състояние на сайта.</div>
+                    </div>
+                    <div>
+                      <div className="font-semibold mb-2">Предлагате ли гаранция за резултатите?</div>
+                      <div className="text-gray-300 text-sm">Да, предлагаме гаранция за подобрение на позициите и трафика в рамките на договорения период.</div>
+                    </div>
+                    <div>
+                      <div className="font-semibold mb-2">Можете ли да работите с международни клиенти?</div>
+                      <div className="text-gray-300 text-sm">Абсолютно! Работим с клиенти от цяла Европа и предлагаме услуги на английски език.</div>
+                    </div>
+                  </div>
+                </Card>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <Footer />
+      </div>
+    </>
+  )
+}
