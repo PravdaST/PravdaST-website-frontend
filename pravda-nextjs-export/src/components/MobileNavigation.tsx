@@ -100,3 +100,86 @@ const MobileNavigation = () => {
 };
 
 export default MobileNavigation;
+'use client';
+
+import { useState } from 'react';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { Menu, X } from 'lucide-react';
+
+export function MobileNavigation() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const navigationItems = [
+    { name: 'Начало', href: '/' },
+    { name: 'Услуги', href: '/services' },
+    { name: 'За нас', href: '/about' },
+    { name: 'Казуси', href: '/case-studies' },
+    { name: 'Контакт', href: '/contact' },
+  ];
+
+  const serviceItems = [
+    { name: 'SEO Struktor™', href: '/services/seo-struktor' },
+    { name: 'Clientomat™', href: '/services/clientomat' },
+    { name: 'Trendlab™', href: '/services/trendlab' },
+    { name: 'Clickstarter™', href: '/services/clickstarter' },
+  ];
+
+  return (
+    <Sheet open={isOpen} onOpenChange={setIsOpen}>
+      <SheetTrigger asChild>
+        <Button variant="ghost" size="sm" className="md:hidden">
+          <Menu className="h-5 w-5" />
+          <span className="sr-only">Toggle menu</span>
+        </Button>
+      </SheetTrigger>
+      <SheetContent side="right" className="w-80">
+        <div className="flex flex-col space-y-4">
+          <div className="flex items-center justify-between">
+            <h2 className="text-lg font-semibold">Навигация</h2>
+          </div>
+          
+          <nav className="flex flex-col space-y-2">
+            {navigationItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="block px-3 py-2 text-base font-medium hover:bg-accent hover:text-accent-foreground rounded-md"
+                onClick={() => setIsOpen(false)}
+              >
+                {item.name}
+              </Link>
+            ))}
+          </nav>
+
+          <div className="border-t pt-4">
+            <h3 className="px-3 text-sm font-medium text-muted-foreground mb-2">
+              Услуги
+            </h3>
+            <nav className="flex flex-col space-y-1">
+              {serviceItems.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="block px-3 py-2 text-sm hover:bg-accent hover:text-accent-foreground rounded-md"
+                  onClick={() => setIsOpen(false)}
+                >
+                  {item.name}
+                </Link>
+              ))}
+            </nav>
+          </div>
+
+          <div className="border-t pt-4">
+            <Button asChild className="w-full">
+              <Link href="/contact" onClick={() => setIsOpen(false)}>
+                Безплатна консултация
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </SheetContent>
+    </Sheet>
+  );
+}
