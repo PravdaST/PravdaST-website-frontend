@@ -14,10 +14,34 @@
     },
     {
       "source": "/(.*)",
+      "has": [
+        {
+          "type": "header",
+          "key": "User-Agent",
+          "value": "(googlebot|bingbot|yahoo|duckduckbot|yandex|baidu|twitterbot|facebookexternalhit|facebot|linkedinbot|pinterest|slackbot|telegrambot|whatsapp|discordbot|prerender)"
+        }
+      ],
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-cache, no-store, must-revalidate"
+        },
+        {
+          "key": "Pragma",
+          "value": "no-cache"
+        },
+        {
+          "key": "Expires",
+          "value": "0"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)",
       "headers": [
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://static.klaviyo.com https://static-tracking.klaviyo.com https://www.googletagmanager.com https://region1.google-analytics.com https://replit.com https://analytics.ahrefs.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://static-tracking.klaviyo.com https://static.klaviyo.com; img-src 'self' data: https://upload.wikimedia.org https://framerusercontent.com https://d3k81ch9hvuctc.cloudfront.net; font-src 'self' data: https://fonts.gstatic.com https://fonts.googleapis.com; connect-src 'self' https://vitals.vercel-insights.com https://a.klaviyo.com https://fast.a.klaviyo.com https://static-forms.klaviyo.com https://www.google-analytics.com https://region1.google-analytics.com https://analytics.ahrefs.com https://www.googletagmanager.com https://static.klaviyo.com https://fonts.googleapis.com https://framerusercontent.com https://fonts.gstatic.com; frame-src 'self' https://www.google.com; object-src 'none'; base-uri 'self'; worker-src 'self'"
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://static.klaviyo.com https://static-tracking.klaviyo.com https://www.googletagmanager.com https://region1.google-analytics.com https://replit.com https://analytics.ahrefs.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://static-tracking.klaviyo.com https://static.klaviyo.com; img-src 'self' data: https://upload.wikimedia.org https://framerusercontent.com https://d3k81ch9hvuctc.cloudfront.net; font-src 'self' data: https://fonts.gstatic.com https://fonts.googleapis.com; connect-src 'self' https://vitals.vercel-insights.com https://a.klaviyo.com https://fast.a.klaviyo.com https://static-forms.klaviyo.com https://www.google-analytics.com https://region1.google-analytics.com https://analytics.ahrefs.com https://www.googletagmanager.com https://static.klaviyo.com https://fonts.googleapis.com https://framerusercontent.com https://fonts.gstatic.com https://service.prerender.io; frame-src 'self' https://www.google.com; object-src 'none'; base-uri 'self'; worker-src 'self'"
         },
         {
           "key": "X-Content-Type-Options",
