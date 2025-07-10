@@ -9,8 +9,7 @@ interface HelmetSEOProps {
 export function HelmetSEO({ seo, pageSlug }: HelmetSEOProps) {
   const canonicalUrl = seo.canonical || `https://www.pravdagency.eu/${pageSlug || ''}`;
   
-  // Test if helmet meta tags are dynamically changing
-  console.log('Test helmet meta:', seo.title);
+  // SEO meta tags will be injected dynamically
   
   return (
     <Helmet prioritizeSeoTags>
