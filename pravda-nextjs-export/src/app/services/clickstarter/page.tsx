@@ -1,183 +1,140 @@
-
-import HeroSection from '@/components/HeroSection';
-import Navigation from '@/components/Navigation';
-import Footer from '@/components/Footer';
 import { Metadata } from 'next';
+import { ClickstarterBackground } from '@/components/backgrounds/ClickstarterBackground';
+import { EnhancedSEO } from '@/components/seo/EnhancedSEO';
+import { ServiceSchema } from '@/components/seo/ServiceSchema';
+import { CTASection } from '@/components/CTASection';
+import { BackToTop } from '@/components/BackToTop';
 
 export const metadata: Metadata = {
-  title: 'Clickstarter™ - PPC Кампании | Pravda Agency',
-  description: 'Професионални PPC кампании с Clickstarter™. Google Ads, Facebook Ads и LinkedIn кампании за максимален ROI.',
-  keywords: 'PPC, Google Ads, Facebook Ads, LinkedIn Ads, реклама, дигитален маркетинг',
+  title: 'Clickstarter - Управление на онлайн репутация | Pravda Agency',
+  description: 'Защитете и подобрете онлайн репутацията на вашия бизнес. Следене, анализ и управление на отзиви и споменавания в реално време.',
+  keywords: [
+    'управление на репутация',
+    'онлайн репутация',
+    'отзиви',
+    'споменавания',
+    'мониторинг',
+    'Clickstarter',
+    'България'
+  ],
+  openGraph: {
+    title: 'Clickstarter - Управление на онлайн репутация',
+    description: 'Защитете и подобрете онлайн репутацията на вашия бизнес.',
+    url: 'https://www.pravdagency.eu/services/clickstarter',
+    images: [
+      {
+        url: '/og-images/clickstarter.svg',
+        width: 1200,
+        height: 630,
+        alt: 'Clickstarter - Управление на онлайн репутация'
+      }
+    ]
+  },
+  alternates: {
+    canonical: 'https://www.pravdagency.eu/services/clickstarter'
+  }
+};
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Clickstarter',
+  description: 'Управление на онлайн репутация и мониторинг',
+  provider: {
+    '@type': 'Organization',
+    name: 'Pravda Agency',
+    url: 'https://www.pravdagency.eu'
+  },
+  serviceType: 'Online Reputation Management',
+  areaServed: 'Bulgaria',
+  availableLanguage: 'Bulgarian'
 };
 
 export default function ClickstarterPage() {
   return (
     <>
-      <Navigation />
-      <HeroSection
-        subtitle="Clickstarter™"
-        title="PPC Кампании за Максимален ROI"
-        description="Професионални платени рекламни кампании в Google Ads, Facebook Ads и LinkedIn за бърз растеж на вашия бизнес."
-        primaryCTA={{
-          text: "Започни кампания",
-          href: "/contact"
-        }}
-        secondaryCTA={{
-          text: "Виж казуси",
-          href: "/case-studies"
-        }}
-        backgroundGradient="from-green-50 to-emerald-100"
+      <EnhancedSEO
+        title="Clickstarter - Управление на онлайн репутация | Pravda Agency"
+        description="Защитете и подобрете онлайн репутацията на вашия бизнес. Следене, анализ и управление на отзиви и споменавания в реално време."
+        canonical="https://www.pravdagency.eu/services/clickstarter"
+        ogImage="/og-images/clickstarter.svg"
       />
 
-      {/* Service Features */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                Защо Clickstarter™?
-              </h2>
-              <p className="text-xl text-gray-600">
-                Професионален подход към платените реклами
+      <ServiceSchema data={serviceSchema} />
+
+      <div className="min-h-screen bg-slate-900">
+        <ClickstarterBackground />
+
+        {/* Hero Section */}
+        <section className="relative py-20 lg:py-32 overflow-hidden">
+          <div className="container mx-auto px-6 relative z-10">
+            <div className="max-w-4xl mx-auto text-center">
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
+                <span className="text-[#ECB629]">Clickstarter</span>
+                <br />
+                Управление на репутация
+              </h1>
+              <p className="text-xl md:text-2xl text-slate-300 mb-8">
+                Защитете и подобрете онлайн репутацията на вашия бизнес
               </p>
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-8">
-              <div className="text-center space-y-4">
-                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto">
-                  <span className="text-green-600 text-2xl">🎯</span>
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900">Точно Таргетиране</h3>
-                <p className="text-gray-600">
-                  Достигаме точно вашата целева аудитория с прецизно таргетиране.
-                </p>
-              </div>
-
-              <div className="text-center space-y-4">
-                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto">
-                  <span className="text-green-600 text-2xl">📊</span>
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900">Данни-Базирани Решения</h3>
-                <p className="text-gray-600">
-                  Всяка кампания се базира на анализ на данни и пазарни изследвания.
-                </p>
-              </div>
-
-              <div className="text-center space-y-4">
-                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto">
-                  <span className="text-green-600 text-2xl">💰</span>
-                </div>
-                <h3 className="text-xl font-semibold text-gray-900">Максимален ROI</h3>
-                <p className="text-gray-600">
-                  Оптимизираме за максимална възвръщаемост на инвестицията.
-                </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <button className="bg-[#ECB629] text-black px-8 py-4 rounded-lg font-semibold hover:bg-[#ECB629]/90 transition-colors">
+                  Започнете сега
+                </button>
+                <button className="border border-[#ECB629] text-[#ECB629] px-8 py-4 rounded-lg font-semibold hover:bg-[#ECB629]/10 transition-colors">
+                  Научете повече
+                </button>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Platforms */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                Платформи за Реклама
+        {/* Features Section */}
+        <section className="py-20 bg-slate-800/30">
+          <div className="container mx-auto px-6">
+            <div className="max-w-6xl mx-auto">
+              <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-16">
+                Защо да изберете <span className="text-[#ECB629]">Clickstarter</span>?
               </h2>
-            </div>
 
-            <div className="grid md:grid-cols-3 gap-8">
-              <div className="bg-white rounded-xl p-8 shadow-lg">
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">Google Ads</h3>
-                <ul className="space-y-2 text-gray-600">
-                  <li>• Search кампании</li>
-                  <li>• Display мрежа</li>
-                  <li>• YouTube реклами</li>
-                  <li>• Shopping кампании</li>
-                </ul>
-              </div>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="bg-slate-800/50 rounded-2xl p-8 border border-slate-700">
+                  <div className="w-16 h-16 bg-[#ECB629]/20 rounded-lg flex items-center justify-center mb-6">
+                    <span className="text-2xl">👁️</span>
+                  </div>
+                  <h3 className="text-2xl font-bold text-white mb-4">24/7 Мониторинг</h3>
+                  <p className="text-slate-300">
+                    Следим всички споменавания на вашия бранд в реално време
+                  </p>
+                </div>
 
-              <div className="bg-white rounded-xl p-8 shadow-lg">
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">Facebook Ads</h3>
-                <ul className="space-y-2 text-gray-600">
-                  <li>• Facebook кампании</li>
-                  <li>• Instagram реклами</li>
-                  <li>• Messenger боти</li>
-                  <li>• Retargeting</li>
-                </ul>
-              </div>
+                <div className="bg-slate-800/50 rounded-2xl p-8 border border-slate-700">
+                  <div className="w-16 h-16 bg-[#ECB629]/20 rounded-lg flex items-center justify-center mb-6">
+                    <span className="text-2xl">⚡</span>
+                  </div>
+                  <h3 className="text-2xl font-bold text-white mb-4">Бърза реакция</h3>
+                  <p className="text-slate-300">
+                    Моментално известяване при негативни отзиви или споменавания
+                  </p>
+                </div>
 
-              <div className="bg-white rounded-xl p-8 shadow-lg">
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">LinkedIn Ads</h3>
-                <ul className="space-y-2 text-gray-600">
-                  <li>• B2B кампании</li>
-                  <li>• Lead Generation</li>
-                  <li>• Sponsored Content</li>
-                  <li>• InMail кампании</li>
-                </ul>
+                <div className="bg-slate-800/50 rounded-2xl p-8 border border-slate-700">
+                  <div className="w-16 h-16 bg-[#ECB629]/20 rounded-lg flex items-center justify-center mb-6">
+                    <span className="text-2xl">📊</span>
+                  </div>
+                  <h3 className="text-2xl font-bold text-white mb-4">Детайлна аналитика</h3>
+                  <p className="text-slate-300">
+                    Пълни отчети за вашата онлайн репутация и тенденции
+                  </p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* CTA Section */}
-      <section className="py-20 bg-green-600">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              Готови за Първата Ви PPC Кампания?
-            </h2>
-            <p className="text-xl text-green-100 mb-8">
-              Започнете с безплатна консултация и видете как можем да увеличим вашите продажби.
-            </p>
-            <a
-              href="/contact"
-              className="inline-flex items-center bg-white text-green-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
-            >
-              Безплатна Консултация
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <Footer />
+        <CTASection />
+        <BackToTop />
+      </div>
     </>
   );
-}
-import { Metadata } from 'next'
-
-export const metadata: Metadata = {
-  title: 'Clickstarter™ - Реклами с Измерим ROI | Pravda Agency - 1570лв/месец',
-  description: 'Clickstarter™ - системно управление на рекламни кампании. Google/Meta Ads оптимизация за максимален ROI. 1570 лв./месечно. Безплатен анализ.',
-  robots: 'index, follow'
-}
-
-export default function ClickstarterPage() {
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
-      <div className="container mx-auto px-6 py-20">
-        <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Двигателят на вашия растеж има нужда от <span className="text-[#ECB628]">настройка</span>, а не само от повече гориво
-          </h1>
-          
-          <p className="text-xl text-slate-300 mb-8">
-            Clickstarter™ - системно управление на рекламни кампании с измерим ROI
-          </p>
-          
-          <div className="bg-slate-800/60 rounded-2xl p-8 border border-slate-600">
-            <h2 className="text-2xl font-bold text-white mb-4">Цена: 1570 лв./месечно</h2>
-            <p className="text-slate-300 mb-6">
-              Професионално управление на Google Ads и Meta Ads кампании с фокус върху ROI оптимизация
-            </p>
-            <button className="bg-[#ECB628] text-black px-8 py-3 rounded-lg font-semibold hover:bg-[#d4a524] transition-colors">
-              Безплатен анализ
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  )
 }
