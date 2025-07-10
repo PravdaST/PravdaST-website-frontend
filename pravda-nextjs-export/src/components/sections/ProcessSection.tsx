@@ -1,209 +1,209 @@
-'use client';
-
 import { motion } from "framer-motion";
-import { Search, Wrench, BarChart, Repeat } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
 
-const processSteps = [
+// Modern SVG Icons
+const DiagnosticIcon = () => (
+  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M16 2C18.7614 2 21 4.23858 21 7C21 9.76142 18.7614 12 16 12C13.2386 12 11 9.76142 11 7C11 4.23858 13.2386 2 16 2Z" fill="currentColor"/>
+    <path d="M4 16C4 15.4477 4.44772 15 5 15H11C11.5523 15 12 15.4477 12 16C12 16.5523 11.5523 17 11 17H5C4.44772 17 4 16.5523 4 16Z" fill="currentColor"/>
+    <path d="M20 16C20 15.4477 20.4477 15 21 15H27C27.5523 15 28 15.4477 28 16C28 16.5523 27.5523 17 27 17H21C20.4477 17 20 16.5523 20 16Z" fill="currentColor"/>
+    <path d="M8.5 22.5C8.5 21.9477 8.94772 21.5 9.5 21.5H15.5C16.0523 21.5 16.5 21.9477 16.5 22.5C16.5 23.0523 16.0523 23.5 15.5 23.5H9.5C8.94772 23.5 8.5 23.0523 8.5 22.5Z" fill="currentColor"/>
+    <path d="M22.5 9.5C22.5 8.94772 22.9477 8.5 23.5 8.5H29.5C30.0523 8.5 30.5 8.94772 30.5 9.5C30.5 10.0523 30.0523 10.5 29.5 10.5H23.5C22.9477 10.5 22.5 10.0523 22.5 9.5Z" fill="currentColor"/>
+    <circle cx="16" cy="26" r="3" fill="currentColor"/>
+  </svg>
+);
+
+const BuildIcon = () => (
+  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M4 4C4 2.89543 4.89543 2 6 2H26C27.1046 2 28 2.89543 28 4V8C28 9.10457 27.1046 10 26 10H6C4.89543 10 4 9.10457 4 8V4Z" fill="currentColor"/>
+    <path d="M4 14C4 12.8954 4.89543 12 6 12H12C13.1046 12 14 12.8954 14 14V18C14 19.1046 13.1046 20 12 20H6C4.89543 20 4 19.1046 4 18V14Z" fill="currentColor"/>
+    <path d="M18 14C18 12.8954 18.8954 12 20 12H26C27.1046 12 28 12.8954 28 14V28C28 29.1046 27.1046 30 26 30H20C18.8954 30 18 29.1046 18 28V14Z" fill="currentColor"/>
+    <path d="M4 24C4 22.8954 4.89543 22 6 22H12C13.1046 22 14 22.8954 14 24V28C14 29.1046 13.1046 30 12 30H6C4.89543 30 4 29.1046 4 28V24Z" fill="currentColor"/>
+  </svg>
+);
+
+const OptimizeIcon = () => (
+  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M6 26L10 22L14 26L18 20L22 24L26 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+    <circle cx="6" cy="26" r="2" fill="currentColor"/>
+    <circle cx="10" cy="22" r="2" fill="currentColor"/>
+    <circle cx="14" cy="26" r="2" fill="currentColor"/>
+    <circle cx="18" cy="20" r="2" fill="currentColor"/>
+    <circle cx="22" cy="24" r="2" fill="currentColor"/>
+    <circle cx="26" cy="18" r="2" fill="currentColor"/>
+    <path d="M24 8L28 4L24 0" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+    <path d="M28 4H16C13.7909 4 12 5.79086 12 8V12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+  </svg>
+);
+
+const steps = [
   {
-    number: "01",
+    icon: DiagnosticIcon,
     title: "Диагностика",
-    subtitle: "Анализираме текущото състояние",
-    description: "Извършваме задълбочен анализ на вашия бизнес, конкуренция и пазарни възможности. Идентифицираме ключовите проблеми и възможности за растеж.",
-    icon: Search,
-    duration: "1-2 седмици",
-    deliverables: ["Бизнес анализ", "Конкурентен анализ", "Стратегически план"]
+    description: "Анализираме вашия бизнес и данни, за да открием къде точно губите ефективност и потенциални приходи."
   },
   {
-    number: "02", 
-    title: "Изграждане",
-    subtitle: "Създаваме системите за растеж",
-    description: "Разработваме и внедряваме персонализирани системи за маркетинг, автоматизация и оптимизация според специфичните нужди на вашия бизнес.",
-    icon: Wrench,
-    duration: "2-4 седмици",
-    deliverables: ["Технически настройки", "Съдържателна стратегия", "Автоматизирани процеси"]
+    icon: BuildIcon,
+    title: "Изграждане", 
+    description: "Проектираме и изграждаме нужната система (или комбинация от системи), за да решим конкретния, диагностициран проблем."
   },
   {
-    number: "03",
-    title: "Оптимизация", 
-    subtitle: "Непрекъснато подобряване",
-    description: "Мониторираме резултатите, анализираме данните и непрекъснато оптимизираме системите за постигане на максимална ефективност.",
-    icon: BarChart,
-    duration: "Непрекъснато",
-    deliverables: ["Месечни отчети", "A/B тестове", "Препоръки за подобрение"]
+    icon: OptimizeIcon,
+    title: "Оптимизация",
+    description: "Следим данните в реално време и правим постоянни подобрения, за да увеличим максимално вашата възвръщаемост."
   }
 ];
 
-export default function ProcessSection() {
+const ProcessSection = () => {
   return (
-    <section className="py-20 bg-slate-800 relative overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0 opacity-10">
-        <div
-          className="absolute inset-0"
-          style={{
+    <section className="py-20 bg-slate-800/30 relative overflow-hidden">
+      {/* Animated Tech Background */}
+      <div className="absolute inset-0 opacity-20">
+        <div className="absolute inset-0">
+          {/* Process Flow Pattern */}
+          <div className="absolute inset-0" style={{
             backgroundImage: `
-            linear-gradient(rgba(236, 182, 40, 0.1) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(236, 182, 40, 0.1) 1px, transparent 1px)
-          `,
-            backgroundSize: "40px 40px",
-          }}
-        ></div>
+              linear-gradient(90deg, rgba(236, 182, 40, 0.1) 1px, transparent 1px),
+              linear-gradient(rgba(236, 182, 40, 0.1) 1px, transparent 1px)
+            `,
+            backgroundSize: '40px 40px'
+          }}></div>
+          
+          {/* Process Connection Lines */}
+          {[...Array(3)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-24 h-px bg-gradient-to-r from-[#ECB629] to-transparent"
+              style={{
+                left: `${25 + i * 25}%`,
+                top: '50%',
+                transform: 'translateY(-50%)',
+              }}
+              animate={{
+                opacity: [0.3, 1, 0.3],
+                scaleX: [0.8, 1.2, 0.8],
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                delay: i * 0.7,
+              }}
+            />
+          ))}
+        </div>
       </div>
 
-      <div className="container mx-auto px-4 sm:px-6 relative z-10">
-        {/* Section Header */}
-        <div className="text-center mb-16">
+      {/* Background Elements */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-[#ECB629] rounded-full blur-3xl"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-48 h-48 bg-blue-500 rounded-full blur-3xl"></div>
+      </div>
+
+      <div className="container mx-auto px-6 relative z-10">
+        <motion.div
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
           <motion.div
-            className="inline-flex items-center gap-2 px-4 py-2 bg-[#ECB629]/10 border border-[#ECB629]/20 rounded-full mb-6"
+            className="inline-flex items-center gap-3 mb-8 px-6 py-3 rounded-full bg-gradient-to-r from-slate-800/80 to-slate-700/60 border border-slate-600/30 backdrop-blur-sm"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <div className="w-2 h-2 bg-[#ECB629] rounded-full animate-pulse"></div>
-            <span className="text-[#ECB629] font-semibold text-sm">Контролиран</span>
+            <div className="flex items-center gap-2">
+              <div className="relative">
+                <div className="w-2 h-2 bg-[#ECB629] rounded-full"></div>
+                <motion.div
+                  className="absolute inset-0 w-2 h-2 bg-[#ECB629] rounded-full opacity-20"
+                  animate={{ scale: [1, 1.3, 1] }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                />
+              </div>
+              <span className="text-sm text-gray-300 font-medium">
+                <span className="text-[#ECB629] font-bold">Контролиран</span> процес за предвидим растеж
+              </span>
+            </div>
           </motion.div>
 
-          <motion.h2
-            className="text-4xl md:text-5xl font-bold text-white mb-6"
-            initial={{ opacity: 0, y: 30 }}
+          <motion.h2 
+            className="text-4xl md:text-5xl font-bold mb-6 text-white"
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
           >
-            Нашият <span className="text-[#ECB629]">процес</span> от 3 стъпки
+            Прозрачен процес. <br />
+            <span className="text-[#ECB629] relative">
+              Предвидими резултати.
+              <motion.div
+                className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-[#ECB629] to-[#ECB629]/50 rounded-full"
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                transition={{ duration: 1, delay: 0.6 }}
+                viewport={{ once: true }}
+              />
+            </span>
           </motion.h2>
 
-          <motion.p
-            className="text-xl text-gray-300 max-w-3xl mx-auto"
-            initial={{ opacity: 0, y: 30 }}
+          <motion.p 
+            className="text-xl text-gray-300 max-w-4xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
           >
-            Системен подход, който превръща хаоса в предвидими резултати
+            Ние не работим с предположения. Следваме строго дефиниран инженерен процес в 3 стъпки, който гарантира, че всяко решение е базирано на данни.
           </motion.p>
-        </div>
-
-        {/* Process Steps - Modern Card Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-          {processSteps.map((step, index) => {
-            const IconComponent = step.icon;
-            
-            return (
-              <motion.div
-                key={index}
-                className="relative bg-slate-900/50 border border-white/10 rounded-2xl p-8 hover:border-[#ECB629]/30 transition-all duration-300 group"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.2 }}
-                whileHover={{ y: -5 }}
-              >
-                {/* Number Badge */}
-                <div className="absolute top-6 right-6">
-                  <div className="w-12 h-12 bg-[#ECB629]/20 rounded-full flex items-center justify-center">
-                    <span className="text-[#ECB629] font-bold text-lg">{step.number}</span>
-                  </div>
-                </div>
-
-                {/* Icon */}
-                <div className="mb-6">
-                  <div className="w-16 h-16 bg-[#ECB629]/10 rounded-xl flex items-center justify-center group-hover:bg-[#ECB629]/20 transition-colors">
-                    <IconComponent className="w-8 h-8 text-[#ECB629]" />
-                  </div>
-                </div>
-
-                {/* Content */}
-                <div className="mb-6">
-                  <h3 className="text-2xl font-bold text-white mb-2">{step.title}</h3>
-                  <p className="text-[#ECB629] font-medium text-lg mb-4">{step.subtitle}</p>
-                  <p className="text-gray-300 leading-relaxed mb-6">{step.description}</p>
-                  
-                  {/* Duration */}
-                  <div className="flex items-center gap-2 mb-4">
-                    <div className="w-4 h-4 bg-[#ECB629]/20 rounded-full flex items-center justify-center">
-                      <div className="w-2 h-2 bg-[#ECB629] rounded-full"></div>
+        </motion.div>
+        
+        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {steps.map((step, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              viewport={{ once: true }}
+            >
+              <Card className="relative bg-slate-800/50 border-slate-700 hover:border-[#ECB629]/50 transition-all duration-300 group overflow-hidden h-full">
+                {/* Hover Glow Effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-[#ECB629]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                
+                <CardContent className="p-8 text-center relative z-10">
+                  <div className="relative mb-6">
+                    <div className="w-20 h-20 mx-auto bg-[#ECB629] rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                      <step.icon />
                     </div>
-                    <span className="text-gray-400 text-sm font-medium">{step.duration}</span>
+                    <motion.div
+                      className="absolute inset-0 bg-[#ECB629] rounded-full opacity-5"
+                      animate={{ scale: [1.2, 1.4, 1.2] }}
+                      transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: index * 1 }}
+                    />
                   </div>
-                </div>
+                  
+                  <h3 className="text-xl font-bold text-white mb-4 group-hover:text-[#ECB629] transition-colors">
+                    {step.title}
+                  </h3>
+                  <p className="text-gray-300">
+                    {step.description}
+                  </p>
 
-                {/* Deliverables */}
-                <div>
-                  <h4 className="text-white font-semibold mb-3">Резултати:</h4>
-                  <ul className="space-y-2">
-                    {step.deliverables.map((item, deliverableIndex) => (
-                      <li key={deliverableIndex} className="flex items-center gap-2 text-gray-400 text-sm">
-                        <div className="w-1 h-1 bg-[#ECB629] rounded-full"></div>
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Hover Effect Background */}
-                <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#ECB629]/5 to-transparent rounded-2xl"></div>
-                </div>
-              </motion.div>
-            );
-          })}
-
-          {/* Enhanced CTA Card */}
-          <motion.div
-            className="md:col-span-2 bg-gradient-to-r from-[#ECB629]/10 to-[#ECB629]/5 border border-[#ECB629]/20 rounded-2xl p-8 text-center relative overflow-hidden"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.6 }}
-          >
-            {/* Background Pattern */}
-            <div className="absolute inset-0 opacity-10">
-              <div className="absolute inset-0">
-                {[...Array(12)].map((_, i) => (
-                  <motion.div
-                    key={i}
-                    className="absolute w-1 h-1 bg-[#ECB629] rounded-full"
-                    style={{
-                      left: `${Math.random() * 100}%`,
-                      top: `${Math.random() * 100}%`,
-                    }}
-                    animate={{
-                      scale: [1, 1.5, 1],
-                      opacity: [0.3, 1, 0.3],
-                    }}
-                    transition={{
-                      duration: 3 + Math.random(),
-                      repeat: Infinity,
-                      delay: Math.random() * 3,
-                    }}
-                  />
-                ))}
-              </div>
-            </div>
-
-            <div className="relative z-10">
-              <h3 className="text-2xl font-bold text-white mb-4">
-                Готови ли сте да започнем вашата трансформация?
-              </h3>
-              <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
-                Започнете с безплатна диагностика и разберете точно какви системи ще трансформират вашия бизнес
-              </p>
-              <motion.div whileHover={{ y: -4 }} transition={{ duration: 0.3 }}>
-                <a
-                  href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-8 py-4 bg-[#ECB629] text-black font-bold rounded-lg hover:bg-[#d4af37] transition-colors"
-                >
-                  Започни диагностика
-                  <Repeat className="w-5 h-5" />
-                </a>
-              </motion.div>
-            </div>
-          </motion.div>
+                  {/* Step Number */}
+                  <div className="absolute top-4 right-4 w-8 h-8 bg-[#ECB629]/20 rounded-full flex items-center justify-center">
+                    <span className="text-[#ECB629] font-bold text-sm">{index + 1}</span>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
   );
-}
+};
+
+export default ProcessSection;

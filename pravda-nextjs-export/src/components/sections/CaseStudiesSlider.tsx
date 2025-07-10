@@ -1,270 +1,429 @@
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import {
+  ChevronLeft,
+  ChevronRight,
+  ArrowRight,
+  TrendingUp,
+} from "lucide-react";
+import { Link } from "wouter";
 
-'use client';
+const caseStudies = [
+  {
+    id: "bacho-iliya",
+    company: "Бачо Илия",
+    industry: "Млечна индустрия",
+    tagline:
+      "Марка с обичан вкус и богата история, но без изградена дигитална връзка със своите потребители и търговски партньори.",
+    description:
+      "Вместо стандартна реклама, приложихме инженерен подход към емоциите — свързахме продукта със силно усещане за носталгия по „истинската храна от едно време. Това изгради силно доверие и превърна марката в синоним на качество. Резултатите не закъсняха: телефонът на клиента започна да звъни от развълнувани потребители и заинтересовани търговски партньори.",
+    results: [
+      {
+        metric: "5 000 000",
+        description: "гледания на месец с минимален бюджет",
+      },
+      {
+        metric: "+243%",
+        description: "ръст на месечната бранд аудитория",
+      },
+      { metric: "70%", description: "ръст на запитванията от дистрибутори" },
+    ],
+    systems: ["Trendlab™", "SEO Struktor™"],
+    testimonial:
+      "Pravdast ни помогна да превърнем традиционния ни бизнес в модерен бранд, без да загубим автентичността си.",
+  },
+  {
+    id: "euphoria-beauty",
+    company: "Euphoria Beauty",
+    industry: "Козметични услуги",
+    tagline: "Салон с репутация. Без дигитална визия.",
+    description:
+      "Успешен козметичен салон във Варна с отлична репутация сред съществуващите клиенти, но липса на онлайн присъствие.",
+    results: [
+      { metric: "+280%", description: "повече запитвания онлайн" },
+      { metric: "+137%", description: "нови клиенти от Google" },
+      { metric: "+42%", description: "разпознаваемост на бранд" },
+    ],
+    systems: ["SEO Struktor™", "Clientomat™"],
+    testimonial:
+      "За първи път имаме постоянен поток от нови клиенти, които ни намират онлайн. Системата работи сама.",
+  },
+  {
+    id: "ice-tub-co",
+    company: "Ice Tub Co.",
+    industry: "Фитнес оборудване",
+    tagline: "От нулева SEO стратегия до 1.1M оборот.",
+    description:
+      "Британска компания за ледени вани, която търсеше систематичен подход за навлизане на европейския пазар.",
+    results: [
+      { metric: "13.9K", description: "месечни посещения (от 2.3K)" },
+      { metric: "£1.5M", description: "месечен приход (от £400K)" },
+      { metric: "+27%", description: "поръчки с Clientomat™" },
+    ],
+    systems: ["SEO Struktor™", "Sales Engine™", "Clientomat™"],
+    testimonial:
+      "Pravdast ни помогна да изградим предсказуема система за растеж. Резултатите превъзхождат очакванията ни.",
+  },
+  {
+    id: "dejavu-gym",
+    company: "DeJaVu Gym",
+    industry: "Фитнес",
+    tagline: "Популярен фитнес. Никаква система.",
+    description:
+      "Установен фитнес център с лоялни членове, но без система за привличане на нови клиенти и задържане на съществуващите.",
+    results: [
+      { metric: "+41%", description: "повече активни абонаменти" },
+      { metric: "+66%", description: "повече препоръки" },
+      {
+        metric: "53.13%",
+        description: "96,000 лв. → 147,000 лв. ръст на оборота",
+      },
+    ],
+    systems: ["Clientomat™", "Trendlab™"],
+    testimonial:
+      "Сега имаме ясна система, която работи автоматично. Членовете остават по-дълго и препоръчват повече приятели.",
+  },
+];
 
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight, TrendingUp, Users, Target, Clock } from 'lucide-react';
-import { Card, CardContent } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-
-export function CaseStudiesSlider() {
+export const CaseStudiesSlider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
-
-  const caseStudies = [
-    {
-      id: 1,
-      title: "SaaS компания удвои leads за 4 месеца",
-      description: "Внедряване на SEO Struktor™ система за B2B SaaS компания в технологичния сектор",
-      results: {
-        traffic: "+340%",
-        leads: "+210%",
-        conversion: "+85%",
-        timeframe: "4 месеца"
-      },
-      industry: "SaaS Technology",
-      challenge: "Липса на органичен трафик",
-      solution: "SEO Struktor™ + Content Marketing",
-      status: "SUCCESS",
-      bgGradient: "from-emerald-500/20 to-green-600/20"
-    },
-    {
-      id: 2,
-      title: "Производствена фирма с 450% ръст в продажбите",
-      description: "Пълна автоматизация на sales процесите с Clientomat™ за производствена компания",
-      results: {
-        traffic: "+180%",
-        leads: "+450%",
-        conversion: "+120%",
-        timeframe: "6 месеца"
-      },
-      industry: "Manufacturing",
-      challenge: "Неефективни sales процеси",
-      solution: "Clientomat™ + CRM Integration",
-      status: "SUCCESS",
-      bgGradient: "from-blue-500/20 to-cyan-600/20"
-    },
-    {
-      id: 3,
-      title: "E-commerce магазин с 85% подобрение в ROI",
-      description: "Оптимизация на рекламните кампании с ClickStarter™ за онлайн търговия",
-      results: {
-        traffic: "+95%",
-        leads: "+85%",
-        conversion: "+65%",
-        timeframe: "3 месеца"
-      },
-      industry: "E-commerce",
-      challenge: "Неефективни Ad кампании",
-      solution: "ClickStarter™ + Analytics",
-      status: "SUCCESS",
-      bgGradient: "from-orange-500/20 to-red-600/20"
-    }
-  ];
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % caseStudies.length);
   };
 
   const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + caseStudies.length) % caseStudies.length);
+    setCurrentSlide(
+      (prev) => (prev - 1 + caseStudies.length) % caseStudies.length,
+    );
   };
 
-  useEffect(() => {
-    if (!isAutoPlaying) return;
-
-    const interval = setInterval(() => {
-      nextSlide();
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, [isAutoPlaying]);
-
-  const handleMouseEnter = () => setIsAutoPlaying(false);
-  const handleMouseLeave = () => setIsAutoPlaying(true);
+  const currentCase = caseStudies[currentSlide];
 
   return (
-    <section className="py-20 bg-slate-800/30 relative overflow-hidden">
-      {/* Animated Background */}
+    <section className="py-20 bg-slate-900 relative overflow-hidden">
+      {/* Animated Tech Background */}
+      <div className="absolute inset-0 opacity-15">
+        <div className="absolute inset-0">
+          {/* Success Grid Pattern */}
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `
+              linear-gradient(rgba(236, 182, 40, 0.1) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(236, 182, 40, 0.1) 1px, transparent 1px)
+            `,
+              backgroundSize: "60px 60px",
+            }}
+          ></div>
+
+          {/* Success Indicators */}
+          {[...Array(8)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-2 h-2 bg-green-500 rounded-full"
+              style={{
+                left: `${10 + i * 12}%`,
+                top: `${20 + (i % 4) * 20}%`,
+              }}
+              animate={{
+                scale: [1, 1.4, 1],
+                opacity: [0.4, 0.8, 0.4],
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                delay: i * 0.3,
+              }}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Background Elements */}
       <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-10 left-10 w-20 h-20 border-2 border-[#ECB629] rounded-full animate-ping"></div>
-        <div className="absolute bottom-20 right-20 w-16 h-16 border-2 border-green-400 rounded-full animate-pulse"></div>
-        <div className="absolute top-1/2 left-1/4 w-12 h-12 bg-[#ECB629]/20 rounded-full animate-bounce"></div>
-        <div className="absolute bottom-10 left-1/3 text-green-400 text-sm animate-pulse">+340% Traffic</div>
-        <div className="absolute top-20 right-1/3 text-[#ECB629] text-sm animate-pulse">+450% Leads</div>
-        <div className="absolute bottom-1/3 right-10 text-green-400 text-sm animate-pulse">Success</div>
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-green-500 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-48 h-48 bg-[#ECB629] rounded-full blur-3xl"></div>
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
+        {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
         >
-          <Badge className="bg-[#ECB629]/10 text-[#ECB629] border-[#ECB629]/20 mb-4">
-            Доказани резултати
-          </Badge>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Успешни <span className="text-[#ECB629]">казуси</span>
-          </h2>
-          <p className="text-xl text-slate-300 max-w-3xl mx-auto">
-            Реални резултати от реални клиенти - вижте как помогнахме на компании да постигнат предсказуем растеж
-          </p>
+          <motion.div
+            className="inline-flex items-center gap-3 mb-8 px-6 py-3 rounded-full bg-gradient-to-r from-slate-800/80 to-slate-700/60 border border-slate-600/30 backdrop-blur-sm"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <div className="flex items-center gap-2">
+              <div className="relative">
+                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                <motion.div
+                  className="absolute inset-0 w-2 h-2 bg-green-500 rounded-full opacity-20"
+                  animate={{ scale: [1, 1.3, 1] }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                />
+              </div>
+              <span className="text-sm text-gray-300 font-medium">
+                <span className="text-[#ECB629] font-bold">Проследими</span>{" "}
+                резултати от реални клиенти
+              </span>
+            </div>
+          </motion.div>
+
+          <motion.h2
+            className="text-4xl md:text-5xl font-bold mb-6 text-white"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            Един реален пример струва повече от <br />
+            <span className="text-[#ECB629] relative">
+              1000 обещания.
+              <motion.div
+                className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-[#ECB629] to-[#ECB629]/50 rounded-full"
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                transition={{ duration: 1, delay: 0.6 }}
+                viewport={{ once: true }}
+              />
+            </span>
+          </motion.h2>
+
+          <motion.p
+            className="text-xl text-gray-300 max-w-3xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            viewport={{ once: true }}
+          >
+            Вижте как компании превърнаха хаоса в предсказуем растеж с нашите
+            инженерни системи
+          </motion.p>
         </motion.div>
 
-        <div 
-          className="relative max-w-6xl mx-auto"
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-        >
-          {/* Main Slider */}
-          <div className="relative h-[500px] md:h-[400px] overflow-hidden rounded-2xl">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={currentSlide}
-                initial={{ opacity: 0, x: 100 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -100 }}
-                transition={{ duration: 0.5 }}
-                className="absolute inset-0"
-              >
-                <Card className="h-full bg-slate-800/80 border-slate-700 backdrop-blur-sm">
-                  <CardContent className="p-8 h-full">
-                    <div className={`absolute inset-0 bg-gradient-to-r ${caseStudies[currentSlide].bgGradient} opacity-10`}></div>
-                    
-                    <div className="relative z-10 h-full flex flex-col">
-                      {/* Header */}
-                      <div className="flex items-start justify-between mb-6">
-                        <div className="flex items-center space-x-3">
-                          <Badge variant="secondary" className="bg-green-500/20 text-green-400 border-green-500/30">
-                            {caseStudies[currentSlide].status}
-                          </Badge>
-                          <Badge variant="outline" className="border-slate-600 text-slate-400">
-                            {caseStudies[currentSlide].industry}
-                          </Badge>
-                        </div>
-                        <div className="text-slate-400 text-sm">
-                          {caseStudies[currentSlide].results.timeframe}
-                        </div>
+        {/* Modern Slider */}
+        <div className="relative max-w-7xl mx-auto">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentSlide}
+              initial={{ opacity: 0, x: 100 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -100 }}
+              transition={{ duration: 0.5 }}
+            >
+              {/* Modern Case Study Card */}
+              <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-slate-800/80 to-slate-900/90 border border-[#ECB629]/20 backdrop-blur-sm">
+                {/* Animated Background Pattern */}
+                <div className="absolute inset-0 opacity-10">
+                  <div
+                    className="absolute inset-0"
+                    style={{
+                      backgroundImage: `
+                      linear-gradient(rgba(34, 197, 94, 0.1) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(34, 197, 94, 0.1) 1px, transparent 1px)
+                    `,
+                      backgroundSize: "30px 30px",
+                    }}
+                  ></div>
+                </div>
+
+                {/* Success Badge */}
+                {/*<div className="absolute top-6 right-6">
+                  <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-green-500/20 border border-green-500/40">
+                    <div className="w-2 h-2 bg-green-500 rounded-full">
+                      <div className="absolute inset-0 bg-green-500 rounded-full animate-ping opacity-75"></div>
+                    </div>
+                    <span className="text-xs text-green-400 font-medium">УСПЕХ</span>
+                  </div>
+                </div>*/}
+
+                <div className="p-8 md:p-12 relative z-10">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    {/* Left Content */}
+                    <div>
+                      <div className="flex items-center gap-3 mb-6">
+                        <div className="w-4 h-4 rounded-full bg-gradient-to-r from-[#ECB629] to-[#ECB629]/80"></div>
+                        <span className="text-sm text-[#ECB629] font-medium uppercase tracking-wider">
+                          {currentCase.industry}
+                        </span>
                       </div>
 
-                      {/* Content */}
-                      <div className="grid md:grid-cols-2 gap-8 flex-1">
-                        {/* Left Column */}
-                        <div className="space-y-6">
-                          <div>
-                            <h3 className="text-2xl font-bold text-white mb-4">
-                              {caseStudies[currentSlide].title}
-                            </h3>
-                            <p className="text-slate-300 leading-relaxed">
-                              {caseStudies[currentSlide].description}
-                            </p>
-                          </div>
+                      <h3 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                        {currentCase.company}
+                      </h3>
 
-                          <div className="space-y-4">
-                            <div className="flex items-center space-x-3">
-                              <Target className="h-5 w-5 text-red-400" />
-                              <div>
-                                <div className="text-sm text-slate-400">Предизвикателство</div>
-                                <div className="text-white">{caseStudies[currentSlide].challenge}</div>
-                              </div>
-                            </div>
-                            <div className="flex items-center space-x-3">
-                              <TrendingUp className="h-5 w-5 text-[#ECB629]" />
-                              <div>
-                                <div className="text-sm text-slate-400">Решение</div>
-                                <div className="text-white">{caseStudies[currentSlide].solution}</div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
+                      <p className="text-lg text-[#ECB629] mb-6 font-medium leading-relaxed">
+                        {currentCase.tagline}
+                      </p>
 
-                        {/* Right Column - Results */}
-                        <div className="space-y-4">
-                          <h4 className="text-lg font-semibold text-white mb-6">Резултати</h4>
-                          <div className="grid grid-cols-2 gap-4">
-                            <motion.div 
-                              className="bg-slate-700/50 rounded-lg p-4 text-center"
-                              whileHover={{ scale: 1.05 }}
-                            >
-                              <TrendingUp className="h-6 w-6 text-green-400 mx-auto mb-2" />
-                              <div className="text-2xl font-bold text-green-400">
-                                {caseStudies[currentSlide].results.traffic}
-                              </div>
-                              <div className="text-sm text-slate-400">Трафик</div>
-                            </motion.div>
-                            <motion.div 
-                              className="bg-slate-700/50 rounded-lg p-4 text-center"
-                              whileHover={{ scale: 1.05 }}
-                            >
-                              <Users className="h-6 w-6 text-[#ECB629] mx-auto mb-2" />
-                              <div className="text-2xl font-bold text-[#ECB629]">
-                                {caseStudies[currentSlide].results.leads}
-                              </div>
-                              <div className="text-sm text-slate-400">Leads</div>
-                            </motion.div>
-                            <motion.div 
-                              className="bg-slate-700/50 rounded-lg p-4 text-center"
-                              whileHover={{ scale: 1.05 }}
-                            >
-                              <Target className="h-6 w-6 text-blue-400 mx-auto mb-2" />
-                              <div className="text-2xl font-bold text-blue-400">
-                                {caseStudies[currentSlide].results.conversion}
-                              </div>
-                              <div className="text-sm text-slate-400">Conversion</div>
-                            </motion.div>
-                            <motion.div 
-                              className="bg-slate-700/50 rounded-lg p-4 text-center"
-                              whileHover={{ scale: 1.05 }}
-                            >
-                              <Clock className="h-6 w-6 text-purple-400 mx-auto mb-2" />
-                              <div className="text-2xl font-bold text-purple-400">
-                                {caseStudies[currentSlide].results.timeframe}
-                              </div>
-                              <div className="text-sm text-slate-400">Времеви рамки</div>
-                            </motion.div>
-                          </div>
+                      <p className="text-gray-300 mb-8 leading-relaxed">
+                        {currentCase.description}
+                      </p>
+
+                      {/* Systems Used */}
+                      <div className="flex flex-wrap gap-3 mb-8">
+                        {currentCase.systems.map((system, index) => (
+                          <motion.span
+                            key={index}
+                            className="px-4 py-2 bg-gradient-to-r from-[#ECB629]/20 to-[#ECB629]/10 border border-[#ECB629]/40 rounded-full text-sm text-[#ECB629] font-medium"
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.3, delay: index * 0.1 }}
+                          >
+                            {system}
+                          </motion.span>
+                        ))}
+                      </div>
+
+                      {/* Enhanced Testimonial */}
+                      <div className="relative">
+                        <div className="absolute -left-2 -top-2 text-4xl text-[#ECB629]/20 font-serif">
+                          "
                         </div>
+                        <blockquote className="text-lg italic text-gray-200 border-l-4 border-[#ECB629] pl-6 bg-slate-800/30 rounded-r-lg p-4">
+                          {currentCase.testimonial}
+                        </blockquote>
                       </div>
                     </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            </AnimatePresence>
-          </div>
 
-          {/* Navigation */}
-          <div className="flex items-center justify-between mt-8">
-            <button
+                    {/* Right Content - Enhanced Results */}
+                    <div>
+                      <div className="grid grid-cols-1 gap-4">
+                        {currentCase.results.map((result, index) => (
+                          <motion.div
+                            key={index}
+                            className="relative overflow-hidden rounded-xl bg-gradient-to-r from-slate-800/60 to-slate-900/80 border border-green-500/20 p-6 text-center group hover:border-green-500/40 transition-all duration-300"
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5, delay: index * 0.1 }}
+                          >
+                            {/* Success indicator background */}
+                            <div className="absolute inset-0 opacity-10">
+                              <div
+                                className="absolute inset-0"
+                                style={{
+                                  backgroundImage: `
+                                  linear-gradient(45deg, rgba(34, 197, 94, 0.1) 25%, transparent 25%),
+                                  linear-gradient(-45deg, rgba(34, 197, 94, 0.1) 25%, transparent 25%)
+                                `,
+                                  backgroundSize: "15px 15px",
+                                }}
+                              ></div>
+                            </div>
+
+                            <div className="relative z-10">
+                              <div className="flex items-center justify-center mb-3">
+                                <div className="w-10 h-10 rounded-full bg-gradient-to-r from-green-500 to-green-400 flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300">
+                                  <TrendingUp className="text-white w-5 h-5" />
+                                </div>
+                                <div className="text-center">
+                                  <span className="text-2xl md:text-3xl font-bold text-green-400 block">
+                                    {result.metric}
+                                  </span>
+                                </div>
+                              </div>
+                              <p className="text-gray-300 text-sm leading-relaxed">
+                                {result.description}
+                              </p>
+                            </div>
+
+                            {/* Floating elements */}
+                            <div className="absolute bottom-2 right-2 opacity-20">
+                              <motion.div
+                                className="w-2 h-2 bg-green-500 rounded-full"
+                                animate={{
+                                  scale: [1, 1.3, 1],
+                                  opacity: [0.3, 0.7, 0.3],
+                                }}
+                                transition={{
+                                  duration: 2,
+                                  repeat: Infinity,
+                                  delay: index * 0.2,
+                                }}
+                              />
+                            </div>
+                          </motion.div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </AnimatePresence>
+
+          {/* Enhanced Navigation */}
+          <div className="flex justify-center items-center gap-6 mt-12">
+            <motion.button
               onClick={prevSlide}
-              className="flex items-center justify-center w-12 h-12 bg-slate-800 border border-slate-700 rounded-full text-white hover:bg-slate-700 transition-colors group"
+              className="w-14 h-14 rounded-full bg-gradient-to-r from-slate-800 to-slate-700 border border-[#ECB629]/30 hover:border-[#ECB629] text-white flex items-center justify-center transition-all duration-300 hover:scale-110"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
             >
-              <ChevronLeft className="h-5 w-5 group-hover:scale-110 transition-transform" />
-            </button>
+              <ChevronLeft className="w-6 h-6" />
+            </motion.button>
 
-            <div className="flex space-x-2">
+            {/* Enhanced Dots Indicator */}
+            <div className="flex gap-3">
               {caseStudies.map((_, index) => (
-                <button
+                <motion.button
                   key={index}
                   onClick={() => setCurrentSlide(index)}
-                  className={`w-3 h-3 rounded-full transition-colors ${
-                    index === currentSlide ? 'bg-[#ECB629]' : 'bg-slate-600'
+                  className={`w-4 h-4 rounded-full transition-all duration-300 ${
+                    index === currentSlide
+                      ? "bg-[#ECB629] shadow-lg shadow-[#ECB629]/40"
+                      : "bg-gray-600 hover:bg-gray-500"
                   }`}
+                  whileHover={{ scale: 1.2 }}
+                  whileTap={{ scale: 0.9 }}
                 />
               ))}
             </div>
 
-            <button
+            <motion.button
               onClick={nextSlide}
-              className="flex items-center justify-center w-12 h-12 bg-slate-800 border border-slate-700 rounded-full text-white hover:bg-slate-700 transition-colors group"
+              className="w-14 h-14 rounded-full bg-gradient-to-r from-slate-800 to-slate-700 border border-[#ECB629]/30 hover:border-[#ECB629] text-white flex items-center justify-center transition-all duration-300 hover:scale-110"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
             >
-              <ChevronRight className="h-5 w-5 group-hover:scale-110 transition-transform" />
-            </button>
+              <ChevronRight className="w-6 h-6" />
+            </motion.button>
+          </div>
+
+          {/* Enhanced CTA */}
+          <div className="text-center mt-12">
+            <Link href="/case-studies">
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Button
+                  size="lg"
+                  className="bg-gradient-to-r from-[#ECB629] to-[#ECB629]/80 hover:from-[#ECB629]/90 hover:to-[#ECB629]/70 text-black font-semibold px-8 py-4 rounded-xl shadow-lg shadow-[#ECB629]/20 transition-all duration-300"
+                >
+                  Вижте всички казуси
+                  <ArrowRight className="ml-2 w-5 h-5" />
+                </Button>
+              </motion.div>
+            </Link>
           </div>
         </div>
       </div>
     </section>
   );
-}
+};
