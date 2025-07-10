@@ -10,8 +10,27 @@ import { seoMiddleware } from "./lib/seo-middleware";
 
 const app = express();
 
-// Prerender.io middleware за SEO
-app.use(prerender.set("prerenderToken", process.env.PRERENDER_TOKEN));
+// Debug logging за Prerender integration
+app.use((req, res, next) => {
+  const userAgent = req.get('User-Agent') || '';
+  if (userAgent.includes('Prerender') || userAgent.includes('bot') || userAgent.includes('Bot')) {
+    console.log('🤖 Bot detected:', userAgent);
+    console.log('📍 IP:', req.ip);
+    console.log('🔗 URL:', req.url);
+    console.log('🎫 Token exists:', !!process.env.PRERENDER_TOKEN);
+  }
+  next();
+});
+
+// Prerender.io middleware за SEO - работи само ако има token
+if (process.env.PRERENDER_TOKEN) {
+  console.log('✅ Prerender.io middleware активен с token');
+  app.use(prerender.set("prerenderToken", process.env.PRERENDER_TOKEN)
+    .set("prerenderServiceUrl", "https://service.prerender.io")
+    .set("protocol", "https"));
+} else {
+  console.log('⚠️ PRERENDER_TOKEN липсва - middleware неактивен в development');
+}
 
 // Trust proxy for rate limiting
 app.set("trust proxy", 1);
@@ -85,6 +104,7 @@ app.use(
           "https://static.klaviyo.com",
           "https://static-tracking.klaviyo.com",
           "https://d3k81ch9hvuctc.cloudfront.net",
+          "https://service.prerender.io",
         ],
       },
     },
@@ -113,7 +133,7 @@ app.use(
   }),
 );
 
-// Rate limiting - disabled in development
+// Rate limiting - disabled in development, whitelist Prerender.io IPs
 if (process.env.NODE_ENV === "production") {
   const generalLimiter = rateLimit({
     windowMs: 15 * 60 * 1000, // 15 минути
@@ -121,6 +141,14 @@ if (process.env.NODE_ENV === "production") {
     message: { error: "Твърде много заявки. Опитайте отново след 15 минути." },
     standardHeaders: true,
     legacyHeaders: false,
+    skip: (req) => {
+      // Whitelist Prerender.io IPs
+      const prerenderIPs = [
+        '52.22.151.86', '52.22.151.75', '52.22.151.74', '52.22.151.82',
+        '52.22.151.81', '52.22.151.83', '52.22.151.84', '52.22.151.85'
+      ];
+      return prerenderIPs.includes(req.ip) || req.get('User-Agent')?.includes('Prerender');
+    },
   });
 
   const contactLimiter = rateLimit({
@@ -129,6 +157,14 @@ if (process.env.NODE_ENV === "production") {
     message: { error: "Твърде много съобщения. Опитайте отново след 1 час." },
     standardHeaders: true,
     legacyHeaders: false,
+    skip: (req) => {
+      // Whitelist Prerender.io IPs
+      const prerenderIPs = [
+        '52.22.151.86', '52.22.151.75', '52.22.151.74', '52.22.151.82',
+        '52.22.151.81', '52.22.151.83', '52.22.151.84', '52.22.151.85'
+      ];
+      return prerenderIPs.includes(req.ip) || req.get('User-Agent')?.includes('Prerender');
+    },
   });
 
   app.use(generalLimiter);
