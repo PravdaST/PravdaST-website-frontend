@@ -1,13 +1,16 @@
+
 {
   "name": "pravda-nextjs",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "export": "next export"
+    "export": "next export",
+    "type-check": "tsc --noEmit",
+    "analyze": "cross-env ANALYZE=true npm run build"
   },
   "dependencies": {
     "next": "^14.0.0",
@@ -30,7 +33,6 @@
     "@radix-ui/react-accordion": "^1.1.0",
     "@radix-ui/react-alert-dialog": "^1.0.0",
     "@radix-ui/react-avatar": "^1.0.0",
-    "@radix-ui/react-button": "^0.1.0",
     "@radix-ui/react-checkbox": "^1.0.0",
     "@radix-ui/react-dialog": "^1.0.0",
     "@radix-ui/react-dropdown-menu": "^2.0.0",
@@ -46,25 +48,52 @@
     "@radix-ui/react-slot": "^1.0.0",
     "@radix-ui/react-switch": "^1.0.0",
     "@radix-ui/react-tabs": "^1.0.0",
+    "@radix-ui/react-textarea": "^1.0.0",
     "@radix-ui/react-toast": "^1.1.0",
+    "@radix-ui/react-toggle": "^1.0.0",
+    "@radix-ui/react-toggle-group": "^1.0.0",
     "@radix-ui/react-tooltip": "^1.0.0",
-    "react-hook-form": "^7.47.0",
-    "@hookform/resolvers": "^3.3.0",
-    "zod": "^3.22.0",
-    "date-fns": "^2.30.0",
-    "react-day-picker": "^8.8.0",
+    "@radix-ui/react-menubar": "^1.0.0",
+    "@radix-ui/react-command": "^0.2.0",
+    "@radix-ui/react-context-menu": "^2.1.0",
+    "@radix-ui/react-hover-card": "^1.0.0",
+    "@radix-ui/react-collapsible": "^1.0.0",
+    "@radix-ui/react-aspect-ratio": "^1.0.0",
+    "@radix-ui/react-form": "^0.0.3",
+    "@radix-ui/react-sheet": "^0.1.0",
+    "@radix-ui/react-skeleton": "^0.1.0",
+    "sonner": "^1.4.0",
+    "react-day-picker": "^8.10.0",
+    "date-fns": "^3.6.0",
+    "recharts": "^2.10.0",
+    "cmdk": "^1.0.0",
+    "vaul": "^0.9.0",
     "embla-carousel-react": "^8.0.0",
-    "vaul": "^0.8.0",
-    "cmdk": "^0.2.0",
+    "react-resizable-panels": "^1.0.0",
     "input-otp": "^1.2.0",
-    "next-themes": "^0.2.0",
-    "react-resizable-panels": "^0.0.55",
-    "recharts": "^2.8.0"
+    "@hookform/resolvers": "^3.3.0",
+    "react-hook-form": "^7.48.0",
+    "zod": "^3.22.0"
   },
   "devDependencies": {
-    "eslint": "^8.0.0",
+    "@next/bundle-analyzer": "^14.0.0",
+    "@types/gtag": "^0.0.19",
+    "cross-env": "^7.0.3",
+    "eslint": "^8.57.0",
     "eslint-config-next": "^14.0.0",
-    "@types/react": "^18.2.0",
-    "@types/react-dom": "^18.2.0"
+    "@typescript-eslint/eslint-plugin": "^7.0.0",
+    "@typescript-eslint/parser": "^7.0.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.3%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
