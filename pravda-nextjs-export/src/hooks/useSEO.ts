@@ -1,136 +1,112 @@
-
-'use client';
-
-import { useEffect } from 'react';
-import { usePathname } from 'next/navigation';
+import { useEffect } from 'react'
 
 interface SEOData {
-  title: string;
-  description: string;
-  canonical?: string;
-  ogTitle?: string;
-  ogDescription?: string;
-  ogImage?: string;
-  twitterTitle?: string;
-  twitterDescription?: string;
-  twitterImage?: string;
-  structuredData?: Record<string, any>;
-  robots?: string;
+  title?: string
+  description?: string
+  keywords?: string
+  ogImage?: string
+  ogType?: string
+  twitterCard?: string
+  canonical?: string
+  noindex?: boolean
 }
 
 export function useSEO(seoData: SEOData) {
-  const pathname = usePathname();
-
   useEffect(() => {
-    // Update document title
-    document.title = seoData.title;
-
-    // Update meta description
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', seoData.description);
+    // Update title
+    if (seoData.title) {
+      document.title = seoData.title
     }
 
-    // Update canonical URL
-    const canonical = document.querySelector('link[rel="canonical"]');
-    if (canonical && seoData.canonical) {
-      canonical.setAttribute('href', seoData.canonical);
-    }
-
-    // Update Open Graph tags
-    const updateOGTag = (property: string, content: string) => {
-      let ogTag = document.querySelector(`meta[property="${property}"]`);
-      if (!ogTag) {
-        ogTag = document.createElement('meta');
-        ogTag.setAttribute('property', property);
-        document.head.appendChild(ogTag);
+    // Update meta tags
+    const updateMetaTag = (name: string, content: string) => {
+      let meta = document.querySelector(`meta[name="${name}"]`) as HTMLMetaElement
+      if (!meta) {
+        meta = document.createElement('meta')
+        meta.name = name
+        document.head.appendChild(meta)
       }
-      ogTag.setAttribute('content', content);
-    };
+      meta.content = content
+    }
 
-    updateOGTag('og:title', seoData.ogTitle || seoData.title);
-    updateOGTag('og:description', seoData.ogDescription || seoData.description);
-    updateOGTag('og:url', window.location.href);
-    updateOGTag('og:type', 'website');
-    
+    const updatePropertyTag = (property: string, content: string) => {
+      let meta = document.querySelector(`meta[property="${property}"]`) as HTMLMetaElement
+      if (!meta) {
+        meta = document.createElement('meta')
+        meta.setAttribute('property', property)
+        document.head.appendChild(meta)
+      }
+      meta.content = content
+    }
+
+    if (seoData.description) {
+      updateMetaTag('description', seoData.description)
+      updatePropertyTag('og:description', seoData.description)
+      updateMetaTag('twitter:description', seoData.description)
+    }
+
+    if (seoData.keywords) {
+      updateMetaTag('keywords', seoData.keywords)
+    }
+
     if (seoData.ogImage) {
-      updateOGTag('og:image', seoData.ogImage);
+      updatePropertyTag('og:image', seoData.ogImage)
+      updateMetaTag('twitter:image', seoData.ogImage)
     }
 
-    // Update Twitter Card tags
-    const updateTwitterTag = (name: string, content: string) => {
-      let twitterTag = document.querySelector(`meta[name="${name}"]`);
-      if (!twitterTag) {
-        twitterTag = document.createElement('meta');
-        twitterTag.setAttribute('name', name);
-        document.head.appendChild(twitterTag);
+    if (seoData.ogType) {
+      updatePropertyTag('og:type', seoData.ogType)
+    }
+
+    if (seoData.twitterCard) {
+      updateMetaTag('twitter:card', seoData.twitterCard)
+    }
+
+    if (seoData.canonical) {
+      let link = document.querySelector('link[rel="canonical"]') as HTMLLinkElement
+      if (!link) {
+        link = document.createElement('link')
+        link.rel = 'canonical'
+        document.head.appendChild(link)
       }
-      twitterTag.setAttribute('content', content);
-    };
-
-    updateTwitterTag('twitter:card', 'summary_large_image');
-    updateTwitterTag('twitter:title', seoData.twitterTitle || seoData.title);
-    updateTwitterTag('twitter:description', seoData.twitterDescription || seoData.description);
-    
-    if (seoData.twitterImage) {
-      updateTwitterTag('twitter:image', seoData.twitterImage);
+      link.href = seoData.canonical
     }
 
-    // Update robots meta tag
-    if (seoData.robots) {
-      const robotsTag = document.querySelector('meta[name="robots"]');
-      if (robotsTag) {
-        robotsTag.setAttribute('content', seoData.robots);
-      }
+    if (seoData.noindex) {
+      updateMetaTag('robots', 'noindex, nofollow')
+    } else {
+      updateMetaTag('robots', 'index, follow')
     }
 
-    // Add structured data
-    if (seoData.structuredData) {
-      const scriptId = 'structured-data';
-      let script = document.getElementById(scriptId);
-      
-      if (script) {
-        script.remove();
-      }
-      
-      script = document.createElement('script');
-      script.id = scriptId;
-      script.type = 'application/ld+json';
-      script.textContent = JSON.stringify(seoData.structuredData);
-      document.head.appendChild(script);
+    // Always update og:title and twitter:title if title exists
+    if (seoData.title) {
+      updatePropertyTag('og:title', seoData.title)
+      updateMetaTag('twitter:title', seoData.title)
     }
 
-  }, [pathname, seoData]);
+    // Update og:url to current page
+    updatePropertyTag('og:url', window.location.href)
 
-  return {
-    updateSEO: (newSeoData: Partial<SEOData>) => {
-      // This could be used to dynamically update SEO data
-      Object.assign(seoData, newSeoData);
-    }
-  };
+  }, [seoData])
 }
 
-// Hook for tracking page views
-export function usePageView() {
-  const pathname = usePathname();
-
+export function useStructuredData(data: object) {
   useEffect(() => {
-    // Track page view with analytics
-    if (typeof window !== 'undefined') {
-      // Google Analytics
-      if ((window as any).gtag) {
-        (window as any).gtag('config', process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID, {
-          page_path: pathname,
-        });
-      }
+    const script = document.createElement('script')
+    script.type = 'application/ld+json'
+    script.textContent = JSON.stringify(data)
+    script.id = 'structured-data'
 
-      // Klaviyo
-      if ((window as any)._learnq) {
-        (window as any)._learnq.push(['track', 'Viewed Page', {
-          page: pathname,
-          timestamp: new Date().toISOString()
-        }]);
-      }
+    // Remove existing structured data
+    const existing = document.getElementById('structured-data')
+    if (existing) {
+      existing.remove()
     }
-  }, [pathname]);
+
+    document.head.appendChild(script)
+
+    return () => {
+      script.remove()
+    }
+  }, [data])
 }
