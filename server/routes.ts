@@ -591,6 +591,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Sitemap XML API endpoint за Vercel compatibility
   app.get("/api/sitemap.xml", async (req: Request, res: Response) => {
     try {
+      const { seoGenerator } = await import("./lib/seo-generator");
       const xmlContent = seoGenerator.generateSitemap();
       res.setHeader('Content-Type', 'text/xml; charset=utf-8');
       res.setHeader('Cache-Control', 'public, max-age=86400');

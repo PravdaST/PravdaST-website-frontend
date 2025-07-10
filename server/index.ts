@@ -37,14 +37,28 @@ app.get('/test-prerender', (req, res) => {
   });
 });
 
-// Prerender.io middleware за SEO - работи само ако има token
-if (process.env.PRERENDER_TOKEN) {
+// Prerender.io middleware за SEO - временно деактивиран за production build
+if (process.env.PRERENDER_TOKEN && process.env.NODE_ENV === "production") {
   console.log('✅ Prerender.io middleware активен с token');
-  app.use(prerender.set("prerenderToken", process.env.PRERENDER_TOKEN)
-    .set("prerenderServiceUrl", "https://service.prerender.io")
-    .set("protocol", "https"));
+  try {
+    const prerenderInstance = prerender({
+      prerenderToken: process.env.PRERENDER_TOKEN,
+      prerenderServiceUrl: "https://service.prerender.io",
+      protocol: "https"
+    });
+    
+    // Apply middleware only to non-API routes
+    app.use((req, res, next) => {
+      if (req.path.startsWith('/api/') || req.path.startsWith('/test-')) {
+        return next();
+      }
+      return prerenderInstance(req, res, next);
+    });
+  } catch (error) {
+    console.error('Prerender middleware error:', error);
+  }
 } else {
-  console.log('⚠️ PRERENDER_TOKEN липсва - middleware неактивен в development');
+  console.log('⚠️ Prerender.io middleware неактивен (development mode или липсва token)');
   console.log('ℹ️ За тестване на интеграцията посетете: /test-prerender');
 }
 
@@ -209,11 +223,9 @@ if (process.env.NODE_ENV === "production") {
         return true;
       }
       
-      // Check official IP ranges
-      // 103.207.40.0/22 = 103.207.40.0 - 103.207.43.255
-      // 104.224.12.0/22 = 104.224.12.0 - 104.224.15.255
-      if (clientIP.startsWith('103.207.4') || 
-          clientIP.startsWith('104.224.1')) {
+      // Check official IP ranges - with null check
+      if (clientIP && typeof clientIP === 'string' && 
+          (clientIP.startsWith('103.207.4') || clientIP.startsWith('104.224.1'))) {
         return true;
       }
       
@@ -237,11 +249,9 @@ if (process.env.NODE_ENV === "production") {
         return true;
       }
       
-      // Check official IP ranges
-      // 103.207.40.0/22 = 103.207.40.0 - 103.207.43.255
-      // 104.224.12.0/22 = 104.224.12.0 - 104.224.15.255
-      if (clientIP.startsWith('103.207.4') || 
-          clientIP.startsWith('104.224.1')) {
+      // Check official IP ranges with null check
+      if (clientIP && typeof clientIP === 'string' && 
+          (clientIP.startsWith('103.207.4') || clientIP.startsWith('104.224.1'))) {
         return true;
       }
       
