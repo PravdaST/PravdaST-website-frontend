@@ -22,6 +22,21 @@ app.use((req, res, next) => {
   next();
 });
 
+// Test endpoint за проверка на Prerender интеграция
+app.get('/test-prerender', (req, res) => {
+  const userAgent = req.get('User-Agent') || '';
+  const isBot = userAgent.includes('bot') || userAgent.includes('Bot') || userAgent.includes('Prerender');
+  
+  res.json({
+    status: 'Prerender integration test',
+    userAgent: userAgent,
+    isBotDetected: isBot,
+    hasToken: !!process.env.PRERENDER_TOKEN,
+    middleware: process.env.PRERENDER_TOKEN ? 'active' : 'inactive (development)',
+    timestamp: new Date().toISOString()
+  });
+});
+
 // Prerender.io middleware за SEO - работи само ако има token
 if (process.env.PRERENDER_TOKEN) {
   console.log('✅ Prerender.io middleware активен с token');
@@ -30,6 +45,7 @@ if (process.env.PRERENDER_TOKEN) {
     .set("protocol", "https"));
 } else {
   console.log('⚠️ PRERENDER_TOKEN липсва - middleware неактивен в development');
+  console.log('ℹ️ За тестване на интеграцията посетете: /test-prerender');
 }
 
 // Trust proxy for rate limiting
