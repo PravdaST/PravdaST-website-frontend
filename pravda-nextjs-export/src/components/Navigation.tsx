@@ -190,3 +190,114 @@ const Navigation = () => {
 };
 
 export default Navigation;
+'use client'
+
+import { useState } from 'react'
+import Link from 'next/link'
+import { Menu, X, ChevronDown } from 'lucide-react'
+
+export default function Navigation() {
+  const [isOpen, setIsOpen] = useState(false)
+  const [isServicesOpen, setIsServicesOpen] = useState(false)
+
+  return (
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-slate-900/95 backdrop-blur-sm border-b border-slate-800">
+      <div className="container mx-auto px-6">
+        <div className="flex items-center justify-between h-16">
+          {/* Logo */}
+          <Link href="/" className="text-2xl font-bold text-white hover:text-[#ECB628] transition-colors">
+            Pravda Agency
+          </Link>
+
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-8">
+            <Link href="/" className="text-slate-300 hover:text-white transition-colors">
+              Начало
+            </Link>
+            
+            {/* Services Dropdown */}
+            <div className="relative">
+              <button
+                onClick={() => setIsServicesOpen(!isServicesOpen)}
+                className="flex items-center text-slate-300 hover:text-white transition-colors"
+              >
+                Услуги
+                <ChevronDown className="ml-1 h-4 w-4" />
+              </button>
+              
+              {isServicesOpen && (
+                <div className="absolute top-full mt-2 left-0 bg-slate-800 border border-slate-600 rounded-lg p-3 shadow-lg min-w-[200px]">
+                  <Link href="/services/seo-struktor" className="block px-3 py-2 text-slate-300 hover:text-white hover:bg-slate-700 rounded">
+                    SEO Struktor™
+                  </Link>
+                  <Link href="/services/clientomat" className="block px-3 py-2 text-slate-300 hover:text-white hover:bg-slate-700 rounded">
+                    Clientomat™
+                  </Link>
+                  <Link href="/services/trendlab" className="block px-3 py-2 text-slate-300 hover:text-white hover:bg-slate-700 rounded">
+                    Trendlab™
+                  </Link>
+                  <Link href="/services/clickstarter" className="block px-3 py-2 text-slate-300 hover:text-white hover:bg-slate-700 rounded">
+                    Clickstarter™
+                  </Link>
+                </div>
+              )}
+            </div>
+
+            <Link href="/about" className="text-slate-300 hover:text-white transition-colors">
+              За нас
+            </Link>
+            <Link href="/case-studies" className="text-slate-300 hover:text-white transition-colors">
+              Казуси
+            </Link>
+            <Link href="/blog" className="text-slate-300 hover:text-white transition-colors">
+              Блог
+            </Link>
+            <Link href="/calculators" className="text-slate-300 hover:text-white transition-colors">
+              Калкулатори
+            </Link>
+            <Link href="/contact" className="bg-[#ECB628] text-black px-6 py-2 rounded-lg font-semibold hover:bg-[#d4a524] transition-colors">
+              Контакт
+            </Link>
+          </div>
+
+          {/* Mobile menu button */}
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="md:hidden text-white"
+          >
+            {isOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
+
+        {/* Mobile Navigation */}
+        {isOpen && (
+          <div className="md:hidden py-4 border-t border-slate-800">
+            <div className="flex flex-col space-y-4">
+              <Link href="/" className="text-slate-300 hover:text-white transition-colors">
+                Начало
+              </Link>
+              <Link href="/services" className="text-slate-300 hover:text-white transition-colors">
+                Услуги
+              </Link>
+              <Link href="/about" className="text-slate-300 hover:text-white transition-colors">
+                За нас
+              </Link>
+              <Link href="/case-studies" className="text-slate-300 hover:text-white transition-colors">
+                Казуси
+              </Link>
+              <Link href="/blog" className="text-slate-300 hover:text-white transition-colors">
+                Блог
+              </Link>
+              <Link href="/calculators" className="text-slate-300 hover:text-white transition-colors">
+                Калкулатори
+              </Link>
+              <Link href="/contact" className="bg-[#ECB628] text-black px-6 py-2 rounded-lg font-semibold hover:bg-[#d4a524] transition-colors text-center">
+                Контакт
+              </Link>
+            </div>
+          </div>
+        )}
+      </div>
+    </nav>
+  )
+}

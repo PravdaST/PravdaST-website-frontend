@@ -146,3 +146,38 @@ export default function ClickstarterPage() {
     </>
   );
 }
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Clickstarter™ - Реклами с Измерим ROI | Pravda Agency - 1570лв/месец',
+  description: 'Clickstarter™ - системно управление на рекламни кампании. Google/Meta Ads оптимизация за максимален ROI. 1570 лв./месечно. Безплатен анализ.',
+  robots: 'index, follow'
+}
+
+export default function ClickstarterPage() {
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+      <div className="container mx-auto px-6 py-20">
+        <div className="max-w-4xl mx-auto text-center">
+          <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            Двигателят на вашия растеж има нужда от <span className="text-[#ECB628]">настройка</span>, а не само от повече гориво
+          </h1>
+          
+          <p className="text-xl text-slate-300 mb-8">
+            Clickstarter™ - системно управление на рекламни кампании с измерим ROI
+          </p>
+          
+          <div className="bg-slate-800/60 rounded-2xl p-8 border border-slate-600">
+            <h2 className="text-2xl font-bold text-white mb-4">Цена: 1570 лв./месечно</h2>
+            <p className="text-slate-300 mb-6">
+              Професионално управление на Google Ads и Meta Ads кампании с фокус върху ROI оптимизация
+            </p>
+            <button className="bg-[#ECB628] text-black px-8 py-3 rounded-lg font-semibold hover:bg-[#d4a524] transition-colors">
+              Безплатен анализ
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}

@@ -134,3 +134,116 @@ const HeroSection = ({
 };
 
 export default HeroSection;
+'use client'
+
+import { useState, useEffect } from 'react'
+import { ChevronRight, Play } from 'lucide-react'
+
+interface HeroSectionProps {
+  title: string
+  subtitle: string
+  description: string
+  ctaText: string
+  ctaLink: string
+  videoUrl?: string
+  backgroundType?: 'gradient' | 'pattern' | 'image'
+}
+
+export default function HeroSection({
+  title,
+  subtitle,
+  description,
+  ctaText,
+  ctaLink,
+  videoUrl,
+  backgroundType = 'gradient'
+}: HeroSectionProps) {
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false)
+
+  return (
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+        {/* Animated background pattern */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="grid grid-cols-8 gap-4 transform rotate-12 scale-150">
+            {Array.from({ length: 64 }).map((_, i) => (
+              <div
+                key={i}
+                className="aspect-square bg-white rounded-full animate-pulse"
+                style={{
+                  animationDelay: `${i * 0.1}s`,
+                  animationDuration: '3s'
+                }}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Content */}
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="max-w-5xl mx-auto text-center">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
+            {title.split(' ').map((word, index) => (
+              <span key={index} className={word.includes('™') ? 'text-[#ECB628]' : ''}>
+                {word}{' '}
+              </span>
+            ))}
+          </h1>
+          
+          <p className="text-xl md:text-2xl text-slate-300 mb-8 max-w-3xl mx-auto">
+            {subtitle}
+          </p>
+          
+          <p className="text-lg text-slate-400 mb-12 max-w-2xl mx-auto">
+            {description}
+          </p>
+
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <a
+              href={ctaLink}
+              className="bg-[#ECB628] text-black px-8 py-4 rounded-lg font-semibold hover:bg-[#d4a524] transition-colors inline-flex items-center group"
+            >
+              {ctaText}
+              <ChevronRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+            </a>
+            
+            {videoUrl && (
+              <button
+                onClick={() => setIsVideoPlaying(true)}
+                className="border border-slate-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-slate-800 transition-colors inline-flex items-center group"
+              >
+                <Play className="mr-2 h-5 w-5" />
+                Гледайте видео
+              </button>
+            )}
+          </div>
+        </div>
+      </div>
+
+      {/* Video Modal */}
+      {videoUrl && isVideoPlaying && (
+        <div className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center p-4">
+          <div className="relative w-full max-w-4xl">
+            <button
+              onClick={() => setIsVideoPlaying(false)}
+              className="absolute -top-12 right-0 text-white hover:text-gray-300 text-2xl"
+            >
+              ✕
+            </button>
+            <div className="aspect-video bg-gray-900 rounded-lg overflow-hidden">
+              <iframe
+                src={videoUrl}
+                className="w-full h-full"
+                frameBorder="0"
+                allowFullScreen
+              />
+            </div>
+          </div>
+        </div>
+      )}
+    </section>
+  )
+}

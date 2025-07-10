@@ -159,3 +159,129 @@ const Footer = () => {
 };
 
 export default Footer;
+import Link from 'next/link'
+import { Facebook, Youtube, Instagram, Linkedin, Phone, Mail, MapPin } from 'lucide-react'
+
+export default function Footer() {
+  return (
+    <footer className="bg-slate-900 border-t border-slate-800">
+      <div className="container mx-auto px-6 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          {/* Company Info */}
+          <div>
+            <h3 className="text-2xl font-bold text-white mb-4">Pravda Agency</h3>
+            <p className="text-slate-300 mb-4">
+              Бизнес инженеринг за предвидим растеж. Превръщаме хаоса в системи.
+            </p>
+            <div className="flex space-x-4">
+              <a href="https://www.facebook.com/pravdast" className="text-slate-400 hover:text-white transition-colors">
+                <Facebook size={20} />
+              </a>
+              <a href="https://www.youtube.com/@pravdast" className="text-slate-400 hover:text-white transition-colors">
+                <Youtube size={20} />
+              </a>
+              <a href="https://www.instagram.com/pravdast" className="text-slate-400 hover:text-white transition-colors">
+                <Instagram size={20} />
+              </a>
+              <a href="https://www.linkedin.com/company/pravdast" className="text-slate-400 hover:text-white transition-colors">
+                <Linkedin size={20} />
+              </a>
+            </div>
+          </div>
+
+          {/* Services */}
+          <div>
+            <h4 className="text-lg font-semibold text-white mb-4">Услуги</h4>
+            <ul className="space-y-2">
+              <li>
+                <Link href="/services/seo-struktor" className="text-slate-300 hover:text-white transition-colors">
+                  SEO Struktor™
+                </Link>
+              </li>
+              <li>
+                <Link href="/services/clientomat" className="text-slate-300 hover:text-white transition-colors">
+                  Clientomat™
+                </Link>
+              </li>
+              <li>
+                <Link href="/services/trendlab" className="text-slate-300 hover:text-white transition-colors">
+                  Trendlab™
+                </Link>
+              </li>
+              <li>
+                <Link href="/services/clickstarter" className="text-slate-300 hover:text-white transition-colors">
+                  Clickstarter™
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Company */}
+          <div>
+            <h4 className="text-lg font-semibold text-white mb-4">Компания</h4>
+            <ul className="space-y-2">
+              <li>
+                <Link href="/about" className="text-slate-300 hover:text-white transition-colors">
+                  За нас
+                </Link>
+              </li>
+              <li>
+                <Link href="/case-studies" className="text-slate-300 hover:text-white transition-colors">
+                  Казуси
+                </Link>
+              </li>
+              <li>
+                <Link href="/blog" className="text-slate-300 hover:text-white transition-colors">
+                  Блог
+                </Link>
+              </li>
+              <li>
+                <Link href="/calculators" className="text-slate-300 hover:text-white transition-colors">
+                  Калкулатори
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Contact */}
+          <div>
+            <h4 className="text-lg font-semibold text-white mb-4">Контакт</h4>
+            <div className="space-y-3">
+              <div className="flex items-center text-slate-300">
+                <MapPin size={16} className="mr-2" />
+                <span>ул. Дебър №58, Варна</span>
+              </div>
+              <div className="flex items-center text-slate-300">
+                <Phone size={16} className="mr-2" />
+                <a href="tel:+359879282299" className="hover:text-white transition-colors">
+                  +359 879 282 299
+                </a>
+              </div>
+              <div className="flex items-center text-slate-300">
+                <Mail size={16} className="mr-2" />
+                <a href="mailto:contact@pravdast.agency" className="hover:text-white transition-colors">
+                  contact@pravdast.agency
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom */}
+        <div className="border-t border-slate-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+          <p className="text-slate-400 text-sm">
+            © 2024 Pravda Agency ЕООД. Всички права запазени.
+          </p>
+          <div className="flex space-x-6 mt-4 md:mt-0">
+            <Link href="/terms" className="text-slate-400 hover:text-white transition-colors text-sm">
+              Условия за ползване
+            </Link>
+            <Link href="/privacy" className="text-slate-400 hover:text-white transition-colors text-sm">
+              Политика за поверителност
+            </Link>
+          </div>
+        </div>
+      </div>
+    </footer>
+  )
+}
