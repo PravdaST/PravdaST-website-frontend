@@ -114,19 +114,31 @@ app.use(
 
 app.use(
   cors({
-    origin:
-      process.env.NODE_ENV === "production"
+    origin: (origin, callback) => {
+      // Allow requests with no origin (mobile apps, curl, etc.)
+      if (!origin) return callback(null, true);
+      
+      const allowedOrigins = process.env.NODE_ENV === "production"
         ? [
             "https://www.pravdagency.eu",
-            "https://pravdagency.eu",
+            "https://pravdagency.eu", 
             "https://pravdast.vercel.app",
+            "https://service.prerender.io"
           ]
         : [
             "http://localhost:5000",
             "http://127.0.0.1:5000",
             "http://localhost:1337",
             "http://127.0.0.1:1337",
-          ],
+            "https://service.prerender.io"
+          ];
+      
+      if (allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
@@ -142,12 +154,24 @@ if (process.env.NODE_ENV === "production") {
     standardHeaders: true,
     legacyHeaders: false,
     skip: (req) => {
-      // Whitelist Prerender.io IPs
-      const prerenderIPs = [
-        '52.22.151.86', '52.22.151.75', '52.22.151.74', '52.22.151.82',
-        '52.22.151.81', '52.22.151.83', '52.22.151.84', '52.22.151.85'
-      ];
-      return prerenderIPs.includes(req.ip) || req.get('User-Agent')?.includes('Prerender');
+      // Whitelist Prerender.io official IP ranges
+      const clientIP = req.ip;
+      const userAgent = req.get('User-Agent') || '';
+      
+      // Check for Prerender user agent
+      if (userAgent.includes('Prerender') || userAgent.includes('prerender')) {
+        return true;
+      }
+      
+      // Check official IP ranges
+      // 103.207.40.0/22 = 103.207.40.0 - 103.207.43.255
+      // 104.224.12.0/22 = 104.224.12.0 - 104.224.15.255
+      if (clientIP.startsWith('103.207.4') || 
+          clientIP.startsWith('104.224.1')) {
+        return true;
+      }
+      
+      return false;
     },
   });
 
@@ -158,12 +182,24 @@ if (process.env.NODE_ENV === "production") {
     standardHeaders: true,
     legacyHeaders: false,
     skip: (req) => {
-      // Whitelist Prerender.io IPs
-      const prerenderIPs = [
-        '52.22.151.86', '52.22.151.75', '52.22.151.74', '52.22.151.82',
-        '52.22.151.81', '52.22.151.83', '52.22.151.84', '52.22.151.85'
-      ];
-      return prerenderIPs.includes(req.ip) || req.get('User-Agent')?.includes('Prerender');
+      // Whitelist Prerender.io official IP ranges
+      const clientIP = req.ip;
+      const userAgent = req.get('User-Agent') || '';
+      
+      // Check for Prerender user agent
+      if (userAgent.includes('Prerender') || userAgent.includes('prerender')) {
+        return true;
+      }
+      
+      // Check official IP ranges
+      // 103.207.40.0/22 = 103.207.40.0 - 103.207.43.255
+      // 104.224.12.0/22 = 104.224.12.0 - 104.224.15.255
+      if (clientIP.startsWith('103.207.4') || 
+          clientIP.startsWith('104.224.1')) {
+        return true;
+      }
+      
+      return false;
     },
   });
 
