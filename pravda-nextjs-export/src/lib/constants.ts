@@ -52,3 +52,22 @@ export const SERVICES = [
     color: 'from-purple-500 to-pink-500'
   }
 ]
+export const SITE_CONFIG = {
+  name: "Pravda Agency",
+  description: "Иновативни решения за B2B компании в България",
+  url: "https://www.pravdagency.eu",
+  ogImage: "https://www.pravdagency.eu/og-image.jpg",
+  links: {
+    facebook: "https://facebook.com/pravdagency",
+    linkedin: "https://linkedin.com/company/pravda-agency",
+    email: "contact@pravdagency.eu"
+  }
+};
+
+export const KLAVIYO_CONFIG = {
+  companyId: process.env.NEXT_PUBLIC_KLAVIYO_COMPANY_ID || "UTqrCz"
+};
+
+export const ANALYTICS_CONFIG = {
+  googleAnalyticsId: process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || "G-JQ8F0NZDX0"
+};

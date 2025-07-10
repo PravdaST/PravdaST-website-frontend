@@ -110,3 +110,62 @@ export function generateOrganizationSchema() {
     ],
   }
 }
+interface SEOData {
+  title: string;
+  description: string;
+  keywords?: string;
+  canonical?: string;
+  ogImage?: string;
+}
+
+export function generateMetadata(data: SEOData) {
+  return {
+    title: data.title,
+    description: data.description,
+    keywords: data.keywords,
+    canonical: data.canonical,
+    openGraph: {
+      title: data.title,
+      description: data.description,
+      url: data.canonical,
+      siteName: "Pravda Agency",
+      images: [
+        {
+          url: data.ogImage || "/og-image.jpg",
+          width: 1200,
+          height: 630,
+          alt: data.title
+        }
+      ],
+      locale: "bg_BG",
+      type: "website"
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: data.title,
+      description: data.description,
+      images: [data.ogImage || "/og-image.jpg"]
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1
+      }
+    }
+  };
+}
+
+export function getPageSchema(type: string, data: any) {
+  const baseSchema = {
+    "@context": "https://schema.org",
+    "@type": type,
+    ...data
+  };
+
+  return JSON.stringify(baseSchema);
+}

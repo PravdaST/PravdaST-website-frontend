@@ -15,3 +15,14 @@ google.com, pub-1234567890123456, DIRECT, f08c47fec0942fa0
 
 # Add your advertising partners here
 # Format: domain.com, publisher_id, DIRECT/RESELLER, certification_authority_id
+# ads.txt file for pravdagency.eu
+# This file is used to authorize digital ad sellers
+# Format: domain, publisher ID, relationship, certification authority ID
+
+# Google AdSense (if applicable)
+google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0
+
+# Meta/Facebook (if applicable)  
+facebook.com, 000000000000000, DIRECT, c3e20eee3f780d68
+
+# Add your actual publisher IDs when setting up advertising
