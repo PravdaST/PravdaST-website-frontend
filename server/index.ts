@@ -51,6 +51,36 @@ if (process.env.PRERENDER_TOKEN) {
 // Trust proxy for rate limiting
 app.set("trust proxy", 1);
 
+// Security headers для production
+app.use((req, res, next) => {
+  // Basic security headers
+  res.header('X-Content-Type-Options', 'nosniff');
+  res.header('X-Frame-Options', 'SAMEORIGIN');
+  res.header('Referrer-Policy', 'strict-origin-when-cross-origin');
+  
+  // CSP header for production
+  res.header('Content-Security-Policy', 
+    "default-src 'self'; " +
+    "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://static.klaviyo.com https://static-tracking.klaviyo.com https://www.googletagmanager.com https://region1.google-analytics.com https://analytics.ahrefs.com; " +
+    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://static-tracking.klaviyo.com https://static.klaviyo.com; " +
+    "img-src 'self' data: https://upload.wikimedia.org https://framerusercontent.com https://d3k81ch9hvuctc.cloudfront.net; " +
+    "font-src 'self' data: https://fonts.gstatic.com https://fonts.googleapis.com; " +
+    "connect-src 'self' https://vitals.vercel-insights.com https://a.klaviyo.com https://fast.a.klaviyo.com https://static-forms.klaviyo.com https://www.google-analytics.com https://region1.google-analytics.com https://analytics.ahrefs.com https://www.googletagmanager.com https://static.klaviyo.com https://fonts.googleapis.com https://framerusercontent.com https://fonts.gstatic.com https://service.prerender.io; " +
+    "frame-src 'self' https://www.google.com; " +
+    "object-src 'none'; " +
+    "base-uri 'self'; " +
+    "worker-src 'self'"
+  );
+  
+  // Bot-specific cache headers
+  if (req.get('User-Agent')?.includes('bot') || req.get('User-Agent')?.includes('Bot')) {
+    res.header('Cache-Control', 'no-cache, no-store, must-revalidate');
+    res.header('Pragma', 'no-cache');
+    res.header('Expires', '0');
+  }
+  next();
+});
+
 // Sitemap routes ПРЕДИ security middleware
 app.get("/sitemap.xml", async (req, res) => {
   try {
