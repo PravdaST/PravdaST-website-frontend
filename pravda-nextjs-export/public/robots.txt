@@ -1,0 +1,48 @@
+User-agent: *
+Allow: /
+
+# AI Bots - Allow crawling
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+# Blocked areas
+Disallow: /admin-pravda/
+Disallow: /api/admin
+Disallow: /_next/static/
+Disallow: /*.json$
+
+# Sitemap location
+Sitemap: https://www.pravdagency.eu/sitemap.xml
