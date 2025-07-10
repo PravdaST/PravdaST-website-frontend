@@ -495,3 +495,265 @@ export default function CalculatorsPage() {
     </>
   );
 }
+import { Metadata } from 'next';
+import { EnhancedSEO } from '@/components/seo/EnhancedSEO';
+import { Breadcrumbs } from '@/components/Breadcrumbs';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Calculator, TrendingUp, Users, Target } from 'lucide-react';
+import { useState } from 'react';
+
+export const metadata: Metadata = {
+  title: 'Калкулатори за ROI - Pravdast | Изчислете печалбата си',
+  description: 'Безплатни калкулатори за изчисляване на ROI от SEO, PPC и CRM системи. Вижте каква печалба може да носи цифровият маркетинг.',
+  keywords: 'калкулатор, ROI, SEO, PPC, CRM, печалба, инвестиция, маркетинг',
+  openGraph: {
+    title: 'Калкулатори за ROI - Pravdast | Изчислете печалбата си',
+    description: 'Безплатни калкулатори за изчисляване на ROI от SEO, PPC и CRM системи.',
+    type: 'website',
+    url: 'https://www.pravdagency.eu/calculators'
+  }
+};
+
+export default function CalculatorsPage() {
+  const [seoData, setSeoData] = useState({
+    monthlyRevenue: '',
+    currentTraffic: '',
+    conversionRate: '',
+    averageOrderValue: ''
+  });
+  
+  const [seoResult, setSeoResult] = useState<number | null>(null);
+
+  const calculateSEOROI = () => {
+    const revenue = parseFloat(seoData.monthlyRevenue);
+    const traffic = parseFloat(seoData.currentTraffic);
+    const conversion = parseFloat(seoData.conversionRate) / 100;
+    const orderValue = parseFloat(seoData.averageOrderValue);
+    
+    if (revenue && traffic && conversion && orderValue) {
+      // Приблизително увеличение на трафика с 150% за първата година
+      const trafficIncrease = traffic * 1.5;
+      const additionalRevenue = trafficIncrease * conversion * orderValue * 12;
+      const seoInvestment = 1890 * 12; // Годишна инвестиция
+      const roi = ((additionalRevenue - seoInvestment) / seoInvestment) * 100;
+      setSeoResult(Math.round(roi));
+    }
+  };
+
+  return (
+    <>
+      <EnhancedSEO
+        title="Калкулатори за ROI - Pravdast | Изчислете печалбата си"
+        description="Безплатни калкулатори за изчисляване на ROI от SEO, PPC и CRM системи. Вижте каква печалба може да носи цифровият маркетинг."
+        canonical="https://www.pravdagency.eu/calculators"
+      />
+      
+      <div className="min-h-screen bg-slate-900 text-white">
+        <div className="container mx-auto px-6 py-16">
+          <Breadcrumbs 
+            items={[
+              { label: 'Начало', href: '/' },
+              { label: 'Калкулатори', href: '/calculators' }
+            ]} 
+          />
+          
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-16">
+              <h1 className="text-5xl font-bold mb-6 bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
+                Калкулатори за ROI
+              </h1>
+              <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+                Изчислете потенциалната печалба от инвестициите си в цифров маркетинг
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8 mb-16">
+              {/* SEO ROI Calculator */}
+              <Card className="bg-slate-800 border-slate-700">
+                <CardHeader>
+                  <CardTitle className="text-2xl text-yellow-400 flex items-center">
+                    <TrendingUp className="mr-3 h-6 w-6" />
+                    SEO ROI Калкулатор
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-6">
+                  <div className="space-y-4">
+                    <div>
+                      <Label htmlFor="monthlyRevenue">Месечни приходи (лв.)</Label>
+                      <Input
+                        id="monthlyRevenue"
+                        type="number"
+                        placeholder="50000"
+                        value={seoData.monthlyRevenue}
+                        onChange={(e) => setSeoData({...seoData, monthlyRevenue: e.target.value})}
+                        className="bg-slate-700 border-slate-600"
+                      />
+                    </div>
+                    
+                    <div>
+                      <Label htmlFor="currentTraffic">Месечен трафик (посетители)</Label>
+                      <Input
+                        id="currentTraffic"
+                        type="number"
+                        placeholder="5000"
+                        value={seoData.currentTraffic}
+                        onChange={(e) => setSeoData({...seoData, currentTraffic: e.target.value})}
+                        className="bg-slate-700 border-slate-600"
+                      />
+                    </div>
+                    
+                    <div>
+                      <Label htmlFor="conversionRate">Конверсия (%)</Label>
+                      <Input
+                        id="conversionRate"
+                        type="number"
+                        placeholder="2.5"
+                        value={seoData.conversionRate}
+                        onChange={(e) => setSeoData({...seoData, conversionRate: e.target.value})}
+                        className="bg-slate-700 border-slate-600"
+                      />
+                    </div>
+                    
+                    <div>
+                      <Label htmlFor="averageOrderValue">Средна стойност на поръчка (лв.)</Label>
+                      <Input
+                        id="averageOrderValue"
+                        type="number"
+                        placeholder="400"
+                        value={seoData.averageOrderValue}
+                        onChange={(e) => setSeoData({...seoData, averageOrderValue: e.target.value})}
+                        className="bg-slate-700 border-slate-600"
+                      />
+                    </div>
+                  </div>
+                  
+                  <Button 
+                    onClick={calculateSEOROI}
+                    className="w-full bg-yellow-500 text-black hover:bg-yellow-400"
+                  >
+                    <Calculator className="mr-2 h-4 w-4" />
+                    Изчисли ROI
+                  </Button>
+                  
+                  {seoResult !== null && (
+                    <div className="bg-green-900/20 border border-green-500 rounded-lg p-4 text-center">
+                      <p className="text-green-400 font-bold text-lg">
+                        Очакван ROI: {seoResult > 0 ? '+' : ''}{seoResult}%
+                      </p>
+                      <p className="text-sm text-gray-300 mt-2">
+                        *Базирано на средно 150% увеличение на трафика за първата година
+                      </p>
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+
+              {/* PPC ROI Calculator */}
+              <Card className="bg-slate-800 border-slate-700">
+                <CardHeader>
+                  <CardTitle className="text-2xl text-yellow-400 flex items-center">
+                    <Target className="mr-3 h-6 w-6" />
+                    PPC ROI Калкулатор
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-6">
+                  <div className="space-y-4">
+                    <div>
+                      <Label htmlFor="monthlyBudget">Месечен бюджет (лв.)</Label>
+                      <Input
+                        id="monthlyBudget"
+                        type="number"
+                        placeholder="10000"
+                        className="bg-slate-700 border-slate-600"
+                      />
+                    </div>
+                    
+                    <div>
+                      <Label htmlFor="currentCPA">Текуща цена на конверсия (лв.)</Label>
+                      <Input
+                        id="currentCPA"
+                        type="number"
+                        placeholder="150"
+                        className="bg-slate-700 border-slate-600"
+                      />
+                    </div>
+                    
+                    <div>
+                      <Label htmlFor="customerValue">Стойност на клиент (лв.)</Label>
+                      <Input
+                        id="customerValue"
+                        type="number"
+                        placeholder="500"
+                        className="bg-slate-700 border-slate-600"
+                      />
+                    </div>
+                    
+                    <div>
+                      <Label htmlFor="industry">Индустрия</Label>
+                      <Select>
+                        <SelectTrigger className="bg-slate-700 border-slate-600">
+                          <SelectValue placeholder="Изберете индустрия" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="ecommerce">E-commerce</SelectItem>
+                          <SelectItem value="services">Услуги</SelectItem>
+                          <SelectItem value="b2b">B2B</SelectItem>
+                          <SelectItem value="real-estate">Недвижими имоти</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </div>
+                  
+                  <Button className="w-full bg-yellow-500 text-black hover:bg-yellow-400">
+                    <Calculator className="mr-2 h-4 w-4" />
+                    Изчисли ROI
+                  </Button>
+                  
+                  <div className="bg-blue-900/20 border border-blue-500 rounded-lg p-4 text-center">
+                    <p className="text-blue-400 font-bold text-lg">
+                      Очакван ROI: +285%
+                    </p>
+                    <p className="text-sm text-gray-300 mt-2">
+                      *При оптимизация на кампаниите с 30-40%
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* CTA Section */}
+            <Card className="bg-gradient-to-r from-yellow-600 to-yellow-500 text-black">
+              <CardContent className="p-8 text-center">
+                <div className="flex justify-center mb-4">
+                  <div className="bg-red-500 rounded-full p-1 animate-pulse">
+                    <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                  </div>
+                  <span className="ml-2 font-semibold">Остават 3 места за 2025</span>
+                </div>
+                
+                <h2 className="text-3xl font-bold mb-4">
+                  Готови ли сте да увеличите печалбата си?
+                </h2>
+                <p className="text-lg mb-6 opacity-90">
+                  Запишете безплатна консултация и разберете как да постигнете тези резултати
+                </p>
+                
+                <Button 
+                  size="lg" 
+                  className="bg-black text-white hover:bg-gray-800 transition-all duration-300 transform hover:-translate-y-2"
+                  onClick={() => window.location.href = '/contact'}
+                >
+                  Запишете консултация
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}

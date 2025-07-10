@@ -251,3 +251,204 @@ export default function TermsPage() {
     </>
   );
 }
+import { Metadata } from 'next';
+import { EnhancedSEO } from '@/components/seo/EnhancedSEO';
+import { Breadcrumbs } from '@/components/Breadcrumbs';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+
+export const metadata: Metadata = {
+  title: 'Условия за ползване - Pravdast',
+  description: 'Условия за ползване на услугите на Pravdast. Права, задължения и условия за сътрудничество.',
+  robots: 'index, follow',
+  openGraph: {
+    title: 'Условия за ползване - Pravdast',
+    description: 'Условия за ползване на услугите на Pravdast.',
+    type: 'website',
+    url: 'https://www.pravdagency.eu/terms'
+  }
+};
+
+export default function TermsPage() {
+  return (
+    <>
+      <EnhancedSEO
+        title="Условия за ползване - Pravdast"
+        description="Условия за ползване на услугите на Pravdast. Права, задължения и условия за сътрудничество."
+        canonical="https://www.pravdagency.eu/terms"
+      />
+      
+      <div className="min-h-screen bg-slate-900 text-white">
+        <div className="container mx-auto px-6 py-16">
+          <Breadcrumbs 
+            items={[
+              { label: 'Начало', href: '/' },
+              { label: 'Условия', href: '/terms' }
+            ]} 
+          />
+          
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-16">
+              <h1 className="text-5xl font-bold mb-6 bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
+                Условия за ползване
+              </h1>
+              <p className="text-xl text-gray-300">
+                Актуализирано на: 1 януари 2025 г.
+              </p>
+            </div>
+
+            <div className="space-y-8">
+              <Card className="bg-slate-800 border-slate-700">
+                <CardHeader>
+                  <CardTitle className="text-2xl text-yellow-400">1. Общи условия</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4 text-gray-300">
+                  <p>
+                    Добре дошли в Pravdast. Използвайки нашия сайт и услуги, вие се съгласявате да спазвате 
+                    настоящите условия за ползване. Ако не се съгласявате с някое от условията, 
+                    моля не използвайте нашите услуги.
+                  </p>
+                  <p>
+                    Запазваме си правото да променяме тези условия по всяко време без предварително уведомяване.
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-slate-800 border-slate-700">
+                <CardHeader>
+                  <CardTitle className="text-2xl text-yellow-400">2. Описание на услугите</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4 text-gray-300">
+                  <p>Pravdast предлага следните основни услуги:</p>
+                  <ul className="list-disc list-inside space-y-2 ml-4">
+                    <li><strong>SEO Struktor:</strong> Професионално SEO оптимизиране</li>
+                    <li><strong>Clientomat:</strong> CRM система и автоматизация</li>
+                    <li><strong>Trendlab:</strong> Маркетинг анализи и стратегии</li>
+                    <li><strong>Clickstarter:</strong> PPC управление и оптимизация</li>
+                  </ul>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-slate-800 border-slate-700">
+                <CardHeader>
+                  <CardTitle className="text-2xl text-yellow-400">3. Права и задължения на клиента</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4 text-gray-300">
+                  <p><strong>Права на клиента:</strong></p>
+                  <ul className="list-disc list-inside space-y-2 ml-4">
+                    <li>Получаване на услуги съгласно договорените условия</li>
+                    <li>Редовни отчети и анализи</li>
+                    <li>Поддръжка и консултации</li>
+                    <li>Прекратяване на договора при неизпълнение</li>
+                  </ul>
+                  
+                  <p><strong>Задължения на клиента:</strong></p>
+                  <ul className="list-disc list-inside space-y-2 ml-4">
+                    <li>Навременно заплащане на услугите</li>
+                    <li>Предоставяне на необходимата информация</li>
+                    <li>Съблюдаване на препоръките и указанията</li>
+                    <li>Информиране при промени в бизнеса</li>
+                  </ul>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-slate-800 border-slate-700">
+                <CardHeader>
+                  <CardTitle className="text-2xl text-yellow-400">4. Плащания и отмяна</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4 text-gray-300">
+                  <p>
+                    Плащанията се извършват месечно, предварително. Всички цени са в лева с включен ДДС.
+                  </p>
+                  <p>
+                    Договорът може да бъде прекратен с 30-дневно предизвестие от всяка от страните.
+                  </p>
+                  <p>
+                    При прекратяване на договора, заплатените суми не се възстановяват.
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-slate-800 border-slate-700">
+                <CardHeader>
+                  <CardTitle className="text-2xl text-yellow-400">5. Интелектуална собственост</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4 text-gray-300">
+                  <p>
+                    Всички материали, системи и методологии, създадени от Pravdast, остават 
+                    интелектуална собственост на компанията.
+                  </p>
+                  <p>
+                    Клиентът получава право на ползване на резултатите от работата за нуждите на своя бизнес.
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-slate-800 border-slate-700">
+                <CardHeader>
+                  <CardTitle className="text-2xl text-yellow-400">6. Ограничение на отговорността</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4 text-gray-300">
+                  <p>
+                    Pravdast не носи отговорност за:
+                  </p>
+                  <ul className="list-disc list-inside space-y-2 ml-4">
+                    <li>Промени в алгоритмите на търсачките</li>
+                    <li>Външни фактори извън нашия контрол</li>
+                    <li>Неизпълнение на препоръките от страна на клиента</li>
+                    <li>Непредвидени технически проблеми</li>
+                  </ul>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-slate-800 border-slate-700">
+                <CardHeader>
+                  <CardTitle className="text-2xl text-yellow-400">7. Конфиденциалност</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4 text-gray-300">
+                  <p>
+                    И двете страни се задължават да пазят в тайна всяка информация, 
+                    получена в процеса на сътрудничество.
+                  </p>
+                  <p>
+                    Тази клауза остава в сила и след прекратяването на договора.
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-slate-800 border-slate-700">
+                <CardHeader>
+                  <CardTitle className="text-2xl text-yellow-400">8. Приложимо право</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4 text-gray-300">
+                  <p>
+                    Настоящите условия се уреждат от българското законодателство.
+                  </p>
+                  <p>
+                    При спорове страните се задължават да търсят разрешение чрез преговори. 
+                    При невъзможност - съдът по местоседелуването на Pravdast.
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-slate-800 border-slate-700">
+                <CardHeader>
+                  <CardTitle className="text-2xl text-yellow-400">9. Контакт</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4 text-gray-300">
+                  <p>
+                    За въпроси относно тези условия, моля свържете се с нас:
+                  </p>
+                  <div className="space-y-2">
+                    <p><strong>Имейл:</strong> legal@pravdagency.eu</p>
+                    <p><strong>Телефон:</strong> +359 879 282 299</p>
+                    <p><strong>Адрес:</strong> Варна, България</p>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}

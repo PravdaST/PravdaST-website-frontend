@@ -273,3 +273,168 @@ export default function PrivacyPage() {
     </>
   );
 }
+import { Metadata } from 'next';
+import { EnhancedSEO } from '@/components/seo/EnhancedSEO';
+import { Breadcrumbs } from '@/components/Breadcrumbs';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+
+export const metadata: Metadata = {
+  title: 'Политика за поверителност - Pravdast',
+  description: 'Политика за поверителност и защита на личните данни на Pravdast. Информация за събиране, използване и защита на данни.',
+  robots: 'index, follow',
+  openGraph: {
+    title: 'Политика за поверителност - Pravdast',
+    description: 'Политика за поверителност и защита на личните данни на Pravdast.',
+    type: 'website',
+    url: 'https://www.pravdagency.eu/privacy'
+  }
+};
+
+export default function PrivacyPage() {
+  return (
+    <>
+      <EnhancedSEO
+        title="Политика за поверителност - Pravdast"
+        description="Политика за поверителност и защита на личните данни на Pravdast. Информация за събиране, използване и защита на данни."
+        canonical="https://www.pravdagency.eu/privacy"
+      />
+      
+      <div className="min-h-screen bg-slate-900 text-white">
+        <div className="container mx-auto px-6 py-16">
+          <Breadcrumbs 
+            items={[
+              { label: 'Начало', href: '/' },
+              { label: 'Поверителност', href: '/privacy' }
+            ]} 
+          />
+          
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-16">
+              <h1 className="text-5xl font-bold mb-6 bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
+                Политика за поверителност
+              </h1>
+              <p className="text-xl text-gray-300">
+                Актуализирано на: 1 януари 2025 г.
+              </p>
+            </div>
+
+            <div className="space-y-8">
+              <Card className="bg-slate-800 border-slate-700">
+                <CardHeader>
+                  <CardTitle className="text-2xl text-yellow-400">1. Общи положения</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4 text-gray-300">
+                  <p>
+                    Pravdast ("ние", "нашия", "компанията") се ангажира да защитава поверителността на вашите лични данни. 
+                    Тази политика описва как събираме, използваме и защитаваме информацията, която получаваме от вас.
+                  </p>
+                  <p>
+                    Настоящата политика за поверителност е в съответствие с Общия регламент за защита на данните (GDPR) 
+                    и българското законодателство за защита на личните данни.
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-slate-800 border-slate-700">
+                <CardHeader>
+                  <CardTitle className="text-2xl text-yellow-400">2. Събиране на данни</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4 text-gray-300">
+                  <p>Събираме следните видове информация:</p>
+                  <ul className="list-disc list-inside space-y-2 ml-4">
+                    <li>Име и контактни данни (имейл, телефон)</li>
+                    <li>Информация за компанията (име, сфера на дейност)</li>
+                    <li>Технически данни (IP адрес, браузър, операционна система)</li>
+                    <li>Данни за използването на сайта (страници, време на престой)</li>
+                  </ul>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-slate-800 border-slate-700">
+                <CardHeader>
+                  <CardTitle className="text-2xl text-yellow-400">3. Използване на данните</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4 text-gray-300">
+                  <p>Използваме вашите данни за:</p>
+                  <ul className="list-disc list-inside space-y-2 ml-4">
+                    <li>Предоставяне на услуги и поддръжка</li>
+                    <li>Комуникация относно услугите ни</li>
+                    <li>Подобряване на нашите услуги</li>
+                    <li>Маркетингови цели (само с вашето съгласие)</li>
+                    <li>Изпълнение на правни задължения</li>
+                  </ul>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-slate-800 border-slate-700">
+                <CardHeader>
+                  <CardTitle className="text-2xl text-yellow-400">4. Споделяне на данни</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4 text-gray-300">
+                  <p>
+                    Не продаваме, обменяме или предоставяме вашите лични данни на трети страни без вашето съгласие, 
+                    освен в случаите когато това е необходимо за:
+                  </p>
+                  <ul className="list-disc list-inside space-y-2 ml-4">
+                    <li>Изпълнение на договорни задължения</li>
+                    <li>Спазване на правни изисквания</li>
+                    <li>Защита на нашите права и интереси</li>
+                  </ul>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-slate-800 border-slate-700">
+                <CardHeader>
+                  <CardTitle className="text-2xl text-yellow-400">5. Cookies и проследяване</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4 text-gray-300">
+                  <p>
+                    Използваме cookies за подобряване на потребителското изживяване. Включваме:
+                  </p>
+                  <ul className="list-disc list-inside space-y-2 ml-4">
+                    <li>Google Analytics за анализ на трафика</li>
+                    <li>Klaviyo за имейл маркетинг</li>
+                    <li>Функционални cookies за работата на сайта</li>
+                  </ul>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-slate-800 border-slate-700">
+                <CardHeader>
+                  <CardTitle className="text-2xl text-yellow-400">6. Вашите права</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4 text-gray-300">
+                  <p>Съгласно GDPR имате право на:</p>
+                  <ul className="list-disc list-inside space-y-2 ml-4">
+                    <li>Достъп до вашите лични данни</li>
+                    <li>Корекция на неточни данни</li>
+                    <li>Изтриване на данни ("правото да бъдете забравени")</li>
+                    <li>Ограничаване на обработването</li>
+                    <li>Преносимост на данните</li>
+                    <li>Възражение срещу обработването</li>
+                  </ul>
+                </CardContent>
+              </Card>
+
+              <Card className="bg-slate-800 border-slate-700">
+                <CardHeader>
+                  <CardTitle className="text-2xl text-yellow-400">7. Контакт</CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4 text-gray-300">
+                  <p>
+                    За въпроси относно тази политика за поверителност, моля свържете се с нас:
+                  </p>
+                  <div className="space-y-2">
+                    <p><strong>Имейл:</strong> privacy@pravdagency.eu</p>
+                    <p><strong>Телефон:</strong> +359 879 282 299</p>
+                    <p><strong>Адрес:</strong> Варна, България</p>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
