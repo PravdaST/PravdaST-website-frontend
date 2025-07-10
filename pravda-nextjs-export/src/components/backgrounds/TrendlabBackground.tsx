@@ -109,3 +109,96 @@ export default function TrendlabBackground() {
     </div>
   );
 }
+'use client';
+
+export function TrendlabBackground() {
+  return (
+    <div className="absolute inset-0 overflow-hidden">
+      {/* Base gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-orange-900/20"></div>
+      
+      {/* Animated geometric patterns */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="grid grid-cols-12 gap-4 transform rotate-12 scale-150">
+          {Array.from({ length: 144 }).map((_, i) => (
+            <div
+              key={i}
+              className="aspect-square bg-gradient-to-br from-orange-400 to-transparent rounded-full animate-pulse"
+              style={{
+                animationDelay: `${i * 0.1}s`,
+                animationDuration: '3s'
+              }}
+            />
+          ))}
+        </div>
+      </div>
+      
+      {/* Trend lines */}
+      <div className="absolute inset-0 opacity-20">
+        <svg className="w-full h-full" viewBox="0 0 1200 800">
+          <defs>
+            <linearGradient id="trendGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#fb923c" stopOpacity="0.3" />
+              <stop offset="50%" stopColor="#f97316" stopOpacity="0.6" />
+              <stop offset="100%" stopColor="#ea580c" stopOpacity="0.3" />
+            </linearGradient>
+          </defs>
+          
+          {/* Trend line 1 */}
+          <path
+            d="M50,600 Q300,400 600,300 T1150,200"
+            stroke="url(#trendGradient)"
+            strokeWidth="3"
+            fill="none"
+            className="animate-pulse"
+          />
+          
+          {/* Trend line 2 */}
+          <path
+            d="M50,700 Q400,500 800,400 T1150,350"
+            stroke="url(#trendGradient)"
+            strokeWidth="2"
+            fill="none"
+            className="animate-pulse"
+            style={{ animationDelay: '1s' }}
+          />
+          
+          {/* Data points */}
+          {[
+            { x: 200, y: 500 },
+            { x: 400, y: 350 },
+            { x: 600, y: 300 },
+            { x: 800, y: 250 },
+            { x: 1000, y: 200 }
+          ].map((point, i) => (
+            <circle
+              key={i}
+              cx={point.x}
+              cy={point.y}
+              r="4"
+              fill="#f97316"
+              className="animate-pulse"
+              style={{ animationDelay: `${i * 0.5}s` }}
+            />
+          ))}
+        </svg>
+      </div>
+      
+      {/* Floating chart elements */}
+      <div className="absolute top-20 right-20 opacity-30 animate-bounce" style={{ animationDuration: '4s' }}>
+        <div className="w-16 h-16 border-2 border-orange-400 rounded-lg flex items-center justify-center">
+          <div className="w-8 h-8 bg-orange-400 rounded"></div>
+        </div>
+      </div>
+      
+      <div className="absolute bottom-32 left-20 opacity-40 animate-bounce" style={{ animationDuration: '3s', animationDelay: '1s' }}>
+        <div className="w-12 h-12 border-2 border-orange-300 rounded-full flex items-center justify-center">
+          <div className="w-6 h-6 bg-orange-300 rounded-full"></div>
+        </div>
+      </div>
+      
+      {/* Gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-slate-900/40"></div>
+    </div>
+  );
+}
