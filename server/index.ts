@@ -2,6 +2,7 @@ import express, { type Request, Response, NextFunction } from "express";
 import rateLimit from "express-rate-limit";
 import helmet from "helmet";
 import cors from "cors";
+// @ts-ignore - prerender-node doesn't have TypeScript declarations
 import prerender from "prerender-node";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
@@ -212,8 +213,8 @@ if (process.env.NODE_ENV === "production") {
       // Check official IP ranges
       // 103.207.40.0/22 = 103.207.40.0 - 103.207.43.255
       // 104.224.12.0/22 = 104.224.12.0 - 104.224.15.255
-      if (clientIP.startsWith('103.207.4') || 
-          clientIP.startsWith('104.224.1')) {
+      if (clientIP && (clientIP.startsWith('103.207.4') || 
+          clientIP.startsWith('104.224.1'))) {
         return true;
       }
       
@@ -240,8 +241,8 @@ if (process.env.NODE_ENV === "production") {
       // Check official IP ranges
       // 103.207.40.0/22 = 103.207.40.0 - 103.207.43.255
       // 104.224.12.0/22 = 104.224.12.0 - 104.224.15.255
-      if (clientIP.startsWith('103.207.4') || 
-          clientIP.startsWith('104.224.1')) {
+      if (clientIP && (clientIP.startsWith('103.207.4') || 
+          clientIP.startsWith('104.224.1'))) {
         return true;
       }
       

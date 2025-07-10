@@ -318,7 +318,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/api/schema/organization", async (req: Request, res: Response) => {
     try {
       const { seoGenerator } = await import("./lib/seo-generator");
-      const schema = seoGenerator.generateOrganizationSchema();
+      const schema = seoGenerator.generateLocalBusinessSchema();
       res.setHeader('Content-Type', 'application/ld+json');
       res.setHeader('Cache-Control', 'public, max-age=86400');
       res.json(schema);
@@ -332,7 +332,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/api/schema/website", async (req: Request, res: Response) => {
     try {
       const { seoGenerator } = await import("./lib/seo-generator");
-      const schema = seoGenerator.generateWebsiteSchema();
+      const schema = seoGenerator.generateLocalBusinessSchema();
       res.setHeader('Content-Type', 'application/ld+json');
       res.setHeader('Cache-Control', 'public, max-age=86400');
       res.json(schema);
@@ -591,6 +591,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Sitemap XML API endpoint за Vercel compatibility
   app.get("/api/sitemap.xml", async (req: Request, res: Response) => {
     try {
+      const { seoGenerator } = await import("./lib/seo-generator");
       const xmlContent = seoGenerator.generateSitemap();
       res.setHeader('Content-Type', 'text/xml; charset=utf-8');
       res.setHeader('Cache-Control', 'public, max-age=86400');
