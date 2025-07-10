@@ -1,34 +1,25 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import { HelmetProvider } from 'react-helmet-async';
 import '../styles/globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Pravdast - Бизнес инженеринг за предсказуем растеж',
-  description: 'Професионални SEO, маркетинг и бизнес консултации в България. Системен подход за предсказуем растеж на вашия бизнес.',
-  keywords: 'SEO България, дигитален маркетинг, бизнес консултации, растеж, Варна',
-  authors: [{ name: 'Pravdast Agency' }],
+  title: 'Pravda Agency - Дигитален Маркетинг и SEO',
+  description: 'Професионални дигитални маркетинг услуги - SEO, автоматизация на продажбите, PPC кампании и уеб разработка.',
+  keywords: 'дигитален маркетинг, SEO, автоматизация, PPC, уеб разработка, България',
+  authors: [{ name: 'Pravda Agency' }],
   viewport: 'width=device-width, initial-scale=1',
   robots: 'index, follow',
   openGraph: {
-    title: 'Pravdast - Бизнес инженеринг за предсказуем растеж',
-    description: 'Професионални SEO, маркетинг и бизнес консултации в България',
-    url: 'https://www.pravdagency.eu',
-    siteName: 'Pravdast Agency',
-    locale: 'bg_BG',
     type: 'website',
+    locale: 'bg_BG',
+    url: 'https://www.pravdagency.eu',
+    siteName: 'Pravda Agency',
+    title: 'Pravda Agency - Дигитален Маркетинг и SEO',
+    description: 'Професионални дигитални маркетинг услуги за растеж на вашия бизнес.',
   },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Pravdast - Бизнес инженеринг за предсказуем растеж',
-    description: 'Професионални SEO, маркетинг и бизнес консултации в България',
-  },
-  alternates: {
-    canonical: 'https://www.pravdagency.eu',
-  },
-};
+}
 
 export default function RootLayout({
   children,
