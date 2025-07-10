@@ -1,45 +1,60 @@
-
 'use client';
 
 import { useEffect } from 'react';
 import Script from 'next/script';
 
-interface GoogleAnalyticsProps {
-  measurementId: string;
+declare global {
+  interface Window {
+    gtag: (...args: any[]) => void;
+  }
 }
 
-export default function GoogleAnalytics({ measurementId }: GoogleAnalyticsProps) {
+const GA_MEASUREMENT_ID = 'G-JQ8F0NZDX0';
+
+export function GoogleAnalytics() {
   useEffect(() => {
-    // Initialize GA
+    // Track page view on mount
     if (typeof window !== 'undefined' && window.gtag) {
-      window.gtag('config', measurementId, {
+      window.gtag('config', GA_MEASUREMENT_ID, {
         page_title: document.title,
         page_location: window.location.href,
       });
     }
-  }, [measurementId]);
+  }, []);
 
   return (
     <>
       <Script
         strategy="afterInteractive"
-        src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`}
+        src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
       />
       <Script
-        id="gtag-init"
+        id="google-analytics"
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{
           __html: `
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', '${measurementId}', {
-              page_title: document.title,
-              page_location: window.location.href,
-            });
+            gtag('config', '${GA_MEASUREMENT_ID}');
           `,
         }}
       />
     </>
   );
 }
+
+// Tracking functions
+export const trackEvent = (eventName: string, parameters?: object) => {
+  if (typeof window !== 'undefined' && window.gtag) {
+    window.gtag('event', eventName, parameters);
+  }
+};
+
+export const trackPageView = (url: string) => {
+  if (typeof window !== 'undefined' && window.gtag) {
+    window.gtag('config', GA_MEASUREMENT_ID, {
+      page_path: url,
+    });
+  }
+};

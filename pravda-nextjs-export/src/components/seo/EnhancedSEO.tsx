@@ -1,61 +1,50 @@
-
 'use client';
 
 import { Helmet } from 'react-helmet-async';
-import { usePageTracking } from '@/hooks/usePageTracking';
 
 interface EnhancedSEOProps {
   title: string;
   description: string;
-  canonicalUrl: string;
+  canonical: string;
   ogImage?: string;
-  structuredData?: object;
-  noIndex?: boolean;
   keywords?: string[];
+  structuredData?: object;
 }
 
-export default function EnhancedSEO({
+export function EnhancedSEO({
   title,
   description,
-  canonicalUrl,
+  canonical,
   ogImage = '/og-images/default.svg',
-  structuredData,
-  noIndex = false,
-  keywords = []
+  keywords = [],
+  structuredData
 }: EnhancedSEOProps) {
-  usePageTracking();
-
-  const fullTitle = title.includes('Pravdast') ? title : `${title} | Pravdast`;
-  const ogUrl = canonicalUrl.startsWith('http') ? canonicalUrl : `https://www.pravdagency.eu${canonicalUrl}`;
-  const ogImageUrl = ogImage.startsWith('http') ? ogImage : `https://www.pravdagency.eu${ogImage}`;
-
   return (
     <Helmet>
       {/* Basic Meta Tags */}
-      <title>{fullTitle}</title>
+      <title>{title}</title>
       <meta name="description" content={description} />
       {keywords.length > 0 && <meta name="keywords" content={keywords.join(', ')} />}
-      
-      {/* Canonical URL */}
-      <link rel="canonical" href={ogUrl} />
-      
-      {/* Robots */}
-      <meta name="robots" content={noIndex ? 'noindex,nofollow' : 'index,follow'} />
+      <link rel="canonical" href={canonical} />
       
       {/* Open Graph */}
-      <meta property="og:title" content={fullTitle} />
+      <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
-      <meta property="og:url" content={ogUrl} />
-      <meta property="og:image" content={ogImageUrl} />
+      <meta property="og:url" content={canonical} />
+      <meta property="og:image" content={`https://www.pravdagency.eu${ogImage}`} />
       <meta property="og:type" content="website" />
-      <meta property="og:site_name" content="Pravdast" />
       <meta property="og:locale" content="bg_BG" />
+      <meta property="og:site_name" content="Pravda Agency" />
       
-      {/* Twitter Card */}
+      {/* Twitter Cards */}
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content={fullTitle} />
+      <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={ogImageUrl} />
+      <meta name="twitter:image" content={`https://www.pravdagency.eu${ogImage}`} />
+      
+      {/* Additional SEO */}
+      <meta name="robots" content="index, follow" />
+      <meta name="language" content="Bulgarian" />
       
       {/* Structured Data */}
       {structuredData && (
@@ -63,11 +52,6 @@ export default function EnhancedSEO({
           {JSON.stringify(structuredData)}
         </script>
       )}
-      
-      {/* Additional Meta */}
-      <meta name="author" content="Pravdast" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
     </Helmet>
   );
 }
