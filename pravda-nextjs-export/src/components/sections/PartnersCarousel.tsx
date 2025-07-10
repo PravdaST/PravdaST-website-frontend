@@ -1,82 +1,96 @@
+
 'use client';
 
-import { motion } from "framer-motion";
+import { motion } from 'framer-motion';
+import Image from 'next/image';
 
-export default function PartnersCarousel() {
+export function PartnersCarousel() {
   const partners = [
-    "https://framerusercontent.com/images/VNuXXhkuBmEVCsU1tH3HGHHpKWo.png",
-    "https://framerusercontent.com/images/L9tZdLz0p3EQ8Ir9AKOvWVIx91Q.png", 
-    "https://framerusercontent.com/images/fJrE1PJrLhcuRHWOT7zEKMmCkac.png",
-    "https://framerusercontent.com/images/xc8nZl3s4PvGU84AHQdkwpQ0A.png",
-    "https://framerusercontent.com/images/HQ1hqrcNE2D6g4nYEXZjJPwGI.png"
+    {
+      name: "Google",
+      logo: "/partners/google.svg",
+      width: 120,
+      height: 40
+    },
+    {
+      name: "Meta",
+      logo: "/partners/meta.svg", 
+      width: 120,
+      height: 40
+    },
+    {
+      name: "HubSpot",
+      logo: "/partners/hubspot.svg",
+      width: 120,
+      height: 40
+    },
+    {
+      name: "Klaviyo",
+      logo: "/partners/klaviyo.svg",
+      width: 120,
+      height: 40
+    },
+    {
+      name: "WordPress",
+      logo: "/partners/wordpress.svg",
+      width: 120,
+      height: 40
+    },
+    {
+      name: "Shopify",
+      logo: "/partners/shopify.svg",
+      width: 120,
+      height: 40
+    }
   ];
 
+  // Duplicate partners for seamless loop
+  const duplicatedPartners = [...partners, ...partners];
+
   return (
-    <section className="py-16 bg-slate-900">
-      <div className="container mx-auto px-4 sm:px-6">
-        {/* Partners Carousel Container */}
+    <section className="py-16 bg-slate-900/50">
+      <div className="container mx-auto px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="text-center mb-12"
+        >
+          <p className="text-slate-400 text-lg mb-8">
+            Работим с водещите платформи за максимални резултати
+          </p>
+        </motion.div>
+
         <div className="relative overflow-hidden">
-          <div
-            className="flex gap-12 items-center justify-center"
-            style={{ width: "1200px", margin: "0 auto" }}
-          >
-            <motion.div
-              className="flex gap-12 items-center"
-              animate={{ x: [0, -1200] }}
-              transition={{
-                duration: 15,
-                repeat: Infinity,
-                ease: "linear",
-              }}
-              style={{ width: "3600px" }} // 3 sets of logos
-            >
-              {/* First set */}
-              {partners.map((logo, index) => (
-                <div
-                  key={`set1-${index}`}
-                  className="flex-shrink-0 w-48 h-16 flex items-center justify-center grayscale opacity-60 hover:opacity-100 hover:grayscale-0 transition-all duration-300"
-                >
-                  <img
-                    src={logo}
-                    alt={`Partner ${index + 1}`}
-                    className="max-h-8 w-auto object-contain"
-                  />
-                </div>
-              ))}
-              
-              {/* Second set */}
-              {partners.map((logo, index) => (
-                <div
-                  key={`set2-${index}`}
-                  className="flex-shrink-0 w-48 h-16 flex items-center justify-center grayscale opacity-60 hover:opacity-100 hover:grayscale-0 transition-all duration-300"
-                >
-                  <img
-                    src={logo}
-                    alt={`Partner ${index + 1}`}
-                    className="max-h-8 w-auto object-contain"
-                  />
-                </div>
-              ))}
-              
-              {/* Third set */}
-              {partners.map((logo, index) => (
-                <div
-                  key={`set3-${index}`}
-                  className="flex-shrink-0 w-48 h-16 flex items-center justify-center grayscale opacity-60 hover:opacity-100 hover:grayscale-0 transition-all duration-300"
-                >
-                  <img
-                    src={logo}
-                    alt={`Partner ${index + 1}`}
-                    className="max-h-8 w-auto object-contain"
-                  />
-                </div>
-              ))}
-            </motion.div>
-          </div>
+          <div className="absolute left-0 top-0 w-32 h-full bg-gradient-to-r from-slate-900/50 to-transparent z-10"></div>
+          <div className="absolute right-0 top-0 w-32 h-full bg-gradient-to-l from-slate-900/50 to-transparent z-10"></div>
           
-          {/* Gradient fade edges */}
-          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-slate-900 to-transparent z-10"></div>
-          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-slate-900 to-transparent z-10"></div>
+          <motion.div
+            className="flex space-x-16 items-center"
+            animate={{
+              x: [0, -50 * partners.length * 8]
+            }}
+            transition={{
+              x: {
+                repeat: Infinity,
+                repeatType: "loop",
+                duration: 30,
+                ease: "linear"
+              }
+            }}
+          >
+            {duplicatedPartners.map((partner, index) => (
+              <div
+                key={`${partner.name}-${index}`}
+                className="flex-shrink-0 w-32 h-16 flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity"
+              >
+                <div className="w-full h-full flex items-center justify-center text-slate-400 text-xl font-bold">
+                  {partner.name}
+                </div>
+              </div>
+            ))}
+          </motion.div>
         </div>
       </div>
     </section>
