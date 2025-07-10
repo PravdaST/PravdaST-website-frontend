@@ -37,28 +37,12 @@ app.get('/test-prerender', (req, res) => {
   });
 });
 
-// Prerender.io middleware за SEO - временно деактивиран за production build
-if (process.env.PRERENDER_TOKEN && process.env.NODE_ENV === "production") {
+// Prerender.io middleware за SEO
+if (process.env.PRERENDER_TOKEN) {
   console.log('✅ Prerender.io middleware активен с token');
-  try {
-    const prerenderInstance = prerender({
-      prerenderToken: process.env.PRERENDER_TOKEN,
-      prerenderServiceUrl: "https://service.prerender.io",
-      protocol: "https"
-    });
-    
-    // Apply middleware only to non-API routes
-    app.use((req, res, next) => {
-      if (req.path.startsWith('/api/') || req.path.startsWith('/test-')) {
-        return next();
-      }
-      return prerenderInstance(req, res, next);
-    });
-  } catch (error) {
-    console.error('Prerender middleware error:', error);
-  }
+  app.use((prerender as any).set('prerenderToken', process.env.PRERENDER_TOKEN));
 } else {
-  console.log('⚠️ Prerender.io middleware неактивен (development mode или липсва token)');
+  console.log('⚠️ Prerender.io middleware неактивен (липсва token)');
   console.log('ℹ️ За тестване на интеграцията посетете: /test-prerender');
 }
 
