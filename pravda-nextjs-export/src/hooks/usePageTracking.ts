@@ -1,89 +1,33 @@
-
-import { useEffect } from 'react'
-import { usePathname, useSearchParams } from 'next/navigation'
+// src/hooks/usePageTracking.ts
+import { useEffect } from 'react';
+import { useLocation } from 'wouter';
 
 declare global {
   interface Window {
-    gtag?: (...args: any[]) => void
-    fbq?: (...args: any[]) => void
-    _klOnsite?: any[]
+    gtag: (...args: any[]) => void;
   }
 }
 
-export function usePageTracking() {
-  const pathname = usePathname()
-  const searchParams = useSearchParams()
+const usePageTracking = () => {
+  const [location] = useLocation();
 
   useEffect(() => {
-    const url = pathname + (searchParams.toString() ? `?${searchParams.toString()}` : '')
-
-    // Google Analytics
-    if (typeof window.gtag === 'function') {
-      window.gtag('config', 'G-XXXXXXXXXX', {
-        page_path: url,
-      })
+    // Проследяване на page view с gtag (GA4 вече е инициализиран в HTML)
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('config', 'G-JQ8F0NZDX0', {
+        page_path: location,
+        page_title: document.title,
+        page_location: window.location.href
+      });
+      
+      // Проследяване на page_view event
+      window.gtag('event', 'page_view', {
+        page_title: document.title,
+        page_location: window.location.href,
+        page_path: location
+      });
     }
+  }, [location]);
+};
 
-    // Facebook Pixel
-    if (typeof window.fbq === 'function') {
-      window.fbq('track', 'PageView')
-    }
-
-    // Klaviyo tracking
-    if (window._klOnsite) {
-      window._klOnsite.push(['track', 'Viewed Page', {
-        'Page URL': url,
-        'Page Title': document.title
-      }])
-    }
-
-    // Custom analytics
-    fetch('/api/tracking', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        event: 'page_view',
-        page: url,
-        title: document.title,
-        timestamp: new Date().toISOString()
-      })
-    }).catch(console.error)
-
-  }, [pathname, searchParams])
-}
-
-export function useEventTracking() {
-  const trackEvent = (eventName: string, properties: Record<string, any> = {}) => {
-    // Google Analytics
-    if (typeof window.gtag === 'function') {
-      window.gtag('event', eventName, properties)
-    }
-
-    // Facebook Pixel
-    if (typeof window.fbq === 'function') {
-      window.fbq('track', eventName, properties)
-    }
-
-    // Klaviyo
-    if (window._klOnsite) {
-      window._klOnsite.push(['track', eventName, properties])
-    }
-
-    // Custom tracking
-    fetch('/api/tracking', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        event: eventName,
-        properties,
-        timestamp: new Date().toISOString()
-      })
-    }).catch(console.error)
-  }
-
-  return { trackEvent }
-}
+export default usePageTracking;

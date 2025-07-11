@@ -1,15 +1,5 @@
 
 import { Metadata } from 'next';
-import { Navigation } from '@/components/sections/Navigation';
-import { HeroSection } from '@/components/sections/HeroSection';
-import { PartnersCarousel } from '@/components/sections/PartnersCarousel';
-import { ProblemSection } from '@/components/sections/ProblemSection';
-import { SolutionSection } from '@/components/sections/SolutionSection';
-import { ProcessSection } from '@/components/sections/ProcessSection';
-import { SystemsSection } from '@/components/sections/SystemsSection';
-import { CaseStudiesSlider } from '@/components/sections/CaseStudiesSlider';
-import { CTASection } from '@/components/sections/CTASection';
-import { Footer } from '@/components/sections/Footer';
 
 export const metadata: Metadata = {
   title: 'Pravda Agency - Бизнес инженеринг за предвидим растеж',
@@ -72,19 +62,8 @@ const jsonLd = {
   ]
 };
 
+import Home from '@/pages/home';
+
 export default function HomePage() {
-  return (
-    <div className="min-h-screen bg-slate-900">
-      <Navigation />
-      <HeroSection />
-      <PartnersCarousel />
-      <ProblemSection />
-      <SolutionSection />
-      <ProcessSection />
-      <SystemsSection />
-      <CaseStudiesSlider />
-      <CTASection />
-      <Footer />
-    </div>
-  );
+  return <Home />;
 }

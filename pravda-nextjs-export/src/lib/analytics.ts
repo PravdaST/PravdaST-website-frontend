@@ -1,94 +1,95 @@
-
-// Google Analytics 4 tracking functions
+// Google Analytics 4 интеграция
 declare global {
   interface Window {
-    gtag?: (...args: any[]) => void;
+    gtag: (...args: any[]) => void;
+    dataLayer: any[];
   }
 }
 
-interface GAEvent {
-  action: string;
-  category?: string;
-  label?: string;
-  value?: number;
-}
+export const GA_TRACKING_ID = 'G-JQ8F0NZDX0';
 
-export const initGA = (trackingId: string) => {
-  if (typeof window === 'undefined') return;
-
-  // Load Google Analytics script
-  const script1 = document.createElement('script');
-  script1.async = true;
-  script1.src = `https://www.googletagmanager.com/gtag/js?id=${trackingId}`;
-  document.head.appendChild(script1);
-
-  // Initialize gtag
-  window.gtag = window.gtag || function() {
-    (window as any).dataLayer = (window as any).dataLayer || [];
-    (window as any).dataLayer.push(arguments);
-  };
-
-  window.gtag('js', new Date());
-  window.gtag('config', trackingId, {
-    send_page_view: false // We'll send manually
-  });
-};
-
-export const trackPageView = (path: string) => {
+// Проследяване на page views
+export const trackPageView = (page_path: string, page_title?: string) => {
   if (typeof window !== 'undefined' && window.gtag) {
-    window.gtag('config', process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID!, {
-      page_path: path,
+    window.gtag('config', GA_TRACKING_ID, {
+      page_path,
+      page_title: page_title || document.title,
     });
   }
 };
 
-export const trackEvent = ({ action, category, label, value }: GAEvent) => {
+// Проследяване на contact form submission
+export const trackContactForm = (formData: any) => {
   if (typeof window !== 'undefined' && window.gtag) {
-    window.gtag('event', action, {
-      event_category: category,
-      event_label: label,
-      value: value,
+    window.gtag('event', 'generate_lead', {
+      event_category: 'engagement',
+      event_label: 'contact_form',
+      value: 1,
+      currency: 'BGN',
+      form_type: 'contact',
+      company: formData.company || 'unknown',
+      service_interest: formData.service || 'general'
     });
   }
 };
 
-// Predefined events
-export const trackContactFormSubmit = () => {
-  trackEvent({
-    action: 'form_submit',
-    category: 'engagement',
-    label: 'contact_form'
-  });
+// Проследяване на CTA button clicks
+export const trackCTAClick = (cta_name: string, page_location: string) => {
+  if (typeof window !== 'undefined' && window.gtag) {
+    window.gtag('event', 'click', {
+      event_category: 'engagement',
+      event_label: cta_name,
+      page_location: page_location,
+      cta_type: 'primary'
+    });
+  }
 };
 
-export const trackServicePageView = (service: string) => {
-  trackEvent({
-    action: 'page_view',
-    category: 'services',
-    label: service
-  });
+// Проследяване на phone call clicks
+export const trackPhoneCall = (phone_number: string) => {
+  if (typeof window !== 'undefined' && window.gtag) {
+    window.gtag('event', 'click', {
+      event_category: 'contact',
+      event_label: 'phone_call',
+      phone_number: phone_number,
+      value: 5
+    });
+  }
 };
 
-export const trackCTAClick = (ctaLocation: string) => {
-  trackEvent({
-    action: 'cta_click',
-    category: 'engagement',
-    label: ctaLocation
-  });
+// Проследяване на service page visits
+export const trackServiceView = (service_name: string) => {
+  if (typeof window !== 'undefined' && window.gtag) {
+    window.gtag('event', 'view_item', {
+      event_category: 'services',
+      event_label: service_name,
+      item_category: 'service_page',
+      value: 1
+    });
+  }
 };
 
-export const trackPhoneClick = () => {
-  trackEvent({
-    action: 'phone_click',
-    category: 'contact',
-    label: 'header_phone'
-  });
+// Проследяване на общи събития
+export const trackEvent = (
+  event_name: string,
+  parameters: {
+    event_category?: string;
+    event_label?: string;
+    value?: number;
+    [key: string]: any;
+  }
+) => {
+  if (typeof window !== 'undefined' && window.gtag) {
+    window.gtag('event', event_name, parameters);
+  }
 };
 
-export const trackEmailClick = () => {
-  trackEvent({
-    action: 'email_click',
-    category: 'contact',
-    label: 'header_email'
+// Проследяване на конверсии
+export const trackConversion = (conversion_type: string, value?: number) => {
+  trackEvent('conversion', {
+    event_category: 'business',
+    event_label: conversion_type,
+    value: value || 1,
+    conversion_type
   });
 };
