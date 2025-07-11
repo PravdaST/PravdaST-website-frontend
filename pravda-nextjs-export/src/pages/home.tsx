@@ -8,23 +8,23 @@ import { SystemsSection } from "@/components/systems-section";
 import { CaseStudiesSlider } from "@/components/case-studies-slider";
 import { CTASection } from "@/components/cta-section";
 import { Footer } from "@/components/footer";
-// import { HelmetSEO } from "@/components/seo/helmet-seo";
-// import { pageSEOData } from "@/data/seo-pages";
+import { HelmetSEO } from "@/components/seo/helmet-seo";
+import { pageSEOData } from "@/data/seo-pages";
 import { useEffect } from "react";
-// import { tracking, ConversionStage } from "@/lib/tracking";
+import { tracking, ConversionStage } from "@/lib/tracking";
 // import { Helmet } from "react-helmet-async";
 
 export default function Home() {
   useEffect(() => {
-    // Track page view - will be implemented later
-    // tracking.trackFunnelStage(ConversionStage.LANDING);
+    // Track page view
+    tracking.trackFunnelStage(ConversionStage.LANDING);
   }, []);
 
-  // const seoData = pageSEOData.home;
+  const seoData = pageSEOData.home;
 
   return (
     <div className="min-h-screen bg-slate-900">
-      {/* <HelmetSEO seo={seoData} pageSlug="" /> */}
+      <HelmetSEO seo={seoData} pageSlug="" />
       <Navigation />
       <HeroSection />
       <PartnersCarousel />

@@ -1,10 +1,10 @@
 import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
-// import { GoogleAnalytics } from '@/components/GoogleAnalytics';
-// import { KlaviyoIntegration } from '@/components/KlaviyoIntegration';
-// import { PixelIntegration } from '@/components/PixelIntegration';
-// import { CookieBanner } from '@/components/CookieBanner';
+import { GoogleAnalytics } from '@/components/GoogleAnalytics';
+import { KlaviyoIntegration } from '@/components/KlaviyoIntegration';
+import { PixelIntegration } from '@/components/PixelIntegration';
+import { CookieBanner } from '@/components/CookieBanner';
 // import { BackToTop } from '@/components/BackToTop';
 import { ErrorBoundary } from '@/components/error-boundary';
 import { Navigation } from '@/components/navigation';
@@ -120,13 +120,13 @@ export default function RootLayout({
             <Footer />
           </div>
           <ScrollToTop />
-          {/* <CookieBanner /> */}
+          <CookieBanner />
         </ErrorBoundary>
 
-        {/* Analytics and Tracking - will be added later */}
-        {/* <GoogleAnalytics /> */}
-        {/* <KlaviyoIntegration /> */}
-        {/* <PixelIntegration /> */}
+        {/* Analytics and Tracking */}
+        <GoogleAnalytics />
+        <KlaviyoIntegration />
+        <PixelIntegration />
       </body>
     </html>
   );
