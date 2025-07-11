@@ -1,15 +1,15 @@
 import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
-import { GoogleAnalytics } from '@/components/GoogleAnalytics';
-import { KlaviyoIntegration } from '@/components/KlaviyoIntegration';
-import { PixelIntegration } from '@/components/PixelIntegration';
-import { CookieBanner } from '@/components/CookieBanner';
-import { BackToTop } from '@/components/BackToTop';
-import { ErrorBoundary } from '@/components/ErrorBoundary';
-import { Navigation } from '@/components/sections/Navigation';
-import { Footer } from '@/components/sections/Footer';
-import { ScrollToTop } from '@/components/ScrollToTop';
+// import { GoogleAnalytics } from '@/components/GoogleAnalytics';
+// import { KlaviyoIntegration } from '@/components/KlaviyoIntegration';
+// import { PixelIntegration } from '@/components/PixelIntegration';
+// import { CookieBanner } from '@/components/CookieBanner';
+// import { BackToTop } from '@/components/BackToTop';
+import { ErrorBoundary } from '@/components/error-boundary';
+import { Navigation } from '@/components/navigation';
+import { Footer } from '@/components/footer';
+import { ScrollToTop } from '@/components/scroll-to-top';
 
 const inter = Inter({ 
   subsets: ['latin', 'cyrillic'],
@@ -120,13 +120,13 @@ export default function RootLayout({
             <Footer />
           </div>
           <ScrollToTop />
-          <CookieBanner />
+          {/* <CookieBanner /> */}
         </ErrorBoundary>
 
-        {/* Analytics and Tracking */}
-        <GoogleAnalytics />
-        <KlaviyoIntegration />
-        <PixelIntegration />
+        {/* Analytics and Tracking - will be added later */}
+        {/* <GoogleAnalytics /> */}
+        {/* <KlaviyoIntegration /> */}
+        {/* <PixelIntegration /> */}
       </body>
     </html>
   );
