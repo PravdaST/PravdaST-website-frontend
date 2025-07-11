@@ -5,6 +5,7 @@ import { PartnersCarousel } from '@/components/partners-carousel'
 import { ComparisonSection } from '@/components/comparison-section'
 import { SystemsSection } from '@/components/systems-section'
 import { ProcessSection } from '@/components/process-section'
+import { CaseStudiesSlider } from '@/components/case-studies-new'
 import { CTASection } from '@/components/cta-section'
 import { Footer } from '@/components/footer'
 
@@ -37,6 +38,7 @@ export default function HomePage() {
         <ComparisonSection />
         <SystemsSection />
         <ProcessSection />
+        <CaseStudiesSlider />
         <CTASection />
       </main>
       <Footer />
