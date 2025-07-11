@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { generateMetadata } from '@/lib/metadata';
 import Navigation from '@/components/sections/Navigation';
 import Footer from '@/components/sections/Footer';
@@ -219,10 +220,13 @@ export default function AboutClient() {
                       className="text-center p-6 bg-slate-900/50 border border-white/10 rounded-xl hover:border-[#ECB629]/50 transition-all duration-300 group"
                     >
                       <div className="w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden border-2 border-[#ECB629]/30 group-hover:border-[#ECB629] transition-all duration-300">
-                        <img 
+                        <Image 
                           src={member.image} 
                           alt={member.name}
+                          width={96}
+                          height={96}
                           className="w-full h-full object-cover"
+                          quality={85}
                         />
                       </div>
                       <h3 className="text-xl font-semibold text-white mb-2">

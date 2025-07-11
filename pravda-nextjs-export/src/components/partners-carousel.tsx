@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { motion } from "framer-motion";
 
 const partners = [
@@ -103,11 +104,13 @@ export const PartnersCarousel = () => {
                 transition={{ duration: 0.2 }}
               >
                 <div className="relative p-4">
-                  <img
+                  <Image
                     src={partner.logo}
                     alt={partner.name}
-                    loading="lazy"
+                    width={120}
+                    height={32}
                     className="h-8 w-auto max-w-[120px] filter grayscale brightness-[0.4] opacity-60 transition-all duration-300 hover:filter-none hover:opacity-100"
+                    quality={75}
                   />
                   <motion.div
                     className="absolute inset-0 bg-[#ECB629] rounded-lg opacity-0 hover:opacity-10 transition-opacity duration-300"
@@ -123,11 +126,13 @@ export const PartnersCarousel = () => {
                 className="flex-shrink-0 flex justify-center items-center"
                 style={{ width: "240px" }}
               >
-                <img
+                <Image
                   src={partner.logo}
                   alt={partner.name}
-                  loading="lazy"
+                  width={120}
+                  height={40}
                   className="h-10 w-auto max-w-[120px] filter grayscale brightness-[0.5] opacity-60 transition-all duration-300 hover:filter-none hover:opacity-100"
+                  quality={75}
                 />
               </div>
             ))}
@@ -138,11 +143,13 @@ export const PartnersCarousel = () => {
                 className="flex-shrink-0 flex justify-center items-center"
                 style={{ width: "240px" }}
               >
-                <img
+                <Image
                   src={partner.logo}
                   alt={partner.name}
-                  loading="lazy"
+                  width={120}
+                  height={40}
                   className="h-10 w-auto max-w-[120px] filter grayscale brightness-[0.5] opacity-60 transition-all duration-300 hover:filter-none hover:opacity-100"
+                  quality={75}
                 />
               </div>
             ))}
