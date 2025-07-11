@@ -1308,6 +1308,9 @@ video {
 .border-yellow-500\/30 {
   border-color: rgb(234 179 8 / 0.3);
 }
+.border-\[var\(--pravdast-yellow\)\] {
+  border-color: var(--pravdast-yellow);
+}
 .border-b-transparent {
   border-bottom-color: transparent;
 }
@@ -1439,6 +1442,9 @@ video {
 }
 .bg-yellow-500\/20 {
   background-color: rgb(234 179 8 / 0.2);
+}
+.bg-\[var\(--pravdast-yellow\)\] {
+  background-color: var(--pravdast-yellow);
 }
 .bg-gradient-to-b {
   background-image: linear-gradient(to bottom, var(--tw-gradient-stops));
@@ -1872,6 +1878,9 @@ video {
 .text-yellow-800 {
   --tw-text-opacity: 1;
   color: rgb(133 77 14 / var(--tw-text-opacity, 1));
+}
+.text-\[var\(--pravdast-yellow\)\] {
+  color: var(--pravdast-yellow);
 }
 .underline {
   text-decoration-line: underline;
