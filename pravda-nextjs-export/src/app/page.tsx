@@ -62,8 +62,28 @@ const jsonLd = {
   ]
 };
 
-import Home from '@/pages/home';
+import Navigation from '@/components/navigation';
+import HeroSection from '@/components/hero-section';
+import PartnersCarousel from '@/components/partners-carousel';
+import ProblemSection from '@/components/problem-section';
+import SystemsSection from '@/components/systems-section';
+import CaseStudiesSlider from '@/components/case-studies-slider';
+import ProcessSection from '@/components/process-section';
+import CTASection from '@/components/cta-section';
+import Footer from '@/components/footer';
 
 export default function HomePage() {
-  return <Home />;
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+      <Navigation />
+      <HeroSection />
+      <PartnersCarousel />
+      <ProblemSection />
+      <SystemsSection />
+      <CaseStudiesSlider />
+      <ProcessSection />
+      <CTASection />
+      <Footer />
+    </div>
+  );
 }
