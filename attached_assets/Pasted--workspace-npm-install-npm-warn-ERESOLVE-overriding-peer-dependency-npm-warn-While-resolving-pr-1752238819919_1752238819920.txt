@@ -1,0 +1,366 @@
+~/workspace$ npm install
+npm warn ERESOLVE overriding peer dependency
+npm warn While resolving: pravda-nextjs@1.0.0
+npm warn Found: react@18.3.1
+npm warn node_modules/react
+npm warn   react@"18.2.0" from the root project
+npm warn   36 more (lucide-react, react-dom, react-helmet-async, ...)
+npm warn
+npm warn Could not resolve dependency:
+npm warn peer react@"^18.3.1" from react-dom@18.3.1
+npm warn node_modules/react-dom
+npm warn   react-dom@"18.2.0" from the root project
+npm warn   30 more (@radix-ui/react-accordion, ...)
+npm warn ERESOLVE overriding peer dependency
+npm warn While resolving: pravda-nextjs@1.0.0
+npm warn Found: react@18.3.1
+npm warn node_modules/react
+npm warn   react@"18.2.0" from the root project
+npm warn   36 more (lucide-react, react-dom, react-helmet-async, ...)
+npm warn
+npm warn Could not resolve dependency:
+npm warn peer react@"^18.3.1" from react-dom@18.3.1
+npm warn node_modules/react-dom
+npm warn   react-dom@"18.2.0" from the root project
+npm warn   30 more (@radix-ui/react-accordion, ...)
+npm warn ERESOLVE overriding peer dependency
+npm warn While resolving: pravda-nextjs@1.0.0
+npm warn Found: react@18.3.1
+npm warn node_modules/react
+npm warn   react@"18.2.0" from the root project
+npm warn   36 more (lucide-react, react-dom, react-helmet-async, ...)
+npm warn
+npm warn Could not resolve dependency:
+npm warn peer react@"^18.3.1" from react-dom@18.3.1
+npm warn node_modules/react-dom
+npm warn   react-dom@"18.2.0" from the root project
+npm warn   30 more (@radix-ui/react-accordion, ...)
+npm warn ERESOLVE overriding peer dependency
+npm warn While resolving: pravda-nextjs@1.0.0
+npm warn Found: react@18.3.1
+npm warn node_modules/react
+npm warn   react@"18.2.0" from the root project
+npm warn   36 more (lucide-react, react-dom, react-helmet-async, ...)
+npm warn
+npm warn Could not resolve dependency:
+npm warn peer react@"^18.3.1" from react-dom@18.3.1
+npm warn node_modules/react-dom
+npm warn   react-dom@"18.2.0" from the root project
+npm warn   30 more (@radix-ui/react-accordion, ...)
+npm warn ERESOLVE overriding peer dependency
+npm warn While resolving: pravda-nextjs@1.0.0
+npm warn Found: react@18.3.1
+npm warn node_modules/react
+npm warn   react@"18.2.0" from the root project
+npm warn   36 more (lucide-react, react-dom, react-helmet-async, ...)
+npm warn
+npm warn Could not resolve dependency:
+npm warn peer react@"^18.3.1" from react-dom@18.3.1
+npm warn node_modules/react-dom
+npm warn   react-dom@"18.2.0" from the root project
+npm warn   30 more (@radix-ui/react-accordion, ...)
+npm warn ERESOLVE overriding peer dependency
+npm warn While resolving: pravda-nextjs@1.0.0
+npm warn Found: react@18.3.1
+npm warn node_modules/react
+npm warn   react@"18.2.0" from the root project
+npm warn   36 more (lucide-react, react-dom, react-helmet-async, ...)
+npm warn
+npm warn Could not resolve dependency:
+npm warn peer react@"^18.3.1" from react-dom@18.3.1
+npm warn node_modules/react-dom
+npm warn   react-dom@"18.2.0" from the root project
+npm warn   30 more (@radix-ui/react-accordion, ...)
+npm warn ERESOLVE overriding peer dependency
+npm warn While resolving: pravda-nextjs@1.0.0
+npm warn Found: react@18.3.1
+npm warn node_modules/react
+npm warn   react@"18.2.0" from the root project
+npm warn   36 more (lucide-react, react-dom, react-helmet-async, ...)
+npm warn
+npm warn Could not resolve dependency:
+npm warn peer react@"^18.3.1" from react-dom@18.3.1
+npm warn node_modules/react-dom
+npm warn   react-dom@"18.2.0" from the root project
+npm warn   30 more (@radix-ui/react-accordion, ...)
+npm warn ERESOLVE overriding peer dependency
+npm warn While resolving: pravda-nextjs@1.0.0
+npm warn Found: react@18.3.1
+npm warn node_modules/react
+npm warn   react@"18.2.0" from the root project
+npm warn   36 more (lucide-react, react-dom, react-helmet-async, ...)
+npm warn
+npm warn Could not resolve dependency:
+npm warn peer react@"^18.3.1" from react-dom@18.3.1
+npm warn node_modules/react-dom
+npm warn   react-dom@"18.2.0" from the root project
+npm warn   30 more (@radix-ui/react-accordion, ...)
+npm warn ERESOLVE overriding peer dependency
+npm warn While resolving: pravda-nextjs@1.0.0
+npm warn Found: react@18.3.1
+npm warn node_modules/react
+npm warn   react@"18.2.0" from the root project
+npm warn   36 more (lucide-react, react-dom, react-helmet-async, ...)
+npm warn
+npm warn Could not resolve dependency:
+npm warn peer react@"^18.3.1" from react-dom@18.3.1
+npm warn node_modules/react-dom
+npm warn   react-dom@"18.2.0" from the root project
+npm warn   30 more (@radix-ui/react-accordion, ...)
+npm warn ERESOLVE overriding peer dependency
+npm warn While resolving: pravda-nextjs@1.0.0
+npm warn Found: react@18.3.1
+npm warn node_modules/react
+npm warn   react@"18.2.0" from the root project
+npm warn   36 more (lucide-react, react-dom, react-helmet-async, ...)
+npm warn
+npm warn Could not resolve dependency:
+npm warn peer react@"^18.3.1" from react-dom@18.3.1
+npm warn node_modules/react-dom
+npm warn   react-dom@"18.2.0" from the root project
+npm warn   30 more (@radix-ui/react-accordion, ...)
+npm warn ERESOLVE overriding peer dependency
+npm warn While resolving: pravda-nextjs@1.0.0
+npm warn Found: react@18.3.1
+npm warn node_modules/react
+npm warn   react@"18.2.0" from the root project
+npm warn   36 more (lucide-react, react-dom, react-helmet-async, ...)
+npm warn
+npm warn Could not resolve dependency:
+npm warn peer react@"^18.3.1" from react-dom@18.3.1
+npm warn node_modules/react-dom
+npm warn   react-dom@"18.2.0" from the root project
+npm warn   30 more (@radix-ui/react-accordion, ...)
+npm warn ERESOLVE overriding peer dependency
+npm warn While resolving: pravda-nextjs@1.0.0
+npm warn Found: react@18.3.1
+npm warn node_modules/react
+npm warn   react@"18.2.0" from the root project
+npm warn   36 more (lucide-react, react-dom, react-helmet-async, ...)
+npm warn
+npm warn Could not resolve dependency:
+npm warn peer react@"^18.3.1" from react-dom@18.3.1
+npm warn node_modules/react-dom
+npm warn   react-dom@"18.2.0" from the root project
+npm warn   30 more (@radix-ui/react-accordion, ...)
+npm warn ERESOLVE overriding peer dependency
+npm warn While resolving: pravda-nextjs@1.0.0
+npm warn Found: react@18.3.1
+npm warn node_modules/react
+npm warn   react@"18.2.0" from the root project
+npm warn   36 more (lucide-react, react-dom, react-helmet-async, ...)
+npm warn
+npm warn Could not resolve dependency:
+npm warn peer react@"^18.3.1" from react-dom@18.3.1
+npm warn node_modules/react-dom
+npm warn   react-dom@"18.2.0" from the root project
+npm warn   30 more (@radix-ui/react-accordion, ...)
+npm warn ERESOLVE overriding peer dependency
+npm warn While resolving: pravda-nextjs@1.0.0
+npm warn Found: react@18.3.1
+npm warn node_modules/react
+npm warn   react@"18.2.0" from the root project
+npm warn   36 more (lucide-react, react-dom, react-helmet-async, ...)
+npm warn
+npm warn Could not resolve dependency:
+npm warn peer react@"^18.3.1" from react-dom@18.3.1
+npm warn node_modules/react-dom
+npm warn   react-dom@"18.2.0" from the root project
+npm warn   30 more (@radix-ui/react-accordion, ...)
+npm warn ERESOLVE overriding peer dependency
+npm warn While resolving: pravda-nextjs@1.0.0
+npm warn Found: react@18.3.1
+npm warn node_modules/react
+npm warn   react@"18.2.0" from the root project
+npm warn   36 more (lucide-react, react-dom, react-helmet-async, ...)
+npm warn
+npm warn Could not resolve dependency:
+npm warn peer react@"^18.3.1" from react-dom@18.3.1
+npm warn node_modules/react-dom
+npm warn   react-dom@"18.2.0" from the root project
+npm warn   30 more (@radix-ui/react-accordion, ...)
+npm warn ERESOLVE overriding peer dependency
+npm warn While resolving: pravda-nextjs@1.0.0
+npm warn Found: react@18.3.1
+npm warn node_modules/react
+npm warn   react@"18.2.0" from the root project
+npm warn   36 more (lucide-react, react-dom, react-helmet-async, ...)
+npm warn
+npm warn Could not resolve dependency:
+npm warn peer react@"^18.3.1" from react-dom@18.3.1
+npm warn node_modules/react-dom
+npm warn   react-dom@"18.2.0" from the root project
+npm warn   30 more (@radix-ui/react-accordion, ...)
+npm warn ERESOLVE overriding peer dependency
+npm warn While resolving: pravda-nextjs@1.0.0
+npm warn Found: react@18.3.1
+npm warn node_modules/react
+npm warn   react@"18.2.0" from the root project
+npm warn   36 more (lucide-react, react-dom, react-helmet-async, ...)
+npm warn
+npm warn Could not resolve dependency:
+npm warn peer react@"^18.3.1" from react-dom@18.3.1
+npm warn node_modules/react-dom
+npm warn   react-dom@"18.2.0" from the root project
+npm warn   30 more (@radix-ui/react-accordion, ...)
+npm warn ERESOLVE overriding peer dependency
+npm warn While resolving: pravda-nextjs@1.0.0
+npm warn Found: react@18.3.1
+npm warn node_modules/react
+npm warn   react@"18.2.0" from the root project
+npm warn   36 more (lucide-react, react-dom, react-helmet-async, ...)
+npm warn
+npm warn Could not resolve dependency:
+npm warn peer react@"^18.3.1" from react-dom@18.3.1
+npm warn node_modules/react-dom
+npm warn   react-dom@"18.2.0" from the root project
+npm warn   30 more (@radix-ui/react-accordion, ...)
+npm warn ERESOLVE overriding peer dependency
+npm warn While resolving: pravda-nextjs@1.0.0
+npm warn Found: react@18.3.1
+npm warn node_modules/react
+npm warn   react@"18.2.0" from the root project
+npm warn   36 more (lucide-react, react-dom, react-helmet-async, ...)
+npm warn
+npm warn Could not resolve dependency:
+npm warn peer react@"^18.3.1" from react-dom@18.3.1
+npm warn node_modules/react-dom
+npm warn   react-dom@"18.2.0" from the root project
+npm warn   30 more (@radix-ui/react-accordion, ...)
+npm warn ERESOLVE overriding peer dependency
+npm warn While resolving: pravda-nextjs@1.0.0
+npm warn Found: react@18.3.1
+npm warn node_modules/react
+npm warn   react@"18.2.0" from the root project
+npm warn   36 more (lucide-react, react-dom, react-helmet-async, ...)
+npm warn
+npm warn Could not resolve dependency:
+npm warn peer react@"^18.3.1" from react-dom@18.3.1
+npm warn node_modules/react-dom
+npm warn   react-dom@"18.2.0" from the root project
+npm warn   30 more (@radix-ui/react-accordion, ...)
+npm warn ERESOLVE overriding peer dependency
+npm warn While resolving: pravda-nextjs@1.0.0
+npm warn Found: react@18.3.1
+npm warn node_modules/react
+npm warn   react@"18.2.0" from the root project
+npm warn   36 more (lucide-react, react-dom, react-helmet-async, ...)
+npm warn
+npm warn Could not resolve dependency:
+npm warn peer react@"^18.3.1" from react-dom@18.3.1
+npm warn node_modules/react-dom
+npm warn   react-dom@"18.2.0" from the root project
+npm warn   30 more (@radix-ui/react-accordion, ...)
+npm warn ERESOLVE overriding peer dependency
+npm warn While resolving: pravda-nextjs@1.0.0
+npm warn Found: react@18.3.1
+npm warn node_modules/react
+npm warn   react@"18.2.0" from the root project
+npm warn   36 more (lucide-react, react-dom, react-helmet-async, ...)
+npm warn
+npm warn Could not resolve dependency:
+npm warn peer react@"^18.3.1" from react-dom@18.3.1
+npm warn node_modules/react-dom
+npm warn   react-dom@"18.2.0" from the root project
+npm warn   30 more (@radix-ui/react-accordion, ...)
+npm warn ERESOLVE overriding peer dependency
+npm warn While resolving: pravda-nextjs@1.0.0
+npm warn Found: react@18.3.1
+npm warn node_modules/react
+npm warn   react@"18.2.0" from the root project
+npm warn   36 more (lucide-react, react-dom, react-helmet-async, ...)
+npm warn
+npm warn Could not resolve dependency:
+npm warn peer react@"^18.3.1" from react-dom@18.3.1
+npm warn node_modules/react-dom
+npm warn   react-dom@"18.2.0" from the root project
+npm warn   30 more (@radix-ui/react-accordion, ...)
+npm warn ERESOLVE overriding peer dependency
+npm warn While resolving: pravda-nextjs@1.0.0
+npm warn Found: react@18.3.1
+npm warn node_modules/react
+npm warn   react@"18.2.0" from the root project
+npm warn   36 more (lucide-react, react-dom, react-helmet-async, ...)
+npm warn
+npm warn Could not resolve dependency:
+npm warn peer react@"^18.3.1" from react-dom@18.3.1
+npm warn node_modules/react-dom
+npm warn   react-dom@"18.2.0" from the root project
+npm warn   30 more (@radix-ui/react-accordion, ...)
+npm warn ERESOLVE overriding peer dependency
+npm warn While resolving: pravda-nextjs@1.0.0
+npm warn Found: react@18.3.1
+npm warn node_modules/react
+npm warn   react@"18.2.0" from the root project
+npm warn   36 more (lucide-react, react-dom, react-helmet-async, ...)
+npm warn
+npm warn Could not resolve dependency:
+npm warn peer react@"^18.3.1" from react-dom@18.3.1
+npm warn node_modules/react-dom
+npm warn   react-dom@"18.2.0" from the root project
+npm warn   30 more (@radix-ui/react-accordion, ...)
+npm warn ERESOLVE overriding peer dependency
+npm warn While resolving: pravda-nextjs@1.0.0
+npm warn Found: react@18.3.1
+npm warn node_modules/react
+npm warn   react@"18.2.0" from the root project
+npm warn   36 more (lucide-react, react-dom, react-helmet-async, ...)
+npm warn
+npm warn Could not resolve dependency:
+npm warn peer react@"^18.3.1" from react-dom@18.3.1
+npm warn node_modules/react-dom
+npm warn   react-dom@"18.2.0" from the root project
+npm warn   30 more (@radix-ui/react-accordion, ...)
+npm warn ERESOLVE overriding peer dependency
+npm warn While resolving: pravda-nextjs@1.0.0
+npm warn Found: react@18.3.1
+npm warn node_modules/react
+npm warn   react@"18.2.0" from the root project
+npm warn   36 more (lucide-react, react-dom, react-helmet-async, ...)
+npm warn
+npm warn Could not resolve dependency:
+npm warn peer react@"^18.3.1" from react-dom@18.3.1
+npm warn node_modules/react-dom
+npm warn   react-dom@"18.2.0" from the root project
+npm warn   30 more (@radix-ui/react-accordion, ...)
+npm warn ERESOLVE overriding peer dependency
+npm warn While resolving: pravda-nextjs@1.0.0
+npm warn Found: react@18.3.1
+npm warn node_modules/react
+npm warn   react@"18.2.0" from the root project
+npm warn   36 more (lucide-react, react-dom, react-helmet-async, ...)
+npm warn
+npm warn Could not resolve dependency:
+npm warn peer react@"^18.3.1" from react-dom@18.3.1
+npm warn node_modules/react-dom
+npm warn   react-dom@"18.2.0" from the root project
+npm warn   30 more (@radix-ui/react-accordion, ...)
+npm warn ERESOLVE overriding peer dependency
+npm warn While resolving: pravda-nextjs@1.0.0
+npm warn Found: react@18.3.1
+npm warn node_modules/react
+npm warn   react@"18.2.0" from the root project
+npm warn   36 more (lucide-react, react-dom, react-helmet-async, ...)
+npm warn
+npm warn Could not resolve dependency:
+npm warn peer react@"^18.3.1" from react-dom@18.3.1
+npm warn node_modules/react-dom
+npm warn   react-dom@"18.2.0" from the root project
+npm warn   30 more (@radix-ui/react-accordion, ...)
+npm warn ERESOLVE overriding peer dependency
+npm warn While resolving: pravda-nextjs@1.0.0
+npm warn Found: react@18.3.1
+npm warn node_modules/react
+npm warn   react@"18.2.0" from the root project
+npm warn   36 more (lucide-react, react-dom, react-helmet-async, ...)
+npm warn
+npm warn Could not resolve dependency:
+npm warn peer react@"^18.3.1" from react-dom@18.3.1
+npm warn node_modules/react-dom
+npm warn   react-dom@"18.2.0" from the root project
+npm warn   30 more (@radix-ui/react-accordion, ...)
+npm error code ETARGET
+npm error notarget No matching version found for typescript@5.3.0.
+npm error notarget In most cases you or one of your dependencies are requesting
+npm error notarget a package version that doesn't exist.
+npm error A complete log of this run can be found in: /home/runner/.npm/_logs/2025-07-11T12_59_18_218Z-debug-0.log
