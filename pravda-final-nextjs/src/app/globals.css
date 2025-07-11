@@ -27,6 +27,19 @@ body {
     rgb(var(--background-start-rgb));
 }
 
+@keyframes infinite-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-1200px);
+  }
+}
+
+.animate-infinite-scroll {
+  animation: infinite-scroll 30s linear infinite;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;

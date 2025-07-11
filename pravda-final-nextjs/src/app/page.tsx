@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
 import { pageSEOData } from '@/data/seo-pages'
-import { CompleteHomepage } from '@/components/complete-homepage'
+import { StaticHomepage } from '@/components/static-homepage'
 
 export const metadata: Metadata = {
   title: pageSEOData.home.title,
@@ -22,5 +22,5 @@ export const metadata: Metadata = {
 }
 
 export default function HomePage() {
-  return <CompleteHomepage />
+  return <StaticHomepage />
 }
