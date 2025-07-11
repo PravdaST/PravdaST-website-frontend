@@ -1,113 +1,294 @@
 'use client'
 
-import Link from 'next/link'
-import { Facebook, Youtube, Instagram, Linkedin, Phone, Mail, MapPin } from 'lucide-react'
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { Mail, Phone, MapPin, Facebook, Youtube, Instagram, Linkedin } from "lucide-react";
 
-export function Footer() {
+export const Footer = () => {
+  const footerLinks = {
+    services: [
+      { href: "/services/seo-struktor", label: "SEO Struktor™" },
+      { href: "/services/trendlab", label: "Trendlab™" },
+      { href: "/services/clickstarter", label: "Clickstarter™" },
+      { href: "/services/clientomat", label: "Clientomat™" }
+    ],
+    company: [
+      { href: "/about", label: "За нас" },
+      { href: "/case-studies", label: "Резултати" },
+      { href: "/blog", label: "Блог" },
+      { href: "/faq", label: "Въпроси" },
+      { href: "/contact", label: "Контакти" }
+    ],
+    legal: [
+      { href: "/terms", label: "Условия за ползване" },
+      { href: "/privacy", label: "Политика за поверителност" }
+    ],
+    contact: [
+      { icon: Mail, info: "contact@pravdast.agency" },
+      { icon: Phone, info: "+359 879 282 299" },
+      { icon: MapPin, info: "гр. Варна ул. Дебър №58" }
+    ]
+  };
+
   return (
-    <footer className="bg-slate-900 text-white">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div>
-            <h3 className="text-xl font-bold mb-4">Pravdast</h3>
-            <p className="text-gray-300 mb-4">
-              Бизнес инженеринг за предвидим растеж
-            </p>
-            <div className="flex space-x-4">
-              <a href="https://www.facebook.com/pravdast.agency/" target="_blank" rel="noopener noreferrer">
-                <Facebook className="h-5 w-5 text-gray-400 hover:text-white" />
-              </a>
-              <a href="https://www.youtube.com/@PravdaST" target="_blank" rel="noopener noreferrer">
-                <Youtube className="h-5 w-5 text-gray-400 hover:text-white" />
-              </a>
-              <a href="https://www.instagram.com/pravdast.agency/" target="_blank" rel="noopener noreferrer">
-                <Instagram className="h-5 w-5 text-gray-400 hover:text-white" />
-              </a>
-              <a href="https://www.linkedin.com/company/pravda-st/" target="_blank" rel="noopener noreferrer">
-                <Linkedin className="h-5 w-5 text-gray-400 hover:text-white" />
-              </a>
-            </div>
-          </div>
-          
-          <div>
-            <h4 className="text-lg font-semibold mb-4">Услуги</h4>
-            <ul className="space-y-2">
-              <li>
-                <Link href="/services/seo-struktor" className="text-gray-300 hover:text-white">
-                  SEO Struktor™
-                </Link>
-              </li>
-              <li>
-                <Link href="/services/trendlab" className="text-gray-300 hover:text-white">
-                  Trendlab™
-                </Link>
-              </li>
-              <li>
-                <Link href="/services/clickstarter" className="text-gray-300 hover:text-white">
-                  Clickstarter™
-                </Link>
-              </li>
-              <li>
-                <Link href="/services/clientomat" className="text-gray-300 hover:text-white">
-                  Clientomat™
-                </Link>
-              </li>
-            </ul>
-          </div>
-          
-          <div>
-            <h4 className="text-lg font-semibold mb-4">Компания</h4>
-            <ul className="space-y-2">
-              <li>
-                <Link href="/about" className="text-gray-300 hover:text-white">
-                  За нас
-                </Link>
-              </li>
-              <li>
-                <Link href="/blog" className="text-gray-300 hover:text-white">
-                  Блог
-                </Link>
-              </li>
-              <li>
-                <Link href="/case-studies" className="text-gray-300 hover:text-white">
-                  Казуси
-                </Link>
-              </li>
-              <li>
-                <Link href="/faq" className="text-gray-300 hover:text-white">
-                  FAQ
-                </Link>
-              </li>
-            </ul>
-          </div>
-          
-          <div>
-            <h4 className="text-lg font-semibold mb-4">Контакти</h4>
-            <div className="space-y-2">
-              <div className="flex items-center">
-                <MapPin className="h-4 w-4 mr-2 text-gray-400" />
-                <span className="text-gray-300">гр.Варна ул. Дебър №58</span>
-              </div>
-              <div className="flex items-center">
-                <Phone className="h-4 w-4 mr-2 text-gray-400" />
-                <a href="tel:+359879282299" className="text-gray-300 hover:text-white">
-                  +359 879 282 299
-                </a>
-              </div>
-              <div className="flex items-center">
-                <Mail className="h-4 w-4 mr-2 text-gray-400" />
-                <a href="mailto:contact@pravdast.agency" className="text-gray-300 hover:text-white">
-                  contact@pravdast.agency
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <div className="mt-8 pt-8 border-t border-gray-800 text-center text-gray-400">
-          <p>&copy; 2025 Pravdast. Всички права запазени.</p>
+    <footer className="py-12 sm:py-16 bg-slate-900 border-t border-[#ECB629]/20 relative overflow-hidden">
+      {/* Animated Tech Background */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute inset-0">
+          {/* Footer Grid Pattern */}
+          <div className="absolute inset-0" style={{
+            backgroundImage: `
+              linear-gradient(rgba(236, 182, 40, 0.1) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(236, 182, 40, 0.1) 1px, transparent 1px)
+            `,
+            backgroundSize: '60px 60px'
+          }}></div>
+
+          {/* Connection Lines */}
+          {[...Array(4)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-full h-px bg-gradient-to-r from-transparent via-[#ECB629] to-transparent"
+              style={{
+                top: `${25 + i * 25}%`,
+              }}
+              animate={{
+                opacity: [0.1, 0.3, 0.1],
+                scaleX: [0.8, 1.2, 0.8],
+              }}
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                delay: i * 1,
+              }}
+            />
+          ))}
         </div>
       </div>
+
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 mb-8 sm:mb-12">
+          {/* Brand Section */}
+          <motion.div 
+            className="md:col-span-1"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.2 }}
+            >
+              <Link href="/">
+                <div className="text-2xl font-bold text-[#ECB629] mb-4 cursor-pointer relative">
+                  PRAVDA ST
+                  <motion.div
+                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#ECB629] origin-left"
+                    initial={{ scaleX: 0 }}
+                    whileHover={{ scaleX: 1 }}
+                    transition={{ duration: 0.3 }}
+                  />
+                </div>
+              </Link>
+            </motion.div>
+            <p className="text-gray-400 text-sm mb-6">
+              Консултантска компания за бизнес инженеринг. Изграждаме системи за предвидим растеж.
+            </p>
+
+            {/* Social Media Links */}
+            <motion.div 
+              className="flex items-center space-x-4 mb-6"
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              {[
+                { icon: Facebook, href: "https://www.facebook.com/pravdast.agency/" },
+                { icon: Youtube, href: "https://www.youtube.com/@PravdaST" },
+                { icon: Instagram, href: "https://www.instagram.com/pravdast.agency/" },
+                { icon: Linkedin, href: "https://www.linkedin.com/company/pravda-st/" }
+              ].map((social, index) => (
+                <motion.a
+                  key={index}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-[#ECB629] transition-colors relative"
+                  whileHover={{ y: -2, scale: 1.1 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <social.icon size={20} />
+                  <motion.div
+                    className="absolute inset-0 bg-[#ECB629] rounded-full opacity-0"
+                    whileHover={{ opacity: 0.1 }}
+                    transition={{ duration: 0.2 }}
+                  />
+                </motion.a>
+              ))}
+            </motion.div>
+          </motion.div>
+
+          {/* Services */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            viewport={{ once: true }}
+          >
+            <h4 className="text-white font-semibold mb-4 relative">
+              Услуги
+              <motion.div
+                className="absolute -bottom-1 left-0 w-8 h-0.5 bg-[#ECB629]"
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                viewport={{ once: true }}
+              />
+            </h4>
+            <ul className="space-y-3">
+              {footerLinks.services.map((link, index) => (
+                <motion.li
+                  key={index}
+                  initial={{ opacity: 0, x: -10 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.4, delay: 0.2 + index * 0.1 }}
+                  viewport={{ once: true }}
+                >
+                  <Link
+                    href={link.href}
+                    className="text-gray-400 hover:text-[#ECB629] transition-colors text-sm relative group"
+                  >
+                    {link.label}
+                    <motion.div
+                      className="absolute -bottom-1 left-0 right-0 h-px bg-[#ECB629] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
+                    />
+                  </Link>
+                </motion.li>
+              ))}
+            </ul>
+          </motion.div>
+
+          {/* Company */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            <h4 className="text-white font-semibold mb-4 relative">
+              Компания
+              <motion.div
+                className="absolute -bottom-1 left-0 w-8 h-0.5 bg-[#ECB629]"
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                viewport={{ once: true }}
+              />
+            </h4>
+            <ul className="space-y-3">
+              {footerLinks.company.map((link, index) => (
+                <motion.li
+                  key={index}
+                  initial={{ opacity: 0, x: -10 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
+                  viewport={{ once: true }}
+                >
+                  <Link
+                    href={link.href}
+                    className="text-gray-400 hover:text-[#ECB629] transition-colors text-sm relative group"
+                  >
+                    {link.label}
+                    <motion.div
+                      className="absolute -bottom-1 left-0 right-0 h-px bg-[#ECB629] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
+                    />
+                  </Link>
+                </motion.li>
+              ))}
+            </ul>
+          </motion.div>
+
+          {/* Contact Info */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            viewport={{ once: true }}
+          >
+            <h4 className="text-white font-semibold mb-4 relative">
+              Контакти
+              <motion.div
+                className="absolute -bottom-1 left-0 w-8 h-0.5 bg-[#ECB629]"
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+                viewport={{ once: true }}
+              />
+            </h4>
+            <ul className="space-y-3">
+              {footerLinks.contact.map((contact, index) => (
+                <motion.li
+                  key={index}
+                  className="flex items-start gap-3"
+                  initial={{ opacity: 0, x: -10 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.4, delay: 0.4 + index * 0.1 }}
+                  viewport={{ once: true }}
+                >
+                  <contact.icon className="w-4 h-4 text-[#ECB629] mt-0.5 flex-shrink-0" />
+                  <span className="text-gray-400 text-sm">
+                    {contact.info}
+                  </span>
+                </motion.li>
+              ))}
+            </ul>
+          </motion.div>
+        </div>
+
+        {/* Bottom Section */}
+        <motion.div
+          className="border-t border-slate-700/50 pt-8"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          viewport={{ once: true }}
+        >
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <motion.p
+              className="text-gray-400 text-sm"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              viewport={{ once: true }}
+            >
+              © 2025 Pravda ST. Всички права запазени.
+            </motion.p>
+            
+            <motion.div
+              className="flex items-center gap-6"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              viewport={{ once: true }}
+            >
+              {footerLinks.legal.map((link, index) => (
+                <Link
+                  key={index}
+                  href={link.href}
+                  className="text-gray-400 hover:text-[#ECB629] transition-colors text-sm relative group"
+                >
+                  {link.label}
+                  <motion.div
+                    className="absolute -bottom-1 left-0 right-0 h-px bg-[#ECB629] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
+                  />
+                </Link>
+              ))}
+            </motion.div>
+          </div>
+        </motion.div>
+      </div>
     </footer>
-  )
-}
+  );
+};

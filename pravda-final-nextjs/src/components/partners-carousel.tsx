@@ -1,35 +1,29 @@
-
 'use client'
 
-import { motion } from "framer-motion"
+import { motion } from "framer-motion";
 
 const partners = [
   {
     name: "Claude",
-    src: "https://framerusercontent.com/images/m2Ee8qVNaUq1p30JNXzf87wtGZ4.png",
-    alt: "Claude"
+    logo: "https://framerusercontent.com/images/m2Ee8qVNaUq1p30JNXzf87wtGZ4.png",
   },
   {
     name: "Make",
-    src: "https://framerusercontent.com/images/n3QeCgxiERZtWGL7E7mRbFJGPU.png", 
-    alt: "Make"
+    logo: "https://framerusercontent.com/images/n3QeCgxiERZtWGL7E7mRbFJGPU.png",
   },
   {
-    name: "OpenAI",
-    src: "https://framerusercontent.com/images/Bcly3ML9TcmNxDC5rKCRKuvqODI.png",
-    alt: "Open AI"
+    name: "Open AI",
+    logo: "https://framerusercontent.com/images/Bcly3ML9TcmNxDC5rKCRKuvqODI.png",
   },
   {
-    name: "N8N", 
-    src: "https://framerusercontent.com/images/o3i1Dnx2WxItzPkcePIqvEQOFU.png",
-    alt: "N8N"
+    name: "N8N",
+    logo: "https://framerusercontent.com/images/o3i1Dnx2WxItzPkcePIqvEQOFU.png",
   },
   {
-    name: "ElevenLabs",
-    src: "https://framerusercontent.com/images/aEfuAatqNA9OPAwEZa6f4GuCgU.png",
-    alt: "Elevenlabs"
-  }
-]
+    name: "Elevenlabs",
+    logo: "https://framerusercontent.com/images/aEfuAatqNA9OPAwEZa6f4GuCgU.png",
+  },
+];
 
 export const PartnersCarousel = () => {
   return (
@@ -37,45 +31,40 @@ export const PartnersCarousel = () => {
       {/* Animated Tech Background */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0">
-          {/* Radial Dot Pattern */}
-          <div
-            className="absolute inset-0"
-            style={{
-              backgroundImage: `radial-gradient(circle at 2px 2px, rgba(236, 182, 40, 0.2) 1px, transparent 0px)`,
-              backgroundSize: "60px 60px",
-            }}
-          ></div>
-
-          {/* Horizontal Lines */}
-          <div
-            className="absolute w-full h-px bg-gradient-to-r from-transparent via-[#ECB629] to-transparent"
-            style={{
-              top: "30%",
-              transform: "scaleX(1.1621)",
-            }}
-          ></div>
-          <div
-            className="absolute w-full h-px bg-gradient-to-r from-transparent via-[#ECB629] to-transparent"
-            style={{
-              top: "50%",
-              transform: "scaleX(0.950226)",
-            }}
-          ></div>
-          <div
-            className="absolute w-full h-px bg-gradient-to-r from-transparent via-[#ECB629] to-transparent"
-            style={{
-              top: "70%",
-              transform: "scaleX(0.837901)",
-            }}
-          ></div>
+          {/* Trust Pattern */}
+          <div className="absolute inset-0" style={{
+            backgroundImage: `
+              radial-gradient(circle at 2px 2px, rgba(236, 182, 40, 0.2) 1px, transparent 0)
+            `,
+            backgroundSize: '60px 60px'
+          }}></div>
+          
+          {/* Partnership Lines */}
+          {[...Array(3)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-full h-px bg-gradient-to-r from-transparent via-[#ECB629] to-transparent"
+              style={{
+                top: `${30 + i * 20}%`,
+              }}
+              animate={{
+                opacity: [0.2, 0.6, 0.2],
+                scaleX: [0.8, 1.2, 0.8],
+              }}
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                delay: i * 1,
+              }}
+            />
+          ))}
         </div>
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
-        {/* Header */}
-        <motion.div
+        <motion.div 
           className="text-center mb-12"
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
@@ -87,96 +76,69 @@ export const PartnersCarousel = () => {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <div className="flex items-center gap-2">
-              <div className="relative">
-                <div className="w-2 h-2 bg-[#ECB629] rounded-full"></div>
-                <div className="absolute inset-0 bg-[#ECB629] rounded-full animate-ping opacity-75"></div>
-              </div>
-              <span className="text-sm text-gray-300 font-medium">
-                <span className="text-[#ECB629] font-bold">Проверени</span> партньорства с водещи платформи
-              </span>
-            </div>
+            <motion.div
+              className="w-2 h-2 bg-[#ECB629] rounded-full"
+              animate={{
+                scale: [1, 1.2, 1],
+                opacity: [0.5, 1, 0.5],
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+              }}
+            />
+            <span className="text-[#ECB629] font-semibold text-sm">
+              ПАРТНЬОРИ И ТЕХНОЛОГИИ
+            </span>
           </motion.div>
         </motion.div>
 
-        {/* Partners Carousel */}
-        <div className="relative overflow-hidden max-w-6xl mx-auto">
-          <div 
-            className="flex animate-infinite-scroll"
-            style={{ width: "3600px" }}
-          >
-            {/* First set of partners */}
-            {partners.map((partner, index) => (
-              <div
-                key={`first-${index}`}
-                className="flex-shrink-0 flex justify-center items-center"
-                style={{ width: "240px" }}
-              >
-                <div className="relative p-4">
-                  <img
-                    src={partner.src}
-                    alt={partner.alt}
-                    loading="lazy"
-                    className="h-8 w-auto max-w-[120px] filter grayscale brightness-[0.4] opacity-60 transition-all duration-300 hover:filter-none hover:opacity-100"
+        {/* Continuous Logo Carousel */}
+        <div className="relative max-w-6xl mx-auto overflow-hidden">
+          <div className="flex">
+            {/* First Set */}
+            <motion.div
+              className="flex min-w-full gap-8 justify-between items-center"
+              animate={{
+                x: [0, -1200], // Move one full width
+              }}
+              transition={{
+                duration: 12,
+                repeat: Infinity,
+                ease: "linear",
+              }}
+            >
+              {[...partners, ...partners, ...partners].map((partner, index) => (
+                <motion.div
+                  key={`first-${index}`}
+                  className="relative group flex-shrink-0 w-60 h-20 flex items-center justify-center bg-slate-800/40 backdrop-blur-sm rounded-xl border border-slate-700/50 p-4"
+                  whileHover={{ 
+                    scale: 1.05,
+                    backgroundColor: "rgba(30, 41, 59, 0.8)",
+                  }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <motion.img
+                    src={partner.logo}
+                    alt={partner.name}
+                    className="h-8 object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300"
+                    whileHover={{ scale: 1.1 }}
                   />
-                  <div className="absolute inset-0 bg-[#ECB629] rounded-lg opacity-0 hover:opacity-10 transition-opacity duration-300"></div>
-                </div>
-              </div>
-            ))}
-
-            {/* Second set (duplicated for infinite scroll) */}
-            {partners.map((partner, index) => (
-              <div
-                key={`second-${index}`}
-                className="flex-shrink-0 flex justify-center items-center"
-                style={{ width: "240px" }}
-              >
-                <img
-                  src={partner.src}
-                  alt={partner.alt}
-                  loading="lazy"
-                  className="h-10 w-auto max-w-[120px] filter grayscale brightness-[0.5] opacity-60 transition-all duration-300 hover:filter-none hover:opacity-100"
-                />
-              </div>
-            ))}
-
-            {/* Third set (duplicated for infinite scroll) */}
-            {partners.map((partner, index) => (
-              <div
-                key={`third-${index}`}
-                className="flex-shrink-0 flex justify-center items-center"
-                style={{ width: "240px" }}
-              >
-                <img
-                  src={partner.src}
-                  alt={partner.alt}
-                  loading="lazy"
-                  className="h-10 w-auto max-w-[120px] filter grayscale brightness-[0.5] opacity-60 transition-all duration-300 hover:filter-none hover:opacity-100"
-                />
-              </div>
-            ))}
+                  
+                  {/* Hover Glow Effect */}
+                  <motion.div
+                    className="absolute inset-0 rounded-xl bg-gradient-to-r from-[#ECB629]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  />
+                </motion.div>
+              ))}
+            </motion.div>
           </div>
 
-          {/* Gradient overlays */}
-          <div className="absolute left-0 top-0 w-24 h-full bg-gradient-to-r from-slate-900 to-transparent z-10 pointer-events-none"></div>
-          <div className="absolute right-0 top-0 w-24 h-full bg-gradient-to-l from-slate-900 to-transparent z-10 pointer-events-none"></div>
+          {/* Gradient Fade Edges */}
+          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-slate-900 to-transparent z-10"></div>
+          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-slate-900 to-transparent z-10"></div>
         </div>
       </div>
-
-      <style jsx>{`
-        @keyframes infinite-scroll {
-          0% {
-            transform: translateX(0);
-          }
-          100% {
-            transform: translateX(-1200px);
-          }
-        }
-        
-        .animate-infinite-scroll {
-          animation: infinite-scroll 20s linear infinite;
-        }
-      `}</style>
     </section>
   );
 };

@@ -1,3 +1,5 @@
+'use client'
+
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 
@@ -72,161 +74,158 @@ export const SolutionSection = () => {
           </motion.div>
 
           <motion.h2 
-            className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-white px-4 sm:px-0"
-            initial={{ opacity: 0, y: 30 }}
+            className="text-4xl md:text-5xl font-bold mb-6 text-white"
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            Променяме маркетинга на инженеринг
+            Спрете да залагате. <br />
+            <span className="text-[#ECB629] relative">
+              Време е за система!
+              <motion.div
+                className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-[#ECB629] to-[#ECB629]/50 rounded-full"
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                transition={{ duration: 1, delay: 0.6 }}
+                viewport={{ once: true }}
+              />
+            </span>
           </motion.h2>
-          
-          <motion.p 
-            className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto px-4 sm:px-0"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            viewport={{ once: true }}
-          >
-            Работим с данни, изграждаме системи и поставяме съвременни процеси за контрол върху растежа.
-          </motion.p>
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-12">
+            Ние не предлагаме маркетинг. Нашият подход е бизнес инженеринг. Разликата е в резултата.
+          </p>
         </motion.div>
-
-        <div className="grid md:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 max-w-6xl mx-auto">
-          {/* Traditional Marketing */}
+        
+        {/* Modern Comparison Section */}
+        <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto mb-20">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="relative"
+            className="relative group"
           >
-            <Card className="bg-slate-800/60 border-red-500/30 backdrop-blur-sm h-full relative overflow-hidden">
-              <div className="absolute top-4 right-4 px-3 py-1 bg-red-500 text-white text-xs font-bold rounded-full">
-                ПРОБЛЕМ
-              </div>
-              
-              {/* Animated Chaos Background */}
-              <div className="absolute inset-0 opacity-10">
-                {[...Array(12)].map((_, i) => (
-                  <motion.div
-                    key={i}
-                    className="absolute w-1 h-1 bg-red-500 rounded-full"
-                    style={{
-                      left: `${(i * 13 + 10) % 90}%`,
-                      top: `${(i * 17 + 15) % 80}%`,
-                    }}
-                    animate={{
-                      scale: [1, 2, 1],
-                      opacity: [0.3, 1, 0.3],
-                      x: [0, 5, 0],
-                      y: [0, 3, 0],
-                    }}
-                    transition={{
-                      duration: 2 + (i % 3),
-                      repeat: Infinity,
-                      delay: i * 0.2,
-                    }}
-                  />
-                ))}
-              </div>
-
-              <CardContent className="p-6 sm:p-8 relative z-10">
-                <h3 className="text-xl sm:text-2xl font-bold mb-6 text-red-400">
-                  Традиционен Маркетинг
-                </h3>
-                
-                <div className="space-y-4">
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
-                    <p className="text-gray-300 text-sm sm:text-base">Залагане на интуиция и "добри практики"</p>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
-                    <p className="text-gray-300 text-sm sm:text-base">Няма ясен контрол върху резултатите</p>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
-                    <p className="text-gray-300 text-sm sm:text-base">Разпиляване на ресурси в множество канали</p>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
-                    <p className="text-gray-300 text-sm sm:text-base">Невъзможност за предвиждане на растежа</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
-
-          {/* Business Engineering */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="relative"
-          >
-            <Card className="bg-slate-800/60 border-green-500/30 backdrop-blur-sm h-full relative overflow-hidden">
-              <div className="absolute top-4 right-4 px-3 py-1 bg-green-500 text-white text-xs font-bold rounded-full">
-                РЕШЕНИЕ
-              </div>
-              
-              {/* Animated System Background */}
+            {/* Marketing Card - Problem State */}
+            <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-slate-800/60 to-slate-900/80 border border-red-500/20 p-8 h-full backdrop-blur-sm">
+              {/* Animated Background Pattern */}
               <div className="absolute inset-0 opacity-10">
                 <div className="absolute inset-0" style={{
                   backgroundImage: `
-                    linear-gradient(rgba(34, 197, 94, 0.2) 1px, transparent 1px),
-                    linear-gradient(90deg, rgba(34, 197, 94, 0.2) 1px, transparent 1px)
+                    linear-gradient(rgba(239, 68, 68, 0.15) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(239, 68, 68, 0.15) 1px, transparent 1px)
                   `,
                   backgroundSize: '20px 20px'
                 }}></div>
-                
-                {[...Array(8)].map((_, i) => (
-                  <motion.div
-                    key={i}
-                    className="absolute w-2 h-2 bg-green-500 rounded-full"
-                    style={{
-                      left: `${20 + i * 10}%`,
-                      top: `${20 + (i % 4) * 20}%`,
-                    }}
-                    animate={{
-                      scale: [1, 1.2, 1],
-                      opacity: [0.5, 1, 0.5],
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      delay: i * 0.2,
-                    }}
-                  />
-                ))}
               </div>
-
-              <CardContent className="p-6 sm:p-8 relative z-10">
-                <h3 className="text-xl sm:text-2xl font-bold mb-6 text-green-400">
-                  Бизнес Инженеринг
-                </h3>
-                
-                <div className="space-y-4">
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
-                    <p className="text-gray-300 text-sm sm:text-base">Базиран на данни и измерими резултати</p>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
-                    <p className="text-gray-300 text-sm sm:text-base">Пълен контрол и прозрачност в процесите</p>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
-                    <p className="text-gray-300 text-sm sm:text-base">Фокус върху най-ефективните канали</p>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></div>
-                    <p className="text-gray-300 text-sm sm:text-base">Предвидим и скалируем растеж</p>
-                  </div>
+              
+              {/* Problem Indicator */}
+              <div className="absolute top-4 right-4">
+                <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-red-500/20 border border-red-500/30">
+                  <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
+                  <span className="text-xs text-red-400 font-medium">ПРОБЛЕМ</span>
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+              
+              {/* Content */}
+              <h3 className="text-2xl font-bold text-white mb-4">
+                Традиционен маркетинг
+              </h3>
+              
+              <div className="space-y-4">
+                <div className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
+                  <p className="text-gray-300">Разхищаване на бюджет за експерименти</p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
+                  <p className="text-gray-300">Непредвидими резултати</p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
+                  <p className="text-gray-300">Фокус върху метрики, а не върху растеж</p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
+                  <p className="text-gray-300">Зависимост от тактики и трендове</p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="relative group"
+          >
+            {/* Business Engineering Card - Solution State */}
+            <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-slate-800/60 to-slate-900/80 border border-[#ECB629]/30 p-8 h-full backdrop-blur-sm">
+              {/* Animated Background Pattern */}
+              <div className="absolute inset-0 opacity-10">
+                <div className="absolute inset-0" style={{
+                  backgroundImage: `
+                    linear-gradient(rgba(34, 197, 94, 0.15) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(34, 197, 94, 0.15) 1px, transparent 1px)
+                  `,
+                  backgroundSize: '20px 20px'
+                }}></div>
+              </div>
+              
+              {/* Solution Indicator */}
+              <div className="absolute top-4 right-4">
+                <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-green-500/20 border border-green-500/30">
+                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                  <span className="text-xs text-green-400 font-medium">РЕШЕНИЕ</span>
+                </div>
+              </div>
+              
+              {/* Success Lines */}
+              {[...Array(3)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  className="absolute w-12 h-px bg-gradient-to-r from-green-500 to-transparent"
+                  style={{
+                    left: `${10 + i * 20}%`,
+                    top: `${20 + i * 30}%`,
+                  }}
+                  animate={{
+                    opacity: [0.3, 1, 0.3],
+                    scaleX: [0.8, 1.2, 0.8],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    delay: i * 0.3,
+                  }}
+                />
+              ))}
+              
+              {/* Content */}
+              <h3 className="text-2xl font-bold text-white mb-4">
+                Бизнес инженеринг
+              </h3>
+              
+              <div className="space-y-4">
+                <div className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-[#ECB629] rounded-full mt-2 flex-shrink-0"></div>
+                  <p className="text-gray-300">Предвидим ROI с инженерна точност</p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-[#ECB629] rounded-full mt-2 flex-shrink-0"></div>
+                  <p className="text-gray-300">Системи, които работят дългосрочно</p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-[#ECB629] rounded-full mt-2 flex-shrink-0"></div>
+                  <p className="text-gray-300">Фокус върху бизнес резултати</p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-[#ECB629] rounded-full mt-2 flex-shrink-0"></div>
+                  <p className="text-gray-300">Мащабируема архитектура на растежа</p>
+                </div>
+              </div>
+            </div>
           </motion.div>
         </div>
       </div>

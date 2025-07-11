@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { usePathname } from 'next/navigation';
+import { usePathname } from "next/navigation";
 import { Menu, X, ChevronDown } from "lucide-react";
 
 export const Navigation = () => {
@@ -33,6 +33,7 @@ export const Navigation = () => {
   const navItems = [
     { href: "/", label: "Начало" },
     { href: "/services", label: "Услуги", hasDropdown: true },
+    { href: "/calculators", label: "Калкулатори" },
     { href: "/case-studies", label: "Резултати" },
     { href: "/blog", label: "Блог" },
     { href: "/about", label: "За нас" },
@@ -83,6 +84,7 @@ export const Navigation = () => {
           ))}
         </div>
       </div>
+
       <div className="container mx-auto px-4 sm:px-6 py-3 sm:py-4 relative z-10">
         <div className="flex justify-between items-center">
           <motion.div
@@ -105,210 +107,192 @@ export const Navigation = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item, index) => (
-              <motion.div
-                key={item.href}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="relative"
-              >
+              <div key={item.href} className="relative">
                 {item.hasDropdown ? (
-                  <div 
-                    className="relative group"
+                  <div
+                    className="relative"
                     onMouseEnter={() => setIsServicesDropdownOpen(true)}
                     onMouseLeave={() => setIsServicesDropdownOpen(false)}
                   >
-                    <Link href={item.href}>
-                      <motion.span
-                        className={`cursor-pointer transition-colors relative flex items-center gap-1 ${
-                          pathname === item.href || pathname.startsWith('/services/')
-                            ? "text-[#ECB629] font-semibold"
-                            : "text-white hover:text-[#ECB629]"
-                        }`}
-                        whileHover={{ y: -2 }}
-                        transition={{ duration: 0.2 }}
-                      >
-                        {item.label}
-                        <ChevronDown 
-                          className={`w-4 h-4 transition-transform ${
-                            isServicesDropdownOpen ? 'rotate-180' : ''
-                          }`} 
-                        />
-                        {(pathname === item.href || pathname.startsWith('/services/')) && (
-                          <motion.div
-                            className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#ECB629]"
-                            layoutId="activeTab"
-                          />
-                        )}
-                      </motion.span>
-                    </Link>
-
-                    {/* Dropdown Menu */}
                     <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ 
-                        opacity: isServicesDropdownOpen ? 1 : 0, 
-                        y: isServicesDropdownOpen ? 0 : 10,
-                        display: isServicesDropdownOpen ? 'block' : 'none'
-                      }}
-                      transition={{ duration: 0.2 }}
-                      className="absolute top-full mt-2 left-0 bg-slate-800 border border-slate-600 rounded-lg p-3 shadow-xl min-w-[280px] z-[999999]"
-                    >
-                      {serviceItems.map((service) => (
-                        <Link key={service.href} href={service.href}>
-                          <motion.div
-                            className="p-3 rounded-lg hover:bg-slate-700 transition-colors cursor-pointer"
-                            whileHover={{ x: 4 }}
-                            transition={{ duration: 0.2 }}
-                          >
-                            <div className="font-semibold text-[#ECB629] text-sm">
-                              {service.label}
-                            </div>
-                            <div className="text-gray-400 text-xs mt-1">
-                              {service.description}
-                            </div>
-                          </motion.div>
-                        </Link>
-                      ))}
-                    </motion.div>
-                  </div>
-                ) : (
-                  <Link href={item.href}>
-                    <motion.span
-                      className={`cursor-pointer transition-colors relative ${
-                        pathname === item.href
-                          ? "text-[#ECB629] font-semibold"
-                          : "text-white hover:text-[#ECB629]"
+                      className={`flex items-center gap-1 text-gray-300 hover:text-[#ECB629] transition-colors cursor-pointer relative ${
+                        pathname?.startsWith('/services') ? 'text-[#ECB629]' : ''
                       }`}
                       whileHover={{ y: -2 }}
                       transition={{ duration: 0.2 }}
                     >
                       {item.label}
-                      {pathname === item.href && (
-                        <motion.div
-                          className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#ECB629]"
-                          layoutId="activeTab"
-                        />
-                      )}
-                    </motion.span>
-                  </Link>
+                      <ChevronDown className="w-4 h-4" />
+                      <motion.div
+                        className="absolute -bottom-1 left-0 right-0 h-px bg-[#ECB629] origin-left scale-x-0 hover:scale-x-100 transition-transform duration-300"
+                      />
+                    </motion.div>
+
+                    {/* Services Dropdown */}
+                    <motion.div
+                      className={`absolute top-full mt-2 left-0 bg-slate-800 border border-slate-600 rounded-lg p-3 shadow-2xl w-80 z-[999999] ${
+                        isServicesDropdownOpen ? 'block' : 'hidden'
+                      }`}
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{
+                        opacity: isServicesDropdownOpen ? 1 : 0,
+                        y: isServicesDropdownOpen ? 0 : -10,
+                      }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <div className="grid gap-2">
+                        <Link
+                          href="/services"
+                          className="block p-3 rounded-lg hover:bg-slate-700/50 transition-colors"
+                        >
+                          <div className="font-semibold text-white mb-1">Всички услуги</div>
+                          <div className="text-sm text-gray-400">Преглед на всички системи</div>
+                        </Link>
+                        {serviceItems.map((service) => (
+                          <Link
+                            key={service.href}
+                            href={service.href}
+                            className="block p-3 rounded-lg hover:bg-slate-700/50 transition-colors"
+                          >
+                            <div className="font-semibold text-white mb-1">{service.label}</div>
+                            <div className="text-sm text-gray-400">{service.description}</div>
+                          </Link>
+                        ))}
+                      </div>
+                    </motion.div>
+                  </div>
+                ) : (
+                  <motion.div
+                    whileHover={{ y: -2 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <Link
+                      href={item.href}
+                      className={`text-gray-300 hover:text-[#ECB629] transition-colors relative group ${
+                        pathname === item.href ? 'text-[#ECB629]' : ''
+                      }`}
+                    >
+                      {item.label}
+                      <motion.div
+                        className="absolute -bottom-1 left-0 right-0 h-px bg-[#ECB629] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
+                      />
+                    </Link>
+                  </motion.div>
                 )}
-              </motion.div>
+              </div>
             ))}
           </div>
 
           {/* CTA Button */}
           <div className="hidden md:block">
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.5 }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
               <Button
-                size="sm"
-                className="bg-[#ECB629] text-black hover:bg-[#ECB629]/90 font-semibold px-6 py-2 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
-                asChild
+                className="bg-[#ECB629] text-black hover:bg-[#ECB629]/90 font-semibold px-6 py-2 rounded-lg transition-all duration-300 shadow-lg hover:shadow-[#ECB629]/25"
+                onClick={() => {
+                  window.open("https://form.typeform.com/to/GXLaGY98", "_blank");
+                }}
               >
-                <a href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu" target="_blank" rel="noopener noreferrer">
-                  Безплатна консултация
-                </a>
+                Безплатна консултация
               </Button>
             </motion.div>
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="md:hidden">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="text-white hover:text-[#ECB629] p-2"
-            >
-              {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </Button>
-          </div>
+          <motion.button
+            className="md:hidden text-[#ECB629]"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            whileTap={{ scale: 0.95 }}
+          >
+            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </motion.button>
         </div>
 
         {/* Mobile Menu */}
         <motion.div
+          className={`md:hidden mt-4 bg-slate-800/95 backdrop-blur-xl rounded-xl border border-slate-600/30 overflow-hidden ${
+            isMobileMenuOpen ? 'block' : 'hidden'
+          }`}
           initial={{ opacity: 0, height: 0 }}
-          animate={{ 
-            opacity: isMobileMenuOpen ? 1 : 0, 
-            height: isMobileMenuOpen ? "auto" : 0 
+          animate={{
+            opacity: isMobileMenuOpen ? 1 : 0,
+            height: isMobileMenuOpen ? 'auto' : 0,
           }}
           transition={{ duration: 0.3 }}
-          className="md:hidden overflow-hidden"
         >
-          <div className="py-4 space-y-2">
+          <div className="p-4 space-y-4">
             {navItems.map((item) => (
               <div key={item.href}>
                 {item.hasDropdown ? (
                   <div>
-                    <div
-                      className="flex items-center justify-between py-2 px-4 text-white hover:text-[#ECB629] cursor-pointer"
+                    <motion.button
+                      className="flex items-center justify-between w-full text-gray-300 hover:text-[#ECB629] transition-colors py-2"
                       onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
+                      whileTap={{ scale: 0.98 }}
                     >
-                      <span>{item.label}</span>
-                      <ChevronDown 
-                        className={`w-4 h-4 transition-transform ${
+                      {item.label}
+                      <ChevronDown
+                        className={`w-4 h-4 transform transition-transform ${
                           isMobileServicesOpen ? 'rotate-180' : ''
-                        }`} 
+                        }`}
                       />
-                    </div>
+                    </motion.button>
+                    
                     <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ 
-                        opacity: isMobileServicesOpen ? 1 : 0, 
-                        height: isMobileServicesOpen ? "auto" : 0 
-                      }}
+                      className={`mt-2 space-y-2 pl-4 ${isMobileServicesOpen ? 'block' : 'hidden'}`}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: isMobileServicesOpen ? 1 : 0 }}
                       transition={{ duration: 0.2 }}
-                      className="overflow-hidden pl-4"
                     >
+                      <Link
+                        href="/services"
+                        className="block py-2 text-sm text-gray-400 hover:text-[#ECB629] transition-colors"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                      >
+                        Всички услуги
+                      </Link>
                       {serviceItems.map((service) => (
-                        <Link key={service.href} href={service.href}>
-                          <div
-                            className="py-2 px-4 text-gray-300 hover:text-[#ECB629] cursor-pointer border-l border-slate-600"
-                            onClick={() => {
-                              setIsMobileMenuOpen(false);
-                              setIsMobileServicesOpen(false);
-                            }}
-                          >
-                            <div className="font-medium">{service.label}</div>
-                            <div className="text-xs text-gray-500">{service.description}</div>
-                          </div>
+                        <Link
+                          key={service.href}
+                          href={service.href}
+                          className="block py-2 text-sm text-gray-400 hover:text-[#ECB629] transition-colors"
+                          onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                          {service.label}
                         </Link>
                       ))}
                     </motion.div>
                   </div>
                 ) : (
-                  <Link href={item.href}>
-                    <div
-                      className={`py-2 px-4 cursor-pointer transition-colors ${
-                        pathname === item.href
-                          ? "text-[#ECB629] font-semibold"
-                          : "text-white hover:text-[#ECB629]"
-                      }`}
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      {item.label}
-                    </div>
+                  <Link
+                    href={item.href}
+                    className={`block py-2 text-gray-300 hover:text-[#ECB629] transition-colors ${
+                      pathname === item.href ? 'text-[#ECB629]' : ''
+                    }`}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {item.label}
                   </Link>
                 )}
               </div>
             ))}
             
-            {/* Mobile CTA */}
-            <div className="pt-4 px-4">
+            <motion.div
+              className="pt-4 border-t border-slate-600/30"
+              whileTap={{ scale: 0.98 }}
+            >
               <Button
-                size="sm"
-                className="w-full bg-[#ECB629] text-black hover:bg-[#ECB629]/90 font-semibold py-3"
-                asChild
+                className="w-full bg-[#ECB629] text-black hover:bg-[#ECB629]/90 font-semibold py-3 rounded-lg transition-all duration-300"
+                onClick={() => {
+                  window.open("https://form.typeform.com/to/GXLaGY98", "_blank");
+                  setIsMobileMenuOpen(false);
+                }}
               >
-                <a href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu" target="_blank" rel="noopener noreferrer">
-                  Безплатна консултация
-                </a>
+                Безплатна консултация
               </Button>
-            </div>
+            </motion.div>
           </div>
         </motion.div>
       </div>

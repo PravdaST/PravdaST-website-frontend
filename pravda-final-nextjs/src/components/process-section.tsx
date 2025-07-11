@@ -1,3 +1,5 @@
+'use client'
+
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 
@@ -56,7 +58,7 @@ const steps = [
 
 export const ProcessSection = () => {
   return (
-    <section className="py-12 sm:py-16 md:py-20 bg-slate-800/30 relative overflow-hidden">
+    <section className="py-20 bg-slate-800/30 relative overflow-hidden">
       {/* Animated Tech Background */}
       <div className="absolute inset-0 opacity-20">
         <div className="absolute inset-0">
@@ -73,18 +75,20 @@ export const ProcessSection = () => {
           {[...Array(3)].map((_, i) => (
             <motion.div
               key={i}
-              className="absolute w-1 h-full bg-gradient-to-b from-transparent via-[#ECB629] to-transparent"
+              className="absolute h-px bg-gradient-to-r from-transparent via-[#ECB629] to-transparent"
               style={{
-                left: `${30 + i * 20}%`,
+                left: `${20 + i * 20}%`,
+                top: `${30 + i * 20}%`,
+                width: `${15 + i * 10}%`,
               }}
               animate={{
-                opacity: [0.2, 0.6, 0.2],
-                scaleY: [0.8, 1.2, 0.8],
+                opacity: [0.3, 1, 0.3],
+                scaleX: [0.8, 1.2, 0.8],
               }}
               transition={{
                 duration: 4,
                 repeat: Infinity,
-                delay: i * 1,
+                delay: i * 0.8,
               }}
             />
           ))}
@@ -109,36 +113,55 @@ export const ProcessSection = () => {
             <div className="flex items-center gap-2">
               <div className="relative">
                 <div className="w-2 h-2 bg-[#ECB629] rounded-full"></div>
-                <div className="absolute inset-0 bg-[#ECB629] rounded-full animate-ping opacity-75"></div>
+                <motion.div
+                  className="absolute inset-0 w-2 h-2 bg-[#ECB629] rounded-full opacity-20"
+                  animate={{ scale: [1, 1.3, 1] }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                />
               </div>
               <span className="text-sm text-gray-300 font-medium">
-                <span className="text-[#ECB629] font-bold">Контролиран</span> процес от диагностика до резултат
+                <span className="text-[#ECB629] font-bold">Проверени</span>{" "}
+                методи за растеж
               </span>
             </div>
           </motion.div>
 
-          <motion.h2 
-            className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-white px-4 sm:px-0"
-            initial={{ opacity: 0, y: 30 }}
+          <motion.h2
+            className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 text-white px-2 sm:px-0"
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            Как работим?
+            Как работим в <span className="text-[#ECB629] relative">
+              3 стъпки
+              <motion.div
+                className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-[#ECB629] to-[#ECB629]/50 rounded-full"
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                transition={{ duration: 1, delay: 0.6 }}
+                viewport={{ once: true }}
+              />
+            </span>
           </motion.h2>
-          
-          <motion.p 
-            className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto px-4 sm:px-0"
-            initial={{ opacity: 0, y: 30 }}
+
+          <motion.p
+            className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto mb-12 sm:mb-16 px-2 sm:px-0"
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
             viewport={{ once: true }}
           >
-            Спазваме прост 3-стъпков процес за максимален резултат без загуба на време и ресурси.
+            Простичък процес. Сложни резултати.
           </motion.p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto">
+        {/* Modern Card-Based Timeline */}
+        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {steps.map((step, index) => (
             <motion.div
               key={index}
@@ -148,62 +171,59 @@ export const ProcessSection = () => {
               viewport={{ once: true }}
               className="relative group"
             >
-              <Card className="bg-slate-800/60 border-slate-600/30 backdrop-blur-sm h-full transition-all duration-300 hover:bg-slate-700/60 hover:border-[#ECB629]/40 hover:shadow-xl hover:shadow-[#ECB629]/10">
-                <CardContent className="p-6 sm:p-8 text-center h-full flex flex-col relative">
-                  {/* Step Number */}
-                  <div className="absolute -top-3 -left-3 w-8 h-8 bg-[#ECB629] rounded-full flex items-center justify-center text-black font-bold text-sm">
-                    {index + 1}
+              <Card className="bg-gradient-to-br from-slate-800/60 to-slate-900/80 border-[#ECB629]/20 h-full relative overflow-hidden backdrop-blur-sm group-hover:border-[#ECB629]/50 transition-all duration-300">
+                {/* Step Number Badge */}
+                <div className="absolute top-4 right-4">
+                  <div className="flex items-center justify-center w-8 h-8 bg-gradient-to-br from-[#ECB629] to-[#ECB629]/80 rounded-full">
+                    <span className="text-sm font-bold text-black">{index + 1}</span>
                   </div>
-                  
+                </div>
+
+                {/* Animated Background Pattern */}
+                <div className="absolute inset-0 opacity-5">
+                  <div className="absolute inset-0" style={{
+                    backgroundImage: `
+                      linear-gradient(rgba(236, 182, 40, 0.15) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(236, 182, 40, 0.15) 1px, transparent 1px)
+                    `,
+                    backgroundSize: '20px 20px'
+                  }}></div>
+                </div>
+
+                <CardContent className="p-8 relative z-10">
                   <motion.div
-                    className="mb-6 flex justify-center"
-                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    className="flex items-center justify-center w-16 h-16 bg-[#ECB629]/20 rounded-xl mb-6 group-hover:bg-[#ECB629]/30 transition-colors text-[#ECB629]"
+                    whileHover={{ scale: 1.1 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <div className="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-[#ECB629] to-yellow-500 rounded-2xl flex items-center justify-center text-black">
-                      <step.icon />
-                    </div>
+                    <step.icon />
                   </motion.div>
-                  
-                  <h3 className="text-lg sm:text-xl font-bold mb-4 text-white">
+
+                  <h3 className="text-2xl font-bold text-white mb-4">
                     {step.title}
                   </h3>
                   
-                  <p className="text-gray-300 leading-relaxed flex-grow text-sm sm:text-base">
+                  <p className="text-gray-300 leading-relaxed">
                     {step.description}
                   </p>
-
-                  {/* Connection Arrow */}
-                  {index < steps.length - 1 && (
-                    <motion.div
-                      className="hidden md:block absolute -right-4 top-1/2 transform -translate-y-1/2"
-                      animate={{
-                        x: [0, 5, 0],
-                      }}
-                      transition={{
-                        duration: 2,
-                        repeat: Infinity,
-                      }}
-                    >
-                      <div className="w-8 h-0.5 bg-gradient-to-r from-[#ECB629] to-transparent"></div>
-                      <div className="w-0 h-0 border-l-4 border-l-[#ECB629] border-t-2 border-b-2 border-t-transparent border-b-transparent ml-6 -mt-2"></div>
-                    </motion.div>
-                  )}
                 </CardContent>
-              </Card>
 
-              {/* Animated process indicators */}
-              <motion.div
-                className="absolute -top-2 -right-2 w-4 h-4 bg-[#ECB629] rounded-full opacity-0 group-hover:opacity-100"
-                animate={{
-                  scale: [1, 1.2, 1],
-                  rotate: [0, 360, 0],
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                }}
-              />
+                {/* Hover Effects */}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-br from-[#ECB629]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                />
+
+                {/* Connection Line (except last item) */}
+                {index < steps.length - 1 && (
+                  <motion.div
+                    className="absolute top-1/2 -right-4 w-8 h-px bg-gradient-to-r from-[#ECB629] to-transparent hidden md:block"
+                    initial={{ scaleX: 0 }}
+                    whileInView={{ scaleX: 1 }}
+                    transition={{ duration: 0.8, delay: (index + 1) * 0.3 }}
+                    viewport={{ once: true }}
+                  />
+                )}
+              </Card>
             </motion.div>
           ))}
         </div>

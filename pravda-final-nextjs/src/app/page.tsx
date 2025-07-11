@@ -1,26 +1,47 @@
 import { Metadata } from 'next'
-import { pageSEOData } from '@/data/seo-pages'
-import { StaticHomepage } from '@/components/static-homepage'
+import { Navigation } from '@/components/navigation'
+import { HeroSection } from '@/components/hero-section'
+import { PartnersCarousel } from '@/components/partners-carousel'
+import { ProblemSection } from '@/components/problem-section'
+import { SolutionSection } from '@/components/solution-section'
+import { SystemsSection } from '@/components/systems-section'
+import { ProcessSection } from '@/components/process-section'
+import { CTASection } from '@/components/cta-section'
+import { Footer } from '@/components/footer'
 
 export const metadata: Metadata = {
-  title: pageSEOData.home.title,
-  description: pageSEOData.home.description,
-  keywords: pageSEOData.home.keywords,
+  title: "Бизнес инженеринг за растеж | Pravda Agency",
+  description: "Престанете да залагате на маркетинг. Започнете да изграждате растеж. Системи за SEO, съдържание, реклама и клиенти с предвидими резултати.",
+  keywords: "бизнес инженеринг, seo услуги българия, digital marketing българия, автоматизация продажби, content marketing",
   openGraph: {
-    title: pageSEOData.home.ogTitle,
-    description: pageSEOData.home.ogDescription,
-    images: [pageSEOData.home.ogImage || ''],
+    title: "Бизнес инженеринг за растеж | Pravda Agency",
+    description: "Престанете да залагате на маркетинг. Започнете да изграждате растеж. Системи за SEO, съдържание, реклама и клиенти с предвидими резултати.",
+    images: ['/pravda-og-home.png'],
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: pageSEOData.home.twitterTitle,
-    description: pageSEOData.home.twitterDescription,
-    images: [pageSEOData.home.twitterImage || ''],
+    title: "Бизнес инженеринг за растеж | Pravda Agency",
+    description: "Престанете да залагате на маркетинг. Започнете да изграждате растеж. Системи за SEO, съдържание, реклама и клиенти с предвидими резултати.",
+    images: ['/pravda-twitter-home.png'],
   },
-  robots: pageSEOData.home.robots,
+  robots: "index, follow",
 }
 
 export default function HomePage() {
-  return <StaticHomepage />
+  return (
+    <>
+      <Navigation />
+      <main>
+        <HeroSection />
+        <PartnersCarousel />
+        <ProblemSection />
+        <SolutionSection />
+        <SystemsSection />
+        <ProcessSection />
+        <CTASection />
+      </main>
+      <Footer />
+    </>
+  )
 }
