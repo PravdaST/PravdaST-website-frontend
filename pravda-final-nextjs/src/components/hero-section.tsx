@@ -1,3 +1,4 @@
+
 'use client'
 
 import Link from "next/link"
@@ -22,51 +23,83 @@ export const HeroSection = () => {
             }}
           ></div>
 
-          {/* Tech Lines */}
+          {/* Tech Lines - Static positioning matching original */}
           <div className="tech-lines">
-            {[...Array(6)].map((_, i) => (
-              <motion.div
-                key={i}
-                className="absolute h-px bg-gradient-to-r from-transparent via-[#ECB629] to-transparent"
-                style={{
-                  top: `${20 + i * 15}%`,
-                  width: `${200 + i * 50}px`,
-                  left: i % 2 === 0 ? "10%" : "auto",
-                  right: i % 2 === 1 ? "10%" : "auto",
-                }}
-                animate={{
-                  opacity: [0.2, 0.8, 0.2],
-                  scaleX: [0.8, 1.2, 0.8],
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  delay: i * 0.5,
-                }}
-              />
-            ))}
-          </div>
-
-          {/* Floating Tech Elements */}
-          {[...Array(12)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-1 h-1 bg-[#ECB629] rounded-full"
+            <div
+              className="absolute h-px bg-gradient-to-r from-transparent via-[#ECB629] to-transparent"
               style={{
-                left: `${(i * 13 + 10) % 90}%`,
-                top: `${(i * 17 + 15) % 80}%`,
-              }}
-              animate={{
-                scale: [1, 1.5, 1],
-                opacity: [0.3, 1, 0.3],
-              }}
-              transition={{
-                duration: 2 + (i % 2),
-                repeat: Infinity,
-                delay: i * 0.3,
+                top: "20%",
+                width: "200px",
+                left: "10%",
+                right: "auto",
+                transform: "scaleX(1.08012)",
               }}
             />
-          ))}
+            <div
+              className="absolute h-px bg-gradient-to-r from-transparent via-[#ECB629] to-transparent"
+              style={{
+                top: "35%",
+                width: "250px",
+                left: "auto",
+                right: "10%",
+                transform: "scaleX(0.91262)",
+              }}
+            />
+            <div
+              className="absolute h-px bg-gradient-to-r from-transparent via-[#ECB629] to-transparent"
+              style={{
+                top: "50%",
+                width: "300px",
+                left: "10%",
+                right: "auto",
+                transform: "scaleX(0.815011)",
+              }}
+            />
+            <div
+              className="absolute h-px bg-gradient-to-r from-transparent via-[#ECB629] to-transparent"
+              style={{
+                top: "65%",
+                width: "350px",
+                left: "auto",
+                right: "10%",
+                transform: "scaleX(0.919878)",
+              }}
+            />
+            <div
+              className="absolute h-px bg-gradient-to-r from-transparent via-[#ECB629] to-transparent"
+              style={{
+                top: "80%",
+                width: "400px",
+                left: "10%",
+                right: "auto",
+                transform: "scaleX(1.08738)",
+              }}
+            />
+            <div
+              className="absolute h-px bg-gradient-to-r from-transparent via-[#ECB629] to-transparent"
+              style={{
+                top: "95%",
+                width: "450px",
+                left: "auto",
+                right: "10%",
+                transform: "scaleX(1.18499)",
+              }}
+            />
+          </div>
+
+          {/* Floating Tech Elements - Static positioning matching original */}
+          <div className="absolute w-1 h-1 bg-[#ECB629] rounded-full" style={{ left: "73.6156%", top: "46.4188%", transform: "scale(1.49989)" }} />
+          <div className="absolute w-1 h-1 bg-[#ECB629] rounded-full" style={{ left: "83.3216%", top: "22.9405%", transform: "scale(1.35655)" }} />
+          <div className="absolute w-1 h-1 bg-[#ECB629] rounded-full" style={{ left: "59.9797%", top: "68.0345%", transform: "scale(1.40433)" }} />
+          <div className="absolute w-1 h-1 bg-[#ECB629] rounded-full" style={{ left: "18.5343%", top: "81.2257%", transform: "scale(1.4524)" }} />
+          <div className="absolute w-1 h-1 bg-[#ECB629] rounded-full" style={{ left: "11.7245%", top: "74.7094%", transform: "scale(1.09596)" }} />
+          <div className="absolute w-1 h-1 bg-[#ECB629] rounded-full" style={{ left: "7.91195%", top: "25.8146%", transform: "scale(1.13481)" }} />
+          <div className="absolute w-1 h-1 bg-[#ECB629] rounded-full" style={{ left: "23.263%", top: "90.7202%", transform: "scale(1.03466)" }} />
+          <div className="absolute w-1 h-1 bg-[#ECB629] rounded-full" style={{ left: "68.4081%", top: "24.5754%", transform: "scale(1.38795)" }} />
+          <div className="absolute w-1 h-1 bg-[#ECB629] rounded-full" style={{ left: "85.3689%", top: "66.4324%", transform: "scale(1.15019)" }} />
+          <div className="absolute w-1 h-1 bg-[#ECB629] rounded-full" style={{ left: "45.998%", top: "29.8833%", transform: "scale(1.49493)" }} />
+          <div className="absolute w-1 h-1 bg-[#ECB629] rounded-full" style={{ left: "12.8586%", top: "32.6526%", transform: "scale(1.00428)" }} />
+          <div className="absolute w-1 h-1 bg-[#ECB629] rounded-full" style={{ left: "44.8438%", top: "57.1638%", transform: "scale(1.20175)" }} />
         </div>
       </div>
 
