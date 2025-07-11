@@ -1,4 +1,3 @@
-
 'use client'
 
 import Link from "next/link"
@@ -23,83 +22,51 @@ export const HeroSection = () => {
             }}
           ></div>
 
-          {/* Tech Lines - Static positioning matching original */}
+          {/* Tech Lines */}
           <div className="tech-lines">
-            <div
-              className="absolute h-px bg-gradient-to-r from-transparent via-[#ECB629] to-transparent"
-              style={{
-                top: "20%",
-                width: "200px",
-                left: "10%",
-                right: "auto",
-                transform: "scaleX(1.08012)",
-              }}
-            />
-            <div
-              className="absolute h-px bg-gradient-to-r from-transparent via-[#ECB629] to-transparent"
-              style={{
-                top: "35%",
-                width: "250px",
-                left: "auto",
-                right: "10%",
-                transform: "scaleX(0.91262)",
-              }}
-            />
-            <div
-              className="absolute h-px bg-gradient-to-r from-transparent via-[#ECB629] to-transparent"
-              style={{
-                top: "50%",
-                width: "300px",
-                left: "10%",
-                right: "auto",
-                transform: "scaleX(0.815011)",
-              }}
-            />
-            <div
-              className="absolute h-px bg-gradient-to-r from-transparent via-[#ECB629] to-transparent"
-              style={{
-                top: "65%",
-                width: "350px",
-                left: "auto",
-                right: "10%",
-                transform: "scaleX(0.919878)",
-              }}
-            />
-            <div
-              className="absolute h-px bg-gradient-to-r from-transparent via-[#ECB629] to-transparent"
-              style={{
-                top: "80%",
-                width: "400px",
-                left: "10%",
-                right: "auto",
-                transform: "scaleX(1.08738)",
-              }}
-            />
-            <div
-              className="absolute h-px bg-gradient-to-r from-transparent via-[#ECB629] to-transparent"
-              style={{
-                top: "95%",
-                width: "450px",
-                left: "auto",
-                right: "10%",
-                transform: "scaleX(1.18499)",
-              }}
-            />
+            {[...Array(6)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="absolute h-px bg-gradient-to-r from-transparent via-[#ECB629] to-transparent"
+                style={{
+                  top: `${20 + i * 15}%`,
+                  width: `${200 + i * 50}px`,
+                  left: i % 2 === 0 ? "10%" : "auto",
+                  right: i % 2 === 1 ? "10%" : "auto",
+                }}
+                animate={{
+                  opacity: [0.2, 0.8, 0.2],
+                  scaleX: [0.8, 1.2, 0.8],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  delay: i * 0.5,
+                }}
+              />
+            ))}
           </div>
 
-          {/* Floating Tech Elements - Static positioning matching original */}
-          <div className="absolute w-1 h-1 bg-[#ECB629] rounded-full" style={{ left: "73.6156%", top: "46.4188%", transform: "scale(1.49989)" }} />
-          <div className="absolute w-1 h-1 bg-[#ECB629] rounded-full" style={{ left: "83.3216%", top: "22.9405%", transform: "scale(1.35655)" }} />
-          <div className="absolute w-1 h-1 bg-[#ECB629] rounded-full" style={{ left: "59.9797%", top: "68.0345%", transform: "scale(1.40433)" }} />
-          <div className="absolute w-1 h-1 bg-[#ECB629] rounded-full" style={{ left: "18.5343%", top: "81.2257%", transform: "scale(1.4524)" }} />
-          <div className="absolute w-1 h-1 bg-[#ECB629] rounded-full" style={{ left: "11.7245%", top: "74.7094%", transform: "scale(1.09596)" }} />
-          <div className="absolute w-1 h-1 bg-[#ECB629] rounded-full" style={{ left: "7.91195%", top: "25.8146%", transform: "scale(1.13481)" }} />
-          <div className="absolute w-1 h-1 bg-[#ECB629] rounded-full" style={{ left: "23.263%", top: "90.7202%", transform: "scale(1.03466)" }} />
-          <div className="absolute w-1 h-1 bg-[#ECB629] rounded-full" style={{ left: "68.4081%", top: "24.5754%", transform: "scale(1.38795)" }} />
-          <div className="absolute w-1 h-1 bg-[#ECB629] rounded-full" style={{ left: "85.3689%", top: "66.4324%", transform: "scale(1.15019)" }} />
-          <div className="absolute w-1 h-1 bg-[#ECB629] rounded-full" style={{ left: "45.998%", top: "29.8833%", transform: "scale(1.49493)" }} />
-          <div className="absolute w-1 h-1 bg-[#ECB629] rounded-full" style={{ left: "12.8586%", top: "32.6526%", transform: "scale(1.00428)" }} />
-          <div className="absolute w-1 h-1 bg-[#ECB629] rounded-full" style={{ left: "44.8438%", top: "57.1638%", transform: "scale(1.20175)" }} />
+          {/* Floating Tech Elements */}
+          {[...Array(12)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-1 h-1 bg-[#ECB629] rounded-full"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+              }}
+              animate={{
+                scale: [1, 1.5, 1],
+                opacity: [0.3, 1, 0.3],
+              }}
+              transition={{
+                duration: 2 + Math.random(),
+                repeat: Infinity,
+                delay: Math.random() * 2,
+              }}
+            />
+          ))}
         </div>
       </div>
 
@@ -162,16 +129,12 @@ export const HeroSection = () => {
           >
             Изграждаме системи, които ви дават контрол, носят предвидими приходи
             и пестят времето ви. Разгледайте нашите{" "}
-            <Link href="/services">
-              <span className="text-[#ECB629] hover:underline cursor-pointer">
-                проверени системи
-              </span>
+            <Link href="/services" className="text-[#ECB629] hover:underline cursor-pointer">
+              проверени системи
             </Link>{" "}
             и{" "}
-            <Link href="/case-studies">
-              <span className="text-[#ECB629] hover:underline cursor-pointer">
-                реални резултати
-              </span>
+            <Link href="/case-studies" className="text-[#ECB629] hover:underline cursor-pointer">
+              реални резултати
             </Link>
             .
           </motion.p>
@@ -189,21 +152,21 @@ export const HeroSection = () => {
             >
               <Button
                 size="lg"
-                className="bg-[#ECB629] text-black hover:bg-[#ECB629]/90 px-6 md:px-12 py-4 md:py-6 text-base md:text-xl font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 w-full sm:w-auto relative overflow-hidden group min-h-[56px]"
+                className="bg-[var(--pravdast-yellow)] text-black hover:bg-[var(--pravdast-yellow)]/90 px-6 md:px-12 py-4 md:py-6 text-base md:text-xl font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 w-full sm:w-auto relative overflow-hidden group min-h-[56px]"
                 asChild
               >
-                <Link href="https://form.typeform.com/to/GXLaGY98" target="_blank" rel="noopener noreferrer">
+                <a href="https://form.typeform.com/to/GXLaGY98">
                   {/* Button glow effect */}
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 group-hover:animate-pulse"></div>
                   <span className="relative z-10">Започнете днес</span>
-                </Link>
+                </a>
               </Button>
             </motion.div>
 
             <Button
               size="lg"
               variant="outline"
-              className="border-[#ECB629] text-[#ECB629] hover:bg-[#ECB629]/10 px-6 md:px-12 py-4 md:py-6 text-base md:text-xl font-semibold transition-all duration-300 w-full sm:w-auto min-h-[56px]"
+              className="border-[var(--pravdast-yellow)] text-[var(--pravdast-yellow)] hover:bg-[var(--pravdast-yellow)]/10 px-6 md:px-12 py-4 md:py-6 text-base md:text-xl font-semibold transition-all duration-300 w-full sm:w-auto min-h-[56px]"
               asChild
             >
               <Link href="/services">Научи повече</Link>
@@ -218,7 +181,7 @@ export const HeroSection = () => {
             transition={{ duration: 0.8, delay: 0.5 }}
           >
             <motion.div
-              className="relative flex items-center justify-center gap-3 p-4 bg-gradient-to-r from-slate-800/50 to-slate-700/50 backdrop-blur-sm rounded-xl border border-[#ECB629]/30 overflow-hidden group"
+              className="relative flex items-center justify-center gap-3 p-4 bg-gradient-to-r from-slate-800/50 to-slate-700/50 backdrop-blur-sm rounded-xl border border-[var(--pravdast-yellow)]/30 overflow-hidden group"
               animate={{
                 borderColor: [
                   "rgba(236, 182, 40, 0.3)",
@@ -233,11 +196,11 @@ export const HeroSection = () => {
               }}
             >
               {/* Subtle glow effect */}
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#ECB629]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[var(--pravdast-yellow)]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 
               {/* Animated background pulse */}
               <motion.div
-                className="absolute inset-0 bg-[#ECB629]/5 rounded-xl"
+                className="absolute inset-0 bg-[var(--pravdast-yellow)]/5 rounded-xl"
                 animate={{
                   scale: [1, 1.05, 1],
                   opacity: [0.5, 1, 0.5],
@@ -252,7 +215,7 @@ export const HeroSection = () => {
               {/* Pulsing dot with ring */}
               <div className="relative">
                 <motion.div
-                  className="w-2 h-2 bg-[#ECB629] rounded-full relative z-10"
+                  className="w-2 h-2 bg-[var(--pravdast-yellow)] rounded-full relative z-10"
                   animate={{
                     scale: [1, 1.2, 1],
                   }}
@@ -263,7 +226,7 @@ export const HeroSection = () => {
                   }}
                 />
                 <motion.div
-                  className="absolute inset-0 w-2 h-2 bg-[#ECB629] rounded-full"
+                  className="absolute inset-0 w-2 h-2 bg-[var(--pravdast-yellow)] rounded-full"
                   animate={{
                     scale: [1, 2, 2.5],
                     opacity: [0.8, 0.4, 0],
@@ -278,7 +241,7 @@ export const HeroSection = () => {
 
               <span className="text-white text-sm font-semibold relative z-10">
                 Оставащи места -{" "}
-                <span className="text-[#ECB629] text-base">
+                <span className="text-[var(--pravdast-yellow)] text-base">
                   3
                 </span>
               </span>
