@@ -1,82 +1,213 @@
-'use client'
+import { motion } from "framer-motion";
+import { Card, CardContent } from "@/components/ui/card";
 
-import { Search, Wrench, Settings, BarChart3 } from 'lucide-react'
+// Modern SVG Icons
+const DiagnosticIcon = () => (
+  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M16 2C18.7614 2 21 4.23858 21 7C21 9.76142 18.7614 12 16 12C13.2386 12 11 9.76142 11 7C11 4.23858 13.2386 2 16 2Z" fill="currentColor"/>
+    <path d="M4 16C4 15.4477 4.44772 15 5 15H11C11.5523 15 12 15.4477 12 16C12 16.5523 11.5523 17 11 17H5C4.44772 17 4 16.5523 4 16Z" fill="currentColor"/>
+    <path d="M20 16C20 15.4477 20.4477 15 21 15H27C27.5523 15 28 15.4477 28 16C28 16.5523 27.5523 17 27 17H21C20.4477 17 20 16.5523 20 16Z" fill="currentColor"/>
+    <path d="M8.5 22.5C8.5 21.9477 8.94772 21.5 9.5 21.5H15.5C16.0523 21.5 16.5 21.9477 16.5 22.5C16.5 23.0523 16.0523 23.5 15.5 23.5H9.5C8.94772 23.5 8.5 23.0523 8.5 22.5Z" fill="currentColor"/>
+    <path d="M22.5 9.5C22.5 8.94772 22.9477 8.5 23.5 8.5H29.5C30.0523 8.5 30.5 8.94772 30.5 9.5C30.5 10.0523 30.0523 10.5 29.5 10.5H23.5C22.9477 10.5 22.5 10.0523 22.5 9.5Z" fill="currentColor"/>
+    <circle cx="16" cy="26" r="3" fill="currentColor"/>
+  </svg>
+);
 
-export function ProcessSection() {
+const BuildIcon = () => (
+  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M4 4C4 2.89543 4.89543 2 6 2H26C27.1046 2 28 2.89543 28 4V8C28 9.10457 27.1046 10 26 10H6C4.89543 10 4 9.10457 4 8V4Z" fill="currentColor"/>
+    <path d="M4 14C4 12.8954 4.89543 12 6 12H12C13.1046 12 14 12.8954 14 14V18C14 19.1046 13.1046 20 12 20H6C4.89543 20 4 19.1046 4 18V14Z" fill="currentColor"/>
+    <path d="M18 14C18 12.8954 18.8954 12 20 12H26C27.1046 12 28 12.8954 28 14V28C28 29.1046 27.1046 30 26 30H20C18.8954 30 18 29.1046 18 28V14Z" fill="currentColor"/>
+    <path d="M4 24C4 22.8954 4.89543 22 6 22H12C13.1046 22 14 22.8954 14 24V28C14 29.1046 13.1046 30 12 30H6C4.89543 30 4 29.1046 4 28V24Z" fill="currentColor"/>
+  </svg>
+);
+
+const OptimizeIcon = () => (
+  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M6 26L10 22L14 26L18 20L22 24L26 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+    <circle cx="6" cy="26" r="2" fill="currentColor"/>
+    <circle cx="10" cy="22" r="2" fill="currentColor"/>
+    <circle cx="14" cy="26" r="2" fill="currentColor"/>
+    <circle cx="18" cy="20" r="2" fill="currentColor"/>
+    <circle cx="22" cy="24" r="2" fill="currentColor"/>
+    <circle cx="26" cy="18" r="2" fill="currentColor"/>
+    <path d="M24 8L28 4L24 0" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+    <path d="M28 4H16C13.7909 4 12 5.79086 12 8V12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+  </svg>
+);
+
+const steps = [
+  {
+    icon: DiagnosticIcon,
+    title: "Диагностика",
+    description: "Анализираме вашия бизнес и данни, за да открием къде точно губите ефективност и потенциални приходи."
+  },
+  {
+    icon: BuildIcon,
+    title: "Изграждане", 
+    description: "Проектираме и изграждаме нужната система (или комбинация от системи), за да решим конкретния, диагностициран проблем."
+  },
+  {
+    icon: OptimizeIcon,
+    title: "Оптимизация",
+    description: "Следим данните в реално време и правим постоянни подобрения, за да увеличим максимално вашата възвръщаемост."
+  }
+];
+
+export const ProcessSection = () => {
   return (
-    <section className="py-16 bg-white">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Нашият <span className="text-yellow-500">Процес</span>
-          </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            Инженерен подход към всеки проект с фокус върху измерими резултати
-          </p>
+    <section className="py-12 sm:py-16 md:py-20 bg-slate-800/30 relative overflow-hidden">
+      {/* Animated Tech Background */}
+      <div className="absolute inset-0 opacity-20">
+        <div className="absolute inset-0">
+          {/* Process Flow Pattern */}
+          <div className="absolute inset-0" style={{
+            backgroundImage: `
+              linear-gradient(90deg, rgba(236, 182, 40, 0.1) 1px, transparent 1px),
+              linear-gradient(rgba(236, 182, 40, 0.1) 1px, transparent 1px)
+            `,
+            backgroundSize: '40px 40px'
+          }}></div>
+          
+          {/* Process Connection Lines */}
+          {[...Array(3)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-1 h-full bg-gradient-to-b from-transparent via-[#ECB629] to-transparent"
+              style={{
+                left: `${30 + i * 20}%`,
+              }}
+              animate={{
+                opacity: [0.2, 0.6, 0.2],
+                scaleY: [0.8, 1.2, 0.8],
+              }}
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                delay: i * 1,
+              }}
+            />
+          ))}
         </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div className="text-center">
-            <div className="bg-yellow-100 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-              <Search className="h-8 w-8 text-yellow-600" />
-            </div>
-            <div className="mb-2">
-              <span className="inline-block px-2 py-1 bg-yellow-100 text-yellow-800 text-sm font-semibold rounded">
-                Стъпка 1
+      </div>
+
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
+        <motion.div
+          className="text-center mb-12 sm:mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
+          <motion.div
+            className="inline-flex items-center gap-3 mb-8 px-6 py-3 rounded-full bg-gradient-to-r from-slate-800/80 to-slate-700/60 border border-slate-600/30 backdrop-blur-sm"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <div className="flex items-center gap-2">
+              <div className="relative">
+                <div className="w-2 h-2 bg-[#ECB629] rounded-full"></div>
+                <div className="absolute inset-0 bg-[#ECB629] rounded-full animate-ping opacity-75"></div>
+              </div>
+              <span className="text-sm text-gray-300 font-medium">
+                <span className="text-[#ECB629] font-bold">Контролиран</span> процес от диагностика до резултат
               </span>
             </div>
-            <h3 className="text-xl font-bold mb-2">Диагностика</h3>
-            <p className="text-gray-600">
-              Анализираме текущото състояние и идентифицираме възможности
-            </p>
-          </div>
+          </motion.div>
+
+          <motion.h2 
+            className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-white px-4 sm:px-0"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            Как работим?
+          </motion.h2>
           
-          <div className="text-center">
-            <div className="bg-yellow-100 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-              <Wrench className="h-8 w-8 text-yellow-600" />
-            </div>
-            <div className="mb-2">
-              <span className="inline-block px-2 py-1 bg-yellow-100 text-yellow-800 text-sm font-semibold rounded">
-                Стъпка 2
-              </span>
-            </div>
-            <h3 className="text-xl font-bold mb-2">Изграждане</h3>
-            <p className="text-gray-600">
-              Създаваме персонализирани системи за вашия бизнес
-            </p>
-          </div>
-          
-          <div className="text-center">
-            <div className="bg-yellow-100 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-              <Settings className="h-8 w-8 text-yellow-600" />
-            </div>
-            <div className="mb-2">
-              <span className="inline-block px-2 py-1 bg-yellow-100 text-yellow-800 text-sm font-semibold rounded">
-                Стъпка 3
-              </span>
-            </div>
-            <h3 className="text-xl font-bold mb-2">Оптимизация</h3>
-            <p className="text-gray-600">
-              Непрекъснато подобряваме резултатите базирано на данни
-            </p>
-          </div>
-          
-          <div className="text-center">
-            <div className="bg-yellow-100 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
-              <BarChart3 className="h-8 w-8 text-yellow-600" />
-            </div>
-            <div className="mb-2">
-              <span className="inline-block px-2 py-1 bg-yellow-100 text-yellow-800 text-sm font-semibold rounded">
-                Стъпка 4
-              </span>
-            </div>
-            <h3 className="text-xl font-bold mb-2">Мониторинг</h3>
-            <p className="text-gray-600">
-              Проследяваме всички KPI и оптимизираме в реално време
-            </p>
-          </div>
+          <motion.p 
+            className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto px-4 sm:px-0"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            viewport={{ once: true }}
+          >
+            Спазваме прост 3-стъпков процес за максимален резултат без загуба на време и ресурси.
+          </motion.p>
+        </motion.div>
+
+        <div className="grid md:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto">
+          {steps.map((step, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.2 }}
+              viewport={{ once: true }}
+              className="relative group"
+            >
+              <Card className="bg-slate-800/60 border-slate-600/30 backdrop-blur-sm h-full transition-all duration-300 hover:bg-slate-700/60 hover:border-[#ECB629]/40 hover:shadow-xl hover:shadow-[#ECB629]/10">
+                <CardContent className="p-6 sm:p-8 text-center h-full flex flex-col relative">
+                  {/* Step Number */}
+                  <div className="absolute -top-3 -left-3 w-8 h-8 bg-[#ECB629] rounded-full flex items-center justify-center text-black font-bold text-sm">
+                    {index + 1}
+                  </div>
+                  
+                  <motion.div
+                    className="mb-6 flex justify-center"
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <div className="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-br from-[#ECB629] to-yellow-500 rounded-2xl flex items-center justify-center text-black">
+                      <step.icon />
+                    </div>
+                  </motion.div>
+                  
+                  <h3 className="text-lg sm:text-xl font-bold mb-4 text-white">
+                    {step.title}
+                  </h3>
+                  
+                  <p className="text-gray-300 leading-relaxed flex-grow text-sm sm:text-base">
+                    {step.description}
+                  </p>
+
+                  {/* Connection Arrow */}
+                  {index < steps.length - 1 && (
+                    <motion.div
+                      className="hidden md:block absolute -right-4 top-1/2 transform -translate-y-1/2"
+                      animate={{
+                        x: [0, 5, 0],
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                      }}
+                    >
+                      <div className="w-8 h-0.5 bg-gradient-to-r from-[#ECB629] to-transparent"></div>
+                      <div className="w-0 h-0 border-l-4 border-l-[#ECB629] border-t-2 border-b-2 border-t-transparent border-b-transparent ml-6 -mt-2"></div>
+                    </motion.div>
+                  )}
+                </CardContent>
+              </Card>
+
+              {/* Animated process indicators */}
+              <motion.div
+                className="absolute -top-2 -right-2 w-4 h-4 bg-[#ECB629] rounded-full opacity-0 group-hover:opacity-100"
+                animate={{
+                  scale: [1, 1.2, 1],
+                  rotate: [0, 360, 0],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                }}
+              />
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
