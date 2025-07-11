@@ -2,8 +2,7 @@ import { Metadata } from 'next'
 import { Navigation } from '@/components/navigation'
 import { HeroSection } from '@/components/hero-section'
 import { PartnersCarousel } from '@/components/partners-carousel'
-import { ProblemSection } from '@/components/problem-section'
-import { SolutionSection } from '@/components/solution-section'
+import { ComparisonSection } from '@/components/comparison-section'
 import { SystemsSection } from '@/components/systems-section'
 import { ProcessSection } from '@/components/process-section'
 import { CTASection } from '@/components/cta-section'
@@ -35,8 +34,7 @@ export default function HomePage() {
       <main>
         <HeroSection />
         <PartnersCarousel />
-        <ProblemSection />
-        <SolutionSection />
+        <ComparisonSection />
         <SystemsSection />
         <ProcessSection />
         <CTASection />

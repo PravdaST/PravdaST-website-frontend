@@ -662,6 +662,9 @@ video {
 .-right-4 {
   right: -1rem;
 }
+.-top-3 {
+  top: -0.75rem;
+}
 .bottom-0 {
   bottom: 0px;
 }
@@ -691,6 +694,9 @@ video {
 }
 .left-3 {
   left: 0.75rem;
+}
+.left-6 {
+  left: 1.5rem;
 }
 .right-0 {
   right: 0px;
@@ -1419,6 +1425,9 @@ video {
 }
 .bg-slate-700\/30 {
   background-color: rgb(51 65 85 / 0.3);
+}
+.bg-slate-700\/40 {
+  background-color: rgb(51 65 85 / 0.4);
 }
 .bg-slate-800 {
   --tw-bg-opacity: 1;
@@ -2654,6 +2663,10 @@ video {
 
   .md\:p-12 {
     padding: 3rem;
+  }
+
+  .md\:p-8 {
+    padding: 2rem;
   }
 
   .md\:px-12 {
