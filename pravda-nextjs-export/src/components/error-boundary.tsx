@@ -1,9 +1,11 @@
+'use client';
+
 import React, { Component, ErrorInfo, ReactNode } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { AlertTriangle, RefreshCw, Home, MessageCircle } from 'lucide-react';
-import { Link } from 'wouter';
+import Link from 'next/link';
 
 interface Props {
   children: ReactNode;

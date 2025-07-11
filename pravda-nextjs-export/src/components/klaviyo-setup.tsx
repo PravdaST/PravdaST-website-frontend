@@ -1,26 +1,38 @@
-import { Helmet } from "react-helmet-async";
+'use client';
+
+import { useEffect } from 'react';
 
 const KlaviyoSetup = () => {
-  const KLAVIYO_COMPANY_ID = import.meta.env.VITE_KLAVIYO_COMPANY_ID;
+  const KLAVIYO_COMPANY_ID = process.env.NEXT_PUBLIC_KLAVIYO_COMPANY_ID;
 
-  // Само зарежда Klaviyo ако има валиден API ключ
-  if (!KLAVIYO_COMPANY_ID || KLAVIYO_COMPANY_ID === "UTqrCz") {
-    console.log("Klaviyo: Company ID not configured, skipping load");
-    return null;
-  }
+  useEffect(() => {
+    // Само зарежда Klaviyo ако има валиден API ключ
+    if (!KLAVIYO_COMPANY_ID || KLAVIYO_COMPANY_ID === "UTqrCz") {
+      console.log("Klaviyo: Company ID not configured, skipping load");
+      return;
+    }
 
-  console.log("Klaviyo: Loading with Company ID:", KLAVIYO_COMPANY_ID);
+    console.log("Klaviyo: Loading with Company ID:", KLAVIYO_COMPANY_ID);
 
-  return (
-    <Helmet>
-      <script 
-        async 
-        type="text/javascript" 
-        src={`https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=${KLAVIYO_COMPANY_ID}`}
-        onError={() => console.log("Klaviyo script blocked by ad blocker or network")}
-      />
-    </Helmet>
-  );
+    // Добавя Klaviyo скрипт динамично
+    const script = document.createElement('script');
+    script.async = true;
+    script.type = 'text/javascript';
+    script.src = `https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=${KLAVIYO_COMPANY_ID}`;
+    script.onerror = () => console.log("Klaviyo script blocked by ad blocker or network");
+    
+    document.head.appendChild(script);
+
+    return () => {
+      // Cleanup
+      const existingScript = document.querySelector(`script[src*="klaviyo.js"]`);
+      if (existingScript) {
+        existingScript.remove();
+      }
+    };
+  }, [KLAVIYO_COMPANY_ID]);
+
+  return null;
 };
 
 export default KlaviyoSetup;

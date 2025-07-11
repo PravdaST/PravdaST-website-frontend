@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Helmet } from 'react-helmet-async';
+
 import Navigation from '@/components/sections/Navigation';
 import Footer from '@/components/sections/Footer';
 import CTASection from '@/components/sections/CTASection';
@@ -249,24 +249,7 @@ const PhilosophySection = () => {
 export default function SeoStruktorPage() {
   return (
     <>
-      <Helmet>
-        <title>SEO Struktor™ - Правдаст | Система за SEO доминация и онлайн растеж</title>
-        <meta 
-          name="description" 
-          content="🎯 SEO Struktor™ от Правдаст: структурирана SEO система за доминация в Google. 1980лв/мес. Техническо SEO, съдържание, линк билдинг. Изпревари конкуренцията!" 
-        />
-        <meta name="keywords" content="seo услуги българия, google seo оптимизация, seo struktor система, техническо seo, първи позиции google" />
-        <link rel="canonical" href="https://www.pravdagency.eu/services/seo-struktor/" />
-        
-        {/* Open Graph */}
-        <meta property="og:title" content="SEO Struktor™ - Правдаст | Система за SEO доминация и онлайн растеж" />
-        <meta property="og:description" content="🎯 SEO Struktor™ от Правдаст: структурирана SEO система за доминация в Google. 1980лв/мес. Техническо SEO, съдържание, линк билдинг. Изпревари конкуренцията!" />
-        <meta property="og:url" content="https://www.pravdagency.eu/services/seo-struktor/" />
-        
-        {/* Twitter Cards */}
-        <meta name="twitter:title" content="SEO Struktor™ - Правдаст | Система за SEO доминация и онлайн растеж" />
-        <meta name="twitter:description" content="🎯 SEO Struktor™ от Правдаст: структурирана SEO система за доминация в Google. 1980лв/мес. Техническо SEO, съдържание, линк билдинг. Изпревари конкуренцията!" />
-      </Helmet>
+
 
       <div className="min-h-screen bg-slate-900">
         <Navigation />

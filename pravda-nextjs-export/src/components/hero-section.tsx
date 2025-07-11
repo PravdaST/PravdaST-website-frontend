@@ -1,7 +1,9 @@
+'use client';
+
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button"; // Уверете се, че импортвате вашия Button компонент
 import { AnimatedBackground } from "./animated-background"; // И вашия анимиран фон
-import { Link } from "wouter";
+import Link from 'next/link';
 
 export const HeroSection = () => {
   return (

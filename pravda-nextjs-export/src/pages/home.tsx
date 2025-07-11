@@ -8,7 +8,7 @@ import { SystemsSection } from "@/components/systems-section";
 import { CaseStudiesSlider } from "@/components/case-studies-slider";
 import { CTASection } from "@/components/cta-section";
 import { Footer } from "@/components/footer";
-import { HelmetSEO } from "@/components/seo/helmet-seo";
+// HelmetSEO removed for Next.js migration
 import { pageSEOData } from "@/data/seo-pages";
 import { useEffect } from "react";
 import { tracking, ConversionStage } from "@/lib/tracking";
@@ -24,7 +24,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-slate-900">
-      <HelmetSEO seo={seoData} pageSlug="" />
+      {/* HelmetSEO removed for Next.js migration */}
       <Navigation />
       <HeroSection />
       <PartnersCarousel />

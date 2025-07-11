@@ -1,6 +1,6 @@
 'use client';
 
-import { Helmet } from 'react-helmet-async';
+
 import Navigation from '@/components/sections/Navigation';
 import Footer from '@/components/sections/Footer';
 import CTASection from '@/components/sections/CTASection';
@@ -72,24 +72,7 @@ export default function CaseStudiesPage() {
 
   return (
     <>
-      <Helmet>
-        <title>Резултати - Правдаст | Реални случаи на успешен бизнес растеж</title>
-        <meta 
-          name="description" 
-          content="📈 Вижте реални резултати от клиентите на Правдаст: +250% трафик, +300% продажби, +400% конверсии. Проверени случаи на успешен растеж в България." 
-        />
-        <meta name="keywords" content="резултати правдаст, случаи на успех, растеж на бизнеса, seo резултати българия, маркетинг успехи" />
-        <link rel="canonical" href="https://www.pravdagency.eu/case-studies/" />
-        
-        {/* Open Graph */}
-        <meta property="og:title" content="Резултати - Правдаст | Реални случаи на успешен бизнес растеж" />
-        <meta property="og:description" content="📈 Вижте реални резултати от клиентите на Правдаст: +250% трафик, +300% продажби, +400% конверсии. Проверени случаи на успешен растеж в България." />
-        <meta property="og:url" content="https://www.pravdagency.eu/case-studies/" />
-        
-        {/* Twitter Cards */}
-        <meta name="twitter:title" content="Резултати - Правдаст | Реални случаи на успешен бизнес растеж" />
-        <meta name="twitter:description" content="📈 Вижте реални резултати от клиентите на Правдаст: +250% трафик, +300% продажби, +400% конверсии. Проверени случаи на успешен растеж в България." />
-      </Helmet>
+
 
       <div className="min-h-screen bg-slate-900">
         <Navigation />

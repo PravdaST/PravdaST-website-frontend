@@ -1,7 +1,10 @@
+'use client';
+
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { Link, useLocation } // from "wouter";
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { Menu, X, ChevronDown } from "lucide-react";
 import { trackCTAClick } from "@/lib/analytics";
 
@@ -10,7 +13,7 @@ export const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false);
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
-  const [location] = usePathname();
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {

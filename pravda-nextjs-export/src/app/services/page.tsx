@@ -1,6 +1,6 @@
 'use client';
 
-import { Helmet } from 'react-helmet-async';
+
 import Navigation from '@/components/sections/Navigation';
 import Footer from '@/components/sections/Footer';
 import SystemsSection from '@/components/sections/SystemsSection';
@@ -9,24 +9,7 @@ import CTASection from '@/components/sections/CTASection';
 export default function ServicesPage() {
   return (
     <>
-      <Helmet>
-        <title>Услуги - Правдаст | SEO, Маркетинг и Бизнес Системи България</title>
-        <meta 
-          name="description" 
-          content="🎯 Професионални маркетинг услуги: SEO Struktor™, Clientomat™, Clickstarter™, Trendlab™. Системен подход за предсказуем растеж на бизнеса в България." 
-        />
-        <meta name="keywords" content="seo услуги българия, дигитален маркетинг, google ads управление, content marketing, автоматизация на продажби" />
-        <link rel="canonical" href="https://www.pravdagency.eu/services/" />
-        
-        {/* Open Graph */}
-        <meta property="og:title" content="Услуги - Правдаст | SEO, Маркетинг и Бизнес Системи България" />
-        <meta property="og:description" content="🎯 Професионални маркетинг услуги: SEO Struktor™, Clientomat™, Clickstarter™, Trendlab™. Системен подход за предсказуем растеж на бизнеса в България." />
-        <meta property="og:url" content="https://www.pravdagency.eu/services/" />
-        
-        {/* Twitter Cards */}
-        <meta name="twitter:title" content="Услуги - Правдаст | SEO, Маркетинг и Бизнес Системи България" />
-        <meta name="twitter:description" content="🎯 Професионални маркетинг услуги: SEO Struktor™, Clientomat™, Clickstarter™, Trendlab™. Системен подход за предсказуем растеж на бизнеса в България." />
-      </Helmet>
+
 
       <div className="min-h-screen bg-slate-900">
         <Navigation />

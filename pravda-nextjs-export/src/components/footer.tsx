@@ -1,4 +1,4 @@
-import { Link } from "wouter";
+import Link from 'next/link';
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Facebook, Youtube, Instagram, Linkedin } from "lucide-react";
 

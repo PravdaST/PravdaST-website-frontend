@@ -1,9 +1,11 @@
+'use client';
+
 import { useEffect } from 'react';
 
 export function PixelIntegration() {
   useEffect(() => {
     // Facebook Pixel Integration
-    if (import.meta.env.VITE_FACEBOOK_PIXEL_ID && typeof window !== 'undefined') {
+    if (process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID && typeof window !== 'undefined') {
       // Load Facebook Pixel Script
       (function(f: any, b: any, e: any, v: any, n?: any, t?: any, s?: any) {
         if (f.fbq) return;
@@ -22,7 +24,7 @@ export function PixelIntegration() {
         s.parentNode.insertBefore(t, s);
       })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
 
-      (window as any).fbq('init', import.meta.env.VITE_FACEBOOK_PIXEL_ID);
+      (window as any).fbq('init', process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID);
       (window as any).fbq('track', 'PageView');
 
       // Track specific events
@@ -33,16 +35,16 @@ export function PixelIntegration() {
     }
 
     // LinkedIn Insight Tag Integration
-    if (import.meta.env.VITE_LINKEDIN_PARTNER_ID && typeof window !== 'undefined') {
+    if (process.env.NEXT_PUBLIC_LINKEDIN_PARTNER_ID && typeof window !== 'undefined') {
       const script = document.createElement('script');
       script.async = true;
       script.src = 'https://snap.licdn.com/li.lms-analytics/insight.min.js';
       document.head.appendChild(script);
 
       script.onload = () => {
-        (window as any)._linkedin_partner_id = import.meta.env.VITE_LINKEDIN_PARTNER_ID;
+        (window as any)._linkedin_partner_id = process.env.NEXT_PUBLIC_LINKEDIN_PARTNER_ID;
         (window as any)._linkedin_data_partner_ids = (window as any)._linkedin_data_partner_ids || [];
-        (window as any)._linkedin_data_partner_ids.push(import.meta.env.VITE_LINKEDIN_PARTNER_ID);
+        (window as any)._linkedin_data_partner_ids.push(process.env.NEXT_PUBLIC_LINKEDIN_PARTNER_ID);
 
         // Track page view
         if ((window as any).lintrk) {
@@ -57,16 +59,16 @@ export function PixelIntegration() {
       img.width = 1;
       img.style.display = 'none';
       img.alt = '';
-      img.src = `https://px.ads.linkedin.com/collect/?pid=${import.meta.env.VITE_LINKEDIN_PARTNER_ID}&fmt=gif`;
+      img.src = `https://px.ads.linkedin.com/collect/?pid=${process.env.NEXT_PUBLIC_LINKEDIN_PARTNER_ID}&fmt=gif`;
       noscript.appendChild(img);
       document.body.appendChild(noscript);
     }
 
     // Google Ads Conversion Tracking
-    if (import.meta.env.VITE_GOOGLE_ADS_ID && typeof window !== 'undefined') {
+    if (process.env.NEXT_PUBLIC_GOOGLE_ADS_ID && typeof window !== 'undefined') {
       const script = document.createElement('script');
       script.async = true;
-      script.src = `https://www.googletagmanager.com/gtag/js?id=${import.meta.env.VITE_GOOGLE_ADS_ID}`;
+      script.src = `https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ADS_ID}`;
       document.head.appendChild(script);
 
       script.onload = () => {
@@ -77,7 +79,7 @@ export function PixelIntegration() {
         (window as any).gtag = gtag;
         
         gtag('js', new Date());
-        gtag('config', import.meta.env.VITE_GOOGLE_ADS_ID);
+        gtag('config', process.env.NEXT_PUBLIC_GOOGLE_ADS_ID);
       };
     }
 
@@ -86,7 +88,7 @@ export function PixelIntegration() {
       // Google Analytics Enhanced Ecommerce
       if (typeof window !== 'undefined' && (window as any).gtag) {
         (window as any).gtag('event', 'conversion', {
-          send_to: `${import.meta.env.VITE_GOOGLE_ADS_ID}/goal_completion`,
+          send_to: `${process.env.NEXT_PUBLIC_GOOGLE_ADS_ID}/goal_completion`,
           value: value || 1,
           currency: 'BGN',
           goal_type: goalType
@@ -199,7 +201,7 @@ export const usePixelTracking = () => {
     // Google Ads Lead Conversion
     if (typeof window !== 'undefined' && (window as any).gtag) {
       (window as any).gtag('event', 'conversion', {
-        send_to: `${import.meta.env.VITE_GOOGLE_ADS_ID}/lead_generation`,
+        send_to: `${process.env.NEXT_PUBLIC_GOOGLE_ADS_ID}/lead_generation`,
         value: 1,
         currency: 'BGN'
       });
