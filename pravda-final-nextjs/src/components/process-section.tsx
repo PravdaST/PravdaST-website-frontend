@@ -58,7 +58,7 @@ const steps = [
 
 export const ProcessSection = () => {
   return (
-    <section className="py-20 bg-slate-800/30 relative overflow-hidden">
+    <section className="py-20 bg-slate-900 relative overflow-hidden">
       {/* Animated Tech Background */}
       <div className="absolute inset-0 opacity-20">
         <div className="absolute inset-0">
@@ -171,11 +171,11 @@ export const ProcessSection = () => {
               viewport={{ once: true }}
               className="relative group"
             >
-              <Card className="bg-gradient-to-br from-slate-800/60 to-slate-900/80 border-[#ECB629]/20 h-full relative overflow-hidden backdrop-blur-sm group-hover:border-[#ECB629]/50 transition-all duration-300">
+              <Card className="bg-slate-700 border-slate-600/30 h-full relative overflow-hidden group-hover:border-[#ECB629]/50 transition-all duration-300">
                 {/* Step Number Badge */}
-                <div className="absolute top-4 right-4">
-                  <div className="flex items-center justify-center w-8 h-8 bg-gradient-to-br from-[#ECB629] to-[#ECB629]/80 rounded-full">
-                    <span className="text-sm font-bold text-black">{index + 1}</span>
+                <div className="absolute top-6 right-6">
+                  <div className="flex items-center justify-center w-10 h-10 bg-[#ECB629] rounded-full">
+                    <span className="text-lg font-bold text-black">{index + 1}</span>
                   </div>
                 </div>
 
@@ -192,18 +192,18 @@ export const ProcessSection = () => {
 
                 <CardContent className="p-8 relative z-10">
                   <motion.div
-                    className="flex items-center justify-center w-16 h-16 bg-[#ECB629]/20 rounded-xl mb-6 group-hover:bg-[#ECB629]/30 transition-colors text-[#ECB629]"
-                    whileHover={{ scale: 1.1 }}
+                    className="flex items-center justify-center w-16 h-16 bg-[#ECB629] rounded-xl mb-6 text-black"
+                    whileHover={{ scale: 1.05 }}
                     transition={{ duration: 0.2 }}
                   >
                     <step.icon />
                   </motion.div>
 
-                  <h3 className="text-2xl font-bold text-white mb-4">
+                  <h3 className="text-xl font-bold text-white mb-4">
                     {step.title}
                   </h3>
                   
-                  <p className="text-gray-300 leading-relaxed">
+                  <p className="text-gray-300 text-sm leading-relaxed">
                     {step.description}
                   </p>
                 </CardContent>

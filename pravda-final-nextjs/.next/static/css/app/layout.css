@@ -716,6 +716,9 @@ video {
 .right-4 {
   right: 1rem;
 }
+.right-6 {
+  right: 1.5rem;
+}
 .top-0 {
   top: 0px;
 }
@@ -736,6 +739,9 @@ video {
 }
 .top-4 {
   top: 1rem;
+}
+.top-6 {
+  top: 1.5rem;
 }
 .top-full {
   top: 100%;
@@ -1646,9 +1652,6 @@ video {
 }
 .to-\[\#ECB629\]\/50 {
   --tw-gradient-to: rgb(236 182 41 / 0.5) var(--tw-gradient-to-position);
-}
-.to-\[\#ECB629\]\/80 {
-  --tw-gradient-to: rgb(236 182 41 / 0.8) var(--tw-gradient-to-position);
 }
 .to-blue-700 {
   --tw-gradient-to: #1d4ed8 var(--tw-gradient-to-position);
