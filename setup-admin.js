@@ -1,6 +1,6 @@
-import { db } from './server/db.js';
-import { adminUsers } from './shared/schema.ts';
-import bcrypt from 'bcrypt';
+const { db } = require('./server/db.ts');
+const { adminUsers } = require('./shared/schema.ts');
+const bcrypt = require('bcrypt');
 
 async function createAdminUser() {
   try {
