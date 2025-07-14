@@ -9,6 +9,27 @@ const nextConfig = {
     ],
   },
   serverExternalPackages: ['drizzle-orm', '@neondatabase/serverless', 'bcrypt'],
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'Content-Security-Policy',
+            value: [
+              "default-src 'self'",
+              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://static.klaviyo.com https://static-tracking.klaviyo.com https://fast.a.klaviyo.com",
+              "connect-src 'self' https://static.klaviyo.com https://static-tracking.klaviyo.com https://fast.a.klaviyo.com https://a.klaviyo.com",
+              "style-src 'self' 'unsafe-inline' https://static.klaviyo.com",
+              "img-src 'self' data: https: https://static.klaviyo.com https://d3k81ch9hvuctc.cloudfront.net",
+              "font-src 'self' data: https:",
+              "frame-src 'self'"
+            ].join('; ')
+          }
+        ]
+      }
+    ]
+  }
 }
 
 module.exports = nextConfig;

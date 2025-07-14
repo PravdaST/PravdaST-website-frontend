@@ -22,6 +22,7 @@ import { Mail, Phone, MapPin, Clock, Send } from "lucide-react"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import { trackContactForm, trackPhoneCall } from "@/lib/analytics"
+import { useKlaviyo } from "@/hooks/useKlaviyo"
 import Link from "next/link"
 
 const contactSchema = z.object({
@@ -36,6 +37,7 @@ type ContactForm = z.infer<typeof contactSchema>
 
 export default function ContactClient() {
   const { toast } = useToast()
+  const { trackEvent, identifyUser } = useKlaviyo()
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   const form = useForm<ContactForm>({
@@ -53,6 +55,12 @@ export default function ContactClient() {
     setIsSubmitting(true)
 
     try {
+      // Track form submission start
+      trackEvent('Contact Form Started', {
+        source: 'Contact Page',
+        fields_filled: Object.keys(data).filter(key => data[key as keyof ContactForm]).length
+      })
+
       const response = await fetch("/api/contacts", {
         method: "POST",
         headers: {
@@ -65,7 +73,45 @@ export default function ContactClient() {
         throw new Error("Failed to send message")
       }
 
+      // Integrate with Klaviyo
+      const [firstName, lastName] = data.name.split(' ')
+      identifyUser({
+        email: data.email,
+        firstName: firstName || data.name,
+        lastName: lastName || '',
+        company: data.company,
+        website: data.website
+      })
+
       // Track successful contact form submission
+      trackEvent('Contact Form Submitted', {
+        source: 'Contact Page',
+        has_company: !!data.company,
+        has_website: !!data.website,
+        message_length: data.message.length
+      })
+
+      // Also integrate with Klaviyo API
+      try {
+        await fetch("/api/klaviyo", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: data.email,
+            firstName: firstName || data.name,
+            lastName: lastName || '',
+            company: data.company,
+            website: data.website,
+            message: data.message
+          }),
+        })
+      } catch (klaviyoError) {
+        console.log('Klaviyo API integration failed, but form was submitted successfully')
+      }
+
+      // Track successful contact form submission in analytics
       trackContactForm(data)
 
       toast({
@@ -75,9 +121,17 @@ export default function ContactClient() {
 
       form.reset()
     } catch (error) {
+      console.error("Contact form error:", error)
+      
+      // Track form submission error
+      trackEvent('Contact Form Error', {
+        source: 'Contact Page',
+        error: error instanceof Error ? error.message : 'Unknown error'
+      })
+
       toast({
-        title: "Грешка",
-        description: "Моля опитайте отново.",
+        title: "Възникна грешка",
+        description: "Моля опитайте отново или се свържете с нас директно.",
         variant: "destructive",
       })
     } finally {

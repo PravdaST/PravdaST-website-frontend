@@ -1,0 +1,61 @@
+'use client'
+
+import { useCallback } from 'react'
+
+declare global {
+  interface Window {
+    _learnq?: any[]
+  }
+}
+
+export const useKlaviyo = () => {
+  const trackEvent = useCallback((eventName: string, properties: Record<string, any> = {}) => {
+    if (typeof window === 'undefined' || !window._learnq) {
+      console.log('Klaviyo: Not available for event tracking')
+      return
+    }
+
+    try {
+      window._learnq.push(['track', eventName, {
+        ...properties,
+        '$source': 'Pravda Agency Website',
+        'timestamp': new Date().toISOString()
+      }])
+      console.log(`Klaviyo: Event "${eventName}" tracked successfully`)
+    } catch (error) {
+      console.error(`Klaviyo: Error tracking event "${eventName}"`, error)
+    }
+  }, [])
+
+  const identifyUser = useCallback((userData: {
+    email: string
+    firstName?: string
+    lastName?: string
+    company?: string
+    website?: string
+  }) => {
+    if (typeof window === 'undefined' || !window._learnq) {
+      console.log('Klaviyo: Not available for user identification')
+      return
+    }
+
+    try {
+      window._learnq.push(['identify', {
+        '$email': userData.email,
+        '$first_name': userData.firstName,
+        '$last_name': userData.lastName,
+        'Company': userData.company,
+        'Website': userData.website,
+        '$source': 'Pravda Agency Website'
+      }])
+      console.log('Klaviyo: User identified successfully')
+    } catch (error) {
+      console.error('Klaviyo: Error identifying user', error)
+    }
+  }, [])
+
+  return {
+    trackEvent,
+    identifyUser
+  }
+}
