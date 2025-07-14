@@ -3,7 +3,7 @@
 ## ✅ Премахнати sensitive данни:
 
 ### 1. SendGrid API Key
-- Премахнат `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`
+- Премахнат SendGrid API key от всички файлове
 - Всички email credentials сега използват environment variables
 
 ### 2. Google Analytics ID

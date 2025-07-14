@@ -2,7 +2,7 @@
 
 ## 🚨 Проблем
 GitHub Push Protection намира SendGrid API key в Git историята:
-- Commit `2a1dc7f7`: `replit.md` съдържа `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`
+- Commit `2a1dc7f7`: `replit.md` съдържа SendGrid API key в документацията
 
 ## ✨ Най-лесно решение: Create New Repository
 

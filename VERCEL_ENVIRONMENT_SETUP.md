@@ -8,7 +8,7 @@
 
 ```bash
 # SendGrid (configured in Vercel)
-SENDGRID_API_KEY=SG.your_actual_api_key
+SENDGRID_API_KEY=your_actual_sendgrid_api_key
 SENDGRID_FROM_EMAIL=website@pravdagency.eu
 SENDGRID_TO_EMAIL=contact@pravdagency.eu
 

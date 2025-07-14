@@ -31,7 +31,7 @@ git rebase -i 2a1dc7f7~1
 
 # Edit файла да премахне API key
 nano replit.md
-# Премахни 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
+# Премахни SendGrid API key от файла
 
 # Commit amended change
 git add replit.md
@@ -54,7 +54,7 @@ git checkout -b clean-main
 git checkout main -- .
 
 # Remove всички references към API key
-# Edit всички .md файлове да премахнат SG.Njanuo2DReiXgG3kHaZqYQ.*
+# Edit всички .md файлове да премахнат API key references
 
 # Commit clean version
 git add .

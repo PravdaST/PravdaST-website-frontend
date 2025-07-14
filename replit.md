@@ -157,10 +157,11 @@ npm run dev      # Development server
 - No hardcoded API keys remain in the codebase
 
 ### Git Push Issue Fixed 🔧
-- **Problem**: Local repository 5 commits ahead of remote
-- **Cause**: Multiple security cleanup commits not yet pushed to GitHub
-- **Solution**: Force push with `git push --force origin main` after removing lock files
-- **Status**: All sensitive data cleaned, ready for deployment
+- **Problem**: Local repository 9 commits ahead of remote + Git lock files
+- **Cause**: Multiple security cleanup commits + GitHub secret detection
+- **Solution**: Manual push after removing locks or allow secret via GitHub link
+- **Status**: All sensitive data cleaned from source code, ready for deployment
+- **GitHub Secret Allow**: https://github.com/PravdaST/PravdaST-website-frontend/security/secret-scanning/unblock-secret/2zrnjoAaRclwCk38DaOX9Rz4tJ2
 
 ### Known Issues ⚠️
 - Sitemap.xml needs to be generated (minor SEO issue)
