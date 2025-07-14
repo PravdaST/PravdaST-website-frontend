@@ -195,7 +195,7 @@ export default function AboutClient() {
 
       <main className="pt-10">
         {/* Hero Section */}
-        <section className="relative overflow-hidden">
+        <section className="relative overflow-hidden py-20">
           {/* Animated Tech Background */}
           <div className="absolute inset-0 opacity-20">
             <div className="absolute inset-0">

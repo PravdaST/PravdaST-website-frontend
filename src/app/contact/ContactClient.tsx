@@ -198,6 +198,27 @@ export default function ContactClient() {
               backgroundSize: "60px 60px",
             }}
           />
+          
+          {/* Animated contact dots */}
+          {[...Array(8)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-2 h-2 bg-[#ECB629]/40 rounded-full"
+              style={{
+                left: `${15 + i * 12}%`,
+                top: `${25 + (i % 2) * 50}%`,
+              }}
+              animate={{
+                scale: [1, 1.5, 1],
+                opacity: [0.4, 0.9, 0.4],
+              }}
+              transition={{
+                duration: 3 + i * 0.2,
+                repeat: Infinity,
+                delay: i * 0.4,
+              }}
+            />
+          ))}
         </div>
 
         <div className="relative z-1 pt-10 sm:pt-24 pb-8 sm:pb-12">
@@ -207,9 +228,17 @@ export default function ContactClient() {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
                 className="inline-flex items-center gap-2 bg-slate-800/50 backdrop-blur-sm border border-[#ECB629]/30 rounded-full px-4 py-2 mb-6"
               >
-                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+                <div className="relative">
+                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                  <motion.div
+                    className="absolute inset-0 w-2 h-2 bg-green-500 rounded-full opacity-20"
+                    animate={{ scale: [1, 1.5, 1] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                  />
+                </div>
                 <span className="text-sm text-gray-300">
                   Активен екип • Отговор в 24 часа
                 </span>
@@ -218,16 +247,25 @@ export default function ContactClient() {
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.1 }}
+                transition={{ duration: 0.8, delay: 0.1 }}
                 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 px-2 sm:px-0"
               >
-                Свържете се с <span className="text-[#ECB629]">нас</span>
+                Свържете се с{" "}
+                <span className="text-[#ECB629] relative">
+                  нас
+                  <motion.div
+                    className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-[#ECB629] to-[#ECB629]/50 rounded-full"
+                    initial={{ scaleX: 0 }}
+                    animate={{ scaleX: 1 }}
+                    transition={{ duration: 1, delay: 0.6 }}
+                  />
+                </span>
               </motion.h1>
 
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
                 className="text-lg text-gray-300 max-w-2xl mx-auto"
               >
                 Готови сме да обсъдим как можем да трансформираме вашия бизнес в
