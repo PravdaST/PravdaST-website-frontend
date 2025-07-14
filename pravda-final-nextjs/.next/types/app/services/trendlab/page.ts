@@ -1,8 +1,8 @@
-// File: /home/runner/workspace/pravda-final-nextjs/src/app/services/page.tsx
-import * as entry from '../../../../src/app/services/page.js'
+// File: /home/runner/workspace/pravda-final-nextjs/src/app/services/trendlab/page.tsx
+import * as entry from '../../../../../src/app/services/trendlab/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
-type TEntry = typeof import('../../../../src/app/services/page.js')
+type TEntry = typeof import('../../../../../src/app/services/trendlab/page.js')
 
 type SegmentParams<T extends Object = any> = T extends Record<string, any>
   ? { [K in keyof T]: T[K] extends string ? string | string[] | undefined : never }

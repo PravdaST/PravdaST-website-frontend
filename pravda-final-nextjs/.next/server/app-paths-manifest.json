@@ -1,5 +1,3 @@
 {
-  "/services/page": "app/services/page.js",
-  "/page": "app/page.js",
-  "/services/seo-struktor/page": "app/services/seo-struktor/page.js"
+  "/services/trendlab/page": "app/services/trendlab/page.js"
 }
