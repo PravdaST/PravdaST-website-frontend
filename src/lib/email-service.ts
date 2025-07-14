@@ -18,7 +18,7 @@ export async function sendContactEmail(data: ContactData) {
     console.log('SendGrid API key not configured - using development mode')
     console.log('EMAIL PREVIEW (Development Mode):')
     console.log('====================================')
-    console.log(`TO: contact@pravdast.agency`)
+    console.log(`TO: contact@pravdagency.eu`)
     console.log(`FROM: website@pravdagency.eu`)
     console.log(`SUBJECT: 🔥 Ново запитване от ${data.name} - ${data.company || 'Частно лице'}`)
     console.log(`ДАННИ:`)
@@ -110,7 +110,7 @@ export async function sendContactEmail(data: ContactData) {
           
           <div class="footer">
             <p><strong>Pravda Agency</strong> - Бизнес инженеринг за предвидим растеж</p>
-            <p>ул. Дебър №58, Варна | +359 879 282 299 | contact@pravda.agency</p>
+            <p>ул. Дебър №58, Варна | +359 879 282 299 | contact@pravdagency.eu</p>
           </div>
         </div>
       </body>
@@ -133,11 +133,11 @@ ${data.message}
 
 ---
 Pravda Agency - Бизнес инженеринг за предвидим растеж
-ул. Дебър №58, Варна | +359 879 282 299 | contact@pravda.agency
+ул. Дебър №58, Варна | +359 879 282 299 | contact@pravdagency.eu
     `
 
     const msg = {
-      to: 'contact@pravdast.agency',
+      to: 'contact@pravdagency.eu',
       from: {
         email: 'website@pravdagency.eu',
         name: 'Pravda Agency Website'
@@ -149,7 +149,7 @@ Pravda Agency - Бизнес инженеринг за предвидим рас
     }
 
     await sgMail.send(msg)
-    console.log('Contact email sent successfully to contact@pravdast.agency')
+    console.log('Contact email sent successfully to contact@pravdagency.eu')
     
     return { 
       success: true, 

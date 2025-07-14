@@ -9,7 +9,7 @@ import { ClientOnly } from '@/components/client-only'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://pravdast.agency'),
+  metadataBase: new URL('https://pravdagency.eu'),
   title: 'Pravdast - Бизнес инженеринг за предвидим растеж в България',
   description: 'Превръщаме хаотичния растеж в предвидими, измерими резултати чрез проверени бизнес системи. SEO оптимизация, създаване на съдържание, рекламни кампании.',
 }

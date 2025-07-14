@@ -24,7 +24,7 @@ export const Footer = () => {
       { href: "/privacy", label: "Политика за поверителност" }
     ],
     contact: [
-      { icon: Mail, info: "contact@pravdast.agency" },
+      { icon: Mail, info: "contact@pravdagency.eu" },
       { icon: Phone, info: "+359 879 282 299" },
       { icon: MapPin, info: "гр. Варна ул. Дебър №58" }
     ]
@@ -105,9 +105,9 @@ export const Footer = () => {
               viewport={{ once: true }}
             >
               {[
-                { icon: Facebook, href: "https://www.facebook.com/pravdast.agency/" },
+                { icon: Facebook, href: "https://www.facebook.com/pravdagency.eu/" },
                 { icon: Youtube, href: "https://www.youtube.com/@PravdaST" },
-                { icon: Instagram, href: "https://www.instagram.com/pravdast.agency/" },
+                { icon: Instagram, href: "https://www.instagram.com/pravdagency.eu/" },
                 { icon: Linkedin, href: "https://www.linkedin.com/company/pravda-st/" }
               ].map((social, index) => (
                 <motion.a
