@@ -3,10 +3,11 @@ import { storage } from '../../../../../server/storage';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { slug: string } }
+  { params }: { params: Promise<{ slug: string }> }
 ) {
   try {
-    const post = await storage.getBlogPostBySlug(params.slug);
+    const { slug } = await params;
+    const post = await storage.getBlogPostBySlug(slug);
     
     if (!post) {
       return NextResponse.json({ error: 'Post not found' }, { status: 404 });
