@@ -4,10 +4,12 @@ import './globals.css'
 import { KlaviyoSetup } from '@/components/klaviyo-setup'
 import { KlaviyoIntegration } from '@/components/klaviyo-integration'
 import { ScrollToTop } from '@/components/scroll-to-top'
+import { ClientOnly } from '@/components/client-only'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://pravdast.agency'),
   title: 'Pravdast - Бизнес инженеринг за предвидим растеж в България',
   description: 'Превръщаме хаотичния растеж в предвидими, измерими резултати чрез проверени бизнес системи. SEO оптимизация, създаване на съдържание, рекламни кампании.',
 }
@@ -20,10 +22,14 @@ export default function RootLayout({
   return (
     <html lang="bg">
       <body className={inter.className}>
-        <KlaviyoSetup />
-        <KlaviyoIntegration />
+        <ClientOnly>
+          <KlaviyoSetup />
+          <KlaviyoIntegration />
+        </ClientOnly>
         {children}
-        <ScrollToTop />
+        <ClientOnly>
+          <ScrollToTop />
+        </ClientOnly>
       </body>
     </html>
   )
