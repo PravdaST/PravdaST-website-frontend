@@ -96,8 +96,8 @@ sessions (sid, sess, expire)
 
 ### Environment Variables (Required for production)
 ```bash
-SENDGRID_API_KEY=sg-xxx
-SENDGRID_FROM_EMAIL=contact@pravdagency.eu
+SENDGRID_API_KEY=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
+SENDGRID_FROM_EMAIL=website@pravdagency.eu
 DATABASE_URL=postgresql://xxx
 KLAVIYO_COMPANY_ID=UTqrCz
 KLAVIYO_PRIVATE_API_KEY=pk-xxx
