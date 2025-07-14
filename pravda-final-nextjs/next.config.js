@@ -8,6 +8,7 @@ const nextConfig = {
       },
     ],
   },
+  serverExternalPackages: ['drizzle-orm', '@neondatabase/serverless', 'bcrypt'],
 }
 
-module.exports = nextConfig
+module.exports = nextConfig;
