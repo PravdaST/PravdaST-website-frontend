@@ -24,6 +24,8 @@ import { Footer } from "@/components/footer"
 import { trackContactForm, trackPhoneCall } from "@/lib/analytics"
 import { trackMetaLead, trackMetaContact } from "@/components/meta-pixel"
 import { useKlaviyo } from "@/hooks/useKlaviyo"
+import { StructuredData } from "@/components/structured-data"
+import { pageSEOData } from "@/data/seo-pages"
 import Link from "next/link"
 
 const contactSchema = z.object({
@@ -152,7 +154,7 @@ export default function ContactClient() {
     {
       icon: <Mail className="w-6 h-6" />,
       title: "Имейл",
-      value: "contact@pravda.agency",
+      value: "contact@pravdagency.eu",
       subtitle: "Отговаряме в рамките на 24 часа",
       color: "text-[#ECB629]",
     },
@@ -181,6 +183,7 @@ export default function ContactClient() {
 
   return (
     <div className="min-h-screen bg-slate-900">
+      <StructuredData data={pageSEOData.contact.structuredData} />
       <Navigation />
       <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
         {/* Background Pattern */}

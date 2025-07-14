@@ -6,6 +6,8 @@ import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { HelpCircle } from "lucide-react";
+import { StructuredData } from "@/components/structured-data";
+import { pageSEOData } from "@/data/seo-pages";
 import Link from "next/link";
 
 interface FAQItem {
@@ -204,6 +206,7 @@ export default function FAQClient() {
 
   return (
     <div className="min-h-screen bg-slate-900">
+      <StructuredData data={pageSEOData.faq.structuredData} />
       <Navigation />
 
       {/* Hero Section */}
