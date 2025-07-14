@@ -1,3 +1,4 @@
 {
-  "/admin-pravda/page": "app/admin-pravda/page.js"
+  "/api/admin/route": "app/api/admin/route.js",
+  "/page": "app/page.js"
 }

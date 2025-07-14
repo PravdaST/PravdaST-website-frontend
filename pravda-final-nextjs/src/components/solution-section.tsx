@@ -127,102 +127,136 @@ export const SolutionSection = () => {
                 </div>
               </div>
               
-              {/* Content */}
-              <h3 className="text-2xl font-bold text-white mb-4">
-                Традиционен маркетинг
-              </h3>
-              
-              <div className="space-y-4">
-                <div className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
-                  <p className="text-gray-300">Разхищаване на бюджет за експерименти</p>
+              <div className="relative z-10">
+                <div className="mb-6">
+                  <h3 className="text-3xl font-bold text-white mb-2 relative">
+                    Маркетинг
+                    <div className="absolute inset-0 bg-gradient-to-r from-red-500/20 to-transparent rounded-lg -z-10 blur-sm"></div>
+                  </h3>
+                  <div className="w-12 h-1 bg-red-500 rounded-full"></div>
                 </div>
-                <div className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
-                  <p className="text-gray-300">Непредвидими резултати</p>
-                </div>
-                <div className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
-                  <p className="text-gray-300">Фокус върху метрики, а не върху растеж</p>
-                </div>
-                <div className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0"></div>
-                  <p className="text-gray-300">Зависимост от тактики и трендове</p>
+                
+                <p className="text-gray-300 text-lg leading-relaxed mb-6">
+                  Предположения, неясни резултати, рискови разходи.
+                </p>
+                
+                {/* Problem Indicators */}
+                <div className="space-y-3">
+                  {[
+                    "Хаотични резултати",
+                    "Неконтролируем бюджет", 
+                    "Липса на система"
+                  ].map((item, i) => (
+                    <motion.div
+                      key={i}
+                      className="flex items-center gap-3 text-red-400/70"
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.4, delay: i * 0.1 + 0.3 }}
+                      viewport={{ once: true }}
+                    >
+                      <div className="w-1.5 h-1.5 bg-red-500 rounded-full"></div>
+                      <span className="text-sm">{item}</span>
+                    </motion.div>
+                  ))}
                 </div>
               </div>
             </div>
           </motion.div>
-
+          
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
             className="relative group"
           >
             {/* Business Engineering Card - Solution State */}
-            <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-slate-800/60 to-slate-900/80 border border-[#ECB629]/30 p-8 h-full backdrop-blur-sm">
+            <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#ECB629]/10 to-[#ECB629]/5 border border-[#ECB629]/30 p-8 h-full backdrop-blur-sm">
               {/* Animated Background Pattern */}
-              <div className="absolute inset-0 opacity-10">
+              <div className="absolute inset-0 opacity-15">
                 <div className="absolute inset-0" style={{
                   backgroundImage: `
-                    linear-gradient(rgba(34, 197, 94, 0.15) 1px, transparent 1px),
-                    linear-gradient(90deg, rgba(34, 197, 94, 0.15) 1px, transparent 1px)
+                    linear-gradient(rgba(236, 182, 40, 0.2) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(236, 182, 40, 0.2) 1px, transparent 1px)
                   `,
-                  backgroundSize: '20px 20px'
+                  backgroundSize: '30px 30px'
                 }}></div>
               </div>
               
-              {/* Solution Indicator */}
+              {/* Success Indicator */}
               <div className="absolute top-4 right-4">
-                <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-green-500/20 border border-green-500/30">
-                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                  <span className="text-xs text-green-400 font-medium">РЕШЕНИЕ</span>
+                <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-[#ECB629]/20 border border-[#ECB629]/40">
+                  <div className="w-2 h-2 bg-green-500 rounded-full">
+                    <div className="absolute inset-0 bg-green-500 rounded-full animate-ping opacity-75"></div>
+                  </div>
+                  <span className="text-xs text-[#ECB629] font-medium">РЕШЕНИЕ</span>
                 </div>
               </div>
               
-              {/* Success Lines */}
-              {[...Array(3)].map((_, i) => (
-                <motion.div
-                  key={i}
-                  className="absolute w-12 h-px bg-gradient-to-r from-green-500 to-transparent"
-                  style={{
-                    left: `${10 + i * 20}%`,
-                    top: `${20 + i * 30}%`,
-                  }}
-                  animate={{
-                    opacity: [0.3, 1, 0.3],
-                    scaleX: [0.8, 1.2, 0.8],
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    delay: i * 0.3,
-                  }}
-                />
-              ))}
+              <div className="relative z-10">
+                <div className="mb-6">
+                  <h3 className="text-3xl font-bold text-[#ECB629] mb-2 relative">
+                    Бизнес инженеринг
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-[#ECB629]/20 to-transparent rounded-lg -z-10 blur-sm"
+                      animate={{
+                        opacity: [0.3, 0.6, 0.3],
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                      }}
+                    />
+                  </h3>
+                  <div className="w-12 h-1 bg-[#ECB629] rounded-full"></div>
+                </div>
+                
+                <p className="text-gray-200 text-lg leading-relaxed mb-6">
+                  Данни, предвидими резултати, контролирана инвестиция.
+                </p>
+                
+                {/* Success Indicators */}
+                <div className="space-y-3">
+                  {[
+                    "Измерими резултати",
+                    "Контролиран бюджет",
+                    "Системен подход"
+                  ].map((item, i) => (
+                    <motion.div
+                      key={i}
+                      className="flex items-center gap-3 text-[#ECB629]/90"
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.4, delay: i * 0.1 + 0.5 }}
+                      viewport={{ once: true }}
+                    >
+                      <div className="w-1.5 h-1.5 bg-[#ECB629] rounded-full animate-pulse"></div>
+                      <span className="text-sm font-medium">{item}</span>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
               
-              {/* Content */}
-              <h3 className="text-2xl font-bold text-white mb-4">
-                Бизнес инженеринг
-              </h3>
-              
-              <div className="space-y-4">
-                <div className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-[#ECB629] rounded-full mt-2 flex-shrink-0"></div>
-                  <p className="text-gray-300">Предвидим ROI с инженерна точност</p>
-                </div>
-                <div className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-[#ECB629] rounded-full mt-2 flex-shrink-0"></div>
-                  <p className="text-gray-300">Системи, които работят дългосрочно</p>
-                </div>
-                <div className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-[#ECB629] rounded-full mt-2 flex-shrink-0"></div>
-                  <p className="text-gray-300">Фокус върху бизнес резултати</p>
-                </div>
-                <div className="flex items-start gap-3">
-                  <div className="w-2 h-2 bg-[#ECB629] rounded-full mt-2 flex-shrink-0"></div>
-                  <p className="text-gray-300">Мащабируема архитектура на растежа</p>
+              {/* Floating Success Elements */}
+              <div className="absolute bottom-4 right-4 opacity-20">
+                <div className="flex gap-1">
+                  {[...Array(3)].map((_, i) => (
+                    <motion.div
+                      key={i}
+                      className="w-2 h-2 bg-[#ECB629] rounded-full"
+                      animate={{
+                        scale: [1, 1.2, 1],
+                        opacity: [0.5, 1, 0.5],
+                      }}
+                      transition={{
+                        duration: 1.5,
+                        repeat: Infinity,
+                        delay: i * 0.2,
+                      }}
+                    />
+                  ))}
                 </div>
               </div>
             </div>

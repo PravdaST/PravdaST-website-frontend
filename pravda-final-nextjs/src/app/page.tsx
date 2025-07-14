@@ -1,47 +1,25 @@
 import { Metadata } from 'next'
-import { Navigation } from '@/components/navigation'
-import { HeroSection } from '@/components/hero-section'
-import { PartnersCarousel } from '@/components/partners-carousel'
-import { ComparisonSection } from '@/components/comparison-section'
-import { SystemsSection } from '@/components/systems-section'
-import { ProcessSection } from '@/components/process-section'
-import { CaseStudiesSlider } from '@/components/case-studies-new'
-import { CTASection } from '@/components/cta-section'
-import { Footer } from '@/components/footer'
+import HomeClient from './HomeClient'
 
 export const metadata: Metadata = {
-  title: "Бизнес инженеринг за растеж | Pravda Agency",
-  description: "Престанете да залагате на маркетинг. Започнете да изграждате растеж. Системи за SEO, съдържание, реклама и клиенти с предвидими резултати.",
-  keywords: "бизнес инженеринг, seo услуги българия, digital marketing българия, автоматизация продажби, content marketing",
+  title: "Правдаст - Бизнес инженеринг за предвидим растеж в България",
+  description: "Превръщаме хаотичния растеж в предвидими, измерими резултати чрез проверени бизнес системи. SEO оптимизация, създаване на съдържание, рекламни кампании.",
+  keywords: "бизнес инженеринг българия, pravdast, seo оптимизация софия, систематичен растеж, b2b маркетинг, автоматизация продажби, предвидим растеж",
   openGraph: {
-    title: "Бизнес инженеринг за растеж | Pravda Agency",
-    description: "Престанете да залагате на маркетинг. Започнете да изграждате растеж. Системи за SEO, съдържание, реклама и клиенти с предвидими резултати.",
+    title: "Правдаст - Бизнес инженеринг за предвидим растеж",
+    description: "Превръщаме хаоса в предсказуеми системи. Проверени методи за B2B растеж.",
     images: ['/pravda-og-home.png'],
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: "Бизнес инженеринг за растеж | Pravda Agency",
-    description: "Престанете да залагате на маркетинг. Започнете да изграждате растеж. Системи за SEO, съдържание, реклама и клиенти с предвидими резултати.",
+    title: "Правдаст - Бизнес инженеринг",
+    description: "Систематичен подход към B2B растеж в България.",
     images: ['/pravda-twitter-home.png'],
   },
-  robots: "index, follow",
+  robots: "index, follow, max-snippet:-1, max-image-preview:large",
 }
 
 export default function HomePage() {
-  return (
-    <>
-      <Navigation />
-      <main>
-        <HeroSection />
-        <PartnersCarousel />
-        <ComparisonSection />
-        <SystemsSection />
-        <ProcessSection />
-        <CaseStudiesSlider />
-        <CTASection />
-      </main>
-      <Footer />
-    </>
-  )
+  return <HomeClient />
 }
