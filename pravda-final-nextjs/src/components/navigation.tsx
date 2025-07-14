@@ -114,52 +114,85 @@ export const Navigation = () => {
                     onMouseEnter={() => setIsServicesDropdownOpen(true)}
                     onMouseLeave={() => setIsServicesDropdownOpen(false)}
                   >
-                    <motion.div
-                      className={`flex items-center gap-1 text-gray-300 hover:text-[#ECB629] transition-colors cursor-pointer relative ${
-                        pathname?.startsWith('/services') ? 'text-[#ECB629]' : ''
-                      }`}
-                      whileHover={{ y: -2 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      {item.label}
-                      <ChevronDown className="w-4 h-4" />
-                      <motion.div
-                        className="absolute -bottom-1 left-0 right-0 h-px bg-[#ECB629] origin-left scale-x-0 hover:scale-x-100 transition-transform duration-300"
-                      />
-                    </motion.div>
+                    <Link href={item.href}>
+                      <motion.span
+                        className={`cursor-pointer transition-colors relative flex items-center gap-1 ${
+                          pathname === item.href || pathname?.startsWith('/services/')
+                            ? "text-[#ECB629] font-semibold"
+                            : "text-white hover:text-[#ECB629]"
+                        }`}
+                        whileHover={{ y: -2 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        {item.label}
+                        <ChevronDown 
+                          className={`w-4 h-4 transition-transform ${
+                            isServicesDropdownOpen ? 'rotate-180' : ''
+                          }`} 
+                        />
+                        {(pathname === item.href || pathname?.startsWith('/services/')) && (
+                          <motion.div
+                            className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#ECB629]"
+                            layoutId="activeTab"
+                          />
+                        )}
+                      </motion.span>
+                    </Link>
 
-                    {/* Services Dropdown */}
-                    <motion.div
-                      className={`absolute top-full mt-2 left-0 bg-slate-800 border border-slate-600 rounded-lg p-3 shadow-2xl w-80 z-[999999] ${
-                        isServicesDropdownOpen ? 'block' : 'hidden'
-                      }`}
-                      initial={{ opacity: 0, y: -10 }}
-                      animate={{
-                        opacity: isServicesDropdownOpen ? 1 : 0,
-                        y: isServicesDropdownOpen ? 0 : -10,
-                      }}
-                      transition={{ duration: 0.2 }}
+                    {/* Dropdown Menu */}
+                    <div
+                      className="absolute top-full left-0 pt-2"
+                      style={{ zIndex: 999999 }}
                     >
-                      <div className="grid gap-2">
-                        <Link
-                          href="/services"
-                          className="block p-3 rounded-lg hover:bg-slate-700/50 transition-colors"
+                      {isServicesDropdownOpen && (
+                        <motion.div
+                          className="bg-slate-800/98 backdrop-blur-md border border-slate-600 rounded-lg p-3 shadow-2xl min-w-[300px]"
+                          initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                          animate={{ 
+                            opacity: 1,
+                            y: 0,
+                            scale: 1
+                          }}
+                          exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                          transition={{ duration: 0.2 }}
                         >
-                          <div className="font-semibold text-white mb-1">Всички услуги</div>
-                          <div className="text-sm text-gray-400">Преглед на всички системи</div>
-                        </Link>
-                        {serviceItems.map((service) => (
-                          <Link
-                            key={service.href}
-                            href={service.href}
-                            className="block p-3 rounded-lg hover:bg-slate-700/50 transition-colors"
-                          >
-                            <div className="font-semibold text-white mb-1">{service.label}</div>
-                            <div className="text-sm text-gray-400">{service.description}</div>
-                          </Link>
-                        ))}
-                      </div>
-                    </motion.div>
+                          <div className="space-y-2">
+                            {serviceItems.map((service) => (
+                              <Link key={service.href} href={service.href}>
+                                <motion.div
+                                  className="p-3 rounded-lg hover:bg-slate-700 transition-colors cursor-pointer group"
+                                  whileHover={{ x: 4 }}
+                                  transition={{ duration: 0.2 }}
+                                >
+                                  <div className="flex justify-between items-start">
+                                    <div>
+                                      <h3 className="text-white font-semibold group-hover:text-[#ECB629] transition-colors">
+                                        {service.label}
+                                      </h3>
+                                      <p className="text-gray-400 text-sm mt-1">
+                                        {service.description}
+                                      </p>
+                                    </div>
+                                  </div>
+                                </motion.div>
+                              </Link>
+                            ))}
+                            <div className="border-t border-slate-600 pt-2 mt-2">
+                              <Link href="/services">
+                                <motion.div
+                                  className="p-2 rounded-lg hover:bg-slate-700 transition-colors cursor-pointer text-center"
+                                  whileHover={{ scale: 1.02 }}
+                                >
+                                  <span className="text-[#ECB629] font-semibold text-sm">
+                                    Всички услуги →
+                                  </span>
+                                </motion.div>
+                              </Link>
+                            </div>
+                          </div>
+                        </motion.div>
+                      )}
+                    </div>
                   </div>
                 ) : (
                   <motion.div
