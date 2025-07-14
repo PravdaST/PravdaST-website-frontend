@@ -1,12 +1,9 @@
 {
   "framework": "nextjs",
   "buildCommand": "npm run build",
-  "outputDirectory": ".next",
+  "outputDirectory": ".next", 
   "installCommand": "npm install",
   "env": {
-    "SENDGRID_API_KEY": "@sendgrid-api-key",
-    "SENDGRID_FROM_EMAIL": "@sendgrid-from-email", 
-    "DATABASE_URL": "@database-url",
     "NEXT_PUBLIC_KLAVIYO_COMPANY_ID": "UTqrCz"
   },
   "regions": ["fra1"]
