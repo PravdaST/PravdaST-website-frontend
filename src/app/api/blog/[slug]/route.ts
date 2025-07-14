@@ -3,10 +3,10 @@ import { storage } from '../../../../../server/storage';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { slug: string } }
+  context: { params: { slug: string } }
 ) {
   try {
-    const slug = params.slug;
+    const { slug } = context.params;
     const post = await storage.getBlogPostBySlug(slug);
     
     if (!post) {
