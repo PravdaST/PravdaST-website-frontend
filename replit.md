@@ -79,7 +79,7 @@ sessions (sid, sess, expire)
 ### Production Services
 - **SendGrid** - Transactional email delivery
 - **Klaviyo** - Marketing automation and CRM
-- **Google Analytics 4** - Web analytics and conversion tracking (ID: G-JQ8F0NZDX0)
+- **Google Analytics 4** - Web analytics and conversion tracking
 - **Meta Pixel** - Facebook advertising and remarketing (optional)
 - **Vercel Speed Insights** - Performance monitoring
 - **PostgreSQL** - Database (via Replit/Vercel)
@@ -108,7 +108,7 @@ SENDGRID_TO_EMAIL=contact@pravdagency.eu
 DATABASE_URL=your_postgresql_connection
 
 # Analytics (configured in Vercel)
-NEXT_PUBLIC_GA_MEASUREMENT_ID=G-JQ8F0NZDX0
+NEXT_PUBLIC_GA_MEASUREMENT_ID=your_ga_measurement_id
 KLAVIYO_PRIVATE_API_KEY=your_klaviyo_key
 NEXT_PUBLIC_KLAVIYO_COMPANY_ID=UTqrCz
 

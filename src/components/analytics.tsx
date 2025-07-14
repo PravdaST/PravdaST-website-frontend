@@ -8,7 +8,7 @@ export function Analytics() {
     if (typeof window !== 'undefined' && !window.gtag) {
       const script1 = document.createElement('script')
       script1.async = true
-      script1.src = `https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || process.env.VITE_GA_MEASUREMENT_ID || 'G-JQ8F0NZDX0'}`
+      script1.src = `https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || process.env.VITE_GA_MEASUREMENT_ID}`
       document.head.appendChild(script1)
 
       const script2 = document.createElement('script')
@@ -16,7 +16,7 @@ export function Analytics() {
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-        gtag('config', '${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || process.env.VITE_GA_MEASUREMENT_ID || 'G-JQ8F0NZDX0'}');
+        gtag('config', '${process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || process.env.VITE_GA_MEASUREMENT_ID}');
       `
       document.head.appendChild(script2)
     }

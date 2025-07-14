@@ -16,8 +16,8 @@ SENDGRID_TO_EMAIL=contact@pravdagency.eu
 DATABASE_URL=postgresql://your_db_connection_string
 
 # Analytics & Tracking
-NEXT_PUBLIC_GA_MEASUREMENT_ID=G-JQ8F0NZDX0
-VITE_GA_MEASUREMENT_ID=G-JQ8F0NZDX0
+NEXT_PUBLIC_GA_MEASUREMENT_ID=your_ga_measurement_id
+VITE_GA_MEASUREMENT_ID=your_ga_measurement_id
 NEXT_PUBLIC_KLAVIYO_COMPANY_ID=UTqrCz
 KLAVIYO_PRIVATE_API_KEY=pk_your_klaviyo_key
 
