@@ -105,9 +105,17 @@ const ProblemSection = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             viewport={{ once: true }}
           >
-            Защо вашият маркетинг
-            <br />
-            <span className="text-red-400">не работи</span>?
+            Още ли залагате на{" "}
+            <span className="text-[#ECB629] relative">
+              маркетинг
+              <motion.div
+                className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-[#ECB629] to-[#ECB629]/50 rounded-full"
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                transition={{ duration: 1, delay: 0.6 }}
+                viewport={{ once: true }}
+              />
+            </span>?
           </motion.h2>
 
           <motion.p 
@@ -117,8 +125,7 @@ const ProblemSection = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            Повечето бизнеси залагат на случайност вместо на система. Резултатът? 
-            Загубени пари, време и възможности за растеж.
+            Повечето компании губят време и пари, защото разчитат на случайни тактики вместо на системи.
           </motion.p>
         </motion.div>
 

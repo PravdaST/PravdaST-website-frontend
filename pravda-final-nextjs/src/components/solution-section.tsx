@@ -68,7 +68,7 @@ export const SolutionSection = () => {
                 <div className="absolute inset-0 bg-green-500 rounded-full animate-ping opacity-75"></div>
               </div>
               <span className="text-sm text-gray-300 font-medium">
-                <span className="text-[#ECB629] font-bold">Инженерен</span> подход към бизнеса
+                <span className="text-[#ECB629] font-bold">РЕШЕНИЕ</span>
               </span>
             </div>
           </motion.div>
@@ -80,21 +80,28 @@ export const SolutionSection = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            Спрете да залагате. <br />
-            <span className="text-[#ECB629] relative">
-              Време е за система!
+            Защо вашият маркетинг{" "}
+            <span className="text-red-400 relative">
+              не работи
               <motion.div
-                className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-[#ECB629] to-[#ECB629]/50 rounded-full"
+                className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-red-400 to-red-400/50 rounded-full"
                 initial={{ scaleX: 0 }}
                 whileInView={{ scaleX: 1 }}
                 transition={{ duration: 1, delay: 0.6 }}
                 viewport={{ once: true }}
               />
-            </span>
+            </span>?
           </motion.h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-12">
-            Ние не предлагаме маркетинг. Нашият подход е бизнес инженеринг. Разликата е в резултата.
-          </p>
+          <motion.p 
+            className="text-xl text-gray-300 max-w-3xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            Повечето бизнеси залагат на случайност вместо на система. Резултатът? 
+            Загубени пари, време и възможности за растеж.
+          </motion.p>
         </motion.div>
         
         {/* Modern Comparison Section */}
