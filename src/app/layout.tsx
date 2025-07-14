@@ -5,6 +5,9 @@ import { KlaviyoSetup } from '@/components/klaviyo-setup'
 import { KlaviyoIntegration } from '@/components/klaviyo-integration'
 import { ScrollToTop } from '@/components/scroll-to-top'
 import { ClientOnly } from '@/components/client-only'
+import { Analytics } from '@/components/analytics'
+import { MetaPixel } from '@/components/meta-pixel'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -25,11 +28,14 @@ export default function RootLayout({
         <ClientOnly>
           <KlaviyoSetup />
           <KlaviyoIntegration />
+          <Analytics />
+          <MetaPixel />
         </ClientOnly>
         {children}
         <ClientOnly>
           <ScrollToTop />
         </ClientOnly>
+        <SpeedInsights />
       </body>
     </html>
   )

@@ -78,6 +78,9 @@ sessions (sid, sess, expire)
 ### Production Services
 - **SendGrid** - Transactional email delivery
 - **Klaviyo** - Marketing automation and CRM
+- **Google Analytics 4** - Web analytics and conversion tracking (ID: G-JQ8F0NZDX0)
+- **Meta Pixel** - Facebook advertising and remarketing (optional)
+- **Vercel Speed Insights** - Performance monitoring
 - **PostgreSQL** - Database (via Replit/Vercel)
 
 ### Frontend Stack
@@ -93,9 +96,12 @@ sessions (sid, sess, expire)
 ### Environment Variables (Required for production)
 ```bash
 SENDGRID_API_KEY=sg-xxx
-SENDGRID_FROM_EMAIL=contact@pravdast.agency
+SENDGRID_FROM_EMAIL=contact@pravdagency.eu
 DATABASE_URL=postgresql://xxx
 KLAVIYO_COMPANY_ID=UTqrCz
+KLAVIYO_PRIVATE_API_KEY=pk-xxx
+NEXT_PUBLIC_KLAVIYO_COMPANY_ID=UTqrCz
+NEXT_PUBLIC_META_PIXEL_ID=xxx (optional, for Facebook tracking)
 ```
 
 ### Build Commands

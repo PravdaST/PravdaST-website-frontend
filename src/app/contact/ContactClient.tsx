@@ -22,6 +22,7 @@ import { Mail, Phone, MapPin, Clock, Send } from "lucide-react"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import { trackContactForm, trackPhoneCall } from "@/lib/analytics"
+import { trackMetaLead, trackMetaContact } from "@/components/meta-pixel"
 import { useKlaviyo } from "@/hooks/useKlaviyo"
 import Link from "next/link"
 
@@ -113,6 +114,14 @@ export default function ContactClient() {
 
       // Track successful contact form submission in analytics
       trackContactForm(data)
+      
+      // Track for Meta Pixel (Facebook)
+      trackMetaLead({
+        email: data.email,
+        firstName: firstName || data.name,
+        lastName: lastName || ''
+      })
+      trackMetaContact()
 
       toast({
         title: "Съобщението е изпратено!",
