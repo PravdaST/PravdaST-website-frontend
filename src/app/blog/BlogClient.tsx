@@ -118,7 +118,7 @@ export default function BlogClient() {
 
       <main className="pt-10">
         {/* Hero Section */}
-        <section className="relative overflow-hidden py-20">
+        <section className="relative overflow-hidden">
           {/* Animated Tech Background */}
           <div className="absolute inset-0 opacity-20">
             <div className="absolute inset-0">
@@ -223,52 +223,6 @@ export default function BlogClient() {
               </motion.p>
 
               {/* Search Bar */}
-              <motion.div
-                className="max-w-lg mx-auto"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.6 }}
-              >
-                <div className="relative">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
-                  <Input
-                    placeholder="Търсете статии..."
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                    className="pl-10 bg-slate-800/50 border-slate-600 text-white placeholder:text-gray-400 focus:border-[#ECB629] h-12"
-                  />
-                </div>
-              </motion.div>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* Categories & Content */}
-        <section className="py-10">
-          <div className="container mx-auto px-6">
-            {/* Categories */}
-            <motion.div
-              className="flex flex-wrap justify-center gap-2 mb-8"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              {categories.map((category) => (
-                <button
-                  key={category}
-                  onClick={() => setSelectedCategory(category)}
-                  className={`px-4 py-2 rounded-full transition-all duration-300 ${
-                    selectedCategory === category
-                      ? "bg-[#ECB629] text-black font-medium"
-                      : "bg-slate-800/50 text-gray-300 hover:bg-slate-700/50"
-                  }`}
-                >
-                  {category}
-                </button>
-              ))}
-            </motion.div>
-
-            {/* Search Bar */}
               <motion.div
                 className="max-w-md mx-auto relative"
                 initial={{ opacity: 0, y: 20 }}

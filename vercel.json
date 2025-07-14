@@ -3,7 +3,9 @@
   "buildCommand": "npm run build",
   "outputDirectory": ".next", 
   "installCommand": "npm install",
-
+  "env": {
+    "NEXT_PUBLIC_KLAVIYO_COMPANY_ID": "UTqrCz"
+  },
   "regions": ["fra1"],
   "headers": [
     {
