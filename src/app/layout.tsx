@@ -8,6 +8,9 @@ import { ClientOnly } from '@/components/client-only'
 import { Analytics } from '@/components/analytics'
 import { MetaPixel } from '@/components/meta-pixel'
 import { SpeedInsights } from '@vercel/speed-insights/next'
+import { ClarityAnalytics } from '@/components/clarity-analytics'
+import { RetargetingPixels } from '@/components/retargeting-pixels'
+import { ServiceWorkerSetup } from '@/components/service-worker-setup'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -30,6 +33,9 @@ export default function RootLayout({
           <KlaviyoIntegration />
           <Analytics />
           <MetaPixel />
+          <ClarityAnalytics />
+          <RetargetingPixels />
+          <ServiceWorkerSetup />
         </ClientOnly>
         {children}
         <ClientOnly>

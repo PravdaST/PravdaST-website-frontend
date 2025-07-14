@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X, ChevronDown } from "lucide-react";
+import { SearchTrigger } from "@/components/advanced-search";
 
 export const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -214,6 +215,9 @@ export const Navigation = () => {
                 )}
               </div>
             ))}
+            
+            {/* Search Button */}
+            <SearchTrigger />
           </div>
 
           {/* CTA Button */}
