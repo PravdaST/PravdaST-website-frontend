@@ -113,50 +113,33 @@ export const ProcessSection = () => {
             <div className="flex items-center gap-2">
               <div className="relative">
                 <div className="w-2 h-2 bg-[#ECB629] rounded-full"></div>
-                <motion.div
-                  className="absolute inset-0 w-2 h-2 bg-[#ECB629] rounded-full opacity-20"
-                  animate={{ scale: [1, 1.3, 1] }}
-                  transition={{
-                    duration: 4,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                />
+                <div className="absolute inset-0 bg-[#ECB629] rounded-full animate-ping opacity-75"></div>
               </div>
               <span className="text-sm text-gray-300 font-medium">
-                <span className="text-[#ECB629] font-bold">Проверени</span>{" "}
-                методи за растеж
+                <span className="text-[#ECB629] font-bold">Контролиран</span> процес за предвидими резултати
               </span>
             </div>
           </motion.div>
 
           <motion.h2
-            className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 text-white px-2 sm:px-0"
-            initial={{ opacity: 0, y: 20 }}
+            className="text-4xl md:text-5xl font-bold mb-6 text-white"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+            viewport={{ once: true }}
+          >
+            Прозрачен процес.{" "}
+            <span className="text-[#ECB629]">Предвидими резултати.</span>
+          </motion.h2>
+
+          <motion.p
+            className="text-xl text-gray-300 max-w-3xl mx-auto"
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            Как работим в <span className="text-[#ECB629] relative">
-              3 стъпки
-              <motion.div
-                className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-[#ECB629] to-[#ECB629]/50 rounded-full"
-                initial={{ scaleX: 0 }}
-                whileInView={{ scaleX: 1 }}
-                transition={{ duration: 1, delay: 0.6 }}
-                viewport={{ once: true }}
-              />
-            </span>
-          </motion.h2>
-
-          <motion.p
-            className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto mb-12 sm:mb-16 px-2 sm:px-0"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            viewport={{ once: true }}
-          >
-            Простичък процес. Сложни резултати.
+            Ние не работим с предположения. Следваме строго дефиниран инженерен процес в 3 стъпки, който гарантира, че всяко решение е базирано на данни.
           </motion.p>
         </motion.div>
 
