@@ -1,30 +1,24 @@
-# Robots.txt за Pravda Agency
-# Последна редакция: 2025-07-09
-
 User-agent: *
+Allow: /
 
-# Позволяваме достъп до sitemap файла, преди да блокираме други .xml файлове
-Allow: /sitemap.xml
+# Sitemap location
+Sitemap: https://pravdagency.eu/sitemap.xml
 
-# Блокиране на административни, системни и чувствителни директории
-Disallow: /admin/
+# Block admin areas
+Disallow: /admin-pravda/
 Disallow: /api/
+
+# Block development files
 Disallow: /_next/
-Disallow: /node_modules/
-Disallow: /.git/
-Disallow: /server/
-Disallow: /src/
+Disallow: /docs/
 
-# Блокиране на технически файлове и файлове с логове
-Disallow: /*.json$
-Disallow: /*.log$
-Disallow: /*.xml$
-Disallow: /sw.js
-Disallow: /sw-simple.js
+# Allow important pages
+Allow: /services/
+Allow: /calculators/
+Allow: /blog/
+Allow: /case-studies/
+Allow: /contact/
+Allow: /about/
 
-# Тази секция е специфична за Bing. Можете да я премахнете, ако не ви е нужна.
-User-agent: Bingbot
-Crawl-delay: 2
-
-# Местоположение на картата на сайта (sitemap)
-Sitemap: https://www.pravdagency.eu/sitemap.xml
+# Crawl delay for respectful crawling
+Crawl-delay: 1
