@@ -7,6 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import {
   Form,
@@ -20,6 +21,8 @@ import { useToast } from "@/hooks/use-toast"
 import { Mail, Phone, MapPin, Clock, Send } from "lucide-react"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
+import { trackContactForm, trackPhoneCall } from "@/lib/analytics"
+import Link from "next/link"
 
 const contactSchema = z.object({
   name: z.string().min(2, "Името трябва да бъде поне 2 символа"),
@@ -50,7 +53,6 @@ export default function ContactClient() {
     setIsSubmitting(true)
 
     try {
-      // For Next.js, we would need to create API routes
       const response = await fetch("/api/contacts", {
         method: "POST",
         headers: {
@@ -63,6 +65,9 @@ export default function ContactClient() {
         throw new Error("Failed to send message")
       }
 
+      // Track successful contact form submission
+      trackContactForm(data)
+
       toast({
         title: "Съобщението е изпратено!",
         description: "Ще се свържем с Вас в рамките на 24 часа.",
@@ -72,7 +77,7 @@ export default function ContactClient() {
     } catch (error) {
       toast({
         title: "Грешка",
-        description: "Моля опитайте отново или се обадете директно.",
+        description: "Моля опитайте отново.",
         variant: "destructive",
       })
     } finally {
@@ -80,72 +85,123 @@ export default function ContactClient() {
     }
   }
 
+  const contactInfo = [
+    {
+      icon: <Mail className="w-6 h-6" />,
+      title: "Имейл",
+      value: "contact@pravda.agency",
+      subtitle: "Отговаряме в рамките на 24 часа",
+      color: "text-[#ECB629]",
+    },
+    {
+      icon: <Phone className="w-6 h-6" />,
+      title: "Телефон",
+      value: "+359 879 282 299",
+      subtitle: "Работни дни 9:00 - 18:00",
+      color: "text-[#ECB629]",
+    },
+    {
+      icon: <MapPin className="w-6 h-6" />,
+      title: "Офис",
+      value: "ул. Дебър №58, Варна",
+      subtitle: "Среща по предварително уговаряне",
+      color: "text-[#ECB629]",
+    },
+    {
+      icon: <Clock className="w-6 h-6" />,
+      title: "Работно време",
+      value: "Понеделник - Петък",
+      subtitle: "09:00 - 18:00 (GMT +2)",
+      color: "text-[#ECB629]",
+    },
+  ]
+
   return (
-    <div className="min-h-screen bg-slate-900 text-white">
+    <div className="min-h-screen bg-slate-900">
       <Navigation />
-      
-      {/* Hero Section */}
-      <section className="relative py-20 pt-32">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto text-center space-y-8">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="inline-flex items-center space-x-2 bg-green-500/20 text-green-400 px-4 py-2 rounded-full border border-green-500/30"
-            >
-              <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-              <span className="text-sm font-medium">Отговаряме в рамките на 2 часа</span>
-            </motion.div>
-
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-5xl md:text-6xl font-bold leading-tight"
-            >
-              Заявете{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-yellow-600">
-                консултация
-              </span>
-            </motion.h1>
-
-            <motion.p
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-xl text-gray-300 leading-relaxed"
-            >
-              Поговорете с бизнес инженер за 15 минути. Безплатно. Без ангажименти.
-              Ще получите индивидуален план за растеж на вашия бизнес.
-            </motion.p>
-          </div>
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-5">
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `
+              linear-gradient(rgba(236, 182, 41, 0.1) 2px, transparent 2px),
+              linear-gradient(90deg, rgba(236, 182, 41, 0.1) 2px, transparent 2px)
+            `,
+              backgroundSize: "60px 60px",
+            }}
+          />
         </div>
-      </section>
 
-      {/* Contact Form and Info */}
-      <section className="py-20">
-        <div className="container mx-auto px-6">
-          <div className="max-w-6xl mx-auto">
-            <div className="grid lg:grid-cols-2 gap-16">
-              
+        <div className="relative z-1 pt-10 sm:pt-24 pb-8 sm:pb-12">
+          <div className="container mx-auto px-4 sm:px-6 max-w-7xl">
+            {/* Header */}
+            <div className="text-center mb-12 sm:mb-16">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="inline-flex items-center gap-2 bg-slate-800/50 backdrop-blur-sm border border-[#ECB629]/30 rounded-full px-4 py-2 mb-6"
+              >
+                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+                <span className="text-sm text-gray-300">
+                  Активен екип • Отговор в 24 часа
+                </span>
+              </motion.div>
+
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 px-2 sm:px-0"
+              >
+                Свържете се с <span className="text-[#ECB629]">нас</span>
+              </motion.h1>
+
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+                className="text-lg text-gray-300 max-w-2xl mx-auto"
+              >
+                Готови сме да обсъдим как можем да трансформираме вашия бизнес в
+                предсказуема система за растеж. Разгледайте нашите{" "}
+                <Link href="/services" className="text-[#ECB629] hover:underline cursor-pointer">
+                  бизнес системи
+                </Link>{" "}
+                и{" "}
+                <Link href="/case-studies" className="text-[#ECB629] hover:underline cursor-pointer">
+                  успешни проекти
+                </Link>
+                .
+              </motion.p>
+            </div>
+
+            {/* Main Content */}
+            <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
               {/* Contact Form */}
               <motion.div
-                initial={{ opacity: 0, x: -30 }}
+                initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8 }}
-                className="space-y-8"
+                transition={{ delay: 0.3 }}
+                className="bg-slate-800/30 backdrop-blur-lg rounded-3xl p-8 border border-slate-700/50 shadow-2xl"
               >
-                <div>
-                  <h2 className="text-3xl font-bold mb-4">Изпратете заявка</h2>
-                  <p className="text-gray-300">
-                    Попълнете формата и ще се свържем с вас в рамките на 2 часа
+                <div className="mb-8">
+                  <h2 className="text-2xl font-bold text-white mb-2">
+                    Изпратете ни{" "}
+                    <span className="text-[#ECB629]">съобщение</span>
+                  </h2>
+                  <p className="text-gray-400">
+                    Ще се свържем с вас в рамките на 24 часа
                   </p>
                 </div>
 
                 <Form {...form}>
-                  <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                    <div className="grid md:grid-cols-2 gap-6">
+                  <form
+                    onSubmit={form.handleSubmit(onSubmit)}
+                    className="space-y-6"
+                  >
+                    <div className="grid grid-cols-1 gap-4">
                       <FormField
                         control={form.control}
                         name="name"
@@ -155,11 +211,11 @@ export default function ContactClient() {
                             <FormControl>
                               <Input
                                 placeholder="Вашето име"
-                                className="bg-slate-800 border-slate-700 text-white"
+                                className="bg-slate-700/50 border-slate-600 text-white placeholder:text-gray-400 focus:border-[#ECB629] h-12"
                                 {...field}
                               />
                             </FormControl>
-                            <FormMessage />
+                            <FormMessage className="text-red-400" />
                           </FormItem>
                         )}
                       />
@@ -169,54 +225,61 @@ export default function ContactClient() {
                         name="email"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-white">Имейл *</FormLabel>
+                            <FormLabel className="text-white">
+                              Имейл *
+                            </FormLabel>
                             <FormControl>
                               <Input
-                                placeholder="your@email.com"
                                 type="email"
-                                className="bg-slate-800 border-slate-700 text-white"
+                                placeholder="email@company.com"
+                                className="bg-slate-700/50 border-slate-600 text-white placeholder:text-gray-400 focus:border-[#ECB629] h-12"
                                 {...field}
                               />
                             </FormControl>
-                            <FormMessage />
+                            <FormMessage className="text-red-400" />
                           </FormItem>
                         )}
                       />
                     </div>
 
-                    <div className="grid md:grid-cols-2 gap-6">
+                    <div className="grid grid-cols-1 gap-4">
                       <FormField
                         control={form.control}
-                        name="company"
+                        name="website"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-white">Компания</FormLabel>
+                            <FormLabel className="text-white">
+                              Уебсайт *
+                            </FormLabel>
                             <FormControl>
                               <Input
-                                placeholder="Вашата компания"
-                                className="bg-slate-800 border-slate-700 text-white"
+                                type="url"
+                                placeholder="https://company.com"
+                                className="bg-slate-700/50 border-slate-600 text-white placeholder:text-gray-400 focus:border-[#ECB629] h-12"
                                 {...field}
                               />
                             </FormControl>
-                            <FormMessage />
+                            <FormMessage className="text-red-400" />
                           </FormItem>
                         )}
                       />
 
                       <FormField
                         control={form.control}
-                        name="website"
+                        name="company"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel className="text-white">Уебсайт</FormLabel>
+                            <FormLabel className="text-white">
+                              Компания
+                            </FormLabel>
                             <FormControl>
                               <Input
-                                placeholder="https://yourwebsite.com"
-                                className="bg-slate-800 border-slate-700 text-white"
+                                placeholder="Име на компанията"
+                                className="bg-slate-700/50 border-slate-600 text-white placeholder:text-gray-400 focus:border-[#ECB629] h-12"
                                 {...field}
                               />
                             </FormControl>
-                            <FormMessage />
+                            <FormMessage className="text-red-400" />
                           </FormItem>
                         )}
                       />
@@ -227,122 +290,196 @@ export default function ContactClient() {
                       name="message"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-white">Съобщение *</FormLabel>
+                          <FormLabel className="text-white">
+                            Съобщение *
+                          </FormLabel>
                           <FormControl>
                             <Textarea
-                              placeholder="Разкажете ни за вашия бизнес и какви резултати търсите..."
-                              className="bg-slate-800 border-slate-700 text-white min-h-[120px]"
+                              placeholder="Разкажете ни за вашия проект и как можем да ви помогнем..."
+                              className="bg-slate-700/50 border-slate-600 text-white placeholder:text-gray-400 focus:border-[#ECB629] min-h-[120px] resize-none"
                               {...field}
                             />
                           </FormControl>
-                          <FormMessage />
+                          <FormMessage className="text-red-400" />
                         </FormItem>
                       )}
                     />
 
+                    {/* Обратни линкове към услуги */}
+                    <div className="text-center mb-6">
+                      <p className="text-gray-400 text-sm mb-4">
+                        Интересувате се от конкретна система?
+                      </p>
+                      <div className="flex flex-wrap gap-2 justify-center">
+                        <Link href="/services/seo-struktor" className="text-[#ECB629] hover:text-white text-sm cursor-pointer border border-[#ECB629]/30 px-3 py-1 rounded-full hover:bg-[#ECB629]/10 transition-colors">
+                          SEO Struktor™
+                        </Link>
+                        <Link href="/services/trendlab" className="text-[#ECB629] hover:text-white text-sm cursor-pointer border border-[#ECB629]/30 px-3 py-1 rounded-full hover:bg-[#ECB629]/10 transition-colors">
+                          Trendlab™
+                        </Link>
+                        <Link href="/services/clickstarter" className="text-[#ECB629] hover:text-white text-sm cursor-pointer border border-[#ECB629]/30 px-3 py-1 rounded-full hover:bg-[#ECB629]/10 transition-colors">
+                          Clickstarter™
+                        </Link>
+                        <Link href="/services/clientomat" className="text-[#ECB629] hover:text-white text-sm cursor-pointer border border-[#ECB629]/30 px-3 py-1 rounded-full hover:bg-[#ECB629]/10 transition-colors">
+                          Clientomat™
+                        </Link>
+                      </div>
+                    </div>
+
                     <Button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full bg-yellow-400 text-black hover:bg-yellow-500 font-semibold py-3 text-lg"
+                      className="w-full bg-[#ECB629] hover:bg-[#ECB629]/90 text-black font-semibold h-12 rounded-xl transition-all duration-300 transform hover:scale-[1.02] disabled:opacity-50"
                     >
                       {isSubmitting ? (
-                        "Изпраща се..."
+                        <div className="flex items-center gap-2">
+                          <div className="w-4 h-4 border-2 border-black/30 border-t-black rounded-full animate-spin" />
+                          Изпращане...
+                        </div>
                       ) : (
-                        <>
-                          Изпрати заявка
-                          <Send className="ml-2 h-5 w-5" />
-                        </>
+                        <div className="flex items-center gap-2">
+                          <Send className="w-4 h-4" />
+                          Изпрати съобщение
+                        </div>
                       )}
                     </Button>
                   </form>
                 </Form>
+                
+                {/* Допълнителни обратни линкове в дъното на формата */}
+                <div className="mt-6 pt-6 border-t border-slate-700/50">
+                  <p className="text-center text-gray-400 text-sm mb-3">
+                    Или разгледайте нашите решения:
+                  </p>
+                  <div className="flex justify-center gap-4 text-sm">
+                    <Link href="/about" className="text-[#ECB629] hover:text-white cursor-pointer transition-colors">
+                      За нас
+                    </Link>
+                    <Link href="/case-studies" className="text-[#ECB629] hover:text-white cursor-pointer transition-colors">
+                      Казуси
+                    </Link>
+                    <Link href="/blog" className="text-[#ECB629] hover:text-white cursor-pointer transition-colors">
+                      Блог
+                    </Link>
+                    <Link href="/faq" className="text-[#ECB629] hover:text-white cursor-pointer transition-colors">
+                      Въпроси
+                    </Link>
+                  </div>
+                </div>
               </motion.div>
 
               {/* Contact Information */}
               <motion.div
-                initial={{ opacity: 0, x: 30 }}
+                initial={{ opacity: 0, x: 50 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="space-y-8"
+                transition={{ delay: 0.4 }}
+                className="space-y-6"
               >
-                <div>
-                  <h2 className="text-3xl font-bold mb-4">Директен контакт</h2>
-                  <p className="text-gray-300">
-                    Предпочитате директен разговор? Ето как можете да се свържете с нас
+                <div className="mb-8">
+                  <h2 className="text-2xl font-bold text-white mb-2">
+                    Информация за{" "}
+                    <span className="text-[#ECB629]">контакт</span>
+                  </h2>
+                  <p className="text-gray-400">
+                    Можете да се свържете с нас по всеки от следните начини:
                   </p>
+                  
+                  {/* CTA секция */}
+                  <div className="mt-8 p-6 bg-[#ECB629]/10 border border-[#ECB629]/30 rounded-2xl">
+                    <h3 className="text-lg font-bold text-white mb-2">
+                      Готови за безплатна консултация?
+                    </h3>
+                    <p className="text-gray-300 text-sm mb-4">
+                      Запишете си 30-минутна консултация и научете как можем да трансформираме вашия бизнес.
+                    </p>
+                    <div className="flex gap-3">
+                      <Link href="/">
+                        <Button className="bg-[#ECB629] hover:bg-[#ECB629]/90 text-black text-sm px-4 py-2">
+                          Научете повече
+                        </Button>
+                      </Link>
+                      <Link href="/case-studies">
+                        <Button variant="outline" className="border-[#ECB629] text-[#ECB629] hover:bg-[#ECB629]/10 text-sm px-4 py-2">
+                          Казуси за успех
+                        </Button>
+                      </Link>
+                    </div>
+                  </div>
                 </div>
 
-                <div className="space-y-6">
-                  <div className="flex items-start space-x-4 p-6 bg-slate-800/50 rounded-lg border border-slate-700">
-                    <Phone className="h-6 w-6 text-yellow-400 mt-1" />
-                    <div>
-                      <h3 className="font-semibold mb-1">Телефон</h3>
-                      <p className="text-gray-300 mb-2">+359 879 282 299</p>
-                      <p className="text-sm text-gray-400">
-                        Понеделник - Петък: 9:00 - 18:00
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start space-x-4 p-6 bg-slate-800/50 rounded-lg border border-slate-700">
-                    <Mail className="h-6 w-6 text-yellow-400 mt-1" />
-                    <div>
-                      <h3 className="font-semibold mb-1">Имейл</h3>
-                      <p className="text-gray-300 mb-2">contact@pravdagency.eu</p>
-                      <p className="text-sm text-gray-400">
-                        Отговаряме в рамките на 2 часа
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start space-x-4 p-6 bg-slate-800/50 rounded-lg border border-slate-700">
-                    <MapPin className="h-6 w-6 text-yellow-400 mt-1" />
-                    <div>
-                      <h3 className="font-semibold mb-1">Офис</h3>
-                      <p className="text-gray-300 mb-2">
-                        ул. Дебър №58<br />
-                        Варна, България
-                      </p>
-                      <p className="text-sm text-gray-400">
-                        Срещи по предварителна уговорка
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start space-x-4 p-6 bg-slate-800/50 rounded-lg border border-slate-700">
-                    <Clock className="h-6 w-6 text-yellow-400 mt-1" />
-                    <div>
-                      <h3 className="font-semibold mb-1">Работно време</h3>
-                      <div className="text-gray-300 space-y-1">
-                        <p>Понеделник - Петък: 9:00 - 18:00</p>
-                        <p>Събота: 10:00 - 14:00</p>
-                        <p>Неделя: Почивен ден</p>
+                <div className="space-y-4">
+                  {contactInfo.map((info, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.5 + index * 0.1 }}
+                      className="bg-slate-800/40 backdrop-blur-lg rounded-2xl p-6 border border-slate-700/50 hover:border-[#ECB629]/30 transition-all duration-300 group"
+                    >
+                      <div className="flex items-start gap-4">
+                        <div className="flex-shrink-0">
+                          <div className="w-12 h-12 bg-[#ECB629]/10 rounded-xl flex items-center justify-center text-[#ECB629] group-hover:bg-[#ECB629]/20 transition-colors">
+                            {info.icon}
+                          </div>
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="text-white font-semibold mb-1">
+                            {info.title}
+                          </h3>
+                          {info.title === "Телефон" ? (
+                            <a
+                              href={`tel:+359879282299`}
+                              className={`${info.color} font-medium mb-1 hover:text-[#ECB629] transition-colors block`}
+                              onClick={() => trackPhoneCall(info.value)}
+                            >
+                              {info.value}
+                            </a>
+                          ) : (
+                            <p className={`${info.color} font-medium mb-1`}>
+                              {info.value}
+                            </p>
+                          )}
+                          <p className="text-gray-400 text-sm">
+                            {info.subtitle}
+                          </p>
+                        </div>
+                        <div className="w-3 h-3 bg-green-500 rounded-full opacity-60 group-hover:opacity-100 transition-opacity" />
                       </div>
-                    </div>
-                  </div>
+                    </motion.div>
+                  ))}
                 </div>
 
-                <div className="p-6 bg-yellow-400/10 rounded-lg border border-yellow-400/30">
-                  <h3 className="font-semibold mb-2 text-yellow-400">Бърза връзка</h3>
-                  <p className="text-sm text-gray-300 mb-4">
-                    За спешни въпроси можете да се свържете директно с нас
+                {/* Additional CTA */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.9 }}
+                  className="bg-gradient-to-r from-[#ECB629]/10 to-[#ECB629]/5 rounded-2xl p-6 border border-[#ECB629]/20 mt-8"
+                >
+                  <h3 className="text-white font-semibold mb-2">
+                    Безплатна консултация
+                  </h3>
+                  <p className="text-gray-300 text-sm mb-4">
+                    Запишете се за 30-минутна консултация за да обсъдим как
+                    можем да помогнем на вашия бизнес.
                   </p>
                   <Button
-                    asChild
-                    className="w-full bg-yellow-400 text-black hover:bg-yellow-500"
+                    onClick={() =>
+                      window.open(
+                        "https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu",
+                        "_blank",
+                      )
+                    }
+                    className="w-full bg-[#ECB629] hover:bg-[#ECB629]/90 text-black font-semibold h-10 rounded-xl"
                   >
-                    <a href="tel:+359879282299">
-                      <Phone className="mr-2 h-4 w-4" />
-                      Обади сега
-                    </a>
+                    Запиши консултация
                   </Button>
-                </div>
+                </motion.div>
               </motion.div>
             </div>
           </div>
         </div>
-      </section>
-
+      </div>
       <Footer />
     </div>
   )
