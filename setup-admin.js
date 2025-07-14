@@ -1,4 +1,4 @@
-import { db } from './server/db.ts';
+import { db } from './server/db.js';
 import { adminUsers } from './shared/schema.ts';
 import bcrypt from 'bcrypt';
 

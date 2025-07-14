@@ -86,15 +86,8 @@ export type InsertContact = typeof contacts.$inferInsert;
 // Validation schemas
 export const insertAdminUserSchema = createInsertSchema(adminUsers);
 export const insertAdminSessionSchema = createInsertSchema(adminSessions);
-export const insertBlogPostSchema = createInsertSchema(blogPosts).omit({
-  id: true,
-  createdAt: true,
-  updatedAt: true,
-});
-export const insertContactSchema = createInsertSchema(contacts).omit({
-  id: true,
-  createdAt: true,
-});
+export const insertBlogPostSchema = createInsertSchema(blogPosts);
+export const insertContactSchema = createInsertSchema(contacts);
 
 export type InsertBlogPostInput = z.infer<typeof insertBlogPostSchema>;
 export type InsertContactInput = z.infer<typeof insertContactSchema>;

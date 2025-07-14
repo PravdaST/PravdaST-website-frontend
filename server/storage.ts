@@ -13,7 +13,7 @@ import {
   type InsertContact,
 } from "../shared/schema";
 import { db } from "./db";
-import { eq, desc, and, gte } from "drizzle-orm";
+import { eq, desc, and, gte, lt } from "drizzle-orm";
 
 // Interface for storage operations
 export interface IStorage {
@@ -90,7 +90,7 @@ export class DatabaseStorage implements IStorage {
 
   async deleteExpiredSessions(): Promise<void> {
     await db.delete(adminSessions).where(
-      gte(new Date(), adminSessions.expiresAt)
+      lt(adminSessions.expiresAt, new Date())
     );
   }
 
