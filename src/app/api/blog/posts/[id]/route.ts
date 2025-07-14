@@ -3,14 +3,11 @@ import { blogPosts } from '@shared/schema'
 import { db } from '@server/db'
 import { eq } from 'drizzle-orm'
 
-interface RouteParams {
-  params: {
-    id: string
-  }
-}
-
 // GET /api/blog/posts/[id] - Get single blog post
-export async function GET(request: NextRequest, { params }: RouteParams) {
+export async function GET(
+  request: NextRequest,
+  { params }: { params: { id: string } }
+) {
   try {
     const postId = parseInt(params.id)
     
@@ -47,7 +44,10 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
 }
 
 // PUT /api/blog/posts/[id] - Update blog post (admin only)
-export async function PUT(request: NextRequest, { params }: RouteParams) {
+export async function PUT(
+  request: NextRequest,
+  { params }: { params: { id: string } }
+) {
   try {
     const postId = parseInt(params.id)
     
@@ -94,7 +94,10 @@ export async function PUT(request: NextRequest, { params }: RouteParams) {
 }
 
 // DELETE /api/blog/posts/[id] - Delete blog post (admin only)
-export async function DELETE(request: NextRequest, { params }: RouteParams) {
+export async function DELETE(
+  request: NextRequest,
+  { params }: { params: { id: string } }
+) {
   try {
     const postId = parseInt(params.id)
     
