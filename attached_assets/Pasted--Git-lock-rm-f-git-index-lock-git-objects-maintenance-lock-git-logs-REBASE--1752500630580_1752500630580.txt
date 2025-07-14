@@ -1,0 +1,52 @@
+# Премахни Git lock файловете
+rm -f .git/index.lock .git/objects/maintenance.lock .git/logs/REBASE_HEAD
+
+# Add всички нови файлове
+git add .
+
+# Commit финалните промени  
+git commit -m "Security: Final cleanup - all sensitive data removed"
+
+# Force push (безопасно в този случай)
+git push --force origin main
+On branch main
+Your branch is ahead of 'origin/main' by 9 commits.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+Enumerating objects: 82, done.
+Counting objects: 100% (82/82), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (61/61), done.
+Writing objects: 100% (61/61), 116.28 KiB | 7.75 MiB/s, done.
+Total 61 (delta 39), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (39/39), completed with 16 local objects.
+remote: error: GH013: Repository rule violations found for refs/heads/main.
+remote: 
+remote: - GITHUB PUSH PROTECTION
+remote:   —————————————————————————————————————————
+remote:     Resolve the following violations before pushing again
+remote: 
+remote:     - Push cannot contain secrets
+remote: 
+remote:     
+remote:      (?) Learn how to resolve a blocked push
+remote:      https://docs.github.com/code-security/secret-scanning/working-with-secret-scanning-and-push-protection/working-with-push-protection-from-the-command-line#resolving-a-blocked-push
+remote:     
+remote:     
+remote:       —— SendGrid API Key ——————————————————————————————————
+remote:        locations:
+remote:          - commit: 86c7655511ac470a0acfcaf1af0f687f64fd35ae
+remote:            path: FINAL_SECURITY_CLEANUP.md:6
+remote:          - commit: 2a1dc7f7113d504aa332b3265077ad3b039dc071
+remote:            path: replit.md:99
+remote:     
+remote:        (?) To push, remove secret from commit(s) or follow this URL to allow the secret.
+remote:        https://github.com/PravdaST/PravdaST-website-frontend/security/secret-scanning/unblock-secret/2zrnjoAaRclwCk38DaOX9Rz4tJ2
+remote:     
+remote: 
+remote: 
+To https://github.com/PravdaST/PravdaST-website-frontend
+ ! [remote rejected] main -> main (push declined due to repository rule violations)
+error: failed to push some refs to 'https://github.com/PravdaST/PravdaST-website-frontend'
+~/workspace$ 
