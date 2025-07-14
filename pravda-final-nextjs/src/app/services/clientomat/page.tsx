@@ -1,7 +1,7 @@
 'use client'
 
-import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -25,17 +25,6 @@ import { Footer } from "@/components/footer";
 
 // Unique Client Network Background
 const ClientomatBackground = () => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, []);
-
   return (
     <div className="absolute inset-0 overflow-hidden opacity-10">
       {/* Client Ecosystem Network */}
@@ -99,62 +88,81 @@ const ClientomatBackground = () => {
               strokeWidth="0.5"
               opacity="0.3"
             />
+
+            {/* Client Journey Flow (connecting outer points) */}
+            <path
+              d="M 75 25 Q 95 30 115 50"
+              stroke="#ECB629"
+              strokeWidth="0.3"
+              opacity="0.2"
+              fill="none"
+            />
+            <path
+              d="M 115 50 Q 120 75 115 100"
+              stroke="#ECB629"
+              strokeWidth="0.3"
+              opacity="0.2"
+              fill="none"
+            />
+            <path
+              d="M 115 100 Q 95 120 75 125"
+              stroke="#ECB629"
+              strokeWidth="0.3"
+              opacity="0.2"
+              fill="none"
+            />
+            <path
+              d="M 75 125 Q 55 120 35 100"
+              stroke="#ECB629"
+              strokeWidth="0.3"
+              opacity="0.2"
+              fill="none"
+            />
+            <path
+              d="M 35 100 Q 30 75 35 50"
+              stroke="#ECB629"
+              strokeWidth="0.3"
+              opacity="0.2"
+              fill="none"
+            />
+            <path
+              d="M 35 50 Q 55 30 75 25"
+              stroke="#ECB629"
+              strokeWidth="0.3"
+              opacity="0.2"
+              fill="none"
+            />
           </pattern>
 
-          {/* Client Data Flow Pattern */}
-          <pattern
-            id="dataFlow"
-            width="80"
-            height="80"
-            patternUnits="userSpaceOnUse"
-          >
-            <circle cx="40" cy="40" r="1" fill="#ECB629" opacity="0.4" />
-            <circle cx="20" cy="20" r="0.5" fill="#ECB629" opacity="0.3" />
-            <circle cx="60" cy="60" r="0.5" fill="#ECB629" opacity="0.3" />
-          </pattern>
-
-          {/* Client Flow Gradient */}
+          {/* Data Flow Gradient */}
           <linearGradient id="clientFlow" x1="0%" y1="0%" x2="100%" y2="0%">
             <stop offset="0%" stopColor="#ECB629" stopOpacity="0" />
-            <stop offset="50%" stopColor="#ECB629" stopOpacity="0.6" />
+            <stop offset="50%" stopColor="#ECB629" stopOpacity="0.8" />
             <stop offset="100%" stopColor="#ECB629" stopOpacity="0" />
           </linearGradient>
         </defs>
 
-        {/* Client Ecosystem Network Grid */}
-        <rect
-          width="100%"
-          height="100%"
-          fill="url(#client-ecosystem)"
-          opacity="0.6"
-        />
-
-        {/* Secondary Data Flow Layer */}
-        <rect
-          width="100%"
-          height="100%"
-          fill="url(#dataFlow)"
-          opacity="0.4"
-        />
+        {/* Background Pattern */}
+        <rect width="100%" height="100%" fill="url(#client-ecosystem)" />
       </svg>
 
       {/* Floating Client Touchpoints */}
       <div className="absolute inset-0">
-        {[...Array(20)].map((_, i) => (
+        {Array.from({ length: 12 }).map((_, i) => (
           <motion.div
             key={i}
             className="absolute"
             style={{
-              left: `${10 + (i * 7) % 80}%`,
-              top: `${15 + (i * 11) % 70}%`,
+              left: `${(i * 83 + 50) % 90}%`,
+              top: `${(i * 67 + 30) % 80}%`,
             }}
+            initial={{ opacity: 0, scale: 0 }}
             animate={{
-              y: [0, -15, 0],
-              opacity: [0.2, 0.8, 0.2],
-              scale: [0.8, 1.2, 0.8],
+              opacity: [0, 1, 0],
+              scale: [0, 1, 0],
             }}
             transition={{
-              duration: 4,
+              duration: 3,
               repeat: Infinity,
               ease: "easeInOut",
               delay: i * 0.6,
@@ -204,12 +212,29 @@ const ClientomatBackground = () => {
 };
 
 export default function ClientomatPage() {
+  const heroRef = useRef(null);
+  const philosophyRef = useRef(null);
+  const processRef = useRef(null);
+  const resultsRef = useRef(null);
+  const investmentRef = useRef(null);
+  const ctaRef = useRef(null);
+
+  const heroInView = useInView(heroRef, { once: true });
+  const philosophyInView = useInView(philosophyRef, { once: true });
+  const processInView = useInView(processRef, { once: true });
+  const resultsInView = useInView(resultsRef, { once: true });
+  const investmentInView = useInView(investmentRef, { once: true });
+  const ctaInView = useInView(ctaRef, { once: true });
+
   return (
     <div className="min-h-screen bg-slate-900">
       <Navigation />
 
       {/* Hero Section */}
-      <section className="pt-10 min-h-screen flex items-center relative overflow-hidden">
+      <section
+        ref={heroRef}
+        className="min-h-screen flex items-center relative overflow-hidden"
+      >
         <ClientomatBackground />
 
         <div className="container mx-auto px-6 relative z-1">
@@ -218,7 +243,7 @@ export default function ClientomatPage() {
               <motion.div
                 className="inline-flex items-center gap-3 mb-8 px-6 py-3 rounded-full bg-gradient-to-r from-slate-800/80 to-slate-700/60 border border-slate-600/30 backdrop-blur-sm"
                 initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+                animate={heroInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6 }}
               >
                 <div className="flex items-center gap-2">
@@ -243,7 +268,7 @@ export default function ClientomatPage() {
               <motion.h1
                 className="text-5xl md:text-7xl font-bold mb-8 text-white leading-tight"
                 initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
+                animate={heroInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.8, delay: 0.2 }}
               >
                 Превърнете всеки контакт <br />в{" "}
@@ -253,7 +278,7 @@ export default function ClientomatPage() {
               <motion.p
                 className="text-xl md:text-2xl text-gray-300 mb-12 max-w-4xl mx-auto leading-relaxed"
                 initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
+                animate={heroInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.8, delay: 0.4 }}
               >
                 Clientomat™ е системата, която автоматизира цялата клиентска
@@ -263,37 +288,43 @@ export default function ClientomatPage() {
               <motion.div
                 className="flex flex-col sm:flex-row gap-6 justify-center items-center"
                 initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
+                animate={heroInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.8, delay: 0.6 }}
               >
-                <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                <Button
+                  size="lg"
+                  className="group relative bg-[#ECB629] text-black hover:bg-[#ECB629]/90 font-semibold text-lg px-8 py-4 rounded-lg shadow-lg hover:shadow-[#ECB629]/25 transition-all duration-300 overflow-hidden"
+                  asChild
                 >
-                  <Button
-                    size="lg"
-                    className="group relative bg-[#ECB629] text-black hover:bg-[#ECB629]/90 font-semibold text-lg px-8 py-4 rounded-lg shadow-lg hover:shadow-[#ECB629]/25 transition-all duration-300 overflow-hidden"
-                    asChild
+                  <a
+                    href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu"
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
-                    <a
-                      href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <span className="relative z-10">
-                        Заявете експертна диагностика
-                      </span>
-                      <ArrowRight className="ml-2 w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" />
-                      <motion.div
-                        className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
-                        initial={{ x: "-100%" }}
-                        whileHover={{ x: "100%" }}
-                        transition={{ duration: 0.6 }}
-                      />
-                    </a>
-                  </Button>
-                </motion.div>
+                    <span className="relative z-10">
+                      Заявете експертна диагностика
+                    </span>
+                    <ArrowRight className="ml-2 w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" />
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                      initial={{ x: "-100%" }}
+                      whileHover={{ x: "100%" }}
+                      transition={{ duration: 0.6 }}
+                    />
+                  </a>
+                </Button>
+
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="group border-[#ECB629] text-[#ECB629] hover:bg-[#ECB629] hover:text-black font-semibold text-lg px-8 py-4 rounded-lg transition-all duration-300"
+                  asChild
+                >
+                  <a href="tel:+359879282299">
+                    <Phone className="mr-2 w-5 h-5 group-hover:animate-pulse" />
+                    <span>Обади се сега</span>
+                  </a>
+                </Button>
               </motion.div>
             </div>
           </div>
@@ -301,35 +332,32 @@ export default function ClientomatPage() {
       </section>
 
       {/* Philosophy Section */}
-      <section className="py-20 bg-slate-800/30 relative overflow-hidden">
+      <section ref={philosophyRef} className="py-20 relative overflow-hidden bg-slate-900">
         <div className="container mx-auto px-6">
           <motion.div
             className="max-w-6xl mx-auto"
             initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            animate={philosophyInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
           >
             <div className="text-center mb-16">
               <motion.div
-                className="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full bg-[#ECB629]/10 border border-[#ECB629]/20"
+                className="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full bg-red-600/10 border border-red-600/20"
                 initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
+                animate={philosophyInView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ duration: 0.6, delay: 0.1 }}
-                viewport={{ once: true }}
               >
-                <div className="w-2 h-2 bg-[#ECB629] rounded-full animate-pulse" />
-                <span className="text-[#ECB629] font-semibold text-sm">
-                  СИСТЕМНА
+                <Users className="w-4 h-4 text-red-400" />
+                <span className="text-red-400 font-semibold text-sm">
+                  КЛИЕНТСКИ ХАОС
                 </span>
               </motion.div>
 
               <motion.h2
                 className="text-4xl md:text-5xl font-bold text-white mb-8"
                 initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                animate={philosophyInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                viewport={{ once: true }}
               >
                 Защо губите клиенти?
               </motion.h2>
@@ -337,46 +365,43 @@ export default function ClientomatPage() {
               <motion.p
                 className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed"
                 initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                animate={philosophyInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.8, delay: 0.4 }}
-                viewport={{ once: true }}
               >
-                Повечето компании фокусират само върху привличането на нови
-                клиенти. Истинският растеж идва от системното управление на
-                целия клиентски цикъл.
+                Повечето бизнеси имат трите основни проблема с клиентското
+                управление
               </motion.p>
             </div>
 
-            <div className="grid lg:grid-cols-3 gap-8 mb-16">
+            <div className="grid md:grid-cols-3 gap-8 mb-16">
               {[
                 {
-                  icon: Network,
-                  title: "Разпокъсана комуникация",
-                  description: "Клиентите получават непоследователни съобщения",
                   status: "ПРОБЛЕМ",
-                  color: "red",
-                },
-                {
-                  icon: Clock,
-                  title: "Забавени отговори",
-                  description: "Дълги времена за реакция на запитвания",
-                  status: "ПРОБЛЕМ",
-                  color: "red",
-                },
-                {
-                  icon: Target,
                   title: "Липса на проследяване",
-                  description: "Не знаете къде точно губите клиенти",
+                  description:
+                    "Не знаете кой е интересуван клиент, кой е готов да купи, и кой се отказва в последния момент.",
+                  icon: Clock,
+                },
+                {
                   status: "ПРОБЛЕМ",
-                  color: "red",
+                  title: "Неефективно комуникиране",
+                  description:
+                    "Контактите се губят между различни канали - имейли, телефони, социални мрежи. Няма единна система.",
+                  icon: Network,
+                },
+                {
+                  status: "ПРОБЛЕМ",
+                  title: "Мануален процес",
+                  description:
+                    "Всяка стъпка изисква ръчна работа. Нито един процес не се случва автоматично.",
+                  icon: Users,
                 },
               ].map((problem, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  animate={philosophyInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.8, delay: 0.3 + index * 0.2 }}
-                  viewport={{ once: true }}
                 >
                   <Card className="relative bg-slate-800/50 border-red-600/30 h-full group hover:border-red-500/50 transition-all duration-300">
                     <div className="absolute top-4 right-4">
@@ -403,9 +428,8 @@ export default function ClientomatPage() {
 
             <motion.div
               initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              animate={philosophyInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.8 }}
-              viewport={{ once: true }}
               className="text-center"
             >
               <Card className="bg-slate-800/60 border-[#ECB629]/20 max-w-4xl mx-auto">
@@ -457,22 +481,20 @@ export default function ClientomatPage() {
       </section>
 
       {/* Engineering Process */}
-      <section className="py-20 relative overflow-hidden">
+      <section ref={processRef} className="py-20 relative overflow-hidden bg-slate-900">
         <div className="container mx-auto px-6">
           <motion.div
             className="max-w-6xl mx-auto"
             initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            animate={processInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
           >
             <div className="text-center mb-16">
               <motion.div
                 className="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full bg-[#ECB629]/10 border border-[#ECB629]/20"
                 initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
+                animate={processInView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ duration: 0.6, delay: 0.1 }}
-                viewport={{ once: true }}
               >
                 <div className="w-2 h-2 bg-[#ECB629] rounded-full animate-pulse" />
                 <span className="text-[#ECB629] font-semibold text-sm">
@@ -483,9 +505,8 @@ export default function ClientomatPage() {
               <motion.h2
                 className="text-4xl md:text-5xl font-bold text-white mb-8"
                 initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                animate={processInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                viewport={{ once: true }}
               >
                 Как изграждаме вашата Clientomat™ система
               </motion.h2>
@@ -493,9 +514,8 @@ export default function ClientomatPage() {
               <motion.p
                 className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed"
                 initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                animate={processInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.8, delay: 0.4 }}
-                viewport={{ once: true }}
               >
                 Систематичен подход в 4 фази за изграждане на автоматизираната
                 ви клиентска екосистема
@@ -511,6 +531,12 @@ export default function ClientomatPage() {
                     "Изучаваме настоящия ви клиентски цикъл и идентифицираме пропуските. Определяме профила на идеалния клиент и mapping на цялата клиентска екосистема.",
                   icon: Microscope,
                   color: "from-blue-500 to-blue-600",
+                  deliverables: [
+                    "Подробен аудит на клиентския цикъл",
+                    "Карта на всички touchpoints",
+                    "Анализ на конверсиите по етапи",
+                    "Профил на идеалния клиент",
+                  ],
                 },
                 {
                   phase: "2",
@@ -519,50 +545,82 @@ export default function ClientomatPage() {
                     "Създаваме техническа спецификация на вашата Clientomat™ система. Дефинираме автоматизирани процеси и touchpoints за всеки етап от клиентския цикъл.",
                   icon: FileText,
                   color: "from-green-500 to-green-600",
+                  deliverables: [
+                    "Техническа спецификация",
+                    "User journey мappng",
+                    "Automation blueprnts",
+                    "CRM и email setup план",
+                  ],
                 },
                 {
                   phase: "3",
                   title: "Изпълнение и автоматизация",
                   description:
-                    "Внедряваме системата с всички необходими инструменти за автоматизация. Настройваме проследяване, уведомления и процеси за обслужване на клиентите.",
+                    "Изграждаме и конфигурираме всички системи и автоматизации. Внедряваме процесите и setup на всички нужни tools за безпроблемно функциониране.",
                   icon: Settings,
                   color: "from-purple-500 to-purple-600",
+                  deliverables: [
+                    "CRM система конфигурация",
+                    "Email automation setup",
+                    "Landing pages изграждане",
+                    "Analytics и tracking",
+                  ],
                 },
                 {
                   phase: "4",
                   title: "Оптимизация и мащабиране",
                   description:
-                    "Следим резултатите и непрекъснато подобряваме системата. Мащабираме успешните процеси за постигане на още по-добри резултати.",
+                    "Непрекъснато мониторираме и оптимизираме всички процеси за максимални резултати. Мащабираме успешните елементи.",
                   icon: TrendingUp,
-                  color: "from-[#ECB629] to-yellow-500",
+                  color: "from-yellow-500 to-yellow-600",
+                  deliverables: [
+                    "Месечни optimization отчети",
+                    "A/B тестове на ключови елементи",
+                    "Performance tracking",
+                    "Scale-up препоръки",
+                  ],
                 },
-              ].map((phase, index) => (
+              ].map((step, index) => (
                 <motion.div
-                  key={phase.phase}
+                  key={step.phase}
                   initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
+                  animate={processInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.8, delay: 0.2 + index * 0.1 }}
                 >
-                  <Card className="relative bg-slate-800/50 border-slate-700 hover:border-[#ECB629]/50 transition-all duration-300 group h-full">
-                    <div className="p-6 h-full flex flex-col">
-                      {/* Phase Number & Icon */}
-                      <div className="flex items-center gap-4 mb-4">
+                  <Card className="bg-slate-800/50 border-slate-600/30 h-full group hover:border-[#ECB629]/50 transition-all duration-300">
+                    <div className="p-8">
+                      <div className="flex items-center gap-4 mb-6">
                         <div
-                          className={`w-12 h-12 rounded-full bg-gradient-to-r ${phase.color} flex items-center justify-center text-white font-bold text-lg`}
+                          className={`w-12 h-12 rounded-lg flex items-center justify-center bg-gradient-to-br ${step.color} group-hover:scale-110 transition-transform duration-300`}
                         >
-                          {phase.phase}
+                          <step.icon className="w-6 h-6 text-white" />
                         </div>
-                        <phase.icon className="w-6 h-6 text-[#ECB629]" />
+                        <div className="text-2xl font-bold text-[#ECB629]">
+                          {step.phase}
+                        </div>
                       </div>
 
-                      <h3 className="text-xl font-semibold text-white mb-4 group-hover:text-[#ECB629] transition-colors">
-                        {phase.title}
+                      <h3 className="text-xl font-bold text-white mb-4">
+                        {step.title}
                       </h3>
+                      <p className="text-gray-300 mb-6">{step.description}</p>
 
-                      <p className="text-gray-400 leading-relaxed flex-grow">
-                        {phase.description}
-                      </p>
+                      <div>
+                        <h4 className="text-lg font-bold text-white mb-3">
+                          Ключови Deliverable-и:
+                        </h4>
+                        <ul className="space-y-2">
+                          {step.deliverables.map((item, i) => (
+                            <li
+                              key={i}
+                              className="flex items-center text-gray-300"
+                            >
+                              <CheckCircle className="w-4 h-4 text-[#ECB629] mr-2 flex-shrink-0" />
+                              <span className="text-sm">{item}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
                     </div>
                   </Card>
                 </motion.div>
@@ -572,36 +630,33 @@ export default function ClientomatPage() {
         </div>
       </section>
 
-      {/* Expected Results */}
-      <section className="py-20 bg-slate-800/30 relative overflow-hidden">
+      {/* Results Section */}
+      <section ref={resultsRef} className="py-20 relative overflow-hidden bg-slate-900">
         <div className="container mx-auto px-6">
           <motion.div
             className="max-w-6xl mx-auto"
             initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            animate={resultsInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
           >
             <div className="text-center mb-16">
               <motion.div
-                className="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full bg-[#ECB629]/10 border border-[#ECB629]/20"
+                className="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full bg-green-600/10 border border-green-600/20"
                 initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
+                animate={resultsInView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ duration: 0.6, delay: 0.1 }}
-                viewport={{ once: true }}
               >
-                <div className="w-2 h-2 bg-[#ECB629] rounded-full animate-pulse" />
-                <span className="text-[#ECB629] font-semibold text-sm">
-                  РЕЗУЛТАТИ
+                <TrendingUp className="w-4 h-4 text-green-400" />
+                <span className="text-green-400 font-semibold text-sm">
+                  ПРОВЕРЕНИ РЕЗУЛТАТИ
                 </span>
               </motion.div>
 
               <motion.h2
                 className="text-4xl md:text-5xl font-bold text-white mb-8"
                 initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                animate={resultsInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                viewport={{ once: true }}
               >
                 Какви резултати да очаквате?
               </motion.h2>
@@ -609,9 +664,8 @@ export default function ClientomatPage() {
               <motion.p
                 className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed"
                 initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                animate={resultsInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.8, delay: 0.4 }}
-                viewport={{ once: true }}
               >
                 Реални метрики от клиенти, които вече използват Clientomat™
                 системата
@@ -648,18 +702,16 @@ export default function ClientomatPage() {
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  animate={resultsInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.8, delay: 0.3 + index * 0.2 }}
-                  viewport={{ once: true }}
                 >
                   <Card className="bg-slate-800/50 border-slate-600/30 h-full text-center group hover:border-[#ECB629]/50 transition-all duration-300">
                     <div className="p-8">
                       <motion.div
                         className="text-5xl font-bold text-[#ECB629] mb-4"
                         initial={{ scale: 0.5, opacity: 0 }}
-                        whileInView={{ scale: 1, opacity: 1 }}
+                        animate={resultsInView ? { scale: 1, opacity: 1 } : {}}
                         transition={{ duration: 0.6, delay: 0.5 + index * 0.2 }}
-                        viewport={{ once: true }}
                       >
                         {result.metric}
                       </motion.div>
@@ -681,9 +733,8 @@ export default function ClientomatPage() {
 
             <motion.div
               initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              animate={resultsInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.8 }}
-              viewport={{ once: true }}
               className="text-center"
             >
               <Card className="bg-slate-800/60 border-[#ECB629]/20 max-w-4xl mx-auto">
@@ -730,7 +781,10 @@ export default function ClientomatPage() {
       </section>
 
       {/* Investment Structure */}
-      <section className="py-20 relative overflow-hidden">
+      <section
+        ref={investmentRef}
+        className="py-20 relative overflow-hidden bg-slate-900"
+      >
         <div className="absolute inset-0 opacity-5">
           <div className="absolute bottom-1/4 right-1/4 w-48 h-48 bg-blue-500 rounded-full blur-3xl"></div>
         </div>
@@ -739,9 +793,8 @@ export default function ClientomatPage() {
           <div className="max-w-4xl mx-auto text-center">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              animate={investmentInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
             >
               {/* Badge */}
               <div className="inline-flex items-center px-6 py-2 bg-slate-800/80 border border-[#ECB629] rounded-full mb-8">
@@ -793,9 +846,8 @@ export default function ClientomatPage() {
                     key={principle.number}
                     className="flex gap-6"
                     initial={{ opacity: 0, x: -30 }}
-                    whileInView={{ opacity: 1, x: 0 }}
+                    animate={investmentInView ? { opacity: 1, x: 0 } : {}}
                     transition={{ duration: 0.6, delay: index * 0.2 }}
-                    viewport={{ once: true }}
                   >
                     <div className="flex-shrink-0">
                       <div className="w-12 h-12 bg-[#ECB629] rounded-full flex items-center justify-center text-black font-bold text-lg">
@@ -854,41 +906,23 @@ export default function ClientomatPage() {
             </div>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <motion.a
+              <a
                 href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 bg-black text-white px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-300"
-                whileHover={{
-                  y: -8,
-                }}
-                transition={{
-                  type: "spring",
-                  stiffness: 400,
-                  damping: 17,
-                }}
-                whileTap={{ scale: 0.95 }}
+                className="inline-flex items-center gap-3 bg-black text-white px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-300 hover:-translate-y-2"
               >
                 <span>Свържете се с експертите</span>
                 <ArrowRight className="w-5 h-5" />
-              </motion.a>
+              </a>
               
-              <motion.a
+              <a
                 href="tel:+359879282299"
-                className="inline-flex items-center gap-3 border-2 border-black text-black px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-300 hover:bg-black hover:text-white"
-                whileHover={{
-                  y: -8,
-                }}
-                transition={{
-                  type: "spring",
-                  stiffness: 400,
-                  damping: 17,
-                }}
-                whileTap={{ scale: 0.95 }}
+                className="inline-flex items-center gap-3 border-2 border-black text-black px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-300 hover:bg-black hover:text-white hover:-translate-y-2"
               >
                 <Phone className="w-5 h-5" />
                 <span>Обади се сега</span>
-              </motion.a>
+              </a>
             </div>
           </div>
         </div>
