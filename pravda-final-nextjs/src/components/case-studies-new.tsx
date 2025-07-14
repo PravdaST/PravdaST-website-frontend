@@ -221,21 +221,26 @@ export const CaseStudiesSlider = () => {
                     Резултати
                   </h4>
 
-                  <div className="space-y-6">
+                  <div className="space-y-4">
                     {currentCase.results.map((result, index) => (
                       <motion.div
                         key={index}
-                        className="text-center p-6 bg-slate-700/30 rounded-xl border border-slate-600/20"
+                        className="bg-slate-700/30 rounded-lg p-4"
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: index * 0.1 }}
+                        transition={{ duration: 0.5, delay: index * 0.1 }}
                       >
-                        <div className="text-3xl font-bold text-[#ECB629] mb-2">
-                          {result.metric}
+                        <div className="flex items-center gap-3 mb-1">
+                          <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
+                            <div className="w-2 h-2 bg-white rounded-full"></div>
+                          </div>
+                          <span className="text-[#ECB629] font-bold text-xl">
+                            {result.metric}
+                          </span>
                         </div>
-                        <div className="text-sm text-gray-400 leading-relaxed">
+                        <p className="text-gray-300 text-sm ml-9">
                           {result.description}
-                        </div>
+                        </p>
                       </motion.div>
                     ))}
                   </div>
