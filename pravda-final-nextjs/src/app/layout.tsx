@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import { KlaviyoSetup } from '@/components/klaviyo-setup'
 import { KlaviyoIntegration } from '@/components/klaviyo-integration'
+import { ScrollToTop } from '@/components/scroll-to-top'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -22,6 +23,7 @@ export default function RootLayout({
         <KlaviyoSetup />
         <KlaviyoIntegration />
         {children}
+        <ScrollToTop />
       </body>
     </html>
   )

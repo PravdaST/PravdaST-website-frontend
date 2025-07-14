@@ -1,23 +1,29 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Button } from '@/components/ui/button'
+import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowUp } from 'lucide-react'
 
-export function ScrollToTop() {
+export const ScrollToTop = () => {
   const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {
     const toggleVisibility = () => {
-      if (window.pageYOffset > 300) {
+      // Show button when page is scrolled down 400px
+      if (window.pageYOffset > 400) {
         setIsVisible(true)
       } else {
         setIsVisible(false)
       }
     }
 
+    // Add scroll event listener
     window.addEventListener('scroll', toggleVisibility)
-    return () => window.removeEventListener('scroll', toggleVisibility)
+
+    // Clean up function
+    return () => {
+      window.removeEventListener('scroll', toggleVisibility)
+    }
   }, [])
 
   const scrollToTop = () => {
@@ -28,16 +34,31 @@ export function ScrollToTop() {
   }
 
   return (
-    <>
+    <AnimatePresence>
       {isVisible && (
-        <Button
+        <motion.button
+          initial={{ opacity: 0, scale: 0.8, y: 20 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.8, y: 20 }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
           onClick={scrollToTop}
-          className="fixed bottom-4 right-4 z-50 rounded-full p-3 bg-yellow-400 hover:bg-yellow-500 text-black"
-          size="icon"
+          className="fixed bottom-8 right-8 z-50 group"
+          aria-label="Scroll to top"
         >
-          <ArrowUp className="h-5 w-5" />
-        </Button>
+          <div className="relative">
+            {/* Main button */}
+            <div className="w-12 h-12 bg-gradient-to-r from-[#ECB629] to-[#ECB629]/90 rounded-full flex items-center justify-center shadow-lg backdrop-blur-sm border border-[#ECB629]/20 transition-all duration-300 group-hover:shadow-xl group-hover:shadow-[#ECB629]/25 group-hover:scale-110">
+              <ArrowUp className="w-5 h-5 text-black font-bold" />
+            </div>
+            
+            {/* Glow effect */}
+            <div className="absolute inset-0 rounded-full bg-[#ECB629] opacity-0 blur-md group-hover:opacity-30 transition-opacity duration-300" />
+            
+            {/* Pulse animation */}
+            <div className="absolute inset-0 rounded-full bg-[#ECB629] opacity-20 animate-ping" />
+          </div>
+        </motion.button>
       )}
-    </>
+    </AnimatePresence>
   )
 }
