@@ -96,7 +96,7 @@ sessions (sid, sess, expire)
 
 ### Environment Variables (Required for production)
 ```bash
-SENDGRID_API_KEY=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
+SENDGRID_API_KEY=SG.your_sendgrid_api_key_here
 SENDGRID_FROM_EMAIL=website@pravdagency.eu
 DATABASE_URL=postgresql://xxx
 KLAVIYO_COMPANY_ID=UTqrCz
@@ -142,3 +142,17 @@ npm run dev      # Development server
 ### Known Issues ⚠️
 - Sitemap.xml needs to be generated (minor SEO issue)
 - metadataBase warning in Next.js 15 (cosmetic)
+
+## Security & Deployment
+
+### Environment Variables
+- **NEVER commit API keys to Git** - use Vercel Environment Variables
+- Local development: `.env.local` (ignored by Git)
+- Production: Set in Vercel Dashboard
+- Template: `.env.example` (safe to commit)
+
+### Security Features
+- Rate limiting (5 submissions/hour per IP)
+- Input sanitization and XSS prevention
+- Content Security Policy for all tracking scripts
+- Parameterized database queries via Drizzle ORM
