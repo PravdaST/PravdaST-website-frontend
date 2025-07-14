@@ -342,14 +342,14 @@ export default function ClientomatPage() {
           >
             <div className="text-center mb-16">
               <motion.div
-                className="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full bg-red-600/10 border border-red-600/20"
+                className="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full bg-[#ECB629]/10 border border-[#ECB629]/20"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={philosophyInView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ duration: 0.6, delay: 0.1 }}
               >
-                <Users className="w-4 h-4 text-red-400" />
-                <span className="text-red-400 font-semibold text-sm">
-                  КЛИЕНТСКИ ХАОС
+                <div className="w-2 h-2 bg-[#ECB629] rounded-full" />
+                <span className="text-[#ECB629] font-semibold text-sm">
+                  СИСТЕМА
                 </span>
               </motion.div>
 
@@ -368,32 +368,31 @@ export default function ClientomatPage() {
                 animate={philosophyInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.8, delay: 0.4 }}
               >
-                Повечето бизнеси имат трите основни проблема с клиентското
-                управление
+                Повечето компании фокусират само върху привличането на нови клиенти. Истинският растеж идва от системното управление на целия клиентски цикъл.
               </motion.p>
             </div>
 
             <div className="grid md:grid-cols-3 gap-8 mb-16">
               {[
                 {
+                  title: "Разпокъсана комуникация",
+                  description: "Клиентите получават непоследователни съобщения",
                   status: "ПРОБЛЕМ",
-                  title: "Липса на проследяване",
-                  description:
-                    "Не знаете кой е интересуван клиент, кой е готов да купи, и кой се отказва в последния момент.",
-                  icon: Clock,
-                },
-                {
-                  status: "ПРОБЛЕМ",
-                  title: "Неефективно комуникиране",
-                  description:
-                    "Контактите се губят между различни канали - имейли, телефони, социални мрежи. Няма единна система.",
+                  color: "red",
                   icon: Network,
                 },
                 {
+                  title: "Забавени отговори",
+                  description: "Дълги времена за реакция на запитвания",
                   status: "ПРОБЛЕМ",
-                  title: "Мануален процес",
-                  description:
-                    "Всяка стъпка изисква ръчна работа. Нито един процес не се случва автоматично.",
+                  color: "red",
+                  icon: Clock,
+                },
+                {
+                  title: "Липса на проследяване",
+                  description: "Не знаете къде точно губите клиенти",
+                  status: "ПРОБЛЕМ",
+                  color: "red",
                   icon: Users,
                 },
               ].map((problem, index) => (
