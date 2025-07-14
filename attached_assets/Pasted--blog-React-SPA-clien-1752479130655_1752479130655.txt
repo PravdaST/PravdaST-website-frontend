@@ -1,0 +1,76 @@
+Ето компонентите, които се използват на страницата /blog в React SPA приложението ви:
+
+Файл: client/src/pages/blog.tsx
+
+Компонентите в реда, в който се появяват:
+
+<HelmetSEO /> - от @/components/seo/helmet-seo за SEO meta tags
+<Navigation /> - от @/components/navigation
+<Input /> - от @/components/ui/input за търсене
+<Card /> - от @/components/ui/card
+<CardContent /> - от @/components/ui/card
+<Button /> - от @/components/ui/button
+<Badge /> - от @/components/ui/badge
+<UnifiedCTASection /> - от @/components/unified-cta-section (в секцията CTA)
+<Footer /> - от @/components/footer
+Използвани икони от Lucide React:
+
+Calendar, Clock, User, ArrowRight, Search, BookOpen, TrendingUp, CheckCircle, Phone
+Motion компоненти от Framer Motion:
+
+motion.div, motion.h1, motion.h2, motion.p, motion.a, motion.button за анимации
+Hook-ове:
+
+useState от React за управление на търсенето и филтрите
+Routing:
+
+Link от wouter за навигация между страници
+Data:
+
+pageSEOData от @/data/seo-pages за SEO информация
+Локални данни blogPosts array с 1 статия за бизнес инженерство
+categories array с "Всички" и "Бизнес инженеринг"
+Специфични функционалности:
+
+Търсачка с икона в hero секцията
+Категорийни филтри с 2 категории
+Blog card grid (3 колони на desktop) вместо списъчен вид
+Animated tech background с floating books и knowledge grid pattern
+Status badge с пулсиращ индикатор "Безплатна експертна информация"
+Blog post метаданни: автор, дата, време за четене, категория, тагове
+Hover ефекти на картите с brand color highlights
+Line-clamp функционалност за ограничаване на текста
+"No results" състояние с TrendingUp икона
+CTA Секция особености:
+
+Жълт фон (#ECB629) вместо унифицираната CTA секция
+Inline status badge с червена точка "Остават 3 места за 2025"
+Два call-to-action бутона:
+Основен черен бутон: "Кандидатствайте за диагностика"
+Втори border бутон: "Обади се сега" с phone икона
+Trust signals с зелени checkmark икони
+Bounce hover анимация (y: -8) на бутоните
+Външни връзки:
+
+Typeform формуляр: https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu
+Телефонен номер: tel:+359879282299
+Навигационни линкове към услугите и case studies
+Анимации и интерактивност:
+
+Floating background елементи с BookOpen икони
+Grid pattern за фонови ефекти
+Scale animations при hover на категориите
+Scroll-triggered анимации с различни delays
+Progressive reveal на елементите при скролиране
+SEO оптимизации:
+
+Structured data от pageSEOData.blog
+Meta description и title оптимизирани за блог съдържание
+Canonical URL за блог страницата
+Дизайн особености:
+
+Модерен card-based layout за блог постовете
+Brand color #ECB629 за акценти и CTA фон
+Responsive дизайн за мобилни и десктоп
+Gradient backgrounds и blur ефекти
+Professional typography с line-height оптимизации
