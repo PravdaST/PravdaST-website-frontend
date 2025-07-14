@@ -12,6 +12,7 @@ This is a comprehensive business engineering website for Pravdast Agency, succes
 ## User Preferences
 
 Preferred communication style: Simple, everyday language.
+Project organization: Documentation files organized in `/docs` folder for cleaner structure.
 
 ## System Architecture
 
