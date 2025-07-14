@@ -1,58 +1,52 @@
 # Vercel Environment Variables Setup
 
-## 1. Кликнете "Environment Variables" в Vercel setup
+## 🔐 Environment Variables in Vercel
 
-## 2. Добавете тези променливи:
+Всички API keys трябва да се конфигурират в Vercel Dashboard, НЕ в кода!
 
-### Задължителни за email функционалност:
-```
-SENDGRID_API_KEY=sg-xxxxxxxxxxxxxxxxxx
-SENDGRID_FROM_EMAIL=contact@pravdast.agency
-```
+### Required Environment Variables in Vercel:
 
-### Задължителни за database:
-```
-DATABASE_URL=postgresql://user:password@host:port/database
-```
+```bash
+# SendGrid (configured in Vercel)
+SENDGRID_API_KEY=SG.your_actual_api_key
+SENDGRID_FROM_EMAIL=website@pravdagency.eu
+SENDGRID_TO_EMAIL=contact@pravdagency.eu
 
-### Задължителни за Klaviyo tracking:
-```
+# Database
+DATABASE_URL=postgresql://your_db_connection_string
+
+# Analytics & Tracking
+NEXT_PUBLIC_GA_MEASUREMENT_ID=G-JQ8F0NZDX0
+VITE_GA_MEASUREMENT_ID=G-JQ8F0NZDX0
 NEXT_PUBLIC_KLAVIYO_COMPANY_ID=UTqrCz
+KLAVIYO_PRIVATE_API_KEY=pk_your_klaviyo_key
+
+# Optional: Meta Pixel
+NEXT_PUBLIC_META_PIXEL_ID=your_meta_pixel_id
 ```
 
-### Опционални за production:
-```
-NODE_ENV=production
-NEXT_PUBLIC_SITE_URL=https://your-domain.vercel.app
-```
+## ✅ Code Configuration
 
-## 3. След добавяне на Environment Variables - кликнете "Deploy"
+В кода използваме само `process.env` за достъп до тези variables:
 
-## 4. Expected Build Output:
-```
-✓ Cloning repository
-✓ Analyzing dependencies  
-✓ Installing dependencies (npm install)
-✓ Building Next.js application (npm run build)
-✓ Optimizing pages and assets
-✓ Deployment successful
+```typescript
+// Правилно използване в кода
+const apiKey = process.env.SENDGRID_API_KEY;
+const fromEmail = process.env.SENDGRID_FROM_EMAIL;
 ```
 
-## 5. Test Production URLs:
-- **Homepage:** https://your-domain.vercel.app
-- **Contact Form:** https://your-domain.vercel.app/contact
-- **Sitemap:** https://your-domain.vercel.app/sitemap.xml
-- **Blog:** https://your-domain.vercel.app/blog
+## 🚫 Never in Source Code:
+- API keys
+- Database passwords  
+- Private tokens
+- Email credentials
 
-## 6. Възможни грешки и решения:
+## 🔧 Vercel Setup Steps:
 
-### Грешка: "Module not found"
-- **Решение:** Всички dependencies са в package.json
+1. Go to Vercel Dashboard
+2. Select your project
+3. Go to Settings → Environment Variables
+4. Add all required variables
+5. Deploy
 
-### Грешка: "Build failed"
-- **Решение:** Проверете дали всички файлове са upload-нати в GitHub
-
-### Грешка: "API route not found"
-- **Решение:** Проверете дали src/app/api/ папката е upload-ната
-
-## Status: Ready for deployment! 🚀
+The application will automatically use these environment variables without any API keys in the source code.

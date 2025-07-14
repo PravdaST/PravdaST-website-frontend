@@ -94,16 +94,26 @@ sessions (sid, sess, expire)
 
 ## Deployment Configuration
 
-### Environment Variables (Required for production)
+### Environment Variables (Set in Vercel Dashboard)
 ```bash
-SENDGRID_API_KEY=sg-xxx
-SENDGRID_FROM_EMAIL=contact@pravdagency.eu
-DATABASE_URL=postgresql://xxx
-KLAVIYO_COMPANY_ID=UTqrCz
-KLAVIYO_PRIVATE_API_KEY=pk-xxx
+# All API keys configured in Vercel Environment Variables
+# NO sensitive data in source code - all moved to Vercel
+
+# SendGrid (configured in Vercel)
+SENDGRID_API_KEY=your_sendgrid_key
+SENDGRID_FROM_EMAIL=website@pravdagency.eu
+SENDGRID_TO_EMAIL=contact@pravdagency.eu
+
+# Database (configured in Vercel)  
+DATABASE_URL=your_postgresql_connection
+
+# Analytics (configured in Vercel)
+NEXT_PUBLIC_GA_MEASUREMENT_ID=G-JQ8F0NZDX0
+KLAVIYO_PRIVATE_API_KEY=your_klaviyo_key
 NEXT_PUBLIC_KLAVIYO_COMPANY_ID=UTqrCz
-NEXT_PUBLIC_GA_MEASUREMENT_ID=G-JQ8F0NZDX0 (or VITE_GA_MEASUREMENT_ID)
-NEXT_PUBLIC_META_PIXEL_ID=xxx (optional, for Facebook tracking)
+
+# Optional
+NEXT_PUBLIC_META_PIXEL_ID=your_meta_pixel_id
 ```
 
 ### Build Commands
@@ -138,6 +148,13 @@ npm run dev      # Development server
 - Rate limiting implemented
 - Security validation active
 - Performance optimized
+
+### Security Updates ✅ 
+- **CRITICAL:** Removed ALL sensitive data from source code (API keys, passwords)
+- **CRITICAL:** All API keys moved to Vercel environment variables for security  
+- **CRITICAL:** Cleaned Git history preparation for GitHub deployment
+- All email credentials now use environment variables only
+- No hardcoded API keys remain in the codebase
 
 ### Known Issues ⚠️
 - Sitemap.xml needs to be generated (minor SEO issue)

@@ -1,0 +1,80 @@
+* [33ma85a755[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m Backup work
+[31m|[m *   [33m43131f4[m[33m ([m[1;32mreplit-agent[m[33m)[m Secure the codebase by removing sensitive information from the source code
+[31m|[m [32m|[m[31m\[m  
+[31m|[m [32m|[m[31m/[m  
+[31m|[m[31m/[m[32m|[m   
+* [32m|[m [33m99fca2c[m Secure the codebase by removing sensitive information from the source code
+[33m|[m *   [33m5276272[m Add subtle animations to hero sections across the site for visual consistency
+[33m|[m [34m|[m[33m\[m  
+[33m|[m [34m|[m[33m/[m  
+[33m|[m[33m/[m[34m|[m   
+* [34m|[m [33m3d1c554[m Add subtle animations to hero sections across the site for visual consistency
+[35m|[m *   [33m5eaf512[m Enhance website security and improve environment variable management
+[35m|[m [36m|[m[35m\[m  
+[35m|[m [36m|[m[35m/[m  
+[35m|[m[35m/[m[36m|[m   
+* [36m|[m [33m4f51e55[m Enhance website security and improve environment variable management
+[1;31m|[m *   [33m16517f6[m Update email settings for sending messages from the company website
+[1;31m|[m [1;32m|[m[1;31m\[m  
+[1;31m|[m [1;32m|[m[1;31m/[m  
+[1;31m|[m[1;31m/[m[1;32m|[m   
+* [1;32m|[m [33m2a1dc7f[m Update email settings for sending messages from the company website
+[1;33m|[m *   [33mdb9bdb5[m Allow the website to connect to Klaviyo's forms for better user interaction
+[1;33m|[m [1;34m|[m[1;33m\[m  
+[1;33m|[m [1;34m|[m[1;33m/[m  
+[1;33m|[m[1;33m/[m[1;34m|[m   
+* [1;34m|[m [33m5f6d464[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m Allow the website to connect to Klaviyo's forms for better user interaction
+[1;35m|[m *   [33m7cfa148[m Enable Google Tag Manager and Analytics tracking across the entire website
+[1;35m|[m [1;36m|[m[1;35m\[m  
+[1;35m|[m [1;36m|[m[1;35m/[m  
+[1;35m|[m[1;35m/[m[1;36m|[m   
+* [1;36m|[m [33m367ce8c[m Enable Google Tag Manager and Analytics tracking across the entire website
+[31m|[m *   [33mea2af37[m Improve Klaviyo integration and ensure proper setup across environments
+[31m|[m [32m|[m[31m\[m  
+[31m|[m [32m|[m[31m/[m  
+[31m|[m[31m/[m[32m|[m   
+* [32m|[m [33m04c43e1[m Improve Klaviyo integration and ensure proper setup across environments
+[33m|[m *   [33m086e474[m Improve website's visibility on search engines with structured data
+[33m|[m [34m|[m[33m\[m  
+[33m|[m [34m|[m[33m/[m  
+[33m|[m[33m/[m[34m|[m   
+* [34m|[m [33m737c713[m Improve website's visibility on search engines with structured data
+[35m|[m *   [33m3d80ae5[m Integrate analytics and marketing tools for better user understanding
+[35m|[m [36m|[m[35m\[m  
+[35m|[m [36m|[m[35m/[m  
+[35m|[m[35m/[m[36m|[m   
+* [36m|[m [33m8ba4888[m Integrate analytics and marketing tools for better user understanding
+[1;31m|[m *   [33m00b9917[m Update website to reflect the company's new domain name and branding
+[1;31m|[m [1;32m|[m[1;31m\[m  
+[1;31m|[m [1;32m|[m[1;31m/[m  
+[1;31m|[m[1;31m/[m[1;32m|[m   
+* [1;32m|[m [33m775cd84[m Update website to reflect the company's new domain name and branding
+[1;33m|[m *   [33mdb9a647[m Ensure each notification has a unique identifier for proper rendering
+[1;33m|[m [1;34m|[m[1;33m\[m  
+[1;33m|[m [1;34m|[m[1;33m/[m  
+[1;33m|[m[1;33m/[m[1;34m|[m   
+* [1;34m|[m [33me1785e4[m Ensure each notification has a unique identifier for proper rendering
+[1;35m|[m *   [33m571e7cf[m Fix error that prevents the blog posts from loading correctly
+[1;35m|[m [1;36m|[m[1;35m\[m  
+[1;35m|[m [1;36m|[m[1;35m/[m  
+[1;35m|[m[1;35m/[m[1;36m|[m   
+* [1;36m|[m [33m2e35ed1[m Fix error that prevents the blog posts from loading correctly
+[31m|[m *   [33mcddf70d[m Enable data storage and improve user session handling on the platform
+[31m|[m [32m|[m[31m\[m  
+[31m|[m [32m|[m[31m/[m  
+[31m|[m[31m/[m[32m|[m   
+* [32m|[m [33mde3b3a5[m Enable data storage and improve user session handling on the platform
+* [32m|[m [33ma1f15ce[m now test
+[33m|[m * [33m0c1119a[m Adapt application to run within the Replit environment constraints
+[33m|[m[33m/[m  
+* [33m70000cd[m Adapt application to run within the Replit environment constraints
+* [33m2f89978[m Update package.json
+* [33m6995d21[m Update vercel.json
+* [33m9bc5405[m Update package.json
+* [33mdc42e44[m Guide users to adjust Vercel settings for correct project deployment
+* [33m80a1391[m Provide instructions to fix Vercel build error caused by old Vite files
+* [33m8280f17[m Provide instructions to fully replace project files with Next.js version
+* [33m93a175b[m 41
+* [33m4f8c1b3[m Simplify application startup and deployment for enhanced performance
+* [33mb625ff4[m Provide instructions to prepare the project for GitHub and Vercel
+* [33mfa389b3[m[33m ([m[1;34mgrafted[m[33m)[m Improve project structure by cleaning up unnecessary files
