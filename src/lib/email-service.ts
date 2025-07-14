@@ -18,8 +18,8 @@ export async function sendContactEmail(data: ContactData) {
     console.log('SendGrid API key not configured - using development mode')
     console.log('EMAIL PREVIEW (Development Mode):')
     console.log('====================================')
-    console.log(`TO: contact@pravdagency.eu`)
-    console.log(`FROM: website@pravdagency.eu`)
+    console.log(`TO: ${process.env.SENDGRID_TO_EMAIL || 'contact@example.com'}`)
+    console.log(`FROM: ${process.env.SENDGRID_FROM_EMAIL || 'website@example.com'}`)
     console.log(`SUBJECT: 🔥 Ново запитване от ${data.name} - ${data.company || 'Частно лице'}`)
     console.log(`ДАННИ:`)
     console.log(`  👤 Име: ${data.name}`)
@@ -110,7 +110,7 @@ export async function sendContactEmail(data: ContactData) {
           
           <div class="footer">
             <p><strong>Pravda Agency</strong> - Бизнес инженеринг за предвидим растеж</p>
-            <p>ул. Дебър №58, Варна | +359 879 282 299 | contact@pravdagency.eu</p>
+            <p>ул. Дебър №58, Варна | +359 879 282 299 | ${process.env.SENDGRID_TO_EMAIL || 'contact@example.com'}</p>
           </div>
         </div>
       </body>
@@ -133,13 +133,13 @@ ${data.message}
 
 ---
 Pravda Agency - Бизнес инженеринг за предвидим растеж
-ул. Дебър №58, Варна | +359 879 282 299 | contact@pravdagency.eu
+ул. Дебър №58, Варна | +359 879 282 299 | ${process.env.SENDGRID_TO_EMAIL || 'contact@example.com'}
     `
 
     const msg = {
-      to: 'contact@pravdagency.eu',
+      to: process.env.SENDGRID_TO_EMAIL || 'contact@example.com',
       from: {
-        email: 'website@pravdagency.eu',
+        email: process.env.SENDGRID_FROM_EMAIL || 'website@example.com',
         name: 'Pravda Agency Website'
       },
       subject: `🔥 Ново запитване от ${data.name} - ${data.company || 'Частно лице'}`,
@@ -149,7 +149,7 @@ Pravda Agency - Бизнес инженеринг за предвидим рас
     }
 
     await sgMail.send(msg)
-    console.log('Contact email sent successfully to contact@pravdagency.eu')
+    console.log(`Contact email sent successfully to ${process.env.SENDGRID_TO_EMAIL || 'contact@example.com'}`)
     
     return { 
       success: true, 

@@ -4,12 +4,12 @@ import bcrypt from 'bcrypt';
 
 async function createAdminUser() {
   try {
-    const hashedPassword = await bcrypt.hash('pravda2025', 10);
+    const hashedPassword = await bcrypt.hash('your_admin_password_here', 10);
     
     const [user] = await db.insert(adminUsers).values({
       username: 'admin',
       password: hashedPassword,
-      email: 'admin@pravdagency.eu',
+      email: 'admin@example.com',
     }).returning();
     
     console.log('Admin user created:', user);
