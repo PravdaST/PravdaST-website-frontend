@@ -1,3 +1,4 @@
 {
-  "/services/clientomat/page": "app/services/clientomat/page.js"
+  "/services/clientomat/page": "app/services/clientomat/page.js",
+  "/services/trendlab/page": "app/services/trendlab/page.js"
 }
