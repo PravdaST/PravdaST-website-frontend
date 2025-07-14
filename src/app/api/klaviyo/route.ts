@@ -10,6 +10,7 @@ export async function POST(request: NextRequest) {
 
     if (!klaviyoApiKey) {
       console.log('Klaviyo: Private API key not configured, skipping profile creation')
+      console.log('Available env vars:', Object.keys(process.env).filter(k => k.includes('KLAVIYO')))
       return NextResponse.json({ 
         success: true, 
         message: 'Contact saved (Klaviyo integration not configured)' 

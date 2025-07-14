@@ -11,11 +11,13 @@ declare global {
 
 export const KlaviyoSetup = () => {
   useEffect(() => {
-    const companyId = process.env.NEXT_PUBLIC_KLAVIYO_COMPANY_ID
+    // Support both Next.js and Vite environment variable formats
+    const companyId = process.env.NEXT_PUBLIC_KLAVIYO_COMPANY_ID || 
+                     process.env.VITE_KLAVIYO_PUBLIC_API_KEY ||
+                     'UTqrCz' // Default company ID
 
-    if (!companyId) {
-      console.log('Klaviyo: No company ID found, skipping setup')
-      return
+    if (!companyId || companyId === 'UTqrCz') {
+      console.log('Klaviyo: Using default company ID UTqrCz')
     }
 
     // Initialize Klaviyo queue if it doesn't exist
