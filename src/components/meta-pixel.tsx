@@ -18,12 +18,16 @@ export function MetaPixel() {
 
     // Initialize Meta Pixel if not already done
     if (typeof window !== 'undefined' && !window.fbq) {
-      // Create fbq function
-      window.fbq = function() {
-        window.fbq.callMethod ?
-          window.fbq.callMethod.apply(window.fbq, arguments) :
-          window.fbq.queue.push(arguments)
-      }
+      // Create fbq function with proper typing
+      const fbq = function(...args: any[]) {
+        if ((fbq as any).callMethod) {
+          (fbq as any).callMethod.apply(fbq, args)
+        } else {
+          (fbq as any).queue.push(args)
+        }
+      } as any
+
+      window.fbq = fbq
 
       if (!window.fbq.loaded) {
         window.fbq.version = '2.0'
