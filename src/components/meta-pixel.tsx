@@ -1,60 +1,36 @@
 'use client'
 
-import { useEffect } from 'react'
 import { usePathname } from 'next/navigation'
+import Script from 'next/script'
+import { useEffect, useState } from 'react'
 
-// Using @types/facebook-pixel for proper TypeScript support
+// Вземете ID-то от променливите на средата
+const PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID
 
-export function MetaPixel() {
+const MetaPixel = () => {
+  const [loaded, setLoaded] = useState(false)
   const pathname = usePathname()
 
   useEffect(() => {
-    const pixelId = process.env.NEXT_PUBLIC_META_PIXEL_ID
-
-    if (!pixelId) {
-      console.log('Meta Pixel: No pixel ID found, skipping setup')
+    if (!PIXEL_ID || !loaded) {
       return
     }
 
-    // Initialize Meta Pixel if not already done
-    if (typeof window !== 'undefined' && !window.fbq) {
-      // Create fbq function with proper typing
-      const fbq = function(...args: any[]) {
-        if ((fbq as any).callMethod) {
-          (fbq as any).callMethod.apply(fbq, args)
-        } else {
-          (fbq as any).queue.push(args)
-        }
-      } as any
+    // Извикваме PageView евент при всяка промяна на страницата
+    window.fbq('track', 'PageView')
 
-      window.fbq = fbq
+  }, [pathname, loaded])
 
-      if (!window.fbq.loaded) {
-        window.fbq.version = '2.0'
-        window.fbq.queue = []
-        window.fbq.loaded = true
-
-        const script = document.createElement('script')
-        script.async = true
-        script.src = 'https://connect.facebook.net/en_US/fbevents.js'
-        document.head.appendChild(script)
-      }
-
-      // Initialize pixel
-      window.fbq('init', pixelId)
-      console.log('Meta Pixel: Initialized successfully')
-    }
-  }, [])
-
-  useEffect(() => {
-    // Track page views on route change
-    if (typeof window !== 'undefined' && window.fbq) {
-      window.fbq('track', 'PageView')
-      console.log('Meta Pixel: Page view tracked for', pathname)
-    }
-  }, [pathname])
-
-  return null
+  return (
+    <div>
+      <Script
+        id="fb-pixel"
+        src="/scripts/pixel.js" // Локален скрипт, който зарежда fbq
+        strategy="afterInteractive"
+        onLoad={() => setLoaded(true)}
+      />
+    </div>
+  )
 }
 
 // Helper functions for tracking events
@@ -78,3 +54,5 @@ export const trackMetaContact = () => {
     console.log('Meta Pixel: Contact tracked')
   }
 }
+
+export default MetaPixel
