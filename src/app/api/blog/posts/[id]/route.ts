@@ -50,9 +50,10 @@ export async function GET(
 // PUT /api/blog/posts/[id] - Update blog post (admin only)
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  props: { params: Params }
 ) {
   try {
+    const params = await props.params;
     const postId = parseInt(params.id)
     
     if (isNaN(postId)) {
@@ -100,9 +101,10 @@ export async function PUT(
 // DELETE /api/blog/posts/[id] - Delete blog post (admin only)
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  props: { params: Params }
 ) {
   try {
+    const params = await props.params;
     const postId = parseInt(params.id)
     
     if (isNaN(postId)) {
