@@ -157,7 +157,7 @@ npm run dev      # Development server
 - All email credentials now use environment variables only
 - No hardcoded API keys remain in the codebase
 
-### Next.js 15 TypeScript Issues Fixed 🔧 (January 15, 2025)
+### Next.js 15 & Database Schema Issues Fixed 🔧 (January 15, 2025)
 - **Problem**: Multiple TypeScript compilation errors in API routes
 - **Cause**: Breaking changes in Next.js 15 - `params` are now Promise objects
 - **Solution**: Updated all dynamic route API handlers to use correct signatures

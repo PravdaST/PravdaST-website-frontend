@@ -30,9 +30,7 @@ const blogPostSchema = z.object({
   category: z.string().min(1, 'Категорията е задължителна'),
   tags: z.string().min(1, 'Поне един таг е задължителен'),
   featuredImage: z.string().optional(),
-  metaTitle: z.string().min(10, 'Meta title трябва да е поне 10 символа'),
-  metaDescription: z.string().min(50, 'Meta description трябва да е поне 50 символа'),
-  keywords: z.string().min(5, 'Keywords са задължителни'),
+  // Meta fields removed - using title and excerpt instead
   isPublished: z.boolean(),
   publishedAt: z.string().optional()
 })
@@ -174,9 +172,7 @@ export function AdminBlogClient() {
       category: '',
       tags: '',
       featuredImage: '',
-      metaTitle: '',
-      metaDescription: '',
-      keywords: '',
+      // Meta fields removed from schema
       isPublished: false,
       publishedAt: ''
     })
@@ -408,42 +404,11 @@ export function AdminBlogClient() {
                     </div>
                   </div>
 
-                  {/* SEO Fields */}
+                  {/* SEO Note */}
                   <div className="border-t border-slate-600 pt-4">
-                    <h3 className="text-lg font-medium mb-3">SEO настройки</h3>
-                    
-                    <div className="space-y-4">
-                      <div>
-                        <label className="block text-sm font-medium mb-1">Meta Title</label>
-                        <input
-                          {...register('metaTitle')}
-                          className="w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white focus:border-[#ECB629] focus:outline-none"
-                          placeholder="SEO заглавие за Google"
-                        />
-                        {errors.metaTitle && <p className="text-red-400 text-sm mt-1">{errors.metaTitle.message}</p>}
-                      </div>
-
-                      <div>
-                        <label className="block text-sm font-medium mb-1">Meta Description</label>
-                        <textarea
-                          {...register('metaDescription')}
-                          rows={2}
-                          className="w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white focus:border-[#ECB629] focus:outline-none"
-                          placeholder="SEO описание за Google (до 160 символа)"
-                        />
-                        {errors.metaDescription && <p className="text-red-400 text-sm mt-1">{errors.metaDescription.message}</p>}
-                      </div>
-
-                      <div>
-                        <label className="block text-sm font-medium mb-1">Keywords</label>
-                        <input
-                          {...register('keywords')}
-                          className="w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white focus:border-[#ECB629] focus:outline-none"
-                          placeholder="ключови думи, разделени със запетая"
-                        />
-                        {errors.keywords && <p className="text-red-400 text-sm mt-1">{errors.keywords.message}</p>}
-                      </div>
-                    </div>
+                    <p className="text-sm text-slate-400">
+                      SEO: Заглавието и извлечението ще се използват автоматично за meta tags
+                    </p>
                   </div>
 
                   {/* Publish Options */}

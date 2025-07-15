@@ -29,7 +29,7 @@ export async function GET(request: NextRequest) {
           ilike(blogPosts.title, searchQuery),
           ilike(blogPosts.content, searchQuery),
           ilike(blogPosts.excerpt, searchQuery),
-          ilike(blogPosts.metaDescription, searchQuery)
+          ilike(blogPosts.author, searchQuery)
         )
       )
     }

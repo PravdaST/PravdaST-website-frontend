@@ -4,10 +4,10 @@ import { useEffect } from 'react'
 
 declare global {
   interface Window {
-    fbq: (...args: any[]) => void
-    gtag: (...args: any[]) => void
-    _linkedin_partner_id: string
-    _linkedin_data_partner_ids: string[]
+    fbq?: (...args: any[]) => void
+    gtag?: (...args: any[]) => void
+    _linkedin_partner_id?: string
+    _linkedin_data_partner_ids?: string[]
   }
 }
 

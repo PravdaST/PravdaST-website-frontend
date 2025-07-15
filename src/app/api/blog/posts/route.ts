@@ -114,13 +114,8 @@ export async function POST(request: NextRequest) {
     // Calculate read time
     body.readTime = calculateReadTime(body.content)
 
-    // Generate SEO fields if not provided
-    if (!body.metaTitle) {
-      body.metaTitle = body.title
-    }
-    if (!body.metaDescription) {
-      body.metaDescription = body.excerpt
-    }
+    // SEO fields handled by existing columns (title, excerpt)
+    // No separate meta fields in schema
 
     // Process tags
     if (typeof body.tags === 'string') {
