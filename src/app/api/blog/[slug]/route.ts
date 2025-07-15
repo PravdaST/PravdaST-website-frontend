@@ -1,12 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { storage } from '../../../../../server/storage';
 
+type Params = Promise<{ slug: string }>
+
 export async function GET(
   request: NextRequest,
-  context: { params: { slug: string } }
+  props: { params: Params }
 ) {
   try {
-    const { slug } = context.params;
+    const params = await props.params;
+    const { slug } = params;
     const post = await storage.getBlogPostBySlug(slug);
     
     if (!post) {

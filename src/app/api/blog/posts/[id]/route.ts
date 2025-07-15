@@ -3,13 +3,17 @@ import { blogPosts } from '@shared/schema'
 import { db } from '@server/db'
 import { eq } from 'drizzle-orm'
 
+type Params = Promise<{ id: string }>
+
 // GET /api/blog/posts/[id] - Get single blog post
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  props: { params: Params }
 ) {
   try {
-    const postId = parseInt(params.id)
+    const params = await props.params;
+    const { id } = params;
+    const postId = parseInt(id)
     
     if (isNaN(postId)) {
       return NextResponse.json({ error: 'Invalid post ID' }, { status: 400 })
