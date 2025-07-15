@@ -157,12 +157,18 @@ npm run dev      # Development server
 - All email credentials now use environment variables only
 - No hardcoded API keys remain in the codebase
 
-### Git Push Issue Fixed 🔧
-- **Problem**: Local repository 9 commits ahead of remote + Git lock files
-- **Cause**: Multiple security cleanup commits + GitHub secret detection
-- **Solution**: Manual push after removing locks or allow secret via GitHub link
-- **Status**: All sensitive data cleaned from source code, ready for deployment
-- **GitHub Secret Allow**: https://github.com/PravdaST/PravdaST-website-frontend/security/secret-scanning/unblock-secret/2zrnjoAaRclwCk38DaOX9Rz4tJ2
+### Next.js 15 TypeScript Issues Fixed 🔧 (January 15, 2025)
+- **Problem**: Multiple TypeScript compilation errors in API routes
+- **Cause**: Breaking changes in Next.js 15 - `params` are now Promise objects
+- **Solution**: Updated all dynamic route API handlers to use correct signatures
+- **IP Detection**: Replaced removed `request.ip` with proper header parsing
+- **Status**: All build errors resolved, ready for production deployment
+
+**Fixed Files:**
+- `src/app/api/blog/[slug]/route.ts` - Updated to Promise<params> pattern
+- `src/app/api/blog/posts/[id]/route.ts` - All HTTP methods (GET, PUT, DELETE) fixed
+- `src/app/api/blog/posts/route.ts` - IP detection updated for Next.js 15
+- `server/db.ts` - Enhanced connection pooling configuration
 
 ### SEO & Performance Status ✅
 - **SEO Score**: 95/100 - Production ready with complete optimization

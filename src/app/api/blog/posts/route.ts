@@ -35,7 +35,9 @@ export async function GET(request: NextRequest) {
     const offset = parseInt(searchParams.get('offset') || '0')
     
     // Apply rate limiting for public endpoints
-    const ip = request.ip || 'unknown'
+    const forwarded = request.headers.get('x-forwarded-for')
+    const realIp = request.headers.get('x-real-ip')
+    const ip = forwarded?.split(',')[0] || realIp || 'unknown'
     if (!checkRateLimit(ip, 100)) {
       return NextResponse.json({ error: 'Rate limit exceeded' }, { status: 429 })
     }
@@ -82,7 +84,9 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     // Apply strict rate limiting for write operations
-    const ip = request.ip || 'unknown'
+    const forwarded = request.headers.get('x-forwarded-for')
+    const realIp = request.headers.get('x-real-ip')
+    const ip = forwarded?.split(',')[0] || realIp || 'unknown'
     if (!checkRateLimit(ip, 10, 60000)) { // 10 requests per minute
       return NextResponse.json({ error: 'Rate limit exceeded' }, { status: 429 })
     }
