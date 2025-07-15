@@ -3,10 +3,9 @@
 import { useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 
-declare global {
-  interface Window {
-    _learnq?: any[]
-  }
+// Using proper interface extension for Klaviyo
+interface KlaviyoWindow extends Window {
+  _learnq?: any[]
 }
 
 // Helper function to identify user in Klaviyo
@@ -17,13 +16,13 @@ export const identifyKlaviyoUser = (userData: {
   company?: string
   website?: string
 }) => {
-  if (typeof window === 'undefined' || !window._learnq) {
+  if (typeof window === 'undefined' || !(window as KlaviyoWindow)._learnq) {
     console.log('Klaviyo: Not available for user identification')
     return
   }
 
   try {
-    window._learnq.push(['identify', {
+    (window as KlaviyoWindow)._learnq!.push(['identify', {
       '$email': userData.email,
       '$first_name': userData.firstName,
       '$last_name': userData.lastName,
@@ -39,13 +38,13 @@ export const identifyKlaviyoUser = (userData: {
 
 // Helper function to track events in Klaviyo
 export const trackKlaviyoEvent = (eventName: string, properties: Record<string, any> = {}) => {
-  if (typeof window === 'undefined' || !window._learnq) {
+  if (typeof window === 'undefined' || !(window as KlaviyoWindow)._learnq) {
     console.log('Klaviyo: Not available for event tracking')
     return
   }
 
   try {
-    window._learnq.push(['track', eventName, {
+    (window as KlaviyoWindow)._learnq!.push(['track', eventName, {
       ...properties,
       '$source': 'Pravda Agency Website',
       'timestamp': new Date().toISOString()

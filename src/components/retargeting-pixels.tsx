@@ -2,14 +2,7 @@
 
 import { useEffect } from 'react'
 
-// Using @types/facebook-pixel for fbq typing
-declare global {
-  interface Window {
-    gtag?: (...args: any[]) => void
-    _linkedin_partner_id?: string
-    _linkedin_data_partner_ids?: string[]
-  }
-}
+// Using official @types packages for proper TypeScript support
 
 export function RetargetingPixels() {
   useEffect(() => {

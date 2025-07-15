@@ -2,8 +2,8 @@
 export function trackContactForm(data: any) {
   try {
     // Google Analytics tracking
-    if (typeof window !== 'undefined' && window.gtag) {
-      window.gtag('event', 'contact_form_submit', {
+    if (typeof window !== 'undefined' && (window as GtagWindow).gtag) {
+      (window as GtagWindow).gtag!('event', 'contact_form_submit', {
         event_category: 'engagement',
         event_label: 'contact_form',
         value: 1
@@ -19,8 +19,8 @@ export function trackContactForm(data: any) {
 export function trackPhoneCall(phoneNumber: string) {
   try {
     // Google Analytics tracking
-    if (typeof window !== 'undefined' && window.gtag) {
-      window.gtag('event', 'phone_call', {
+    if (typeof window !== 'undefined' && (window as GtagWindow).gtag) {
+      (window as GtagWindow).gtag!('event', 'phone_call', {
         event_category: 'engagement',
         event_label: 'phone_contact',
         value: 1
@@ -33,9 +33,7 @@ export function trackPhoneCall(phoneNumber: string) {
   }
 }
 
-// Declare gtag function for TypeScript
-declare global {
-  interface Window {
-    gtag: (command: string, targetId: string, config?: any) => void
-  }
+// Using proper interface extension for Google Analytics
+interface GtagWindow extends Window {
+  gtag?: (command: string, targetId: string, config?: any) => void
 }

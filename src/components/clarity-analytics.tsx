@@ -2,15 +2,14 @@
 
 import { useEffect } from 'react'
 
-declare global {
-  interface Window {
-    clarity: (...args: any[]) => void
-  }
+// Using proper interface extension for Microsoft Clarity
+interface ClarityWindow extends Window {
+  clarity?: (...args: any[]) => void
 }
 
 export function ClarityAnalytics() {
   useEffect(() => {
-    if (typeof window !== 'undefined' && !window.clarity) {
+    if (typeof window !== 'undefined' && !(window as ClarityWindow).clarity) {
       const script = document.createElement('script')
       script.type = 'text/javascript'
       script.innerHTML = `
@@ -29,13 +28,13 @@ export function ClarityAnalytics() {
 
 // Helper functions for tracking custom events
 export const trackClarityEvent = (eventName: string, properties?: Record<string, any>) => {
-  if (typeof window !== 'undefined' && window.clarity) {
-    window.clarity('set', eventName, properties)
+  if (typeof window !== 'undefined' && (window as ClarityWindow).clarity) {
+    (window as ClarityWindow).clarity!('set', eventName, properties)
   }
 }
 
 export const trackClarityCustom = (key: string, value: string) => {
-  if (typeof window !== 'undefined' && window.clarity) {
-    window.clarity('set', key, value)
+  if (typeof window !== 'undefined' && (window as ClarityWindow).clarity) {
+    (window as ClarityWindow).clarity!('set', key, value)
   }
 }

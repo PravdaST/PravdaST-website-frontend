@@ -3,10 +3,9 @@
 import { useEffect } from 'react'
 
 
-declare global {
-  interface Window {
-    _learnq?: any[]
-  }
+// Using proper interface extension for Klaviyo Setup
+interface KlaviyoWindow extends Window {
+  _learnq?: any[]
 }
 
 export const KlaviyoSetup = () => {
@@ -21,8 +20,8 @@ export const KlaviyoSetup = () => {
     }
 
     // Initialize Klaviyo queue if it doesn't exist
-    if (!window._learnq) {
-      window._learnq = []
+    if (!(window as KlaviyoWindow)._learnq) {
+      (window as KlaviyoWindow)._learnq = []
     }
 
     // Create and append Klaviyo script
