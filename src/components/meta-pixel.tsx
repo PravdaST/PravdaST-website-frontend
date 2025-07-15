@@ -3,7 +3,7 @@
 import { useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 
-// Window.fbq type is declared in retargeting-pixels.tsx
+// Using @types/facebook-pixel for proper TypeScript support
 
 export function MetaPixel() {
   const pathname = usePathname()
