@@ -51,14 +51,11 @@ export async function GET(request: NextRequest) {
       filters.push(eq(blogPosts.category, category))
     }
 
-    // Build and execute query
-    let query = db.select().from(blogPosts)
-    
-    if (filters.length > 0) {
-      query = query.where(and(...filters))
-    }
-
-    const posts = await query
+    // Build and execute query in one step
+    const posts = await db
+      .select()
+      .from(blogPosts)
+      .where(filters.length > 0 ? and(...filters) : undefined)
       .orderBy(desc(blogPosts.createdAt))
       .limit(limit)
       .offset(offset)
