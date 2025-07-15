@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { motion, useInView } from "framer-motion";
 import { Navigation } from "@/components/navigation";
@@ -50,13 +50,7 @@ const SeoStruktorBackground = () => {
               strokeWidth="0.5"
               opacity="0.3"
             />
-            <circle
-              cx="40"
-              cy="40"
-              r="2"
-              fill="#ECB629"
-              opacity="0.4"
-            />
+            <circle cx="40" cy="40" r="2" fill="#ECB629" opacity="0.4" />
           </pattern>
         </defs>
         <rect width="100%" height="100%" fill="url(#seo-grid)" />
@@ -99,13 +93,7 @@ const SeoStruktorBackground = () => {
         transition={{ type: "spring", stiffness: 40, damping: 15 }}
       >
         {/* Central hub */}
-        <circle
-          cx="50%"
-          cy="50%"
-          r="4"
-          fill="#ECB629"
-          opacity="0.6"
-        />
+        <circle cx="50%" cy="50%" r="4" fill="#ECB629" opacity="0.6" />
 
         {/* Connecting lines to represent SEO structure */}
         <path
@@ -186,9 +174,7 @@ const PhilosophySection = () => {
                     <motion.div
                       key={i}
                       className={`rounded-sm h-2 ${
-                        currentStep === 0
-                          ? "bg-red-400"
-                          : "bg-[#ECB629]"
+                        currentStep === 0 ? "bg-red-400" : "bg-[#ECB629]"
                       }`}
                       initial={{
                         rotate:
@@ -234,9 +220,7 @@ const PhilosophySection = () => {
                 >
                   <motion.div
                     className={`w-2 h-2 rounded-full mr-2 ${
-                      currentStep === 0
-                        ? "bg-red-400"
-                        : "bg-[#ECB629]"
+                      currentStep === 0 ? "bg-red-400" : "bg-[#ECB629]"
                     }`}
                     animate={{
                       backgroundColor:
@@ -584,8 +568,8 @@ const ResultsSection = () => {
       title: "Намалена зависимост",
       description: "От постоянни и рискови рекламни бюджети",
       metric: "60% по-малко разходи",
-      beforeProgress: 80,
-      afterProgress: 30,
+      beforeProgress: 30,
+      afterProgress: 80,
     },
     {
       icon: <Crown className="w-8 h-8" />,
@@ -699,19 +683,28 @@ const ResultsSection = () => {
                         <span className="text-red-400 font-medium">преди</span>
                         <span className="text-[#ECB629] font-medium">след</span>
                       </div>
-                      
+
                       {/* Before Progress Bar */}
                       <div className="space-y-2">
                         <div className="flex items-center justify-between text-xs">
                           <span className="text-red-400">Преди системата</span>
-                          <span className="text-red-400">{benefit.beforeProgress}%</span>
+                          <span className="text-red-400">
+                            {benefit.beforeProgress}%
+                          </span>
                         </div>
                         <div className="w-full bg-slate-700 rounded-full h-2">
                           <motion.div
                             className="h-2 bg-gradient-to-r from-red-500 to-red-400 rounded-full"
                             initial={{ width: "0%" }}
-                            animate={isInView ? { width: `${benefit.beforeProgress}%` } : {}}
-                            transition={{ duration: 1.5, delay: index * 0.2 + 1 }}
+                            animate={
+                              isInView
+                                ? { width: `${benefit.beforeProgress}%` }
+                                : {}
+                            }
+                            transition={{
+                              duration: 1.5,
+                              delay: index * 0.2 + 1,
+                            }}
                           />
                         </div>
                       </div>
@@ -720,14 +713,23 @@ const ResultsSection = () => {
                       <div className="space-y-2">
                         <div className="flex items-center justify-between text-xs">
                           <span className="text-[#ECB629]">След системата</span>
-                          <span className="text-[#ECB629]">{benefit.afterProgress}%</span>
+                          <span className="text-[#ECB629]">
+                            {benefit.afterProgress}%
+                          </span>
                         </div>
                         <div className="w-full bg-slate-700 rounded-full h-2">
                           <motion.div
                             className="h-2 bg-gradient-to-r from-[#ECB629] to-yellow-400 rounded-full"
                             initial={{ width: "0%" }}
-                            animate={isInView ? { width: `${benefit.afterProgress}%` } : {}}
-                            transition={{ duration: 1.5, delay: index * 0.2 + 1.5 }}
+                            animate={
+                              isInView
+                                ? { width: `${benefit.afterProgress}%` }
+                                : {}
+                            }
+                            transition={{
+                              duration: 1.5,
+                              delay: index * 0.2 + 1.5,
+                            }}
                           />
                         </div>
                       </div>
@@ -756,7 +758,7 @@ const InvestmentSection = () => {
         "Всеки проект започва с дълбока диагностика на вашия бизнес, конкуренцията и техническото състояние на сайта. Това ни позволява да създадем индивидуален план, който точно отговаря на вашите цели и бюджет.",
     },
     {
-      number: "2", 
+      number: "2",
       title: "Рамка за бюджетиране",
       description:
         "Началната цена от 1980 лв./месец е отправна точка за стандартни проекти. Финалната инвестиция се определя въз основа на сложността на вашия пазар, обема на работа и желаните резултати.",
@@ -838,9 +840,7 @@ const InvestmentSection = () => {
                   ЗАПОЧВА ОТ
                 </div>
                 <div className="text-5xl md:text-6xl font-bold mb-2">
-                  <span className="text-[#ECB629]">
-                    1980 лв.
-                  </span>
+                  <span className="text-[#ECB629]">1980 лв.</span>
                   <span className="text-white text-3xl">/месечно</span>
                 </div>
                 <div className="text-gray-400 text-sm">
@@ -954,8 +954,8 @@ export default function SeoStruktor() {
                 <div className="absolute inset-0 w-3 h-3 bg-green-400 rounded-full animate-ping opacity-60"></div>
               </div>
               <span className="text-white text-sm font-semibold">
-                <span className="text-[#ECB629]">Ново</span> -
-                Приемаме проекти за 2025
+                <span className="text-[#ECB629]">Ново</span> - Приемаме проекти
+                за 2025
               </span>
             </motion.div>
 
@@ -1060,7 +1060,8 @@ export default function SeoStruktor() {
               transition={{ duration: 0.8, delay: 0.3 }}
               viewport={{ once: true }}
             >
-              Започнете систематичния подход към SEO с безплатна техническа диагностика.
+              Започнете систематичния подход към SEO с безплатна техническа
+              диагностика.
             </motion.p>
 
             {/* Trust Signals */}
@@ -1110,7 +1111,7 @@ export default function SeoStruktor() {
                 <span>Започнете диагностиката</span>
                 <ArrowRight className="w-5 h-5" />
               </motion.a>
-              
+
               <motion.a
                 href="tel:+359879282299"
                 className="inline-flex items-center gap-3 border-2 border-black text-black px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-300 hover:bg-black hover:text-white"
