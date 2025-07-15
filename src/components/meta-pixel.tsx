@@ -3,11 +3,7 @@
 import { useEffect } from 'react'
 import { usePathname } from 'next/navigation'
 
-declare global {
-  interface Window {
-    fbq: any
-  }
-}
+// Window.fbq type is declared in retargeting-pixels.tsx
 
 export function MetaPixel() {
   const pathname = usePathname()
