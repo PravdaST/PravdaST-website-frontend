@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { blogPosts, type InsertBlogPost } from '@shared/schema'
 import { db } from '@server/db'
-import { desc, eq } from 'drizzle-orm'
+import { desc, eq, and } from 'drizzle-orm'
 
 // Rate limiting store (in production, use Redis)
 const rateLimitStore = new Map<string, { count: number, resetTime: number }>()
@@ -42,19 +42,22 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: 'Rate limit exceeded' }, { status: 429 })
     }
 
-    let query = db.select().from(blogPosts)
-
-    // Apply filters
+    // Build filters array
+    const filters = []
     if (published === 'true') {
-      query = query.where(eq(blogPosts.isPublished, true))
+      filters.push(eq(blogPosts.isPublished, true))
     }
-    
-    // Add category filter if provided
     if (category) {
-      query = query.where(eq(blogPosts.category, category))
+      filters.push(eq(blogPosts.category, category))
     }
 
-    // Apply ordering, limit, and offset
+    // Build and execute query
+    let query = db.select().from(blogPosts)
+    
+    if (filters.length > 0) {
+      query = query.where(and(...filters))
+    }
+
     const posts = await query
       .orderBy(desc(blogPosts.createdAt))
       .limit(limit)
