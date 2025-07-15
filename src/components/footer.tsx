@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Facebook, Youtube, Instagram, Linkedin } from "lucide-react";
+import { Mail, Phone, MapPin, Facebook, Youtube, Instagram, Linkedin, MessageCircle } from "lucide-react";
 
 export const Footer = () => {
   const footerLinks = {
@@ -244,6 +244,42 @@ export const Footer = () => {
                 </motion.li>
               ))}
             </ul>
+            
+            {/* Viber and WhatsApp Contacts */}
+            <motion.div 
+              className="mt-6 pt-4 border-t border-slate-700/30"
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.7 }}
+              viewport={{ once: true }}
+            >
+              <h5 className="text-gray-300 text-sm font-medium mb-3">Бързи контакти</h5>
+              <div className="flex items-center gap-4">
+                {/* Viber Button */}
+                <motion.a
+                  href="viber://chat?number=%2B359879282299"
+                  className="flex items-center gap-2 px-3 py-2 bg-[#665CAC] hover:bg-[#5548A3] text-white text-xs rounded-lg transition-colors"
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <MessageCircle size={14} />
+                  <span>Viber</span>
+                </motion.a>
+                
+                {/* WhatsApp Button */}
+                <motion.a
+                  href="https://wa.me/359879282299"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 px-3 py-2 bg-[#25D366] hover:bg-[#1DA851] text-white text-xs rounded-lg transition-colors"
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <MessageCircle size={14} />
+                  <span>WhatsApp</span>
+                </motion.a>
+              </div>
+            </motion.div>
           </motion.div>
         </div>
 
