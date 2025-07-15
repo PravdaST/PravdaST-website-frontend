@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
@@ -22,66 +22,177 @@ import {
 import { motion } from "framer-motion";
 
 interface BlogPost {
-  id: number;
+  id: string;
   title: string;
   excerpt: string;
   content: string;
   author: string;
-  published_at: string;
-  read_time: number;
+  publishedAt: string;
+  readTime: number;
   category: string;
   slug: string;
   tags: string[];
-  featured_image?: string;
-  is_published: boolean;
-  created_at: string;
-  updated_at: string;
+  featuredImage?: string;
 }
+
+// Статични блог постове за стабилност
+const blogPosts: BlogPost[] = [
+  {
+    id: "1",
+    title: "Бизнес инженеринг: Как да превърнете хаоса в предсказуем растеж",
+    excerpt: "Открийте как бизнес инженерингът може да трансформира хаоса във вашия бизнес в предсказуем растеж. Научете за оптимизация на процеси, предсказуем растеж и конкурентно предимство.",
+    content: `В днешния динамичен бизнес свят, много компании се сблъскват с предизвикателството да поддържат стабилен растеж и да управляват ефективно своите операции.
+
+## Какво е бизнес инженеринг?
+
+Бизнес инженерингът не е просто модна дума, а стратегически подход, който трансформира начина, по който една организация функционира.
+
+## Защо е важен бизнес инженерингът?
+
+1. **Оптимизация на процесите**
+2. **Предсказуем растеж** 
+3. **Подобрено вземане на решения**
+4. **Конкурентно предимство**
+
+В Pravda Agency ние сме **бизнес инженери**. Нашата мисия е да превърнем хаотичния растеж във вашата компания в предвидима система за растеж.`,
+    author: "Правдаст Екип",
+    publishedAt: "2025-01-15",
+    readTime: 8,
+    category: "Бизнес стратегия",
+    slug: "biznes-inzhenerstvo-predvidim-rastezh",
+    tags: ["бизнес инженерство", "растеж", "оптимизация", "процеси"]
+  },
+  {
+    id: "2", 
+    title: "SEO Struktor™: Революционен подход към търсачка оптимизация",
+    excerpt: "Научете как SEO Struktor™ системата трансформира вашата онлайн видимост чрез структурни и инженерни подходи към търсачка оптимизация.",
+    content: `SEO Struktor™ е нашата собствена система за търсачка оптимизация, която използва инженерни принципи за постигане на измерими резултати.
+
+## Какво прави SEO Struktor™ различен?
+
+- **Структурен подход** към техническо SEO
+- **Инженерни методи** за анализ на конкуренцията
+- **Измерими резултати** с конкретни KPI
+
+## Как работи системата?
+
+1. Технически одит на сайта
+2. Анализ на ключови думи и конкуренция  
+3. Структурна оптимизация
+4. Мониторинг и адаптация
+
+Резултатите говорят сами за себе си - клиентите ни постигат 300-500% увеличение на органичен трафик.`,
+    author: "SEO Експерт",
+    publishedAt: "2025-01-12",
+    readTime: 6,
+    category: "SEO и Маркетинг",
+    slug: "seo-struktor-revolutionen-podhod",
+    tags: ["SEO", "търсачка оптимизация", "онлайн маркетинг", "трафик"]
+  },
+  {
+    id: "3",
+    title: "Clientomat™: Автоматизиране на клиентските отношения",
+    excerpt: "Открийте как Clientomat™ автоматизира целия клиентски жизнен цикъл - от първия контакт до дългосрочните отношения.",
+    content: `Clientomat™ е нашата система за управление на клиентския жизнен цикъл, която автоматизира процесите от първия контакт до затварянето на сделката.
+
+## Основни компоненти:
+
+- **Lead Generation** - Автоматично привличане на потенциални клиенти
+- **Lead Nurturing** - Поддържане на интереса със персонализирано съдържание
+- **Sales Automation** - Оптимизиране на продажбения процес
+- **Customer Retention** - Задържане и развитие на съществуващи клиенти
+
+## Резултати:
+
+Клиентите ни отчитат:
+- 40-60% увеличение на конверсиите
+- 50% намаляване на времето за затваряне на сделка
+- 3x повече повтарящи се клиенти
+
+Системата работи 24/7 и носи консистентни резултати.`,
+    author: "CRM Специалист",
+    publishedAt: "2025-01-10", 
+    readTime: 5,
+    category: "Автоматизация",
+    slug: "clientomat-avtomatiziran-klientski-otnosheniya",
+    tags: ["CRM", "автоматизация", "клиенти", "продажби"]
+  },
+  {
+    id: "4",
+    title: "Clickstarter™: Оптимизация на онлайн рекламите",
+    excerpt: "Научете как Clickstarter™ максимизира ROI от всяка рекламна кампания чрез данни и инженерни подходи.",
+    content: `Clickstarter™ е нашата система за оптимизация на платени реклами, която превръща всяка инвестиция в реклама в измерим растеж.
+
+## Ключови особености:
+
+- **A/B тестване** на всички рекламни елементи
+- **Predictive Analytics** за прогнозиране на резултати
+- **Real-time оптимизация** на кампании
+- **Cross-platform управление**
+
+## Резултати от системата:
+
+- 150-300% подобрение на ROAS
+- 40-60% намаляване на cost per acquisition
+- 25% увеличение на conversion rates
+
+Превърнете рекламната си инвестиция в предсказуем канал за растеж.`,
+    author: "PPC Експерт",
+    publishedAt: "2025-01-08",
+    readTime: 7,
+    category: "Онлайн реклама",
+    slug: "clickstarter-optimizatsiya-onlain-reklami",
+    tags: ["PPC", "Google Ads", "Facebook Ads", "ROI", "оптимизация"]
+  },
+  {
+    id: "5",
+    title: "Trendlab™: Изграждане на авторитет чрез съдържание",
+    excerpt: "Открийте как Trendlab™ позиционира вашия бизнес като експерт в индустрията чрез стратегическо създаване на съдържание.",
+    content: `Trendlab™ е нашата система за изграждане на авторитет и лидерство в индустрията чрез стратегическо създаване и разпространение на съдържание.
+
+## Компоненти на системата:
+
+- **Content Strategy** - Планиране на съдържание за максимален импакт
+- **Authority Building** - Позициониране като експерт
+- **Multi-channel Distribution** - Разпространение на множество канали
+- **Engagement Optimization** - Максимизиране на взаимодействието
+
+## Измерими резултати:
+
+- 200-400% увеличение на brand awareness
+- 3x повече qualified leads от съдържание
+- Подобрено доверие и авторитет в индустрията
+
+Превърнете експертизата си в конкурентно предимство.`,
+    author: "Content Стратег",
+    publishedAt: "2025-01-05",
+    readTime: 6,
+    category: "Content Marketing",
+    slug: "trendlab-izgrazhdane-avtoritet-sadarzhanie",
+    tags: ["content marketing", "branding", "авторитет", "експертиза"]
+  }
+];
 
 const categories = [
   "Всички",
   "Бизнес стратегия",
   "SEO и Маркетинг", 
   "Автоматизация",
-  "Бизнес инженеринг",
+  "Онлайн реклама",
+  "Content Marketing"
 ];
 
 export default function BlogClient() {
-  const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("Всички");
-
-  // Fetch blog posts from API
-  useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        setLoading(true);
-        const response = await fetch('/api/blog/posts?published=true');
-        if (!response.ok) {
-          throw new Error('Failed to fetch posts');
-        }
-        const posts = await response.json();
-        setBlogPosts(posts);
-      } catch (err) {
-        setError('Грешка при зареждане на постове. Моля опитайте отново.');
-        console.error('Error fetching blog posts:', err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchPosts();
-  }, []);
 
   const filteredPosts = blogPosts.filter((post) => {
     const matchesSearch =
       post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
       post.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      (Array.isArray(post.tags) && post.tags.some((tag) =>
+      post.tags.some((tag) =>
         tag.toLowerCase().includes(searchTerm.toLowerCase())
-      ));
+      );
     const matchesCategory =
       selectedCategory === "Всички" || post.category === selectedCategory;
     return matchesSearch && matchesCategory;
@@ -195,97 +306,74 @@ export default function BlogClient() {
         {/* Blog Posts Section */}
         <section className="py-16 sm:py-20">
           <div className="container mx-auto px-4 sm:px-6">
-            {loading && (
-              <div className="text-center py-16">
-                <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-[#ECB629]"></div>
-                <p className="text-gray-400 mt-4">Зареждане на статии...</p>
-              </div>
-            )}
-
-            {error && (
-              <div className="text-center py-16">
-                <div className="bg-red-500/10 border border-red-500/20 rounded-lg p-6 max-w-md mx-auto">
-                  <p className="text-red-400">{error}</p>
-                  <Button 
-                    onClick={() => window.location.reload()} 
-                    className="mt-4 bg-red-600 hover:bg-red-700"
-                  >
-                    Опитайте отново
-                  </Button>
-                </div>
-              </div>
-            )}
-
-            {!loading && !error && filteredPosts.length === 0 && (
+            {filteredPosts.length === 0 && (
               <div className="text-center py-16">
                 <BookOpen size={48} className="mx-auto text-gray-500 mb-4" />
                 <p className="text-gray-400 text-lg">Няма намерени статии за вашата заявка.</p>
               </div>
             )}
 
-            {!loading && !error && filteredPosts.length > 0 && (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {filteredPosts.map((post, index) => (
-                  <motion.div
-                    key={post.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: index * 0.1 }}
-                  >
-                    <Card className="bg-slate-800 border-slate-700 hover:border-[#ECB629]/50 transition-all duration-300 h-full group">
-                      <CardContent className="p-6 flex flex-col h-full">
-                        <div className="flex items-center gap-2 mb-3">
-                          <Badge variant="secondary" className="bg-[#ECB629]/10 text-[#ECB629] border-[#ECB629]/20">
-                            {post.category}
-                          </Badge>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {filteredPosts.map((post, index) => (
+                <motion.div
+                  key={post.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                >
+                  <Card className="bg-slate-800 border-slate-700 hover:border-[#ECB629]/50 transition-all duration-300 h-full group">
+                    <CardContent className="p-6 flex flex-col h-full">
+                      <div className="flex items-center gap-2 mb-3">
+                        <Badge variant="secondary" className="bg-[#ECB629]/10 text-[#ECB629] border-[#ECB629]/20">
+                          {post.category}
+                        </Badge>
+                      </div>
+
+                      <h2 className="text-xl font-bold text-white mb-3 group-hover:text-[#ECB629] transition-colors line-clamp-2">
+                        {post.title}
+                      </h2>
+
+                      <p className="text-gray-400 mb-4 flex-grow line-clamp-3">
+                        {post.excerpt}
+                      </p>
+
+                      <div className="flex items-center gap-4 text-sm text-gray-500 mb-4">
+                        <div className="flex items-center gap-1">
+                          <User size={14} />
+                          <span>{post.author}</span>
                         </div>
-
-                        <h2 className="text-xl font-bold text-white mb-3 group-hover:text-[#ECB629] transition-colors line-clamp-2">
-                          {post.title}
-                        </h2>
-
-                        <p className="text-gray-400 mb-4 flex-grow line-clamp-3">
-                          {post.excerpt}
-                        </p>
-
-                        <div className="flex items-center gap-4 text-sm text-gray-500 mb-4">
-                          <div className="flex items-center gap-1">
-                            <User size={14} />
-                            <span>{post.author}</span>
-                          </div>
-                          <div className="flex items-center gap-1">
-                            <Clock size={14} />
-                            <span>{post.read_time} мин</span>
-                          </div>
-                          <div className="flex items-center gap-1">
-                            <Calendar size={14} />
-                            <span>{new Date(post.published_at).toLocaleDateString('bg-BG')}</span>
-                          </div>
+                        <div className="flex items-center gap-1">
+                          <Clock size={14} />
+                          <span>{post.readTime} мин</span>
                         </div>
-
-                        <div className="flex flex-wrap gap-2 mb-4">
-                          {Array.isArray(post.tags) && post.tags.slice(0, 3).map((tag, tagIndex) => (
-                            <span
-                              key={tagIndex}
-                              className="px-2 py-1 bg-slate-700 text-gray-300 rounded text-xs"
-                            >
-                              #{tag}
-                            </span>
-                          ))}
+                        <div className="flex items-center gap-1">
+                          <Calendar size={14} />
+                          <span>{new Date(post.publishedAt).toLocaleDateString('bg-BG')}</span>
                         </div>
+                      </div>
 
-                        <Link href={`/blog/${post.slug}`}>
-                          <Button className="w-full bg-transparent border border-[#ECB629] text-[#ECB629] hover:bg-[#ECB629] hover:text-slate-900 transition-all duration-300 group">
-                            Прочети статията
-                            <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
-                          </Button>
-                        </Link>
-                      </CardContent>
-                    </Card>
-                  </motion.div>
-                ))}
-              </div>
-            )}
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        {post.tags.slice(0, 3).map((tag, tagIndex) => (
+                          <span
+                            key={tagIndex}
+                            className="px-2 py-1 bg-slate-700 text-gray-300 rounded text-xs"
+                          >
+                            #{tag}
+                          </span>
+                        ))}
+                      </div>
+
+                      <Link href={`/blog/${post.slug}`}>
+                        <Button className="w-full bg-transparent border border-[#ECB629] text-[#ECB629] hover:bg-[#ECB629] hover:text-slate-900 transition-all duration-300 group">
+                          Прочети статията
+                          <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
+                        </Button>
+                      </Link>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </section>
 
