@@ -96,8 +96,7 @@ export class DatabaseStorage implements IStorage {
         userId: session.userId,
         token: session.token,
         expiresAt: session.expiresAt,
-        createdAt: new Date(),
-        updatedAt: new Date()
+        createdAt: new Date()
       };
     }
   }
