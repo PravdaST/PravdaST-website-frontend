@@ -18,8 +18,8 @@ export async function sendContactEmail(data: ContactData) {
     console.log('SendGrid API key not configured - using development mode')
     console.log('EMAIL PREVIEW (Development Mode):')
     console.log('====================================')
-    console.log(`TO: contact@pravdast.agency`)
-    console.log(`FROM: website@pravdast.agency`)
+    console.log(`TO: contact@pravdagency.eu`)
+    console.log(`FROM: website@pravdagency.eu`)
     console.log(`SUBJECT: 🔥 Ново запитване от ${data.name} - ${data.company || 'Частно лице'}`)
     console.log(`ДАННИ:`)
     console.log(`  👤 Име: ${data.name}`)
@@ -110,7 +110,7 @@ export async function sendContactEmail(data: ContactData) {
           
           <div class="footer">
             <p><strong>Pravda Agency</strong> - Бизнес инженеринг за предвидим растеж</p>
-            <p>ул. Дебър №58, Варна | +359 879 282 299 | contact@pravdast.agency</p>
+            <p>ул. Дебър №58, Варна | +359 879 282 299 | contact@pravdagency.eu</p>
           </div>
         </div>
       </body>
@@ -133,13 +133,13 @@ ${data.message}
 
 ---
 Pravda Agency - Бизнес инженеринг за предвидим растеж
-ул. Дебър №58, Варна | +359 879 282 299 | contact@pravdast.agency
+ул. Дебър №58, Варна | +359 879 282 299 | contact@pravdagency.eu
     `
 
     const msg = {
-      to: 'contact@pravdast.agency',
+      to: 'contact@pravdagency.eu',
       from: {
-        email: 'website@pravdast.agency',
+        email: 'website@pravdagency.eu',
         name: 'Pravda Agency Website'
       },
       subject: `🔥 Ново запитване от ${data.name} - ${data.company || 'Частно лице'}`,
@@ -148,8 +148,9 @@ Pravda Agency - Бизнес инженеринг за предвидим рас
       replyTo: data.email
     }
 
-    await sgMail.send(msg)
-    console.log('Contact email sent successfully to contact@pravdast.agency')
+    const response = await sgMail.send(msg)
+    console.log('Contact email sent successfully to contact@pravdagency.eu')
+    console.log('SendGrid Response:', JSON.stringify(response[0]?.statusCode), response[0]?.headers?.['x-message-id'])
     
     return { 
       success: true, 
