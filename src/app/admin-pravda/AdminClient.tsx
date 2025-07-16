@@ -78,11 +78,13 @@ export default function AdminClient() {
 
   useEffect(() => {
     const savedToken = localStorage.getItem('adminToken');
+    console.log('Saved token:', savedToken);
     if (savedToken) {
       setToken(savedToken);
       setIsAuthenticated(true);
       loadData();
     }
+    console.log('isAuthenticated:', savedToken ? true : false);
   }, []);
 
   const login = async () => {
