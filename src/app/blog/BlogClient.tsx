@@ -237,13 +237,13 @@ const blogPosts: BlogPost[] = [
 **Продължителност:** 4-6 седмици
 
 **Content framework:**
-```
+\`\`\`
 Pillar Page (Main Topic)
 ├── Supporting Article 1 (Subtopic A)
 ├── Supporting Article 2 (Subtopic B)  
 ├── Supporting Article 3 (Subtopic C)
 └── Internal Linking Strategy
-```
+\`\`\`
 
 ### 3. Predictive Analytics & Automation
 
