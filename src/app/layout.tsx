@@ -11,6 +11,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next'
 import { ClarityAnalytics } from '@/components/clarity-analytics'
 import { RetargetingPixels } from '@/components/retargeting-pixels'
 import { ServiceWorkerSetup } from '@/components/service-worker-setup'
+import { Toaster } from '@/components/ui/toaster'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -41,6 +42,7 @@ export default function RootLayout({
         <ClientOnly>
           <ScrollToTop />
         </ClientOnly>
+        <Toaster />
         <SpeedInsights />
       </body>
     </html>
