@@ -776,11 +776,11 @@ Clickstarter™ е нашата собствена система за опти�
 **Systematic Creative Development:**
 
 **Ad Components Matrix:**
-```
+\`\`\`
 Headlines (5 варианта) × Descriptions (3 варианта) × 
 Images/Videos (4 варианта) × CTAs (3 варианта) = 
 180 possible ad combinations
-```
+\`\`\`
 
 **Creative Testing Categories:**
 
@@ -853,11 +853,11 @@ Images/Videos (4 варианта) × CTAs (3 варианта) =
 **Multi-Touch Attribution Modeling:**
 
 **Customer Journey Mapping:**
-```
+\`\`\`
 Awareness (Facebook Ad) → Interest (Google Search) → 
 Consideration (Retargeting) → Purchase (Email Campaign) → 
 Retention (LinkedIn Content)
-```
+\`\`\`
 
 **Attribution Models Comparison:**
 
@@ -925,13 +925,13 @@ Retention (LinkedIn Content)
 ### Google Ads Optimization Framework
 
 **Search Campaign Structure:**
-```
+\`\`\`
 Campaign Level: Target CPA Bidding
 ├── Ad Group 1: Exact Match Keywords (High Intent)
 ├── Ad Group 2: Phrase Match Keywords (Medium Intent) 
 ├── Ad Group 3: Broad Match Keywords (Discovery)
 └── Ad Group 4: Competitor Keywords (Defensive)
-```
+\`\`\`
 
 **Shopping Campaign Hierarchy:**
 - **High Priority:** Best-selling products, exact targeting
@@ -952,13 +952,13 @@ Campaign Level: Target CPA Bidding
 - **Conversion:** Purchases, leads, catalog sales
 
 **Audience Stacking Strategy:**
-```
+\`\`\`
 Lookalike 1% (Best Customers) + 
 Interest (Industry Relevant) + 
 Behavior (Purchase Intent) + 
 Demographics (Age, Income) = 
 Hyper-Targeted Audience
-```
+\`\`\`
 
 ## Tools & Technology Stack
 
