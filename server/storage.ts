@@ -62,7 +62,7 @@ export class DatabaseStorage implements IStorage {
         return {
           id: 1,
           username: 'admin',
-          password: '$2b$10$EStuEBvfko33LoF9xY6lQOSgCAY0VNzDyQYvnLCprNYAd3UwlUlt.',
+          password: '$2b$10$HUZOPJoMqmPeKP1JX/4cDuBC5zqXZL35.Vn87jt94DsKCZMYeKq6q',
           email: 'admin@pravdagency.eu',
           createdAt: new Date(),
           updatedAt: new Date()
