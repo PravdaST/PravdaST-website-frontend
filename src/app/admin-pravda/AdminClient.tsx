@@ -30,6 +30,7 @@ interface Contact {
 }
 
 export default function AdminClient() {
+  // All useState hooks must be at the top level
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState(false);
   const [token, setToken] = useState<string | null>(null);
@@ -37,6 +38,9 @@ export default function AdminClient() {
   const [password, setPassword] = useState('');
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [contacts, setContacts] = useState<Contact[]>([]);
+  const [activeTab, setActiveTab] = useState<'blog' | 'contacts'>('blog');
+  const [editingPost, setEditingPost] = useState<BlogPost | null>(null);
+  const [isCreating, setIsCreating] = useState(false);
 
   useEffect(() => {
     const savedToken = localStorage.getItem('adminToken');
@@ -45,6 +49,42 @@ export default function AdminClient() {
       setIsAuthenticated(true);
     }
   }, []);
+
+  // Load data when authenticated
+  useEffect(() => {
+    if (isAuthenticated && token) {
+      loadBlogPosts();
+      loadContacts();
+    }
+  }, [isAuthenticated, token]);
+
+  const loadBlogPosts = async () => {
+    try {
+      const response = await fetch('/api/blog/posts', {
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      if (response.ok) {
+        const data = await response.json();
+        setPosts(data);
+      }
+    } catch (error) {
+      console.error('Error loading posts:', error);
+    }
+  };
+
+  const loadContacts = async () => {
+    try {
+      const response = await fetch('/api/admin?action=contacts', {
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      if (response.ok) {
+        const data = await response.json();
+        setContacts(data);
+      }
+    } catch (error) {
+      console.error('Error loading contacts:', error);
+    }
+  };
 
   const login = async () => {
     setLoading(true);
@@ -75,6 +115,40 @@ export default function AdminClient() {
     localStorage.removeItem('adminToken');
     setToken(null);
     setIsAuthenticated(false);
+  };
+
+  const togglePublish = async (postId: number, isPublished: boolean) => {
+    try {
+      const response = await fetch(`/api/blog/posts/${postId}`, {
+        method: 'PUT',
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({ isPublished: !isPublished })
+      });
+      if (response.ok) {
+        loadBlogPosts();
+      }
+    } catch (error) {
+      console.error('Error updating post:', error);
+    }
+  };
+
+  const deletePost = async (postId: number) => {
+    if (confirm('Сигурен ли сте, че искате да изтриете този пост?')) {
+      try {
+        const response = await fetch(`/api/blog/posts/${postId}`, {
+          method: 'DELETE',
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        if (response.ok) {
+          loadBlogPosts();
+        }
+      } catch (error) {
+        console.error('Error deleting post:', error);
+      }
+    }
   };
 
   if (!isAuthenticated) {
@@ -114,80 +188,6 @@ export default function AdminClient() {
       </div>
     );
   }
-
-  const [activeTab, setActiveTab] = useState<'blog' | 'contacts'>('blog');
-  const [editingPost, setEditingPost] = useState<BlogPost | null>(null);
-  const [isCreating, setIsCreating] = useState(false);
-
-  // Load data when authenticated
-  useEffect(() => {
-    if (isAuthenticated && token) {
-      loadBlogPosts();
-      loadContacts();
-    }
-  }, [isAuthenticated, token]);
-
-  const loadBlogPosts = async () => {
-    try {
-      const response = await fetch('/api/blog/posts', {
-        headers: { 'Authorization': `Bearer ${token}` }
-      });
-      if (response.ok) {
-        const data = await response.json();
-        setPosts(data);
-      }
-    } catch (error) {
-      console.error('Error loading posts:', error);
-    }
-  };
-
-  const loadContacts = async () => {
-    try {
-      const response = await fetch('/api/admin?action=contacts', {
-        headers: { 'Authorization': `Bearer ${token}` }
-      });
-      if (response.ok) {
-        const data = await response.json();
-        setContacts(data);
-      }
-    } catch (error) {
-      console.error('Error loading contacts:', error);
-    }
-  };
-
-  const togglePublish = async (postId: number, isPublished: boolean) => {
-    try {
-      const response = await fetch(`/api/blog/posts/${postId}`, {
-        method: 'PUT',
-        headers: { 
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        },
-        body: JSON.stringify({ isPublished: !isPublished })
-      });
-      if (response.ok) {
-        loadBlogPosts();
-      }
-    } catch (error) {
-      console.error('Error updating post:', error);
-    }
-  };
-
-  const deletePost = async (postId: number) => {
-    if (confirm('Сигурен ли сте, че искате да изтриете този пост?')) {
-      try {
-        const response = await fetch(`/api/blog/posts/${postId}`, {
-          method: 'DELETE',
-          headers: { 'Authorization': `Bearer ${token}` }
-        });
-        if (response.ok) {
-          loadBlogPosts();
-        }
-      } catch (error) {
-        console.error('Error deleting post:', error);
-      }
-    }
-  };
 
   return (
     <div className="min-h-screen bg-slate-900 p-6">
@@ -296,32 +296,36 @@ export default function AdminClient() {
           <div className="bg-slate-800 border border-slate-700 rounded-lg p-6">
             <h2 className="text-xl font-semibold text-white mb-6">Contact Messages</h2>
             <div className="space-y-4">
-              {contacts.map((contact) => (
-                <div key={contact.id} className="bg-slate-700 border border-slate-600 rounded-lg p-4">
-                  <div className="flex justify-between items-start">
-                    <div className="flex-1">
-                      <h3 className="text-lg font-semibold text-white mb-2">{contact.name}</h3>
-                      <p className="text-gray-300 text-sm mb-2">
-                        <strong>Email:</strong> {contact.email}
-                      </p>
-                      <p className="text-gray-300 text-sm mb-2">
-                        <strong>Company:</strong> {contact.company}
-                      </p>
-                      {contact.website && (
+              {contacts.length === 0 ? (
+                <p className="text-gray-400 text-center py-8">No contact messages yet.</p>
+              ) : (
+                contacts.map((contact) => (
+                  <div key={contact.id} className="bg-slate-700 border border-slate-600 rounded-lg p-4">
+                    <div className="flex justify-between items-start">
+                      <div className="flex-1">
+                        <h3 className="text-lg font-semibold text-white mb-2">{contact.name}</h3>
                         <p className="text-gray-300 text-sm mb-2">
-                          <strong>Website:</strong> {contact.website}
+                          <strong>Email:</strong> {contact.email}
                         </p>
-                      )}
-                      <p className="text-gray-300 text-sm mb-2">
-                        <strong>Message:</strong> {contact.message}
-                      </p>
-                      <p className="text-gray-400 text-xs">
-                        Received: {new Date(contact.createdAt).toLocaleDateString('bg-BG')}
-                      </p>
+                        <p className="text-gray-300 text-sm mb-2">
+                          <strong>Company:</strong> {contact.company}
+                        </p>
+                        {contact.website && (
+                          <p className="text-gray-300 text-sm mb-2">
+                            <strong>Website:</strong> {contact.website}
+                          </p>
+                        )}
+                        <p className="text-gray-300 text-sm mb-2">
+                          <strong>Message:</strong> {contact.message}
+                        </p>
+                        <p className="text-gray-400 text-xs">
+                          Received: {new Date(contact.createdAt).toLocaleDateString('bg-BG')}
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))
+              )}
             </div>
           </div>
         )}
