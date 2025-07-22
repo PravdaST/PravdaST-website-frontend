@@ -960,7 +960,7 @@ SEO Struktor™ не е разход - това е investment в sustainable com
     publishedAt: "2025-01-12",
     readTime: 14,
     category: "SEO и Маркетинг",
-    slug: "seo-struktor-revolutionen-podhod",
+    slug: "seo-struktor-revolyutsionen-podhod-seo",
     tags: ["SEO", "органичен трафик", "техническо SEO", "съдържание", "ранкиране"]
   },
   {
@@ -1462,7 +1462,7 @@ Clientomat™ не е разход - това е investment в predictable, prof
     publishedAt: "2025-01-10",
     readTime: 15,
     category: "Автоматизация",
-    slug: "clientomat-avtomatiziran-klientski-otnosheniya",
+    slug: "clientomat-avtomatizatsiya-klientski-otnosheniya",
     tags: ["CRM", "автоматизация", "клиенти", "retention", "персонализация", "workflows"]
   },
   {

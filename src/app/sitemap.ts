@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://pravdagency.eu'
+  const baseUrl = 'https://www.pravdagency.eu'
 
   // Static pages
   const staticPages = [
