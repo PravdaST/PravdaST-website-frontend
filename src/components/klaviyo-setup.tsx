@@ -10,9 +10,8 @@ interface KlaviyoWindow extends Window {
 
 export const KlaviyoSetup = () => {
   useEffect(() => {
-    // Support both Next.js and Vite environment variable formats
-    const companyId = process.env.NEXT_PUBLIC_KLAVIYO_COMPANY_ID || 
-                     process.env.VITE_KLAVIYO_PUBLIC_API_KEY
+    // Use correct Next.js environment variable
+    const companyId = process.env.NEXT_PUBLIC_KLAVIYO_COMPANY_ID
 
     if (!companyId) {
       console.warn('Klaviyo: No company ID found in environment variables')
