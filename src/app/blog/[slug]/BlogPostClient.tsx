@@ -310,9 +310,9 @@ function BlogContent({ content }: { content: string }) {
     return text
       .split('\n')
       .map((line, index) => {
-        // Headers
+        // Headers - Skip H1 to avoid duplicate (already rendered in hero)
         if (line.startsWith('# ')) {
-          return `<h1 class="text-4xl font-bold text-white mb-8 mt-12 first:mt-0">${line.slice(2)}</h1>`
+          return '' // Skip H1 to avoid duplicate with hero section
         }
         if (line.startsWith('## ')) {
           return `<h2 class="text-3xl font-bold text-white mb-6 mt-10 border-l-4 border-[#ECB629] pl-4">${line.slice(3)}</h2>`

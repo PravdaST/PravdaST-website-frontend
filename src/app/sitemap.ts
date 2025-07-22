@@ -3,16 +3,22 @@ import { MetadataRoute } from 'next'
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://www.pravdagency.eu'
 
-  // Static pages
+  // Static pages - include ALL indexable pages
   const staticPages = [
     '',
+    '/about', 
     '/services',
     '/services/seo-struktor',
-    '/services/trendlab',
+    '/services/trendlab', 
     '/services/clickstarter',
     '/services/clientomat',
     '/calculators',
     '/blog',
+    '/blog/biznes-inzhenerstvo-predvidim-rastezh',
+    '/blog/seo-struktor-revolyutsionen-podhod-seo', 
+    '/blog/clientomat-avtomatizatsiya-klientski-otnosheniya',
+    '/blog/clickstarter-optimizatsiya-onlain-reklami',
+    '/blog/trendlab-izgrazhdane-avtoritet-sdarzhanie',
     '/case-studies',
     '/contact',
     '/faq',
