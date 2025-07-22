@@ -6,35 +6,41 @@ import { Card, CardContent } from "@/components/ui/card";
 // Modern SVG Icons
 const DiagnosticIcon = () => (
   <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M16 2C18.7614 2 21 4.23858 21 7C21 9.76142 18.7614 12 16 12C13.2386 12 11 9.76142 11 7C11 4.23858 13.2386 2 16 2Z" fill="currentColor"/>
-    <path d="M4 16C4 15.4477 4.44772 15 5 15H11C11.5523 15 12 15.4477 12 16C12 16.5523 11.5523 17 11 17H5C4.44772 17 4 16.5523 4 16Z" fill="currentColor"/>
-    <path d="M20 16C20 15.4477 20.4477 15 21 15H27C27.5523 15 28 15.4477 28 16C28 16.5523 27.5523 17 27 17H21C20.4477 17 20 16.5523 20 16Z" fill="currentColor"/>
-    <path d="M8.5 22.5C8.5 21.9477 8.94772 21.5 9.5 21.5H15.5C16.0523 21.5 16.5 21.9477 16.5 22.5C16.5 23.0523 16.0523 23.5 15.5 23.5H9.5C8.94772 23.5 8.5 23.0523 8.5 22.5Z" fill="currentColor"/>
-    <path d="M22.5 9.5C22.5 8.94772 22.9477 8.5 23.5 8.5H29.5C30.0523 8.5 30.5 8.94772 30.5 9.5C30.5 10.0523 30.0523 10.5 29.5 10.5H23.5C22.9477 10.5 22.5 10.0523 22.5 9.5Z" fill="currentColor"/>
-    <circle cx="16" cy="26" r="3" fill="currentColor"/>
+    <circle cx="13" cy="13" r="9" stroke="currentColor" strokeWidth="2" fill="none"/>
+    <path d="M21 21L27 27" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+    <circle cx="13" cy="10" r="1" fill="currentColor"/>
+    <circle cx="10" cy="13" r="1" fill="currentColor"/>
+    <circle cx="16" cy="13" r="1" fill="currentColor"/>
+    <circle cx="13" cy="16" r="1" fill="currentColor"/>
   </svg>
 );
 
 const BuildIcon = () => (
   <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M4 4C4 2.89543 4.89543 2 6 2H26C27.1046 2 28 2.89543 28 4V8C28 9.10457 27.1046 10 26 10H6C4.89543 10 4 9.10457 4 8V4Z" fill="currentColor"/>
-    <path d="M4 14C4 12.8954 4.89543 12 6 12H12C13.1046 12 14 12.8954 14 14V18C14 19.1046 13.1046 20 12 20H6C4.89543 20 4 19.1046 4 18V14Z" fill="currentColor"/>
-    <path d="M18 14C18 12.8954 18.8954 12 20 12H26C27.1046 12 28 12.8954 28 14V28C28 29.1046 27.1046 30 26 30H20C18.8954 30 18 29.1046 18 28V14Z" fill="currentColor"/>
-    <path d="M4 24C4 22.8954 4.89543 22 6 22H12C13.1046 22 14 22.8954 14 24V28C14 29.1046 13.1046 30 12 30H6C4.89543 30 4 29.1046 4 28V24Z" fill="currentColor"/>
+    <path d="M10 2L8 4L12 8L14 6L10 2Z" fill="currentColor"/>
+    <path d="M8 4L2 10L4 12L10 6L8 4Z" fill="currentColor"/>
+    <path d="M14 6L20 12L22 10L16 4L14 6Z" fill="currentColor"/>
+    <rect x="16" y="14" width="14" height="2" rx="1" fill="currentColor"/>
+    <rect x="16" y="18" width="12" height="2" rx="1" fill="currentColor"/>
+    <rect x="16" y="22" width="10" height="2" rx="1" fill="currentColor"/>
+    <rect x="16" y="26" width="8" height="2" rx="1" fill="currentColor"/>
+    <path d="M4 16L6 14L10 18L8 20L4 16Z" fill="currentColor"/>
+    <path d="M8 20L2 26L4 28L10 22L8 20Z" fill="currentColor"/>
   </svg>
 );
 
 const OptimizeIcon = () => (
   <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M6 26L10 22L14 26L18 20L22 24L26 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
-    <circle cx="6" cy="26" r="2" fill="currentColor"/>
-    <circle cx="10" cy="22" r="2" fill="currentColor"/>
-    <circle cx="14" cy="26" r="2" fill="currentColor"/>
-    <circle cx="18" cy="20" r="2" fill="currentColor"/>
-    <circle cx="22" cy="24" r="2" fill="currentColor"/>
-    <circle cx="26" cy="18" r="2" fill="currentColor"/>
-    <path d="M24 8L28 4L24 0" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
-    <path d="M28 4H16C13.7909 4 12 5.79086 12 8V12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+    <path d="M4 24L8 20L12 22L16 16L20 18L24 12L28 14" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+    <circle cx="4" cy="24" r="2" fill="currentColor"/>
+    <circle cx="8" cy="20" r="2" fill="currentColor"/>
+    <circle cx="12" cy="22" r="2" fill="currentColor"/>
+    <circle cx="16" cy="16" r="2" fill="currentColor"/>
+    <circle cx="20" cy="18" r="2" fill="currentColor"/>
+    <circle cx="24" cy="12" r="2" fill="currentColor"/>
+    <circle cx="28" cy="14" r="2" fill="currentColor"/>
+    <path d="M22 8L26 4L30 8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+    <path d="M26 4V12" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
   </svg>
 );
 
