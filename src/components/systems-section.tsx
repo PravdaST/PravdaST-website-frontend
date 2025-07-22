@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -109,7 +109,7 @@ const systems = [
     subtitle: "Система за автоматизирани връзки с клиенти",
     description:
       "Тази система създава автоматизиран процес, който превръща заинтересования посетител в лоялен клиент. Тя поддържа връзката, отговаря на въпроси и насочва към продажба, без да изисква вашето време.",
-    price: "от 2890 лв. / месец",
+    price: "от 2750 лв. / месец",
     period: "минимален период на договор – 3 месеца",
     icon: Users,
     link: "/services/clientomat",
@@ -222,7 +222,8 @@ export const SystemsSection = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            Нашите <span className="text-[#ECB629] relative">
+            Нашите{" "}
+            <span className="text-[#ECB629] relative">
               системи
               <motion.div
                 className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-[#ECB629] to-[#ECB629]/50 rounded-full"
@@ -241,7 +242,9 @@ export const SystemsSection = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             viewport={{ once: true }}
           >
-            Всяка система е проектирана да решава конкретен бизнес проблем. Можете да започнете с една или да комбинирате няколко за максимален ефект.
+            Всяка система е проектирана да решава конкретен бизнес проблем.
+            Можете да започнете с една или да комбинирате няколко за максимален
+            ефект.
           </motion.p>
         </motion.div>
 
@@ -261,19 +264,24 @@ export const SystemsSection = () => {
                 <div className="absolute top-4 right-4">
                   <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-[#ECB629]/20 border border-[#ECB629]/30">
                     <div className="w-1.5 h-1.5 bg-[#ECB629] rounded-full animate-pulse"></div>
-                    <span className="text-xs text-[#ECB629] font-medium">АКТИВНА</span>
+                    <span className="text-xs text-[#ECB629] font-medium">
+                      АКТИВНА
+                    </span>
                   </div>
                 </div>
 
                 {/* Animated Background Pattern */}
                 <div className="absolute inset-0 opacity-5">
-                  <div className="absolute inset-0" style={{
-                    backgroundImage: `
+                  <div
+                    className="absolute inset-0"
+                    style={{
+                      backgroundImage: `
                       linear-gradient(rgba(236, 182, 40, 0.15) 1px, transparent 1px),
                       linear-gradient(90deg, rgba(236, 182, 40, 0.15) 1px, transparent 1px)
                     `,
-                    backgroundSize: '20px 20px'
-                  }}></div>
+                      backgroundSize: "20px 20px",
+                    }}
+                  ></div>
                 </div>
 
                 <div className="p-6 relative z-10 h-full flex flex-col">
@@ -289,7 +297,7 @@ export const SystemsSection = () => {
                   <h3 className="text-xl font-bold text-white mb-2">
                     {system.title}
                   </h3>
-                  
+
                   <p className="text-sm text-gray-400 mb-4">
                     {system.subtitle}
                   </p>
@@ -299,15 +307,16 @@ export const SystemsSection = () => {
                     <div className="text-[#ECB629] font-bold text-lg">
                       {system.price}
                     </div>
-                    <div className="text-xs text-gray-400">
-                      {system.period}
-                    </div>
+                    <div className="text-xs text-gray-400">{system.period}</div>
                   </div>
 
                   {/* Features */}
                   <div className="space-y-3 mb-6 flex-grow">
                     {system.features.map((feature, featureIndex) => (
-                      <div key={featureIndex} className="flex items-start gap-3">
+                      <div
+                        key={featureIndex}
+                        className="flex items-start gap-3"
+                      >
                         <div className="flex items-center justify-center w-6 h-6 bg-[#ECB629]/20 rounded-md mt-0.5 flex-shrink-0">
                           <feature.icon className="w-3 h-3 text-[#ECB629]" />
                         </div>
@@ -325,18 +334,14 @@ export const SystemsSection = () => {
 
                   {/* CTA Button */}
                   <Link href={system.link}>
-                    <Button
-                      className="w-full bg-[#ECB629] text-black hover:bg-[#ECB629]/90 font-semibold group-hover:scale-105 transition-all duration-300"
-                    >
+                    <Button className="w-full bg-[#ECB629] text-black hover:bg-[#ECB629]/90 font-semibold group-hover:scale-105 transition-all duration-300">
                       Научете повече
                     </Button>
                   </Link>
                 </div>
 
                 {/* Hover Effects */}
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-br from-[#ECB629]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                />
+                <motion.div className="absolute inset-0 bg-gradient-to-br from-[#ECB629]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
             </motion.div>
           ))}
