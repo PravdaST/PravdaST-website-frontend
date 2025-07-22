@@ -1,0 +1,171 @@
+A tree hydrated but some attributes of the server rendered HTML didn&#x27;t match the client properties. This won&#x27;t be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch &#x60;if (typeof window !== &#x27;undefined&#x27;)&#x60;.
+- Variable input such as &#x60;Date.now()&#x60; or &#x60;Math.random()&#x60; which changes each time it&#x27;s called.
+- Date formatting in a user&#x27;s locale which doesn&#x27;t match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <HTTPAccessFallbackErrorBoundary pathname="/" notFound={[...]} forbidden={undefined} unauthorized={undefined} ...>
+      <RedirectBoundary>
+        <RedirectErrorBoundary router={{...}}>
+          <InnerLayoutRouter url="/" tree={[...]} cacheNode={{lazyData:null, ...}} segmentPath={[...]}>
+            <HomePage>
+              <HomeClient>
+                <div className="min-h-scre...">
+                  <HelmetSEO>
+                  <Navigation>
+                  <HeroSection>
+                    <section className="min-h-scre...">
+                      <div className="absolute i...">
+                        <div className="absolute i...">
+                          <div>
+                          <div>
+                          <motion.div className="absolute w..." style={{left:"90.6...", ...}} ...>
+                            <div
+                              className="absolute w-1 h-1 bg-[#ECB629] rounded-full"
+                              style={{
++                               left: "90.6772440993714%"
+-                               left: "19.2211%"
++                               top: "11.489410301509484%"
+-                               top: "18.7743%"
+                              }}
+                              ref={function}
+                            >
+                          <motion.div className="absolute w..." style={{left:"52.1...", ...}} ...>
+                            <div
+                              className="absolute w-1 h-1 bg-[#ECB629] rounded-full"
+                              style={{
++                               left: "52.11434717818608%"
+-                               left: "75.3102%"
++                               top: "1.4194476364749908%"
+-                               top: "55.5645%"
+                              }}
+                              ref={function}
+                            >
+                          <motion.div className="absolute w..." style={{left:"85.6...", ...}} ...>
+                            <div
+                              className="absolute w-1 h-1 bg-[#ECB629] rounded-full"
+                              style={{
++                               left: "85.65734504080463%"
+-                               left: "14.6472%"
++                               top: "67.88904211829524%"
+-                               top: "46.049%"
+                              }}
+                              ref={function}
+                            >
+                          <motion.div className="absolute w..." style={{left:"35.5...", ...}} ...>
+                            <div
+                              className="absolute w-1 h-1 bg-[#ECB629] rounded-full"
+                              style={{
++                               left: "35.56311489320261%"
+-                               left: "12.652%"
++                               top: "23.450383171465205%"
+-                               top: "43.6514%"
+                              }}
+                              ref={function}
+                            >
+                          <motion.div className="absolute w..." style={{left:"42.7...", ...}} ...>
+                            <div
+                              className="absolute w-1 h-1 bg-[#ECB629] rounded-full"
+                              style={{
++                               left: "42.78145583729391%"
+-                               left: "75.2224%"
++                               top: "9.022656979226474%"
+-                               top: "63.6041%"
+                              }}
+                              ref={function}
+                            >
+                         …
+
+- A server/client branch &amp;#x60;if (typeof window !== &amp;#x27;undefined&amp;#x27;)&amp;#x60;.
+- Variable input such as &amp;#x60;Date.now()&amp;#x60; or &amp;#x60;Math.random()&amp;#x60; which changes each time it&amp;#x27;s called.
+- Date formatting in a user&amp;#x27;s locale which doesn&amp;#x27;t match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+...
+&lt;HTTPAccessFallbackErrorBoundary pathname=&quot;/&quot; notFound={[...]} forbidden={undefined} unauthorized={undefined} ...&gt;
+&lt;RedirectBoundary&gt;
+&lt;RedirectErrorBoundary router={{...}}&gt;
+&lt;InnerLayoutRouter url=&quot;/&quot; tree={[...]} cacheNode={{lazyData:null, ...}} segmentPath={[...]}&gt;
+&lt;HomePage&gt;
+&lt;HomeClient&gt;
+&lt;div className=&quot;min-h-scre...&quot;&gt;
+&lt;HelmetSEO&gt;
+&lt;Navigation&gt;
+&lt;HeroSection&gt;
+&lt;section className=&quot;min-h-scre...&quot;&gt;
+&lt;div className=&quot;absolute i...&quot;&gt;
+&lt;div className=&quot;absolute i...&quot;&gt;
+&lt;div&gt;
+&lt;div&gt;
+&lt;motion.div className=&quot;absolute w...&quot; style={{left:&quot;90.6...&quot;, ...}} ...&gt;
+&lt;div
+className=&quot;absolute w-1 h-1 bg-[#ECB629] rounded-full&quot;
+style={{
++ left: &quot;90.6772440993714%&quot;
+- left: &quot;19.2211%&quot;
++ top: &quot;11.489410301509484%&quot;
+- top: &quot;18.7743%&quot;
+}}
+ref={function}
+&gt;
+&lt;motion.div className=&quot;absolute w...&quot; style={{left:&quot;52.1...&quot;, ...}} ...&gt;
+&lt;div
+className=&quot;absolute w-1 h-1 bg-[#ECB629] rounded-full&quot;
+style={{
++ left: &quot;52.11434717818608%&quot;
+- left: &quot;75.3102%&quot;
++ top: &quot;1.4194476364749908%&quot;
+- top: &quot;55.5645%&quot;
+}}
+ref={function}
+&gt;
+&lt;motion.div className=&quot;absolute w...&quot; style={{left:&quot;85.6...&quot;, ...}} ...&gt;
+&lt;div
+className=&quot;absolute w-1 h-1 bg-[#ECB629] rounded-full&quot;
+style={{
++ left: &quot;85.65734504080463%&quot;
+- left: &quot;14.6472%&quot;
++ top: &quot;67.88904211829524%&quot;
+- top: &quot;46.049%&quot;
+}}
+ref={function}
+&gt;
+&lt;motion.div className=&quot;absolute w...&quot; style={{left:&quot;35.5...&quot;, ...}} ...&gt;
+&lt;div
+className=&quot;absolute w-1 h-1 bg-[#ECB629] rounded-full&quot;
+style={{
++ left: &quot;35.56311489320261%&quot;
+- left: &quot;12.652%&quot;
++ top: &quot;23.450383171465205%&quot;
+- top: &quot;43.6514%&quot;
+}}
+ref={function}
+&gt;
+&lt;motion.div className=&quot;absolute w...&quot; style={{left:&quot;42.7...&quot;, ...}} ...&gt;
+&lt;div
+className=&quot;absolute w-1 h-1 bg-[#ECB629] rounded-full&quot;
+style={{
++ left: &quot;42.78145583729391%&quot;
+- left: &quot;75.2224%&quot;
++ top: &quot;9.022656979226474%&quot;
+- top: &quot;63.6041%&quot;
+}}
+ref={function}
+&gt;
+…
+at t.value (https://f4d5180b-4dc4-4a83-9ae1-e996e349184c-00-1tc2zh2zzto0d.kirk.replit.dev/__replco/static/devtools/eruda/3.2.3/eruda.js:2:17465)
+at new t (https://f4d5180b-4dc4-4a83-9ae1-e996e349184c-00-1tc2zh2zzto0d.kirk.replit.dev/__replco/static/devtools/eruda/3.2.3/eruda.js:2:12630)
+at t.value (https://f4d5180b-4dc4-4a83-9ae1-e996e349184c-00-1tc2zh2zzto0d.kirk.replit.dev/__replco/static/devtools/eruda/3.2.3/eruda.js:2:32766)
+at https://f4d5180b-4dc4-4a83-9ae1-e996e349184c-00-1tc2zh2zzto0d.kirk.replit.dev/__replco/static/devtools/eruda/3.2.3/eruda.js:2:34400
