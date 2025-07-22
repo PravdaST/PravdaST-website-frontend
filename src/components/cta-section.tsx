@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { motion } from "framer-motion";
 import {
@@ -106,11 +106,16 @@ export const CTASection = () => {
                 viewport={{ once: true }}
               >
                 <p className="text-xl md:text-2xl text-gray-300 leading-relaxed">
-                  Приемаме до <span className="text-[#ECB629] font-bold">3 нови партньори</span> за следващото тримесечие.
+                  Приемаме до{" "}
+                  <span className="text-[#ECB629] font-bold">
+                    3 нови партньори
+                  </span>{" "}
+                  за следващото тримесечие.
                 </p>
-                
+
                 <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-                  Работим с ограничен брой клиенти, за да осигурим максимално внимание и резултати за всеки проект.
+                  Работим с ограничен брой клиенти, за да осигурим максимално
+                  внимание и резултати за всеки проект.
                 </p>
               </motion.div>
             </motion.div>
@@ -136,7 +141,9 @@ export const CTASection = () => {
                   transition={{ duration: 0.2 }}
                 >
                   <item.icon className="w-8 h-8 text-[#ECB629] group-hover:scale-110 transition-transform duration-300" />
-                  <span className="text-sm text-gray-300 text-center">{item.text}</span>
+                  <span className="text-sm text-gray-300 text-center">
+                    {item.text}
+                  </span>
                 </motion.div>
               ))}
             </motion.div>
@@ -155,12 +162,13 @@ export const CTASection = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => {
-                  window.open("https://form.typeform.com/to/GXLaGY98", "_blank");
+                  window.open(
+                    "https://form.typeform.com/to/GXLaGY98",
+                    "_blank",
+                  );
                 }}
               >
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 group-hover:animate-pulse"
-                />
+                <motion.div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 group-hover:animate-pulse" />
                 <span className="relative z-10 flex items-center gap-3">
                   Започнете с безплатна диагностика
                   <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform duration-300" />
@@ -176,23 +184,21 @@ export const CTASection = () => {
                 }}
               >
                 <Phone className="w-5 h-5 group-hover:rotate-12 transition-transform duration-300" />
-                <span className="font-semibold">Или се обадете: +359 879 282 299</span>
+                <span className="font-semibold">
+                  Или се обадете: +359 879 282 299
+                </span>
               </motion.button>
             </motion.div>
 
             {/* Warning Section */}
-            <motion.div
+            {/*<motion.div
               className="max-w-2xl mx-auto p-6 bg-gradient-to-r from-orange-500/10 to-red-500/10 border border-orange-500/20 rounded-xl backdrop-blur-sm"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.6 }}
               viewport={{ once: true }}
             >
-              <p className="text-orange-200 text-lg">
-                <strong className="text-orange-300">Внимание:</strong> Поради ограничения капацитет, 
-                приемаме само проекти с минимален бюджет от 5000 лв./месец.
-              </p>
-            </motion.div>
+            </motion.div>*/}
           </div>
         </div>
       </div>
