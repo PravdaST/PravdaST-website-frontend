@@ -68,6 +68,39 @@ export const HeroSection = () => {
               }}
             />
           ))}
+
+          {/* Floating Keywords */}
+          {[
+            { keyword: "ROI", left: "15%", top: "20%" },
+            { keyword: "CTR", left: "75%", top: "35%" }, 
+            { keyword: "CPC", left: "25%", top: "60%" },
+            { keyword: "ROAS", left: "85%", top: "15%" },
+            { keyword: "CLICKS", left: "45%", top: "80%" },
+            { keyword: "TARGET", left: "65%", top: "70%" },
+            { keyword: "CONVERT", left: "30%", top: "40%" },
+            { keyword: "OPTIMIZE", left: "80%", top: "55%" },
+          ].map((item, i) => (
+            <motion.div
+              key={item.keyword}
+              className="absolute text-[#ECB629] font-bold text-xs tracking-wider opacity-30"
+              style={{
+                left: item.left,
+                top: item.top,
+              }}
+              animate={{
+                y: [0, -20, 0],
+                opacity: [0.2, 0.6, 0.2],
+                scale: [0.8, 1.1, 0.8],
+              }}
+              transition={{
+                duration: 4 + (i * 0.5),
+                repeat: Infinity,
+                delay: i * 0.3,
+              }}
+            >
+              {item.keyword}
+            </motion.div>
+          ))}
         </div>
       </div>
 
