@@ -2,61 +2,21 @@
 
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
-
-// Modern SVG Icons
-const DiagnosticIcon = () => (
-  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="13" cy="13" r="9" stroke="currentColor" strokeWidth="2" fill="none"/>
-    <path d="M21 21L27 27" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-    <circle cx="13" cy="10" r="1" fill="currentColor"/>
-    <circle cx="10" cy="13" r="1" fill="currentColor"/>
-    <circle cx="16" cy="13" r="1" fill="currentColor"/>
-    <circle cx="13" cy="16" r="1" fill="currentColor"/>
-  </svg>
-);
-
-const BuildIcon = () => (
-  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M10 2L8 4L12 8L14 6L10 2Z" fill="currentColor"/>
-    <path d="M8 4L2 10L4 12L10 6L8 4Z" fill="currentColor"/>
-    <path d="M14 6L20 12L22 10L16 4L14 6Z" fill="currentColor"/>
-    <rect x="16" y="14" width="14" height="2" rx="1" fill="currentColor"/>
-    <rect x="16" y="18" width="12" height="2" rx="1" fill="currentColor"/>
-    <rect x="16" y="22" width="10" height="2" rx="1" fill="currentColor"/>
-    <rect x="16" y="26" width="8" height="2" rx="1" fill="currentColor"/>
-    <path d="M4 16L6 14L10 18L8 20L4 16Z" fill="currentColor"/>
-    <path d="M8 20L2 26L4 28L10 22L8 20Z" fill="currentColor"/>
-  </svg>
-);
-
-const OptimizeIcon = () => (
-  <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M4 24L8 20L12 22L16 16L20 18L24 12L28 14" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
-    <circle cx="4" cy="24" r="2" fill="currentColor"/>
-    <circle cx="8" cy="20" r="2" fill="currentColor"/>
-    <circle cx="12" cy="22" r="2" fill="currentColor"/>
-    <circle cx="16" cy="16" r="2" fill="currentColor"/>
-    <circle cx="20" cy="18" r="2" fill="currentColor"/>
-    <circle cx="24" cy="12" r="2" fill="currentColor"/>
-    <circle cx="28" cy="14" r="2" fill="currentColor"/>
-    <path d="M22 8L26 4L30 8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
-    <path d="M26 4V12" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-  </svg>
-);
+import { Search, Settings, TrendingUp } from "lucide-react";
 
 const steps = [
   {
-    icon: DiagnosticIcon,
+    icon: Search,
     title: "Диагностика",
     description: "Анализираме вашия бизнес и данни, за да открием къде точно губите ефективност и потенциални приходи."
   },
   {
-    icon: BuildIcon,
+    icon: Settings,
     title: "Изграждане", 
     description: "Проектираме и изграждаме нужната система (или комбинация от системи), за да решим конкретния, диагностициран проблем."
   },
   {
-    icon: OptimizeIcon,
+    icon: TrendingUp,
     title: "Оптимизация",
     description: "Следим данните в реално време и правим постоянни подобрения, за да увеличим максимално вашата възвръщаемост."
   }
