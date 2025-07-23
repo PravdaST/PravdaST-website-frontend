@@ -231,17 +231,20 @@ npm run dev      # Development server
 - **✅ Automatic Metadata Generation**: System automatically creates front matter from .md files without metadata
 - **✅ Title Extraction**: Pulls titles from first # heading or filename
 - **✅ Auto-Generated Excerpts**: Creates SEO-optimized excerpts from content
-- **✅ Smart Slug Generation**: Creates URL-friendly slugs supporting Bulgarian characters
+- **✅ Smart Slug Generation**: Creates URL-friendly slugs with Bulgarian-to-Latin transliteration
 - **✅ Reading Time Calculation**: Automatically calculates estimated reading time
 - **✅ Default Categories & Tags**: Assigns relevant business engineering tags
 - **✅ File-Based Blog Management**: Simply drop .md files in "Blog post" folder
 - **✅ Real-time API Integration**: /api/blog/files endpoint for dynamic content loading
+- **✅ Webpack Error Resolution**: Fixed all module resolution conflicts between server/client code
 
 **User Experience:**
 - **No Technical Knowledge Required**: Users can add blog posts by simply creating .md files
 - **Automatic SEO Optimization**: All posts get proper metadata, slugs, and structured data
 - **Instant Publishing**: New files appear in blog immediately after creation
 - **Flexible Content**: Supports both simple markdown and advanced front matter
+- **Bulgarian URL Support**: Automatic transliteration to readable Latin URLs (познато → poznato-li-ti-e-tova-chuvstvo)
+- **Zero Webpack Errors**: Robust architecture prevents module resolution conflicts
 
 ### ✅ MAJOR SEO AUDIT FIXES COMPLETED (January 22, 2025)
 

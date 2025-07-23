@@ -1,32 +1,52 @@
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import BlogPostClient from './BlogPostClient'
-import { readBlogPostsFromFiles, getBlogPostBySlugFromFiles } from '@/lib/blog-file-reader'
 
 interface Props {
   params: Promise<{ slug: string }>
 }
 
+interface BlogPost {
+  id: string
+  title: string
+  excerpt: string
+  content: string
+  author: string
+  publishedAt: string
+  readTime: number
+  category: string
+  slug: string
+  tags: string[]
+}
+
 export async function generateStaticParams() {
+  // Fallback към известни slug-ове за избягване на webpack грешки
+  return [
+    { slug: 'poznato-li-ti-e-tova-chuvstvo' },
+    { slug: 'kak-da-optimizirate-vashiya-biznes-za-maksimalna-efektivnost' },
+    { slug: '3-te-lazhi-za-privlichaneto-na-klienti-koito-vi-struvat-tsya' },
+    { slug: 'biznes-inzheneri-vs-marketing-ekip-alternativa' }
+  ]
+}
+
+async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> {
   try {
-    const blogPosts = readBlogPostsFromFiles()
-    return blogPosts.map((post) => ({
-      slug: post.slug,
-    }))
+    const response = await fetch(`http://localhost:5000/api/blog/files`, {
+      cache: 'no-store'
+    })
+    if (!response.ok) return null
+    
+    const posts: BlogPost[] = await response.json()
+    return posts.find(post => post.slug === slug) || null
   } catch (error) {
-    console.warn('Could not generate static params:', error)
-    // Fallback към известни slug-ове
-    return [
-      { slug: 'biznes-inzheneri-vs-marketing-ekip-alternativa' },
-      { slug: 'biznes-inzhenerstvo-predvidim-rastezh' },
-      { slug: 'seo-struktor-revolyutsionen-podhod-seo' },
-    ]
+    console.error('Error fetching blog post:', error)
+    return null
   }
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
-  const post = getBlogPostBySlugFromFiles(slug)
+  const post = await getBlogPostBySlug(slug)
   
   if (!post) {
     return {
@@ -63,7 +83,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params
-  const post = getBlogPostBySlugFromFiles(slug)
+  const post = await getBlogPostBySlug(slug)
 
   if (!post) {
     notFound()
