@@ -1,5 +1,6 @@
 import { Metadata } from 'next'
 import BlogClient from './BlogClient'
+import { readBlogPostsFromFiles } from '@/lib/blog-file-reader'
 
 export const metadata: Metadata = {
   title: 'Блог - Pravda Agency | Бизнес инженерство и растеж',
@@ -32,6 +33,8 @@ export const metadata: Metadata = {
   },
 }
 
+// Server компонент за инициализиране на данните
 export default function BlogPage() {
+  // Прехвърляме всички данни към client компонента чрез API endpoint
   return <BlogClient />
 }
