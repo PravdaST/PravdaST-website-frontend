@@ -1,13 +1,14 @@
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import BlogPostClient from './BlogPostClient'
-import { blogPosts, getBlogPostBySlug } from '@/lib/blog-data'
+import { readBlogPostsFromFiles, getBlogPostBySlugFromFiles } from '@/lib/blog-file-reader'
 
 interface Props {
   params: Promise<{ slug: string }>
 }
 
 export async function generateStaticParams() {
+  const blogPosts = readBlogPostsFromFiles()
   return blogPosts.map((post) => ({
     slug: post.slug,
   }))
@@ -15,7 +16,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
-  const post = getBlogPostBySlug(slug)
+  const post = getBlogPostBySlugFromFiles(slug)
   
   if (!post) {
     return {
@@ -52,7 +53,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params
-  const post = getBlogPostBySlug(slug)
+  const post = getBlogPostBySlugFromFiles(slug)
 
   if (!post) {
     notFound()

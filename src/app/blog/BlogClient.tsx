@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
@@ -20,11 +20,47 @@ import {
   Phone,
 } from "lucide-react";
 import { motion } from "framer-motion";
-import { blogPosts, type BlogPost } from "@/lib/blog-data";
+
+interface BlogPost {
+  id: string;
+  title: string;
+  excerpt: string;
+  content: string;
+  author: string;
+  publishedAt: string;
+  readTime: number;
+  category: string;
+  slug: string;
+  tags: string[];
+  featuredImage?: string;
+}
 
 export default function BlogClient() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
+  const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  // Load blog posts from API
+  useEffect(() => {
+    async function loadBlogPosts() {
+      try {
+        const response = await fetch('/api/blog/files');
+        if (response.ok) {
+          const posts = await response.json();
+          setBlogPosts(posts);
+        } else {
+          console.error('Failed to load blog posts');
+        }
+      } catch (error) {
+        console.error('Error loading blog posts:', error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    loadBlogPosts();
+  }, []);
 
   // Filtering logic
   const filteredPosts = blogPosts.filter((post) => {
@@ -39,6 +75,23 @@ export default function BlogClient() {
 
   // Get unique categories
   const categories = ["all", ...Array.from(new Set(blogPosts.map(post => post.category)))];
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-black text-white">
+        <Navigation />
+        <main className="flex-1 pt-20">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div className="text-center">
+              <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-[#ECB629] mx-auto"></div>
+              <p className="mt-4 text-gray-400">Зарежда се...</p>
+            </div>
+          </div>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-black text-white">
