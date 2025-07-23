@@ -13,6 +13,7 @@ interface BlogPost {
   title: string
   slug: string
   excerpt: string
+  content: string
   author: string
   publishedAt: string
   readTime: number
@@ -22,14 +23,6 @@ interface BlogPost {
 
 interface BlogPostClientProps {
   post: BlogPost
-}
-
-import { getBlogPostBySlug } from '@/lib/blog-data'
-
-// Get blog content from centralized data
-const getBlogContent = (slug: string) => {
-  const post = getBlogPostBySlug(slug);
-  return post?.content || null;
 }
 
 // Get hero image based on post category/slug
@@ -66,7 +59,7 @@ export default function BlogPostClient({ post }: BlogPostClientProps) {
     }
   }
 
-  const content = getBlogContent(post.slug) || `# ${post.title}\n\n${post.excerpt}\n\n*Пълното съдържание ще бъде зареден скоро...*`
+  const content = post.content || `# ${post.title}\n\n${post.excerpt}\n\n*Пълното съдържание ще бъде зареден скоро...*`
   const heroIconPath = getHeroImage(post.slug, post.category)
 
   return (
