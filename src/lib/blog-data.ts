@@ -13,7 +13,7 @@ export interface BlogPost {
   featuredImage?: string;
 }
 
-// Експортираме блог постовете за използване в различни компоненти
+// Експортираме блог постовете за използване в различни компоненти (най-новите първи)
 export const blogPosts: BlogPost[] = [
   {
     id: "6",
