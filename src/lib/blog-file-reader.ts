@@ -1,9 +1,22 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import { BlogPost } from './blog-data-clean';
 
 const BLOG_POSTS_DIR = path.join(process.cwd(), 'Blog post');
+
+export interface BlogPost {
+  id: string;
+  title: string;
+  excerpt: string;
+  content: string;
+  author: string;
+  publishedAt: string;
+  readTime: number;
+  category: string;
+  slug: string;
+  tags: string[];
+  featuredImage?: string;
+}
 
 interface BlogPostFrontMatter {
   title: string;
