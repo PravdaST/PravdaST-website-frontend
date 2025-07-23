@@ -21,15 +21,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/privacy'
   ]
 
-  // Static blog pages - will be updated dynamically at runtime via API
+  // Static blog pages - правилно генерирани slug-ове от системата
   const blogPages = [
-    '/blog/biznes-inzheneri-vs-marketing-ekip-alternativa',
-    '/blog/biznes-inzhenerstvo-predvidim-rastezh',
-    '/blog/seo-struktor-revolyutsionen-podhod-seo',
-    '/blog/clientomat-avtomatizatsiya-klientski-otnosheniya',
-    '/blog/clickstarter-optimizatsiya-onlain-reklami',
-    '/blog/trendlab-izgrazhdane-avtoritet-sdarzhanie',
-    '/blog/как-да-оптимизирате-вашия-бизнес-за-максимална-ефективност'
+    '/blog/poznato-li-ti-e-tova-chuvstvo',
+    '/blog/kak-da-optimizirate-vashiya-biznes-za-maksimalna-efektivnost', 
+    '/blog/3-te-lazhi-za-privlichaneto-na-klienti-koito-vi-struvat-tsya',
+    '/blog/biznes-inzheneri-vs-marketing-ekip-alternativa'
   ]
 
   // Combine all pages

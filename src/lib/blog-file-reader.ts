@@ -31,11 +31,24 @@ interface BlogPostFrontMatter {
 
 // Помощна функция за генериране на slug от заглавие
 function generateSlug(title: string): string {
+  // Transliteration map for Bulgarian to Latin
+  const transliterationMap: { [key: string]: string } = {
+    'а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd', 'е': 'e', 'ж': 'zh',
+    'з': 'z', 'и': 'i', 'й': 'y', 'к': 'k', 'л': 'l', 'м': 'm', 'н': 'n',
+    'о': 'o', 'п': 'p', 'р': 'r', 'с': 's', 'т': 't', 'у': 'u', 'ф': 'f',
+    'х': 'h', 'ц': 'ts', 'ч': 'ch', 'ш': 'sh', 'щ': 'sht', 'ъ': 'a', 'ь': 'y',
+    'ю': 'yu', 'я': 'ya'
+  };
+  
   return title
     .toLowerCase()
-    .replace(/[^а-я\w\s-]/g, '') // запазваме само букви, числа, интервали и тирета
-    .replace(/\s+/g, '-')       // заменяме интервали с тирета
-    .replace(/--+/g, '-')       // заменяме множество тирета с едно
+    .split('')
+    .map(char => transliterationMap[char] || char)
+    .join('')
+    .replace(/[^a-z0-9\s-]/g, '') // Keep only Latin letters, numbers, spaces and hyphens
+    .replace(/\s+/g, '-') // Replace spaces with hyphens
+    .replace(/--+/g, '-') // Replace multiple hyphens with single
+    .replace(/^-|-$/g, '') // Remove leading/trailing hyphens
     .trim()
     .substring(0, 60); // ограничаваме дължината
 }
