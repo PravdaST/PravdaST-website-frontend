@@ -8,10 +8,20 @@ interface Props {
 }
 
 export async function generateStaticParams() {
-  const blogPosts = readBlogPostsFromFiles()
-  return blogPosts.map((post) => ({
-    slug: post.slug,
-  }))
+  try {
+    const blogPosts = readBlogPostsFromFiles()
+    return blogPosts.map((post) => ({
+      slug: post.slug,
+    }))
+  } catch (error) {
+    console.warn('Could not generate static params:', error)
+    // Fallback към известни slug-ове
+    return [
+      { slug: 'biznes-inzheneri-vs-marketing-ekip-alternativa' },
+      { slug: 'biznes-inzhenerstvo-predvidim-rastezh' },
+      { slug: 'seo-struktor-revolyutsionen-podhod-seo' },
+    ]
+  }
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {

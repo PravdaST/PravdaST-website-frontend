@@ -1,5 +1,4 @@
 import { MetadataRoute } from 'next'
-import { readBlogPostsFromFiles } from '@/lib/blog-file-reader'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://www.pravdagency.eu'
@@ -22,9 +21,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/privacy'
   ]
 
-  // Dynamic blog posts from files
-  const blogPosts = readBlogPostsFromFiles()
-  const blogPages = blogPosts.map(post => `/blog/${post.slug}`)
+  // Static blog pages - will be updated dynamically at runtime via API
+  const blogPages = [
+    '/blog/biznes-inzheneri-vs-marketing-ekip-alternativa',
+    '/blog/biznes-inzhenerstvo-predvidim-rastezh',
+    '/blog/seo-struktor-revolyutsionen-podhod-seo',
+    '/blog/clientomat-avtomatizatsiya-klientski-otnosheniya',
+    '/blog/clickstarter-optimizatsiya-onlain-reklami',
+    '/blog/trendlab-izgrazhdane-avtoritet-sdarzhanie',
+    '/blog/как-да-оптимизирате-вашия-бизнес-за-максимална-ефективност'
+  ]
 
   // Combine all pages
   const allPages = [...staticPages, ...blogPages]
