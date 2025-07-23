@@ -14,6 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/services/clientomat',
     '/calculators',
     '/blog',
+    '/blog/biznes-inzheneri-vs-vatrehen-ekip-alternativa',
     '/blog/biznes-inzhenerstvo-predvidim-rastezh',
     '/blog/seo-struktor-revolyutsionen-podhod-seo', 
     '/blog/clientomat-avtomatizatsiya-klientski-otnosheniya',
