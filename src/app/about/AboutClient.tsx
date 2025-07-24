@@ -797,26 +797,7 @@ export default function AboutClient() {
                       </div>
                     </div>
 
-                    <div>
-                      <h4 className="text-lg font-semibold text-white mb-3">
-                        Постижения
-                      </h4>
-                      <div className="space-y-2">
-                        {selectedMember.achievements.map(
-                          (achievement: string, index: number) => (
-                            <div
-                              key={index}
-                              className="flex items-center gap-2"
-                            >
-                              <Star className="h-4 w-4 text-[#ECB629]" />
-                              <span className="text-gray-300">
-                                {achievement}
-                              </span>
-                            </div>
-                          ),
-                        )}
-                      </div>
-                    </div>
+                    
 
                     <div className="flex gap-4">
                       <motion.a
