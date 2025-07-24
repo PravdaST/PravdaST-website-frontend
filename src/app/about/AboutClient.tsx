@@ -116,7 +116,7 @@ const teamMembers = [
       "Zero критични грешки",
     ],
     bio: "Живомир е доказан професионалист с експертиза в организационното планиране и управлението на проекти. Благодарение на неговия структуриран подход всеки проект се реализира в срок, в рамките на бюджета и съгласно най-високите стандарти за качество.",
-    email: "jivko@pravdagency.eu",
+    email: "zarnaudov@pravdast.agency",
     linkedin: "linkedin.com/in/zhivomir-arnaudov",
   },
   {
@@ -796,8 +796,6 @@ export default function AboutClient() {
                         )}
                       </div>
                     </div>
-
-                    
 
                     <div className="flex gap-4">
                       <motion.a
