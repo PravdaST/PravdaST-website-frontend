@@ -31,7 +31,7 @@ interface BlogPost {
   readTime: number;
   category: string;
   slug: string;
-  tags: string[];
+  tags: string[] | string; // Support both formats for flexibility
   featuredImage?: string;
 }
 
@@ -65,10 +65,10 @@ export default function BlogClient() {
   // Filtering logic
   const filteredPosts = blogPosts.filter((post) => {
     // Handle tags in both array and string formats for search
-    let tagsArray = [];
+    let tagsArray: string[] = [];
     if (Array.isArray(post.tags)) {
       tagsArray = post.tags;
-    } else if (typeof post.tags === 'string') {
+    } else if (typeof post.tags === 'string' && post.tags.length > 0) {
       try {
         tagsArray = JSON.parse(post.tags);
       } catch {
@@ -226,10 +226,10 @@ export default function BlogClient() {
                       <div className="flex flex-wrap gap-2 mb-6">
                         {(() => {
                           // Handle both array and string formats for tags
-                          let tagsArray = [];
+                          let tagsArray: string[] = [];
                           if (Array.isArray(post.tags)) {
                             tagsArray = post.tags;
-                          } else if (typeof post.tags === 'string') {
+                          } else if (typeof post.tags === 'string' && post.tags.length > 0) {
                             try {
                               tagsArray = JSON.parse(post.tags);
                             } catch {
