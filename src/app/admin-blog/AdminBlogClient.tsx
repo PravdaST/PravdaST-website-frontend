@@ -20,9 +20,16 @@ import {
 } from 'lucide-react'
 import { motion } from 'framer-motion'
 
-// Blog post schema
+// Blog post schema with SEO validation
 const blogPostSchema = z.object({
-  title: z.string().min(5, 'Заглавието трябва да е поне 5 символа'),
+  title: z.string()
+    .min(5, 'Заглавието трябва да е поне 5 символа')
+    .refine(
+      (val) => val.length >= 50 && val.length <= 70,
+      {
+        message: 'За оптимално SEO заглавието трябва да е между 50-70 символа'
+      }
+    ),
   slug: z.string().min(1, 'URL slug е задължителен'),
   excerpt: z.string().min(20, 'Извлечението трябва да е поне 20 символа'),
   content: z.string().min(100, 'Съдържанието трябва да е поне 100 символа'),
@@ -34,6 +41,36 @@ const blogPostSchema = z.object({
   isPublished: z.boolean(),
   publishedAt: z.string().optional()
 })
+
+// SEO optimization helper function
+const getSEOTitleStatus = (title: string) => {
+  const length = title.length;
+  if (length < 50) {
+    return {
+      status: 'too-short',
+      message: `Твърде кратко (${length}/50-70)`,
+      color: 'text-red-400',
+      bgColor: 'bg-red-900/20',
+      borderColor: 'border-red-500/30'
+    };
+  } else if (length > 70) {
+    return {
+      status: 'too-long',
+      message: `Твърде дълго (${length}/50-70)`,
+      color: 'text-orange-400',
+      bgColor: 'bg-orange-900/20',
+      borderColor: 'border-orange-500/30'
+    };
+  } else {
+    return {
+      status: 'optimal',
+      message: `Отлично SEO (${length}/50-70)`,
+      color: 'text-green-400',
+      bgColor: 'bg-green-900/20',
+      borderColor: 'border-green-500/30'
+    };
+  }
+};
 
 type BlogPostForm = z.infer<typeof blogPostSchema>
 
@@ -262,8 +299,15 @@ export function AdminBlogClient() {
                   className="bg-slate-800 p-4 rounded-lg"
                 >
                   <div className="flex items-start justify-between mb-2">
-                    <h3 className="font-semibold text-white line-clamp-1">{post.title}</h3>
-                    <div className="flex items-center gap-2">
+                    <div className="flex-1 min-w-0">
+                      <h3 className="font-semibold text-white line-clamp-1">{post.title}</h3>
+                      {/* SEO Status under title */}
+                      <div className={`inline-flex items-center gap-1 px-2 py-1 mt-1 rounded-full text-xs font-medium ${getSEOTitleStatus(post.title).bgColor} ${getSEOTitleStatus(post.title).borderColor} border ${getSEOTitleStatus(post.title).color}`}>
+                        <span>{getSEOTitleStatus(post.title).status === 'optimal' ? '✓' : getSEOTitleStatus(post.title).status === 'too-short' ? '↑' : '↓'}</span>
+                        <span>SEO: {post.title.length} символа</span>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2 ml-4">
                       <button
                         onClick={() => togglePublish(post)}
                         className={`p-1 rounded ${
@@ -331,15 +375,30 @@ export function AdminBlogClient() {
                 </div>
 
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-                  {/* Title */}
+                  {/* Title with SEO indicator */}
                   <div>
-                    <label className="block text-sm font-medium mb-1">Заглавие</label>
+                    <div className="flex items-center justify-between mb-1">
+                      <label className="block text-sm font-medium">Заглавие</label>
+                      {watchedTitle && (
+                        <div className={`px-2 py-1 rounded-full text-xs font-medium ${getSEOTitleStatus(watchedTitle).bgColor} ${getSEOTitleStatus(watchedTitle).borderColor} border ${getSEOTitleStatus(watchedTitle).color}`}>
+                          {getSEOTitleStatus(watchedTitle).message}
+                        </div>
+                      )}
+                    </div>
                     <input
                       {...register('title')}
-                      className="w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white focus:border-[#ECB629] focus:outline-none"
-                      placeholder="Въведете заглавие..."
+                      className={`w-full bg-slate-700 border ${watchedTitle ? getSEOTitleStatus(watchedTitle).borderColor : 'border-slate-600'} rounded-lg px-3 py-2 text-white focus:border-[#ECB629] focus:outline-none transition-colors`}
+                      placeholder="Въведете заглавие между 50-70 символа за оптимално SEO..."
                     />
                     {errors.title && <p className="text-red-400 text-sm mt-1">{errors.title.message}</p>}
+                    {watchedTitle && (
+                      <div className="flex items-center justify-between mt-1 text-xs text-gray-400">
+                        <span>Символи: {watchedTitle.length}</span>
+                        <span className={watchedTitle.length >= 50 && watchedTitle.length <= 70 ? 'text-green-400' : 'text-orange-400'}>
+                          Оптимален диапазон: 50-70
+                        </span>
+                      </div>
+                    )}
                   </div>
 
                   {/* Slug */}
