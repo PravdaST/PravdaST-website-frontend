@@ -24,17 +24,34 @@
   border: 1px solid rgba(255, 255, 255, 0.1) !important;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
   z-index: 9999999 !important;
-  position: relative !important;
+  position: absolute !important;
+  isolation: isolate !important;
 }
 
-/* Force backdrop-filter support on problematic browsers */
+/* Force backdrop-filter support on all pages with stronger isolation */
 .navigation-dropdown::before {
   content: '';
   position: absolute;
   inset: 0;
   background: rgba(30, 41, 59, 0.15);
-  backdrop-filter: blur(24px) saturate(180%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  backdrop-filter: blur(24px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
   border-radius: inherit;
   z-index: -1;
+  pointer-events: none;
+}
+
+/* Stronger backdrop-filter for consistent effect across all pages */
+@supports (backdrop-filter: blur(1px)) {
+  .navigation-dropdown {
+    background: rgba(30, 41, 59, 0.75) !important;
+    backdrop-filter: blur(24px) saturate(180%) brightness(1.1) !important;
+    -webkit-backdrop-filter: blur(24px) saturate(180%) brightness(1.1) !important;
+  }
+}
+
+/* Ensure parent elements don't interfere with backdrop-filter */
+nav, .navigation-dropdown-parent {
+  transform: translateZ(0) !important;
+  will-change: transform !important;
 }

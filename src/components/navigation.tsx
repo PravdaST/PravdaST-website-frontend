@@ -118,7 +118,7 @@ export const Navigation = () => {
               <div key={item.href} className="relative">
                 {item.hasDropdown ? (
                   <div
-                    className="relative"
+                    className="relative navigation-dropdown-parent"
                     onMouseEnter={() => setIsServicesDropdownOpen(true)}
                     onMouseLeave={() => setIsServicesDropdownOpen(false)}
                   >
@@ -150,7 +150,7 @@ export const Navigation = () => {
                     {/* Dropdown Menu */}
                     <div
                       className="absolute top-full left-0 pt-2"
-                      style={{ zIndex: 9999999 }}
+                      style={{ zIndex: 9999999, transform: 'translateZ(0)', willChange: 'transform' }}
                     >
                       {isServicesDropdownOpen && (
                         <motion.div
