@@ -14,7 +14,6 @@ import { ServiceWorkerSetup } from '@/components/service-worker-setup'
 import { Toaster } from '@/components/ui/toaster'
 import { Navigation } from '@/components/navigation'
 import { BackgroundEffects } from '@/components/background-effects'
-import TargetCursor from '@/components/TargetCursor'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -34,13 +33,6 @@ export default function RootLayout({
       <body className={inter.className}>
         <ClientOnly>
           <BackgroundEffects />
-          <TargetCursor 
-            size={32}
-            color="#ECB628"
-            strokeWidth={2}
-            spinDuration={2}
-            hideDefaultCursor={true}
-          />
           <KlaviyoSetup />
           <KlaviyoIntegration />
           <Analytics />

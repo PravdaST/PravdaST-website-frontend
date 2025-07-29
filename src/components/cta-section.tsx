@@ -159,7 +159,7 @@ export const CTASection = () => {
             >
               {/* Primary CTA */}
               <motion.button
-                className="cursor-target group relative bg-[#ECB629] text-black px-12 py-6 rounded-2xl font-bold text-xl hover:bg-[#ECB629]/90 transition-all duration-300 shadow-2xl hover:shadow-[#ECB629]/25 overflow-hidden"
+                className="group relative bg-[#ECB629] text-black px-12 py-6 rounded-2xl font-bold text-xl hover:bg-[#ECB629]/90 transition-all duration-300 shadow-2xl hover:shadow-[#ECB629]/25 overflow-hidden"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => {
