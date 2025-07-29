@@ -20,16 +20,9 @@ import {
 } from 'lucide-react'
 import { motion } from 'framer-motion'
 
-// Blog post schema with SEO validation
+// Blog post schema
 const blogPostSchema = z.object({
-  title: z.string()
-    .min(5, 'Заглавието трябва да е поне 5 символа')
-    .refine(
-      (val) => val.length >= 50 && val.length <= 70,
-      {
-        message: 'За оптимално SEO заглавието трябва да е между 50-70 символа'
-      }
-    ),
+  title: z.string().min(5, 'Заглавието трябва да е поне 5 символа'),
   slug: z.string().min(1, 'URL slug е задължителен'),
   excerpt: z.string().min(20, 'Извлечението трябва да е поне 20 символа'),
   content: z.string().min(100, 'Съдържанието трябва да е поне 100 символа'),
@@ -41,36 +34,6 @@ const blogPostSchema = z.object({
   isPublished: z.boolean(),
   publishedAt: z.string().optional()
 })
-
-// SEO optimization helper function
-const getSEOTitleStatus = (title: string) => {
-  const length = title.length;
-  if (length < 50) {
-    return {
-      status: 'too-short',
-      message: `Твърде кратко (${length}/50-70)`,
-      color: 'text-red-400',
-      bgColor: 'bg-red-900/20',
-      borderColor: 'border-red-500/30'
-    };
-  } else if (length > 70) {
-    return {
-      status: 'too-long',
-      message: `Твърде дълго (${length}/50-70)`,
-      color: 'text-orange-400',
-      bgColor: 'bg-orange-900/20',
-      borderColor: 'border-orange-500/30'
-    };
-  } else {
-    return {
-      status: 'optimal',
-      message: `Отлично SEO (${length}/50-70)`,
-      color: 'text-green-400',
-      bgColor: 'bg-green-900/20',
-      borderColor: 'border-green-500/30'
-    };
-  }
-};
 
 type BlogPostForm = z.infer<typeof blogPostSchema>
 
@@ -108,43 +71,19 @@ export function AdminBlogClient() {
     }
   })
 
-  // Generate unique slug from title
+  // Generate slug from title
   const watchedTitle = watch('title')
   useEffect(() => {
     if (watchedTitle && !editingPost) {
-      generateUniqueSlug(watchedTitle)
+      const slug = watchedTitle
+        .toLowerCase()
+        .replace(/[^\u0400-\u04FF\w\s-]/g, '') // Keep Cyrillic, Latin, numbers, spaces, hyphens
+        .replace(/\s+/g, '-')
+        .replace(/-+/g, '-')
+        .trim()
+      setValue('slug', slug)
     }
-  }, [watchedTitle]) // Removed editingPost to fix dependency warning
-
-  const generateUniqueSlug = (title: string) => {
-    // Create base slug
-    let baseSlug = title
-      .toLowerCase()
-      .replace(/[^\u0400-\u04FF\w\s-]/g, '') // Keep Cyrillic, Latin, numbers, spaces, hyphens
-      .replace(/\s+/g, '-')
-      .replace(/-+/g, '-')
-      .replace(/^-+|-+$/g, '') // Remove leading/trailing hyphens
-      .trim()
-
-    if (!baseSlug) {
-      setValue('slug', '')
-      return
-    }
-
-    // Check for uniqueness against existing posts
-    let uniqueSlug = baseSlug
-    let counter = 1
-    
-    while (posts.some(post => 
-      post.slug === uniqueSlug && 
-      (!editingPost || post.id !== editingPost.id)
-    )) {
-      uniqueSlug = `${baseSlug}-${counter}`
-      counter++
-    }
-    
-    setValue('slug', uniqueSlug)
-  }
+  }, [watchedTitle, setValue, editingPost])
 
   // Load posts
   useEffect(() => {
@@ -153,26 +92,13 @@ export function AdminBlogClient() {
 
   const fetchPosts = async () => {
     try {
-      // Try database first
       const response = await fetch('/api/blog/posts')
       if (response.ok) {
         const data = await response.json()
         setPosts(data)
-        return
-      }
-      
-      // Fallback to file-based storage if database fails
-      console.warn('Database failed, falling back to file-based storage')
-      const fileResponse = await fetch('/api/blog/files')
-      if (fileResponse.ok) {
-        const fileData = await fileResponse.json()
-        setPosts(fileData)
-      } else {
-        throw new Error('Both database and file storage failed')
       }
     } catch (error) {
       console.error('Failed to fetch posts:', error)
-      alert('Не можем да заредим статиите. Моля проверете връзката с базата данни.')
     } finally {
       setLoading(false)
     }
@@ -180,6 +106,9 @@ export function AdminBlogClient() {
 
   const onSubmit = async (data: BlogPostForm) => {
     try {
+      const url = editingPost ? `/api/blog/posts/${editingPost.id}` : '/api/blog/posts'
+      const method = editingPost ? 'PUT' : 'POST'
+      
       // Process tags
       const processedData = {
         ...data,
@@ -188,47 +117,22 @@ export function AdminBlogClient() {
         publishedAt: data.isPublished ? (data.publishedAt || new Date().toISOString()) : null
       }
 
-      let response: Response
-      let method = editingPost ? 'PUT' : 'POST'
-      
-      // Try database first
-      try {
-        const url = editingPost ? `/api/blog/posts/${editingPost.id}` : '/api/blog/posts'
-        response = await fetch(url, {
-          method,
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(processedData)
-        })
-        
-        if (!response.ok && (response.status === 503 || response.status === 500)) {
-          throw new Error('Database unavailable')
-        }
-      } catch (dbError) {
-        console.warn('Database failed, using file fallback:', dbError)
-        
-        // Fallback to file-based admin API
-        response = await fetch('/api/blog/admin', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(processedData)
-        })
-      }
+      const response = await fetch(url, {
+        method,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(processedData)
+      })
 
       if (response.ok) {
         await fetchPosts()
         resetForm()
-        alert(editingPost ? 'Статията е обновена успешно!' : 'Статията е създадена успешно! (запазена като файл)')
+        alert(editingPost ? 'Статията е обновена успешно!' : 'Статията е създадена успешно!')
       } else {
-        const errorText = await response.text()
-        console.error('Server response:', response.status, errorText)
-        throw new Error(`Server error: ${response.status} - ${errorText}`)
+        throw new Error('Failed to save post')
       }
     } catch (error) {
       console.error('Error saving post:', error)
-      
-      // More detailed error message
-      const errorMessage = error instanceof Error ? error.message : 'Неизвестна грешка'
-      alert(`Грешка при запазване на статията: ${errorMessage}`)
+      alert('Грешка при запазване на статията')
     }
   }
 
@@ -236,53 +140,23 @@ export function AdminBlogClient() {
     if (!confirm('Сигурни ли сте, че искате да изтриете тази статия?')) return
 
     try {
-      // Try database first
-      let response = await fetch(`/api/blog/posts/${id}`, { method: 'DELETE' })
-      
-      if (!response.ok && (response.status === 503 || response.status === 500)) {
-        // Fallback to file-based storage for delete
-        console.warn('Database failed, using file fallback for delete')
-        response = await fetch('/api/blog/admin', {
-          method: 'DELETE',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ id, action: 'delete' })
-        })
-      }
-      
+      const response = await fetch(`/api/blog/posts/${id}`, { method: 'DELETE' })
       if (response.ok) {
         await fetchPosts()
         alert('Статията е изтрита успешно!')
-      } else {
-        throw new Error(`Server error: ${response.status}`)
       }
     } catch (error) {
       console.error('Error deleting post:', error)
-      alert('Грешка при изтриване на статията. Моля опитайте отново.')
+      alert('Грешка при изтриване на статията')
     }
   }
 
   const editPost = (post: BlogPost) => {
     setEditingPost(post)
     setIsCreating(true)
-    
-    // Prepare tags for editing
-    const tagsString = Array.isArray(post.tags) 
-      ? post.tags.join(', ') 
-      : typeof post.tags === 'string' 
-        ? post.tags 
-        : ''
-
     reset({
-      title: post.title,
-      slug: post.slug,
-      excerpt: post.excerpt,
-      content: post.content,
-      author: post.author,
-      category: post.category,
-      tags: tagsString,
-      featuredImage: post.featuredImage || '',
-      isPublished: post.isPublished,
-      publishedAt: post.publishedAt || ''
+      ...post,
+      tags: Array.isArray(post.tags) ? post.tags.join(', ') : post.tags
     })
   }
 
@@ -312,38 +186,21 @@ export function AdminBlogClient() {
 
   const togglePublish = async (post: BlogPost) => {
     try {
-      const updatedPost = {
-        ...post,
-        isPublished: !post.isPublished,
-        publishedAt: !post.isPublished ? new Date().toISOString() : null
-      }
-
-      // Try database first
-      let response = await fetch(`/api/blog/posts/${post.id}`, {
+      const response = await fetch(`/api/blog/posts/${post.id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(updatedPost)
-      })
-
-      if (!response.ok && (response.status === 503 || response.status === 500)) {
-        // Fallback to file-based storage
-        console.warn('Database failed, using file fallback for publish toggle')
-        response = await fetch('/api/blog/admin', {
-          method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ ...updatedPost, action: 'update' })
+        body: JSON.stringify({
+          ...post,
+          isPublished: !post.isPublished,
+          publishedAt: !post.isPublished ? new Date().toISOString() : null
         })
-      }
+      })
 
       if (response.ok) {
         await fetchPosts()
-        alert(updatedPost.isPublished ? 'Статията е публикувана!' : 'Статията е скрита!')
-      } else {
-        throw new Error(`Server error: ${response.status}`)
       }
     } catch (error) {
       console.error('Error toggling publish status:', error)
-      alert('Грешка при промяна на статуса на публикация')
     }
   }
 
@@ -405,15 +262,8 @@ export function AdminBlogClient() {
                   className="bg-slate-800 p-4 rounded-lg"
                 >
                   <div className="flex items-start justify-between mb-2">
-                    <div className="flex-1 min-w-0">
-                      <h3 className="font-semibold text-white line-clamp-1">{post.title}</h3>
-                      {/* SEO Status under title */}
-                      <div className={`inline-flex items-center gap-1 px-2 py-1 mt-1 rounded-full text-xs font-medium ${getSEOTitleStatus(post.title).bgColor} ${getSEOTitleStatus(post.title).borderColor} border ${getSEOTitleStatus(post.title).color}`}>
-                        <span>{getSEOTitleStatus(post.title).status === 'optimal' ? '✓' : getSEOTitleStatus(post.title).status === 'too-short' ? '↑' : '↓'}</span>
-                        <span>SEO: {post.title.length} символа</span>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-2 ml-4">
+                    <h3 className="font-semibold text-white line-clamp-1">{post.title}</h3>
+                    <div className="flex items-center gap-2">
                       <button
                         onClick={() => togglePublish(post)}
                         className={`p-1 rounded ${
@@ -481,30 +331,15 @@ export function AdminBlogClient() {
                 </div>
 
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-                  {/* Title with SEO indicator */}
+                  {/* Title */}
                   <div>
-                    <div className="flex items-center justify-between mb-1">
-                      <label className="block text-sm font-medium">Заглавие</label>
-                      {watchedTitle && (
-                        <div className={`px-2 py-1 rounded-full text-xs font-medium ${getSEOTitleStatus(watchedTitle).bgColor} ${getSEOTitleStatus(watchedTitle).borderColor} border ${getSEOTitleStatus(watchedTitle).color}`}>
-                          {getSEOTitleStatus(watchedTitle).message}
-                        </div>
-                      )}
-                    </div>
+                    <label className="block text-sm font-medium mb-1">Заглавие</label>
                     <input
                       {...register('title')}
-                      className={`w-full bg-slate-700 border ${watchedTitle ? getSEOTitleStatus(watchedTitle).borderColor : 'border-slate-600'} rounded-lg px-3 py-2 text-white focus:border-[#ECB629] focus:outline-none transition-colors`}
-                      placeholder="Въведете заглавие между 50-70 символа за оптимално SEO..."
+                      className="w-full bg-slate-700 border border-slate-600 rounded-lg px-3 py-2 text-white focus:border-[#ECB629] focus:outline-none"
+                      placeholder="Въведете заглавие..."
                     />
                     {errors.title && <p className="text-red-400 text-sm mt-1">{errors.title.message}</p>}
-                    {watchedTitle && (
-                      <div className="flex items-center justify-between mt-1 text-xs text-gray-400">
-                        <span>Символи: {watchedTitle.length}</span>
-                        <span className={watchedTitle.length >= 50 && watchedTitle.length <= 70 ? 'text-green-400' : 'text-orange-400'}>
-                          Оптимален диапазон: 50-70
-                        </span>
-                      </div>
-                    )}
                   </div>
 
                   {/* Slug */}

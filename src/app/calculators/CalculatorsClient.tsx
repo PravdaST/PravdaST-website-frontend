@@ -1,4 +1,4 @@
-"use client";
+'use client'
 
 import { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -222,13 +222,10 @@ function ProfitCalculator({
         scoreBreakdown: {},
       };
     }
-
-    const param1 =
-      parseFloat(String(inputs[serviceInputs.param1.key] || "0")) || 0;
-    const param2 =
-      parseFloat(String(inputs[serviceInputs.param2.key] || "0")) || 0;
-    const param3 =
-      parseFloat(String(inputs[serviceInputs.param3.key] || "0")) || 0;
+    
+    const param1 = parseFloat(String(inputs[serviceInputs.param1.key] || "0")) || 0;
+    const param2 = parseFloat(String(inputs[serviceInputs.param2.key] || "0")) || 0;
+    const param3 = parseFloat(String(inputs[serviceInputs.param3.key] || "0")) || 0;
 
     if (param1 > 0) {
       switch (serviceName) {
@@ -360,13 +357,10 @@ function ProfitCalculator({
     const newResults = calculateResults();
     setResults(newResults);
 
-    const param1 =
-      parseFloat(String(inputs[serviceInputs.param1.key] || "0")) || 0;
-    const param2 =
-      parseFloat(String(inputs[serviceInputs.param2.key] || "0")) || 0;
-    const param3 =
-      parseFloat(String(inputs[serviceInputs.param3.key] || "0")) || 0;
-
+    const param1 = parseFloat(String(inputs[serviceInputs.param1.key] || "0")) || 0;
+    const param2 = parseFloat(String(inputs[serviceInputs.param2.key] || "0")) || 0;
+    const param3 = parseFloat(String(inputs[serviceInputs.param3.key] || "0")) || 0;
+    
     // Generate service-specific recommendations
     const recs = [];
     let advice = "";
@@ -379,30 +373,25 @@ function ProfitCalculator({
         if (param2 > 30) recs.push("Подобрение на позиции");
         if (param3 < 15) recs.push("Изследване на ключови думи");
         if (newResults.score < 70) recs.push("Технически оптимизация");
-        if (newResults.metric1 > 0) {
-          advice = `С наша помощ, трафикът Ви може да скочи от ${Math.round(param1).toLocaleString()} на ${Math.round(newResults.metric1).toLocaleString()} посетители. Това ще генерира около ${Math.round(newResults.metric2).toLocaleString()} нови запитвания месечно, превръщайки сайта Ви в машина за клиенти.`;
+        if(newResults.metric1 > 0) {
+            advice = `С наша помощ, трафикът Ви може да скочи от ${Math.round(param1).toLocaleString()} на ${Math.round(newResults.metric1).toLocaleString()} посетители. Това ще генерира около ${Math.round(newResults.metric2).toLocaleString()} нови запитвания месечно, превръщайки сайта Ви в машина за клиенти.`
         }
-
+        
         // Industry benchmarks for SEO
         if (param1 < 8000) {
-          benchmark =
-            "💡 Средно за Вашата индустрия месечният органичен трафик е 8,500+ посетители. Имате значителна възможност за растеж тук.";
+          benchmark = "💡 Средно за Вашата индустрия месечният органичен трафик е 8,500+ посетители. Имате значителна възможност за растеж тук.";
         }
         if (param2 > 20) {
-          benchmark =
-            "💡 Средната позиция в Google за добре оптимизирани сайтове е между 5-15 място. Вашите позиции имат голям потенциал за подобрение.";
+          benchmark = "💡 Средната позиция в Google за добре оптимизирани сайтове е между 5-15 място. Вашите позиции имат голям потенциал за подобрение.";
         }
-
+        
         // Biggest opportunity for SEO
         if (param2 > 30 && param1 < 5000) {
-          opportunity =
-            "⭐ Вашият основен лост за растеж: Позиции в Google. Подобряването само на тази метрика ще отключи над 80% от прогнозния Ви потенциал.";
+          opportunity = "⭐ Вашият основен лост за растеж: Позиции в Google. Подобряването само на тази метрика ще отключи над 80% от прогнозния Ви потенциал.";
         } else if (param3 < 10) {
-          opportunity =
-            "⭐ Вашият основен лост за растеж: Изследване на ключови думи. Правилната стратегия ще удвои Вашия трафик за 6 месеца.";
+          opportunity = "⭐ Вашият основен лост за растеж: Изследване на ключови думи. Правильната стратегия ще удвои Вашия трафик за 6 месеца.";
         } else if (param1 < 3000) {
-          opportunity =
-            "⭐ Вашият основен лост за растеж: Органичен трафик. Имате огромен неизползван потенциал за привличане на посетители.";
+          opportunity = "⭐ Вашият основен лост за растеж: Органичен трафик. Имате огромен неизползван потенциал за привличане на посетители.";
         }
         break;
       case "Trendlab™":
@@ -410,30 +399,25 @@ function ProfitCalculator({
         if (param2 < 5) recs.push("Честота на съдържание");
         if (param3 < 5) recs.push("Стратегия за ангажираност");
         if (newResults.score < 70) recs.push("Изграждане на авторитет");
-        if (newResults.metric1 > 0) {
-          advice = `Представете си да увеличите аудиторията си от ${Math.round(param1).toLocaleString()} на ${Math.round(newResults.metric1).toLocaleString()} последователи. Това ще Ви превърне в авторитет във Вашата ниша, достигайки до хиляди потенциални клиенти всеки месец.`;
+         if(newResults.metric1 > 0) {
+            advice = `Представете си да увеличите аудиторията си от ${Math.round(param1).toLocaleString()} на ${Math.round(newResults.metric1).toLocaleString()} последователи. Това ще Ви превърне в авторитет във Вашата ниша, достигайки до хиляди потенциални клиенти всеки месец.`
         }
-
+        
         // Industry benchmarks for Content Marketing
         if (param1 < 15000) {
-          benchmark =
-            "💡 Средно за Вашата индустрия успешните бизнеси имат 15,000+ последователи. Все още има място за растеж.";
+          benchmark = "💡 Средно за Вашата индустрия успешните бизнеси имат 15,000+ последователи. Все още има място за растеж.";
         }
         if (param2 < 8) {
-          benchmark =
-            "💡 Топ компаниите публикуват 8-12 пъти месечно в социалните мрежи. Честотата на съдържание е ключова.";
+          benchmark = "💡 Топ компаниите публикуват 8-12 пъти месечно в социалните мрежи. Честотата на съдържание е ключова.";
         }
-
+        
         // Biggest opportunity for Content
         if (param2 < 3 && param1 > 5000) {
-          opportunity =
-            "⭐ Вашият основен лост за растеж: Честота на съдържание. С правилната стратегия за постове ще удвоите ангажираността.";
+          opportunity = "⭐ Вашият основен лост за растеж: Честота на съдържание. С правилната стратегия за постове ще удвоите ангажираността.";
         } else if (param3 < 3) {
-          opportunity =
-            "⭐ Вашият основен лост за растеж: Качество на съдържание. Подобряването тук ще направи всеки пост 3x по-ефективен.";
+          opportunity = "⭐ Вашият основен лост за растеж: Качество на съдържание. Подобряването тук ще направи всеки пост 3x по-ефективен.";
         } else if (param1 < 8000) {
-          opportunity =
-            "⭐ Вашият основен лост за растеж: Изграждане на аудитория. Имате база, но потенциалът за експлозивен растеж е огромен.";
+          opportunity = "⭐ Вашият основен лост за растеж: Изграждане на аудитория. Имате база, но потенциалът за експлозивен растеж е огромен.";
         }
         break;
       case "Clickstarter™":
@@ -441,30 +425,25 @@ function ProfitCalculator({
         if (param3 < 100) recs.push("Подобрение на конверсии");
         if (param1 > 10000) recs.push("Ефективност на бюджета");
         if (newResults.score < 70) recs.push("Структура на кампании");
-        if (newResults.metric1 > 0) {
-          advice = `Ще оптимизираме кампаниите Ви, за да постигнете ${Math.round(newResults.metric1)} продажби вместо сегашните ${Math.round(param3)}. Освен това, ще спестим ${Math.round(newResults.metric2)} лв. от бюджета Ви, които може да реинвестирате за още по-силни резултати.`;
+        if(newResults.metric1 > 0) {
+            advice = `Ще оптимизираме кампаниите Ви, за да постигнете ${Math.round(newResults.metric1)} продажби вместо сегашните ${Math.round(param3)}. Освен това, ще спестим ${Math.round(newResults.metric2)} лв. от бюджета Ви, които може да реинвестирате за още по-силни резултати.`
         }
-
+        
         // Industry benchmarks for PPC
         if (param2 > 2.5) {
-          benchmark =
-            "💡 Средната цена за клик в Вашата индустрия е 1.80-2.50 лв. Вашите кампании могат да бъдат значително по-ефективни.";
+          benchmark = "💡 Средната цена за клик в Вашата индустрия е 1.80-2.50 лв. Вашите кампании могат да бъдат значително по-ефективни.";
         }
         if (param3 < 150) {
-          benchmark =
-            "💡 Добре оптимизираните Google Ads кампании генерират 150-300+ конверсии месечно с подобен бюджет.";
+          benchmark = "💡 Добре оптимизираните Google Ads кампании генерират 150-300+ конверсии месечно с подобен бюджет.";
         }
-
+        
         // Biggest opportunity for PPC
         if (param2 > 4 && param1 > 8000) {
-          opportunity =
-            "⭐ Вашият основен лост за растеж: Цена за клик. Намаляването ѝ наполовина ще удвои броя клиенти при същия бюджет.";
+          opportunity = "⭐ Вашият основен лост за растеж: Цена за клик. Намаляването ѝ наполовина ще удвои броя клиенти при същия бюджет.";
         } else if (param3 < 80) {
-          opportunity =
-            "⭐ Вашият основен лост за растеж: Conversion Rate. Подобряването на лендинг страниците ще утрои конверсиите.";
+          opportunity = "⭐ Вашият основен лост за растеж: Conversion Rate. Подобряването на лендинг страниците ще утрои конверсиите.";
         } else if (param1 > 15000) {
-          opportunity =
-            "⭐ Вашият основен лост за растеж: Бюджетна ефективност. Пренасочването на разходите ще спести 30-40% средства.";
+          opportunity = "⭐ Вашият основен лост за растеж: Бюджетна ефективност. Пренасочването на разходите ще спести 30-40% средства.";
         }
         break;
       case "Clientomat™":
@@ -472,30 +451,25 @@ function ProfitCalculator({
         if (param2 < 2000) recs.push("Оптимизация на стойност на клиент");
         if (param1 < 100) recs.push("Привличане на клиенти");
         if (newResults.score < 70) recs.push("Автоматизация на управление");
-        if (newResults.metric1 > 0) {
-          advice = `Чрез нашите системи за лоялност, ще увеличим повторните Ви покупки до ${Math.round(newResults.metric1)}% и ще вдигнем стойността на всеки клиент до ${Math.round(newResults.metric2 * 1000).toLocaleString()} лв. Това е ключът към стабилен и предвидим растеж.`;
+        if(newResults.metric1 > 0) {
+            advice = `Чрез нашите системи за лоялност, ще увеличим повторните Ви покупки до ${Math.round(newResults.metric1)}% и ще вдигнем стойността на всеки клиент до ${Math.round(newResults.metric2 * 1000).toLocaleString()} лв. Това е ключът към стабилен и предвидим растеж.`
         }
-
+        
         // Industry benchmarks for CRM
         if (param3 < 35) {
-          benchmark =
-            "💡 Средно за Вашата индустрия (E-commerce) repeat rate е 35-45%. Имате значителна възможност за растеж тук.";
+          benchmark = "💡 Средно за Вашата индустрия (E-commerce) repeat rate е 35-45%. Имате значителна възможност за растеж тук.";
         }
         if (param2 < 2500) {
-          benchmark =
-            "💡 Средната стойност на клиент в успешните онлайн бизнеси е 2,500-4,000 лв. Има място за подобрение.";
+          benchmark = "💡 Средната стойност на клиент в успешните онлайн бизнеси е 2,500-4,000 лв. Има място за подобрение.";
         }
-
+        
         // Biggest opportunity for CRM
         if (param3 < 25 && param1 > 100) {
-          opportunity =
-            "⭐ Вашият основен лост за растеж: Задържане на клиенти. Повишаването на repeat rate с 15% ще удвои печалбата Ви.";
+          opportunity = "⭐ Вашият основен лост за растеж: Задържане на клиенти. Повишаването на repeat rate с 15% ще удвои печалбата Ви.";
         } else if (param2 < 1800) {
-          opportunity =
-            "⭐ Вашият основен лост за растеж: Средна стойност на клиент. Upsell стратегиите ще увеличат приходите с 60%.";
+          opportunity = "⭐ Вашият основен лост за растеж: Средна стойност на клиент. Upsell стратегиите ще увеличат приходите с 60%.";
         } else if (param1 < 80) {
-          opportunity =
-            "⭐ Вашият основен лост за растеж: Acquisition Rate. Оптимизиране на процеса ще увеличи новите клиенти с 2-3x.";
+          opportunity = "⭐ Вашият основен лост за растеж: Acquisition Rate. Оптимизиране на процеса ще увеличи новите клиенти с 2-3x.";
         }
         break;
     }
@@ -593,15 +567,12 @@ function ProfitCalculator({
 
               <div className="space-y-5 relative z-10">
                 {[1, 2, 3].map((index) => {
-                  const paramKey =
-                    `param${index}` as keyof typeof serviceInputs;
+                  const paramKey = `param${index}` as keyof typeof serviceInputs;
                   const inputConfig = serviceInputs[paramKey];
 
                   // Use Slider for the second parameter
                   if (index === 2) {
-                    const currentValue = parseFloat(
-                      inputs[inputConfig.key] || "0",
-                    );
+                    const currentValue = parseFloat(inputs[inputConfig.key] || "0");
                     let max = 100;
                     if (serviceName === "SEO Struktor™") max = 100;
                     if (serviceName === "Trendlab™") max = 10;
@@ -609,50 +580,41 @@ function ProfitCalculator({
                     if (serviceName === "Clientomat™") max = 5000;
 
                     return (
-                      <motion.div
+                       <motion.div
                         key={index}
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: index * 0.1 }}
                         className="group"
                       >
-                        <Label
+                         <Label
                           htmlFor={`param${index}`}
                           className="text-white text-sm block mb-3 flex items-center justify-between font-medium"
                         >
                           <span className="flex items-center gap-2">
-                            <motion.div
+                             <motion.div
                               className="w-2 h-2 bg-[#ECB629] rounded-full"
                               animate={{ scale: [1, 1.2, 1] }}
-                              transition={{
-                                duration: 2,
-                                repeat: Infinity,
-                                delay: index * 0.5,
-                              }}
+                              transition={{ duration: 2, repeat: Infinity, delay: index * 0.5 }}
                             />
                             {inputConfig.label}
                           </span>
-                          <span className="font-bold text-[#ECB629]">
-                            {currentValue}
-                          </span>
+                           <span className="font-bold text-[#ECB629]">
+                              {currentValue}
+                           </span>
                         </Label>
                         <Slider
-                          id={`param${index}`}
-                          max={max}
-                          step={serviceName === "Clickstarter™" ? 0.1 : 1}
-                          value={[currentValue]}
-                          onValueChange={(value) =>
-                            setInputs({
-                              ...inputs,
-                              [inputConfig.key]: String(value[0]),
-                            })
-                          }
-                          className="mt-5"
+                            id={`param${index}`}
+                            max={max}
+                            step={serviceName === "Clickstarter™" ? 0.1 : 1}
+                            value={[currentValue]}
+                            onValueChange={(value) => setInputs({ ...inputs, [inputConfig.key]: String(value[0]) })}
+                            className="mt-5"
                         />
                       </motion.div>
-                    );
+                    )
                   }
-
+                  
                   return (
                     <motion.div
                       key={index}
@@ -668,11 +630,7 @@ function ProfitCalculator({
                         <motion.div
                           className="w-2 h-2 bg-[#ECB629] rounded-full"
                           animate={{ scale: [1, 1.2, 1] }}
-                          transition={{
-                            duration: 2,
-                            repeat: Infinity,
-                            delay: index * 0.5,
-                          }}
+                          transition={{ duration: 2, repeat: Infinity, delay: index * 0.5 }}
                         />
                         {inputConfig.label}
                       </Label>
@@ -693,11 +651,7 @@ function ProfitCalculator({
                         <motion.div
                           className="absolute inset-0 rounded-md bg-gradient-to-r from-[#ECB629]/0 via-[#ECB629]/5 to-[#ECB629]/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
                           animate={{
-                            backgroundPosition: [
-                              "0% 50%",
-                              "100% 50%",
-                              "0% 50%",
-                            ],
+                            backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
                           }}
                           transition={{
                             duration: 3,
@@ -738,9 +692,7 @@ function ProfitCalculator({
                     }
                   >
                     <SelectTrigger className="bg-slate-900/70 backdrop-blur-sm border-slate-600/50 text-white h-12 text-base transition-all duration-300 focus:border-[#ECB629] focus:bg-slate-800/70 group-hover:border-slate-500">
-                      <SelectValue
-                        placeholder={serviceInputs.param4.placeholder}
-                      />
+                      <SelectValue placeholder={serviceInputs.param4.placeholder} />
                     </SelectTrigger>
                     <SelectContent className="bg-slate-800 border-slate-600 text-white">
                       {[
@@ -782,14 +734,11 @@ function ProfitCalculator({
                     <BarChart3 className="w-5 h-5 text-[#ECB629]" />
                     {serviceName} Потенциал
                   </h3>
-                  <TooltipProvider>
+                   <TooltipProvider>
                     <Tooltip>
                       <TooltipTrigger asChild>
                         <div className="relative w-32 h-32 mx-auto mb-4 cursor-pointer">
-                          <svg
-                            className="w-32 h-32 transform -rotate-90"
-                            viewBox="0 0 120 120"
-                          >
+                          <svg className="w-32 h-32 transform -rotate-90" viewBox="0 0 120 120">
                             <circle
                               cx="60"
                               cy="60"
@@ -825,173 +774,116 @@ function ProfitCalculator({
                               >
                                 {Math.round(results.score)}
                               </motion.div>
-                              <div className="text-xs text-gray-400">
-                                от 100
-                              </div>
+                              <div className="text-xs text-gray-400">от 100</div>
                             </div>
                           </div>
                         </div>
                       </TooltipTrigger>
-                      <TooltipContent className="bg-slate-800 border-slate-600 text-white">
+                       <TooltipContent className="bg-slate-800 border-slate-600 text-white">
                         <p>Резултатът Ви се базира на:</p>
                         <ul className="list-disc pl-4 mt-2">
-                          <li>
-                            Текущи данни:{" "}
-                            <span className="font-bold text-[#ECB629]">
-                              40т.
-                            </span>
-                          </li>
-                          <li>
-                            Потенциал за растеж:{" "}
-                            <span className="font-bold text-[#ECB629]">
-                              35т.
-                            </span>
-                          </li>
-                          <li>
-                            Индустрия фактор:{" "}
-                            <span className="font-bold text-[#ECB629]">
-                              20т.
-                            </span>
-                          </li>
+                           <li>Текущи данни: <span className="font-bold text-[#ECB629]">40т.</span></li>
+                           <li>Потенциал за растеж: <span className="font-bold text-[#ECB629]">35т.</span></li>
+                           <li>Индустрия фактор: <span className="font-bold text-[#ECB629]">20т.</span></li>
                         </ul>
                       </TooltipContent>
                     </Tooltip>
                   </TooltipProvider>
                 </motion.div>
-
+                
                 {/* Personalized Advice */}
                 {personalizedAdvice && (
-                  <motion.div
+                   <motion.div
                     className="bg-slate-800/50 rounded-lg p-4 border border-[#ECB629]/30 text-center"
                     initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
+                    animate={{ opacity: 1}}
                     transition={{ duration: 0.6, delay: 0.4 }}
                   >
-                    <h4 className="font-semibold text-white mb-2">
-                      Какво означава това за Вас?
-                    </h4>
-                    <p className="text-gray-300 text-sm">
-                      {personalizedAdvice}
-                    </p>
-                  </motion.div>
+                    <h4 className="font-semibold text-white mb-2">Какво означава това за Вас?</h4>
+                    <p className="text-gray-300 text-sm">{personalizedAdvice}</p>
+                   </motion.div>
                 )}
 
                 {/* Industry Benchmark */}
                 {industryBenchmark && (
-                  <motion.div
+                   <motion.div
                     className="bg-blue-900/20 rounded-lg p-4 border border-blue-500/30 text-center"
                     initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
+                    animate={{ opacity: 1, y: 0}}
                     transition={{ duration: 0.6, delay: 0.6 }}
                   >
                     <p className="text-blue-200 text-sm">{industryBenchmark}</p>
-                  </motion.div>
+                   </motion.div>
                 )}
 
                 {/* Biggest Opportunity */}
                 {biggestOpportunity && (
-                  <motion.div
+                   <motion.div
                     className="bg-orange-900/20 rounded-lg p-4 border border-orange-500/30 text-center relative overflow-hidden"
                     initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
+                    animate={{ opacity: 1, scale: 1}}
                     transition={{ duration: 0.6, delay: 0.8 }}
                   >
                     <div className="absolute top-1 right-1 w-2 h-2 bg-orange-400 rounded-full animate-pulse"></div>
-                    <p className="text-orange-200 text-sm font-medium">
-                      {biggestOpportunity}
-                    </p>
-                  </motion.div>
+                    <p className="text-orange-200 text-sm font-medium">{biggestOpportunity}</p>
+                   </motion.div>
                 )}
 
                 {/* Metrics */}
-                {results.metric1 > 0 && (
+                 {results.metric1 > 0 && (
                   <div className="grid grid-cols-1 gap-4">
-                    <motion.div
-                      className="bg-slate-800/50 rounded-lg p-4 border border-slate-700/30"
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.6, delay: 0.6 }}
-                    >
-                      <div className="flex items-center justify-between">
-                        <span className="text-gray-400 text-sm">
-                          {serviceName === "SEO Struktor™" && "Месечен трафик"}
-                          {serviceName === "Trendlab™" && "Последователи"}
-                          {serviceName === "Clickstarter™" && "Конверсии"}
-                          {serviceName === "Clientomat™" && "Repeat Rate"}
-                        </span>
-                        <div className="text-right">
-                          <div className="text-sm text-gray-500">
-                            Преди:{" "}
-                            <span className="font-semibold">
-                              {Math.round(
-                                parseFloat(
-                                  inputs[serviceInputs.param1.key] || "0",
-                                ),
-                              ).toLocaleString()}
-                              {serviceName === "Clientomat™" ? "%" : ""}
-                            </span>
-                          </div>
-                          <div className="text-white font-bold text-lg">
-                            Сега:{" "}
-                            {serviceName === "Clientomat™"
-                              ? `${Math.round(results.metric1)}%`
-                              : Math.round(results.metric1).toLocaleString()}
-                          </div>
-                          <div className="text-xs text-[#ECB629]">
-                            +
-                            {Math.round(
-                              ((results.metric1 -
-                                parseFloat(
-                                  inputs[serviceInputs.param1.key] || "0",
-                                )) /
-                                parseFloat(
-                                  inputs[serviceInputs.param1.key] || "1",
-                                )) *
-                                100,
-                            )}
-                            %
-                          </div>
-                        </div>
-                      </div>
-                    </motion.div>
-
-                    {results.monthlyProfit > 0 && (
                       <motion.div
                         className="bg-slate-800/50 rounded-lg p-4 border border-slate-700/30"
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.6, delay: 0.8 }}
+                        transition={{ duration: 0.6, delay: 0.6 }}
                       >
-                        <div className="flex items-center justify-between">
-                          <span className="text-gray-400 text-sm">ROI</span>
-                          <div className="text-right">
-                            <div className="text-white font-bold text-lg">
-                              {Math.round(results.monthlyProfit)}%
-                            </div>
-                            <div className="text-xs text-[#ECB629]">
-                              месечно
-                            </div>
-                          </div>
+                         <div className="flex items-center justify-between">
+                          <span className="text-gray-400 text-sm">
+                            {serviceName === "SEO Struktor™" && "Месечен трафик"}
+                            {serviceName === "Trendlab™" && "Последователи"}
+                            {serviceName === "Clickstarter™" && "Конверсии"}
+                            {serviceName === "Clientomat™" && "Repeat Rate"}
+                          </span>
+                           <div className="text-right">
+                              <div className="text-sm text-gray-500">Преди: <span className="font-semibold">{Math.round(parseFloat(inputs[serviceInputs.param1.key] || "0")).toLocaleString()}{serviceName === "Clientomat™" ? "%":""}</span></div>
+                              <div className="text-white font-bold text-lg">Сега: {serviceName === "Clientomat™" ? `${Math.round(results.metric1)}%` : Math.round(results.metric1).toLocaleString()}</div>
+                              <div className="text-xs text-[#ECB629]">+{Math.round(((results.metric1 - parseFloat(inputs[serviceInputs.param1.key] || "0")) / parseFloat(inputs[serviceInputs.param1.key] || "1")) * 100)}%</div>
+                           </div>
                         </div>
                       </motion.div>
-                    )}
 
+                  {results.monthlyProfit > 0 && (
                     <motion.div
                       className="bg-slate-800/50 rounded-lg p-4 border border-slate-700/30"
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.6, delay: 1.0 }}
+                      transition={{ duration: 0.6, delay: 0.8 }}
                     >
                       <div className="flex items-center justify-between">
-                        <span className="text-gray-400 text-sm">
-                          Срок за резултати
-                        </span>
-                        <div className="text-white font-semibold">
-                          {results.timeframe}
+                        <span className="text-gray-400 text-sm">ROI</span>
+                        <div className="text-right">
+                          <div className="text-white font-bold text-lg">
+                            {Math.round(results.monthlyProfit)}%
+                          </div>
+                          <div className="text-xs text-[#ECB629]">месечно</div>
                         </div>
                       </div>
                     </motion.div>
-                  </div>
+                  )}
+
+                  <motion.div
+                    className="bg-slate-800/50 rounded-lg p-4 border border-slate-700/30"
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6, delay: 1.0 }}
+                  >
+                    <div className="flex items-center justify-between">
+                      <span className="text-gray-400 text-sm">Срок за резултати</span>
+                      <div className="text-white font-semibold">{results.timeframe}</div>
+                    </div>
+                  </motion.div>
+                </div>
                 )}
               </div>
             </div>
@@ -1010,8 +902,7 @@ export default function CalculatorsClient() {
       id: "seo-struktor",
       name: "SEO Struktor™",
       monthlyPrice: 1980,
-      description:
-        "SEO оптимизация за органичен растеж и подобрени позиции в Google",
+      description: "SEO оптимизация за органичен растеж и подобрени позиции в Google",
       averageResults: {
         trafficIncrease: 340,
         conversionRate: 2.5,
@@ -1080,11 +971,7 @@ export default function CalculatorsClient() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
               >
-                Изчислете{" "}
-                <span className="bg-[#ECB629] text-black px-2 py-1 rounded">
-                  точната печалба
-                </span>
-                <br />
+                Изчислете <span className="bg-[#ECB629] text-black px-2 py-1 rounded">точната печалба</span><br />
                 система
               </motion.h1>
 
@@ -1109,9 +996,7 @@ export default function CalculatorsClient() {
                     animate={{ scale: [1, 1.2, 1], opacity: [0.7, 1, 0.7] }}
                     transition={{ duration: 2, repeat: Infinity }}
                   />
-                  <span className="text-sm text-red-400 font-bold">
-                    Остават 3 места за 2025
-                  </span>
+                  <span className="text-sm text-red-400 font-bold">Остават 3 места за 2025</span>
                 </div>
               </motion.div>
             </div>
@@ -1121,11 +1006,7 @@ export default function CalculatorsClient() {
         {/* Calculators Section */}
         <section className="py-12 sm:py-16 md:py-20 bg-slate-800/30">
           <div className="container mx-auto px-6">
-            <Tabs
-              value={activeTab}
-              onValueChange={setActiveTab}
-              className="w-full"
-            >
+            <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
               <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4 bg-slate-800/50 rounded-xl p-1 mb-8">
                 {services.map((service) => (
                   <TabsTrigger
@@ -1136,20 +1017,14 @@ export default function CalculatorsClient() {
                     <div className="flex items-center gap-2">
                       {service.icon}
                       <span className="hidden sm:inline">{service.name}</span>
-                      <span className="sm:hidden">
-                        {service.name.split("™")[0]}
-                      </span>
+                      <span className="sm:hidden">{service.name.split("™")[0]}</span>
                     </div>
                   </TabsTrigger>
                 ))}
               </TabsList>
 
               {services.map((service) => (
-                <TabsContent
-                  key={service.id}
-                  value={service.id}
-                  className="space-y-8"
-                >
+                <TabsContent key={service.id} value={service.id} className="space-y-8">
                   <ProfitCalculator
                     serviceName={service.name}
                     monthlyPrice={service.monthlyPrice}
@@ -1180,9 +1055,7 @@ export default function CalculatorsClient() {
                     animate={{ scale: [1, 1.2, 1], opacity: [0.7, 1, 0.7] }}
                     transition={{ duration: 2, repeat: Infinity }}
                   />
-                  <span className="text-sm text-red-400 font-bold">
-                    Остават 3 места за 2025
-                  </span>
+                  <span className="text-sm text-red-400 font-bold">Остават 3 места за 2025</span>
                 </div>
               </motion.div>
 
@@ -1192,8 +1065,7 @@ export default function CalculatorsClient() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
               >
-                Готови ли сте да превърнете
-                <br />
+                Готови ли сте да превърнете<br />
                 тези числа в резултати?
               </motion.h2>
 
@@ -1203,8 +1075,7 @@ export default function CalculatorsClient() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
               >
-                Кандидатствайте за диагностика и получете персонализиран план за
-                растеж.
+                Кандидатствайте за диагностика и получете персонализиран план за растеж.
               </motion.p>
 
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
