@@ -1,6 +1,14 @@
+'use client'
+
 import Link from 'next/link'
+import { useEffect } from 'react'
+import { tracking, ConversionStage } from '@/lib/tracking'
 
 export function StaticHomepage() {
+  useEffect(() => {
+    // Track page view
+    tracking.trackFunnelStage(ConversionStage.LANDING);
+  }, []);
   return (
     <div className="min-h-screen bg-slate-900">
       {/* Navigation */}

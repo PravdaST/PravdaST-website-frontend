@@ -1,21 +1,12 @@
 import { NextResponse } from 'next/server'
-
-// Динамично зареждане на blog-file-reader само на сървъра
-async function getBlogPostsData() {
-  if (typeof window !== 'undefined') {
-    throw new Error('Този модул може да се използва само на сървъра');
-  }
-  
-  const { readBlogPostsFromFiles } = await import('@/lib/blog-file-reader');
-  return readBlogPostsFromFiles();
-}
+import { getStaticBlogPosts } from '@/lib/blog-static'
 
 export async function GET() {
   try {
-    const blogPosts = await getBlogPostsData()
+    const blogPosts = getStaticBlogPosts()
     return NextResponse.json(blogPosts)
   } catch (error) {
-    console.error('Error reading blog posts from files:', error)
-    return NextResponse.json({ error: 'Failed to read blog posts' }, { status: 500 })
+    console.error('Error getting static blog posts:', error)
+    return NextResponse.json({ error: 'Failed to get blog posts' }, { status: 500 })
   }
 }
