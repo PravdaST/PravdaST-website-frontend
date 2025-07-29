@@ -596,7 +596,7 @@ export default function Services() {
 
                         <Link href={`/services/${service.slug}`}>
                           <Button
-                            className="w-full bg-[#ECB629] text-black hover:bg-[#ECB629]/90 font-semibold py-3 px-6 rounded-lg transition-all duration-300 group/btn relative overflow-hidden"
+                            className="cursor-target w-full bg-[#ECB629] text-black hover:bg-[#ECB629]/90 font-semibold py-3 px-6 rounded-lg transition-all duration-300 group/btn relative overflow-hidden"
                             size="lg"
                           >
                             <span className="relative z-1 flex items-center justify-center gap-2">

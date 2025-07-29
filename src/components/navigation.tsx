@@ -95,7 +95,7 @@ export const Navigation = () => {
             transition={{ duration: 0.2 }}
           >
             <Link href="/">
-              <div className="text-2xl font-bold text-[#ECB629] cursor-pointer relative">
+              <div className="text-2xl font-bold text-[#ECB629] cursor-pointer cursor-target relative">
                 PRAVDA ST
                 <motion.div
                   className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#ECB629] origin-left"
@@ -119,7 +119,7 @@ export const Navigation = () => {
                   >
                     <Link href={item.href}>
                       <motion.span
-                        className={`cursor-pointer transition-colors relative flex items-center gap-1 ${
+                        className={`cursor-pointer cursor-target transition-colors relative flex items-center gap-1 ${
                           pathname === item.href || pathname?.startsWith('/services/')
                             ? "text-[#ECB629] font-semibold"
                             : "text-white hover:text-[#ECB629]"
@@ -203,7 +203,7 @@ export const Navigation = () => {
                   >
                     <Link
                       href={item.href}
-                      className={`text-gray-300 hover:text-[#ECB629] transition-colors relative group ${
+                      className={`cursor-target text-gray-300 hover:text-[#ECB629] transition-colors relative group ${
                         pathname === item.href ? 'text-[#ECB629]' : ''
                       }`}
                     >
@@ -228,7 +228,7 @@ export const Navigation = () => {
               whileTap={{ scale: 0.95 }}
             >
               <Button
-                className="bg-[#ECB629] text-black hover:bg-[#ECB629]/90 font-semibold px-6 py-2 rounded-lg transition-all duration-300 shadow-lg hover:shadow-[#ECB629]/25"
+                className="cursor-target bg-[#ECB629] text-black hover:bg-[#ECB629]/90 font-semibold px-6 py-2 rounded-lg transition-all duration-300 shadow-lg hover:shadow-[#ECB629]/25"
                 onClick={() => {
                   window.open("https://form.typeform.com/to/GXLaGY98", "_blank");
                 }}
@@ -240,7 +240,7 @@ export const Navigation = () => {
 
           {/* Mobile Menu Button */}
           <motion.button
-            className="md:hidden text-[#ECB629]"
+            className="cursor-target md:hidden text-[#ECB629]"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             whileTap={{ scale: 0.95 }}
           >

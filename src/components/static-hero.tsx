@@ -59,7 +59,7 @@ export function StaticHero() {
             href="https://form.typeform.com/to/GXLaGY98" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="bg-[#ECB629] text-black hover:bg-[#ECB629]/90 px-6 md:px-12 py-4 md:py-6 text-base md:text-xl font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 w-full sm:w-auto relative overflow-hidden group min-h-[56px] rounded-lg"
+            className="cursor-target bg-[#ECB629] text-black hover:bg-[#ECB629]/90 px-6 md:px-12 py-4 md:py-6 text-base md:text-xl font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 w-full sm:w-auto relative overflow-hidden group min-h-[56px] rounded-lg"
           >
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12"></div>
             <span className="relative z-10">Започнете днес</span>
@@ -67,7 +67,7 @@ export function StaticHero() {
           
           <Link 
             href="/services"
-            className="border-2 border-[#ECB629] text-[#ECB629] hover:bg-[#ECB629] hover:text-black px-6 md:px-12 py-4 md:py-6 text-base md:text-xl font-semibold transition-all duration-300 w-full sm:w-auto min-h-[56px] rounded-lg"
+            className="cursor-target border-2 border-[#ECB629] text-[#ECB629] hover:bg-[#ECB629] hover:text-black px-6 md:px-12 py-4 md:py-6 text-base md:text-xl font-semibold transition-all duration-300 w-full sm:w-auto min-h-[56px] rounded-lg"
           >
             Научи повече
           </Link>

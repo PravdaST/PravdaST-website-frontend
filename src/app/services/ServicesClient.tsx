@@ -219,7 +219,7 @@ export default function ServicesClient() {
                 <Link href="/contact">
                   <Button
                     size="lg"
-                    className="bg-gradient-to-r from-yellow-400 to-yellow-500 text-black hover:from-yellow-500 hover:to-yellow-600 px-8 py-4 text-lg font-semibold transition-all duration-300 hover:scale-105"
+                    className="cursor-target bg-gradient-to-r from-yellow-400 to-yellow-500 text-black hover:from-yellow-500 hover:to-yellow-600 px-8 py-4 text-lg font-semibold transition-all duration-300 hover:scale-105"
                   >
                     Заявете консултация
                     <ArrowRight className="ml-2 h-5 w-5" />
