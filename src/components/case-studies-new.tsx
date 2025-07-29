@@ -79,7 +79,7 @@ export const CaseStudiesSlider = () => {
   const currentCase = caseStudies[currentSlide];
 
   return (
-    <section className="py-20 bg-slate-900 relative overflow-hidden">
+    <section className="py-20 relative overflow-hidden">
       {/* Animated Tech Background */}
       <div className="absolute inset-0 opacity-15">
         <div className="absolute inset-0">
@@ -127,7 +127,7 @@ export const CaseStudiesSlider = () => {
           viewport={{ once: true }}
         >
           <motion.div
-            className="inline-flex items-center gap-3 mb-8 px-6 py-3 rounded-full bg-gradient-to-r from-slate-800/80 to-slate-700/60 border border-slate-600/30 backdrop-blur-sm"
+            className="inline-flex items-center gap-3 mb-8 px-6 py-3 rounded-full glassmorphism"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -175,7 +175,7 @@ export const CaseStudiesSlider = () => {
           exit={{ opacity: 0, x: -100 }}
           transition={{ duration: 0.5 }}
         >
-          <Card className="bg-slate-800/50 border-slate-600/30 backdrop-blur-sm overflow-hidden">
+          <Card className="glassmorphism overflow-hidden">
             <CardContent className="p-0">
               <div className="grid lg:grid-cols-2">
                 {/* Left Column - Company Info */}
@@ -202,7 +202,7 @@ export const CaseStudiesSlider = () => {
                       {currentCase.systems.map((system, index) => (
                         <span
                           key={index}
-                          className="px-3 py-1 bg-slate-700/50 text-[#ECB629] rounded-full text-sm font-medium border border-slate-600/30"
+                          className="px-3 py-1 glassmorphism text-[#ECB629] rounded-full text-sm font-medium"
                         >
                           {system}
                         </span>
@@ -216,7 +216,7 @@ export const CaseStudiesSlider = () => {
                 </div>
 
                 {/* Right Column - Results */}
-                <div className="bg-slate-900/50 p-8 lg:p-12 border-l border-slate-600/30">
+                <div className="p-8 lg:p-12 border-l border-white/10">
                   <h4 className="text-2xl font-bold text-white mb-8 text-center">
                     Резултати
                   </h4>
@@ -225,7 +225,7 @@ export const CaseStudiesSlider = () => {
                     {currentCase.results.map((result, index) => (
                       <motion.div
                         key={index}
-                        className="bg-slate-700/30 rounded-lg p-4"
+                        className="glassmorphism rounded-lg p-4"
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -254,7 +254,7 @@ export const CaseStudiesSlider = () => {
         <div className="flex items-center justify-center gap-6 mt-12">
           <button
             onClick={prevSlide}
-            className="p-4 rounded-full bg-slate-800/50 hover:bg-slate-700/50 text-gray-300 hover:text-[#ECB629] transition-all duration-300 border border-slate-600/30 backdrop-blur-sm"
+            className="p-4 rounded-full glassmorphism text-gray-300 hover:text-[#ECB629] transition-all duration-300"
           >
             <ChevronLeft className="w-6 h-6" />
           </button>
@@ -275,7 +275,7 @@ export const CaseStudiesSlider = () => {
 
           <button
             onClick={nextSlide}
-            className="p-4 rounded-full bg-slate-800/50 hover:bg-slate-700/50 text-gray-300 hover:text-[#ECB629] transition-all duration-300 border border-slate-600/30 backdrop-blur-sm"
+            className="p-4 rounded-full glassmorphism text-gray-300 hover:text-[#ECB629] transition-all duration-300"
           >
             <ChevronRight className="w-6 h-6" />
           </button>
