@@ -1,25 +1,28 @@
 import { Metadata } from 'next'
-import HomeClient from './HomeClient'
+import { StaticHomepage } from '@/components/static-homepage'
 
 export const metadata: Metadata = {
-  title: "Правдаст - Бизнес инженеринг за предвидим растеж в България",
-  description: "Превръщаме хаотичния растеж в предвидими, измерими резултати чрез проверени бизнес системи. SEO оптимизация, създаване на съдържание, рекламни кампании.",
-  keywords: "бизнес инженеринг българия, pravdast, seo оптимизация софия, систематичен растеж, b2b маркетинг, автоматизация продажби, предвидим растеж",
+  title: 'Pravda Agency | Бизнес инженерство и предсказуем растеж',
+  description: 'Превръщаме хаоса в предсказуем растеж чрез инженерни системи. SEO Struktor™, Trendlab™, Clickstarter™, Clientomat™ - проверени решения за българските компании.',
+  keywords: 'бизнес инженерство, дигитален маркетинг българия, SEO оптимизация, автоматизация продажби, pravda agency',
   openGraph: {
-    title: "Правдаст - Бизнес инженеринг за предвидим растеж",
-    description: "Превръщаме хаоса в предсказуеми системи. Проверени методи за B2B растеж.",
-    images: ['/pravda-og-home.png'],
+    title: 'Pravda Agency | Бизнес инженерство и предсказуем растеж',
+    description: 'Превръщаме хаоса в предсказуем растеж чрез инженерни системи. Проверени решения за българските компании.',
     type: 'website',
+    locale: 'bg_BG',
+    url: 'https://www.pravdagency.eu',
+    siteName: 'Pravda Agency',
   },
   twitter: {
     card: 'summary_large_image',
-    title: "Правдаст - Бизнес инженеринг",
-    description: "Систематичен подход към B2B растеж в България.",
-    images: ['/pravda-twitter-home.png'],
+    title: 'Pravda Agency | Бизнес инженерство и предсказуем растеж',
+    description: 'Превръщаме хаоса в предсказуем растеж чрез инженерни системи. Проверени решения за българските компании.',
   },
-  robots: "index, follow, max-snippet:-1, max-image-preview:large",
+  alternates: {
+    canonical: 'https://www.pravdagency.eu',
+  },
 }
 
 export default function HomePage() {
-  return <HomeClient />
+  return <StaticHomepage />
 }
