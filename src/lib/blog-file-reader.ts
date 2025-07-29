@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 
-const BLOG_POSTS_DIR = path.join(process.cwd(), 'blog-posts-static');
+const BLOG_POSTS_DIR = path.join(process.cwd(), 'Blog post');
 
 export interface BlogPost {
   id: string;
