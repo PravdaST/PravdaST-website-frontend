@@ -22,7 +22,7 @@ import {
   BarChart3,
 } from "lucide-react";
 import Link from "next/link";
-import { Magnet } from "@/components/reactbits";
+// import { Magnet } from "@/components/reactbits";
 
 // Systems Background Component
 const SystemsBackground = () => {
@@ -518,8 +518,7 @@ export default function Services() {
                   viewport={{ once: true }}
                   className="group"
                 >
-                  <Magnet strength={0.4} range={120}>
-                    <Card className="glassmorphism hover:border-[#ECB629]/50 transition-all duration-500 group-hover:shadow-lg group-hover:shadow-[#ECB629]/10 overflow-hidden h-full relative">
+                  <Card className="glassmorphism hover:border-[#ECB629]/50 transition-all duration-500 group-hover:shadow-lg group-hover:shadow-[#ECB629]/10 overflow-hidden h-full relative">
                     {/* Hover Glow Effect */}
                     <div className="absolute inset-0 bg-gradient-to-r from-[#ECB629]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
@@ -617,8 +616,7 @@ export default function Services() {
 
                     {/* Bottom accent line */}
                     <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#ECB629] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    </Card>
-                  </Magnet>
+                  </Card>
                 </motion.div>
               ))}
             </div>

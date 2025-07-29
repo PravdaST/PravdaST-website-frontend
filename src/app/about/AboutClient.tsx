@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { ProfileCard } from "@/components/reactbits";
+// import { ProfileCard } from "@/components/reactbits";
 import {
   Target,
   Shield,
@@ -394,19 +394,100 @@ export default function AboutClient() {
               </p>
             </motion.div>
 
-            <div className="flex justify-center">
-              <ProfileCard
-                name="Pravdast Team"
-                title="Business Engineers"
-                bio="Създаваме предвидими системи за растеж на бизнеса чрез инженерен подход към маркетинга и продажбите."
-                stats={{
-                  projects: 50,
-                  clients: 25,
-                  experience: 5
-                }}
-                theme="dark"
-                className="max-w-sm"
-              />
+            {/* Team Grid */}
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+              {[
+                {
+                  name: "Симеон Сираков",
+                  title: "Бизнес директор",
+                  description: "Ръководи стратегическото развитие и бизнес операциите на агенцията.",
+                  avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face"
+                },
+                {
+                  name: "Томи Салунджиев", 
+                  title: "Креативен директор",
+                  description: "Отговаря за креативната визия и дизайн стратегията на проектите.",
+                  avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face"
+                },
+                {
+                  name: "Живомир Арнаудов",
+                  title: "Програмен мениджър", 
+                  description: "Управлява техническите проекти и координира разработващите процеси.",
+                  avatar: "https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?w=150&h=150&fit=crop&crop=face"
+                },
+                {
+                  name: "Калоян Богданов",
+                  title: "AI девелопър",
+                  description: "Специализира в изкуствен интелект и автоматизация на бизнес процеси.",
+                  avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=150&h=150&fit=crop&crop=face"
+                },
+                {
+                  name: "Виктория Петрова",
+                  title: "Маркетинг експерт",
+                  description: "Експерт по дигитален маркетинг и имейл кампании за растеж.",
+                  avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b830?w=150&h=150&fit=crop&crop=face"
+                },
+                {
+                  name: "Петър Петров",
+                  title: "SEO експерт",
+                  description: "Специалист по органично позициониране и SEO оптимизация.",
+                  avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face"
+                }
+              ].map((member, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  className="group"
+                >
+                  <Card className="glassmorphism hover:border-[#ECB629]/50 transition-all duration-500 group-hover:shadow-lg group-hover:shadow-[#ECB629]/10 overflow-hidden h-full relative">
+                    {/* Hover Glow Effect */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-[#ECB629]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    
+                    <CardContent className="p-6 relative z-1 text-center h-full flex flex-col">
+                      {/* Avatar */}
+                      <div className="relative mb-4">
+                        <div className="w-20 h-20 mx-auto rounded-full bg-gradient-to-r from-[#ECB629] to-[#ECB629]/70 p-1 group-hover:scale-110 transition-transform duration-300">
+                          <div className="w-full h-full rounded-full bg-slate-900 flex items-center justify-center overflow-hidden">
+                            <img 
+                              src={member.avatar} 
+                              alt={member.name}
+                              className="w-full h-full object-cover rounded-full"
+                            />
+                          </div>
+                        </div>
+                        <motion.div
+                          className="absolute inset-0 bg-[#ECB629] rounded-full opacity-20 scale-125"
+                          animate={{ scale: [1.25, 1.4, 1.25] }}
+                          transition={{
+                            duration: 3,
+                            repeat: Infinity,
+                            delay: index * 0.5,
+                          }}
+                        />
+                      </div>
+
+                      {/* Name & Title */}
+                      <h3 className="text-xl font-bold text-white mb-2 group-hover:text-[#ECB629] transition-colors duration-300">
+                        {member.name}
+                      </h3>
+                      <p className="text-[#ECB629] font-semibold text-sm mb-4 uppercase tracking-wide">
+                        {member.title}
+                      </p>
+
+                      {/* Description */}
+                      <p className="text-gray-300 text-sm leading-relaxed flex-1 mb-4">
+                        {member.description}
+                      </p>
+
+                      {/* Bottom accent line */}
+                      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#ECB629] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
             </div>
           </div>
         </section>

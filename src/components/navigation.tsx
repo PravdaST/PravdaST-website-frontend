@@ -7,7 +7,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { SearchTrigger } from "@/components/advanced-search";
-import { GooeyNav } from "@/components/reactbits";
+// import { GooeyNav } from "@/components/reactbits";
 
 export const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -108,19 +108,9 @@ export const Navigation = () => {
             </Link>
           </motion.div>
 
-          {/* Desktop Navigation with GooeyNav */}
+          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            {/* Gooey Navigation for main items */}
-            <GooeyNav 
-              items={navItems.filter(item => !item.hasDropdown).map(item => ({
-                label: item.label,
-                href: item.href
-              }))}
-              className="mr-4"
-            />
-            
-            {/* Services dropdown (separate from gooey nav) */}
-            {navItems.filter(item => item.hasDropdown).map((item, index) => (
+            {navItems.map((item, index) => (
               <div key={item.href} className="relative">
                 {item.hasDropdown ? (
                   <div
