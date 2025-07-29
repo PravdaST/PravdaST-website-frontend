@@ -1,0 +1,126 @@
+Основен Background Design
+Главният background се базира на glassmorphism ефект с тъмна тема и градиенти. Ето ключовите компоненти:
+
+1. CSS Variables и Цветова Схема
+В client/src/index.css имаме дефинирани цветовете:
+
+:root {
+  --background: hsl(220, 20%, 5%); /* #0D0D0F - много тъмен цвят */
+  --pravda-yellow: hsl(51, 100%, 50%); /* #FFD700 - жълт акцент */
+}
+body {
+  background: #0D0D0F; /* Основен тъмен фон */
+}
+2. Glassmorphism Ефекти
+.glassmorphism {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.crm-glass-card {
+  background: rgba(30, 30, 35, 0.5);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+}
+3. Gradient Background Effects
+В client/src/components/ui/background-effects.tsx имаме анимирани градиенти:
+
+export function GradientOrbs() {
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      <motion.div
+        className="absolute w-96 h-96 bg-gradient-to-r from-yellow-400/10 to-orange-500/10 rounded-full blur-3xl"
+        animate={{
+          x: [0, 100, 0],
+          y: [0, -50, 0],
+          scale: [1, 1.2, 1],
+        }}
+        transition={{
+          duration: 15,
+          repeat: Infinity,
+          ease: "linear",
+        }}
+      />
+    </div>
+  );
+}
+4. Специални Background Класове
+.slide-editor-overlay {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.95) 0%,
+    rgba(20, 20, 20, 0.92) 100%
+  );
+  backdrop-filter: blur(10px);
+}
+.slide-card {
+  background: linear-gradient(
+    145deg,
+    rgba(10, 10, 10, 0.9) 0%,
+    rgba(25, 25, 25, 0.85) 100%
+  );
+}
+Как да го използваш в друг проект:
+1. Копирай CSS Variables
+:root {
+  --background: hsl(220, 20%, 5%);
+  --foreground: hsl(0, 0%, 94%);
+  --primary: hsl(51, 100%, 50%);
+  --border: hsl(0, 0%, 100%, 0.1);
+}
+body {
+  background: #0D0D0F;
+  color: var(--foreground);
+}
+2. Добави Glassmorphism Utility Classes
+.glassmorphism {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.glass-card {
+  background: rgba(30, 30, 35, 0.5);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  transition: all 0.3s ease;
+}
+.glass-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 215, 0, 0.3);
+  box-shadow: 0 8px 32px rgba(255, 215, 0, 0.1);
+}
+3. Добави Animated Background Orbs (за React)
+function BackgroundEffects() {
+  return (
+    <div className="fixed inset-0 overflow-hidden pointer-events-none z-[-1]">
+      <div 
+        className="absolute w-96 h-96 bg-gradient-to-r from-yellow-400/10 to-orange-500/10 rounded-full blur-3xl animate-pulse"
+        style={{ top: '10%', left: '10%' }}
+      />
+      <div 
+        className="absolute w-64 h-64 bg-gradient-to-r from-blue-400/10 to-purple-500/10 rounded-full blur-2xl animate-bounce"
+        style={{ bottom: '20%', right: '15%' }}
+      />
+    </div>
+  );
+}
+4. Tailwind Config (ако използваш Tailwind)
+module.exports = {
+  theme: {
+    extend: {
+      colors: {
+        background: 'var(--background)',
+        foreground: 'var(--foreground)',
+        primary: 'var(--primary)',
+      },
+      backdropBlur: {
+        xs: '2px',
+      }
+    }
+  }
+}
+Това е цялата "рецепта" за background-а! Комбинацията от тъмни цветове, glassmorphism ефекти, blur-ове и градиенти създава този модерен, елегантен вид.
