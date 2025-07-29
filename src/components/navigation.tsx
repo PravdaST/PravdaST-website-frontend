@@ -43,7 +43,9 @@ export const Navigation = () => {
 
   return (
     <motion.nav
-      className="w-full bg-slate-900 border-b border-[#ECB629]/20 relative z-50"
+      className={`w-full transition-all duration-300 border-b border-[#ECB629]/20 relative z-50 ${
+        isScrolled ? 'glass-navigation' : 'bg-transparent'
+      }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6 }}

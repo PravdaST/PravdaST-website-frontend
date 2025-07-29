@@ -7,7 +7,7 @@ import { ArrowRight } from "lucide-react"
 
 export const HeroSection = () => {
   return (
-    <section className="min-h-screen flex items-center relative overflow-hidden bg-slate-900">
+    <section className="min-h-screen flex items-center relative overflow-hidden">
       {/* Animated Tech Background */}
       <div className="absolute inset-0 opacity-15">
         <div className="absolute inset-0">

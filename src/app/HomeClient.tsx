@@ -14,6 +14,7 @@ import { Footer } from '@/components/footer'
 import { HelmetSEO } from '@/components/seo-helmet'
 import { pageSEOData } from '@/data/seo-pages'
 import { tracking, ConversionStage } from '@/lib/tracking'
+import { BackgroundEffects } from '@/components/background-effects'
 
 export default function HomeClient() {
   useEffect(() => {
@@ -24,7 +25,8 @@ export default function HomeClient() {
   const seoData = pageSEOData.home;
 
   return (
-    <div className="min-h-screen bg-slate-900">
+    <div className="min-h-screen relative">
+      <BackgroundEffects />
       <HelmetSEO seo={seoData} pageSlug="" />
       <Navigation />
       <HeroSection />
