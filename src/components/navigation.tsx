@@ -43,7 +43,7 @@ export const Navigation = () => {
 
   return (
     <motion.nav
-      className="w-full bg-slate-900 border-b border-[#ECB629]/20 relative"
+      className="w-full bg-slate-900 border-b border-[#ECB629]/20 relative z-50"
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6 }}
@@ -86,7 +86,7 @@ export const Navigation = () => {
         </div>
       </div>
 
-      <div className="container mx-auto px-4 sm:px-6 py-3 sm:py-4 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 py-3 sm:py-4 relative z-50">
         <div className="flex justify-between items-center">
           <motion.div
             whileHover={{ scale: 1.05 }}
@@ -142,8 +142,7 @@ export const Navigation = () => {
 
                     {/* Dropdown Menu */}
                     <div
-                      className="absolute top-full left-0 pt-2"
-                      style={{ zIndex: 999999 }}
+                      className="absolute top-full left-0 pt-2 z-[9999]"
                     >
                       {isServicesDropdownOpen && (
                         <motion.div
