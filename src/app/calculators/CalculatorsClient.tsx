@@ -41,6 +41,7 @@ import {
 import { Slider } from "@/components/ui/slider";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
+import { BackgroundEffects } from "@/components/background-effects";
 
 interface ProfitCalculatorProps {
   serviceName: string;
@@ -441,7 +442,7 @@ function ProfitCalculator({
       </div>
 
       {/* Calculator Section */}
-      <Card className="bg-slate-800/30 border-slate-700/50 backdrop-blur-lg overflow-hidden">
+      <Card className="glassmorphism overflow-hidden">
         <CardHeader className="pb-4">
           <CardTitle className="flex flex-col sm:flex-row items-center gap-2 text-white text-lg sm:text-xl">
             <div className="flex items-center gap-2">
@@ -572,7 +573,7 @@ function ProfitCalculator({
                               [inputConfig.key]: e.target.value,
                             })
                           }
-                          className="bg-slate-900/70 backdrop-blur-sm border-slate-600/50 text-white h-12 text-base transition-all duration-300 focus:border-[#ECB629] focus:bg-slate-800/70 focus:shadow-lg focus:shadow-[#ECB629]/10 group-hover:border-slate-500"
+                          className="glassmorphism text-white h-12 text-base transition-all duration-300 focus:border-[#ECB629] focus:shadow-lg focus:shadow-[#ECB629]/10 group-hover:border-[#ECB629]/30"
                         />
                         <motion.div
                           className="absolute inset-0 rounded-md bg-gradient-to-r from-[#ECB629]/0 via-[#ECB629]/5 to-[#ECB629]/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
@@ -617,10 +618,10 @@ function ProfitCalculator({
                       })
                     }
                   >
-                    <SelectTrigger className="bg-slate-900/70 backdrop-blur-sm border-slate-600/50 text-white h-12 text-base transition-all duration-300 focus:border-[#ECB629] focus:bg-slate-800/70 group-hover:border-slate-500">
+                    <SelectTrigger className="glassmorphism text-white h-12 text-base transition-all duration-300 focus:border-[#ECB629] group-hover:border-[#ECB629]/30">
                       <SelectValue placeholder={serviceInputs.param4.placeholder} />
                     </SelectTrigger>
-                    <SelectContent className="bg-slate-800 border-slate-600 text-white">
+                    <SelectContent className="glassmorphism text-white">
                       {[
                         "E-commerce",
                         "SaaS",
@@ -705,7 +706,7 @@ function ProfitCalculator({
                           </div>
                         </div>
                       </TooltipTrigger>
-                       <TooltipContent className="bg-slate-800 border-slate-600 text-white">
+                       <TooltipContent className="glassmorphism text-white">
                         <p>Резултатът Ви се базира на:</p>
                         <ul className="list-disc pl-4 mt-2">
                            <li>Текущи данни: <span className="font-bold text-[#ECB629]">40т.</span></li>
@@ -720,7 +721,7 @@ function ProfitCalculator({
                 {/* Personalized Advice */}
                 {personalizedAdvice && (
                    <motion.div
-                    className="bg-slate-800/50 rounded-lg p-4 border border-[#ECB629]/30 text-center"
+                    className="glassmorphism rounded-lg p-4 border border-[#ECB629]/30 text-center"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1}}
                     transition={{ duration: 0.6, delay: 0.4 }}
@@ -734,7 +735,7 @@ function ProfitCalculator({
                  {results.metric1 > 0 && (
                   <div className="grid grid-cols-1 gap-4">
                       <motion.div
-                        className="bg-slate-800/50 rounded-lg p-4 border border-slate-700/30"
+                        className="glassmorphism rounded-lg p-4"
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.6, delay: 0.6 }}
@@ -756,7 +757,7 @@ function ProfitCalculator({
 
                   {results.monthlyProfit > 0 && (
                     <motion.div
-                      className="bg-slate-800/50 rounded-lg p-4 border border-slate-700/30"
+                      className="glassmorphism rounded-lg p-4"
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.6, delay: 0.8 }}
@@ -774,7 +775,7 @@ function ProfitCalculator({
                   )}
 
                   <motion.div
-                    className="bg-slate-800/50 rounded-lg p-4 border border-slate-700/30"
+                    className="glassmorphism rounded-lg p-4"
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.6, delay: 1.0 }}
@@ -859,6 +860,7 @@ export default function CalculatorsClient() {
 
   return (
     <div className="min-h-screen">
+      <BackgroundEffects />
       <Navigation />
 
       <main className="pt-20">
@@ -905,10 +907,10 @@ export default function CalculatorsClient() {
         </section>
 
         {/* Calculators Section */}
-        <section className="py-12 sm:py-16 md:py-20 bg-slate-800/30">
+        <section className="py-12 sm:py-16 md:py-20 relative overflow-hidden">
           <div className="container mx-auto px-6">
             <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-              <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4 bg-slate-800/50 rounded-xl p-1 mb-8">
+              <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4 glassmorphism rounded-xl p-1 mb-8">
                 {services.map((service) => (
                   <TabsTrigger
                     key={service.id}
@@ -941,7 +943,7 @@ export default function CalculatorsClient() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-20 bg-slate-900 relative overflow-hidden">
+        <section className="py-20 relative overflow-hidden">
           <div className="container mx-auto px-6 relative z-10">
             <div className="max-w-4xl mx-auto text-center">
               <motion.div
