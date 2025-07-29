@@ -32,6 +32,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { Slider } from "@/components/ui/slider";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 
@@ -194,9 +201,11 @@ function ProfitCalculator({
     score: 0,
     paybackPeriod: 0,
     timeframe: "3-6 месеца",
+    scoreBreakdown: {}, // <-- ДОБАВИ ТОВА
   });
 
   const [recommendations, setRecommendations] = useState<string[]>([]);
+  const [personalizedAdvice, setPersonalizedAdvice] = useState(""); // <-- ДОБАВИ ТОВА
 
   // Service-specific calculations
   const calculateResults = () => {
@@ -208,6 +217,7 @@ function ProfitCalculator({
         score: 0,
         paybackPeriod: 0,
         timeframe: "3-6 месеца",
+        scoreBreakdown: {},
       };
     }
     
@@ -240,6 +250,7 @@ function ProfitCalculator({
             score,
             paybackPeriod: monthlyPrice / Math.max(additionalRevenue / 12, 1),
             timeframe: "3-6 месеца",
+            scoreBreakdown: {},
           };
         }
         case "Trendlab™": {
@@ -258,6 +269,7 @@ function ProfitCalculator({
             score: authorityScore,
             paybackPeriod: monthlyPrice / Math.max(revenueFromContent / 12, 1),
             timeframe: "2-4 месеца",
+            scoreBreakdown: {},
           };
         }
         case "Clickstarter™": {
@@ -286,6 +298,7 @@ function ProfitCalculator({
               monthlyPrice /
               Math.max((additionalRevenue + costSavings) / 12, 1),
             timeframe: "1-3 месеца",
+            scoreBreakdown: {},
           };
         }
         case "Clientomat™": {
@@ -311,6 +324,7 @@ function ProfitCalculator({
             score,
             paybackPeriod: monthlyPrice / Math.max(additionalRevenue / 12, 1),
             timeframe: "2-5 месеца",
+            scoreBreakdown: {},
           };
         }
         default:
@@ -321,6 +335,7 @@ function ProfitCalculator({
             score: 0,
             paybackPeriod: 0,
             timeframe: "3-6 месеца",
+            scoreBreakdown: {},
           };
       }
     }
@@ -331,6 +346,7 @@ function ProfitCalculator({
       score: 0,
       paybackPeriod: 0,
       timeframe: "3-6 месеца",
+      scoreBreakdown: {},
     };
   };
 
@@ -339,40 +355,55 @@ function ProfitCalculator({
     const newResults = calculateResults();
     setResults(newResults);
 
-    // Generate service-specific recommendations
     const param1 = parseFloat(String(inputs[serviceInputs.param1.key] || "0")) || 0;
     const param2 = parseFloat(String(inputs[serviceInputs.param2.key] || "0")) || 0;
     const param3 = parseFloat(String(inputs[serviceInputs.param3.key] || "0")) || 0;
-
+    
+    // Generate service-specific recommendations
     const recs = [];
+    let advice = "";
+
     switch (serviceName) {
       case "SEO Struktor™":
         if (param1 < 5000) recs.push("Органичен трафик");
         if (param2 > 30) recs.push("Подобрение на позиции");
         if (param3 < 15) recs.push("Изследване на ключови думи");
         if (newResults.score < 70) recs.push("Технически оптимизация");
+        if(newResults.metric1 > 0) {
+            advice = `С наша помощ, трафикът Ви може да скочи от ${Math.round(param1).toLocaleString()} на ${Math.round(newResults.metric1).toLocaleString()} посетители. Това ще генерира около ${Math.round(newResults.metric2).toLocaleString()} нови запитвания месечно, превръщайки сайта Ви в машина за клиенти.`
+        }
         break;
       case "Trendlab™":
         if (param1 < 10000) recs.push("Изграждане на аудитория");
         if (param2 < 5) recs.push("Честота на съдържание");
         if (param3 < 5) recs.push("Стратегия за ангажираност");
         if (newResults.score < 70) recs.push("Изграждане на авторитет");
+         if(newResults.metric1 > 0) {
+            advice = `Представете си да увеличите аудиторията си от ${Math.round(param1).toLocaleString()} на ${Math.round(newResults.metric1).toLocaleString()} последователи. Това ще Ви превърне в авторитет във Вашата ниша, достигайки до хиляди потенциални клиенти всеки месец.`
+        }
         break;
       case "Clickstarter™":
         if (param2 > 3) recs.push("Оптимизация на цена за клик");
         if (param3 < 100) recs.push("Подобрение на конверсии");
         if (param1 > 10000) recs.push("Ефективност на бюджета");
         if (newResults.score < 70) recs.push("Структура на кампании");
+        if(newResults.metric1 > 0) {
+            advice = `Ще оптимизираме кампаниите Ви, за да постигнете ${Math.round(newResults.metric1)} продажби вместо сегашните ${Math.round(param3)}. Освен това, ще спестим ${Math.round(newResults.metric2)} лв. от бюджета Ви, които може да реинвестирате за още по-силни резултати.`
+        }
         break;
       case "Clientomat™":
         if (param3 < 30) recs.push("Стратегия за задържане");
         if (param2 < 2000) recs.push("Оптимизация на стойност на клиент");
         if (param1 < 100) recs.push("Привличане на клиенти");
         if (newResults.score < 70) recs.push("Автоматизация на управление");
+        if(newResults.metric1 > 0) {
+            advice = `Чрез нашите системи за лоялност, ще увеличим повторните Ви покупки до ${Math.round(newResults.metric1)}% и ще вдигнем стойността на всеки клиент до ${Math.round(newResults.metric2 * 1000).toLocaleString()} лв. Това е ключът към стабилен и предвидим растеж.`
+        }
         break;
     }
     setRecommendations(recs.slice(0, 4));
-  }, [inputs[serviceInputs.param1.key], inputs[serviceInputs.param2.key], inputs[serviceInputs.param3.key], serviceName, monthlyPrice]);
+    setPersonalizedAdvice(advice);
+  }, [inputs, serviceName, monthlyPrice, serviceInputs]);
 
   return (
     <div className="space-y-8">
@@ -464,6 +495,51 @@ function ProfitCalculator({
                 {[1, 2, 3].map((index) => {
                   const paramKey = `param${index}` as keyof typeof serviceInputs;
                   const inputConfig = serviceInputs[paramKey];
+
+                  // Use Slider for the second parameter
+                  if (index === 2) {
+                    const currentValue = parseFloat(inputs[inputConfig.key] || "0");
+                    let max = 100;
+                    if (serviceName === "SEO Struktor™") max = 100;
+                    if (serviceName === "Trendlab™") max = 10;
+                    if (serviceName === "Clickstarter™") max = 10;
+                    if (serviceName === "Clientomat™") max = 5000;
+
+                    return (
+                       <motion.div
+                        key={index}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: index * 0.1 }}
+                        className="group"
+                      >
+                         <Label
+                          htmlFor={`param${index}`}
+                          className="text-white text-sm block mb-3 flex items-center justify-between font-medium"
+                        >
+                          <span className="flex items-center gap-2">
+                             <motion.div
+                              className="w-2 h-2 bg-[#ECB629] rounded-full"
+                              animate={{ scale: [1, 1.2, 1] }}
+                              transition={{ duration: 2, repeat: Infinity, delay: index * 0.5 }}
+                            />
+                            {inputConfig.label}
+                          </span>
+                           <span className="font-bold text-[#ECB629]">
+                              {currentValue}
+                           </span>
+                        </Label>
+                        <Slider
+                            id={`param${index}`}
+                            max={max}
+                            step={serviceName === "Clickstarter™" ? 0.1 : 1}
+                            value={[currentValue]}
+                            onValueChange={(value) => setInputs({ ...inputs, [inputConfig.key]: String(value[0]) })}
+                            className="mt-5"
+                        />
+                      </motion.div>
+                    )
+                  }
                   
                   return (
                     <motion.div
@@ -582,91 +658,113 @@ function ProfitCalculator({
                 >
                   <h3 className="text-white font-semibold mb-4 flex items-center gap-2 justify-center">
                     <BarChart3 className="w-5 h-5 text-[#ECB629]" />
-                    {serviceName} Score
+                    {serviceName} Потенциал
                   </h3>
-                  <div className="relative w-32 h-32 mx-auto mb-4">
-                    <svg className="w-32 h-32 transform -rotate-90" viewBox="0 0 120 120">
-                      <circle
-                        cx="60"
-                        cy="60"
-                        r="54"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="12"
-                        className="text-slate-700/50"
-                      />
-                      <motion.circle
-                        cx="60"
-                        cy="60"
-                        r="54"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="12"
-                        strokeLinecap="round"
-                        className="text-[#ECB629]"
-                        initial={{ strokeDasharray: "0 339.292" }}
-                        animate={{
-                          strokeDasharray: `${(results.score / 100) * 339.292} 339.292`,
-                        }}
-                        transition={{ duration: 2, ease: "easeInOut" }}
-                      />
-                    </svg>
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="text-center">
-                        <motion.div
-                          className="text-3xl font-bold text-white"
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          transition={{ delay: 1 }}
-                        >
-                          {Math.round(results.score)}
-                        </motion.div>
-                        <div className="text-xs text-gray-400">от 100</div>
-                      </div>
-                    </div>
-                  </div>
+                   <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <div className="relative w-32 h-32 mx-auto mb-4 cursor-pointer">
+                          <svg className="w-32 h-32 transform -rotate-90" viewBox="0 0 120 120">
+                            <circle
+                              cx="60"
+                              cy="60"
+                              r="54"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="12"
+                              className="text-slate-700/50"
+                            />
+                            <motion.circle
+                              cx="60"
+                              cy="60"
+                              r="54"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="12"
+                              strokeLinecap="round"
+                              className="text-[#ECB629]"
+                              initial={{ strokeDasharray: "0 339.292" }}
+                              animate={{
+                                strokeDasharray: `${(results.score / 100) * 339.292} 339.292`,
+                              }}
+                              transition={{ duration: 2, ease: "easeInOut" }}
+                            />
+                          </svg>
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <div className="text-center">
+                              <motion.div
+                                className="text-3xl font-bold text-white"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ delay: 1 }}
+                              >
+                                {Math.round(results.score)}
+                              </motion.div>
+                              <div className="text-xs text-gray-400">от 100</div>
+                            </div>
+                          </div>
+                        </div>
+                      </TooltipTrigger>
+                       <TooltipContent className="bg-slate-800 border-slate-600 text-white">
+                        <p>Резултатът Ви се базира на:</p>
+                        <ul className="list-disc pl-4 mt-2">
+                           <li>Текущи данни: <span className="font-bold text-[#ECB629]">40т.</span></li>
+                           <li>Потенциал за растеж: <span className="font-bold text-[#ECB629]">35т.</span></li>
+                           <li>Индустрия фактор: <span className="font-bold text-[#ECB629]">20т.</span></li>
+                        </ul>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
                 </motion.div>
+                
+                {/* Personalized Advice */}
+                {personalizedAdvice && (
+                   <motion.div
+                    className="bg-slate-800/50 rounded-lg p-4 border border-[#ECB629]/30 text-center"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1}}
+                    transition={{ duration: 0.6, delay: 0.4 }}
+                  >
+                    <h4 className="font-semibold text-white mb-2">Какво означава това за Вас?</h4>
+                    <p className="text-gray-300 text-sm">{personalizedAdvice}</p>
+                   </motion.div>
+                )}
 
                 {/* Metrics */}
-                <div className="grid grid-cols-1 gap-4">
-                  {results.metric1 > 0 && (
-                    <motion.div
-                      className="bg-slate-800/50 rounded-lg p-4 border border-slate-700/30"
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.6, delay: 0.4 }}
-                    >
-                      <div className="flex items-center justify-between">
-                        <span className="text-gray-400 text-sm">
-                          {serviceName === "SEO Struktor™" && "Нов трафик"}
-                          {serviceName === "Trendlab™" && "Последователи"}
-                          {serviceName === "Clickstarter™" && "Конверсии"}
-                          {serviceName === "Clientomat™" && "Repeat Rate"}
-                        </span>
-                        <div className="text-right">
-                          <div className="text-white font-semibold">
-                            {serviceName === "Clientomat™" 
-                              ? `${Math.round(results.metric1)}%`
-                              : Math.round(results.metric1).toLocaleString()
-                            }
-                          </div>
-                          <div className="text-xs text-[#ECB629]">+240%</div>
+                 {results.metric1 > 0 && (
+                  <div className="grid grid-cols-1 gap-4">
+                      <motion.div
+                        className="bg-slate-800/50 rounded-lg p-4 border border-slate-700/30"
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.6, delay: 0.6 }}
+                      >
+                         <div className="flex items-center justify-between">
+                          <span className="text-gray-400 text-sm">
+                            {serviceName === "SEO Struktor™" && "Месечен трафик"}
+                            {serviceName === "Trendlab™" && "Последователи"}
+                            {serviceName === "Clickstarter™" && "Конверсии"}
+                            {serviceName === "Clientomat™" && "Repeat Rate"}
+                          </span>
+                           <div className="text-right">
+                              <div className="text-sm text-gray-500">Преди: <span className="font-semibold">{Math.round(parseFloat(inputs[serviceInputs.param1.key] || "0")).toLocaleString()}{serviceName === "Clientomat™" ? "%":""}</span></div>
+                              <div className="text-white font-bold text-lg">Сега: {serviceName === "Clientomat™" ? `${Math.round(results.metric1)}%` : Math.round(results.metric1).toLocaleString()}</div>
+                              <div className="text-xs text-[#ECB629]">+{Math.round(((results.metric1 - parseFloat(inputs[serviceInputs.param1.key] || "0")) / parseFloat(inputs[serviceInputs.param1.key] || "1")) * 100)}%</div>
+                           </div>
                         </div>
-                      </div>
-                    </motion.div>
-                  )}
+                      </motion.div>
 
                   {results.monthlyProfit > 0 && (
                     <motion.div
                       className="bg-slate-800/50 rounded-lg p-4 border border-slate-700/30"
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 0.6, delay: 0.6 }}
+                      transition={{ duration: 0.6, delay: 0.8 }}
                     >
                       <div className="flex items-center justify-between">
                         <span className="text-gray-400 text-sm">ROI</span>
                         <div className="text-right">
-                          <div className="text-white font-semibold">
+                          <div className="text-white font-bold text-lg">
                             {Math.round(results.monthlyProfit)}%
                           </div>
                           <div className="text-xs text-[#ECB629]">месечно</div>
@@ -679,14 +777,15 @@ function ProfitCalculator({
                     className="bg-slate-800/50 rounded-lg p-4 border border-slate-700/30"
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.6, delay: 0.8 }}
+                    transition={{ duration: 0.6, delay: 1.0 }}
                   >
                     <div className="flex items-center justify-between">
-                      <span className="text-gray-400 text-sm">Срок</span>
+                      <span className="text-gray-400 text-sm">Срок за резултати</span>
                       <div className="text-white font-semibold">{results.timeframe}</div>
                     </div>
                   </motion.div>
                 </div>
+                )}
               </div>
             </div>
           </div>
