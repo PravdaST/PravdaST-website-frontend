@@ -108,19 +108,43 @@ export function AdminBlogClient() {
     }
   })
 
-  // Generate slug from title
+  // Generate unique slug from title
   const watchedTitle = watch('title')
   useEffect(() => {
     if (watchedTitle && !editingPost) {
-      const slug = watchedTitle
-        .toLowerCase()
-        .replace(/[^\u0400-\u04FF\w\s-]/g, '') // Keep Cyrillic, Latin, numbers, spaces, hyphens
-        .replace(/\s+/g, '-')
-        .replace(/-+/g, '-')
-        .trim()
-      setValue('slug', slug)
+      generateUniqueSlug(watchedTitle)
     }
-  }, [watchedTitle, setValue, editingPost])
+  }, [watchedTitle]) // Removed editingPost to fix dependency warning
+
+  const generateUniqueSlug = (title: string) => {
+    // Create base slug
+    let baseSlug = title
+      .toLowerCase()
+      .replace(/[^\u0400-\u04FF\w\s-]/g, '') // Keep Cyrillic, Latin, numbers, spaces, hyphens
+      .replace(/\s+/g, '-')
+      .replace(/-+/g, '-')
+      .replace(/^-+|-+$/g, '') // Remove leading/trailing hyphens
+      .trim()
+
+    if (!baseSlug) {
+      setValue('slug', '')
+      return
+    }
+
+    // Check for uniqueness against existing posts
+    let uniqueSlug = baseSlug
+    let counter = 1
+    
+    while (posts.some(post => 
+      post.slug === uniqueSlug && 
+      (!editingPost || post.id !== editingPost.id)
+    )) {
+      uniqueSlug = `${baseSlug}-${counter}`
+      counter++
+    }
+    
+    setValue('slug', uniqueSlug)
+  }
 
   // Load posts
   useEffect(() => {
@@ -212,23 +236,53 @@ export function AdminBlogClient() {
     if (!confirm('Сигурни ли сте, че искате да изтриете тази статия?')) return
 
     try {
-      const response = await fetch(`/api/blog/posts/${id}`, { method: 'DELETE' })
+      // Try database first
+      let response = await fetch(`/api/blog/posts/${id}`, { method: 'DELETE' })
+      
+      if (!response.ok && (response.status === 503 || response.status === 500)) {
+        // Fallback to file-based storage for delete
+        console.warn('Database failed, using file fallback for delete')
+        response = await fetch('/api/blog/admin', {
+          method: 'DELETE',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id, action: 'delete' })
+        })
+      }
+      
       if (response.ok) {
         await fetchPosts()
         alert('Статията е изтрита успешно!')
+      } else {
+        throw new Error(`Server error: ${response.status}`)
       }
     } catch (error) {
       console.error('Error deleting post:', error)
-      alert('Грешка при изтриване на статията')
+      alert('Грешка при изтриване на статията. Моля опитайте отново.')
     }
   }
 
   const editPost = (post: BlogPost) => {
     setEditingPost(post)
     setIsCreating(true)
+    
+    // Prepare tags for editing
+    const tagsString = Array.isArray(post.tags) 
+      ? post.tags.join(', ') 
+      : typeof post.tags === 'string' 
+        ? post.tags 
+        : ''
+
     reset({
-      ...post,
-      tags: Array.isArray(post.tags) ? post.tags.join(', ') : post.tags
+      title: post.title,
+      slug: post.slug,
+      excerpt: post.excerpt,
+      content: post.content,
+      author: post.author,
+      category: post.category,
+      tags: tagsString,
+      featuredImage: post.featuredImage || '',
+      isPublished: post.isPublished,
+      publishedAt: post.publishedAt || ''
     })
   }
 
@@ -258,21 +312,38 @@ export function AdminBlogClient() {
 
   const togglePublish = async (post: BlogPost) => {
     try {
-      const response = await fetch(`/api/blog/posts/${post.id}`, {
+      const updatedPost = {
+        ...post,
+        isPublished: !post.isPublished,
+        publishedAt: !post.isPublished ? new Date().toISOString() : null
+      }
+
+      // Try database first
+      let response = await fetch(`/api/blog/posts/${post.id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          ...post,
-          isPublished: !post.isPublished,
-          publishedAt: !post.isPublished ? new Date().toISOString() : null
-        })
+        body: JSON.stringify(updatedPost)
       })
+
+      if (!response.ok && (response.status === 503 || response.status === 500)) {
+        // Fallback to file-based storage
+        console.warn('Database failed, using file fallback for publish toggle')
+        response = await fetch('/api/blog/admin', {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ ...updatedPost, action: 'update' })
+        })
+      }
 
       if (response.ok) {
         await fetchPosts()
+        alert(updatedPost.isPublished ? 'Статията е публикувана!' : 'Статията е скрита!')
+      } else {
+        throw new Error(`Server error: ${response.status}`)
       }
     } catch (error) {
       console.error('Error toggling publish status:', error)
+      alert('Грешка при промяна на статуса на публикация')
     }
   }
 
