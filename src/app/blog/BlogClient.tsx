@@ -64,9 +64,21 @@ export default function BlogClient() {
 
   // Filtering logic
   const filteredPosts = blogPosts.filter((post) => {
+    // Handle tags in both array and string formats for search
+    let tagsArray = [];
+    if (Array.isArray(post.tags)) {
+      tagsArray = post.tags;
+    } else if (typeof post.tags === 'string') {
+      try {
+        tagsArray = JSON.parse(post.tags);
+      } catch {
+        tagsArray = post.tags.split(',').map(tag => tag.trim());
+      }
+    }
+    
     const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          post.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         post.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()));
+                         tagsArray.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()));
     
     const matchesCategory = selectedCategory === "all" || post.category === selectedCategory;
     
@@ -212,19 +224,37 @@ export default function BlogClient() {
 
                       {/* Tags */}
                       <div className="flex flex-wrap gap-2 mb-6">
-                        {post.tags.slice(0, 3).map((tag) => (
-                          <span
-                            key={tag}
-                            className="px-2 py-1 bg-gray-800 text-gray-300 text-xs rounded"
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                        {post.tags.length > 3 && (
-                          <span className="px-2 py-1 bg-gray-800 text-gray-300 text-xs rounded">
-                            +{post.tags.length - 3}
-                          </span>
-                        )}
+                        {(() => {
+                          // Handle both array and string formats for tags
+                          let tagsArray = [];
+                          if (Array.isArray(post.tags)) {
+                            tagsArray = post.tags;
+                          } else if (typeof post.tags === 'string') {
+                            try {
+                              tagsArray = JSON.parse(post.tags);
+                            } catch {
+                              tagsArray = post.tags.split(',').map(tag => tag.trim());
+                            }
+                          }
+                          
+                          return (
+                            <>
+                              {tagsArray.slice(0, 3).map((tag, index) => (
+                                <span
+                                  key={`${tag}-${index}`}
+                                  className="px-2 py-1 bg-gray-800 text-gray-300 text-xs rounded"
+                                >
+                                  {tag}
+                                </span>
+                              ))}
+                              {tagsArray.length > 3 && (
+                                <span className="px-2 py-1 bg-gray-800 text-gray-300 text-xs rounded">
+                                  +{tagsArray.length - 3}
+                                </span>
+                              )}
+                            </>
+                          );
+                        })()}
                       </div>
 
                       {/* Read More Button */}
