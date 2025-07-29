@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import { ProfileCard } from "@/components/reactbits";
 import {
   Target,
   Shield,
@@ -360,6 +361,53 @@ export default function AboutClient() {
                 ))}
               </motion.div>
             </motion.div>
+          </div>
+        </section>
+
+        {/* Profile Card Section */}
+        <section className="py-20 relative overflow-hidden">
+          <div className="container mx-auto px-6 relative z-1">
+            <motion.div
+              className="text-center mb-16"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <motion.div
+                className="inline-flex items-center gap-2 mb-8 px-4 py-2 rounded-full glassmorphism"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+              >
+                <span className="text-sm text-gray-300 font-medium">
+                  <span className="text-[#ECB629] font-bold">Екипът</span> зад системите
+                </span>
+              </motion.div>
+
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
+                Запознайте се с нас
+              </h2>
+              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+                Ние сме екипът от бизнес инженери, който стои зад всяка успешна система за растеж.
+              </p>
+            </motion.div>
+
+            <div className="flex justify-center">
+              <ProfileCard
+                name="Pravdast Team"
+                title="Business Engineers"
+                bio="Създаваме предвидими системи за растеж на бизнеса чрез инженерен подход към маркетинга и продажбите."
+                stats={{
+                  projects: 50,
+                  clients: 25,
+                  experience: 5
+                }}
+                theme="dark"
+                className="max-w-sm"
+              />
+            </div>
           </div>
         </section>
 
