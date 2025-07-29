@@ -205,7 +205,7 @@ export default function Services() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-900">
+    <div className="min-h-screen bg-gray-950">
       <Navigation />
 
       <main>
@@ -306,19 +306,19 @@ export default function Services() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.8 }}
                 >
-                  <div className="flex items-center justify-center gap-3 p-4 bg-slate-800/30 backdrop-blur-sm rounded-xl border border-slate-600/20">
+                  <div className="flex items-center justify-center gap-3 p-4 glassmorphism rounded-xl">
                     <div className="w-2 h-2 bg-[#ECB629] rounded-full"></div>
                     <span className="text-gray-300 text-sm font-medium">
                       Безплатна консултация
                     </span>
                   </div>
-                  <div className="flex items-center justify-center gap-3 p-4 bg-slate-800/30 backdrop-blur-sm rounded-xl border border-slate-600/20">
+                  <div className="flex items-center justify-center gap-3 p-4 glassmorphism rounded-xl">
                     <div className="w-2 h-2 bg-[#ECB629] rounded-full"></div>
                     <span className="text-gray-300 text-sm font-medium">
                       Измерими резултати
                     </span>
                   </div>
-                  <div className="flex items-center justify-center gap-3 p-4 bg-slate-800/30 backdrop-blur-sm rounded-xl border border-slate-600/20">
+                  <div className="flex items-center justify-center gap-3 p-4 glassmorphism rounded-xl">
                     <div className="w-2 h-2 bg-[#ECB629] rounded-full"></div>
                     <span className="text-gray-300 text-sm font-medium">
                       Без ангажименти
@@ -332,7 +332,7 @@ export default function Services() {
 
         {/* Philosophy Section */}
         <section
-          className="py-20 bg-slate-800/50 relative overflow-hidden"
+          className="py-20 glass-section relative overflow-hidden"
           ref={philosophyRef}
         >
           {/* Background Pattern */}
@@ -368,7 +368,7 @@ export default function Services() {
             {/* Comparison visualization */}
             <div className="max-w-6xl mx-auto mb-16">
               <motion.div
-                className="bg-slate-800/60 rounded-2xl p-8 border border-slate-600/30 relative overflow-hidden"
+                className="glassmorphism rounded-2xl p-8 relative overflow-hidden"
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.8, delay: 0.2 }}
@@ -448,7 +448,7 @@ export default function Services() {
         {/* Systems Overview Section */}
         <section
           ref={systemsRef}
-          className="py-20 bg-slate-900 relative overflow-hidden"
+          className="py-20 glass-section relative overflow-hidden"
         >
           <div className="absolute inset-0 opacity-15">
             <div
@@ -517,7 +517,7 @@ export default function Services() {
                   viewport={{ once: true }}
                   className="group"
                 >
-                  <Card className="bg-slate-800/50 border-slate-600/30 hover:border-[#ECB629]/50 transition-all duration-500 group-hover:shadow-lg group-hover:shadow-[#ECB629]/10 overflow-hidden h-full relative">
+                  <Card className="glassmorphism hover:border-[#ECB629]/50 transition-all duration-500 group-hover:shadow-lg group-hover:shadow-[#ECB629]/10 overflow-hidden h-full relative">
                     {/* Hover Glow Effect */}
                     <div className="absolute inset-0 bg-gradient-to-r from-[#ECB629]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
@@ -563,7 +563,7 @@ export default function Services() {
                         {service.benefits.map((benefit, benefitIndex) => (
                           <div
                             key={benefitIndex}
-                            className="flex items-center gap-3 p-3 rounded-lg bg-slate-700/30 group-hover:bg-slate-700/50 transition-all duration-300"
+                            className="flex items-center gap-3 p-3 rounded-lg glassmorphism group-hover:bg-slate-700/50 transition-all duration-300"
                           >
                             <CheckCircle
                               className="text-[#ECB629] flex-shrink-0"
@@ -578,7 +578,7 @@ export default function Services() {
 
                       {/* Pricing & CTA */}
                       <div className="mt-auto">
-                        <div className="flex items-center justify-between mb-4 p-4 bg-slate-700/20 rounded-lg">
+                        <div className="flex items-center justify-between mb-4 p-4 glassmorphism rounded-lg">
                           <div>
                             <div className="text-2xl font-bold text-[#ECB629]">
                               {service.price}
