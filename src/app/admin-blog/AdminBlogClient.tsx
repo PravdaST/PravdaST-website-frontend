@@ -129,13 +129,26 @@ export function AdminBlogClient() {
 
   const fetchPosts = async () => {
     try {
+      // Try database first
       const response = await fetch('/api/blog/posts')
       if (response.ok) {
         const data = await response.json()
         setPosts(data)
+        return
+      }
+      
+      // Fallback to file-based storage if database fails
+      console.warn('Database failed, falling back to file-based storage')
+      const fileResponse = await fetch('/api/blog/files')
+      if (fileResponse.ok) {
+        const fileData = await fileResponse.json()
+        setPosts(fileData)
+      } else {
+        throw new Error('Both database and file storage failed')
       }
     } catch (error) {
       console.error('Failed to fetch posts:', error)
+      alert('Не можем да заредим статиите. Моля проверете връзката с базата данни.')
     } finally {
       setLoading(false)
     }
@@ -143,9 +156,6 @@ export function AdminBlogClient() {
 
   const onSubmit = async (data: BlogPostForm) => {
     try {
-      const url = editingPost ? `/api/blog/posts/${editingPost.id}` : '/api/blog/posts'
-      const method = editingPost ? 'PUT' : 'POST'
-      
       // Process tags
       const processedData = {
         ...data,
@@ -154,22 +164,47 @@ export function AdminBlogClient() {
         publishedAt: data.isPublished ? (data.publishedAt || new Date().toISOString()) : null
       }
 
-      const response = await fetch(url, {
-        method,
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(processedData)
-      })
+      let response: Response
+      let method = editingPost ? 'PUT' : 'POST'
+      
+      // Try database first
+      try {
+        const url = editingPost ? `/api/blog/posts/${editingPost.id}` : '/api/blog/posts'
+        response = await fetch(url, {
+          method,
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(processedData)
+        })
+        
+        if (!response.ok && (response.status === 503 || response.status === 500)) {
+          throw new Error('Database unavailable')
+        }
+      } catch (dbError) {
+        console.warn('Database failed, using file fallback:', dbError)
+        
+        // Fallback to file-based admin API
+        response = await fetch('/api/blog/admin', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(processedData)
+        })
+      }
 
       if (response.ok) {
         await fetchPosts()
         resetForm()
-        alert(editingPost ? 'Статията е обновена успешно!' : 'Статията е създадена успешно!')
+        alert(editingPost ? 'Статията е обновена успешно!' : 'Статията е създадена успешно! (запазена като файл)')
       } else {
-        throw new Error('Failed to save post')
+        const errorText = await response.text()
+        console.error('Server response:', response.status, errorText)
+        throw new Error(`Server error: ${response.status} - ${errorText}`)
       }
     } catch (error) {
       console.error('Error saving post:', error)
-      alert('Грешка при запазване на статията')
+      
+      // More detailed error message
+      const errorMessage = error instanceof Error ? error.message : 'Неизвестна грешка'
+      alert(`Грешка при запазване на статията: ${errorMessage}`)
     }
   }
 

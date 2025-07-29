@@ -129,12 +129,36 @@ export async function POST(request: NextRequest) {
       updatedAt: new Date()
     }
 
-    const [createdPost] = await db.insert(blogPosts).values(newPost).returning()
+    // Try to insert with timeout
+    const insertPromise = db.insert(blogPosts).values(newPost).returning()
+    const timeoutPromise = new Promise((_, reject) => 
+      setTimeout(() => reject(new Error('Database timeout')), 5000)
+    )
+    
+    const [createdPost] = await Promise.race([insertPromise, timeoutPromise]) as any
 
     return NextResponse.json(createdPost, { status: 201 })
   } catch (error) {
     console.error('Error creating blog post:', error)
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
+    
+    // Return more specific error messages
+    if (error instanceof Error) {
+      if (error.message.includes('timeout') || error.message.includes('Connection terminated')) {
+        return NextResponse.json({ 
+          error: 'Database connection timeout. Please try again.' 
+        }, { status: 503 })
+      }
+      if (error.message.includes('duplicate') || error.message.includes('unique')) {
+        return NextResponse.json({ 
+          error: 'A post with this slug already exists' 
+        }, { status: 409 })
+      }
+    }
+    
+    return NextResponse.json({ 
+      error: 'Internal server error',
+      details: process.env.NODE_ENV === 'development' ? error : undefined
+    }, { status: 500 })
   }
 }
 
