@@ -278,7 +278,7 @@ export default function AboutClient() {
             >
               {/* Status Badge */}
               <motion.div
-                className="inline-flex items-center gap-3 mb-8 px-6 py-3 rounded-full bg-gradient-to-r from-slate-800/80 to-slate-700/60 border border-slate-600/30 backdrop-blur-sm"
+                className="inline-flex items-center gap-3 mb-8 px-6 py-3 rounded-full glassmorphism"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
@@ -348,7 +348,7 @@ export default function AboutClient() {
                 {stats.map((stat, index) => (
                   <motion.div
                     key={index}
-                    className="bg-slate-800/50 rounded-lg p-4 border border-slate-700"
+                    className="glassmorphism rounded-lg p-4"
                     whileHover={{ scale: 1.05 }}
                     transition={{ duration: 0.2 }}
                   >
@@ -380,7 +380,7 @@ export default function AboutClient() {
               viewport={{ once: true }}
             >
               <motion.div
-                className="inline-flex items-center gap-2 mb-8 px-4 py-2 rounded-full bg-gradient-to-r from-slate-800/80 to-slate-700/60 border border-slate-600/30 backdrop-blur-sm"
+                className="inline-flex items-center gap-2 mb-8 px-4 py-2 rounded-full glassmorphism"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
@@ -410,7 +410,7 @@ export default function AboutClient() {
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   viewport={{ once: true }}
                 >
-                  <Card className="relative bg-slate-800/50 border-slate-700 hover:border-[#ECB629]/50 transition-all duration-300 group overflow-hidden h-full">
+                  <Card className="relative glassmorphism hover:border-[#ECB629]/50 transition-all duration-300 group overflow-hidden h-full">
                     {/* Hover Glow Effect */}
                     <div className="absolute inset-0 bg-gradient-to-r from-[#ECB629]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 
@@ -441,7 +441,7 @@ export default function AboutClient() {
         </section>
 
         {/* Timeline Section */}
-        <section className="py-20 bg-slate-800/30 relative">
+        <section className="py-20 relative overflow-hidden">
           <div className="container mx-auto px-6 relative z-1">
             <motion.div
               className="text-center mb-16"
@@ -477,7 +477,7 @@ export default function AboutClient() {
                     viewport={{ once: true }}
                   >
                     <div className="w-5/12">
-                      <Card className="bg-slate-800/50 border-slate-700 hover:border-[#ECB629]/50 transition-all duration-300 group">
+                      <Card className="glassmorphism hover:border-[#ECB629]/50 transition-all duration-300 group">
                         <CardContent className="p-6">
                           <div className="flex items-center gap-3 mb-3">
                             <span className="text-2xl font-bold text-[#ECB629]">
@@ -534,7 +534,7 @@ export default function AboutClient() {
                       )}
                     </div>
                     <div className="flex-1 pb-8">
-                      <Card className="bg-slate-800/50 border-slate-700">
+                      <Card className="glassmorphism">
                         <CardContent className="p-4">
                           <h3 className="text-lg font-bold text-white mb-2">
                             {milestone.title}
@@ -581,7 +581,7 @@ export default function AboutClient() {
                   className="cursor-pointer"
                   onClick={() => handleMemberClick(member)}
                 >
-                  <Card className="bg-slate-800/50 border-slate-700 hover:border-[#ECB629]/50 transition-all duration-300 group overflow-hidden h-full">
+                  <Card className="glassmorphism hover:border-[#ECB629]/50 transition-all duration-300 group overflow-hidden h-full">
                     <CardContent className="p-6 text-center">
                       <div className="relative mb-4">
                         <Image
@@ -712,7 +712,7 @@ export default function AboutClient() {
       <AnimatePresence>
         {selectedMember && (
           <Dialog open={!!selectedMember} onOpenChange={closeModal}>
-            <DialogContent className="max-w-2xl bg-slate-900 border-slate-700">
+            <DialogContent className="max-w-2xl glassmorphism">
               <div className="relative">
                 <Button
                   variant="ghost"
@@ -769,7 +769,7 @@ export default function AboutClient() {
                           (specialty: string, index: number) => (
                             <span
                               key={index}
-                              className="px-3 py-1 bg-slate-800 border border-slate-700 rounded-full text-sm text-gray-300"
+                              className="px-3 py-1 glassmorphism rounded-full text-sm text-gray-300"
                             >
                               {specialty}
                             </span>
@@ -792,7 +792,7 @@ export default function AboutClient() {
                         href={`https://${selectedMember.linkedin}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-2 px-4 py-2 border border-slate-600 text-white rounded-lg hover:border-[#ECB629] hover:text-[#ECB629] transition-colors"
+                        className="flex items-center gap-2 px-4 py-2 glassmorphism text-white rounded-lg hover:border-[#ECB629] hover:text-[#ECB629] transition-colors"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                       >
