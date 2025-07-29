@@ -146,7 +146,7 @@ const PhilosophySection = () => {
   }, [isInView]);
 
   return (
-    <section ref={ref} className="py-12 sm:py-16 md:py-20 bg-slate-900/50">
+    <section ref={ref} className="py-12 sm:py-16 md:py-20 glass-section">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="max-w-4xl mx-auto">
           <motion.h2
@@ -162,7 +162,7 @@ const PhilosophySection = () => {
           <div className="space-y-12">
             {/* Transformation Visualization */}
             <motion.div
-              className="relative bg-slate-800/80 rounded-2xl p-8 border border-slate-600/30 overflow-hidden"
+              className="relative glassmorphism rounded-2xl p-8 overflow-hidden"
               initial={{ opacity: 0, scale: 0.95 }}
               animate={isInView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.8, delay: 0.2 }}
@@ -380,7 +380,7 @@ const EngineeringProcessSection = () => {
   return (
     <section
       ref={ref}
-      className="py-20 bg-slate-800/30 relative overflow-hidden"
+      className="py-20 glass-section relative overflow-hidden"
     >
       {/* Dynamic Blueprint Background */}
       <div className="absolute inset-0 opacity-3">
@@ -451,7 +451,7 @@ const EngineeringProcessSection = () => {
                   />
                 )}
 
-                <motion.div className="bg-slate-800/60 backdrop-blur-sm rounded-2xl border border-slate-600/30 overflow-hidden transition-all duration-300">
+                <motion.div className="glassmorphism rounded-2xl overflow-hidden transition-all duration-300">
                   <div className="p-6 md:p-8">
                     <div className="flex flex-col md:flex-row md:items-start gap-6">
                       {/* Phase Number Circle */}
@@ -502,7 +502,7 @@ const EngineeringProcessSection = () => {
                       {/* Progress indicator */}
                       <div className="flex-shrink-0 hidden md:block">
                         <motion.div
-                          className="w-1 h-20 bg-slate-700 rounded-full overflow-hidden"
+                          className="w-1 h-20 glassmorphism rounded-full overflow-hidden"
                           initial={{ height: 0 }}
                           animate={isInView ? { height: 80 } : {}}
                           transition={{
@@ -584,7 +584,7 @@ const ResultsSection = () => {
   return (
     <section
       ref={ref}
-      className="py-20 bg-slate-900/40 relative overflow-hidden"
+      className="py-20 glass-section relative overflow-hidden"
     >
       {/* Enhanced Background */}
       <div className="absolute inset-0 opacity-10">
@@ -646,7 +646,7 @@ const ResultsSection = () => {
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.8, delay: index * 0.15 }}
               >
-                <motion.div className="bg-slate-800/70 backdrop-blur-sm p-8 rounded-3xl border border-slate-600/30 h-full transition-all duration-300 overflow-hidden relative">
+                <motion.div className="glassmorphism p-8 rounded-3xl h-full transition-all duration-300 overflow-hidden relative">
                   {/* Floating elements background */}
                   <div className="absolute top-0 right-0 w-20 h-20 bg-[#ECB629]/5 rounded-full -translate-y-10 translate-x-10" />
 

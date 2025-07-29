@@ -234,7 +234,7 @@ export default function Clickstarter() {
       </section>
 
       {/* Philosophy Section */}
-      <section className="py-20 bg-slate-800/30 relative overflow-hidden">
+      <section className="py-20 glass-section relative overflow-hidden">
         <div className="absolute inset-0 opacity-5">
           <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-[#ECB629] rounded-full blur-3xl"></div>
         </div>
@@ -324,7 +324,7 @@ export default function Clickstarter() {
                 viewport={{ once: true }}
               >
                 <div className="space-y-6">
-                  <div className="bg-slate-800/50 rounded-xl p-6 border border-slate-600/30">
+                  <div className="glassmorphism rounded-xl p-6">
                     <h4 className="text-xl font-semibold text-[#ECB629] mb-4">
                       Нашата цел:
                     </h4>
@@ -402,7 +402,7 @@ export default function Clickstarter() {
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   viewport={{ once: true }}
                 >
-                  <Card className="relative bg-slate-800/50 border-slate-700 hover:border-[#ECB629]/50 transition-all duration-300 group h-full">
+                  <Card className="relative glassmorphism hover:border-[#ECB629]/50 transition-all duration-300 group h-full">
                     <CardContent className="p-6 h-full flex flex-col">
                       {/* Phase Number & Icon */}
                       <div className="flex items-center gap-4 mb-4">
@@ -431,7 +431,7 @@ export default function Clickstarter() {
       </section>
 
       {/* Expected Results */}
-      <section className="py-20 bg-slate-800/30 relative overflow-hidden">
+      <section className="py-20 glass-section relative overflow-hidden">
         <div className="absolute inset-0 opacity-5">
           <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-[#ECB629] rounded-full blur-3xl"></div>
         </div>
@@ -481,7 +481,7 @@ export default function Clickstarter() {
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   viewport={{ once: true }}
                 >
-                  <Card className="relative bg-slate-800/50 border-slate-700 hover:border-[#ECB629]/50 transition-all duration-300 group h-full">
+                  <Card className="relative glassmorphism hover:border-[#ECB629]/50 transition-all duration-300 group h-full">
                     <CardContent className="p-6 text-center h-full flex flex-col">
                       <div className="w-16 h-16 bg-[#ECB629]/20 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-[#ECB629]/30 transition-colors">
                         <result.icon className="w-8 h-8 text-[#ECB629]" />
@@ -520,7 +520,7 @@ export default function Clickstarter() {
               viewport={{ once: true }}
             >
               {/* Badge */}
-              <div className="inline-flex items-center px-6 py-2 bg-slate-800/80 border border-[#ECB629] rounded-full mb-8">
+              <div className="inline-flex items-center px-6 py-2 glassmorphism border border-[#ECB629] rounded-full mb-8">
                 <span className="text-[#ECB629] text-sm font-medium tracking-wide">
                   ПРОЗРАЧНО ЦЕНООБРАЗУВАНЕ
                 </span>
@@ -536,7 +536,7 @@ export default function Clickstarter() {
               </p>
 
               {/* Price Card */}
-              <div className="bg-slate-800/50 rounded-2xl p-8 border border-slate-600/30 mb-16">
+              <div className="glassmorphism rounded-2xl p-8 mb-16">
                 <div className="text-sm text-[#ECB629] mb-2 tracking-wide">
                   ЗАПОЧВА ОТ
                 </div>

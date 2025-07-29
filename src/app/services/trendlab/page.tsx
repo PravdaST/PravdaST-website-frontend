@@ -317,7 +317,7 @@ export default function Trendlab() {
       </section>
 
       {/* Philosophy Section */}
-      <section className="py-20 bg-slate-800/50 relative overflow-hidden">
+      <section className="py-20 glass-section relative overflow-hidden">
         <div className="container mx-auto px-6">
           <motion.div
             ref={philosophyRef}
@@ -344,7 +344,7 @@ export default function Trendlab() {
 
             {/* Content Factory Visualization */}
             <div className="relative max-w-5xl mx-auto mb-16">
-              <Card className="bg-slate-800/30 border-slate-600/30 p-8 backdrop-blur-sm relative overflow-hidden">
+              <Card className="glassmorphism p-8 relative overflow-hidden">
                 {/* Factory Background */}
                 <div className="absolute inset-0 opacity-5">
                   <div
@@ -372,7 +372,7 @@ export default function Trendlab() {
                       animate={philosophyInView ? { opacity: 1, x: 0 } : {}}
                       transition={{ duration: 0.8, delay: 0.2 }}
                     >
-                      <div className="w-20 h-20 mx-auto bg-slate-700/30 rounded-xl flex items-center justify-center mb-4 border border-slate-600/30">
+                      <div className="w-20 h-20 mx-auto glassmorphism rounded-xl flex items-center justify-center mb-4">
                         <div className="text-gray-400">
                           <div className="w-8 h-1 bg-gray-400 rounded mb-1"></div>
                           <div className="w-6 h-1 bg-gray-400 rounded mb-1"></div>

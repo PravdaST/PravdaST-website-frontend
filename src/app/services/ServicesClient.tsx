@@ -176,7 +176,7 @@ export default function ServicesClient() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6 }}
-                className="inline-flex items-center space-x-2 bg-green-500/20 text-green-400 px-4 py-2 rounded-full border border-green-500/30"
+                className="inline-flex items-center space-x-2 glassmorphism text-green-400 px-4 py-2 rounded-full"
               >
                 <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
                 <span className="text-sm font-medium">Приемаме проекти</span>
@@ -268,7 +268,7 @@ export default function ServicesClient() {
                   animate={isServicesInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.8, delay: index * 0.1 }}
                 >
-                  <Card className="group h-full bg-slate-800/50 border-slate-700 hover:border-yellow-400/50 transition-all duration-300 hover:shadow-2xl hover:shadow-yellow-400/10">
+                  <Card className="group h-full glassmorphism hover:border-yellow-400/50 transition-all duration-300 hover:shadow-2xl hover:shadow-yellow-400/10">
                     <CardContent className="p-8">
                       <div className="space-y-6">
                         {/* Header */}
@@ -277,7 +277,7 @@ export default function ServicesClient() {
                             <div className={`inline-flex p-3 rounded-lg bg-gradient-to-r ${service.color}`}>
                               <service.icon className={`h-6 w-6 ${service.iconColor}`} />
                             </div>
-                            <span className="inline-block px-2 py-1 bg-green-500/20 text-green-400 text-xs font-medium rounded-full">
+                            <span className="inline-block px-2 py-1 glassmorphism text-green-400 text-xs font-medium rounded-full">
                               {service.status}
                             </span>
                           </div>

@@ -332,7 +332,7 @@ export default function ClientomatPage() {
       </section>
 
       {/* Philosophy Section */}
-      <section ref={philosophyRef} className="py-20 relative overflow-hidden bg-slate-900">
+      <section ref={philosophyRef} className="py-20 relative overflow-hidden glass-section">
         <div className="container mx-auto px-6">
           <motion.div
             className="max-w-6xl mx-auto"
@@ -402,7 +402,7 @@ export default function ClientomatPage() {
                   animate={philosophyInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.8, delay: 0.3 + index * 0.2 }}
                 >
-                  <Card className="relative bg-slate-800/50 border-red-600/30 h-full group hover:border-red-500/50 transition-all duration-300">
+                  <Card className="relative glassmorphism border-red-600/30 h-full group hover:border-red-500/50 transition-all duration-300">
                     <div className="absolute top-4 right-4">
                       <Badge
                         variant="destructive"
@@ -431,7 +431,7 @@ export default function ClientomatPage() {
               transition={{ duration: 0.8, delay: 0.8 }}
               className="text-center"
             >
-              <Card className="relative bg-slate-800/60 border-[#ECB629]/20 max-w-4xl mx-auto overflow-hidden">
+              <Card className="relative glassmorphism border-[#ECB629]/20 max-w-4xl mx-auto overflow-hidden">
                 <div className="absolute top-4 right-4">
                   <Badge className="bg-[#ECB629]/20 text-[#ECB629] border-[#ECB629]/30">
                     РЕШЕНИЕ
@@ -500,7 +500,7 @@ export default function ClientomatPage() {
       </section>
 
       {/* Process Section */}
-      <section ref={processRef} className="py-20 bg-slate-800/30 relative overflow-hidden">
+      <section ref={processRef} className="py-20 glass-section relative overflow-hidden">
         <div className="container mx-auto px-6">
           <motion.div
             className="max-w-6xl mx-auto"
@@ -602,7 +602,7 @@ export default function ClientomatPage() {
                   animate={processInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.8, delay: 0.3 + index * 0.2 }}
                 >
-                  <Card className="relative bg-slate-800/50 border-slate-600/30 h-full group hover:border-[#ECB629]/50 transition-all duration-300">
+                  <Card className="relative glassmorphism h-full group hover:border-[#ECB629]/50 transition-all duration-300">
                     <div className="absolute -top-4 -left-4 w-12 h-12 bg-[#ECB629] rounded-full flex items-center justify-center font-bold text-black text-lg">
                       {step.phase}
                     </div>
@@ -720,7 +720,7 @@ export default function ClientomatPage() {
                   animate={resultsInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.8, delay: 0.3 + index * 0.2 }}
                 >
-                  <Card className="bg-slate-800/50 border-slate-600/30 h-full text-center group hover:border-[#ECB629]/50 transition-all duration-300">
+                  <Card className="glassmorphism h-full text-center group hover:border-[#ECB629]/50 transition-all duration-300">
                     <div className="p-8">
                       <motion.div
                         className="text-5xl font-bold text-[#ECB629] mb-4"
@@ -752,7 +752,7 @@ export default function ClientomatPage() {
               transition={{ duration: 0.8, delay: 0.8 }}
               className="text-center"
             >
-              <Card className="bg-slate-800/60 border-[#ECB629]/20 max-w-4xl mx-auto">
+              <Card className="glassmorphism border-[#ECB629]/20 max-w-4xl mx-auto">
                 <div className="p-12">
                   <div className="w-20 h-20 bg-[#ECB629]/20 rounded-full flex items-center justify-center mb-8 mx-auto">
                     <Users className="w-10 h-10 text-[#ECB629]" />
@@ -812,7 +812,7 @@ export default function ClientomatPage() {
               transition={{ duration: 0.8 }}
             >
               {/* Badge */}
-              <div className="inline-flex items-center px-6 py-2 bg-slate-800/80 border border-[#ECB629] rounded-full mb-8">
+              <div className="inline-flex items-center px-6 py-2 glassmorphism border border-[#ECB629] rounded-full mb-8">
                 <span className="text-[#ECB629] text-sm font-medium tracking-wide">
                   ПРОЗРАЧНО ЦЕНООБРАЗУВАНЕ
                 </span>
@@ -827,7 +827,7 @@ export default function ClientomatPage() {
               </p>
 
               {/* Price Card */}
-              <div className="bg-slate-800/50 rounded-2xl p-8 border border-slate-600/30 mb-16">
+              <div className="glassmorphism rounded-2xl p-8 mb-16">
                 <div className="text-sm text-[#ECB629] mb-2 tracking-wide">ЗАПОЧВА ОТ</div>
                 <div className="text-6xl md:text-7xl font-bold text-[#ECB629] mb-4">
                   2750 лв.
