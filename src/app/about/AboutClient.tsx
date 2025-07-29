@@ -1,4 +1,4 @@
-"use client";
+'use client'
 
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
@@ -56,22 +56,12 @@ const teamMembers = [
     id: "simo",
     name: "Симеон Сираков",
     role: "Бизнес директор",
-    image: "/Simo.webp",
-    description:
-      "Ръководи стратегическото развитие и бизнес операциите на агенцията.",
+    image: "/simo.webp",
+    description: "Ръководи стратегическото развитие и бизнес операциите на агенцията.",
     experience: "8+ години",
     location: "Варна, България",
-    specialties: [
-      "Бизнес стратегия",
-      "Операционно управление",
-      "Растеж на приходи",
-      "Партньорства",
-    ],
-    achievements: [
-      "47+ успешни проекта",
-      "250% средно подобрение",
-      "100% доволни клиенти",
-    ],
+    specialties: ["Бизнес стратегия", "Операционно управление", "Растеж на приходи", "Партньорства"],
+    achievements: ["47+ успешни проекта", "250% средно подобрение", "100% доволни клиенти"],
     bio: "Симеон е движещата сила зад стратегическото развитие на Pravda Agency. С богат опит в бизнес операциите, той помага на компаниите да изградят устойчиви системи за растеж. Неговият подход съчетава аналитично мислене с практическо изпълнение.",
     email: "simo@pravdagency.eu",
     linkedin: "linkedin.com/in/simeonsirakov",
@@ -80,17 +70,12 @@ const teamMembers = [
     id: "tomi",
     name: "Томи Сапунджиев",
     role: "Креативен директор",
-    image: "/Tomi.webp",
-    description:
-      "Отговаря за креативната визия и дизайн стратегията на проектите.",
+    image: "/tomi.webp",
+    description: "Отговаря за креативната визия и дизайн стратегията на проектите.",
     experience: "6+ години",
     location: "София, България",
     specialties: ["Уеб дизайн", "Брандинг", "UX/UI", "Визуална идентичност"],
-    achievements: [
-      "200+ дизайн проекта",
-      "15+ награди за дизайн",
-      "98% клиентска удовлетвореност",
-    ],
+    achievements: ["200+ дизайн проекта", "15+ награди за дизайн", "98% клиентска удовлетвореност"],
     bio: "Томи трансформира сложни бизнес идеи в елегантни визуални решения. Неговият креативен подход помага на марките да се отличат и да създават емоционална връзка с аудиторията си.",
     email: "tomi@pravdagency.eu",
     linkedin: "linkedin.com/in/tomisapundzhiev",
@@ -99,46 +84,26 @@ const teamMembers = [
     id: "jivko",
     name: "Живомир Арнаудов",
     role: "Програмен мениджър",
-    image: "/Jivko.webp",
-    description:
-      "Управлява техническите проекти и координира развойните процеси.",
+    image: "/jivko.png",
+    description: "Управлява техническите проекти и координира развойните процеси.",
     experience: "7+ години",
-    location: "Варна, България",
-    specialties: [
-      "Програмен и портфолио мениджмънт",
-      "Планиране на ресурси и управление на капацитет",
-      "Оптимизация на процеси и стандартизация",
-      "Управление на рискове и контрол на изпълнението",
-    ],
-    achievements: [
-      "100+ доставени проекта",
-      "99.5% навременно доставяне",
-      "Zero критични грешки",
-    ],
-    bio: "Живомир е доказан професионалист с експертиза в организационното планиране и управлението на проекти. Благодарение на неговия структуриран подход всеки проект се реализира в срок, в рамките на бюджета и съгласно най-високите стандарти за качество.",
-    email: "zarnaudov@pravdast.agency",
+    location: "Пловдив, България",
+    specialties: ["Управление на проекти", "Agile методологии", "Техническа архитектура", "Quality Assurance"],
+    achievements: ["100+ доставени проекта", "99.5% навременно доставяне", "Zero критични грешки"],
+    bio: "Живомир е майсторът на организацията и планирането. Той гарантира, че всеки проект се изпълнява навременно, в рамките на бюджета и с най-високо качество.",
+    email: "jivko@pravdagency.eu",
     linkedin: "linkedin.com/in/zhivomir-arnaudov",
   },
   {
     id: "koko",
     name: "Калоян Богданов",
     role: "AI девелопър",
-    image: "/Koko.webp",
-    description:
-      "Специализира в изкуствен интелект и автоматизация на бизнес процеси.",
+    image: "/koko.png",
+    description: "Специализира в изкуствен интелект и автоматизация на бизнес процеси.",
     experience: "5+ години",
     location: "Варна, България",
-    specialties: [
-      "Machine Learning",
-      "Process Automation",
-      "Python",
-      "API Integration",
-    ],
-    achievements: [
-      "30+ AI решения",
-      "75% редукция на времето",
-      "15+ автоматизирани процеса",
-    ],
+    specialties: ["Machine Learning", "Process Automation", "Python", "API Integration"],
+    achievements: ["30+ AI решения", "75% редукция на времето", "15+ автоматизирани процеса"],
     bio: "Калоян внедрява най-новите AI технологии за автоматизация на бизнес процесите. Неговите решения помагат на компаниите да спестят време и ресурси чрез интелигентна автоматизация.",
     email: "kaloyan@pravdagency.eu",
     linkedin: "linkedin.com/in/kaloyan-bogdanov",
@@ -147,21 +112,12 @@ const teamMembers = [
     id: "viki",
     name: "Виктория Петрова",
     role: "Маркетинг експерт",
-    image: "/Viki.webp",
+    image: "/viki.webp",
     description: "Експерт по дигитален маркетинг и имейл кампании за растеж.",
     experience: "6+ години",
     location: "София, България",
-    specialties: [
-      "Email Marketing",
-      "Lead Generation",
-      "Marketing Automation",
-      "Conversion Optimization",
-    ],
-    achievements: [
-      "500K+ генерирани лийдове",
-      "45% средно CTR",
-      "300% ROI подобрение",
-    ],
+    specialties: ["Email Marketing", "Lead Generation", "Marketing Automation", "Conversion Optimization"],
+    achievements: ["500K+ генерирани лийдове", "45% средно CTR", "300% ROI подобрение"],
     bio: "Виктория създава маркетингови кампании, които не просто привличат внимание, а генерират реални резултати. Нейната експертиза в автоматизацията помага на бизнесите да скалират ефективно.",
     email: "viktoria@pravdagency.eu",
     linkedin: "linkedin.com/in/viktoria-petrova",
@@ -170,21 +126,12 @@ const teamMembers = [
     id: "petio",
     name: "Петър Петров",
     role: "SEO експерт",
-    image: "/Petio.webp",
+    image: "/petio.png",
     description: "Специалист по органично позициониране и SEO оптимизация.",
     experience: "9+ години",
     location: "Бургас, България",
-    specialties: [
-      "Technical SEO",
-      "Content Strategy",
-      "Link Building",
-      "Local SEO",
-    ],
-    achievements: [
-      "Top 3 позиции за 90% ключови думи",
-      "400% трафик увеличение",
-      "50+ #1 rankings",
-    ],
+    specialties: ["Technical SEO", "Content Strategy", "Link Building", "Local SEO"],
+    achievements: ["Top 3 позиции за 90% ключови думи", "400% трафик увеличение", "50+ #1 rankings"],
     bio: "Петър е SEO стратегът, който превръща уебсайтовете в мощни инструменти за привличане на клиенти. Неговите техники за оптимизация довеждат до устойчиви позиции в Google.",
     email: "peter@pravdagency.eu",
     linkedin: "linkedin.com/in/peter-petrov-seo",
@@ -341,17 +288,11 @@ export default function AboutClient() {
                 Ние изграждаме системи, които работят. Нашата мисия е да
                 превърнем хаотичния растеж в предвидими, измерими резултати.
                 Разгледайте нашите{" "}
-                <Link
-                  href="/services"
-                  className="text-[#ECB629] hover:underline cursor-pointer"
-                >
+                <Link href="/services" className="text-[#ECB629] hover:underline cursor-pointer">
                   услуги
                 </Link>{" "}
                 и{" "}
-                <Link
-                  href="/case-studies"
-                  className="text-[#ECB629] hover:underline cursor-pointer"
-                >
+                <Link href="/case-studies" className="text-[#ECB629] hover:underline cursor-pointer">
                   постигнати резултати
                 </Link>
                 .
@@ -507,9 +448,7 @@ export default function AboutClient() {
                           <h3 className="text-xl font-bold text-white mb-3 group-hover:text-[#ECB629] transition-colors">
                             {milestone.title}
                           </h3>
-                          <p className="text-gray-300">
-                            {milestone.description}
-                          </p>
+                          <p className="text-gray-300">{milestone.description}</p>
                         </CardContent>
                       </Card>
                     </div>
@@ -558,9 +497,7 @@ export default function AboutClient() {
                           <h3 className="text-lg font-bold text-white mb-2">
                             {milestone.title}
                           </h3>
-                          <p className="text-gray-300 text-sm">
-                            {milestone.description}
-                          </p>
+                          <p className="text-gray-300 text-sm">{milestone.description}</p>
                         </CardContent>
                       </Card>
                     </div>
@@ -619,12 +556,8 @@ export default function AboutClient() {
                       <h3 className="text-xl font-bold text-white mb-2 group-hover:text-[#ECB629] transition-colors">
                         {member.name}
                       </h3>
-                      <p className="text-[#ECB629] font-semibold mb-3">
-                        {member.role}
-                      </p>
-                      <p className="text-gray-300 text-sm">
-                        {member.description}
-                      </p>
+                      <p className="text-[#ECB629] font-semibold mb-3">{member.role}</p>
+                      <p className="text-gray-300 text-sm">{member.description}</p>
                     </CardContent>
                   </Card>
                 </motion.div>
@@ -664,27 +597,18 @@ export default function AboutClient() {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <motion.div
-                  whileHover={{ y: -8 }}
-                  transition={{ duration: 0.2 }}
-                >
+                <motion.div whileHover={{ y: -8 }} transition={{ duration: 0.2 }}>
                   <Button
                     className="bg-black text-white hover:bg-black/90 font-semibold px-8 py-4 text-lg rounded-lg transition-all duration-300 shadow-lg"
                     onClick={() => {
-                      window.open(
-                        "https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu",
-                        "_blank",
-                      );
+                      window.open("https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu", "_blank");
                     }}
                   >
                     Започнете с безплатна консултация
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
                 </motion.div>
-                <motion.div
-                  whileHover={{ y: -8 }}
-                  transition={{ duration: 0.2 }}
-                >
+                <motion.div whileHover={{ y: -8 }} transition={{ duration: 0.2 }}>
                   <Button
                     variant="outline"
                     className="border-2 border-black text-black hover:bg-black hover:text-white font-semibold px-8 py-4 text-lg rounded-lg transition-all duration-300"
@@ -773,27 +697,33 @@ export default function AboutClient() {
 
                   <div className="space-y-6">
                     <div>
-                      <h4 className="text-lg font-semibold text-white mb-3">
-                        За мен
-                      </h4>
+                      <h4 className="text-lg font-semibold text-white mb-3">За мен</h4>
                       <p className="text-gray-300">{selectedMember.bio}</p>
                     </div>
 
                     <div>
-                      <h4 className="text-lg font-semibold text-white mb-3">
-                        Специалности
-                      </h4>
+                      <h4 className="text-lg font-semibold text-white mb-3">Специалности</h4>
                       <div className="flex flex-wrap gap-2">
-                        {selectedMember.specialties.map(
-                          (specialty: string, index: number) => (
-                            <span
-                              key={index}
-                              className="px-3 py-1 bg-slate-800 border border-slate-700 rounded-full text-sm text-gray-300"
-                            >
-                              {specialty}
-                            </span>
-                          ),
-                        )}
+                        {selectedMember.specialties.map((specialty: string, index: number) => (
+                          <span
+                            key={index}
+                            className="px-3 py-1 bg-slate-800 border border-slate-700 rounded-full text-sm text-gray-300"
+                          >
+                            {specialty}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div>
+                      <h4 className="text-lg font-semibold text-white mb-3">Постижения</h4>
+                      <div className="space-y-2">
+                        {selectedMember.achievements.map((achievement: string, index: number) => (
+                          <div key={index} className="flex items-center gap-2">
+                            <Star className="h-4 w-4 text-[#ECB629]" />
+                            <span className="text-gray-300">{achievement}</span>
+                          </div>
+                        ))}
                       </div>
                     </div>
 

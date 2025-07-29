@@ -13,22 +13,15 @@ export const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false);
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
-  const [isMounted, setIsMounted] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
-    setIsMounted(true);
-    
     const handleScroll = () => {
-      if (typeof window !== 'undefined') {
-        setIsScrolled(window.scrollY > 100);
-      }
+      setIsScrolled(window.scrollY > 100);
     };
 
-    if (typeof window !== 'undefined') {
-      window.addEventListener("scroll", handleScroll);
-      return () => window.removeEventListener("scroll", handleScroll);
-    }
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const serviceItems = [
@@ -51,9 +44,9 @@ export const Navigation = () => {
   return (
     <motion.nav
       className="w-full bg-slate-900 border-b border-[#ECB629]/20 relative"
-      initial={{ y: isMounted ? -100 : 0 }}
+      initial={{ y: -100 }}
       animate={{ y: 0 }}
-      transition={{ duration: isMounted ? 0.6 : 0 }}
+      transition={{ duration: 0.6 }}
     >
       {/* Animated Tech Background */}
       <div className="absolute inset-0 opacity-5">
@@ -150,20 +143,11 @@ export const Navigation = () => {
                     {/* Dropdown Menu */}
                     <div
                       className="absolute top-full left-0 pt-2"
-                      style={{ zIndex: 9999999 }}
+                      style={{ zIndex: 999999 }}
                     >
                       {isServicesDropdownOpen && (
                         <motion.div
-                          className="navigation-dropdown backdrop-blur-xl border border-slate-600/50 rounded-lg p-3 shadow-2xl min-w-[300px]"
-                          style={{
-                            backdropFilter: 'blur(24px) saturate(180%)',
-                            WebkitBackdropFilter: 'blur(24px) saturate(180%)',
-                            background: 'rgba(30, 41, 59, 0.85)',
-                            boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
-                            border: '1px solid rgba(255, 255, 255, 0.1)',
-                            position: 'relative',
-                            zIndex: 9999999
-                          }}
+                          className="bg-slate-800/98 backdrop-blur-md border border-slate-600 rounded-lg p-3 shadow-2xl min-w-[300px]"
                           initial={{ opacity: 0, y: -10, scale: 0.95 }}
                           animate={{ 
                             opacity: 1,
@@ -245,9 +229,7 @@ export const Navigation = () => {
               <Button
                 className="bg-[#ECB629] text-black hover:bg-[#ECB629]/90 font-semibold px-6 py-2 rounded-lg transition-all duration-300 shadow-lg hover:shadow-[#ECB629]/25"
                 onClick={() => {
-                  if (typeof window !== 'undefined') {
-                    window.open("https://form.typeform.com/to/GXLaGY98", "_blank");
-                  }
+                  window.open("https://form.typeform.com/to/GXLaGY98", "_blank");
                 }}
               >
                 Безплатна консултация
@@ -267,17 +249,9 @@ export const Navigation = () => {
 
         {/* Mobile Menu */}
         <motion.div
-          className={`md:hidden mt-4 backdrop-blur-xl rounded-xl border border-slate-600/30 overflow-hidden ${
+          className={`md:hidden mt-4 bg-slate-800/95 backdrop-blur-xl rounded-xl border border-slate-600/30 overflow-hidden ${
             isMobileMenuOpen ? 'block' : 'hidden'
           }`}
-          style={{
-            backdropFilter: 'blur(24px) saturate(180%)',
-            WebkitBackdropFilter: 'blur(24px) saturate(180%)',
-            background: 'rgba(30, 41, 59, 0.85)',
-            boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
-            border: '1px solid rgba(255, 255, 255, 0.1)',
-            zIndex: 9999999
-          }}
           initial={{ opacity: 0, height: 0 }}
           animate={{
             opacity: isMobileMenuOpen ? 1 : 0,
@@ -349,9 +323,7 @@ export const Navigation = () => {
               <Button
                 className="w-full bg-[#ECB629] text-black hover:bg-[#ECB629]/90 font-semibold py-3 rounded-lg transition-all duration-300"
                 onClick={() => {
-                  if (typeof window !== 'undefined') {
-                    window.open("https://form.typeform.com/to/GXLaGY98", "_blank");
-                  }
+                  window.open("https://form.typeform.com/to/GXLaGY98", "_blank");
                   setIsMobileMenuOpen(false);
                 }}
               >
