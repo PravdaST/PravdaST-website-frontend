@@ -205,7 +205,9 @@ function ProfitCalculator({
   });
 
   const [recommendations, setRecommendations] = useState<string[]>([]);
-  const [personalizedAdvice, setPersonalizedAdvice] = useState(""); // <-- ДОБАВИ ТОВА
+  const [personalizedAdvice, setPersonalizedAdvice] = useState("");
+  const [industryBenchmark, setIndustryBenchmark] = useState("");
+  const [biggestOpportunity, setBiggestOpportunity] = useState(""); // <-- ДОБАВИ ТОВА
 
   // Service-specific calculations
   const calculateResults = () => {
@@ -362,6 +364,8 @@ function ProfitCalculator({
     // Generate service-specific recommendations
     const recs = [];
     let advice = "";
+    let benchmark = "";
+    let opportunity = "";
 
     switch (serviceName) {
       case "SEO Struktor™":
@@ -372,6 +376,23 @@ function ProfitCalculator({
         if(newResults.metric1 > 0) {
             advice = `С наша помощ, трафикът Ви може да скочи от ${Math.round(param1).toLocaleString()} на ${Math.round(newResults.metric1).toLocaleString()} посетители. Това ще генерира около ${Math.round(newResults.metric2).toLocaleString()} нови запитвания месечно, превръщайки сайта Ви в машина за клиенти.`
         }
+        
+        // Industry benchmarks for SEO
+        if (param1 < 8000) {
+          benchmark = "💡 Средно за Вашата индустрия месечният органичен трафик е 8,500+ посетители. Имате значителна възможност за растеж тук.";
+        }
+        if (param2 > 20) {
+          benchmark = "💡 Средната позиция в Google за добре оптимизирани сайтове е между 5-15 място. Вашите позиции имат голям потенциал за подобрение.";
+        }
+        
+        // Biggest opportunity for SEO
+        if (param2 > 30 && param1 < 5000) {
+          opportunity = "⭐ Вашият основен лост за растеж: Позиции в Google. Подобряването само на тази метрика ще отключи над 80% от прогнозния Ви потенциал.";
+        } else if (param3 < 10) {
+          opportunity = "⭐ Вашият основен лост за растеж: Изследване на ключови думи. Правильната стратегия ще удвои Вашия трафик за 6 месеца.";
+        } else if (param1 < 3000) {
+          opportunity = "⭐ Вашият основен лост за растеж: Органичен трафик. Имате огромен неизползван потенциал за привличане на посетители.";
+        }
         break;
       case "Trendlab™":
         if (param1 < 10000) recs.push("Изграждане на аудитория");
@@ -380,6 +401,23 @@ function ProfitCalculator({
         if (newResults.score < 70) recs.push("Изграждане на авторитет");
          if(newResults.metric1 > 0) {
             advice = `Представете си да увеличите аудиторията си от ${Math.round(param1).toLocaleString()} на ${Math.round(newResults.metric1).toLocaleString()} последователи. Това ще Ви превърне в авторитет във Вашата ниша, достигайки до хиляди потенциални клиенти всеки месец.`
+        }
+        
+        // Industry benchmarks for Content Marketing
+        if (param1 < 15000) {
+          benchmark = "💡 Средно за Вашата индустрия успешните бизнеси имат 15,000+ последователи. Все още има място за растеж.";
+        }
+        if (param2 < 8) {
+          benchmark = "💡 Топ компаниите публикуват 8-12 пъти месечно в социалните мрежи. Честотата на съдържание е ключова.";
+        }
+        
+        // Biggest opportunity for Content
+        if (param2 < 3 && param1 > 5000) {
+          opportunity = "⭐ Вашият основен лост за растеж: Честота на съдържание. С правилната стратегия за постове ще удвоите ангажираността.";
+        } else if (param3 < 3) {
+          opportunity = "⭐ Вашият основен лост за растеж: Качество на съдържание. Подобряването тук ще направи всеки пост 3x по-ефективен.";
+        } else if (param1 < 8000) {
+          opportunity = "⭐ Вашият основен лост за растеж: Изграждане на аудитория. Имате база, но потенциалът за експлозивен растеж е огромен.";
         }
         break;
       case "Clickstarter™":
@@ -390,6 +428,23 @@ function ProfitCalculator({
         if(newResults.metric1 > 0) {
             advice = `Ще оптимизираме кампаниите Ви, за да постигнете ${Math.round(newResults.metric1)} продажби вместо сегашните ${Math.round(param3)}. Освен това, ще спестим ${Math.round(newResults.metric2)} лв. от бюджета Ви, които може да реинвестирате за още по-силни резултати.`
         }
+        
+        // Industry benchmarks for PPC
+        if (param2 > 2.5) {
+          benchmark = "💡 Средната цена за клик в Вашата индустрия е 1.80-2.50 лв. Вашите кампании могат да бъдат значително по-ефективни.";
+        }
+        if (param3 < 150) {
+          benchmark = "💡 Добре оптимизираните Google Ads кампании генерират 150-300+ конверсии месечно с подобен бюджет.";
+        }
+        
+        // Biggest opportunity for PPC
+        if (param2 > 4 && param1 > 8000) {
+          opportunity = "⭐ Вашият основен лост за растеж: Цена за клик. Намаляването ѝ наполовина ще удвои броя клиенти при същия бюджет.";
+        } else if (param3 < 80) {
+          opportunity = "⭐ Вашият основен лост за растеж: Conversion Rate. Подобряването на лендинг страниците ще утрои конверсиите.";
+        } else if (param1 > 15000) {
+          opportunity = "⭐ Вашият основен лост за растеж: Бюджетна ефективност. Пренасочването на разходите ще спести 30-40% средства.";
+        }
         break;
       case "Clientomat™":
         if (param3 < 30) recs.push("Стратегия за задържане");
@@ -399,10 +454,29 @@ function ProfitCalculator({
         if(newResults.metric1 > 0) {
             advice = `Чрез нашите системи за лоялност, ще увеличим повторните Ви покупки до ${Math.round(newResults.metric1)}% и ще вдигнем стойността на всеки клиент до ${Math.round(newResults.metric2 * 1000).toLocaleString()} лв. Това е ключът към стабилен и предвидим растеж.`
         }
+        
+        // Industry benchmarks for CRM
+        if (param3 < 35) {
+          benchmark = "💡 Средно за Вашата индустрия (E-commerce) repeat rate е 35-45%. Имате значителна възможност за растеж тук.";
+        }
+        if (param2 < 2500) {
+          benchmark = "💡 Средната стойност на клиент в успешните онлайн бизнеси е 2,500-4,000 лв. Има място за подобрение.";
+        }
+        
+        // Biggest opportunity for CRM
+        if (param3 < 25 && param1 > 100) {
+          opportunity = "⭐ Вашият основен лост за растеж: Задържане на клиенти. Повишаването на repeat rate с 15% ще удвои печалбата Ви.";
+        } else if (param2 < 1800) {
+          opportunity = "⭐ Вашият основен лост за растеж: Средна стойност на клиент. Upsell стратегиите ще увеличат приходите с 60%.";
+        } else if (param1 < 80) {
+          opportunity = "⭐ Вашият основен лост за растеж: Acquisition Rate. Оптимизиране на процеса ще увеличи новите клиенти с 2-3x.";
+        }
         break;
     }
     setRecommendations(recs.slice(0, 4));
     setPersonalizedAdvice(advice);
+    setIndustryBenchmark(benchmark);
+    setBiggestOpportunity(opportunity);
   }, [inputs, serviceName, monthlyPrice, serviceInputs]);
 
   return (
@@ -727,6 +801,31 @@ function ProfitCalculator({
                   >
                     <h4 className="font-semibold text-white mb-2">Какво означава това за Вас?</h4>
                     <p className="text-gray-300 text-sm">{personalizedAdvice}</p>
+                   </motion.div>
+                )}
+
+                {/* Industry Benchmark */}
+                {industryBenchmark && (
+                   <motion.div
+                    className="bg-blue-900/20 rounded-lg p-4 border border-blue-500/30 text-center"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0}}
+                    transition={{ duration: 0.6, delay: 0.6 }}
+                  >
+                    <p className="text-blue-200 text-sm">{industryBenchmark}</p>
+                   </motion.div>
+                )}
+
+                {/* Biggest Opportunity */}
+                {biggestOpportunity && (
+                   <motion.div
+                    className="bg-orange-900/20 rounded-lg p-4 border border-orange-500/30 text-center relative overflow-hidden"
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1}}
+                    transition={{ duration: 0.6, delay: 0.8 }}
+                  >
+                    <div className="absolute top-1 right-1 w-2 h-2 bg-orange-400 rounded-full animate-pulse"></div>
+                    <p className="text-orange-200 text-sm font-medium">{biggestOpportunity}</p>
                    </motion.div>
                 )}
 
