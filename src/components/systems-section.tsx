@@ -135,7 +135,7 @@ const systems = [
 
 export const SystemsSection = () => {
   return (
-    <section className="py-12 sm:py-16 md:py-20 bg-slate-900 relative overflow-hidden">
+    <section className="py-12 sm:py-16 md:py-20 relative overflow-hidden">
       {/* Animated Tech Background */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0">
@@ -189,7 +189,7 @@ export const SystemsSection = () => {
           viewport={{ once: true }}
         >
           <motion.div
-            className="inline-flex items-center gap-3 mb-8 px-6 py-3 rounded-full bg-gradient-to-r from-slate-800/80 to-slate-700/60 border border-slate-600/30 backdrop-blur-sm"
+            className="inline-flex items-center gap-3 mb-8 px-6 py-3 rounded-full glassmorphism"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -259,7 +259,7 @@ export const SystemsSection = () => {
               viewport={{ once: true }}
               className="relative group h-full"
             >
-              <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-slate-800/60 to-slate-900/80 border border-slate-600/30 h-full backdrop-blur-sm group-hover:border-[#ECB629]/50 transition-all duration-300">
+              <div className="relative overflow-hidden rounded-2xl glass-card h-full group-hover:border-[#ECB629]/50 transition-all duration-300">
                 {/* Status Badge */}
                 <div className="absolute top-4 right-4">
                   <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-[#ECB629]/20 border border-[#ECB629]/30">

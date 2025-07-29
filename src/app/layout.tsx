@@ -13,6 +13,7 @@ import { RetargetingPixels } from '@/components/retargeting-pixels'
 import { ServiceWorkerSetup } from '@/components/service-worker-setup'
 import { Toaster } from '@/components/ui/toaster'
 import { Navigation } from '@/components/navigation'
+import { BackgroundEffects } from '@/components/background-effects'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -31,6 +32,7 @@ export default function RootLayout({
     <html lang="bg">
       <body className={inter.className}>
         <ClientOnly>
+          <BackgroundEffects />
           <KlaviyoSetup />
           <KlaviyoIntegration />
           <Analytics />

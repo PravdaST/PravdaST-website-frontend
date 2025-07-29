@@ -24,7 +24,7 @@ const steps = [
 
 export const ProcessSection = () => {
   return (
-    <section className="py-20 bg-slate-900 relative overflow-hidden">
+    <section className="py-20 relative overflow-hidden">
       {/* Animated Tech Background */}
       <div className="absolute inset-0 opacity-20">
         <div className="absolute inset-0">
@@ -70,7 +70,7 @@ export const ProcessSection = () => {
           viewport={{ once: true }}
         >
           <motion.div
-            className="inline-flex items-center gap-3 mb-8 px-6 py-3 rounded-full bg-gradient-to-r from-slate-800/80 to-slate-700/60 border border-slate-600/30 backdrop-blur-sm"
+            className="inline-flex items-center gap-3 mb-8 px-6 py-3 rounded-full glassmorphism"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}

@@ -161,7 +161,7 @@ export default function ServicesClient() {
   const isServicesInView = useInView(servicesRef, { once: true })
 
   return (
-    <div className="min-h-screen bg-slate-900 text-white">
+    <div className="min-h-screen text-white">
       <Navigation />
       
       {/* Hero Section */}

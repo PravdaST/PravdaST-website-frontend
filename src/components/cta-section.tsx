@@ -13,7 +13,7 @@ import {
 
 export const CTASection = () => {
   return (
-    <section className="py-16 sm:py-20 md:py-24 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 relative overflow-hidden">
+    <section className="py-16 sm:py-20 md:py-24 relative overflow-hidden">
       {/* Sophisticated Background */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-r from-[#ECB629]/5 via-transparent to-[#ECB629]/5"></div>
@@ -51,7 +51,7 @@ export const CTASection = () => {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <div className="inline-flex items-center gap-3 bg-slate-800/80 backdrop-blur-xl border border-[#ECB629]/30 rounded-full px-8 py-4 shadow-xl">
+            <div className="inline-flex items-center gap-3 glassmorphism rounded-full px-8 py-4 shadow-xl">
               <div className="flex items-center gap-3">
                 <div className="relative">
                   <div className="w-3 h-3 bg-[#ECB629] rounded-full"></div>

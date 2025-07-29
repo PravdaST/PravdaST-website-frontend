@@ -31,7 +31,7 @@ export const Footer = () => {
   };
 
   return (
-    <footer className="py-12 sm:py-16 bg-slate-900 border-t border-[#ECB629]/20 relative overflow-hidden">
+    <footer className="py-12 sm:py-16 border-t border-[#ECB629]/20 relative overflow-hidden">
       {/* Animated Tech Background */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0">

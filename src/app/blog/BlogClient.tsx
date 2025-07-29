@@ -78,7 +78,7 @@ export default function BlogClient() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-black text-white">
+      <div className="min-h-screen text-white">
         <Navigation />
         <main className="flex-1 pt-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -94,7 +94,7 @@ export default function BlogClient() {
   }
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen text-white">
       <Navigation />
       
       {/* Hero Section */}
@@ -130,7 +130,7 @@ export default function BlogClient() {
                 placeholder="Търсене в блога..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10 bg-gray-900 border-gray-700 text-white placeholder-gray-400"
+                className="pl-10 glassmorphism border-gray-700 text-white placeholder-gray-400"
               />
             </div>
 
@@ -172,7 +172,7 @@ export default function BlogClient() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
-                  <Card className="bg-gray-900 border-gray-800 hover:border-[#ECB629]/50 transition-all duration-300 h-full group">
+                  <Card className="glass-card hover:border-[#ECB629]/50 transition-all duration-300 h-full group">
                     <CardContent className="p-6 flex flex-col h-full">
                       {/* Category Badge */}
                       <Badge 
