@@ -1,24 +1,27 @@
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import BlogPostClient from './BlogPostClient'
-import { getStaticBlogPosts, getStaticBlogPost } from '@/lib/blog-static'
+import { readBlogPostsFromFiles, getBlogPostBySlugFromFiles } from '@/lib/blog-file-reader'
 
 interface Props {
   params: Promise<{ slug: string }>
 }
 
 export async function generateStaticParams() {
-  const posts = getStaticBlogPosts()
-  return posts.map(post => ({
-    slug: post.slug
-  }))
+  // Използваме статични slug-ове за избягване на build time грешки
+  return [
+    { slug: 'poznato-li-ti-e-tova-chuvstvo' },
+    { slug: 'kak-da-optimizirate-vashiya-biznes-za-maksimalna-efektivnost' },
+    { slug: '3-te-lazhi-za-privlichaneto-na-klienti-koito-vi-struvat-tsya' },
+    { slug: 'biznes-inzheneri-vs-marketing-ekip-alternativa' }
+  ]
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   
   try {
-    const post = getStaticBlogPost(slug)
+    const post = getBlogPostBySlugFromFiles(slug)
     
     if (!post) {
       return {
@@ -63,7 +66,7 @@ export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params
   
   try {
-    const post = getStaticBlogPost(slug)
+    const post = getBlogPostBySlugFromFiles(slug)
 
     if (!post) {
       notFound()

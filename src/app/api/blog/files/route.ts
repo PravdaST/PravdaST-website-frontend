@@ -1,12 +1,12 @@
 import { NextResponse } from 'next/server'
-import { getStaticBlogPosts } from '@/lib/blog-static'
+import { readBlogPostsFromFiles } from '@/lib/blog-file-reader'
 
 export async function GET() {
   try {
-    const blogPosts = getStaticBlogPosts()
+    const blogPosts = readBlogPostsFromFiles()
     return NextResponse.json(blogPosts)
   } catch (error) {
-    console.error('Error getting static blog posts:', error)
-    return NextResponse.json({ error: 'Failed to get blog posts' }, { status: 500 })
+    console.error('Error reading blog posts from files:', error)
+    return NextResponse.json({ error: 'Failed to read blog posts' }, { status: 500 })
   }
 }
