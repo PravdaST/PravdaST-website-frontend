@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import { Navigation } from "@/components/navigation";
+
 import { Footer } from "@/components/footer";
 import { Button } from "@/components/ui/button";
 import { useRef, useState, useEffect } from "react";
@@ -926,7 +926,7 @@ const InvestmentSection = () => {
 export default function SeoStruktor() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 to-slate-800 text-white">
-      <Navigation />
+
 
       {/* Hero Section */}
       <section className="pt-10 relative min-h-screen flex items-center overflow-hidden">

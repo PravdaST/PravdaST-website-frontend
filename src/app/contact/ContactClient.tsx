@@ -19,7 +19,7 @@ import {
 } from "@/components/ui/form"
 import { useToast } from "@/hooks/use-toast"
 import { Mail, Phone, MapPin, Clock, Send } from "lucide-react"
-import { Navigation } from "@/components/navigation"
+
 import { Footer } from "@/components/footer"
 import { trackContactForm, trackPhoneCall } from "@/lib/analytics"
 import { trackMetaLead, trackMetaContact } from "@/components/meta-pixel"
@@ -184,7 +184,7 @@ export default function ContactClient() {
   return (
     <div className="min-h-screen bg-slate-900">
       <StructuredData data={pageSEOData.contact.structuredData} />
-      <Navigation />
+
       <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-5">

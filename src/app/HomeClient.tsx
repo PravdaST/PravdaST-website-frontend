@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect } from 'react'
-import { Navigation } from '@/components/navigation'
+
 import { HeroSection } from '@/components/hero-section'
 import { PartnersCarousel } from '@/components/partners-carousel'
 import ProblemSection from '@/components/problem-section'
@@ -26,7 +26,7 @@ export default function HomeClient() {
   return (
     <div className="min-h-screen bg-slate-900">
       <HelmetSEO seo={seoData} pageSlug="" />
-      <Navigation />
+
       <HeroSection />
       <PartnersCarousel />
       <ProblemSection />

@@ -21,7 +21,7 @@ import {
   Clock,
   Phone,
 } from "lucide-react";
-import { Navigation } from "@/components/navigation";
+
 import { Footer } from "@/components/footer";
 import Link from "next/link";
 
@@ -128,7 +128,7 @@ const ClickstarterBackground = () => {
 export default function Clickstarter() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
-      <Navigation />
+
 
       {/* Hero Section */}
       <section className="py-10 min-h-screen flex items-center relative overflow-hidden bg-slate-900">

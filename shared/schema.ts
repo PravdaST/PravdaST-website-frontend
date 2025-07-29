@@ -83,11 +83,27 @@ export type InsertBlogPost = typeof blogPosts.$inferInsert;
 export type Contact = typeof contacts.$inferSelect;
 export type InsertContact = typeof contacts.$inferInsert;
 
-// Validation schemas
-export const insertAdminUserSchema = createInsertSchema(adminUsers);
-export const insertAdminSessionSchema = createInsertSchema(adminSessions);
-export const insertBlogPostSchema = createInsertSchema(blogPosts);
-export const insertContactSchema = createInsertSchema(contacts);
+// Validation schemas using Zod
+export const insertBlogPostSchema = z.object({
+  title: z.string().min(1),
+  content: z.string().min(1),
+  excerpt: z.string().optional(),
+  slug: z.string().min(1),
+  category: z.string().min(1),
+  tags: z.array(z.string()).default([]),
+  featuredImage: z.string().optional(),
+  author: z.string().min(1),
+  publishedAt: z.string().optional(),
+  readTime: z.number().optional(),
+});
+
+export const insertContactSchema = z.object({
+  name: z.string().min(1),
+  email: z.string().email(),
+  company: z.string().min(1),
+  website: z.string().optional(),
+  message: z.string().min(1),
+});
 
 export type InsertBlogPostInput = z.infer<typeof insertBlogPostSchema>;
 export type InsertContactInput = z.infer<typeof insertContactSchema>;
