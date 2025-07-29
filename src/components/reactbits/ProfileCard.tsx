@@ -43,7 +43,11 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
           <div className="relative inline-block mb-4">
             <div className="w-20 h-20 rounded-full bg-gradient-to-r from-[#ECB629] to-[#ECB629]/70 p-1">
               <div className="w-full h-full rounded-full bg-slate-900 flex items-center justify-center">
-                <span className="text-2xl font-bold text-[#ECB629]">P</span>
+                {avatar && avatar !== "/team-avatar.jpg" ? (
+                  <img src={avatar} alt={name} className="w-full h-full rounded-full object-cover" />
+                ) : (
+                  <span className="text-2xl font-bold text-[#ECB629]">{name?.[0] || 'P'}</span>
+                )}
               </div>
             </div>
             <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-green-500 rounded-full border-2 border-slate-900"></div>

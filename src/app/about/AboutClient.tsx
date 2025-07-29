@@ -364,53 +364,6 @@ export default function AboutClient() {
           </div>
         </section>
 
-        {/* Profile Card Section */}
-        <section className="py-20 relative overflow-hidden">
-          <div className="container mx-auto px-6 relative z-1">
-            <motion.div
-              className="text-center mb-16"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
-              <motion.div
-                className="inline-flex items-center gap-2 mb-8 px-4 py-2 rounded-full glassmorphism"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
-              >
-                <span className="text-sm text-gray-300 font-medium">
-                  <span className="text-[#ECB629] font-bold">Екипът</span> зад системите
-                </span>
-              </motion.div>
-
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
-                Запознайте се с нас
-              </h2>
-              <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-                Ние сме екипът от бизнес инженери, който стои зад всяка успешна система за растеж.
-              </p>
-            </motion.div>
-
-            <div className="flex justify-center">
-              <ProfileCard
-                name="Pravdast Team"
-                title="Business Engineers"
-                bio="Създаваме предвидими системи за растеж на бизнеса чрез инженерен подход към маркетинга и продажбите."
-                stats={{
-                  projects: 50,
-                  clients: 25,
-                  experience: 5
-                }}
-                theme="dark"
-                className="max-w-sm"
-              />
-            </div>
-          </div>
-        </section>
-
         {/* Mission & Values Section */}
         <section className="py-20 relative">
           {/* Background Elements */}
@@ -629,33 +582,18 @@ export default function AboutClient() {
                   className="cursor-pointer"
                   onClick={() => handleMemberClick(member)}
                 >
-                  <Card className="glassmorphism hover:border-[#ECB629]/50 transition-all duration-300 group overflow-hidden h-full">
-                    <CardContent className="p-6 text-center">
-                      <div className="relative mb-4">
-                        <Image
-                          src={member.image}
-                          alt={member.name}
-                          width={96}
-                          height={96}
-                          className="w-24 h-24 rounded-full mx-auto object-cover border-2 border-slate-600 group-hover:border-[#ECB629] transition-colors"
-                        />
-                        <motion.div
-                          className="absolute inset-0 rounded-full border-2 border-[#ECB629] opacity-0 group-hover:opacity-100"
-                          animate={{ scale: [1, 1.1, 1] }}
-                          transition={{ duration: 2, repeat: Infinity }}
-                        />
-                      </div>
-                      <h3 className="text-xl font-bold text-white mb-2 group-hover:text-[#ECB629] transition-colors">
-                        {member.name}
-                      </h3>
-                      <p className="text-[#ECB629] font-semibold mb-3">
-                        {member.role}
-                      </p>
-                      <p className="text-gray-300 text-sm">
-                        {member.description}
-                      </p>
-                    </CardContent>
-                  </Card>
+                  <ProfileCard
+                    name={member.name}
+                    title={member.role}
+                    avatar={member.image}
+                    bio={member.description}
+                    stats={{
+                      projects: 50,
+                      clients: 25,
+                      experience: parseInt(member.experience) || 5
+                    }}
+                    className="max-w-sm"
+                  />
                 </motion.div>
               ))}
             </div>
