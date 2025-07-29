@@ -116,7 +116,13 @@ export const Navigation = () => {
                 label: item.label,
                 href: item.href
               }))}
-              className="mr-4"
+              particleCount={15}
+              particleDistances={[90, 10]}
+              particleR={100}
+              initialActiveIndex={0}
+              animationTime={600}
+              timeVariance={300}
+              colors={[1, 2, 3, 1, 2, 3, 1, 4]}
             />
             
             {/* Services dropdown (separate from gooey nav) */}
