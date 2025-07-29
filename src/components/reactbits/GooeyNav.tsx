@@ -123,3 +123,5 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
 };
 
 export default GooeyNav;
+
+export default GooeyNav;
