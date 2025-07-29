@@ -5,7 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 
 export const SolutionSection = () => {
   return (
-    <section className="py-12 sm:py-16 md:py-20 bg-slate-800/30 relative overflow-hidden">
+    <section className="py-12 sm:py-16 md:py-20 relative overflow-hidden">
       {/* Animated Tech Background */}
       <div className="absolute inset-0 opacity-15">
         <div className="absolute inset-0">

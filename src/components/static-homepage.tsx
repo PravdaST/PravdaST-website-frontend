@@ -2,9 +2,9 @@ import Link from 'next/link'
 
 export function StaticHomepage() {
   return (
-    <div className="min-h-screen bg-slate-900">
+    <div className="min-h-screen">
       {/* Navigation */}
-      <nav className="w-full bg-slate-900 border-b border-[#ECB629]/20 relative">
+      <nav className="w-full border-b border-[#ECB629]/20 relative">
         <div className="absolute inset-0 opacity-5">
           <div className="absolute inset-0">
             <div 

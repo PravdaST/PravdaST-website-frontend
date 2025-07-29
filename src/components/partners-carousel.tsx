@@ -27,7 +27,7 @@ const partners = [
 
 export const PartnersCarousel = () => {
   return (
-    <section className="py-12 sm:py-16 bg-slate-900 relative overflow-hidden">
+    <section className="py-12 sm:py-16 relative overflow-hidden">
       {/* Animated Tech Background */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0">
@@ -70,7 +70,7 @@ export const PartnersCarousel = () => {
           viewport={{ once: true }}
         >
           <motion.div
-            className="inline-flex items-center gap-3 mb-6 px-6 py-3 rounded-full bg-gradient-to-r from-slate-800/80 to-slate-700/60 border border-slate-600/30 backdrop-blur-sm"
+            className="inline-flex items-center gap-3 mb-6 px-6 py-3 rounded-full glassmorphism"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -111,7 +111,7 @@ export const PartnersCarousel = () => {
               {[...partners, ...partners, ...partners].map((partner, index) => (
                 <motion.div
                   key={`first-${index}`}
-                  className="relative group flex-shrink-0 w-60 h-20 flex items-center justify-center bg-slate-800/40 backdrop-blur-sm rounded-xl border border-slate-700/50 p-4"
+                  className="relative group flex-shrink-0 w-60 h-20 flex items-center justify-center glassmorphism rounded-xl p-4"
                   whileHover={{ 
                     scale: 1.05,
                     backgroundColor: "rgba(30, 41, 59, 0.8)",
@@ -135,8 +135,8 @@ export const PartnersCarousel = () => {
           </div>
 
           {/* Gradient Fade Edges */}
-          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-slate-900 to-transparent z-10"></div>
-          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-slate-900 to-transparent z-10"></div>
+          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#0D0D0F] to-transparent z-10"></div>
+          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#0D0D0F] to-transparent z-10"></div>
         </div>
       </div>
     </section>

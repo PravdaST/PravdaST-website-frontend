@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 export function StaticHero() {
   return (
-    <section className="relative min-h-screen bg-slate-900 overflow-hidden flex items-center justify-center">
+    <section className="relative min-h-screen overflow-hidden flex items-center justify-center">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0" style={{
@@ -21,7 +21,7 @@ export function StaticHero() {
         </div>
 
         {/* Status Badge */}
-        <div className="inline-flex items-center gap-2 bg-slate-800/80 backdrop-blur-sm border border-slate-600 rounded-full px-4 py-2 mb-8">
+        <div className="inline-flex items-center gap-2 glassmorphism rounded-full px-4 py-2 mb-8">
           <div className="relative">
             <div className="w-3 h-3 bg-green-400 rounded-full"></div>
           </div>
