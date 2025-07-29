@@ -13,6 +13,24 @@ const nextConfig = {
     ],
   },
   serverExternalPackages: ['drizzle-orm', '@neondatabase/serverless', 'bcrypt'],
+  webpack: (config, { isServer }) => {
+    // Фиксираме webpack module resolution проблемите
+    if (isServer) {
+      config.externals = [...(config.externals || []), 'fs', 'path', 'gray-matter'];
+    }
+    
+    // Подобряваме module resolution
+    config.resolve = {
+      ...config.resolve,
+      fallback: {
+        ...config.resolve.fallback,
+        fs: false,
+        path: false,
+      },
+    };
+    
+    return config;
+  },
   async headers() {
     return [
       {
