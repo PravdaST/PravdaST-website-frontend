@@ -127,8 +127,8 @@ export function StaticHomepage() {
                 key={i}
                 className="absolute w-1 h-1 bg-[#ECB629] rounded-full opacity-50"
                 style={{
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
+                  left: `${15 + (i * 8) % 70}%`,
+                  top: `${20 + (i * 12) % 60}%`,
                 }}
               />
             ))}

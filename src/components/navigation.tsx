@@ -13,7 +13,12 @@ export const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false);
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
+  const [isClient, setIsClient] = useState(false);
   const pathname = usePathname();
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -63,8 +68,8 @@ export const Navigation = () => {
             }}
           ></div>
 
-          {/* Status Indicators */}
-          {[...Array(8)].map((_, i) => (
+          {/* Status Indicators - само за клиент за избягване на hydration mismatch */}
+          {isClient && [...Array(8)].map((_, i) => (
             <motion.div
               key={i}
               className="absolute w-1 h-1 bg-[#ECB629] rounded-full"
