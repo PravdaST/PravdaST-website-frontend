@@ -147,7 +147,12 @@ export const Navigation = () => {
                     >
                       {isServicesDropdownOpen && (
                         <motion.div
-                          className="bg-slate-800/98 backdrop-blur-md border border-slate-600 rounded-lg p-3 shadow-2xl min-w-[300px]"
+                          className="bg-slate-800/95 backdrop-blur-xl border border-slate-600/50 rounded-lg p-3 shadow-2xl min-w-[300px]"
+                          style={{
+                            backdropFilter: 'blur(20px) saturate(180%)',
+                            WebkitBackdropFilter: 'blur(20px) saturate(180%)',
+                            background: 'rgba(30, 41, 59, 0.95)'
+                          }}
                           initial={{ opacity: 0, y: -10, scale: 0.95 }}
                           animate={{ 
                             opacity: 1,
@@ -252,6 +257,11 @@ export const Navigation = () => {
           className={`md:hidden mt-4 bg-slate-800/95 backdrop-blur-xl rounded-xl border border-slate-600/30 overflow-hidden ${
             isMobileMenuOpen ? 'block' : 'hidden'
           }`}
+          style={{
+            backdropFilter: 'blur(20px) saturate(180%)',
+            WebkitBackdropFilter: 'blur(20px) saturate(180%)',
+            background: 'rgba(30, 41, 59, 0.95)'
+          }}
           initial={{ opacity: 0, height: 0 }}
           animate={{
             opacity: isMobileMenuOpen ? 1 : 0,
