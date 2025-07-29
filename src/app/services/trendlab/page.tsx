@@ -21,7 +21,7 @@ import {
   Phone,
   Crown,
 } from "lucide-react";
-
+import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import Link from "next/link";
 
@@ -215,7 +215,7 @@ export default function Trendlab() {
 
   return (
     <div className="min-h-screen bg-slate-900 text-white">
-
+      <Navigation />
 
       {/* Hero Section */}
       <section className="py-10 relative min-h-screen flex items-center justify-center overflow-hidden">

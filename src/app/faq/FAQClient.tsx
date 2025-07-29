@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-
+import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { HelpCircle } from "lucide-react";
@@ -207,7 +207,7 @@ export default function FAQClient() {
   return (
     <div className="min-h-screen bg-slate-900">
       <StructuredData data={pageSEOData.faq.structuredData} />
-
+      <Navigation />
 
       {/* Hero Section */}
       <section className="min-h-screen flex items-center relative overflow-hidden">

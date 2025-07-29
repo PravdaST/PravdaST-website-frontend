@@ -47,6 +47,103 @@ export function ClientHomepage() {
 
   return (
     <div className="min-h-screen bg-slate-900">
+      {/* Navigation */}
+      <nav className="w-full bg-slate-900 border-b border-[#ECB629]/20 relative">
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute inset-0">
+            <div 
+              className="absolute inset-0" 
+              style={{
+                backgroundImage: 'linear-gradient(90deg, rgba(236, 182, 40, 0.1) 1px, transparent 1px), linear-gradient(rgba(236, 182, 40, 0.1) 1px, transparent 1px)',
+                backgroundSize: '30px 30px'
+              }}
+            />
+            {/* Navigation animated dots */}
+            <div className="absolute w-1 h-1 bg-[#ECB629] rounded-full" style={{ left: '10%', top: '50%', transform: 'scale(1.3274)' }} />
+            <div className="absolute w-1 h-1 bg-[#ECB629] rounded-full" style={{ left: '22%', top: '50%', transform: 'scale(1.47827)' }} />
+            <div className="absolute w-1 h-1 bg-[#ECB629] rounded-full" style={{ left: '34%', top: '50%', transform: 'scale(1.47597)' }} />
+            <div className="absolute w-1 h-1 bg-[#ECB629] rounded-full" style={{ left: '46%', top: '50%', transform: 'scale(1.40433)' }} />
+            <div className="absolute w-1 h-1 bg-[#ECB629] rounded-full" style={{ left: '58%', top: '50%', transform: 'scale(1.30077)' }} />
+            <div className="absolute w-1 h-1 bg-[#ECB629] rounded-full" style={{ left: '70%', top: '50%', transform: 'scale(1.1726)' }} />
+            <div className="absolute w-1 h-1 bg-[#ECB629] rounded-full" style={{ left: '82%', top: '50%', transform: 'scale(1.02173)' }} />
+            <div className="absolute w-1 h-1 bg-[#ECB629] rounded-full" style={{ left: '94%', top: '50%', transform: 'scale(1.02403)' }} />
+          </div>
+        </div>
+        <div className="container mx-auto px-4 sm:px-6 py-3 sm:py-4 relative z-10">
+          <div className="flex justify-between items-center">
+            <div>
+              <Link href="/">
+                <div className="text-2xl font-bold text-[#ECB629] cursor-pointer relative">
+                  PRAVDA ST
+                  <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#ECB629] origin-left scale-x-0" />
+                </div>
+              </Link>
+            </div>
+            <div className="hidden md:flex items-center space-x-8">
+              <div className="relative">
+                <Link href="/">
+                  <span className="cursor-pointer transition-colors relative text-[#ECB629] font-semibold">
+                    Начало
+                    <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#ECB629]" />
+                  </span>
+                </Link>
+              </div>
+              <div className="relative">
+                <div className="relative group">
+                  <Link href="/services">
+                    <span className="cursor-pointer transition-colors relative flex items-center gap-1 text-white hover:text-[#ECB629]">
+                      Услуги
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chevron-down w-4 h-4 transition-transform">
+                        <path d="m6 9 6 6 6-6" />
+                      </svg>
+                    </span>
+                  </Link>
+                </div>
+              </div>
+              <div className="relative">
+                <Link href="/calculators">
+                  <span className="cursor-pointer transition-colors relative text-white hover:text-[#ECB629]">Калкулатори</span>
+                </Link>
+              </div>
+              <div className="relative">
+                <Link href="/case-studies">
+                  <span className="cursor-pointer transition-colors relative text-white hover:text-[#ECB629]">Резултати</span>
+                </Link>
+              </div>
+              <div className="relative">
+                <Link href="/blog">
+                  <span className="cursor-pointer transition-colors relative text-white hover:text-[#ECB629]">Блог</span>
+                </Link>
+              </div>
+              <div className="relative">
+                <Link href="/about">
+                  <span className="cursor-pointer transition-colors relative text-white hover:text-[#ECB629]">За нас</span>
+                </Link>
+              </div>
+              <div className="relative">
+                <Link href="/contact">
+                  <span className="cursor-pointer transition-colors relative text-white hover:text-[#ECB629]">Контакти</span>
+                </Link>
+              </div>
+              <div>
+                <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2 bg-[#ECB629] text-black hover:bg-[#ECB629]/90 font-semibold relative overflow-hidden group">
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#ECB629] via-white to-[#ECB629] opacity-0 group-hover:opacity-20 -translate-x-full group-hover:translate-x-0 transition-transform duration-500" />
+                  <span className="relative z-10">ЗАПОЧНЕТЕ СЕГА</span>
+                </button>
+              </div>
+            </div>
+            <div className="md:hidden">
+              <button className="text-white hover:text-[#ECB629] transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-menu">
+                  <line x1="4" x2="20" y1="12" y2="12" />
+                  <line x1="4" x2="20" y1="6" y2="6" />
+                  <line x1="4" x2="20" y1="18" y2="18" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </nav>
 
       {/* Hero Section */}
       <section className="min-h-screen flex items-center relative overflow-hidden bg-slate-900">

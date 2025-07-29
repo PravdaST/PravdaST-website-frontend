@@ -12,7 +12,6 @@ import { ClarityAnalytics } from '@/components/clarity-analytics'
 import { RetargetingPixels } from '@/components/retargeting-pixels'
 import { ServiceWorkerSetup } from '@/components/service-worker-setup'
 import { Toaster } from '@/components/ui/toaster'
-import { Navigation } from '@/components/navigation'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -39,7 +38,6 @@ export default function RootLayout({
           <RetargetingPixels />
           <ServiceWorkerSetup />
         </ClientOnly>
-        <Navigation />
         {children}
         <ClientOnly>
           <ScrollToTop />

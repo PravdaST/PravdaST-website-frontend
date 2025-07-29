@@ -1,7 +1,7 @@
 'use client'
 
 import { motion, useInView } from "framer-motion"
-
+import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -162,7 +162,7 @@ export default function ServicesClient() {
 
   return (
     <div className="min-h-screen bg-slate-900 text-white">
-
+      <Navigation />
       
       {/* Hero Section */}
       <section ref={heroRef} className="relative min-h-screen flex items-center pt-10">
