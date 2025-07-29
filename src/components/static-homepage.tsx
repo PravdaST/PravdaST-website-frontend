@@ -1,6 +1,14 @@
+'use client'
+
 import Link from 'next/link'
+import { useEffect } from 'react'
+import { tracking, ConversionStage } from '@/lib/tracking'
 
 export function StaticHomepage() {
+  useEffect(() => {
+    // Track page view
+    tracking.trackFunnelStage(ConversionStage.LANDING);
+  }, []);
   return (
     <div className="min-h-screen bg-slate-900">
       {/* Navigation */}
@@ -127,8 +135,8 @@ export function StaticHomepage() {
                 key={i}
                 className="absolute w-1 h-1 bg-[#ECB629] rounded-full opacity-50"
                 style={{
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
+                  left: `${15 + (i * 8) % 70}%`,
+                  top: `${20 + (i * 12) % 60}%`,
                 }}
               />
             ))}

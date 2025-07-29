@@ -4,8 +4,31 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
+import { useState, useEffect, useMemo } from "react"
 
 export const HeroSection = () => {
+  const [isClient, setIsClient] = useState(false);
+  
+  // Фиксирани позиции за избягване на hydration mismatch
+  const techElements = useMemo(() => [
+    { left: 15, top: 20, delay: 0.1, duration: 2.3 },
+    { left: 85, top: 35, delay: 0.5, duration: 2.8 },
+    { left: 25, top: 70, delay: 1.2, duration: 2.1 },
+    { left: 70, top: 15, delay: 0.8, duration: 2.6 },
+    { left: 45, top: 85, delay: 1.5, duration: 2.4 },
+    { left: 90, top: 60, delay: 0.3, duration: 2.9 },
+    { left: 10, top: 50, delay: 1.8, duration: 2.2 },
+    { left: 60, top: 25, delay: 0.6, duration: 2.7 },
+    { left: 30, top: 40, delay: 1.1, duration: 2.5 },
+    { left: 80, top: 80, delay: 0.9, duration: 2.3 },
+    { left: 50, top: 10, delay: 1.6, duration: 2.8 },
+    { left: 20, top: 90, delay: 0.4, duration: 2.1 },
+  ], []);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   return (
     <section className="min-h-screen flex items-center relative overflow-hidden bg-slate-900">
       {/* Animated Tech Background */}
@@ -48,23 +71,23 @@ export const HeroSection = () => {
             ))}
           </div>
 
-          {/* Floating Tech Elements */}
-          {[...Array(12)].map((_, i) => (
+          {/* Floating Tech Elements - само за клиент */}
+          {isClient && techElements.map((element, i) => (
             <motion.div
               key={i}
               className="absolute w-1 h-1 bg-[#ECB629] rounded-full"
               style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
+                left: `${element.left}%`,
+                top: `${element.top}%`,
               }}
               animate={{
                 scale: [1, 1.5, 1],
                 opacity: [0.3, 1, 0.3],
               }}
               transition={{
-                duration: 2 + Math.random(),
+                duration: element.duration,
                 repeat: Infinity,
-                delay: Math.random() * 2,
+                delay: element.delay,
               }}
             />
           ))}
