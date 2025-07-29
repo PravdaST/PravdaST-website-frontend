@@ -214,7 +214,7 @@ export default function Trendlab() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-slate-900 text-white">
+    <div className="min-h-screen text-white">
       <Navigation />
 
       {/* Hero Section */}
@@ -231,7 +231,7 @@ export default function Trendlab() {
           >
             {/* Status Badge */}
             <motion.div
-              className="inline-flex items-center gap-2 bg-slate-800/60 rounded-full px-6 py-3 border border-slate-600/30 mb-8"
+              className="inline-flex items-center gap-2 glassmorphism rounded-full px-6 py-3 mb-8"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={heroInView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.6, delay: 0.2 }}

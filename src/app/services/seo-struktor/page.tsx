@@ -291,7 +291,7 @@ const PhilosophySection = () => {
             <div className="grid gap-8 md:grid-cols-2">
               {/* Problem Card */}
               <motion.div
-                className="bg-slate-800/60 rounded-xl p-6 border border-red-500/20"
+                className="glassmorphism rounded-xl p-6 border border-red-500/20"
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.8, delay: 0.4 }}
@@ -310,7 +310,7 @@ const PhilosophySection = () => {
 
               {/* Solution Card */}
               <motion.div
-                className="bg-slate-800/60 rounded-xl p-6 border border-[#ECB629]/20"
+                className="glassmorphism rounded-xl p-6 border border-[#ECB629]/20"
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.8, delay: 0.6 }}
@@ -774,7 +774,7 @@ const InvestmentSection = () => {
   return (
     <section
       ref={ref}
-      className="py-20 bg-slate-900/60 relative overflow-hidden"
+      className="py-20 relative overflow-hidden"
     >
       {/* Technical Background Pattern */}
       <div className="absolute inset-0 opacity-5">
@@ -925,7 +925,7 @@ const InvestmentSection = () => {
 
 export default function SeoStruktor() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 to-slate-800 text-white">
+    <div className="min-h-screen text-white">
       <Navigation />
 
       {/* Hero Section */}
@@ -944,7 +944,7 @@ export default function SeoStruktor() {
           <div className="max-w-4xl mx-auto text-center">
             {/* Status badge */}
             <motion.div
-              className="inline-flex items-center gap-3 px-6 py-3 bg-slate-800/40 backdrop-blur-sm border border-[#ECB629]/20 rounded-full mb-8"
+              className="inline-flex items-center gap-3 px-6 py-3 glassmorphism rounded-full mb-8"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}

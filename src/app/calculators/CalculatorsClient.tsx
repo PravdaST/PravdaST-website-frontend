@@ -412,7 +412,7 @@ function ProfitCalculator({
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="inline-flex items-center gap-2 bg-slate-800/50 backdrop-blur-sm border border-[#ECB629]/30 rounded-full px-4 py-2 mb-4"
+          className="inline-flex items-center gap-2 glassmorphism rounded-full px-4 py-2 mb-4"
         >
           {icon}
           <span className="text-sm text-gray-300">{serviceName}</span>
@@ -423,7 +423,7 @@ function ProfitCalculator({
 
         {/* Service-Specific Recommendations */}
         {recommendations.length > 0 && (
-          <div className="bg-slate-800/40 rounded-xl p-4 border border-[#ECB629]/20 max-w-2xl mx-auto">
+          <div className="glassmorphism rounded-xl p-4 border border-[#ECB629]/20 max-w-2xl mx-auto">
             <h4 className="text-white font-semibold mb-4 flex items-center gap-2 justify-center">
               <CheckCircle className="w-5 h-5 text-[#ECB629]" />
               Препоръки за {serviceName.replace("™", "")}:
@@ -858,12 +858,12 @@ export default function CalculatorsClient() {
   ];
 
   return (
-    <div className="min-h-screen bg-slate-900">
+    <div className="min-h-screen">
       <Navigation />
 
       <main className="pt-20">
         {/* Hero Section */}
-        <section className="py-12 sm:py-16 md:py-20 bg-slate-900 relative overflow-hidden">
+        <section className="py-12 sm:py-16 md:py-20 relative overflow-hidden">
           <div className="container mx-auto px-6 relative z-10">
             <div className="max-w-4xl mx-auto text-center">
               <motion.h1

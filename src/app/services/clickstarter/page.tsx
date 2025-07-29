@@ -127,11 +127,11 @@ const ClickstarterBackground = () => {
 
 export default function Clickstarter() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+    <div className="min-h-screen">
       <Navigation />
 
       {/* Hero Section */}
-      <section className="py-10 min-h-screen flex items-center relative overflow-hidden bg-slate-900">
+      <section className="py-10 min-h-screen flex items-center relative overflow-hidden">
         <ClickstarterBackground />
 
         {/* Background Elements */}

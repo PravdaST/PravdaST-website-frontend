@@ -1,8 +1,19 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { useState, useEffect } from 'react'
 
 export function BackgroundEffects() {
+  const [particles, setParticles] = useState<Array<{ left: number; top: number }>>([])
+
+  useEffect(() => {
+    // Generate particles only on client-side after hydration
+    const newParticles = Array.from({ length: 12 }, () => ({
+      left: Math.random() * 100,
+      top: Math.random() * 100,
+    }))
+    setParticles(newParticles)
+  }, [])
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none z-[-1]">
       {/* Primary Yellow Orb - Large */}
@@ -105,13 +116,13 @@ export function BackgroundEffects() {
       />
 
       {/* Floating Particles Effect */}
-      {[...Array(12)].map((_, i) => (
+      {particles.map((particle, i) => (
         <motion.div
           key={`particle-${i}`}
           className="absolute w-1 h-1 rounded-full bg-[#ECB628]/20"
           style={{
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
+            left: `${particle.left}%`,
+            top: `${particle.top}%`,
           }}
           animate={{
             y: [0, -100, 0],
@@ -119,7 +130,7 @@ export function BackgroundEffects() {
             scale: [0.5, 1, 0.5],
           }}
           transition={{
-            duration: 8 + Math.random() * 4,
+            duration: 8 + (i % 3) * 2, // Use predictable variation instead of Math.random()
             repeat: Infinity,
             delay: i * 0.5,
             ease: "easeInOut",

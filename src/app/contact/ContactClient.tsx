@@ -182,10 +182,10 @@ export default function ContactClient() {
   ]
 
   return (
-    <div className="min-h-screen bg-slate-900">
+    <div className="min-h-screen">
       <StructuredData data={pageSEOData.contact.structuredData} />
       <Navigation />
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+      <div className="min-h-screen">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-5">
           <div
@@ -207,7 +207,7 @@ export default function ContactClient() {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="inline-flex items-center gap-2 bg-slate-800/50 backdrop-blur-sm border border-[#ECB629]/30 rounded-full px-4 py-2 mb-6"
+                className="inline-flex items-center gap-2 glassmorphism rounded-full px-4 py-2 mb-6"
               >
                 <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
                 <span className="text-sm text-gray-300">

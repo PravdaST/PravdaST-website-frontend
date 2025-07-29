@@ -117,7 +117,7 @@ const caseStudies = [
 
 export default function CaseStudiesClient() {
   return (
-    <div className="min-h-screen bg-slate-900">
+    <div className="min-h-screen">
       <Navigation />
 
       <main className="pt-10">
@@ -170,7 +170,7 @@ export default function CaseStudiesClient() {
             >
               {/* Status Badge */}
               <motion.div
-                className="inline-flex items-center gap-3 mb-8 px-6 py-3 rounded-full bg-gradient-to-r from-slate-800/80 to-slate-700/60 border border-slate-600/30 backdrop-blur-sm"
+                className="inline-flex items-center gap-3 mb-8 px-6 py-3 rounded-full glassmorphism"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
