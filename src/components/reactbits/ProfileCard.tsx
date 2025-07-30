@@ -62,22 +62,6 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
           <p className="text-sm text-gray-400 leading-relaxed">{bio}</p>
         </div>
 
-        {/* Stats Section */}
-        <div className="relative z-10 grid grid-cols-3 gap-4 mb-6">
-          <div className="text-center p-3 glassmorphism rounded-lg">
-            <div className="text-lg font-bold text-[#ECB629]">{stats.projects}+</div>
-            <div className="text-xs text-gray-400 uppercase tracking-wide">Проекти</div>
-          </div>
-          <div className="text-center p-3 glassmorphism rounded-lg">
-            <div className="text-lg font-bold text-[#ECB629]">{stats.clients}+</div>
-            <div className="text-xs text-gray-400 uppercase tracking-wide">Клиенти</div>
-          </div>
-          <div className="text-center p-3 glassmorphism rounded-lg">
-            <div className="text-lg font-bold text-[#ECB629]">{stats.experience}+</div>
-            <div className="text-xs text-gray-400 uppercase tracking-wide">Години</div>
-          </div>
-        </div>
-
         
       </div>
     </motion.div>
