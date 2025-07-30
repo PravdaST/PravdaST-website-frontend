@@ -233,27 +233,9 @@ export const Footer = () => {
                 viewport={{ once: true }}
               />
             </h4>
-            <ul className="space-y-3">
-              {footerLinks.blog.map((link, index) => (
-                <motion.li
-                  key={index}
-                  initial={{ opacity: 0, x: -10 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.4, delay: 0.35 + index * 0.1 }}
-                  viewport={{ once: true }}
-                >
-                  <Link
-                    href={link.href}
-                    className="text-gray-400 hover:text-[#ECB629] transition-colors text-sm relative group"
-                  >
-                    {link.label}
-                    <motion.div
-                      className="absolute -bottom-1 left-0 right-0 h-px bg-[#ECB629] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
-                    />
-                  </Link>
-                </motion.li>
-              ))}
-            </ul>
+            <div className="text-gray-400 text-sm">
+              Следете ни за най-новите съвети и стратегии за бизнес растеж.
+            </div>
           </motion.div>
 
           {/* Contact Info */}
@@ -290,7 +272,7 @@ export const Footer = () => {
                 </motion.li>
               ))}
             </ul>
-            
+
             {/* Viber and WhatsApp Contacts */}
             <motion.div 
               className="mt-6 pt-4 border-t border-slate-700/30"
@@ -311,7 +293,7 @@ export const Footer = () => {
                   <MessageCircle size={14} />
                   <span>Viber</span>
                 </motion.a>
-                
+
                 {/* WhatsApp Button */}
                 <motion.a
                   href="https://wa.me/359879282299"
@@ -347,7 +329,7 @@ export const Footer = () => {
             >
               © 2025 Pravda ST. Всички права запазени.
             </motion.p>
-            
+
             <motion.div
               className="flex items-center gap-6"
               initial={{ opacity: 0 }}
