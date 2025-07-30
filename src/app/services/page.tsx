@@ -211,7 +211,7 @@ export default function Services() {
 
       <main>
         {/* Hero Section */}
-        <section className="min-h-screen flex items-center relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+        <section className="min-h-screen flex items-center relative overflow-hidden bg-gray-950">
           {/* Glassmorphism Background Orbs */}
           <div className="absolute inset-0 opacity-30">
             <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#ECB629] rounded-full blur-3xl opacity-20 animate-pulse"></div>
