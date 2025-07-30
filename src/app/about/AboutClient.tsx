@@ -18,7 +18,6 @@ import {
   CheckCircle,
   ArrowRight,
   Phone,
-  X,
   MapPin,
   Calendar,
   Code,
@@ -704,17 +703,7 @@ export default function AboutClient() {
       <AnimatePresence>
         {selectedMember && (
           <Dialog open={!!selectedMember} onOpenChange={closeModal}>
-            <DialogContent className="max-w-2xl glassmorphism">
-              <div className="relative">
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="absolute top-2 right-2 text-gray-400 hover:text-white"
-                  onClick={closeModal}
-                >
-                  <X className="h-4 w-4" />
-                </Button>
-
+            <DialogContent className="max-w-2xl glass-card border-[#ECB629]/20">
                 <div className="p-6">
                   <div className="flex items-start gap-6 mb-6">
                     <Image
@@ -761,7 +750,7 @@ export default function AboutClient() {
                           (specialty: string, index: number) => (
                             <span
                               key={index}
-                              className="px-3 py-1 glassmorphism rounded-full text-sm text-gray-300"
+                              className="px-3 py-1 glass-card rounded-full text-sm text-gray-300"
                             >
                               {specialty}
                             </span>
@@ -784,7 +773,7 @@ export default function AboutClient() {
                         href={`https://${selectedMember.linkedin}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-2 px-4 py-2 glassmorphism text-white rounded-lg hover:border-[#ECB629] hover:text-[#ECB629] transition-colors"
+                        className="flex items-center gap-2 px-4 py-2 glass-card text-white rounded-lg hover:border-[#ECB629] hover:text-[#ECB629] transition-colors"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                       >
@@ -794,7 +783,6 @@ export default function AboutClient() {
                     </div>
                   </div>
                 </div>
-              </div>
             </DialogContent>
           </Dialog>
         )}
