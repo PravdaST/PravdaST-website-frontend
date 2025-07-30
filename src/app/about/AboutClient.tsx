@@ -4,7 +4,7 @@ import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { ProfileCard } from "@/components/reactbits";
@@ -703,84 +703,99 @@ export default function AboutClient() {
       <AnimatePresence>
         {selectedMember && (
           <Dialog open={!!selectedMember} onOpenChange={closeModal}>
-            <DialogContent className="max-w-2xl glass-card border-[#ECB629]/20">
-                <div className="p-6">
-                  <div className="flex items-start gap-6 mb-6">
+            <DialogContent className="max-w-4xl w-[95vw] md:w-full glass-card border-[#ECB629]/20 max-h-[90vh] overflow-y-auto">
+              <DialogTitle className="sr-only">{selectedMember.name} - Профил</DialogTitle>
+              <DialogDescription className="sr-only">
+                Подробна информация за {selectedMember.name}, {selectedMember.role} в Pravda Agency
+              </DialogDescription>
+              
+              <div className="p-4 md:p-8">
+                {/* Header Section with Profile Image and Basic Info */}
+                <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 mb-8">
+                  <div className="relative">
                     <Image
                       src={selectedMember.image}
                       alt={selectedMember.name}
                       width={120}
                       height={120}
-                      className="w-30 h-30 rounded-full object-cover border-2 border-[#ECB629]"
+                      className="w-24 h-24 sm:w-30 sm:h-30 rounded-full object-cover border-2 border-[#ECB629] glass-card"
                     />
-                    <div className="flex-1">
-                      <h3 className="text-2xl font-bold text-white mb-2">
-                        {selectedMember.name}
-                      </h3>
-                      <p className="text-[#ECB629] font-semibold mb-3 text-lg">
-                        {selectedMember.role}
-                      </p>
-                      <div className="grid grid-cols-2 gap-4 text-sm">
-                        <div className="flex items-center gap-2 text-gray-300">
-                          <Clock className="h-4 w-4" />
-                          {selectedMember.experience}
-                        </div>
-                        <div className="flex items-center gap-2 text-gray-300">
-                          <MapPin className="h-4 w-4" />
-                          {selectedMember.location}
-                        </div>
+                  </div>
+                  
+                  <div className="flex-1 text-center sm:text-left">
+                    <h3 className="text-xl sm:text-2xl font-bold text-white mb-2">
+                      {selectedMember.name}
+                    </h3>
+                    <p className="text-[#ECB629] font-semibold mb-4 text-base sm:text-lg">
+                      {selectedMember.role}
+                    </p>
+                    
+                    <div className="flex flex-col sm:flex-row gap-3 sm:gap-6 text-sm">
+                      <div className="flex items-center justify-center sm:justify-start gap-2 text-gray-300 glass-card px-3 py-2 rounded-lg">
+                        <Clock className="h-4 w-4 text-[#ECB629]" />
+                        {selectedMember.experience}
+                      </div>
+                      <div className="flex items-center justify-center sm:justify-start gap-2 text-gray-300 glass-card px-3 py-2 rounded-lg">
+                        <MapPin className="h-4 w-4 text-[#ECB629]" />
+                        {selectedMember.location}
                       </div>
                     </div>
                   </div>
+                </div>
+                
+                {/* Content Sections */}
+                <div className="space-y-6">
+                  <div className="glass-card p-6 rounded-xl">
+                    <h4 className="text-lg font-semibold text-white mb-3 flex items-center gap-2">
+                      <div className="h-2 w-2 bg-[#ECB629] rounded-full"></div>
+                      За мен
+                    </h4>
+                    <p className="text-gray-300 leading-relaxed text-sm sm:text-base">
+                      {selectedMember.bio}
+                    </p>
+                  </div>
 
-                  <div className="space-y-6">
-                    <div>
-                      <h4 className="text-lg font-semibold text-white mb-3">
-                        За мен
-                      </h4>
-                      <p className="text-gray-300">{selectedMember.bio}</p>
+                  <div className="glass-card p-6 rounded-xl">
+                    <h4 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
+                      <div className="h-2 w-2 bg-[#ECB629] rounded-full"></div>
+                      Специалности
+                    </h4>
+                    <div className="flex flex-wrap gap-3">
+                      {selectedMember.specialties.map(
+                        (specialty: string, index: number) => (
+                          <span
+                            key={index}
+                            className="px-4 py-2 glass-card rounded-full text-sm text-gray-300 hover:text-[#ECB629] hover:border-[#ECB629]/30 transition-all duration-200"
+                          >
+                            {specialty}
+                          </span>
+                        ),
+                      )}
                     </div>
+                  </div>
 
-                    <div>
-                      <h4 className="text-lg font-semibold text-white mb-3">
-                        Специалности
-                      </h4>
-                      <div className="flex flex-wrap gap-2">
-                        {selectedMember.specialties.map(
-                          (specialty: string, index: number) => (
-                            <span
-                              key={index}
-                              className="px-3 py-1 glass-card rounded-full text-sm text-gray-300"
-                            >
-                              {specialty}
-                            </span>
-                          ),
-                        )}
-                      </div>
-                    </div>
-
-                    <div className="flex gap-4">
-                      <motion.a
-                        href={`mailto:${selectedMember.email}`}
-                        className="flex items-center gap-2 px-4 py-2 bg-[#ECB629] text-black rounded-lg hover:bg-[#ECB629]/90 transition-colors font-semibold"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                      >
-                        <Mail className="h-4 w-4" />
-                        Имейл
-                      </motion.a>
-                      <motion.a
-                        href={`https://${selectedMember.linkedin}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 px-4 py-2 glass-card text-white rounded-lg hover:border-[#ECB629] hover:text-[#ECB629] transition-colors"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                      >
-                        <Linkedin className="h-4 w-4" />
-                        LinkedIn
-                      </motion.a>
-                    </div>
+                  <div className="flex flex-col sm:flex-row gap-4 pt-6">
+                    <motion.a
+                      href={`mailto:${selectedMember.email}`}
+                      className="flex items-center justify-center gap-2 px-6 py-3 bg-[#ECB629] text-black rounded-lg hover:bg-[#ECB629]/90 transition-all duration-200 font-semibold text-sm sm:text-base flex-1 sm:flex-none"
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <Mail className="h-4 w-4" />
+                      Свържи се
+                    </motion.a>
+                    <motion.a
+                      href={`https://${selectedMember.linkedin}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-2 px-6 py-3 glass-card text-white rounded-lg hover:border-[#ECB629]/50 hover:text-[#ECB629] transition-all duration-200 text-sm sm:text-base flex-1 sm:flex-none"
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <Linkedin className="h-4 w-4" />
+                      LinkedIn
+                    </motion.a>
+                  </div>
                   </div>
                 </div>
             </DialogContent>
