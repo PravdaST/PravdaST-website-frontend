@@ -212,6 +212,12 @@ export default function Services() {
       <main>
         {/* Hero Section */}
         <section className="min-h-screen flex items-center relative overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+          {/* Glassmorphism Background Orbs */}
+          <div className="absolute inset-0 opacity-30">
+            <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#ECB629] rounded-full blur-3xl opacity-20 animate-pulse"></div>
+            <div className="absolute bottom-1/3 right-1/4 w-64 h-64 bg-blue-500 rounded-full blur-3xl opacity-15"></div>
+            <div className="absolute top-2/3 left-2/3 w-80 h-80 bg-purple-500 rounded-full blur-3xl opacity-10"></div>
+          </div>
           <SystemsBackground />
 
           <div className="container mx-auto px-6 relative z-1 pt-10 sm:pt-0">
@@ -333,11 +339,12 @@ export default function Services() {
 
         {/* Philosophy Section */}
         <section
-          className="py-20 glass-section relative overflow-hidden"
+          className="py-20 relative overflow-hidden"
           ref={philosophyRef}
         >
-          {/* Background Pattern */}
-          <div className="absolute inset-0 opacity-5">
+          {/* Enhanced Glassmorphism Background */}
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-[#ECB629]/5 via-transparent to-blue-500/5"></div>
             <div
               className="absolute inset-0"
               style={{
@@ -348,6 +355,9 @@ export default function Services() {
                 backgroundSize: "30px 30px",
               }}
             ></div>
+            {/* Floating glass orbs */}
+            <div className="absolute top-1/4 right-1/4 w-48 h-48 bg-[#ECB629] rounded-full blur-3xl opacity-10 animate-pulse"></div>
+            <div className="absolute bottom-1/4 left-1/4 w-32 h-32 bg-white rounded-full blur-2xl opacity-5"></div>
           </div>
 
           <div className="container mx-auto px-6 relative z-1">
@@ -449,19 +459,27 @@ export default function Services() {
         {/* Systems Overview Section */}
         <section
           ref={systemsRef}
-          className="py-20 glass-section relative overflow-hidden"
+          className="py-20 relative overflow-hidden"
         >
-          <div className="absolute inset-0 opacity-15">
+          {/* Enhanced Glassmorphism Background for Systems */}
+          <div className="absolute inset-0 opacity-20">
+            <div className="absolute inset-0 bg-gradient-to-br from-slate-900/70 via-transparent to-slate-800/60"></div>
+            <div className="absolute top-1/4 right-1/4 w-80 h-80 bg-[#ECB629] rounded-full blur-3xl opacity-25 animate-pulse"></div>
+            <div className="absolute bottom-1/3 left-1/4 w-64 h-64 bg-blue-500 rounded-full blur-3xl opacity-20"></div>
+            <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-purple-500 rounded-full blur-3xl opacity-15"></div>
             <div
               className="absolute inset-0"
               style={{
                 backgroundImage: `
-              linear-gradient(rgba(236, 182, 40, 0.1) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(236, 182, 40, 0.1) 1px, transparent 1px)
+              linear-gradient(rgba(236, 182, 40, 0.15) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(236, 182, 40, 0.15) 1px, transparent 1px)
             `,
-                backgroundSize: "50px 50px",
+                backgroundSize: "60px 60px",
               }}
             ></div>
+            {/* Floating glass particles */}
+            <div className="absolute top-1/3 left-1/3 w-16 h-16 bg-white rounded-full blur-xl opacity-5 animate-pulse"></div>
+            <div className="absolute bottom-1/4 right-1/3 w-12 h-12 bg-[#ECB629] rounded-full blur-lg opacity-10"></div>
           </div>
 
           <div className="container mx-auto px-6 relative z-1">
@@ -473,7 +491,7 @@ export default function Services() {
               viewport={{ once: true }}
             >
               <motion.div
-                className="inline-flex items-center gap-3 mb-8 px-6 py-3 rounded-full bg-gradient-to-r from-slate-800/80 to-slate-700/60 border border-slate-600/30 backdrop-blur-sm"
+                className="inline-flex items-center gap-3 mb-8 px-6 py-3 rounded-full glassmorphism"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}

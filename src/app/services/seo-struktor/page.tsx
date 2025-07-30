@@ -930,6 +930,12 @@ export default function SeoStruktor() {
 
       {/* Hero Section */}
       <section className="pt-10 relative min-h-screen flex items-center overflow-hidden">
+        {/* Enhanced Glassmorphism Background */}
+        <div className="absolute inset-0 opacity-25">
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#ECB629] rounded-full blur-3xl opacity-20 animate-pulse"></div>
+          <div className="absolute bottom-1/3 right-1/4 w-64 h-64 bg-blue-500 rounded-full blur-3xl opacity-15"></div>
+          <div className="absolute top-2/3 left-2/3 w-80 h-80 bg-purple-500 rounded-full blur-3xl opacity-10"></div>
+        </div>
         <SeoStruktorBackground />
 
         {/* Enhanced floating elements */}
