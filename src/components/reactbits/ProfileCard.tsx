@@ -78,23 +78,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
           </div>
         </div>
 
-        {/* Action Buttons */}
-        <div className="relative z-10 flex gap-3">
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="flex-1 bg-[#ECB629] text-black font-semibold py-3 px-4 rounded-xl hover:bg-[#ECB629]/90 transition-colors duration-200"
-          >
-            За нас
-          </motion.button>
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="flex-1 glassmorphism font-semibold py-3 px-4 rounded-xl text-white hover:bg-white/10 transition-colors duration-200"
-          >
-            Контакт
-          </motion.button>
-        </div>
+        
       </div>
     </motion.div>
   );
