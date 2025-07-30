@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -99,7 +99,7 @@ const ProblemSection = () => {
             </div>
           </motion.div>
 
-          <motion.h2 
+          <motion.h2
             className="text-4xl md:text-5xl font-bold mb-6 text-white"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -116,17 +116,19 @@ const ProblemSection = () => {
                 transition={{ duration: 1, delay: 0.6 }}
                 viewport={{ once: true }}
               />
-            </span>?
+            </span>
+            ?
           </motion.h2>
 
-          <motion.p 
+          <motion.p
             className="text-xl text-gray-300 max-w-3xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            Повечето компании губят време и пари, защото разчитат на случайни тактики вместо на системи.
+            Повечето компании губят време и пари, защото разчитат на случайни
+            тактики вместо на системи.
           </motion.p>
         </motion.div>
 
@@ -145,11 +147,11 @@ const ProblemSection = () => {
                     <div className="mb-6 inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-red-500/20 to-red-600/10 rounded-2xl group-hover:from-red-500/30 group-hover:to-red-600/20 transition-all duration-300">
                       <problem.icon className="w-8 h-8 text-red-400" />
                     </div>
-                    
+
                     <h3 className="text-xl font-semibold mb-4 text-white group-hover:text-red-100 transition-colors">
                       {problem.title}
                     </h3>
-                    
+
                     <p className="text-gray-300 leading-relaxed">
                       {problem.description}
                     </p>
@@ -172,20 +174,6 @@ const ProblemSection = () => {
             <span className="text-sm text-gray-300">
               Звучи познато? Има по-добър начин...
             </span>
-          </div>
-          <div className="flex flex-wrap gap-4 justify-center">
-            <Link
-              href="/blog/poznato-li-ti-e-tova-chuvstvo"
-              className="text-sm text-[#ECB629] hover:text-[#ECB629]/80 transition-colors underline"
-            >
-              → Познато ли ти е това чувство?
-            </Link>
-            <Link
-              href="/blog/3-te-lazhi-za-privlichaneto-na-klienti-koito-vi-struvat-tsya"
-              className="text-sm text-[#ECB629] hover:text-[#ECB629]/80 transition-colors underline"
-            >
-              → 3-те лъжи за привличането на клиенти
-            </Link>
           </div>
         </motion.div>
       </div>
