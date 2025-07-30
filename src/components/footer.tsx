@@ -19,6 +19,12 @@ export const Footer = () => {
       { href: "/faq", label: "Въпроси" },
       { href: "/contact", label: "Контакти" }
     ],
+    blog: [
+      { href: "/blog/biznes-inzheneri-vs-marketing-ekip-alternativa", label: "Бизнес инженери vs екип" },
+      { href: "/blog/kak-da-optimizirate-vashiya-biznes-za-maksimalna-efektivnost", label: "Оптимизация на бизнеса" },
+      { href: "/blog/3-te-lazhi-za-privlichaneto-na-klienti-koito-vi-struvat-tsya", label: "3-те лъжи за клиенти" },
+      { href: "/blog/poznato-li-ti-e-tova-chuvstvo", label: "Познато чувство?" }
+    ],
     legal: [
       { href: "/terms", label: "Условия за ползване" },
       { href: "/privacy", label: "Политика за поверителност" }
@@ -67,7 +73,7 @@ export const Footer = () => {
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 mb-8 sm:mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 sm:gap-8 mb-8 sm:mb-12">
           {/* Brand Section */}
           <motion.div 
             className="md:col-span-1"
@@ -194,6 +200,46 @@ export const Footer = () => {
                   initial={{ opacity: 0, x: -10 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
+                  viewport={{ once: true }}
+                >
+                  <Link
+                    href={link.href}
+                    className="text-gray-400 hover:text-[#ECB629] transition-colors text-sm relative group"
+                  >
+                    {link.label}
+                    <motion.div
+                      className="absolute -bottom-1 left-0 right-0 h-px bg-[#ECB629] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
+                    />
+                  </Link>
+                </motion.li>
+              ))}
+            </ul>
+          </motion.div>
+
+          {/* Blog Posts */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.25 }}
+            viewport={{ once: true }}
+          >
+            <h4 className="text-white font-semibold mb-4 relative">
+              Популярни статии
+              <motion.div
+                className="absolute -bottom-1 left-0 w-8 h-0.5 bg-[#ECB629]"
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                transition={{ duration: 0.6, delay: 0.45 }}
+                viewport={{ once: true }}
+              />
+            </h4>
+            <ul className="space-y-3">
+              {footerLinks.blog.map((link, index) => (
+                <motion.li
+                  key={index}
+                  initial={{ opacity: 0, x: -10 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.4, delay: 0.35 + index * 0.1 }}
                   viewport={{ once: true }}
                 >
                   <Link

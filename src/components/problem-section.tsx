@@ -1,5 +1,6 @@
 'use client'
 
+import Link from "next/link";
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { TrendingUp, Clock, HelpCircle } from "lucide-react";
@@ -166,11 +167,25 @@ const ProblemSection = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
           viewport={{ once: true }}
         >
-          <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-slate-800/50 border border-slate-700/50 backdrop-blur-sm">
+          <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-slate-800/50 border border-slate-700/50 backdrop-blur-sm mb-6">
             <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
             <span className="text-sm text-gray-300">
               Звучи познато? Има по-добър начин...
             </span>
+          </div>
+          <div className="flex flex-wrap gap-4 justify-center">
+            <Link
+              href="/blog/poznato-li-ti-e-tova-chuvstvo"
+              className="text-sm text-[#ECB629] hover:text-[#ECB629]/80 transition-colors underline"
+            >
+              → Познато ли ти е това чувство?
+            </Link>
+            <Link
+              href="/blog/3-te-lazhi-za-privlichaneto-na-klienti-koito-vi-struvat-tsya"
+              className="text-sm text-[#ECB629] hover:text-[#ECB629]/80 transition-colors underline"
+            >
+              → 3-те лъжи за привличането на клиенти
+            </Link>
           </div>
         </motion.div>
       </div>

@@ -56,7 +56,7 @@ export const seoStruktorMetadata: Metadata = {
 }
 
 export const trendlabMetadata: Metadata = {
-  title: "Trendlab™ - Pravda Agency | Система за създаване на въздействащо съдържание",
+  title: "Trendlab™ - Pravda Agency | Съдържание и авторитет",
   description: "Trendlab™ - създаване на видео съдържание и управление на социални канали. Позиционира ви като експерт. От 3450 лв/месец.",
   openGraph: {
     type: 'website',
@@ -110,7 +110,7 @@ export const clickstarterMetadata: Metadata = {
 }
 
 export const clientomatMetadata: Metadata = {
-  title: "Clientomat™ - Pravda Agency | Система за автоматизирани връзки с клиенти",
+  title: "Clientomat™ - Pravda Agency | Автоматизация на клиенти",
   description: "Clientomat™ - автоматизиране на комуникация с клиенти и персонализиран път за увеличение на продажбите. От 2750 лв/месец.",
   openGraph: {
     type: 'website',

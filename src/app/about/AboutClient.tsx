@@ -398,7 +398,13 @@ export default function AboutClient() {
               </h2>
               <p className="text-xl text-gray-300 max-w-3xl mx-auto">
                 Всяко решение, което вземаме, се базира на тези основни
-                принципи.
+                принципи. 
+                <Link
+                  href="/blog/biznes-inzheneri-vs-marketing-ekip-alternativa"
+                  className="text-[#ECB629] hover:text-[#ECB629]/80 transition-colors underline ml-2"
+                >
+                  Научете защо бизнес инженерите са по-добрата алтернатива от вътрешен екип →
+                </Link>
               </p>
             </motion.div>
 
