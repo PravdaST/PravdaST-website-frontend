@@ -205,11 +205,11 @@ export function SimpleHome() {
                         <problem.icon className="w-8 h-8" />
                       </div>
                     </div>
-                    
+
                     <h3 className="text-xl font-bold mb-4 text-white">
                       {problem.title}
                     </h3>
-                    
+
                     <p className="text-gray-300 leading-relaxed flex-grow">
                       {problem.description}
                     </p>
