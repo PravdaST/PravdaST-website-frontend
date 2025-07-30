@@ -182,7 +182,7 @@ const services = [
     subtitle: "Нашата система за автоматизирани връзки с клиенти",
     description:
       "Тази система създава автоматизиран процес, който превръща заинтересования посетител в лоялен клиент. Тя поддържа връзката, отговаря на въпроси и насочва към продажба, без да изисква вашето време.",
-    price: "от 2890 лв. / месец",
+    price: "от 2750 лв. / месец",
     icon: Bot,
     slug: "clientomat",
     benefits: [
@@ -711,8 +711,7 @@ export default function Services() {
                 transition={{ duration: 0.8, delay: 0.3 }}
                 viewport={{ once: true }}
               >
-                Ние работим прецизно и внимателно преценяваме всеки случай.
-                Първата консултация е процес, чрез който проверяваме дали
+                Ние работим прецизно и внимателно преценяваме всеки случай.                Първата консултация е процес, чрез който проверяваме дали
                 клиентът е подходящ за нашия подход.
               </motion.p>
 
@@ -769,7 +768,7 @@ export default function Services() {
                   <span>Безплатна консултация</span>
                   <ArrowRight className="w-5 h-5" />
                 </motion.a>
-                
+
                 <motion.a
                   href="tel:+359879282299"
                   className="inline-flex items-center gap-3 border-2 border-black text-black px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-300 hover:bg-black hover:text-white"

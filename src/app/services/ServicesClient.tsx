@@ -145,7 +145,7 @@ const services = [
     subtitle: "Клиентска автоматизация",
     description: "Автоматизирана система за придобиване и задържане на клиенти",
     icon: Users,
-    price: "2890 лв./месечно",
+    price: "2750 лв./месечно",
     features: ["Lead Generation", "CRM Automation", "Email Marketing", "Customer Retention"],
     status: "Налична",
     href: "/services/clientomat",
