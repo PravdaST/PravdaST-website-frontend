@@ -224,7 +224,7 @@ export default function Services() {
             <div className="max-w-5xl mx-auto">
               <div className="text-center mb-16">
                 <motion.div
-                  className="inline-flex items-center gap-3 mb-8 px-6 py-3 rounded-full bg-gradient-to-r from-slate-800/80 to-slate-700/60 border border-slate-600/30 backdrop-blur-sm"
+                  className="inline-flex items-center gap-3 mb-8 px-6 py-3 rounded-full glassmorphism"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6 }}
@@ -313,20 +313,20 @@ export default function Services() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.8 }}
                 >
-                  <div className="flex items-center justify-center gap-3 p-4 glassmorphism rounded-xl">
-                    <div className="w-2 h-2 bg-[#ECB629] rounded-full"></div>
+                  <div className="flex items-center justify-center gap-3 p-4 glass-card">
+                    <div className="w-2 h-2 bg-[#ECB629] rounded-full animate-pulse"></div>
                     <span className="text-gray-300 text-sm font-medium">
                       Безплатна консултация
                     </span>
                   </div>
-                  <div className="flex items-center justify-center gap-3 p-4 glassmorphism rounded-xl">
-                    <div className="w-2 h-2 bg-[#ECB629] rounded-full"></div>
+                  <div className="flex items-center justify-center gap-3 p-4 glass-card">
+                    <div className="w-2 h-2 bg-[#ECB629] rounded-full animate-pulse"></div>
                     <span className="text-gray-300 text-sm font-medium">
                       Измерими резултати
                     </span>
                   </div>
-                  <div className="flex items-center justify-center gap-3 p-4 glassmorphism rounded-xl">
-                    <div className="w-2 h-2 bg-[#ECB629] rounded-full"></div>
+                  <div className="flex items-center justify-center gap-3 p-4 glass-card">
+                    <div className="w-2 h-2 bg-[#ECB629] rounded-full animate-pulse"></div>
                     <span className="text-gray-300 text-sm font-medium">
                       Без ангажименти
                     </span>
@@ -379,7 +379,7 @@ export default function Services() {
             {/* Comparison visualization */}
             <div className="max-w-6xl mx-auto mb-16">
               <motion.div
-                className="glassmorphism rounded-2xl p-8 relative overflow-hidden"
+                className="glass-card p-8 relative overflow-hidden shadow-2xl"
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.8, delay: 0.2 }}
@@ -537,7 +537,7 @@ export default function Services() {
                   className="group"
                 >
                   <Magnet strength={0.4} range={120}>
-                    <Card className="glassmorphism hover:border-[#ECB629]/50 transition-all duration-500 group-hover:shadow-lg group-hover:shadow-[#ECB629]/10 overflow-hidden h-full relative">
+                    <Card className="glass-card hover:border-[#ECB629]/50 transition-all duration-500 group-hover:shadow-lg group-hover:shadow-[#ECB629]/10 overflow-hidden h-full relative">
                     {/* Hover Glow Effect */}
                     <div className="absolute inset-0 bg-gradient-to-r from-[#ECB629]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
@@ -583,7 +583,7 @@ export default function Services() {
                         {service.benefits.map((benefit, benefitIndex) => (
                           <div
                             key={benefitIndex}
-                            className="flex items-center gap-3 p-3 rounded-lg glassmorphism group-hover:bg-slate-700/50 transition-all duration-300"
+                            className="flex items-center gap-3 p-3 rounded-lg glass-card group-hover:bg-slate-700/50 transition-all duration-300"
                           >
                             <CheckCircle
                               className="text-[#ECB629] flex-shrink-0"
@@ -598,7 +598,7 @@ export default function Services() {
 
                       {/* Pricing & CTA */}
                       <div className="mt-auto">
-                        <div className="flex items-center justify-between mb-4 p-4 glassmorphism rounded-lg">
+                        <div className="flex items-center justify-between mb-4 p-4 glass-card">
                           <div>
                             <div className="text-2xl font-bold text-[#ECB629]">
                               {service.price}
