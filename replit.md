@@ -220,10 +220,11 @@ npm run dev      # Development server
 
 ### Email Delivery Status ✅ (January 31, 2025)
 - **Resend Integration**: Completely replaced SendGrid with Resend.com for better reliability
-- **Email Recipients**: All contact forms send to both contact@pravdast.agency AND subscribe@pravdast.agency
-- **API Configuration**: Using RESEND_API_KEY (re_7uK1SzMv_PNGCohD7R2CiaZLKJ697JzdE)
+- **Email Recipients**: All contact forms send to contact@pravdast.agency only (per user request)
+- **Sender Domain**: Using verified pravdagency.eu domain (website@pravdagency.eu)
+- **API Configuration**: Using valid RESEND_API_KEY with proper permissions
 - **Rate Limiting**: Active (5 submissions per hour per IP)
-- **Delivery Method**: Separate API calls to ensure both emails are delivered
+- **Delivery Status**: Successfully tested - emails deliver with unique IDs
 - **Status**: Ready for production - Resend is more reliable than SendGrid
 
 ### ✅ AUTOMATED BLOG SYSTEM COMPLETED (January 22, 2025)
