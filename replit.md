@@ -218,13 +218,13 @@ npm run dev      # Development server
   - Trendlab™ изграждане на авторитет
 - **Features**: Search, category filtering, responsive design, animations
 
-### Email Delivery Status ⚠️ (January 31, 2025)
-- **SendGrid Integration**: Updated to send to both contact@pravdast.agency AND subscribe@pravdast.agency
-- **Current Issue**: SendGrid 403 Forbidden error - API key needs Mail Send permissions or domain verification
-- **Email Recipients**: All contact forms now target both email addresses
+### Email Delivery Status ✅ (January 31, 2025)
+- **Resend Integration**: Completely replaced SendGrid with Resend.com for better reliability
+- **Email Recipients**: All contact forms send to both contact@pravdast.agency AND subscribe@pravdast.agency
+- **API Configuration**: Using RESEND_API_KEY (re_7uK1SzMv_PNGCohD7R2CiaZLKJ697JzdE)
 - **Rate Limiting**: Active (5 submissions per hour per IP)
-- **Fallback Logging**: All form submissions logged in console when SendGrid fails
-- **Required Fix**: Verify SendGrid API key permissions and domain authentication for pravdast.agency
+- **Delivery Method**: Separate API calls to ensure both emails are delivered
+- **Status**: Ready for production - Resend is more reliable than SendGrid
 
 ### ✅ AUTOMATED BLOG SYSTEM COMPLETED (January 22, 2025)
 

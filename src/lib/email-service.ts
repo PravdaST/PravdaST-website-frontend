@@ -141,7 +141,7 @@ Pravda Agency - Бизнес инженеринг за предвидим рас
       subject: `🔥 Ново запитване от ${data.name} - ${data.company || 'Частно лице'}`,
       html: htmlContent,
       text: textContent,
-      reply_to: data.email
+      replyTo: data.email
     })
 
     // Send to subscribe@pravdast.agency  
@@ -151,7 +151,7 @@ Pravda Agency - Бизнес инженеринг за предвидим рас
       subject: `🔥 Ново запитване от ${data.name} - ${data.company || 'Частно лице'}`,
       html: htmlContent,
       text: textContent,
-      reply_to: data.email
+      replyTo: data.email
     })
 
     console.log('Contact email sent successfully to contact@pravdast.agency and subscribe@pravdast.agency')
