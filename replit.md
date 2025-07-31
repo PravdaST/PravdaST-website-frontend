@@ -218,12 +218,13 @@ npm run dev      # Development server
   - Trendlab™ изграждане на авторитет
 - **Features**: Search, category filtering, responsive design, animations
 
-### Email Delivery Status ✅ (January 16, 2025)
-- **SendGrid Integration**: Working correctly (Status 202, Message ID tracking)
-- **Email Service**: Successfully sending to contact@pravdagency.eu
+### Email Delivery Status ⚠️ (January 31, 2025)
+- **SendGrid Integration**: Updated to send to both contact@pravdast.agency AND subscribe@pravdast.agency
+- **Current Issue**: SendGrid 403 Forbidden error - API key needs Mail Send permissions or domain verification
+- **Email Recipients**: All contact forms now target both email addresses
 - **Rate Limiting**: Active (5 submissions per hour per IP)
-- **Toast Notifications**: Working (success/error messages)
-- **Possible Issues**: Check spam folder, SendGrid domain authentication, email forwarding settings
+- **Fallback Logging**: All form submissions logged in console when SendGrid fails
+- **Required Fix**: Verify SendGrid API key permissions and domain authentication for pravdast.agency
 
 ### ✅ AUTOMATED BLOG SYSTEM COMPLETED (January 22, 2025)
 
