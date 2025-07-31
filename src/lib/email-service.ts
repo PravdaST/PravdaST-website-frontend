@@ -17,7 +17,7 @@ export async function sendContactEmail(data: ContactData) {
     console.log('EMAIL PREVIEW (Development Mode):')
     console.log('====================================')
     console.log(`TO: contact@pravdast.agency, subscribe@pravdast.agency`)
-    console.log(`FROM: website@pravdast.agency`)
+    console.log(`FROM: website@pravdagency.eu`)
     console.log(`SUBJECT: 🔥 Ново запитване от ${data.name} - ${data.company || 'Частно лице'}`)
     console.log(`ДАННИ:`)
     console.log(`  👤 Име: ${data.name}`)
@@ -136,7 +136,7 @@ Pravda Agency - Бизнес инженеринг за предвидим рас
 
     // Send to contact@pravdast.agency
     const contactResponse = await resend.emails.send({
-      from: 'website@pravdast.agency',
+      from: 'website@pravdagency.eu',
       to: 'contact@pravdast.agency',
       subject: `🔥 Ново запитване от ${data.name} - ${data.company || 'Частно лице'}`,
       html: htmlContent,
@@ -146,7 +146,7 @@ Pravda Agency - Бизнес инженеринг за предвидим рас
 
     // Send to subscribe@pravdast.agency  
     const subscribeResponse = await resend.emails.send({
-      from: 'website@pravdast.agency',
+      from: 'website@pravdagency.eu',
       to: 'subscribe@pravdast.agency',
       subject: `🔥 Ново запитване от ${data.name} - ${data.company || 'Частно лице'}`,
       html: htmlContent,
@@ -155,8 +155,8 @@ Pravda Agency - Бизнес инженеринг за предвидим рас
     })
 
     console.log('Contact email sent successfully to contact@pravdast.agency and subscribe@pravdast.agency')
-    console.log('Resend Response Contact:', contactResponse.data?.id)
-    console.log('Resend Response Subscribe:', subscribeResponse.data?.id)
+    console.log('Resend Response Contact:', JSON.stringify(contactResponse))
+    console.log('Resend Response Subscribe:', JSON.stringify(subscribeResponse))
     
     return { 
       success: true, 
