@@ -765,7 +765,7 @@ export default function AboutClient() {
                         (specialty: string, index: number) => (
                           <span
                             key={index}
-                            className="px-4 py-2 glass-card rounded-full text-sm text-gray-300 hover:text-[#ECB629] hover:border-[#ECB629]/30 transition-all duration-200"
+                            className="px-4 py-2 glass-card rounded-full text-sm text-gray-300"
                           >
                             {specialty}
                           </span>
