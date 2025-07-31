@@ -1,9 +1,7 @@
-import sgMail from '@sendgrid/mail'
+import { Resend } from 'resend'
 
-// Initialize SendGrid
-if (process.env.SENDGRID_API_KEY) {
-  sgMail.setApiKey(process.env.SENDGRID_API_KEY)
-}
+// Initialize Resend
+const resend = new Resend(process.env.RESEND_API_KEY)
 
 interface ContactData {
   name: string
@@ -14,8 +12,8 @@ interface ContactData {
 }
 
 export async function sendContactEmail(data: ContactData) {
-  if (!process.env.SENDGRID_API_KEY || process.env.SENDGRID_API_KEY.includes('xxxxxxxxx')) {
-    console.log('SendGrid API key not configured - using development mode')
+  if (!process.env.RESEND_API_KEY || process.env.RESEND_API_KEY.includes('xxxxxxxxx')) {
+    console.log('Resend API key not configured - using development mode')
     console.log('EMAIL PREVIEW (Development Mode):')
     console.log('====================================')
     console.log(`TO: contact@pravdast.agency, subscribe@pravdast.agency`)
@@ -136,21 +134,29 @@ Pravda Agency - Бизнес инженеринг за предвидим рас
 ул. Дебър №58, Варна | +359 879 282 299 | contact@pravdast.agency
     `
 
-    const msg = {
-      to: ['contact@pravdast.agency', 'subscribe@pravdast.agency'],
-      from: {
-        email: 'website@pravdast.agency',
-        name: 'Pravda Agency Website'
-      },
+    // Send to contact@pravdast.agency
+    const contactResponse = await resend.emails.send({
+      from: 'website@pravdast.agency',
+      to: 'contact@pravdast.agency',
       subject: `🔥 Ново запитване от ${data.name} - ${data.company || 'Частно лице'}`,
-      text: textContent,
       html: htmlContent,
-      replyTo: data.email
-    }
+      text: textContent,
+      reply_to: data.email
+    })
 
-    const response = await sgMail.send(msg)
+    // Send to subscribe@pravdast.agency  
+    const subscribeResponse = await resend.emails.send({
+      from: 'website@pravdast.agency',
+      to: 'subscribe@pravdast.agency',
+      subject: `🔥 Ново запитване от ${data.name} - ${data.company || 'Частно лице'}`,
+      html: htmlContent,
+      text: textContent,
+      reply_to: data.email
+    })
+
     console.log('Contact email sent successfully to contact@pravdast.agency and subscribe@pravdast.agency')
-    console.log('SendGrid Response:', JSON.stringify(response[0]?.statusCode), response[0]?.headers?.['x-message-id'])
+    console.log('Resend Response Contact:', contactResponse.data?.id)
+    console.log('Resend Response Subscribe:', subscribeResponse.data?.id)
     
     return { 
       success: true, 
@@ -158,7 +164,7 @@ Pravda Agency - Бизнес инженеринг за предвидим рас
     }
     
   } catch (error) {
-    console.error('SendGrid email error:', error)
+    console.error('Resend email error:', error)
     
     // Log the contact data locally as fallback
     console.log('Contact form data (fallback logging):', {
