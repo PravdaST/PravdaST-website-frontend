@@ -6,6 +6,7 @@
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(-1200px);
   }
@@ -84,6 +85,7 @@
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
     background: var(--pravdast-dark);
@@ -117,17 +119,14 @@
   }
 
   .glass-card:hover {
-    transform: translateY(-2px);
     border-color: rgba(236, 182, 40, 0.3);
     box-shadow: 0 8px 32px var(--glass-shadow);
   }
 
   .glass-overlay {
-    background: linear-gradient(
-      135deg,
-      rgba(0, 0, 0, 0.95) 0%,
-      rgba(20, 20, 20, 0.92) 100%
-    );
+    background: linear-gradient(135deg,
+        rgba(0, 0, 0, 0.95) 0%,
+        rgba(20, 20, 20, 0.92) 100%);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
   }
