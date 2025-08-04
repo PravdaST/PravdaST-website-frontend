@@ -57,6 +57,7 @@ Project organization: Documentation files organized in `/docs` folder for cleane
 - **Complete Migration**: All local blog posts removed from codebase
 - **WordPress Only**: Blog content now exclusively from WordPress Headless CMS
 - **API Cleanup**: Removed local blog API endpoints (/api/blog/posts, /api/blog/search, /api/blog/[slug])
+- **Admin Interface Removal**: Removed /admin-pravda and /admin-blog pages (redundant with WordPress admin)
 - **Static Generation**: Removed hardcoded blog slugs from generateStaticParams
 - **File Cleanup**: Deleted all .md blog post files and local blog data
 - **Status**: WordPress is now the single source of truth for all blog content
