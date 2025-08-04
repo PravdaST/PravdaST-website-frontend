@@ -4,12 +4,13 @@ import WordPressPostClient from './WordPressPostClient'
 import { getWordPressPost } from '@/lib/wordpress'
 
 interface Props {
-  params: { slug: string }
+  params: Promise<{ slug: string }>
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   try {
-    const post = await getWordPressPost(params.slug)
+    const { slug } = await params
+    const post = await getWordPressPost(slug)
     
     if (!post) {
       return {
@@ -29,7 +30,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       openGraph: {
         title,
         description,
-        url: `https://www.pravdagency.eu/blog/wp-${params.slug}`,
+        url: `https://www.pravdagency.eu/blog/wp-${slug}`,
         siteName: 'Pravda Agency',
         locale: 'bg_BG',
         images: featuredImage ? [
@@ -59,7 +60,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         images: [featuredImage || 'https://pravdagency.eu/pravda-og-blog.png'],
       },
       alternates: {
-        canonical: `https://www.pravdagency.eu/blog/wp-${params.slug}`,
+        canonical: `https://www.pravdagency.eu/blog/wp-${slug}`,
       },
     }
   } catch (error) {
@@ -72,7 +73,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function WordPressPostPage({ params }: Props) {
   try {
-    const post = await getWordPressPost(params.slug)
+    const { slug } = await params
+    const post = await getWordPressPost(slug)
     
     if (!post) {
       notFound()
