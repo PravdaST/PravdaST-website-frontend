@@ -237,7 +237,7 @@ export default function BlogClient() {
                       )}
 
                       {/* Title */}
-                      <h3 className={`text-xl font-bold mb-3 text-white group-hover:text-[#ECB629] transition-colors leading-tight ${post.featuredImage ? 'mt-4' : ''}`}>
+                      <h3 className={`text-xl font-bold mb-3 text-white group-hover:text-[#ECB629] transition-colors leading-tight ${post.featuredImage ? '' : ''}`}>
                         {post.title}
                       </h3>
 
@@ -260,7 +260,13 @@ export default function BlogClient() {
                         </div>
                         <div className="flex items-center gap-1">
                           <Calendar className="w-4 h-4" />
-                          <span>{post.publishedAt}</span>
+                          <span>
+                            {new Date(post.publishedAt).toLocaleDateString('bg-BG', {
+                              year: 'numeric',
+                              month: '2-digit', 
+                              day: '2-digit'
+                            })}
+                          </span>
                         </div>
                       </div>
 
