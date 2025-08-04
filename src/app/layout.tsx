@@ -18,9 +18,35 @@ import { BackgroundEffects } from '@/components/background-effects'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://pravdagency.eu'),
-  title: 'Pravdast - Бизнес инженеринг за предвидим растеж в България',
-  description: 'Превръщаме хаотичния растеж в предвидими, измерими резултати чрез проверени бизнес системи. SEO оптимизация, създаване на съдържание, рекламни кампании.',
+  metadataBase: new URL('https://www.pravdagency.eu'),
+  title: 'Правдаст - Бизнес инженеринг за предвидим растеж в България',
+  description: 'Превръщаме хаоса в предсказуеми системи. Проверени методи за B2B растеж.',
+  keywords: ['бизнес инженеринг', 'растеж', 'маркетинг', 'SEO', 'автоматизация', 'Pravda Agency'],
+  openGraph: {
+    type: 'website',
+    locale: 'bg_BG',
+    url: 'https://www.pravdagency.eu/',
+    siteName: 'Pravda Agency',
+    title: 'Правдаст - Бизнес инженеринг за предвидим растеж',
+    description: 'Превръщаме хаоса в предсказуеми системи. Проверени методи за B2B растеж.',
+    images: [
+      {
+        url: 'https://pravdagency.eu/pravda-og-home.png',
+        width: 1200,
+        height: 630,
+        alt: 'Pravda Agency - Business Engineering',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Правдаст - Бизнес инженеринг за предвидим растеж',
+    description: 'Превръщаме хаоса в предсказуеми системи. Проверени методи за B2B растеж.',
+    images: ['https://pravdagency.eu/pravda-og-home.png'],
+  },
+  alternates: {
+    canonical: 'https://www.pravdagency.eu/',
+  },
 }
 
 export default function RootLayout({

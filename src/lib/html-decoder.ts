@@ -69,3 +69,38 @@ export function cleanHtmlText(html: string): string {
   const textWithoutTags = html.replace(/<[^>]*>/g, '').trim();
   return decodeHtmlEntities(textWithoutTags);
 }
+
+// Function to add alt text to images that don't have it
+export function addAltTextToImages(html: string): string {
+  return html.replace(/<img([^>]*)>/gi, (match, attributes) => {
+    // Check if image already has alt attribute
+    if (attributes.includes('alt=')) {
+      return match; // Keep original if alt exists
+    }
+    
+    // Extract src for generating alt text
+    const srcMatch = attributes.match(/src=["']([^"']*)["']/);
+    const src = srcMatch ? srcMatch[1] : '';
+    
+    // Generate meaningful alt text based on filename or context
+    let altText = 'Image';
+    if (src) {
+      const filename = src.split('/').pop()?.split('.')[0] || '';
+      if (filename.includes('pravda')) {
+        altText = 'Pravda Agency - Business Engineering Image';
+      } else if (filename.includes('client')) {
+        altText = 'Client Success Story - Pravda Agency';
+      } else if (filename.includes('trend')) {
+        altText = 'Trendlab Business System - Pravda Agency';
+      } else if (filename.includes('seo')) {
+        altText = 'SEO Struktor System - Pravda Agency';
+      } else if (filename.includes('click')) {
+        altText = 'Clickstarter System - Pravda Agency';
+      } else {
+        altText = 'Business Engineering Illustration - Pravda Agency';
+      }
+    }
+    
+    return `<img${attributes} alt="${altText}">`;
+  });
+}

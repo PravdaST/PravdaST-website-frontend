@@ -30,12 +30,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         const description = decodeHtmlEntities(post.excerpt.rendered.replace(/<[^>]*>/g, '')).substring(0, 160)
         const featuredImage = post._embedded?.['wp:featuredmedia']?.[0]?.source_url
 
+        // Truncate title if too long (max 60 characters for SEO)
+        const shortTitle = title.length > 60 ? title.substring(0, 57) + '...' : title;
+        
         return {
-          title: `${title} - Pravda Agency`,
+          title: `${shortTitle} - Pravda Agency`,
           description,
           keywords: ['бизнес инженерство', 'растеж', 'маркетинг', 'SEO', 'Pravda Agency'],
           openGraph: {
-            title,
+            title: shortTitle,
             description,
             url: `https://www.pravdagency.eu/blog/${slug}`,
             siteName: 'Pravda Agency',
@@ -45,7 +48,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
                 url: featuredImage,
                 width: 1200,
                 height: 630,
-                alt: title,
+                alt: shortTitle,
               }
             ] : [
               {
@@ -62,7 +65,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
           },
           twitter: {
             card: 'summary_large_image',
-            title,
+            title: shortTitle,
             description,
             images: [featuredImage || 'https://pravdagency.eu/pravda-og-blog.png'],
           },

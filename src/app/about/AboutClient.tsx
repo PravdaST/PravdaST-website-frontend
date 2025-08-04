@@ -399,7 +399,7 @@ export default function AboutClient() {
                 Всяко решение, което вземаме, се базира на тези основни
                 принципи. 
                 <Link
-                  href="/blog/biznes-inzheneri-vs-marketing-ekip-alternativa"
+                  href="/blog/wp-zashho-rabotata-s-biznes-inzheneri-e-po-dobrata-alternativa-ot-izgrazhdaneto-i-poddrzhaneto-na-marketing-ekip"
                   className="text-[#ECB629] hover:text-[#ECB629]/80 transition-colors underline ml-2"
                 >
                   Научете защо бизнес инженерите са по-добрата алтернатива от вътрешен екип →

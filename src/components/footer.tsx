@@ -233,9 +233,23 @@ export const Footer = () => {
                 viewport={{ once: true }}
               />
             </h4>
-            <div className="text-gray-400 text-sm">
-              Следете ни за най-новите съвети и стратегии за бизнес растеж.
-            </div>
+            <ul className="space-y-3">
+              <li>
+                <Link href="/blog/wp-3-te-cherni-dupki-koito-poglshhat-reklamniya-vi-byudzhet" className="text-gray-400 hover:text-[#ECB629] transition-colors">
+                  3-те черни дупки, които поглъщат рекламния ви бюджет
+                </Link>
+              </li>
+              <li>
+                <Link href="/blog/wp-zashho-rabotata-s-biznes-inzheneri-e-po-dobrata-alternativa-ot-izgrazhdaneto-i-poddrzhaneto-na-marketing-ekip" className="text-gray-400 hover:text-[#ECB629] transition-colors">
+                  Защо бизнес инженерите са по-добрата алтернатива
+                </Link>
+              </li>
+              <li>
+                <Link href="/services/seo-struktor" className="text-gray-400 hover:text-[#ECB629] transition-colors">
+                  SEO Struktor™ - Системата за SEO
+                </Link>
+              </li>
+            </ul>
           </motion.div>
 
           {/* Contact Info */}

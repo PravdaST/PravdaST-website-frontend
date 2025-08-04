@@ -14,7 +14,7 @@ import {
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { cleanHtmlText } from "@/lib/html-decoder";
+import { cleanHtmlText, addAltTextToImages } from "@/lib/html-decoder";
 
 interface WordPressPost {
   id: number;
@@ -272,7 +272,7 @@ export default function WordPressPostClient({ post }: Props) {
               {/* Article Content */}
               <div 
                 className="text-gray-300 leading-relaxed wordpress-content"
-                dangerouslySetInnerHTML={{ __html: post.content.rendered }}
+                dangerouslySetInnerHTML={{ __html: addAltTextToImages(post.content.rendered) }}
               />
             </motion.div>
 

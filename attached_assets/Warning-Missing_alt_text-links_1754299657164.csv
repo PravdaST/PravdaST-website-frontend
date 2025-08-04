@@ -1,0 +1,3 @@
+Link type,Is nofollow,Source URL,Source HTTP status code,Target URL,Target HTTP status code,Target no-crawl reason,Alt attribute,Is source canonical,Is source noindex,Is link internal
+Image,false,https://www.pravdagency.eu/blog/wp-3-te-cherni-dupki-koito-poglshhat-reklamniya-vi-byudzhet,200,https://admin.pravdagency.eu/wp-content/uploads/2025/08/pravda-trendlab-1-1024x683.webp,200,,,true,false,true
+Image,false,https://www.pravdagency.eu/blog/wp-3-te-cherni-dupki-koito-poglshhat-reklamniya-vi-byudzhet,200,https://admin.pravdagency.eu/wp-content/uploads/2025/08/pravda-clientomat-1024x683.webp,200,,,true,false,true
