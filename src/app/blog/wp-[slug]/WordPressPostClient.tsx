@@ -271,7 +271,7 @@ export default function WordPressPostClient({ post }: Props) {
             >
               {/* Article Content */}
               <div 
-                className="text-gray-300 leading-relaxed wordpress-content overflow-x-auto"
+                className="text-gray-300 leading-relaxed wordpress-content"
                 dangerouslySetInnerHTML={{ __html: post.content.rendered }}
               />
             </motion.div>
@@ -397,54 +397,6 @@ export default function WordPressPostClient({ post }: Props) {
           border-radius: 0.5rem;
           overflow: hidden;
           border: 1px solid #ECB629;
-        }
-        
-        /* Mobile table wrapper for horizontal scrolling */
-        .wordpress-content table {
-          display: block;
-          overflow-x: auto;
-          white-space: nowrap;
-        }
-        
-        .wordpress-content table thead,
-        .wordpress-content table tbody,
-        .wordpress-content table tr {
-          display: table;
-          width: 100%;
-          table-layout: fixed;
-        }
-        
-        /* Mobile responsiveness */
-        @media (max-width: 768px) {
-          .wordpress-content table {
-            font-size: 0.875rem;
-            margin: 1rem -1rem; /* Allow table to extend to screen edges */
-            border-radius: 0;
-            border-left: none;
-            border-right: none;
-          }
-          
-          .wordpress-content table th,
-          .wordpress-content table td {
-            padding: 0.5rem;
-            min-width: 120px;
-          }
-          
-          .wordpress-content table th {
-            font-size: 0.8rem;
-          }
-        }
-        
-        @media (max-width: 480px) {
-          .wordpress-content table {
-            font-size: 0.8rem;
-          }
-          
-          .wordpress-content table th,
-          .wordpress-content table td {
-            padding: 0.4rem;
-            min-width: 100px;
-          }
         }
         
         .wordpress-content table th {
