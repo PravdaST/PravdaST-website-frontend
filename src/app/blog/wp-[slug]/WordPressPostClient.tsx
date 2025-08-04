@@ -409,6 +409,49 @@ export default function WordPressPostClient({ post }: Props) {
           overflow-x: auto;
           margin: 2rem 0;
         }
+
+        .wordpress-content table {
+          width: 100%;
+          border-collapse: collapse;
+          margin: 2rem 0;
+          background-color: rgba(0, 0, 0, 0.3);
+          border-radius: 0.5rem;
+          overflow: hidden;
+          border: 1px solid #ECB629;
+        }
+        
+        .wordpress-content table th {
+          background-color: #ECB629;
+          color: #000;
+          padding: 1rem;
+          text-align: left;
+          font-weight: 600;
+          border-bottom: 2px solid #d97706;
+        }
+        
+        .wordpress-content table td {
+          padding: 0.75rem 1rem;
+          border-bottom: 1px solid rgba(236, 182, 41, 0.2);
+          color: #d1d5db;
+        }
+        
+        .wordpress-content table tr:nth-child(even) {
+          background-color: rgba(236, 182, 41, 0.05);
+        }
+        
+        .wordpress-content table tr:hover {
+          background-color: rgba(236, 182, 41, 0.1);
+        }
+        
+        .wordpress-content table th:first-child,
+        .wordpress-content table td:first-child {
+          padding-left: 1.5rem;
+        }
+        
+        .wordpress-content table th:last-child,
+        .wordpress-content table td:last-child {
+          padding-right: 1.5rem;
+        }
       `}</style>
     </div>
   );
