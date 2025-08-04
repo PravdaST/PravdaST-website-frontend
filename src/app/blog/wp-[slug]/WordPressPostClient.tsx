@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 interface WordPressPost {
   id: number;
@@ -57,6 +57,60 @@ interface Props {
 
 export default function WordPressPostClient({ post }: Props) {
   const [copied, setCopied] = useState(false);
+
+  // Add JSON-LD structured data for SEO
+  useEffect(() => {
+    const structuredData = {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": extractTextFromHtml(post.title.rendered),
+      "description": extractTextFromHtml(post.excerpt.rendered).substring(0, 160),
+      "image": getFeaturedImage() ? [getFeaturedImage()] : ["https://pravdagency.eu/pravda-og-blog.png"],
+      "author": {
+        "@type": "Person",
+        "name": getAuthor(),
+        "url": "https://www.pravdagency.eu/about"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Pravda Agency",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.pravdagency.eu/logo.png"
+        }
+      },
+      "datePublished": post.date,
+      "dateModified": post.modified,
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": `https://www.pravdagency.eu/blog/wp-${post.slug}`
+      },
+      "articleSection": "Business Engineering",
+      "keywords": ["бизнес инженерство", "растеж", "маркетинг", "SEO", "Pravda Agency"],
+      "wordCount": post.content.rendered.replace(/<[^>]*>/g, '').split(/\s+/).length,
+      "inLanguage": "bg-BG"
+    };
+
+    // Remove existing structured data
+    const existingScript = document.querySelector('script[type="application/ld+json"][data-wp-post="true"]');
+    if (existingScript) {
+      existingScript.remove();
+    }
+
+    // Add new structured data
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.setAttribute('data-wp-post', 'true');
+    script.textContent = JSON.stringify(structuredData);
+    document.head.appendChild(script);
+
+    return () => {
+      const scriptToRemove = document.querySelector('script[type="application/ld+json"][data-wp-post="true"]');
+      if (scriptToRemove) {
+        scriptToRemove.remove();
+      }
+    };
+  }, [post]);
 
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('bg-BG', {
