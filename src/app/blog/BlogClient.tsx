@@ -44,6 +44,29 @@ export default function BlogClient() {
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
 
+  // Function to decode HTML entities
+  const decodeHtmlEntities = (text: string): string => {
+    const entityMap: { [key: string]: string } = {
+      '&#8220;': '"',
+      '&#8221;': '"',
+      '&#8216;': "'",
+      '&#8217;': "'",
+      '&#8211;': '–',
+      '&#8212;': '—',
+      '&#8230;': '…',
+      '&amp;': '&',
+      '&lt;': '<',
+      '&gt;': '>',
+      '&quot;': '"',
+      '&apos;': "'",
+      '&nbsp;': ' '
+    };
+
+    return text.replace(/&#?\w+;/g, (entity) => {
+      return entityMap[entity] || entity;
+    });
+  };
+
   // Load blog posts from API (both local and WordPress)
   useEffect(() => {
     async function loadBlogPosts() {
@@ -64,8 +87,8 @@ export default function BlogClient() {
             // Convert WordPress posts to BlogPost format
             wpPosts = wpResult.data.posts.map((post: any) => ({
               id: `wp-${post.id}`,
-              title: post.title.rendered.replace(/<[^>]*>/g, ''),
-              excerpt: post.excerpt.rendered.replace(/<[^>]*>/g, ''),
+              title: decodeHtmlEntities(post.title.rendered.replace(/<[^>]*>/g, '')),
+              excerpt: decodeHtmlEntities(post.excerpt.rendered.replace(/<[^>]*>/g, '')),
               content: post.content.rendered,
               author: post._embedded?.author?.[0]?.name || 'Pravda Agency',
               publishedAt: post.date,

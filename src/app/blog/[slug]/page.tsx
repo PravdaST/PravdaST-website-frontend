@@ -28,8 +28,30 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       const post = await getWordPressPost(wpSlug)
       
       if (post) {
-        const title = post.title.rendered.replace(/<[^>]*>/g, '')
-        const description = post.excerpt.rendered.replace(/<[^>]*>/g, '').substring(0, 160)
+        // Function to decode HTML entities
+        const decodeHtmlEntities = (text: string): string => {
+          const entityMap: { [key: string]: string } = {
+            '&#8220;': '"',
+            '&#8221;': '"',
+            '&#8216;': "'",
+            '&#8217;': "'",
+            '&#8211;': '–',
+            '&#8212;': '—',
+            '&#8230;': '…',
+            '&amp;': '&',
+            '&lt;': '<',
+            '&gt;': '>',
+            '&quot;': '"',
+            '&apos;': "'",
+            '&nbsp;': ' '
+          };
+          return text.replace(/&#?\w+;/g, (entity) => {
+            return entityMap[entity] || entity;
+          });
+        };
+
+        const title = decodeHtmlEntities(post.title.rendered.replace(/<[^>]*>/g, ''))
+        const description = decodeHtmlEntities(post.excerpt.rendered.replace(/<[^>]*>/g, '')).substring(0, 160)
         const featuredImage = post._embedded?.['wp:featuredmedia']?.[0]?.source_url
 
         return {
