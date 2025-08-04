@@ -18,6 +18,7 @@ import {
   TrendingUp,
   CheckCircle,
   Phone,
+  ExternalLink,
 } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -33,6 +34,8 @@ interface BlogPost {
   slug: string;
   tags: string[];
   featuredImage?: string;
+  isWordPress?: boolean;
+  originalSlug?: string;
 }
 
 export default function BlogClient() {
@@ -41,17 +44,48 @@ export default function BlogClient() {
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // Load blog posts from API
+  // Load blog posts from API (both local and WordPress)
   useEffect(() => {
     async function loadBlogPosts() {
       try {
-        const response = await fetch('/api/blog/files');
-        if (response.ok) {
-          const posts = await response.json();
-          setBlogPosts(posts);
-        } else {
-          console.error('Failed to load blog posts');
+        // Load local blog posts
+        const localResponse = await fetch('/api/blog/files');
+        let localPosts = [];
+        if (localResponse.ok) {
+          localPosts = await localResponse.json();
         }
+
+        // Load WordPress posts
+        const wpResponse = await fetch('/api/wordpress/posts?per_page=10');
+        let wpPosts = [];
+        if (wpResponse.ok) {
+          const wpResult = await wpResponse.json();
+          if (wpResult.success) {
+            // Convert WordPress posts to BlogPost format
+            wpPosts = wpResult.data.posts.map((post: any) => ({
+              id: `wp-${post.id}`,
+              title: post.title.rendered.replace(/<[^>]*>/g, ''),
+              excerpt: post.excerpt.rendered.replace(/<[^>]*>/g, ''),
+              content: post.content.rendered,
+              author: post._embedded?.author?.[0]?.name || 'Pravda Agency',
+              publishedAt: post.date,
+              readTime: Math.ceil(post.content.rendered.replace(/<[^>]*>/g, '').split(/\s+/).length / 200),
+              category: post._embedded?.['wp:term']?.[0]?.[0]?.name || 'WordPress',
+              slug: `wp-${post.slug}`,
+              tags: post._embedded?.['wp:term']?.[1]?.map((tag: any) => tag.name) || [],
+              featuredImage: post._embedded?.['wp:featuredmedia']?.[0]?.source_url,
+              isWordPress: true,
+              originalSlug: post.slug
+            }));
+          }
+        }
+
+        // Combine and sort posts by date
+        const allPosts = [...localPosts, ...wpPosts].sort((a, b) => 
+          new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
+        );
+        
+        setBlogPosts(allPosts);
       } catch (error) {
         console.error('Error loading blog posts:', error);
       } finally {
@@ -228,15 +262,27 @@ export default function BlogClient() {
                       </div>
 
                       {/* Read More Button */}
-                      <Link href={`/blog/${post.slug}`}>
-                        <Button 
-                          variant="outline" 
-                          className="w-full border-[#ECB629] text-[#ECB629] hover:bg-[#ECB629] hover:text-black transition-all group/btn"
-                        >
-                          Прочети повече
-                          <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />
-                        </Button>
-                      </Link>
+                      {post.isWordPress ? (
+                        <Link href={`https://admin.pravdagency.eu/${post.originalSlug}`} target="_blank" rel="noopener noreferrer">
+                          <Button 
+                            variant="outline" 
+                            className="w-full border-[#ECB629] text-[#ECB629] hover:bg-[#ECB629] hover:text-black transition-all group/btn"
+                          >
+                            Прочети в WordPress
+                            <ExternalLink className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />
+                          </Button>
+                        </Link>
+                      ) : (
+                        <Link href={`/blog/${post.slug}`}>
+                          <Button 
+                            variant="outline" 
+                            className="w-full border-[#ECB629] text-[#ECB629] hover:bg-[#ECB629] hover:text-black transition-all group/btn"
+                          >
+                            Прочети повече
+                            <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />
+                          </Button>
+                        </Link>
+                      )}
                     </CardContent>
                   </Card>
                 </motion.div>
