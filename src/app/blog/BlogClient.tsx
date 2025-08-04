@@ -262,27 +262,15 @@ export default function BlogClient() {
                       </div>
 
                       {/* Read More Button */}
-                      {post.isWordPress ? (
-                        <Link href={`https://admin.pravdagency.eu/${post.originalSlug}`} target="_blank" rel="noopener noreferrer">
-                          <Button 
-                            variant="outline" 
-                            className="w-full border-[#ECB629] text-[#ECB629] hover:bg-[#ECB629] hover:text-black transition-all group/btn"
-                          >
-                            Прочети в WordPress
-                            <ExternalLink className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />
-                          </Button>
-                        </Link>
-                      ) : (
-                        <Link href={`/blog/${post.slug}`}>
-                          <Button 
-                            variant="outline" 
-                            className="w-full border-[#ECB629] text-[#ECB629] hover:bg-[#ECB629] hover:text-black transition-all group/btn"
-                          >
-                            Прочети повече
-                            <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />
-                          </Button>
-                        </Link>
-                      )}
+                      <Link href={`/blog/${post.slug}`}>
+                        <Button 
+                          variant="outline" 
+                          className="w-full border-[#ECB629] text-[#ECB629] hover:bg-[#ECB629] hover:text-black transition-all group/btn"
+                        >
+                          Прочети повече
+                          <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />
+                        </Button>
+                      </Link>
                     </CardContent>
                   </Card>
                 </motion.div>
