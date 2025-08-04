@@ -58,10 +58,13 @@ Project organization: Documentation files organized in `/docs` folder for cleane
 - **Authentication**: Using Application Password (Pravda Website / GprR PbZk UjrC dszy Y6KJ BD1I)
 - **Blog Integration**: WordPress posts appear in main /blog page alongside local posts
 - **Real-time Updates**: New WordPress posts automatically appear on the website
-- **Features**: Search, filtering, pagination, featured images, categories
+- **URL Structure**: WordPress posts accessible at pravdagency.eu/blog/wp-[slug]
+- **Content Display**: Full WordPress content rendered on main website (no redirects to admin)
+- **Features**: Search, filtering, pagination, featured images, categories, SEO meta tags
 - **API Endpoints**: /api/wordpress/posts, /api/wordpress/categories, /api/wordpress/post/[slug]
-- **User Experience**: WordPress posts open in new tab with external link icon
-- **Status**: Fully functional - WordPress content displays seamlessly in main blog
+- **Routing**: WordPress posts handled by both /blog/[slug] and /blog/wp-[slug] routes
+- **Build Status**: Next.js 15 compatible, production ready
+- **Status**: Fully functional - WordPress content displays natively on main website
 
 ### Email Delivery Status ✅ (January 31, 2025)
 - **Resend Integration**: Completely replaced SendGrid with Resend.com for better reliability
