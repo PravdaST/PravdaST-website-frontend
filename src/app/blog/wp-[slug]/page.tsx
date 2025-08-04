@@ -1,7 +1,15 @@
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import WordPressPostClient from './WordPressPostClient'
+import dynamic from 'next/dynamic'
 import { getWordPressPost } from '@/lib/wordpress'
+
+// Dynamically import the client component to avoid SSR issues
+const WordPressPostClient = dynamic(() => import('./WordPressPostClient'), {
+  ssr: false,
+  loading: () => <div className="min-h-screen bg-black text-white flex items-center justify-center">
+    <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-[#ECB629]"></div>
+  </div>
+})
 
 interface Props {
   params: Promise<{ slug: string }>
