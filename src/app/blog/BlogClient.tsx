@@ -199,42 +199,24 @@ export default function BlogClient() {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {filteredPosts.map((post, index) => (
-                <div
+                <motion.div
                   key={post.id}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
-                  <Card className="glass-card hover:border-[#ECB629]/50 transition-all duration-300 h-full group overflow-hidden">
-                    {/* Featured Image */}
-                    {post.featuredImage && (
-                      <div className="relative h-48 overflow-hidden">
-                        <img 
-                          src={post.featuredImage} 
-                          alt={post.title}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                        {/* Category Badge over image */}
-                        <Badge 
-                          variant="secondary" 
-                          className="absolute top-4 left-4 bg-[#ECB629]/90 text-black backdrop-blur-sm"
-                        >
-                          {post.category}
-                        </Badge>
-                      </div>
-                    )}
-                    
+                  <Card className="glass-card hover:border-[#ECB629]/50 transition-all duration-300 h-full group">
                     <CardContent className="p-6 flex flex-col h-full">
-                      {/* Category Badge (only show if no featured image) */}
-                      {!post.featuredImage && (
-                        <Badge 
-                          variant="secondary" 
-                          className="bg-[#ECB629]/20 text-[#ECB629] mb-4 w-fit"
-                        >
-                          {post.category}
-                        </Badge>
-                      )}
+                      {/* Category Badge */}
+                      <Badge 
+                        variant="secondary" 
+                        className="bg-[#ECB629]/20 text-[#ECB629] mb-4 w-fit"
+                      >
+                        {post.category}
+                      </Badge>
 
                       {/* Title */}
-                      <h3 className={`text-xl font-bold mb-3 text-white group-hover:text-[#ECB629] transition-colors leading-tight ${post.featuredImage ? '' : ''}`}>
+                      <h3 className="text-xl font-bold mb-3 text-white group-hover:text-[#ECB629] transition-colors leading-tight">
                         {post.title}
                       </h3>
 
@@ -257,13 +239,7 @@ export default function BlogClient() {
                         </div>
                         <div className="flex items-center gap-1">
                           <Calendar className="w-4 h-4" />
-                          <span>
-                            {new Date(post.publishedAt).toLocaleDateString('bg-BG', {
-                              year: 'numeric',
-                              month: '2-digit', 
-                              day: '2-digit'
-                            })}
-                          </span>
+                          <span>{post.publishedAt}</span>
                         </div>
                       </div>
 
@@ -296,7 +272,7 @@ export default function BlogClient() {
                       </Link>
                     </CardContent>
                   </Card>
-                </div>
+                </motion.div>
               ))}
             </div>
           )}
