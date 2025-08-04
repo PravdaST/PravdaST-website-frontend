@@ -9,9 +9,7 @@ import {
   Clock,
   User,
   ArrowLeft,
-  ExternalLink,
   Share2,
-  BookOpen,
 } from "lucide-react";
 import { motion } from "framer-motion";
 import Link from "next/link";
@@ -189,10 +187,6 @@ export default function WordPressPostClient({ post }: Props) {
                 <Clock className="w-4 h-4" />
                 <span>{calculateReadingTime(post.content.rendered)} мин четене</span>
               </div>
-              <div className="flex items-center gap-2">
-                <BookOpen className="w-4 h-4" />
-                <span>WordPress</span>
-              </div>
             </div>
 
             {/* Share Button */}
@@ -205,19 +199,6 @@ export default function WordPressPostClient({ post }: Props) {
                 <Share2 className="w-4 h-4 mr-2" />
                 {copied ? 'Копирано!' : 'Сподели'}
               </Button>
-              <Link
-                href={`https://admin.pravdagency.eu/${post.slug}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Button
-                  variant="outline"
-                  className="border-gray-600 text-gray-300 hover:bg-gray-800"
-                >
-                  <ExternalLink className="w-4 h-4 mr-2" />
-                  Виж в WordPress
-                </Button>
-              </Link>
             </div>
           </motion.div>
         </div>
