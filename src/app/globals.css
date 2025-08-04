@@ -137,4 +137,40 @@
     -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid rgba(236, 182, 40, 0.1);
   }
+
+  /* Global mobile table responsiveness */
+  .responsive-table-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  @media (max-width: 768px) {
+    .responsive-table-container table {
+      font-size: 0.875rem;
+      margin: 1rem 0;
+    }
+    
+    .responsive-table-container table th,
+    .responsive-table-container table td {
+      padding: 0.5rem;
+      min-width: 120px;
+      white-space: nowrap;
+    }
+    
+    .responsive-table-container table th {
+      font-size: 0.8rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .responsive-table-container table {
+      font-size: 0.8rem;
+    }
+    
+    .responsive-table-container table th,
+    .responsive-table-container table td {
+      padding: 0.4rem;
+      min-width: 100px;
+    }
+  }
 }
