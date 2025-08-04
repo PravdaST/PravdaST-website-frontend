@@ -1,5 +1,4 @@
 'use client'
-
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Navigation } from "@/components/navigation";
@@ -9,14 +8,12 @@ import { HelpCircle, Loader2 } from "lucide-react";
 import { StructuredData } from "@/components/structured-data";
 import { pageSEOData } from "@/data/seo-pages";
 import Link from "next/link";
-
 interface FAQItem {
   id: number;
   question: string;
   answer: string;
   category: string;
 }
-
 interface WordPressFAQResponse {
   success: boolean;
   data: Array<{
@@ -29,6 +26,8 @@ interface WordPressFAQResponse {
   fallback?: boolean;
   error?: string;
 }
+// Fallback FAQ data
+const fallbackFAQs: FAQItem[] = [
   {
     category: "Общи въпроси",
     question: "За какви компании са подходящи вашите услуги?",
@@ -150,23 +149,26 @@ interface WordPressFAQResponse {
       "Използваме advanced analytics tools за tracking на всички KPI. Получавате месечни детайлни отчети с визуализации, анализ на резултатите, препоръки за подобрения и план за следващия месец.",
   },
   {
+    id: 21,
     category: "Поддръжка",
     question: "Какъв тип поддръжка предлагате?",
     answer:
       "Предлагаме 24/7 email поддръжка, месечни консултации, экстренна поддръжка при технически проблеми, обучение на вашия екип и продължаваща оптимизация на системите.",
   },
   {
+    id: 22,
     category: "Поддръжка",
     question: "Можем ли да управляваме системите самостоятелно?",
     answer:
       "Да, всички системи са проектирани да бъдат user-friendly. Предоставяме подробно обучение, документация и продължаваща поддръжка, за да можете постепенно да поемете управлението.",
-  export default function FAQClient() {
+  }
+];
+export default function FAQClient() {
   const [selectedCategory, setSelectedCategory] = useState<string>("Всички");
   const [faqData, setFaqData] = useState<FAQItem[]>([]);
   const [categories, setCategories] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
   const [isWordPress, setIsWordPress] = useState(false);
-
   // Fallback static data
   const staticFAQData: FAQItem[] = [
     {
@@ -182,7 +184,6 @@ interface WordPressFAQResponse {
       answer: "Първите резултати от SEO Struktor™ се виждат между 3-6 месеца, но значителни подобрения обикновено се постигат в рамките на 6-12 месеца. SEO е дългосрочна инвестиция за устойчив органичен растеж в Google.",
     }
   ];
-
   // Fetch FAQ data from WordPress
   useEffect(() => {
     async function loadFAQData() {
@@ -190,7 +191,6 @@ interface WordPressFAQResponse {
         setLoading(true);
         const response = await fetch('/api/wordpress/faq');
         const result: WordPressFAQResponse = await response.json();
-
         if (result.success && result.data.length > 0) {
           // Transform WordPress data to our format
           const transformedData: FAQItem[] = result.data.map(item => ({
@@ -199,7 +199,6 @@ interface WordPressFAQResponse {
             answer: item.content.rendered.replace(/<[^>]*>/g, ''), // Strip HTML
             category: item.meta?.faq_category || item.acf?.faq_category || 'Общи въпроси'
           }));
-
           setFaqData(transformedData);
           setIsWordPress(true);
           
@@ -222,15 +221,12 @@ interface WordPressFAQResponse {
         setLoading(false);
       }
     }
-
     loadFAQData();
   }, []);
-
   const filteredFAQ =
     selectedCategory === "Всички"
       ? faqData
       : faqData.filter((item) => item.category === selectedCategory);
-
   // FAQ Schema за по-добра SEO видимост
   useEffect(() => {
     const faqSchema = {
@@ -245,7 +241,6 @@ interface WordPressFAQResponse {
         },
       })),
     };
-
     const script = document.createElement('script');
     script.type = 'application/ld+json';
     script.textContent = JSON.stringify(faqSchema);
@@ -259,7 +254,6 @@ interface WordPressFAQResponse {
     }
     
     document.head.appendChild(script);
-
     return () => {
       const schemaToRemove = document.getElementById('faq-schema');
       if (schemaToRemove) {
@@ -267,12 +261,10 @@ interface WordPressFAQResponse {
       }
     };
   }, []);
-
   return (
     <div className="min-h-screen bg-slate-900">
       <StructuredData data={pageSEOData.faq.structuredData} />
       <Navigation />
-
       {/* Hero Section */}
       <section className="min-h-screen flex items-center relative overflow-hidden">
         {/* Background Grid */}
@@ -307,7 +299,6 @@ interface WordPressFAQResponse {
             />
           ))}
         </div>
-
         <div className="container mx-auto px-6 relative z-1">
           <div className="max-w-4xl mx-auto text-center">
             {/* Status Badge */}
@@ -331,7 +322,6 @@ interface WordPressFAQResponse {
                 </span>
               </div>
             </motion.div>
-
             <motion.h1
               className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-white"
               initial={{ opacity: 0, y: 20 }}
@@ -349,7 +339,6 @@ interface WordPressFAQResponse {
                 />
               </span>
             </motion.h1>
-
             <motion.p
               className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto"
               initial={{ opacity: 0, y: 20 }}
@@ -385,7 +374,6 @@ interface WordPressFAQResponse {
                 </span>
               )}
             </motion.p>
-
             {loading && (
               <motion.div
                 className="flex items-center justify-center gap-3 mb-8"
@@ -396,7 +384,6 @@ interface WordPressFAQResponse {
                 <span className="text-gray-300">Зареждане на въпроси...</span>
               </motion.div>
             )}
-
             {/* Category Filter */}
             {!loading && (
               <motion.div
@@ -436,7 +423,6 @@ interface WordPressFAQResponse {
           </div>
         </div>
       </section>
-
       {/* FAQ Items */}
       <section className="py-20 bg-slate-800/30">
         <div className="container mx-auto px-6">
@@ -459,11 +445,9 @@ interface WordPressFAQResponse {
                           {item.category}
                         </span>
                       </div>
-
                       <h3 className="text-lg font-bold text-white mb-4 leading-tight">
                         {item.question}
                       </h3>
-
                       <div className="flex-1">
                         <p className="text-gray-300 leading-relaxed text-sm">
                           {item.answer}
@@ -477,7 +461,6 @@ interface WordPressFAQResponse {
           </div>
         </div>
       </section>
-
       {/* CTA Section */}
       <section className="py-20 bg-[#ECB629] relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
@@ -489,7 +472,6 @@ interface WordPressFAQResponse {
             backgroundSize: '40px 40px'
           }}></div>
         </div>
-
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <motion.h2
@@ -511,7 +493,6 @@ interface WordPressFAQResponse {
             >
               Свържете се с нас за персонализирана консултация и получете отговори на всички ваши въпроси за нашите бизнес инженеринг системи.
             </motion.p>
-
             <motion.div
               className="flex flex-col sm:flex-row gap-4 justify-center"
               initial={{ opacity: 0, y: 30 }}
@@ -543,7 +524,6 @@ interface WordPressFAQResponse {
           </div>
         </div>
       </section>
-
       <Footer />
     </div>
   );
