@@ -165,3 +165,74 @@ export function calculateReadingTime(content: string): number {
   const wordCount = content.replace(/<[^>]*>/g, '').split(/\s+/).length
   return Math.ceil(wordCount / wordsPerMinute)
 }
+
+// FAQ Types and Functions
+export interface WordPressFAQ {
+  id: number
+  title: {
+    rendered: string
+  }
+  content: {
+    rendered: string
+  }
+  slug: string
+  date: string
+  modified: string
+  status: string
+  meta: {
+    faq_category?: string
+  }
+  acf?: {
+    faq_category?: string
+  }
+}
+
+export async function getWordPressFAQs(): Promise<WordPressFAQ[]> {
+  try {
+    const response = await wpClient.get('/faq', {
+      params: {
+        status: 'publish',
+        per_page: 100,
+        orderby: 'menu_order',
+        order: 'asc'
+      }
+    })
+
+    return response.data
+  } catch (error) {
+    console.error('WordPress FAQ API Error:', error)
+    return []
+  }
+}
+
+export async function getWordPressFAQsByCategory(category?: string): Promise<WordPressFAQ[]> {
+  try {
+    const allFAQs = await getWordPressFAQs()
+    
+    if (!category || category === 'Всички') {
+      return allFAQs
+    }
+    
+    return allFAQs.filter(faq => 
+      faq.meta?.faq_category === category || 
+      faq.acf?.faq_category === category
+    )
+  } catch (error) {
+    console.error('WordPress FAQ Category API Error:', error)
+    return []
+  }
+}
+
+// Helper function to get FAQ categories
+export function getFAQCategories(faqs: WordPressFAQ[]): string[] {
+  const categories = new Set<string>()
+  
+  faqs.forEach(faq => {
+    const category = faq.meta?.faq_category || faq.acf?.faq_category
+    if (category) {
+      categories.add(category)
+    }
+  })
+  
+  return Array.from(categories).sort()
+}

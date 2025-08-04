@@ -5,24 +5,30 @@ import { motion } from "framer-motion";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { Card, CardContent } from "@/components/ui/card";
-import { HelpCircle } from "lucide-react";
+import { HelpCircle, Loader2 } from "lucide-react";
 import { StructuredData } from "@/components/structured-data";
 import { pageSEOData } from "@/data/seo-pages";
 import Link from "next/link";
 
 interface FAQItem {
+  id: number;
   question: string;
   answer: string;
   category: string;
 }
 
-const faqData: FAQItem[] = [
-  {
-    category: "Общи въпроси",
-    question: "Какво е бизнес инженеринг и как работи?",
-    answer:
-      "Бизнес инженерингът е системен подход към изграждане на предсказуеми и мащабируеми бизнес процеси в България. Вместо да разчитаме на късмет, създаваме структурирани системи за постигане на конкретни резултати чрез SEO, автоматизация и дигитален маркетинг.",
-  },
+interface WordPressFAQResponse {
+  success: boolean;
+  data: Array<{
+    id: number;
+    title: { rendered: string };
+    content: { rendered: string };
+    meta?: { faq_category?: string };
+    acf?: { faq_category?: string };
+  }>;
+  fallback?: boolean;
+  error?: string;
+}
   {
     category: "Общи въпроси",
     question: "За какви компании са подходящи вашите услуги?",
@@ -154,13 +160,71 @@ const faqData: FAQItem[] = [
     question: "Можем ли да управляваме системите самостоятелно?",
     answer:
       "Да, всички системи са проектирани да бъдат user-friendly. Предоставяме подробно обучение, документация и продължаваща поддръжка, за да можете постепенно да поемете управлението.",
-  },
-];
-
-const categories = Array.from(new Set(faqData.map((item) => item.category)));
-
-export default function FAQClient() {
+  export default function FAQClient() {
   const [selectedCategory, setSelectedCategory] = useState<string>("Всички");
+  const [faqData, setFaqData] = useState<FAQItem[]>([]);
+  const [categories, setCategories] = useState<string[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [isWordPress, setIsWordPress] = useState(false);
+
+  // Fallback static data
+  const staticFAQData: FAQItem[] = [
+    {
+      id: 1,
+      category: "Общи въпроси",
+      question: "Какво е бизнес инженеринг и как работи?",
+      answer: "Бизнес инженерингът е системен подход към изграждане на предсказуеми и мащабируеми бизнес процеси в България. Вместо да разчитаме на късмет, създаваме структурирани системи за постигане на конкретни резултати чрез SEO, автоматизация и дигитален маркетинг.",
+    },
+    {
+      id: 2,
+      category: "SEO Struktor™",
+      question: "Колко време отнема да видя резултати от SEO Struktor™?",
+      answer: "Първите резултати от SEO Struktor™ се виждат между 3-6 месеца, но значителни подобрения обикновено се постигат в рамките на 6-12 месеца. SEO е дългосрочна инвестиция за устойчив органичен растеж в Google.",
+    }
+  ];
+
+  // Fetch FAQ data from WordPress
+  useEffect(() => {
+    async function loadFAQData() {
+      try {
+        setLoading(true);
+        const response = await fetch('/api/wordpress/faq');
+        const result: WordPressFAQResponse = await response.json();
+
+        if (result.success && result.data.length > 0) {
+          // Transform WordPress data to our format
+          const transformedData: FAQItem[] = result.data.map(item => ({
+            id: item.id,
+            question: item.title.rendered,
+            answer: item.content.rendered.replace(/<[^>]*>/g, ''), // Strip HTML
+            category: item.meta?.faq_category || item.acf?.faq_category || 'Общи въпроси'
+          }));
+
+          setFaqData(transformedData);
+          setIsWordPress(true);
+          
+          // Extract categories
+          const uniqueCategories = Array.from(new Set(transformedData.map(item => item.category)));
+          setCategories(uniqueCategories);
+        } else {
+          // Use static fallback data
+          setFaqData(staticFAQData);
+          setIsWordPress(false);
+          setCategories(['Общи въпроси', 'SEO Struktor™']);
+        }
+      } catch (error) {
+        console.error('Error loading FAQ data:', error);
+        // Use static fallback data
+        setFaqData(staticFAQData);
+        setIsWordPress(false);
+        setCategories(['Общи въпроси', 'SEO Struktor™']);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    loadFAQData();
+  }, []);
 
   const filteredFAQ =
     selectedCategory === "Всички"
@@ -315,39 +379,60 @@ export default function FAQClient() {
               </Link>
               {" "}
               за растеж в България.
+              {isWordPress && (
+                <span className="block text-sm text-[#ECB629] mt-2">
+                  ✨ Актуализирано от WordPress CMS
+                </span>
+              )}
             </motion.p>
 
-            {/* Category Filter */}
-            <motion.div
-              className="flex flex-wrap gap-4 justify-center mb-12"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-            >
-              <button
-                onClick={() => setSelectedCategory("Всички")}
-                className={`px-6 py-3 rounded-full transition-all duration-300 font-medium ${
-                  selectedCategory === "Всички"
-                    ? "bg-[#ECB629] text-black shadow-lg"
-                    : "bg-slate-800/80 text-gray-300 hover:bg-slate-700/80 border border-slate-700"
-                }`}
+            {loading && (
+              <motion.div
+                className="flex items-center justify-center gap-3 mb-8"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
               >
-                Всички
-              </button>
-              {categories.map((category) => (
+                <Loader2 className="w-5 h-5 animate-spin text-[#ECB629]" />
+                <span className="text-gray-300">Зареждане на въпроси...</span>
+              </motion.div>
+            )}
+
+            {/* Category Filter */}
+            {!loading && (
+              <motion.div
+                className="flex flex-wrap gap-4 justify-center mb-12"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+              >
                 <button
-                  key={category}
-                  onClick={() => setSelectedCategory(category)}
+                  onClick={() => setSelectedCategory("Всички")}
                   className={`px-6 py-3 rounded-full transition-all duration-300 font-medium ${
-                    selectedCategory === category
+                    selectedCategory === "Всички"
                       ? "bg-[#ECB629] text-black shadow-lg"
                       : "bg-slate-800/80 text-gray-300 hover:bg-slate-700/80 border border-slate-700"
                   }`}
                 >
-                  {category}
+                  Всички ({faqData.length})
                 </button>
-              ))}
-            </motion.div>
+                {categories.map((category) => {
+                  const count = faqData.filter(item => item.category === category).length;
+                  return (
+                    <button
+                      key={category}
+                      onClick={() => setSelectedCategory(category)}
+                      className={`px-6 py-3 rounded-full transition-all duration-300 font-medium ${
+                        selectedCategory === category
+                          ? "bg-[#ECB629] text-black shadow-lg"
+                          : "bg-slate-800/80 text-gray-300 hover:bg-slate-700/80 border border-slate-700"
+                      }`}
+                    >
+                      {category} ({count})
+                    </button>
+                  );
+                })}
+              </motion.div>
+            )}
           </div>
         </div>
       </section>
