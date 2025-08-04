@@ -206,70 +206,84 @@ export default function BlogClient() {
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
                   <Card className="glass-card hover:border-[#ECB629]/50 transition-all duration-300 h-full group">
-                    <CardContent className="p-6 flex flex-col h-full">
-                      {/* Category Badge */}
-                      <Badge 
-                        variant="secondary" 
-                        className="bg-[#ECB629]/20 text-[#ECB629] mb-4 w-fit"
-                      >
-                        {post.category}
-                      </Badge>
-
-                      {/* Title */}
-                      <h3 className="text-xl font-bold mb-3 text-white group-hover:text-[#ECB629] transition-colors leading-tight">
-                        {post.title}
-                      </h3>
-
-                      {/* Excerpt */}
-                      <p className="text-gray-400 mb-6 flex-grow leading-relaxed">
-                        {post.excerpt}
-                      </p>
-
-                      {/* Meta Information */}
-                      <div className="flex items-center justify-between text-sm text-gray-500 mb-6">
-                        <div className="flex items-center gap-4">
-                          <div className="flex items-center gap-1">
-                            <User className="w-4 h-4" />
-                            <span>{post.author}</span>
-                          </div>
-                          <div className="flex items-center gap-1">
-                            <Clock className="w-4 h-4" />
-                            <span>{post.readTime} мин</span>
-                          </div>
+                    <CardContent className="p-0 flex flex-col h-full">
+                      {/* Featured Image */}
+                      {post.featuredImage && (
+                        <div className="relative h-48 rounded-t-lg overflow-hidden">
+                          <img 
+                            src={post.featuredImage} 
+                            alt={post.title}
+                            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
                         </div>
-                        <div className="flex items-center gap-1">
-                          <Calendar className="w-4 h-4" />
-                          <span>{post.publishedAt}</span>
-                        </div>
-                      </div>
-
-                      {/* Tags */}
-                      <div className="flex flex-wrap gap-2 mb-6">
-                        {post.tags.slice(0, 3).map((tag) => (
-                          <span
-                            key={tag}
-                            className="px-2 py-1 bg-gray-800 text-gray-300 text-xs rounded"
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                        {post.tags.length > 3 && (
-                          <span className="px-2 py-1 bg-gray-800 text-gray-300 text-xs rounded">
-                            +{post.tags.length - 3}
-                          </span>
-                        )}
-                      </div>
-
-                      {/* Read More Button */}
-                      <Link href={`/blog/${post.slug}`}>
-                        <Button 
-                          variant="outline" 
-                          className="w-full border-[#ECB629] text-[#ECB629] hover:bg-[#ECB629] hover:text-black transition-all group/btn"
+                      )}
+                      
+                      <div className="p-6 flex flex-col h-full">
+                        {/* Category Badge */}
+                        <Badge 
+                          variant="secondary" 
+                          className="bg-[#ECB629]/20 text-[#ECB629] mb-4 w-fit"
                         >
-                          Прочети повече
-                          <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />
-                        </Button>
-                      </Link>
+                          {post.category}
+                        </Badge>
+
+                        {/* Title */}
+                        <h3 className="text-xl font-bold mb-3 text-white group-hover:text-[#ECB629] transition-colors leading-tight">
+                          {post.title}
+                        </h3>
+
+                          {/* Excerpt */}
+                        <p className="text-gray-400 mb-6 flex-grow leading-relaxed">
+                          {post.excerpt}
+                        </p>
+
+                        {/* Meta Information */}
+                        <div className="flex items-center justify-between text-sm text-gray-500 mb-6">
+                          <div className="flex items-center gap-4">
+                            <div className="flex items-center gap-1">
+                              <User className="w-4 h-4" />
+                              <span>{post.author}</span>
+                            </div>
+                            <div className="flex items-center gap-1">
+                              <Clock className="w-4 h-4" />
+                              <span>{post.readTime} мин</span>
+                            </div>
+                          </div>
+                          <div className="flex items-center gap-1">
+                            <Calendar className="w-4 h-4" />
+                            <span>{post.publishedAt}</span>
+                          </div>
+                        </div>
+
+                        {/* Tags */}
+                        <div className="flex flex-wrap gap-2 mb-6">
+                          {post.tags.slice(0, 3).map((tag) => (
+                            <span
+                              key={tag}
+                              className="px-2 py-1 bg-gray-800 text-gray-300 text-xs rounded"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                          {post.tags.length > 3 && (
+                            <span className="px-2 py-1 bg-gray-800 text-gray-300 text-xs rounded">
+                              +{post.tags.length - 3}
+                            </span>
+                          )}
+                        </div>
+
+                        {/* Read More Button */}
+                        <Link href={`/blog/${post.slug}`}>
+                          <Button 
+                            variant="outline" 
+                            className="w-full border-[#ECB629] text-[#ECB629] hover:bg-[#ECB629] hover:text-black transition-all group/btn"
+                          >
+                            Прочети повече
+                            <ArrowRight className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 transition-transform" />
+                          </Button>
+                        </Link>
+                      </div>
                     </CardContent>
                   </Card>
                 </motion.div>
