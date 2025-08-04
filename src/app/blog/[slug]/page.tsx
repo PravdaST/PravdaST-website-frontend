@@ -10,13 +10,8 @@ interface Props {
 }
 
 export async function generateStaticParams() {
-  // Използваме статични slug-ове за избягване на build time грешки
-  return [
-    { slug: 'poznato-li-ti-e-tova-chuvstvo' },
-    { slug: 'kak-da-optimizirate-vashiya-biznes-za-maksimalna-efektivnost' },
-    { slug: '3-te-lazhi-za-privlichaneto-na-klienti-koito-vi-struvat-tsya' },
-    { slug: 'biznes-inzheneri-vs-marketing-ekip-alternativa' }
-  ]
+  // All blog posts now come from WordPress only
+  return []
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -81,45 +76,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     }
   }
   
-  try {
-    const post = getBlogPostBySlugFromFiles(slug)
-    
-    if (!post) {
-      return {
-        title: 'Статията не е намерена - Pravda Agency Blog',
-        description: 'Статията която търсите не съществува.',
-      }
-    }
-
-    return {
-      title: `${post.title} | Pravda Agency Blog`,
-      description: post.excerpt,
-      keywords: post.tags.join(', '),
-      openGraph: {
-        title: post.title,
-        description: post.excerpt,
-        type: 'article',
-        publishedTime: post.publishedAt,
-        authors: [post.author],
-        tags: post.tags,
-        locale: 'bg_BG',
-        url: `https://www.pravdagency.eu/blog/${post.slug}`,
-        siteName: 'Pravda Agency',
-      },
-      twitter: {
-        card: 'summary_large_image',
-        title: post.title,
-        description: post.excerpt,
-      },
-      alternates: {
-        canonical: `https://www.pravdagency.eu/blog/${post.slug}`,
-      },
-    }
-  } catch (error) {
-    return {
-      title: 'Грешка при зареждане - Pravda Agency Blog',
-      description: 'Възникна грешка при зареждане на статията.',
-    }
+  // No local blog posts - only WordPress posts
+  return {
+    title: 'Статията не е намерена - Pravda Agency Blog',
+    description: 'Статията която търсите не съществува.',
   }
 }
 
@@ -145,16 +105,6 @@ export default async function BlogPostPage({ params }: Props) {
     notFound()
   }
   
-  try {
-    const post = getBlogPostBySlugFromFiles(slug)
-
-    if (!post) {
-      notFound()
-    }
-
-    return <BlogPostClient post={post} />
-  } catch (error) {
-    console.error('Error loading blog post:', error)
-    notFound()
-  }
+  // No local blog posts exist - only WordPress posts
+  notFound()
 }

@@ -22,13 +22,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/privacy'
   ]
 
-  // Static blog pages - правилно генерирани slug-ове от системата
-  const staticBlogPages = [
-    '/blog/poznato-li-ti-e-tova-chuvstvo',
-    '/blog/kak-da-optimizirate-vashiya-biznes-za-maksimalna-efektivnost', 
-    '/blog/3-te-lazhi-za-privlichaneto-na-klienti-koito-vi-struvat-tsya',
-    '/blog/biznes-inzheneri-vs-marketing-ekip-alternativa'
-  ]
+  // No static blog pages - all blog content comes from WordPress
 
   // WordPress blog pages - динамично генерирани от WordPress API
   let wordpressBlogPages: string[] = []
@@ -42,7 +36,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }
 
   // Combine all pages
-  const allPages = [...staticPages, ...staticBlogPages, ...wordpressBlogPages]
+  const allPages = [...staticPages, ...wordpressBlogPages]
 
   const currentDate = new Date()
 

@@ -51,12 +51,8 @@ export default function BlogClient() {
   useEffect(() => {
     async function loadBlogPosts() {
       try {
-        // Load local blog posts
-        const localResponse = await fetch('/api/blog/files');
+        // All blog posts now come from WordPress only
         let localPosts = [];
-        if (localResponse.ok) {
-          localPosts = await localResponse.json();
-        }
 
         // Load WordPress posts
         const wpResponse = await fetch('/api/wordpress/posts?per_page=10');

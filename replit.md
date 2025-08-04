@@ -53,6 +53,14 @@ Project organization: Documentation files organized in `/docs` folder for cleane
 
 ## Recent Updates
 
+### Local Blog Posts Removal ✅ (February 4, 2025)
+- **Complete Migration**: All local blog posts removed from codebase
+- **WordPress Only**: Blog content now exclusively from WordPress Headless CMS
+- **API Cleanup**: Removed local blog API endpoints (/api/blog/posts, /api/blog/search, /api/blog/[slug])
+- **Static Generation**: Removed hardcoded blog slugs from generateStaticParams
+- **File Cleanup**: Deleted all .md blog post files and local blog data
+- **Status**: WordPress is now the single source of truth for all blog content
+
 ### WordPress Headless Integration ✅ (January 31, 2025)
 - **WordPress API**: Successfully connected to admin.pravdagency.eu via REST API
 - **Authentication**: Using Application Password (Pravda Website / GprR PbZk UjrC dszy Y6KJ BD1I)
