@@ -21,6 +21,7 @@ import {
   ExternalLink,
 } from "lucide-react";
 import { motion } from "framer-motion";
+import { decodeHtmlEntities } from "@/lib/html-decoder";
 
 interface BlogPost {
   id: string;
@@ -44,28 +45,7 @@ export default function BlogClient() {
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // Function to decode HTML entities
-  const decodeHtmlEntities = (text: string): string => {
-    const entityMap: { [key: string]: string } = {
-      '&#8220;': '"',
-      '&#8221;': '"',
-      '&#8216;': "'",
-      '&#8217;': "'",
-      '&#8211;': '–',
-      '&#8212;': '—',
-      '&#8230;': '…',
-      '&amp;': '&',
-      '&lt;': '<',
-      '&gt;': '>',
-      '&quot;': '"',
-      '&apos;': "'",
-      '&nbsp;': ' '
-    };
 
-    return text.replace(/&#?\w+;/g, (entity) => {
-      return entityMap[entity] || entity;
-    });
-  };
 
   // Load blog posts from API (both local and WordPress)
   useEffect(() => {

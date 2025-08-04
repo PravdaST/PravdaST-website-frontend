@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 import BlogPostClient from './BlogPostClient'
 import { readBlogPostsFromFiles, getBlogPostBySlugFromFiles } from '@/lib/blog-file-reader'
 import { getWordPressPost } from '@/lib/wordpress'
+import { decodeHtmlEntities } from '@/lib/html-decoder'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -28,27 +29,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       const post = await getWordPressPost(wpSlug)
       
       if (post) {
-        // Function to decode HTML entities
-        const decodeHtmlEntities = (text: string): string => {
-          const entityMap: { [key: string]: string } = {
-            '&#8220;': '"',
-            '&#8221;': '"',
-            '&#8216;': "'",
-            '&#8217;': "'",
-            '&#8211;': '–',
-            '&#8212;': '—',
-            '&#8230;': '…',
-            '&amp;': '&',
-            '&lt;': '<',
-            '&gt;': '>',
-            '&quot;': '"',
-            '&apos;': "'",
-            '&nbsp;': ' '
-          };
-          return text.replace(/&#?\w+;/g, (entity) => {
-            return entityMap[entity] || entity;
-          });
-        };
+        // Use imported HTML entity decoder
 
         const title = decodeHtmlEntities(post.title.rendered.replace(/<[^>]*>/g, ''))
         const description = decodeHtmlEntities(post.excerpt.rendered.replace(/<[^>]*>/g, '')).substring(0, 160)

@@ -14,6 +14,7 @@ import {
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import { cleanHtmlText } from "@/lib/html-decoder";
 
 interface WordPressPost {
   id: number;
@@ -121,29 +122,7 @@ export default function WordPressPostClient({ post }: Props) {
   };
 
   const extractTextFromHtml = (html: string) => {
-    // First remove HTML tags, then decode HTML entities
-    const textWithoutTags = html.replace(/<[^>]*>/g, '').trim();
-    
-    // Decode common HTML entities
-    const entityMap: { [key: string]: string } = {
-      '&#8220;': '"',
-      '&#8221;': '"',
-      '&#8216;': "'",
-      '&#8217;': "'",
-      '&#8211;': '–',
-      '&#8212;': '—',
-      '&#8230;': '…',
-      '&amp;': '&',
-      '&lt;': '<',
-      '&gt;': '>',
-      '&quot;': '"',
-      '&apos;': "'",
-      '&nbsp;': ' '
-    };
-
-    return textWithoutTags.replace(/&#?\w+;/g, (entity) => {
-      return entityMap[entity] || entity;
-    });
+    return cleanHtmlText(html);
   };
 
   const getFeaturedImage = () => {
