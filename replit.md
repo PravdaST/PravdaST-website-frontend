@@ -50,3 +50,24 @@ Project organization: Documentation files organized in `/docs` folder for cleane
 - **shadcn/ui** - Component library
 - **Framer Motion** - Animations
 - **Lucide React** - Icons
+
+## Recent Updates
+
+### WordPress Headless Integration ✅ (January 31, 2025)
+- **WordPress API**: Successfully connected to admin.pravdagency.eu via REST API
+- **Authentication**: Using Application Password (Pravda Website / GprR PbZk UjrC dszy Y6KJ BD1I)
+- **Blog Integration**: WordPress posts appear in main /blog page alongside local posts
+- **Real-time Updates**: New WordPress posts automatically appear on the website
+- **Features**: Search, filtering, pagination, featured images, categories
+- **API Endpoints**: /api/wordpress/posts, /api/wordpress/categories, /api/wordpress/post/[slug]
+- **User Experience**: WordPress posts open in new tab with external link icon
+- **Status**: Fully functional - WordPress content displays seamlessly in main blog
+
+### Email Delivery Status ✅ (January 31, 2025)
+- **Resend Integration**: Completely replaced SendGrid with Resend.com for better reliability
+- **Email Recipients**: All contact forms send to contact@pravdast.agency only (per user request)
+- **Sender Domain**: Using verified pravdagency.eu domain (website@pravdagency.eu)
+- **API Configuration**: Using valid RESEND_API_KEY with proper permissions
+- **Rate Limiting**: Active (5 submissions per hour per IP)
+- **Delivery Status**: Successfully tested - emails deliver with unique IDs
+- **Status**: Ready for production - Resend is more reliable than SendGrid
