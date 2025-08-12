@@ -62,6 +62,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       alternates: {
         canonical: `https://www.pravdagency.eu/blog/wp-${slug}`,
       },
+      other: {
+        'fb:app_id': '1234567890123456',
+      },
     }
   } catch (error) {
     return {

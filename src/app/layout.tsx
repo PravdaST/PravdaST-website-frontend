@@ -47,6 +47,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://www.pravdagency.eu/',
   },
+  other: {
+    'fb:app_id': '1234567890123456',
+  },
 }
 
 export default function RootLayout({

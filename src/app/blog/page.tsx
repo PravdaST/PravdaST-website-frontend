@@ -31,6 +31,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://www.pravdagency.eu/blog',
   },
+  other: {
+    'fb:app_id': '1234567890123456',
+  },
 }
 
 // Server компонент за инициализиране на данните
