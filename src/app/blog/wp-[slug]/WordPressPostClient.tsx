@@ -361,8 +361,26 @@ export default function WordPressPostClient({ post }: Props) {
           padding-left: 2rem;
         }
         
+        .wordpress-content ul {
+          list-style-type: disc;
+        }
+        
+        .wordpress-content ol {
+          list-style-type: decimal;
+        }
+        
+        .wordpress-content ul ul {
+          list-style-type: circle;
+          margin: 0.5rem 0;
+        }
+        
+        .wordpress-content ul ul ul {
+          list-style-type: square;
+        }
+        
         .wordpress-content li {
           margin-bottom: 0.5rem;
+          display: list-item;
         }
         
         .wordpress-content a {
