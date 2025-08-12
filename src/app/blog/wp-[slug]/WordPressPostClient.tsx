@@ -15,6 +15,8 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { cleanHtmlText, addAltTextToImages } from "@/lib/html-decoder";
+import RelatedPosts from "@/components/related-posts";
+import Breadcrumb from "@/components/breadcrumb";
 
 interface WordPressPost {
   id: number;
@@ -92,10 +94,40 @@ export default function WordPressPostClient({ post }: Props) {
       "inLanguage": "bg-BG"
     };
 
+    // Breadcrumb structured data
+    const breadcrumbData = {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Начало",
+          "item": "https://www.pravdagency.eu"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Блог",
+          "item": "https://www.pravdagency.eu/blog"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": extractTextFromHtml(post.title.rendered),
+          "item": `https://www.pravdagency.eu/blog/wp-${post.slug}`
+        }
+      ]
+    };
+
     // Remove existing structured data
     const existingScript = document.querySelector('script[type="application/ld+json"][data-wp-post="true"]');
     if (existingScript) {
       existingScript.remove();
+    }
+    const existingBreadcrumb = document.querySelector('script[type="application/ld+json"][data-breadcrumb="true"]');
+    if (existingBreadcrumb) {
+      existingBreadcrumb.remove();
     }
 
     // Add new structured data
@@ -105,10 +137,21 @@ export default function WordPressPostClient({ post }: Props) {
     script.textContent = JSON.stringify(structuredData);
     document.head.appendChild(script);
 
+    // Add breadcrumb structured data
+    const breadcrumbScript = document.createElement('script');
+    breadcrumbScript.type = 'application/ld+json';
+    breadcrumbScript.setAttribute('data-breadcrumb', 'true');
+    breadcrumbScript.textContent = JSON.stringify(breadcrumbData);
+    document.head.appendChild(breadcrumbScript);
+
     return () => {
       const scriptToRemove = document.querySelector('script[type="application/ld+json"][data-wp-post="true"]');
       if (scriptToRemove) {
         scriptToRemove.remove();
+      }
+      const breadcrumbToRemove = document.querySelector('script[type="application/ld+json"][data-breadcrumb="true"]');
+      if (breadcrumbToRemove) {
+        breadcrumbToRemove.remove();
       }
     };
   }, [post]);
@@ -197,6 +240,14 @@ export default function WordPressPostClient({ post }: Props) {
             transition={{ duration: 0.8 }}
             className="max-w-4xl mx-auto"
           >
+            {/* Breadcrumb Navigation */}
+            <Breadcrumb 
+              items={[
+                { label: 'Блог', href: '/blog' },
+                { label: extractTextFromHtml(post.title.rendered) }
+              ]}
+            />
+
             {/* Back Button */}
             <div className="mb-8">
               <Link href="/blog">
@@ -319,6 +370,13 @@ export default function WordPressPostClient({ post }: Props) {
           </div>
         </div>
       </section>
+
+      {/* Related Posts */}
+      <RelatedPosts 
+        currentPostId={post.id}
+        categories={post.categories}
+        tags={post.tags}
+      />
 
       <Footer />
       
