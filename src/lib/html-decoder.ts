@@ -104,3 +104,8 @@ export function addAltTextToImages(html: string): string {
     return `<img${attributes} alt="${altText}">`;
   });
 }
+
+// Extract clean text from HTML (removes tags and entities)
+export function extractTextFromHtml(htmlString: string): string {
+  return cleanHtmlText(htmlString);
+}
