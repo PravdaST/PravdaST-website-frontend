@@ -14,9 +14,10 @@ import {
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { cleanHtmlText, addAltTextToImages } from "@/lib/html-decoder";
+import { cleanHtmlText, addAltTextToImages, extractTextFromHtml } from "@/lib/html-decoder";
 import RelatedPosts from "@/components/related-posts";
 import Breadcrumb from "@/components/breadcrumb";
+import { addContextualServiceLinks, generateContextualCTAs, createServicesRecommendationBox } from '@/lib/internal-linking';
 
 interface WordPressPost {
   id: number;
@@ -320,10 +321,12 @@ export default function WordPressPostClient({ post }: Props) {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="prose prose-lg prose-invert max-w-none"
             >
-              {/* Article Content */}
+              {/* Article Content with Internal Links */}
               <div 
                 className="text-gray-300 leading-relaxed wordpress-content"
-                dangerouslySetInnerHTML={{ __html: addAltTextToImages(post.content.rendered) }}
+                dangerouslySetInnerHTML={{ 
+                  __html: addContextualServiceLinks(addAltTextToImages(post.content.rendered))
+                }}
               />
             </motion.div>
 
@@ -349,6 +352,19 @@ export default function WordPressPostClient({ post }: Props) {
                 </div>
               </motion.div>
             )}
+
+            {/* Contextual Services Recommendation */}
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+              className="mt-12"
+              dangerouslySetInnerHTML={{ 
+                __html: createServicesRecommendationBox(
+                  generateContextualCTAs(post.content.rendered, extractTextFromHtml(post.title.rendered))
+                )
+              }}
+            />
 
             {/* Back to Blog */}
             <motion.div 
