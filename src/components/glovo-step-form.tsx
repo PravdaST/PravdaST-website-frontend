@@ -94,10 +94,33 @@ export const GlovoStepForm = () => {
       case 3:
         return formData.avgOrderValue !== "";
       case 4:
-        return formData.email.trim().length > 0 && formData.phone.trim().length > 0;
+        // Strict email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const isEmailValid = emailRegex.test(formData.email.trim());
+        
+        // Bulgarian phone validation
+        const phoneRegex = /^(\+359|0)[0-9]{8,9}$/;
+        const isPhoneValid = phoneRegex.test(formData.phone.trim());
+        
+        return isEmailValid && isPhoneValid;
       default:
         return true;
     }
+  };
+
+  const getValidationMessage = () => {
+    if (currentStep === 4) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const phoneRegex = /^(\+359|0)[0-9]{8,9}$/;
+      
+      if (!emailRegex.test(formData.email.trim())) {
+        return "Моля въведете валиден имейл адрес";
+      }
+      if (!phoneRegex.test(formData.phone.trim())) {
+        return "Моля въведете валиден телефонен номер (започва с 0 или +359)";
+      }
+    }
+    return "";
   };
 
   const steps = [
@@ -202,29 +225,44 @@ export const GlovoStepForm = () => {
           <div>
             <label className="block text-green-400 font-semibold mb-2">
               <Mail className="inline w-4 h-4 mr-2" />
-              Имейл адрес
+              Имейл адрес *
             </label>
             <input
               type="email"
               value={formData.email}
               onChange={(e) => setFormData({...formData, email: e.target.value})}
               placeholder="your@email.com"
-              className="w-full px-6 py-4 bg-black/50 border border-green-400/30 rounded-xl text-white text-lg focus:border-green-400 focus:outline-none"
+              className={`w-full px-6 py-4 bg-black/50 border rounded-xl text-white text-lg focus:outline-none ${
+                formData.email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim())
+                  ? 'border-red-400 focus:border-red-400'
+                  : 'border-green-400/30 focus:border-green-400'
+              }`}
+              required
             />
           </div>
           <div>
             <label className="block text-green-400 font-semibold mb-2">
               <Phone className="inline w-4 h-4 mr-2" />
-              Телефон
+              Телефон *
             </label>
             <input
               type="tel"
               value={formData.phone}
               onChange={(e) => setFormData({...formData, phone: e.target.value})}
-              placeholder="0888 123 456"
-              className="w-full px-6 py-4 bg-black/50 border border-green-400/30 rounded-xl text-white text-lg focus:border-green-400 focus:outline-none"
+              placeholder="0888 123 456 или +359888123456"
+              className={`w-full px-6 py-4 bg-black/50 border rounded-xl text-white text-lg focus:outline-none ${
+                formData.phone.trim() && !/^(\+359|0)[0-9]{8,9}$/.test(formData.phone.trim())
+                  ? 'border-red-400 focus:border-red-400'
+                  : 'border-green-400/30 focus:border-green-400'
+              }`}
+              required
             />
           </div>
+          {getValidationMessage() && (
+            <div className="text-red-400 text-sm bg-red-400/10 border border-red-400/30 rounded-lg p-3">
+              ⚠️ {getValidationMessage()}
+            </div>
+          )}
           <div className="text-sm text-gray-400 bg-yellow-400/10 border border-yellow-400/30 rounded-lg p-4">
             💡 Ще ви изпратим доклада по имейл незабавно и може да се свържем с допълнителни съвети за пестене на пари
           </div>
