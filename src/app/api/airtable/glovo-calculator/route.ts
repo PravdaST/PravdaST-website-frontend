@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 
 const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY;
 const AIRTABLE_BASE_ID = process.env.AIRTABLE_BASE_ID;
-const AIRTABLE_TABLE_ID = process.env.AIRTABLE_TABLE_ID || 'tblofYDOCTS2PHwBP';
+const AIRTABLE_TABLE_NAME = process.env.AIRTABLE_TABLE_NAME || 'Fast Food';
 
 export async function POST(request: NextRequest) {
   try {
@@ -19,7 +19,11 @@ export async function POST(request: NextRequest) {
 
     // Validate environment variables
     if (!AIRTABLE_API_KEY || !AIRTABLE_BASE_ID) {
-      console.error('Missing Airtable environment variables');
+      console.error('Missing Airtable environment variables:', {
+        hasApiKey: !!AIRTABLE_API_KEY,
+        hasBaseId: !!AIRTABLE_BASE_ID,
+        tableName: AIRTABLE_TABLE_NAME
+      });
       return NextResponse.json(
         { error: 'Server configuration error' },
         { status: 500 }
@@ -42,7 +46,7 @@ export async function POST(request: NextRequest) {
     console.log('GLOVO Calculator submission:', airtableData.fields);
 
     // Send to Airtable
-    const response = await fetch(`https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE_ID}`, {
+    const response = await fetch(`https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${encodeURIComponent(AIRTABLE_TABLE_NAME)}`, {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${AIRTABLE_API_KEY}`,
@@ -54,7 +58,17 @@ export async function POST(request: NextRequest) {
     if (!response.ok) {
       const errorText = await response.text();
       console.error(`Airtable API error: ${response.status} - ${errorText}`);
-      throw new Error(`Airtable API error: ${response.status}`);
+      console.error('Request URL:', `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${encodeURIComponent(AIRTABLE_TABLE_NAME)}`);
+      console.error('Request body:', JSON.stringify(airtableData, null, 2));
+      
+      return NextResponse.json(
+        { 
+          error: 'Airtable API error',
+          details: errorText,
+          status: response.status
+        },
+        { status: response.status }
+      );
     }
 
     const result = await response.json();
