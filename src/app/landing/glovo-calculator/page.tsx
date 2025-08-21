@@ -3,22 +3,10 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { CheckCircle, Calculator, Phone, Shield, Award, TrendingUp, DollarSign, Users } from "lucide-react";
-import { useState } from "react";
 import Image from "next/image";
+import { GlovoStepForm } from "@/components/glovo-step-form";
 
 export default function GlovoCalculatorLanding() {
-  const [formData, setFormData] = useState({
-    restaurantName: "",
-    monthlyRevenue: "",
-    phone: "",
-    email: ""
-  });
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Handle form submission
-    console.log("Form submitted:", formData);
-  };
 
   return (
     <div className="min-h-screen bg-black text-white">
@@ -334,105 +322,17 @@ export default function GlovoCalculatorLanding() {
         </div>
       </section>
 
-      {/* Lead Form Section */}
+      {/* Step Form Section */}
       <section id="calculator" className="py-20">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="max-w-2xl mx-auto"
+            className="max-w-3xl mx-auto"
           >
             <div className="glassmorphism border border-yellow-400/30 rounded-3xl p-8">
-              <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-8">
-                Получете безплатния си Glovo анализ
-              </h2>
-
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
-                  <label className="block text-green-400 font-semibold mb-2" htmlFor="restaurantName">
-                    Име на ресторанта
-                  </label>
-                  <input
-                    type="text"
-                    id="restaurantName"
-                    className="w-full px-4 py-3 bg-black/50 border border-green-400/30 rounded-lg text-white focus:border-green-400 focus:outline-none"
-                    placeholder="напр. Пица Маестро"
-                    value={formData.restaurantName}
-                    onChange={(e) => setFormData({...formData, restaurantName: e.target.value})}
-                    required
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-green-400 font-semibold mb-2" htmlFor="monthlyRevenue">
-                    Месечни приходи от доставки (лв)
-                  </label>
-                  <input
-                    type="number"
-                    id="monthlyRevenue"
-                    className="w-full px-4 py-3 bg-black/50 border border-green-400/30 rounded-lg text-white focus:border-green-400 focus:outline-none"
-                    placeholder="напр. 8000"
-                    value={formData.monthlyRevenue}
-                    onChange={(e) => setFormData({...formData, monthlyRevenue: e.target.value})}
-                    required
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-green-400 font-semibold mb-2" htmlFor="phone">
-                    Телефон
-                  </label>
-                  <input
-                    type="tel"
-                    id="phone"
-                    className="w-full px-4 py-3 bg-black/50 border border-green-400/30 rounded-lg text-white focus:border-green-400 focus:outline-none"
-                    placeholder="0888 123 456"
-                    value={formData.phone}
-                    onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                    required
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-green-400 font-semibold mb-2" htmlFor="email">
-                    Имейл
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    className="w-full px-4 py-3 bg-black/50 border border-green-400/30 rounded-lg text-white focus:border-green-400 focus:outline-none"
-                    placeholder="your@email.com"
-                    value={formData.email}
-                    onChange={(e) => setFormData({...formData, email: e.target.value})}
-                    required
-                  />
-                </div>
-
-                <Button
-                  type="submit"
-                  size="lg"
-                  className="w-full bg-gradient-to-r from-yellow-400 to-green-400 text-black hover:opacity-90 py-4 text-xl font-bold shadow-2xl shadow-yellow-400/25"
-                >
-                  Изчисли моите спестявания СЕГА
-                </Button>
-              </form>
-
-              {/* Trust Signals */}
-              <div className="mt-8 space-y-4 text-center">
-                <div className="flex items-center justify-center space-x-2 text-green-400">
-                  <Shield className="w-5 h-5" />
-                  <span>100% безплатен анализ - не се изисква плащане</span>
-                </div>
-                <div className="flex items-center justify-center space-x-2 text-yellow-400">
-                  <Phone className="w-5 h-5" />
-                  <span>Резултатите се доставят на телефона ви за 24 часа</span>
-                </div>
-                <div className="flex items-center justify-center space-x-2 text-green-400">
-                  <Award className="w-5 h-5" />
-                  <span>🇧🇬 Създадено специално за български ресторанти</span>
-                </div>
-              </div>
+              <GlovoStepForm />
             </div>
           </motion.div>
         </div>

@@ -1,0 +1,360 @@
+"use client";
+
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { ChevronLeft, ChevronRight, Calculator, Mail, Phone, CheckCircle } from "lucide-react";
+
+interface FormData {
+  restaurantName: string;
+  dailyOrders: string;
+  avgOrderValue: string;
+  email: string;
+  phone: string;
+}
+
+export const GlovoStepForm = () => {
+  const [currentStep, setCurrentStep] = useState(0);
+  const [formData, setFormData] = useState<FormData>({
+    restaurantName: "",
+    dailyOrders: "",
+    avgOrderValue: "",
+    email: "",
+    phone: ""
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const dailyOrderOptions = [
+    { value: "5-10", label: "5-10 поръчки" },
+    { value: "11-20", label: "11-20 поръчки" },
+    { value: "21-35", label: "21-35 поръчки" },
+    { value: "36-50", label: "36-50 поръчки" },
+    { value: "50+", label: "50+ поръчки" }
+  ];
+
+  const avgOrderValueOptions = [
+    { value: "15-25", label: "15-25 лв" },
+    { value: "26-35", label: "26-35 лв" },
+    { value: "36-50", label: "36-50 лв" },
+    { value: "50+", label: "50+ лв" }
+  ];
+
+  const submitToAirtable = async () => {
+    try {
+      setIsSubmitting(true);
+      
+      const response = await fetch('/api/airtable/glovo-calculator', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          restaurant_name: formData.restaurantName,
+          daily_orders: formData.dailyOrders,
+          avg_order_value: formData.avgOrderValue,
+          email: formData.email,
+          phone: formData.phone,
+          timestamp: new Date().toISOString()
+        }),
+      });
+
+      if (response.ok) {
+        setIsSubmitted(true);
+        setCurrentStep(6); // Thank you screen
+      } else {
+        throw new Error('Failed to submit');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert('Възникна грешка при изпращането. Моля, опитайте отново.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const nextStep = () => {
+    if (currentStep < 6) {
+      setCurrentStep(currentStep + 1);
+    }
+  };
+
+  const prevStep = () => {
+    if (currentStep > 0) {
+      setCurrentStep(currentStep - 1);
+    }
+  };
+
+  const isStepValid = () => {
+    switch (currentStep) {
+      case 1:
+        return formData.restaurantName.trim().length > 0;
+      case 2:
+        return formData.dailyOrders !== "";
+      case 3:
+        return formData.avgOrderValue !== "";
+      case 4:
+        return formData.email.trim().length > 0 && formData.phone.trim().length > 0;
+      default:
+        return true;
+    }
+  };
+
+  const steps = [
+    // Welcome Screen (Step 0)
+    {
+      title: "Безплатен Glovo калкулатор на разходи",
+      subtitle: "Вижте колко наистина плащате",
+      content: (
+        <div className="text-center py-8">
+          <div className="mb-8">
+            <Calculator className="w-20 h-20 text-yellow-400 mx-auto mb-4" />
+            <p className="text-xl text-gray-300 leading-relaxed">
+              Открийте точните си Glovo разходи за под 2 минути и получете персонализиран план за спестявания.
+            </p>
+          </div>
+          <div className="flex items-center justify-center space-x-4 text-green-400 mb-8">
+            <CheckCircle className="w-5 h-5" />
+            <span>100% безплатно</span>
+            <CheckCircle className="w-5 h-5" />
+            <span>Без регистрация</span>
+            <CheckCircle className="w-5 h-5" />
+            <span>Моментални резултати</span>
+          </div>
+          <Button
+            onClick={nextStep}
+            size="lg"
+            className="bg-gradient-to-r from-yellow-400 to-green-400 text-black hover:opacity-90 px-8 py-4 text-lg font-bold"
+          >
+            Започни калкулатора
+            <ChevronRight className="ml-2 w-5 h-5" />
+          </Button>
+        </div>
+      )
+    },
+    // Question 1: Restaurant Name (Step 1)
+    {
+      title: "Как се казва вашият ресторант?",
+      subtitle: "Това ще ни помогне да персонализираме анализа",
+      content: (
+        <div className="py-8">
+          <input
+            type="text"
+            value={formData.restaurantName}
+            onChange={(e) => setFormData({...formData, restaurantName: e.target.value})}
+            placeholder="Въведете името на ресторанта"
+            className="w-full px-6 py-4 bg-black/50 border border-green-400/30 rounded-xl text-white text-lg focus:border-green-400 focus:outline-none"
+            autoFocus
+          />
+        </div>
+      )
+    },
+    // Question 2: Daily Orders (Step 2)
+    {
+      title: "Колко поръчки за доставка получавате дневно средно?",
+      subtitle: "Изберете най-близкия вариант",
+      content: (
+        <div className="py-8 space-y-4">
+          {dailyOrderOptions.map((option) => (
+            <button
+              key={option.value}
+              onClick={() => setFormData({...formData, dailyOrders: option.value})}
+              className={`w-full p-4 rounded-xl border text-left transition-all ${
+                formData.dailyOrders === option.value
+                  ? 'border-green-400 bg-green-400/10 text-green-400'
+                  : 'border-gray-600 bg-black/30 text-gray-300 hover:border-green-400/50'
+              }`}
+            >
+              <div className="text-lg font-semibold">{option.label}</div>
+            </button>
+          ))}
+        </div>
+      )
+    },
+    // Question 3: Average Order Value (Step 3)
+    {
+      title: "Каква е средната стойност на поръчката ви за доставка?",
+      subtitle: "Изберете възможността, която най-добре описва бизнеса ви",
+      content: (
+        <div className="py-8 space-y-4">
+          {avgOrderValueOptions.map((option) => (
+            <button
+              key={option.value}
+              onClick={() => setFormData({...formData, avgOrderValue: option.value})}
+              className={`w-full p-4 rounded-xl border text-left transition-all ${
+                formData.avgOrderValue === option.value
+                  ? 'border-green-400 bg-green-400/10 text-green-400'
+                  : 'border-gray-600 bg-black/30 text-gray-300 hover:border-green-400/50'
+              }`}
+            >
+              <div className="text-lg font-semibold">{option.label}</div>
+            </button>
+          ))}
+        </div>
+      )
+    },
+    // Question 4: Contact Info (Step 4)
+    {
+      title: "Къде да изпратим персонализирания ви Glovo анализ?",
+      subtitle: "Ще ви изпратим доклада незабавно по имейл и може да се свържем с допълнителни съвети за спестявания",
+      content: (
+        <div className="py-8 space-y-6">
+          <div>
+            <label className="block text-green-400 font-semibold mb-2">
+              <Mail className="inline w-4 h-4 mr-2" />
+              Имейл адрес
+            </label>
+            <input
+              type="email"
+              value={formData.email}
+              onChange={(e) => setFormData({...formData, email: e.target.value})}
+              placeholder="your@email.com"
+              className="w-full px-6 py-4 bg-black/50 border border-green-400/30 rounded-xl text-white text-lg focus:border-green-400 focus:outline-none"
+            />
+          </div>
+          <div>
+            <label className="block text-green-400 font-semibold mb-2">
+              <Phone className="inline w-4 h-4 mr-2" />
+              Телефон
+            </label>
+            <input
+              type="tel"
+              value={formData.phone}
+              onChange={(e) => setFormData({...formData, phone: e.target.value})}
+              placeholder="0888 123 456"
+              className="w-full px-6 py-4 bg-black/50 border border-green-400/30 rounded-xl text-white text-lg focus:border-green-400 focus:outline-none"
+            />
+          </div>
+          <div className="text-sm text-gray-400 bg-yellow-400/10 border border-yellow-400/30 rounded-lg p-4">
+            💡 Ще ви изпратим доклада по имейл незабавно и може да се свържем с допълнителни съвети за пестене на пари
+          </div>
+        </div>
+      )
+    },
+    // Processing Screen (Step 5)
+    {
+      title: "Изчисляваме вашия Glovo анализ...",
+      subtitle: "Моля, изчакайте докато обработваме данните",
+      content: (
+        <div className="text-center py-8">
+          <div className="mb-8">
+            <div className="animate-spin w-16 h-16 border-4 border-yellow-400 border-t-transparent rounded-full mx-auto mb-4"></div>
+            <p className="text-xl text-gray-300">
+              Анализираме вашите данни и подготвяме персонализиран доклад...
+            </p>
+          </div>
+        </div>
+      )
+    },
+    // Thank You Screen (Step 6)
+    {
+      title: "Вашият Glovo анализ се изчислява...",
+      subtitle: "Проверете имейла си след 2 минути!",
+      content: (
+        <div className="text-center py-8">
+          <div className="mb-8">
+            <CheckCircle className="w-20 h-20 text-green-400 mx-auto mb-4" />
+            <p className="text-xl text-gray-300 leading-relaxed mb-6">
+              Благодарим ви! Вашият персонализиран Glovo анализ ще бъде изпратен до <strong className="text-green-400">{formData.email}</strong>
+            </p>
+            <div className="bg-green-400/10 border border-green-400/30 rounded-xl p-6">
+              <h3 className="text-lg font-bold text-green-400 mb-2">Какво ще получите:</h3>
+              <ul className="text-left text-gray-300 space-y-2">
+                <li>✅ Точната сума, която плащате на Glovo месечно</li>
+                <li>✅ Персонализиран план за намаляване на разходите</li>
+                <li>✅ Сравнение с директни поръчки</li>
+                <li>✅ Стъпки за 60% намаляване на Glovo зависимостта</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      )
+    }
+  ];
+
+  const currentStepData = steps[currentStep];
+
+  return (
+    <div className="min-h-[600px] relative">
+      {/* Progress Bar */}
+      {currentStep > 0 && currentStep < 6 && (
+        <div className="mb-8">
+          <div className="flex justify-between items-center mb-2">
+            <span className="text-sm text-gray-400">Прогрес</span>
+            <span className="text-sm text-green-400">{currentStep}/5</span>
+          </div>
+          <div className="w-full bg-gray-700 rounded-full h-2">
+            <div 
+              className="bg-gradient-to-r from-yellow-400 to-green-400 h-2 rounded-full transition-all duration-500"
+              style={{ width: `${(currentStep / 5) * 100}%` }}
+            ></div>
+          </div>
+        </div>
+      )}
+
+      {/* Step Content */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={currentStep}
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -20 }}
+          transition={{ duration: 0.3 }}
+          className="text-center"
+        >
+          <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
+            {currentStepData.title}
+          </h2>
+          <p className="text-gray-400 mb-8">
+            {currentStepData.subtitle}
+          </p>
+          
+          {currentStepData.content}
+        </motion.div>
+      </AnimatePresence>
+
+      {/* Navigation Buttons */}
+      {currentStep > 0 && currentStep < 6 && !isSubmitted && (
+        <div className="flex justify-between items-center mt-8">
+          <Button
+            onClick={prevStep}
+            variant="outline"
+            className="border-gray-600 text-gray-300 hover:border-green-400 hover:text-green-400"
+          >
+            <ChevronLeft className="mr-2 w-4 h-4" />
+            Назад
+          </Button>
+
+          {currentStep === 4 ? (
+            <Button
+              onClick={submitToAirtable}
+              disabled={!isStepValid() || isSubmitting}
+              className="bg-gradient-to-r from-yellow-400 to-green-400 text-black hover:opacity-90 disabled:opacity-50"
+            >
+              {isSubmitting ? (
+                <>
+                  <div className="animate-spin w-4 h-4 border-2 border-black border-t-transparent rounded-full mr-2"></div>
+                  Изпращане...
+                </>
+              ) : (
+                <>
+                  Получи анализа
+                  <ChevronRight className="ml-2 w-4 h-4" />
+                </>
+              )}
+            </Button>
+          ) : (
+            <Button
+              onClick={nextStep}
+              disabled={!isStepValid()}
+              className="bg-gradient-to-r from-yellow-400 to-green-400 text-black hover:opacity-90 disabled:opacity-50"
+            >
+              Напред
+              <ChevronRight className="ml-2 w-4 h-4" />
+            </Button>
+          )}
+        </div>
+      )}
+    </div>
+  );
+};
