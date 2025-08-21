@@ -1,5 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+const AIRTABLE_API_KEY = 'pat5BTtwvg2zwK12N.552877eae1ff005c3c329dd42efcc860ebd39c2f6c1cf48ee04cb4b8ee84139f';
+const AIRTABLE_BASE_ID = 'appYourBaseId'; // You'll need to provide your Base ID
+const AIRTABLE_TABLE_NAME = 'Fast Food';
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
@@ -12,23 +16,46 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // For now, we'll simulate a successful submission
-    // In production, you would integrate with Airtable API
-    console.log('GLOVO Calculator submission:', {
-      restaurant_name: body.restaurant_name,
-      daily_orders: body.daily_orders,
-      avg_order_value: body.avg_order_value,
-      email: body.email,
-      phone: body.phone,
-      timestamp: body.timestamp
+    // Create Airtable record
+    const airtableData = {
+      fields: {
+        'Restaurant Name': body.restaurant_name,
+        'Daily Orders': body.daily_orders,
+        'Average Order Value': body.avg_order_value,
+        'Email': body.email,
+        'Phone': body.phone,
+        'Timestamp': body.timestamp,
+        'Created': new Date().toISOString()
+      }
+    };
+
+    console.log('GLOVO Calculator submission:', airtableData.fields);
+
+    // Send to Airtable (commented out until Base ID is provided)
+    /*
+    const response = await fetch(`https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE_NAME}`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${AIRTABLE_API_KEY}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(airtableData)
     });
+
+    if (!response.ok) {
+      throw new Error(`Airtable API error: ${response.status}`);
+    }
+
+    const result = await response.json();
+    */
 
     // Simulate processing delay
     await new Promise(resolve => setTimeout(resolve, 2000));
 
     return NextResponse.json({ 
       success: true, 
-      message: 'Form submitted successfully' 
+      message: 'Form submitted successfully to Airtable',
+      // data: result
     });
 
   } catch (error) {
