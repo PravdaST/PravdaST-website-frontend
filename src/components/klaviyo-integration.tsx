@@ -59,6 +59,11 @@ export const KlaviyoIntegration = () => {
   const pathname = usePathname()
 
   useEffect(() => {
+    // Skip Klaviyo tracking for GLOVO landing page
+    if (pathname === '/landing/glovo-calculator') {
+      return
+    }
+    
     // Track page view on route change
     const timer = setTimeout(() => {
       trackKlaviyoEvent('Viewed Page', {

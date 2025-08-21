@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect } from 'react'
+import { usePathname } from 'next/navigation'
 
 
 // Using proper interface extension for Klaviyo Setup
@@ -9,7 +10,14 @@ interface KlaviyoWindow extends Window {
 }
 
 export const KlaviyoSetup = () => {
+  const pathname = usePathname()
+  
   useEffect(() => {
+    // Skip Klaviyo for GLOVO landing page
+    if (pathname === '/landing/glovo-calculator') {
+      console.log('Klaviyo: Skipping for GLOVO landing page')
+      return
+    }
     // Use correct Next.js environment variable
     const companyId = process.env.NEXT_PUBLIC_KLAVIYO_COMPANY_ID
 
