@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-const AIRTABLE_API_KEY = 'pat5BTtwvg2zwK12N.552877eae1ff005c3c329dd42efcc860ebd39c2f6c1cf48ee04cb4b8ee84139f';
-const AIRTABLE_BASE_ID = 'appkwDzDKRNTf1WZV';
-const AIRTABLE_TABLE_NAME = 'Fast Food';
+const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY || 'pat5BTtwvg2zwK12N.552877eae1ff005c3c329dd42efcc860ebd39c2f6c1cf48ee04cb4b8ee84139f';
+const AIRTABLE_BASE_ID = process.env.AIRTABLE_BASE_ID || 'appkwDzDKRNTf1WZV';
+const AIRTABLE_TABLE_ID = process.env.AIRTABLE_TABLE_ID || 'tbl0fYDOCTS2PHwBP';
 
 export async function POST(request: NextRequest) {
   try {
@@ -31,8 +31,8 @@ export async function POST(request: NextRequest) {
 
     console.log('GLOVO Calculator submission:', airtableData.fields);
 
-    // Send to Airtable
-    const response = await fetch(`https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE_NAME}`, {
+    // Send to Airtable using Table ID instead of name
+    const response = await fetch(`https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE_ID}`, {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${AIRTABLE_API_KEY}`,
