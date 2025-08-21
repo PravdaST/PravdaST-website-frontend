@@ -94,6 +94,15 @@ Project organization: Documentation files organized in `/docs` folder for cleane
 - **Design**: Consistent glassmorphism theme with Pravdast yellow branding
 - **Status**: GLOVO landing page ready for lead generation campaigns
 
+### GLOVO Calculator Step Form & Airtable Integration ✅ (August 21, 2025)
+- **Interactive Step Form**: Created 6-step Bulgarian language form (Welcome, Restaurant name, Daily orders, Order value, Contact info, Thank you)
+- **Airtable Integration**: Connected to user's Airtable Base ID: appkwDzDKRNTf1WZV, Table: "Fast Food"
+- **API Token**: Configured with user's personal access token pat5BTtwvg2zwK12N
+- **Field Mapping**: Restaurant Name, Daily Orders (5-10, 11-20, 21-35, 36-50, 50+), Average Order Value (15-25лв, 26-35лв, 36-50лв, 50+лв), Email, Phone, Timestamp
+- **Form Flow**: Progressive disclosure with validation, animation, and Bulgarian content
+- **Klaviyo Exclusion**: Disabled Klaviyo popup specifically for /landing/glovo-calculator
+- **Status**: Fully functional step-form with live Airtable data collection
+
 ### Email Delivery Status ✅ (January 31, 2025)
 - **Resend Integration**: Completely replaced SendGrid with Resend.com for better reliability
 - **Email Recipients**: All contact forms send to contact@pravdast.agency only (per user request)

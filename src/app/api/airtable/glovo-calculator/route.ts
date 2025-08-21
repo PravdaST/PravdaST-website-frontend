@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 const AIRTABLE_API_KEY = 'pat5BTtwvg2zwK12N.552877eae1ff005c3c329dd42efcc860ebd39c2f6c1cf48ee04cb4b8ee84139f';
-const AIRTABLE_BASE_ID = 'appYourBaseId'; // You'll need to provide your Base ID
+const AIRTABLE_BASE_ID = 'appkwDzDKRNTf1WZV';
 const AIRTABLE_TABLE_NAME = 'Fast Food';
 
 export async function POST(request: NextRequest) {
@@ -31,8 +31,7 @@ export async function POST(request: NextRequest) {
 
     console.log('GLOVO Calculator submission:', airtableData.fields);
 
-    // Send to Airtable (commented out until Base ID is provided)
-    /*
+    // Send to Airtable
     const response = await fetch(`https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE_NAME}`, {
       method: 'POST',
       headers: {
@@ -43,19 +42,18 @@ export async function POST(request: NextRequest) {
     });
 
     if (!response.ok) {
-      throw new Error(`Airtable API error: ${response.status}`);
+      const errorText = await response.text();
+      console.error(`Airtable API error: ${response.status}`, errorText);
+      throw new Error(`Airtable API error: ${response.status} - ${errorText}`);
     }
 
     const result = await response.json();
-    */
-
-    // Simulate processing delay
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    console.log('Airtable success:', result);
 
     return NextResponse.json({ 
       success: true, 
       message: 'Form submitted successfully to Airtable',
-      // data: result
+      data: result
     });
 
   } catch (error) {
