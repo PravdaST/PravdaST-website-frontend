@@ -34,7 +34,7 @@ export const Navigation = () => {
   const navItems = [
     { href: "/", label: "Начало" },
     { href: "/services", label: "Услуги", hasDropdown: true },
-    { href: "/calculators", label: "Калкулатори" },
+    { href: "/landing-pages", label: "Landing Pages" },
     { href: "/case-studies", label: "Резултати" },
     { href: "/blog", label: "Блог" },
     { href: "/about", label: "За нас" },
