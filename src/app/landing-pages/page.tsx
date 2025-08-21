@@ -6,43 +6,17 @@ import { ArrowRight, Zap, Target, TrendingUp, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Footer } from "@/components/footer";
 
-// Placeholder data for landing pages - will be replaced with real data
+// Real landing pages data
 const landingPages = [
   {
     id: 1,
-    title: "SEO Optimization Landing",
-    description: "Boost your website's visibility with our advanced SEO strategies and get more organic traffic.",
-    image: "/images/seo-landing-preview.svg",
-    category: "SEO",
-    icon: <TrendingUp className="w-6 h-6" />,
-    comingSoon: true,
-  },
-  {
-    id: 2,
-    title: "Digital Marketing Automation",
-    description: "Streamline your marketing efforts with our powerful automation tools and increase conversions.",
-    image: "/images/automation-landing-preview.svg", 
-    category: "Automation",
-    icon: <Zap className="w-6 h-6" />,
-    comingSoon: true,
-  },
-  {
-    id: 3,
-    title: "Client Management System",
-    description: "Manage your clients efficiently with our comprehensive CRM solution designed for agencies.",
-    image: "/images/crm-landing-preview.svg",
-    category: "CRM",
-    icon: <Users className="w-6 h-6" />,
-    comingSoon: true,
-  },
-  {
-    id: 4,
-    title: "Lead Generation Campaign",
-    description: "Generate high-quality leads with targeted campaigns that convert visitors into customers.",
-    image: "/images/leads-landing-preview.svg",
-    category: "Lead Generation", 
+    title: "Glovo Liberation Calculator",
+    description: "Помогнахме на 23+ ресторанта в София да спестят средно 1,800 лв месечно от Glovo комисионни.",
+    image: "/images/glovo-landing-preview.svg",
+    category: "Ресторанти",
     icon: <Target className="w-6 h-6" />,
-    comingSoon: true,
+    href: "/landing/glovo-calculator",
+    comingSoon: false,
   },
 ];
 
@@ -216,10 +190,12 @@ export default function LandingPagesShowcase() {
                           Скоро достъпна
                         </Button>
                       ) : (
-                        <Button className="w-full bg-[#ECB629] text-black hover:bg-[#ECB629]/90">
-                          Преглед
-                          <ArrowRight className="ml-2 w-4 h-4" />
-                        </Button>
+                        <Link href={page.href}>
+                          <Button className="w-full bg-[#ECB629] text-black hover:bg-[#ECB629]/90">
+                            Преглед
+                            <ArrowRight className="ml-2 w-4 h-4" />
+                          </Button>
+                        </Link>
                       )}
                     </div>
                   </div>
