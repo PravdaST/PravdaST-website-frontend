@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowRight, Zap, Target, TrendingUp, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Footer } from "@/components/footer";
+import { Navigation } from "@/components/navigation";
 
 // Real landing pages data
 const landingPages = [
@@ -23,6 +24,7 @@ const landingPages = [
 export default function LandingPagesShowcase() {
   return (
     <div className="min-h-screen bg-black text-white">
+      <Navigation />
       {/* Hero Section */}
       <section className="relative py-20 overflow-hidden">
         {/* Animated Background Orbs */}
