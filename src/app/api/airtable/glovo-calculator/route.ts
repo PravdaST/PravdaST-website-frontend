@@ -33,6 +33,7 @@ export async function POST(request: NextRequest) {
     // Create Airtable record - match exact field names from Airtable
     const airtableData = {
       fields: {
+        'Restaurant Name': body.restaurant_name,
         'Daily Orders': body.daily_orders,
         'Average Order Value': body.avg_order_value,
         'Email': body.email,
