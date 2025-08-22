@@ -27,7 +27,6 @@
     "@types/facebook-pixel": "^0.0.31",
     "@vercel/speed-insights": "^1.0.0",
     "axios": "^1.11.0",
-    "babel-plugin-react-compiler": "^19.1.0-rc.2",
     "bcrypt": "^6.0.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",

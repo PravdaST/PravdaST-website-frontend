@@ -1,5 +1,5 @@
 import { Metadata } from 'next'
-import HomeOptimized from './HomeOptimized'
+import HomeClient from './HomeClient'
 
 export const metadata: Metadata = {
   title: "Правдаст - Бизнес инженеринг за предвидим растеж в България",
@@ -20,7 +20,6 @@ export const metadata: Metadata = {
   robots: "index, follow, max-snippet:-1, max-image-preview:large",
 }
 
-// Server Component - Better performance!
 export default function HomePage() {
-  return <HomeOptimized />
+  return <HomeClient />
 }
