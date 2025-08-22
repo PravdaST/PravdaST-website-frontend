@@ -14,7 +14,7 @@ export const KlaviyoSetup = () => {
   
   useEffect(() => {
     // Skip Klaviyo for GLOVO landing page
-    if (pathname === '/landing/glovo-calculator') {
+    if (pathname === '/glovo') {
       console.log('Klaviyo: Skipping for GLOVO landing page')
       return
     }

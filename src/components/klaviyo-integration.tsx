@@ -60,7 +60,7 @@ export const KlaviyoIntegration = () => {
 
   useEffect(() => {
     // Skip Klaviyo tracking for GLOVO landing page
-    if (pathname === '/landing/glovo-calculator') {
+    if (pathname === '/glovo') {
       return
     }
     

@@ -16,7 +16,7 @@ const landingPages = [
     image: "/images/glovo-landing-preview.svg",
     category: "Ресторанти",
     icon: <Target className="w-6 h-6" />,
-    href: "/landing/glovo-calculator",
+    href: "/glovo",
     comingSoon: false,
   },
 ];
