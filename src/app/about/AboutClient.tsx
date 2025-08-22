@@ -719,6 +719,9 @@ export default function AboutClient() {
                       width={120}
                       height={120}
                       className="w-24 h-24 sm:w-30 sm:h-30 rounded-full object-cover border-2 border-[#ECB629] glass-card"
+                      sizes="120px"
+                      quality={85}
+                      loading="lazy"
                     />
                   </div>
                   

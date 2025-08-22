@@ -86,6 +86,8 @@ export default function GlovoCalculatorLanding() {
                   width={800}
                   height={450}
                   className="w-full h-auto rounded-xl"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 800px, 1200px"
+                  quality={90}
                   priority
                 />
               </div>
@@ -159,6 +161,9 @@ export default function GlovoCalculatorLanding() {
                     width={300}
                     height={400}
                     className="w-full h-auto rounded-xl"
+                    sizes="(max-width: 768px) 100vw, 300px"
+                    quality={85}
+                    loading="lazy"
                   />
                 </div>
                 <div className="md:col-span-2 text-center md:text-left">
@@ -313,6 +318,9 @@ export default function GlovoCalculatorLanding() {
                   width={800}
                   height={450}
                   className="w-full h-auto rounded-xl"
+                  sizes="(max-width: 768px) 100vw, 800px"
+                  quality={85}
+                  loading="lazy"
                 />
               </div>
             </div>

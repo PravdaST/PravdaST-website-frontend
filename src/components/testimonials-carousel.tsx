@@ -60,6 +60,9 @@ export const TestimonialsCarousel = ({
                     width={60}
                     height={60}
                     className="rounded-full"
+                    sizes="60px"
+                    quality={85}
+                    loading="lazy"
                   />
                   <div>
                     <h4 className="font-semibold text-green-400">
