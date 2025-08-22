@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getWordPressPosts, searchWordPressPosts } from '@/lib/wordpress'
 
+// Use Node.js runtime for dynamic API routes
+export const dynamic = 'force-dynamic';
+
 // Next.js caching configuration - Cache for 1 hour to reduce WordPress API calls
 export const revalidate = 3600;
 
