@@ -140,6 +140,8 @@ Project organization: Documentation files organized in `/docs` folder for cleane
 - **Instant Loading**: Hero section with H1 shows immediately, cached posts display instantly
 - **Background Updates**: Fresh posts fetched in background and merged with cache
 - **Cache Strategy**: 30-minute expiry with stale-while-revalidate pattern
+- **Page-specific Caching**: Each pagination page cached separately for optimal performance
+- **Pagination System**: 12 posts per page with Previous/Next navigation and numbered pages
 - **Daily Publishing**: Optimized for frequent content updates without performance impact
 - **User Experience**: Visitors see content immediately while new posts update seamlessly
 - **Status**: Professional blog performance matching enterprise-level news sites
