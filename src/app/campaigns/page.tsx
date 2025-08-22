@@ -1,11 +1,23 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight, Zap, Target, TrendingUp, Users } from "lucide-react";
+import { ArrowRight, Zap, Target, TrendingUp, Users, Car, ShoppingBag, Dumbbell, Briefcase, Pizza } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Footer } from "@/components/footer";
 import { Navigation } from "@/components/navigation";
+
+// Category definitions
+const categories = [
+  { id: "all", name: "Всички кампании", icon: <Target className="w-4 h-4" /> },
+  { id: "fast-food", name: "Fast Food", icon: <Pizza className="w-4 h-4" /> },
+  { id: "restaurants", name: "Ресторанти", icon: <Target className="w-4 h-4" /> },
+  { id: "auto", name: "Автосервизи", icon: <Car className="w-4 h-4" /> },
+  { id: "ecommerce", name: "Онлайн магазини", icon: <ShoppingBag className="w-4 h-4" /> },
+  { id: "fitness", name: "Фитнес & Здраве", icon: <Dumbbell className="w-4 h-4" /> },
+  { id: "services", name: "Услуги", icon: <Briefcase className="w-4 h-4" /> },
+];
 
 // Real landing pages data
 const landingPages = [
@@ -14,14 +26,77 @@ const landingPages = [
     title: "Glovo Liberation Calculator",
     description: "Помогнахме на 23+ ресторанта в София да спестят средно 1,800 лв месечно от Glovo комисионни.",
     image: "/images/glovo-landing-preview.svg",
-    category: "Ресторанти",
+    category: "restaurants",
+    categoryDisplay: "Ресторанти",
     icon: <Target className="w-6 h-6" />,
-    href: "/glovo",
+    href: "/landing/glovo-calculator",
     comingSoon: false,
+  },
+  {
+    id: 2,
+    title: "Fast Food Profit Maximizer",
+    description: "Специализирана система за оптимизиране на поръчките и повишаване на печалбите във fast food бизнеса.",
+    image: "/images/fast-food-preview.svg",
+    category: "fast-food",
+    categoryDisplay: "Fast Food",
+    icon: <Pizza className="w-6 h-6" />,
+    href: "#",
+    comingSoon: true,
+  },
+  {
+    id: 3,
+    title: "Auto Service Lead Generator",
+    description: "Привличане на нови клиенти за автосервизи чрез персонализирани landing pages с форми за записване.",
+    image: "/images/auto-service-preview.svg",
+    category: "auto",
+    categoryDisplay: "Автосервизи",
+    icon: <Car className="w-6 h-6" />,
+    href: "#",
+    comingSoon: true,
+  },
+  {
+    id: 4,
+    title: "E-commerce Conversion Booster",
+    description: "Увеличаване на продажбите в онлайн магазини чрез оптимизирани product landing pages.",
+    image: "/images/ecommerce-preview.svg",
+    category: "ecommerce",
+    categoryDisplay: "Онлайн магазини",
+    icon: <ShoppingBag className="w-6 h-6" />,
+    href: "#",
+    comingSoon: true,
+  },
+  {
+    id: 5,
+    title: "Fitness Membership Generator",
+    description: "Специални landing pages за фитнес центрове и треньори за привличане на нови членове.",
+    image: "/images/fitness-preview.svg",
+    category: "fitness",
+    categoryDisplay: "Фитнес & Здраве",
+    icon: <Dumbbell className="w-6 h-6" />,
+    href: "#",
+    comingSoon: true,
+  },
+  {
+    id: 6,
+    title: "Service Business Amplifier",
+    description: "Универсални landing pages за различни видове услуги - почистване, ремонти, консултации.",
+    image: "/images/services-preview.svg",
+    category: "services",
+    categoryDisplay: "Услуги",
+    icon: <Briefcase className="w-6 h-6" />,
+    href: "#",
+    comingSoon: true,
   },
 ];
 
 export default function LandingPagesShowcase() {
+  const [selectedCategory, setSelectedCategory] = useState("all");
+
+  // Filter landing pages based on selected category
+  const filteredPages = selectedCategory === "all" 
+    ? landingPages 
+    : landingPages.filter(page => page.category === selectedCategory);
+
   return (
     <div className="min-h-screen bg-black text-white">
       <Navigation />
@@ -127,19 +202,70 @@ export default function LandingPagesShowcase() {
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
               Наши Landing Pages
             </h2>
-            <p className="text-gray-400 text-lg max-w-3xl mx-auto">
+            <p className="text-gray-400 text-lg max-w-3xl mx-auto mb-8">
               Всяка landing page е създадена с фокус върху конверсиите и потребителското изживяване. 
               Проектирани са за различни индустрии и бизнес цели.
             </p>
+
+            {/* Category Filter Pills */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="flex flex-wrap justify-center gap-3 mb-8"
+            >
+              {categories.map((category) => (
+                <button
+                  key={category.id}
+                  onClick={() => setSelectedCategory(category.id)}
+                  className={`
+                    flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-300 text-sm font-medium
+                    ${selectedCategory === category.id
+                      ? 'bg-[#ECB629] text-black shadow-lg shadow-[#ECB629]/25'
+                      : 'bg-white/5 text-gray-300 hover:bg-white/10 hover:text-white border border-white/10'
+                    }
+                  `}
+                >
+                  <span className={selectedCategory === category.id ? 'text-black' : 'text-[#ECB629]'}>
+                    {category.icon}
+                  </span>
+                  {category.name}
+                </button>
+              ))}
+            </motion.div>
+
+            {/* Results count */}
+            <motion.p
+              key={selectedCategory} // Force re-render on category change
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.3 }}
+              className="text-gray-400 text-sm"
+            >
+              {filteredPages.length} {filteredPages.length === 1 ? 'кампания' : 'кампании'} 
+              {selectedCategory !== "all" && ` в категория "${categories.find(c => c.id === selectedCategory)?.name}"`}
+            </motion.p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            {landingPages.map((page, index) => (
+          <motion.div 
+            key={selectedCategory} // Re-render grid when category changes
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-6xl mx-auto"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.4 }}
+          >
+            {filteredPages.map((page, index) => (
               <motion.div
-                key={page.id}
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                key={`${selectedCategory}-${page.id}`} // Unique key for category + page
+                initial={{ opacity: 0, y: 30, scale: 0.9 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -30, scale: 0.9 }}
+                transition={{ 
+                  duration: 0.5, 
+                  delay: index * 0.1,
+                  type: "spring",
+                  stiffness: 100
+                }}
                 className="group relative"
               >
                 <div className="glassmorphism border border-[#ECB629]/20 rounded-2xl p-8 h-full hover:border-[#ECB629]/40 transition-all duration-300 hover:shadow-2xl hover:shadow-[#ECB629]/10">
@@ -158,7 +284,7 @@ export default function LandingPagesShowcase() {
                       </div>
                     </div>
                     <span className="text-[#ECB629] text-sm font-semibold uppercase tracking-wider">
-                      {page.category}
+                      {page.categoryDisplay}
                     </span>
                   </div>
 
@@ -204,7 +330,32 @@ export default function LandingPagesShowcase() {
                 </div>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
+
+          {/* Empty state when no results */}
+          {filteredPages.length === 0 && (
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="text-center py-16"
+            >
+              <div className="text-6xl mb-4">🔍</div>
+              <h3 className="text-2xl font-semibold text-white mb-2">
+                Няма кампании в тази категория
+              </h3>
+              <p className="text-gray-400 mb-6">
+                Опитайте друга категория или изберете "Всички кампании"
+              </p>
+              <Button
+                onClick={() => setSelectedCategory("all")}
+                variant="outline"
+                className="border-[#ECB629]/30 text-[#ECB629] hover:bg-[#ECB629]/10"
+              >
+                Покажи всички кампании
+              </Button>
+            </motion.div>
+          )}
         </div>
       </section>
 
