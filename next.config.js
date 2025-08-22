@@ -25,14 +25,7 @@ const nextConfig = {
   // Mobile performance optimization
   experimental: {
     optimizePackageImports: ['lucide-react', 'framer-motion'],
-    optimizeCss: true, // CSS optimization for production
   },
-  // Production performance optimizations for PageSpeed
-  compiler: {
-    removeConsole: process.env.NODE_ENV === 'production',
-  },
-  poweredByHeader: false,
-  compress: true,
   async headers() {
     return [
       {
@@ -49,39 +42,6 @@ const nextConfig = {
               "font-src 'self' data: https:",
               "frame-src 'self'"
             ].join('; ')
-          },
-          // PageSpeed optimization headers
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable'
-          },
-          {
-            key: 'X-Content-Type-Options',
-            value: 'nosniff'
-          },
-          {
-            key: 'X-Frame-Options', 
-            value: 'DENY'
-          }
-        ]
-      },
-      // Static assets caching
-      {
-        source: '/_next/static/(.*)',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable'
-          }
-        ]
-      },
-      // Image caching
-      {
-        source: '/images/(.*)',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=86400'
           }
         ]
       }
