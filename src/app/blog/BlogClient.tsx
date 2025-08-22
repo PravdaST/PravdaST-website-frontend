@@ -51,7 +51,7 @@ export default function BlogClient() {
   // Configuration
   const POSTS_PER_PAGE = 12;
   const CACHE_KEY = 'pravda_blog_posts';
-  const CACHE_EXPIRY = 30 * 60 * 1000; // 30 minutes
+  const CACHE_EXPIRY = 2 * 60 * 60 * 1000; // 2 hours - reduce WordPress API calls
 
   // Load cached posts immediately, then fetch fresh data
   useEffect(() => {
