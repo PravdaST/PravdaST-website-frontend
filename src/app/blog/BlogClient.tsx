@@ -141,9 +141,9 @@ export default function BlogClient() {
             transition={{ duration: 0.8 }}
             className="text-center max-w-4xl mx-auto"
           >
-            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-6 sm:mb-8 leading-tight">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 sm:mb-8 leading-tight">
               Блог за <span className="text-[#ECB629]">Бизнес Инженерство</span>
-            </h1>
+            </h2>
             <p className="text-xl sm:text-2xl mb-8 sm:mb-12 leading-relaxed text-gray-300 max-w-3xl mx-auto">
               Практически съвети, стратегии и казуси за предсказуем растеж на бизнеса чрез системен подход
             </p>
