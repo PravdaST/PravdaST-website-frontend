@@ -24,7 +24,10 @@ const nextConfig = {
   serverExternalPackages: ['drizzle-orm', '@neondatabase/serverless', 'bcrypt'],
   // Mobile performance optimization
   experimental: {
-    optimizePackageImports: ['lucide-react', 'framer-motion'],
+    optimizePackageImports: ['lucide-react', 'framer-motion', '@radix-ui/*', 'embla-carousel-react'],
+    serverActions: {
+      bodySizeLimit: '2mb',
+    },
   },
   async headers() {
     return [

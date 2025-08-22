@@ -1,0 +1,92 @@
+/* Critical CSS for Above-the-fold Content */
+/* Inlined in <head> for faster FCP */
+
+:root {
+  --pravda-yellow: #ECB628;
+  --pravda-yellow-light: #F4D03F;
+  --pravda-yellow-dark: #D4A017;
+  --pravda-dark: #000000;
+  --pravda-green: #10B981;
+  --pravda-red: #EF4444;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background: #000;
+  color: #fff;
+  font-family: 'Inter', system-ui, sans-serif;
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+/* Hero Section Critical Styles */
+.hero-gradient {
+  background: radial-gradient(circle at 20% 80%, rgba(236, 182, 40, 0.3) 0%, transparent 50%);
+}
+
+.glassmorphism {
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(236, 182, 40, 0.3);
+}
+
+.text-gradient {
+  background: linear-gradient(90deg, #ECB628 0%, #FFF 50%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* Above-the-fold Typography */
+h1 {
+  font-size: clamp(2rem, 5vw, 4.5rem);
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+/* Loading States */
+.skeleton {
+  animation: skeleton-loading 1s linear infinite alternate;
+}
+
+@keyframes skeleton-loading {
+  0% { background-color: rgba(255, 255, 255, 0.05); }
+  100% { background-color: rgba(255, 255, 255, 0.1); }
+}
+
+/* Prevent Layout Shift */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+  body {
+    font-size: 16px;
+  }
+  
+  .glassmorphism {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+}
