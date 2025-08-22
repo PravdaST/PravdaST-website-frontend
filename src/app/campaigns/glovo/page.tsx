@@ -338,6 +338,58 @@ export default function GlovoCalculatorLanding() {
         </div>
       </section>
 
+      {/* FAQ Section */}
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="max-w-3xl mx-auto"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-12 text-center">
+              Често задавани въпроси
+            </h2>
+
+            <div className="space-y-6">
+              {[
+                {
+                  question: "Ако вече съм в Glovo, мога ли да се откажа?",
+                  answer: "Да, повечето договори с Glovo позволяват прекратяване с 30-дневно предизвестие. Ще ви покажем как да направите преходи постепенно, без да загубите клиенти."
+                },
+                {
+                  question: "Колко време отнема да видя резултати?",
+                  answer: "Първите резултати се виждат за 2-4 седмици. Пълното освобождаване от Glovo отнема 60-90 дни, но спестяванията започват веднага."
+                },
+                {
+                  question: "Има ли скрити такси за калкулатора?",
+                  answer: "Не, калкулаторът е напълно безплатен и без ангажименти. Ще получите пълния анализ и препоръки, без да плащате нищо."
+                },
+                {
+                  question: "Как ще привлича клиенти без Glovo?",
+                  answer: "Показваме ви точната система за директни поръчки - собствен сайт, социални мрежи, SMS/WhatsApp маркетинг. Клиентите ви ще поръчват директно."
+                },
+                {
+                  question: "Работи ли това за малки ресторанти?",
+                  answer: "Особено добре работи за малки ресторанти! Малкият бизнес печели най-много от освобождаването, защото всеки лев е важен."
+                }
+              ].map((faq, index) => (
+                <motion.div
+                  key={index}
+                  className="glassmorphism border border-green-400/20 rounded-xl p-6"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                >
+                  <h3 className="text-lg font-bold text-green-400 mb-3">{faq.question}</h3>
+                  <p className="text-gray-300 leading-relaxed">{faq.answer}</p>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* About/Credibility Section */}
       <section className="py-16 bg-gradient-to-b from-gray-900 to-black">
         <div className="container mx-auto px-4">
