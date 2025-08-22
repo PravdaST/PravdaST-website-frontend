@@ -45,18 +45,41 @@ export default function BlogClient() {
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
 
+  // Cache configuration
+  const CACHE_KEY = 'pravda_blog_posts';
+  const CACHE_EXPIRY = 30 * 60 * 1000; // 30 minutes
 
-
-  // Load blog posts from API (both local and WordPress)
+  // Load cached posts immediately, then fetch fresh data
   useEffect(() => {
-    async function loadBlogPosts() {
+    // Load from cache first (instant display)
+    const loadFromCache = () => {
       try {
-        // All blog posts now come from WordPress only
-        let localPosts = [];
+        const cached = localStorage.getItem(CACHE_KEY);
+        if (cached) {
+          const parsedCache = JSON.parse(cached);
+          const isExpired = Date.now() - parsedCache.timestamp > CACHE_EXPIRY;
+          
+          if (!isExpired) {
+            setBlogPosts(parsedCache.posts);
+            setLoading(false);
+            return parsedCache.posts;
+          }
+        }
+      } catch (error) {
+        console.error('Error loading cache:', error);
+      }
+      return null;
+    };
 
+    // Fetch fresh posts and merge with cache
+    async function loadBlogPosts() {
+      const cachedPosts = loadFromCache();
+      
+      try {
         // Load WordPress posts
         const wpResponse = await fetch('/api/wordpress/posts?per_page=10');
         let wpPosts = [];
+        
         if (wpResponse.ok) {
           const wpResult = await wpResponse.json();
           if (wpResult.success) {
@@ -79,14 +102,30 @@ export default function BlogClient() {
           }
         }
 
-        // Combine and sort posts by date
-        const allPosts = [...localPosts, ...wpPosts].sort((a, b) => 
+        // Sort posts by date
+        const allPosts = wpPosts.sort((a, b) => 
           new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
         );
         
+        // Update cache with fresh data
+        try {
+          localStorage.setItem(CACHE_KEY, JSON.stringify({
+            posts: allPosts,
+            timestamp: Date.now()
+          }));
+        } catch (error) {
+          console.error('Error saving to cache:', error);
+        }
+        
+        // Update state with fresh posts
         setBlogPosts(allPosts);
+        
       } catch (error) {
         console.error('Error loading blog posts:', error);
+        // If cache was loaded but API failed, keep cached data
+        if (!cachedPosts) {
+          setBlogPosts([]);
+        }
       } finally {
         setLoading(false);
       }
