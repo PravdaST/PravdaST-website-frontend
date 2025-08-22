@@ -44,8 +44,12 @@ export default function BlogClient() {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [totalPosts, setTotalPosts] = useState(0);
 
-  // Cache configuration
+  // Configuration
+  const POSTS_PER_PAGE = 12;
   const CACHE_KEY = 'pravda_blog_posts';
   const CACHE_EXPIRY = 30 * 60 * 1000; // 30 minutes
 
@@ -54,13 +58,16 @@ export default function BlogClient() {
     // Load from cache first (instant display)
     const loadFromCache = () => {
       try {
-        const cached = localStorage.getItem(CACHE_KEY);
+        const cacheKey = `${CACHE_KEY}_page_${currentPage}`;
+        const cached = localStorage.getItem(cacheKey);
         if (cached) {
           const parsedCache = JSON.parse(cached);
           const isExpired = Date.now() - parsedCache.timestamp > CACHE_EXPIRY;
           
           if (!isExpired) {
             setBlogPosts(parsedCache.posts);
+            setTotalPages(parsedCache.totalPages || 1);
+            setTotalPosts(parsedCache.totalPosts || 0);
             setLoading(false);
             return parsedCache.posts;
           }
@@ -76,13 +83,18 @@ export default function BlogClient() {
       const cachedPosts = loadFromCache();
       
       try {
-        // Load WordPress posts
-        const wpResponse = await fetch('/api/wordpress/posts?per_page=10');
+        // Load WordPress posts with pagination
+        const wpResponse = await fetch(`/api/wordpress/posts?per_page=${POSTS_PER_PAGE}&page=${currentPage}`);
         let wpPosts = [];
         
         if (wpResponse.ok) {
           const wpResult = await wpResponse.json();
           if (wpResult.success) {
+            // Set pagination info from API response
+            const pagination = wpResult.data.pagination;
+            setTotalPosts(pagination.total || 0);
+            setTotalPages(pagination.totalPages || 1);
+            
             // Convert WordPress posts to BlogPost format
             wpPosts = wpResult.data.posts.map((post: any) => ({
               id: `wp-${post.id}`,
@@ -107,10 +119,14 @@ export default function BlogClient() {
           new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
         );
         
-        // Update cache with fresh data
+        // Update cache with fresh data (page-specific cache)
         try {
-          localStorage.setItem(CACHE_KEY, JSON.stringify({
+          const cacheKey = `${CACHE_KEY}_page_${currentPage}`;
+          localStorage.setItem(cacheKey, JSON.stringify({
             posts: allPosts,
+            totalPages: totalPages,
+            totalPosts: totalPosts,
+            currentPage: currentPage,
             timestamp: Date.now()
           }));
         } catch (error) {
@@ -132,7 +148,26 @@ export default function BlogClient() {
     }
 
     loadBlogPosts();
-  }, []);
+  }, [currentPage]);
+
+  // Pagination handlers
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    setLoading(true);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handlePrevious = () => {
+    if (currentPage > 1) {
+      handlePageChange(currentPage - 1);
+    }
+  };
+
+  const handleNext = () => {
+    if (currentPage < totalPages) {
+      handlePageChange(currentPage + 1);
+    }
+  };
 
   // Filtering logic
   const filteredPosts = blogPosts.filter((post) => {
@@ -317,6 +352,66 @@ export default function BlogClient() {
                   </Card>
                 </motion.div>
               ))}
+            </div>
+          )}
+
+          {/* Pagination */}
+          {totalPages > 1 && !loading && (
+            <div className="flex justify-center items-center mt-12 gap-4">
+              <Button
+                variant="outline"
+                onClick={handlePrevious}
+                disabled={currentPage === 1}
+                className="border-gray-700 text-gray-300 hover:bg-gray-800 disabled:opacity-50"
+              >
+                Предишна
+              </Button>
+              
+              <div className="flex items-center gap-2">
+                {Array.from({ length: Math.min(totalPages, 5) }, (_, i) => {
+                  let pageNumber;
+                  if (totalPages <= 5) {
+                    pageNumber = i + 1;
+                  } else if (currentPage <= 3) {
+                    pageNumber = i + 1;
+                  } else if (currentPage >= totalPages - 2) {
+                    pageNumber = totalPages - 4 + i;
+                  } else {
+                    pageNumber = currentPage - 2 + i;
+                  }
+                  
+                  return (
+                    <Button
+                      key={pageNumber}
+                      variant={currentPage === pageNumber ? "default" : "outline"}
+                      onClick={() => handlePageChange(pageNumber)}
+                      className={`w-10 h-10 p-0 ${
+                        currentPage === pageNumber
+                          ? "bg-[#ECB629] text-black hover:bg-[#ECB629]/90"
+                          : "border-gray-700 text-gray-300 hover:bg-gray-800"
+                      }`}
+                    >
+                      {pageNumber}
+                    </Button>
+                  );
+                })}
+              </div>
+
+              <Button
+                variant="outline"
+                onClick={handleNext}
+                disabled={currentPage === totalPages}
+                className="border-gray-700 text-gray-300 hover:bg-gray-800 disabled:opacity-50"
+              >
+                Следваща
+              </Button>
+            </div>
+          )}
+
+          {/* Pagination Info */}
+          {totalPosts > 0 && (
+            <div className="text-center mt-8 text-gray-400">
+              Показване на {(currentPage - 1) * POSTS_PER_PAGE + 1} - {Math.min(currentPage * POSTS_PER_PAGE, totalPosts)} от {totalPosts} статии
             </div>
           )}
         </div>
