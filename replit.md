@@ -63,7 +63,7 @@ Project organization: Documentation files organized in `/docs` folder for cleane
 - **Status**: WordPress is now the single source of truth for all blog content
 
 ### WordPress Headless Integration ✅ (January 31, 2025)
-- **WordPress API**: Successfully connected to admin.pravdast.agency via REST API
+- **WordPress API**: Successfully connected to admin.pravdagency.eu via REST API
 - **Authentication**: Using Application Password (Pravda Website / GprR PbZk UjrC dszy Y6KJ BD1I)
 - **Blog Integration**: WordPress posts appear in main /blog page alongside local posts
 - **Real-time Updates**: New WordPress posts automatically appear on the website

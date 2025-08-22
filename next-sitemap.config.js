@@ -34,7 +34,7 @@ module.exports = {
       });
 
       // Fetch WordPress posts dynamically
-      const wpApiUrl = 'https://admin.pravdast.agency/wp-json/wp/v2';
+      const wpApiUrl = 'https://admin.pravdagency.eu/wp-json/wp/v2';
       
       // WordPress posts
       try {
