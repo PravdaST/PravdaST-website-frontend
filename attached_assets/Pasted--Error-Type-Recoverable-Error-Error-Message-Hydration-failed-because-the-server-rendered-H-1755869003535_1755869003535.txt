@@ -1,0 +1,130 @@
+## Error Type
+Recoverable Error
+
+## Error Message
+Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <InnerScrollAndFocusHandler segmentPath={[...]} focusAndScrollRef={{apply:false, ...}}>
+      <ErrorBoundary errorComponent={undefined} errorStyles={undefined} errorScripts={undefined}>
+        <LoadingBoundary loading={null}>
+          <HTTPAccessFallbackBoundary notFound={<SegmentViewNode>} forbidden={undefined} unauthorized={undefined}>
+            <HTTPAccessFallbackErrorBoundary pathname="/" notFound={<SegmentViewNode>} forbidden={undefined} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <InnerLayoutRouter url="/" tree={[...]} cacheNode={{lazyData:null, ...}} segmentPath={[...]}>
+                    <SegmentViewNode type="page" pagePath="page.tsx">
+                      <SegmentTrieNode>
+                      <HomePage>
+                        <HomeClient>
+                          <div className="min-h-scre...">
+                            <HelmetSEO>
+                            <Navigation>
+                            <HeroSection>
+                            <PartnersCarousel>
+                            <ProblemSection>
+                            <SolutionSection>
+                            <ProcessSection>
+                            <SystemsSection>
+                            <CaseStudiesSlider>
+                            <CTASection>
+                            <Footer>
+                              <footer className="py-12 sm:p...">
+                                ...
+                                  <motion.div className="absolute w..." style={{top:"25%"}} ...>
+                                    <div
++                                     className="absolute w-full h-px bg-gradient-to-r from-transparent via-[#ECB629] ..."
+-                                     className="absolute w-3 h-3 bg-[#ECB629]/20 rounded-full left-[15%] top-[25%]"
++                                     style={{top:"25%"}}
+-                                     style={{}}
+                                      ref={function useMotionRef.useCallback}
+                                    >
+                                  <motion.div className="absolute w..." style={{top:"50%"}} ...>
+                                    <div
++                                     className="absolute w-full h-px bg-gradient-to-r from-transparent via-[#ECB629] ..."
+-                                     className="absolute w-3 h-3 bg-[#ECB629]/20 rounded-full left-[35%] top-[65%]"
++                                     style={{top:"50%"}}
+-                                     style={{}}
+                                      ref={function useMotionRef.useCallback}
+                                    >
+                                  <motion.div className="absolute w..." style={{top:"75%"}} ...>
+                                    <div
++                                     className="absolute w-full h-px bg-gradient-to-r from-transparent via-[#ECB629] ..."
+-                                     className="absolute w-3 h-3 bg-[#ECB629]/20 rounded-full left-[55%] top-[25%]"
++                                     style={{top:"75%"}}
+-                                     style={{}}
+                                      ref={function useMotionRef.useCallback}
+                                    >
+                                  <motion.div className="absolute w..." style={{top:"100%"}} ...>
+                                    <div
++                                     className="absolute w-full h-px bg-gradient-to-r from-transparent via-[#ECB629] ..."
+-                                     className="absolute w-3 h-3 bg-[#ECB629]/20 rounded-full left-[75%] top-[65%]"
++                                     style={{top:"100%"}}
+-                                     style={{}}
+                                      ref={function useMotionRef.useCallback}
+                                    >
+                                <div
++                                 className="container mx-auto px-4 sm:px-6 relative z-10"
+-                                 className="container mx-auto px-4 relative z-10"
+                                >
+                                  <div
++                                   className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 sm:gap-8 mb-8 sm:m..."
+-                                   className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mb-8"
+                                  >
+                                    <motion.div className="md:col-span-1" initial={{opacity:0,y:20}} ...>
+                                      <div
++                                       className="md:col-span-1"
+-                                       className="lg:col-span-1"
+                                        style={{
++                                         opacity: 0
++                                         transform: "translateY(20px)"
+                                        }}
+                                        ref={function useMotionRef.useCallback}
+                                      >
+                                        <motion.div whileHover={{scale:1.05}} transition={{duration:0.2}}>
+                                          <div
+                                            style={{}}
+                                            ref={function useMotionRef.useCallback}
+-                                           className="mb-6"
+                                          >
+                                            <LinkComponent href="/">
++                                             <a
++                                               ref={function}
++                                               onClick={function onClick}
++                                               onMouseEnter={function onMouseEnter}
++                                               onTouchStart={function onTouchStart}
++                                               href="/"
++                                             >
+-                                             <h3 className="text-2xl font-bold text-[#ECB629] mb-2">
+                                        ...
+                                    ...
+                                  ...
+                    ...
+
+
+
+    at a (<anonymous>:null:null)
+    at Footer (src/components/footer.tsx:89:15)
+    at HomeClient (src/app/HomeClient.tsx:38:7)
+    at HomePage (src/app/page.tsx:24:10)
+
+## Code Frame
+  87 |               transition={{ duration: 0.2 }}
+  88 |             >
+> 89 |               <Link href="/">
+     |               ^
+  90 |                 <div className="text-2xl font-bold text-[#ECB629] mb-4 cursor-pointer relative">
+  91 |                   PRAVDA ST
+  92 |                   <motion.div
+
+Next.js version: 15.5.0 (Webpack)
