@@ -17,10 +17,20 @@
 }
 
 :root {
-  --pravdast-yellow: #ECB628;
+  /* Unified Color System - Single Source of Truth */
+  --color-primary: #ECB629;
+  --color-primary-dark: #d4a520;
+  --color-primary-light: #f4c94d;
+  
+  /* Legacy support */
+  --pravdast-yellow: var(--color-primary);
   --pravdast-dark: #0D0D0F;
-  --glass-bg: rgba(255, 255, 255, 0.12);
-  --glass-border: rgba(255, 255, 255, 0.2);
+  
+  /* Glassmorphism */
+  --glass-bg: rgba(15, 23, 42, 0.8);
+  --glass-bg-light: rgba(30, 41, 59, 0.5);
+  --glass-border: rgba(236, 182, 40, 0.3);
+  --glass-border-hover: rgba(236, 182, 40, 0.5);
   --glass-shadow: rgba(236, 182, 40, 0.15);
 }
 
