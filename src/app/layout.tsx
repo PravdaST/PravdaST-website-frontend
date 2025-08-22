@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import { CriticalCSS } from '@/components/critical-css'
 import { KlaviyoSetup } from '@/components/klaviyo-setup'
 import { KlaviyoIntegration } from '@/components/klaviyo-integration'
 import { ScrollToTop } from '@/components/scroll-to-top'
@@ -59,6 +60,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="bg">
+      <head>
+        <CriticalCSS />
+      </head>
       <body className={inter.className}>
         <ClientOnly>
           <BackgroundEffects />
