@@ -13,9 +13,9 @@ export const KlaviyoSetup = () => {
   const pathname = usePathname()
   
   useEffect(() => {
-    // Skip Klaviyo for GLOVO landing page
-    if (pathname === '/glovo') {
-      console.log('Klaviyo: Skipping for GLOVO landing page')
+    // Skip Klaviyo for GLOVO campaign pages
+    if (pathname === '/glovo' || pathname === '/campaigns/glovo') {
+      console.log('Klaviyo: Skipping for GLOVO campaign page')
       return
     }
     // Use correct Next.js environment variable

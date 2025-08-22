@@ -42,18 +42,18 @@ const categories = [
   { id: "services", name: "Услуги", icon: <Briefcase className="w-4 h-4" /> },
 ];
 
-// Real landing pages data
+// Real Кампании data
 const landingPages = [
   {
     id: 1,
-    title: "Glovo",
+    title: "Glovo – реален кейс с цифри",
     description:
       "Помогнахме на 23+ ресторанта в София да спестят средно 1,800 лв месечно от Glovo комисионни.",
     image: "/images/glovo-landing-preview.svg",
     category: "restaurants",
     categoryDisplay: "Ресторанти",
     icon: <Target className="w-6 h-6" />,
-    href: "/landing/glovo-calculator",
+    href: "/campaigns/glovo",
     comingSoon: false,
   },
   {
@@ -72,7 +72,7 @@ const landingPages = [
     id: 3,
     title: "Auto Service Lead Generator",
     description:
-      "Привличане на нови клиенти за автосервизи чрез персонализирани landing pages с форми за записване.",
+      "Привличане на нови клиенти за автосервизи чрез персонализирани Кампании с форми за записване.",
     image: "/images/auto-service-preview.svg",
     category: "auto",
     categoryDisplay: "Автосервизи",
@@ -84,7 +84,7 @@ const landingPages = [
     id: 4,
     title: "E-commerce Conversion Booster",
     description:
-      "Увеличаване на продажбите в онлайн магазини чрез оптимизирани product landing pages.",
+      "Увеличаване на продажбите в онлайн магазини чрез оптимизирани product Кампании.",
     image: "/images/ecommerce-preview.svg",
     category: "ecommerce",
     categoryDisplay: "Онлайн магазини",
@@ -96,7 +96,7 @@ const landingPages = [
     id: 5,
     title: "Fitness Membership Generator",
     description:
-      "Специални landing pages за фитнес центрове и треньори за привличане на нови членове.",
+      "Специални Кампании за фитнес центрове и треньори за привличане на нови членове.",
     image: "/images/fitness-preview.svg",
     category: "fitness",
     categoryDisplay: "Фитнес & Здраве",
@@ -108,7 +108,7 @@ const landingPages = [
     id: 6,
     title: "Service Business Amplifier",
     description:
-      "Универсални landing pages за различни видове услуги - почистване, ремонти, консултации.",
+      "Универсални Кампании за различни видове услуги - почистване, ремонти, консултации.",
     image: "/images/services-preview.svg",
     category: "services",
     categoryDisplay: "Услуги",
@@ -121,7 +121,7 @@ const landingPages = [
 export default function LandingPagesShowcase() {
   const [selectedCategory, setSelectedCategory] = useState("all");
 
-  // Filter landing pages based on selected category
+  // Filter Кампании based on selected category
   const filteredPages =
     selectedCategory === "all"
       ? landingPages
@@ -174,12 +174,9 @@ export default function LandingPagesShowcase() {
               transition={{ duration: 1, delay: 0.2 }}
             >
               <span className="bg-gradient-to-r from-white via-[#ECB629] to-white bg-clip-text text-transparent">
-                Landing Pages
+                Кампании
               </span>
               <br />
-              <span className="text-3xl sm:text-4xl md:text-5xl text-gray-300">
-                Showcase
-              </span>
             </motion.h1>
 
             <motion.p
@@ -188,9 +185,9 @@ export default function LandingPagesShowcase() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              Откриете нашите специализирани landing pages, създадени за
-              максимални конверсии и бизнес резултати. Всяка страница е
-              оптимизирана за конкретна цел и индустрия.
+              Откриете нашите специализирани Кампании, създадени за максимални
+              конверсии и бизнес резултати. Всяка страница е оптимизирана за
+              конкретна цел и индустрия.
             </motion.p>
 
             <motion.div
@@ -203,7 +200,7 @@ export default function LandingPagesShowcase() {
                 size="lg"
                 className="bg-[#ECB629] text-black hover:bg-[#ECB629]/90 px-8 py-4 text-lg font-semibold w-full sm:w-auto"
               >
-                Разгледай Landing Pages
+                Разгледай Кампании
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
 
@@ -221,7 +218,7 @@ export default function LandingPagesShowcase() {
         </div>
       </section>
 
-      {/* Landing Pages Grid */}
+      {/* Кампании Grid */}
       <section className="py-16">
         <div className="container mx-auto px-4">
           <motion.div
@@ -231,7 +228,7 @@ export default function LandingPagesShowcase() {
             className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Наши Landing Pages
+              Наши Кампании
             </h2>
             <p className="text-gray-400 text-lg max-w-3xl mx-auto mb-8">
               Всяка landing page е създадена с фокус върху конверсиите и
@@ -337,33 +334,14 @@ export default function LandingPagesShowcase() {
                       {page.description}
                     </p>
 
-                    {/* Preview Image */}
-                    <div className="mt-6">
-                      {page.id === 1 ? ( // Show real preview for Glovo
-                        <div className="relative overflow-hidden rounded-lg border border-[#ECB629]/20">
-                          <img
-                            src="/images/glovo-preview.png"
-                            alt="GLOVO Calculator Landing Page Preview"
-                            className="w-full h-auto object-cover"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-                          <div className="absolute bottom-3 left-3 right-3">
-                            <div className="flex items-center gap-2 text-white text-xs">
-                              <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                              <span>Активна кампания</span>
-                            </div>
-                          </div>
+                    {/* Preview Image Placeholder */}
+                    <div className="mt-6 p-8 bg-gradient-to-br from-[#ECB629]/5 to-[#ECB629]/10 rounded-lg border border-[#ECB629]/10">
+                      <div className="text-center text-[#ECB629] opacity-60">
+                        <div className="w-16 h-16 mx-auto mb-3 bg-[#ECB629]/20 rounded-lg flex items-center justify-center">
+                          {page.icon}
                         </div>
-                      ) : ( // Show placeholder for coming soon
-                        <div className="p-8 bg-gradient-to-br from-[#ECB629]/5 to-[#ECB629]/10 rounded-lg border border-[#ECB629]/10">
-                          <div className="text-center text-[#ECB629] opacity-60">
-                            <div className="w-16 h-16 mx-auto mb-3 bg-[#ECB629]/20 rounded-lg flex items-center justify-center">
-                              {page.icon}
-                            </div>
-                            <p className="text-sm">Preview изображение</p>
-                          </div>
-                        </div>
-                      )}
+                        <p className="text-sm">Preview изображение</p>
+                      </div>
                     </div>
 
                     {/* Action Button */}

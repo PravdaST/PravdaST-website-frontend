@@ -88,7 +88,7 @@ Project organization: Documentation files organized in `/docs` folder for cleane
 ### Landing Pages System ✅ (August 21, 2025)
 - **Navigation Update**: Replaced Calculators with Landing Pages in main navigation
 - **Showcase Page**: Created `/campaigns` with hero section and card-based layout for all landing pages
-- **GLOVO Landing Page**: First specialized landing page at `/landing/glovo-calculator` without main navigation
+- **GLOVO Landing Page**: First specialized landing page at `/campaigns/glovo` without main navigation
 - **Content Structure**: Hero, social proof, problem agitation, solution preview, lead form, and credibility sections
 - **Target Audience**: Bulgarian restaurants paying Glovo 30% commission fees
 - **Design**: Consistent glassmorphism theme with Pravdast yellow branding
@@ -103,7 +103,7 @@ Project organization: Documentation files organized in `/docs` folder for cleane
 - **Temporary Solution**: Form works perfectly, data logged in console and basic record in Airtable
 - **Required Action**: User needs to add fields in Airtable: Restaurant Name, Daily Orders, Average Order Value, Email, Phone, Timestamp
 - **Form Status**: ✅ Production ready with fallback behavior
-- **Klaviyo Exclusion**: Disabled Klaviyo popup specifically for /landing/glovo-calculator ✅
+- **Klaviyo Exclusion**: Disabled Klaviyo popup specifically for /campaigns/glovo ✅
 
 ### Email Delivery Status ✅ (January 31, 2025)
 - **Resend Integration**: Completely replaced SendGrid with Resend.com for better reliability
