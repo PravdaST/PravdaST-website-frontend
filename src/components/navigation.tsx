@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
@@ -25,16 +25,32 @@ export const Navigation = () => {
   }, []);
 
   const serviceItems = [
-    { href: "/services/seo-struktor", label: "SEO Struktor™", description: "SEO оптимизация и растеж" },
-    { href: "/services/trendlab", label: "Trendlab™", description: "Съдържание и авторитет" },
-    { href: "/services/clickstarter", label: "Clickstarter™", description: "Реклами и конверсии" },
-    { href: "/services/clientomat", label: "Clientomat™", description: "Автоматизация на клиенти" },
+    {
+      href: "/services/seo-struktor",
+      label: "SEO Struktor™",
+      description: "SEO оптимизация и растеж",
+    },
+    {
+      href: "/services/trendlab",
+      label: "Trendlab™",
+      description: "Съдържание и авторитет",
+    },
+    {
+      href: "/services/clickstarter",
+      label: "Clickstarter™",
+      description: "Реклами и конверсии",
+    },
+    {
+      href: "/services/clientomat",
+      label: "Clientomat™",
+      description: "Автоматизация на клиенти",
+    },
   ];
 
   const navItems = [
     { href: "/", label: "Начало" },
     { href: "/services", label: "Услуги", hasDropdown: true },
-    { href: "/landing-pages", label: "Landing Pages" },
+    { href: "/landing-pages", label: "Кампании" },
     { href: "/case-studies", label: "Резултати" },
     { href: "/blog", label: "Блог" },
     { href: "/about", label: "За нас" },
@@ -44,9 +60,9 @@ export const Navigation = () => {
   return (
     <motion.nav
       className={`w-full transition-all duration-500 border-b border-[#ECB629]/30 relative z-50 ${
-        isScrolled 
-          ? 'glassmorphism backdrop-blur-xl bg-black/20 shadow-2xl shadow-[#ECB629]/10' 
-          : 'bg-transparent'
+        isScrolled
+          ? "glassmorphism backdrop-blur-xl bg-black/20 shadow-2xl shadow-[#ECB629]/10"
+          : "bg-transparent"
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
@@ -130,7 +146,8 @@ export const Navigation = () => {
                     <Link href={item.href}>
                       <motion.span
                         className={`cursor-pointer transition-colors relative flex items-center gap-1 ${
-                          pathname === item.href || pathname?.startsWith('/services/')
+                          pathname === item.href ||
+                          pathname?.startsWith("/services/")
                             ? "text-[#ECB629] font-semibold"
                             : "text-white hover:text-[#ECB629]"
                         }`}
@@ -138,12 +155,13 @@ export const Navigation = () => {
                         transition={{ duration: 0.2 }}
                       >
                         {item.label}
-                        <ChevronDown 
+                        <ChevronDown
                           className={`w-4 h-4 transition-transform ${
-                            isServicesDropdownOpen ? 'rotate-180' : ''
-                          }`} 
+                            isServicesDropdownOpen ? "rotate-180" : ""
+                          }`}
                         />
-                        {(pathname === item.href || pathname?.startsWith('/services/')) && (
+                        {(pathname === item.href ||
+                          pathname?.startsWith("/services/")) && (
                           <motion.div
                             className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#ECB629]"
                             layoutId="activeTab"
@@ -153,17 +171,15 @@ export const Navigation = () => {
                     </Link>
 
                     {/* Dropdown Menu */}
-                    <div
-                      className="absolute top-full left-0 pt-2 z-[9999]"
-                    >
+                    <div className="absolute top-full left-0 pt-2 z-[9999]">
                       {isServicesDropdownOpen && (
                         <motion.div
                           className="glassmorphism backdrop-blur-xl bg-black/30 border border-[#ECB629]/20 rounded-xl p-4 shadow-2xl shadow-[#ECB629]/10 min-w-[320px]"
                           initial={{ opacity: 0, y: -10, scale: 0.95 }}
-                          animate={{ 
+                          animate={{
                             opacity: 1,
                             y: 0,
-                            scale: 1
+                            scale: 1,
                           }}
                           exit={{ opacity: 0, y: -10, scale: 0.95 }}
                           transition={{ duration: 0.3 }}
@@ -178,7 +194,7 @@ export const Navigation = () => {
                                 >
                                   {/* Hover Glow Effect */}
                                   <div className="absolute inset-0 bg-gradient-to-r from-[#ECB629]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                                  
+
                                   <div className="flex justify-between items-start relative z-10">
                                     <div>
                                       <h3 className="text-white font-semibold group-hover:text-[#ECB629] transition-colors duration-300 flex items-center gap-2">
@@ -186,7 +202,10 @@ export const Navigation = () => {
                                         <motion.div
                                           className="w-1 h-1 bg-[#ECB629] rounded-full opacity-0 group-hover:opacity-100"
                                           animate={{ scale: [1, 1.5, 1] }}
-                                          transition={{ duration: 2, repeat: Infinity }}
+                                          transition={{
+                                            duration: 2,
+                                            repeat: Infinity,
+                                          }}
                                         />
                                       </h3>
                                       <p className="text-gray-400 text-sm mt-1 group-hover:text-gray-300 transition-colors duration-300">
@@ -205,13 +224,16 @@ export const Navigation = () => {
                                 >
                                   {/* Button Glow Effect */}
                                   <div className="absolute inset-0 bg-gradient-to-r from-[#ECB629]/10 to-[#ECB629]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                                  
+
                                   <span className="text-[#ECB629] font-semibold text-sm relative z-10 flex items-center justify-center gap-2">
-                                    Всички услуги 
+                                    Всички услуги
                                     <motion.span
                                       className="inline-block"
                                       animate={{ x: [0, 4, 0] }}
-                                      transition={{ duration: 1.5, repeat: Infinity }}
+                                      transition={{
+                                        duration: 1.5,
+                                        repeat: Infinity,
+                                      }}
                                     >
                                       →
                                     </motion.span>
@@ -233,7 +255,9 @@ export const Navigation = () => {
                     <Link
                       href={item.href}
                       className={`text-gray-300 hover:text-[#ECB629] transition-all duration-300 relative group px-3 py-2 rounded-lg ${
-                        pathname === item.href ? 'text-[#ECB629] font-semibold' : ''
+                        pathname === item.href
+                          ? "text-[#ECB629] font-semibold"
+                          : ""
                       }`}
                     >
                       {/* Background Glow Effect */}
@@ -242,16 +266,18 @@ export const Navigation = () => {
                         initial={{ scale: 0.8 }}
                         whileHover={{ scale: 1 }}
                       />
-                      
+
                       <span className="relative z-10">{item.label}</span>
-                      
+
                       {/* Underline Effect */}
                       <motion.div
                         className={`absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-[#ECB629] to-[#ECB629]/50 origin-left transition-transform duration-300 ${
-                          pathname === item.href ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+                          pathname === item.href
+                            ? "scale-x-100"
+                            : "scale-x-0 group-hover:scale-x-100"
                         }`}
                       />
-                      
+
                       {/* Active Indicator */}
                       {pathname === item.href && (
                         <motion.div
@@ -265,7 +291,7 @@ export const Navigation = () => {
                 )}
               </div>
             ))}
-            
+
             {/* Search Button */}
             <SearchTrigger />
           </div>
@@ -280,12 +306,15 @@ export const Navigation = () => {
               <Button
                 className="bg-[#ECB629] text-black hover:bg-[#ECB629]/90 font-semibold px-6 py-3 rounded-lg transition-all duration-300 shadow-lg hover:shadow-[#ECB629]/40 relative overflow-hidden group"
                 onClick={() => {
-                  window.open("https://form.typeform.com/to/GXLaGY98", "_blank");
+                  window.open(
+                    "https://form.typeform.com/to/GXLaGY98",
+                    "_blank",
+                  );
                 }}
               >
                 {/* Button Shine Effect */}
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 group-hover:animate-shimmer"></div>
-                
+
                 <span className="relative z-10 flex items-center gap-2">
                   Безплатна консултация
                   <motion.div
@@ -311,12 +340,12 @@ export const Navigation = () => {
         {/* Mobile Menu */}
         <motion.div
           className={`md:hidden mt-4 glassmorphism backdrop-blur-xl bg-black/30 rounded-xl border border-[#ECB629]/20 overflow-hidden shadow-2xl shadow-[#ECB629]/10 ${
-            isMobileMenuOpen ? 'block' : 'hidden'
+            isMobileMenuOpen ? "block" : "hidden"
           }`}
           initial={{ opacity: 0, height: 0 }}
           animate={{
             opacity: isMobileMenuOpen ? 1 : 0,
-            height: isMobileMenuOpen ? 'auto' : 0,
+            height: isMobileMenuOpen ? "auto" : 0,
           }}
           transition={{ duration: 0.3 }}
         >
@@ -327,19 +356,21 @@ export const Navigation = () => {
                   <div>
                     <motion.button
                       className="flex items-center justify-between w-full text-gray-300 hover:text-[#ECB629] transition-colors py-2"
-                      onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
+                      onClick={() =>
+                        setIsMobileServicesOpen(!isMobileServicesOpen)
+                      }
                       whileTap={{ scale: 0.98 }}
                     >
                       {item.label}
                       <ChevronDown
                         className={`w-4 h-4 transform transition-transform ${
-                          isMobileServicesOpen ? 'rotate-180' : ''
+                          isMobileServicesOpen ? "rotate-180" : ""
                         }`}
                       />
                     </motion.button>
-                    
+
                     <motion.div
-                      className={`mt-2 space-y-2 pl-4 ${isMobileServicesOpen ? 'block' : 'hidden'}`}
+                      className={`mt-2 space-y-2 pl-4 ${isMobileServicesOpen ? "block" : "hidden"}`}
                       initial={{ opacity: 0 }}
                       animate={{ opacity: isMobileServicesOpen ? 1 : 0 }}
                       transition={{ duration: 0.2 }}
@@ -367,7 +398,7 @@ export const Navigation = () => {
                   <Link
                     href={item.href}
                     className={`block py-2 text-gray-300 hover:text-[#ECB629] transition-colors ${
-                      pathname === item.href ? 'text-[#ECB629]' : ''
+                      pathname === item.href ? "text-[#ECB629]" : ""
                     }`}
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
@@ -376,7 +407,7 @@ export const Navigation = () => {
                 )}
               </div>
             ))}
-            
+
             <motion.div
               className="pt-4 border-t border-slate-600/30"
               whileTap={{ scale: 0.98 }}
@@ -384,7 +415,10 @@ export const Navigation = () => {
               <Button
                 className="w-full bg-[#ECB629] text-black hover:bg-[#ECB629]/90 font-semibold py-3 rounded-lg transition-all duration-300"
                 onClick={() => {
-                  window.open("https://form.typeform.com/to/GXLaGY98", "_blank");
+                  window.open(
+                    "https://form.typeform.com/to/GXLaGY98",
+                    "_blank",
+                  );
                   setIsMobileMenuOpen(false);
                 }}
               >
