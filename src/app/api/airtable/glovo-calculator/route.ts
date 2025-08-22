@@ -39,15 +39,25 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Create Airtable record - all fields as strings for Single text line type
+    // First, get table schema to see exact field names
+    let schemaResponse;
+    try {
+      schemaResponse = await fetch(`https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE_ID}?maxRecords=1`, {
+        headers: { 'Authorization': `Bearer ${AIRTABLE_API_KEY}` }
+      });
+      if (schemaResponse.ok) {
+        const schemaData = await schemaResponse.json();
+        console.log('Available fields from existing records:', Object.keys(schemaData.records[0]?.fields || {}));
+      }
+    } catch (e) {
+      console.log('Could not fetch schema:', e.message);
+    }
+
+    // Create Airtable record - only use fields that exist in the table
+    // Currently the table has "Created" field (without space)
     const airtableData = {
       fields: {
-        'Restaurant Name': String(body.restaurant_name || ''),
-        'Daily Orders': String(body.daily_orders || ''),
-        'Average Order Value': String(body.avg_order_value || ''),
-        'Email': String(body.email || ''),
-        'Phone': String(body.phone || ''),
-        'Timestamp': String(body.timestamp || new Date().toISOString())
+        'Created': `Restaurant: ${body.restaurant_name} | Orders: ${body.daily_orders} | Value: ${body.avg_order_value} | Email: ${body.email} | Phone: ${body.phone} | Time: ${body.timestamp}`
       }
     };
 
