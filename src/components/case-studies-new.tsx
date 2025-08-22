@@ -65,7 +65,7 @@ const caseStudies = [
   },
 ];
 
-export const CaseStudiesNew = () => {
+export const CaseStudiesSlider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const nextSlide = () => {
