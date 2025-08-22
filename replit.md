@@ -87,7 +87,7 @@ Project organization: Documentation files organized in `/docs` folder for cleane
 
 ### Landing Pages System ✅ (August 21, 2025)
 - **Navigation Update**: Replaced Calculators with Landing Pages in main navigation
-- **Showcase Page**: Created `/landing-pages` with hero section and card-based layout for all landing pages
+- **Showcase Page**: Created `/campaigns` with hero section and card-based layout for all landing pages
 - **GLOVO Landing Page**: First specialized landing page at `/landing/glovo-calculator` without main navigation
 - **Content Structure**: Hero, social proof, problem agitation, solution preview, lead form, and credibility sections
 - **Target Audience**: Bulgarian restaurants paying Glovo 30% commission fees
