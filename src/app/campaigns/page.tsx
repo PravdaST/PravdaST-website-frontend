@@ -3,7 +3,18 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight, Zap, Target, TrendingUp, Users, Car, ShoppingBag, Dumbbell, Briefcase, Pizza } from "lucide-react";
+import {
+  ArrowRight,
+  Zap,
+  Target,
+  TrendingUp,
+  Users,
+  Car,
+  ShoppingBag,
+  Dumbbell,
+  Briefcase,
+  Pizza,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Footer } from "@/components/footer";
 import { Navigation } from "@/components/navigation";
@@ -12,10 +23,22 @@ import { Navigation } from "@/components/navigation";
 const categories = [
   { id: "all", name: "Всички кампании", icon: <Target className="w-4 h-4" /> },
   { id: "fast-food", name: "Fast Food", icon: <Pizza className="w-4 h-4" /> },
-  { id: "restaurants", name: "Ресторанти", icon: <Target className="w-4 h-4" /> },
+  {
+    id: "restaurants",
+    name: "Ресторанти",
+    icon: <Target className="w-4 h-4" />,
+  },
   { id: "auto", name: "Автосервизи", icon: <Car className="w-4 h-4" /> },
-  { id: "ecommerce", name: "Онлайн магазини", icon: <ShoppingBag className="w-4 h-4" /> },
-  { id: "fitness", name: "Фитнес & Здраве", icon: <Dumbbell className="w-4 h-4" /> },
+  {
+    id: "ecommerce",
+    name: "Онлайн магазини",
+    icon: <ShoppingBag className="w-4 h-4" />,
+  },
+  {
+    id: "fitness",
+    name: "Фитнес & Здраве",
+    icon: <Dumbbell className="w-4 h-4" />,
+  },
   { id: "services", name: "Услуги", icon: <Briefcase className="w-4 h-4" /> },
 ];
 
@@ -23,8 +46,9 @@ const categories = [
 const landingPages = [
   {
     id: 1,
-    title: "Glovo Liberation Calculator",
-    description: "Помогнахме на 23+ ресторанта в София да спестят средно 1,800 лв месечно от Glovo комисионни.",
+    title: "Glovo",
+    description:
+      "Помогнахме на 23+ ресторанта в София да спестят средно 1,800 лв месечно от Glovo комисионни.",
     image: "/images/glovo-landing-preview.svg",
     category: "restaurants",
     categoryDisplay: "Ресторанти",
@@ -35,7 +59,8 @@ const landingPages = [
   {
     id: 2,
     title: "Fast Food Profit Maximizer",
-    description: "Специализирана система за оптимизиране на поръчките и повишаване на печалбите във fast food бизнеса.",
+    description:
+      "Специализирана система за оптимизиране на поръчките и повишаване на печалбите във fast food бизнеса.",
     image: "/images/fast-food-preview.svg",
     category: "fast-food",
     categoryDisplay: "Fast Food",
@@ -46,7 +71,8 @@ const landingPages = [
   {
     id: 3,
     title: "Auto Service Lead Generator",
-    description: "Привличане на нови клиенти за автосервизи чрез персонализирани landing pages с форми за записване.",
+    description:
+      "Привличане на нови клиенти за автосервизи чрез персонализирани landing pages с форми за записване.",
     image: "/images/auto-service-preview.svg",
     category: "auto",
     categoryDisplay: "Автосервизи",
@@ -57,7 +83,8 @@ const landingPages = [
   {
     id: 4,
     title: "E-commerce Conversion Booster",
-    description: "Увеличаване на продажбите в онлайн магазини чрез оптимизирани product landing pages.",
+    description:
+      "Увеличаване на продажбите в онлайн магазини чрез оптимизирани product landing pages.",
     image: "/images/ecommerce-preview.svg",
     category: "ecommerce",
     categoryDisplay: "Онлайн магазини",
@@ -68,7 +95,8 @@ const landingPages = [
   {
     id: 5,
     title: "Fitness Membership Generator",
-    description: "Специални landing pages за фитнес центрове и треньори за привличане на нови членове.",
+    description:
+      "Специални landing pages за фитнес центрове и треньори за привличане на нови членове.",
     image: "/images/fitness-preview.svg",
     category: "fitness",
     categoryDisplay: "Фитнес & Здраве",
@@ -79,7 +107,8 @@ const landingPages = [
   {
     id: 6,
     title: "Service Business Amplifier",
-    description: "Универсални landing pages за различни видове услуги - почистване, ремонти, консултации.",
+    description:
+      "Универсални landing pages за различни видове услуги - почистване, ремонти, консултации.",
     image: "/images/services-preview.svg",
     category: "services",
     categoryDisplay: "Услуги",
@@ -93,9 +122,10 @@ export default function LandingPagesShowcase() {
   const [selectedCategory, setSelectedCategory] = useState("all");
 
   // Filter landing pages based on selected category
-  const filteredPages = selectedCategory === "all" 
-    ? landingPages 
-    : landingPages.filter(page => page.category === selectedCategory);
+  const filteredPages =
+    selectedCategory === "all"
+      ? landingPages
+      : landingPages.filter((page) => page.category === selectedCategory);
 
   return (
     <div className="min-h-screen bg-black text-white">
@@ -158,8 +188,9 @@ export default function LandingPagesShowcase() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              Откриете нашите специализирани landing pages, създадени за максимални конверсии 
-              и бизнес резултати. Всяка страница е оптимизирана за конкретна цел и индустрия.
+              Откриете нашите специализирани landing pages, създадени за
+              максимални конверсии и бизнес резултати. Всяка страница е
+              оптимизирана за конкретна цел и индустрия.
             </motion.p>
 
             <motion.div
@@ -175,7 +206,7 @@ export default function LandingPagesShowcase() {
                 Разгледай Landing Pages
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
-              
+
               <Link href="/contact">
                 <Button
                   variant="outline"
@@ -203,8 +234,9 @@ export default function LandingPagesShowcase() {
               Наши Landing Pages
             </h2>
             <p className="text-gray-400 text-lg max-w-3xl mx-auto mb-8">
-              Всяка landing page е създадена с фокус върху конверсиите и потребителското изживяване. 
-              Проектирани са за различни индустрии и бизнес цели.
+              Всяка landing page е създадена с фокус върху конверсиите и
+              потребителското изживяване. Проектирани са за различни индустрии и
+              бизнес цели.
             </p>
 
             {/* Category Filter Pills */}
@@ -220,13 +252,20 @@ export default function LandingPagesShowcase() {
                   onClick={() => setSelectedCategory(category.id)}
                   className={`
                     flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-300 text-sm font-medium
-                    ${selectedCategory === category.id
-                      ? 'bg-[#ECB629] text-black shadow-lg shadow-[#ECB629]/25'
-                      : 'bg-white/5 text-gray-300 hover:bg-white/10 hover:text-white border border-white/10'
+                    ${
+                      selectedCategory === category.id
+                        ? "bg-[#ECB629] text-black shadow-lg shadow-[#ECB629]/25"
+                        : "bg-white/5 text-gray-300 hover:bg-white/10 hover:text-white border border-white/10"
                     }
                   `}
                 >
-                  <span className={selectedCategory === category.id ? 'text-black' : 'text-[#ECB629]'}>
+                  <span
+                    className={
+                      selectedCategory === category.id
+                        ? "text-black"
+                        : "text-[#ECB629]"
+                    }
+                  >
                     {category.icon}
                   </span>
                   {category.name}
@@ -242,12 +281,14 @@ export default function LandingPagesShowcase() {
               transition={{ duration: 0.3 }}
               className="text-gray-400 text-sm"
             >
-              {filteredPages.length} {filteredPages.length === 1 ? 'кампания' : 'кампании'} 
-              {selectedCategory !== "all" && ` в категория "${categories.find(c => c.id === selectedCategory)?.name}"`}
+              {filteredPages.length}{" "}
+              {filteredPages.length === 1 ? "кампания" : "кампании"}
+              {selectedCategory !== "all" &&
+                ` в категория "${categories.find((c) => c.id === selectedCategory)?.name}"`}
             </motion.p>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             key={selectedCategory} // Re-render grid when category changes
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-6xl mx-auto"
             initial={{ opacity: 0 }}
@@ -260,11 +301,11 @@ export default function LandingPagesShowcase() {
                 initial={{ opacity: 0, y: 30, scale: 0.9 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: -30, scale: 0.9 }}
-                transition={{ 
-                  duration: 0.5, 
+                transition={{
+                  duration: 0.5,
                   delay: index * 0.1,
                   type: "spring",
-                  stiffness: 100
+                  stiffness: 100,
                 }}
                 className="group relative"
               >
@@ -279,9 +320,7 @@ export default function LandingPagesShowcase() {
                   {/* Category and Icon */}
                   <div className="flex items-center gap-3 mb-6">
                     <div className="p-3 bg-[#ECB629]/10 rounded-lg border border-[#ECB629]/20">
-                      <div className="text-[#ECB629]">
-                        {page.icon}
-                      </div>
+                      <div className="text-[#ECB629]">{page.icon}</div>
                     </div>
                     <span className="text-[#ECB629] text-sm font-semibold uppercase tracking-wider">
                       {page.categoryDisplay}
@@ -293,19 +332,38 @@ export default function LandingPagesShowcase() {
                     <h3 className="text-2xl font-bold text-white group-hover:text-[#ECB629] transition-colors">
                       {page.title}
                     </h3>
-                    
+
                     <p className="text-gray-300 leading-relaxed">
                       {page.description}
                     </p>
 
-                    {/* Preview Image Placeholder */}
-                    <div className="mt-6 p-8 bg-gradient-to-br from-[#ECB629]/5 to-[#ECB629]/10 rounded-lg border border-[#ECB629]/10">
-                      <div className="text-center text-[#ECB629] opacity-60">
-                        <div className="w-16 h-16 mx-auto mb-3 bg-[#ECB629]/20 rounded-lg flex items-center justify-center">
-                          {page.icon}
+                    {/* Preview Image */}
+                    <div className="mt-6">
+                      {page.id === 1 ? ( // Show real preview for Glovo
+                        <div className="relative overflow-hidden rounded-lg border border-[#ECB629]/20">
+                          <img
+                            src="/images/glovo-preview.png"
+                            alt="GLOVO Calculator Landing Page Preview"
+                            className="w-full h-auto object-cover"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                          <div className="absolute bottom-3 left-3 right-3">
+                            <div className="flex items-center gap-2 text-white text-xs">
+                              <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                              <span>Активна кампания</span>
+                            </div>
+                          </div>
                         </div>
-                        <p className="text-sm">Preview изображение</p>
-                      </div>
+                      ) : ( // Show placeholder for coming soon
+                        <div className="p-8 bg-gradient-to-br from-[#ECB629]/5 to-[#ECB629]/10 rounded-lg border border-[#ECB629]/10">
+                          <div className="text-center text-[#ECB629] opacity-60">
+                            <div className="w-16 h-16 mx-auto mb-3 bg-[#ECB629]/20 rounded-lg flex items-center justify-center">
+                              {page.icon}
+                            </div>
+                            <p className="text-sm">Preview изображение</p>
+                          </div>
+                        </div>
+                      )}
                     </div>
 
                     {/* Action Button */}
@@ -372,8 +430,9 @@ export default function LandingPagesShowcase() {
               Искате персонализирана Landing Page?
             </h2>
             <p className="text-gray-300 text-lg mb-8 max-w-2xl mx-auto">
-              Нашият екип може да създаде уникална landing page, специално адаптирана към вашия бизнес и цели. 
-              Свържете се с нас за безплатна консултация.
+              Нашият екип може да създаде уникална landing page, специално
+              адаптирана към вашия бизнес и цели. Свържете се с нас за безплатна
+              консултация.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/contact">
