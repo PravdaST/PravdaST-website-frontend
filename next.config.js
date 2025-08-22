@@ -28,6 +28,13 @@ const nextConfig = {
     serverActions: {
       bodySizeLimit: '2mb',
     },
+    // Enable React Compiler (React Forget) for automatic optimization
+    reactCompiler: true,
+    optimizeCss: true,
+  },
+  // Compiler options for production
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
   },
   async headers() {
     return [

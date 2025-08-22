@@ -2,7 +2,6 @@
 
 // Dynamic imports for code splitting
 import dynamic from 'next/dynamic';
-import { ComponentType } from 'react';
 
 // Loading component for better UX
 const LoadingComponent = () => (
@@ -44,9 +43,9 @@ export const LazyAdvancedSearch = dynamic(
   }
 );
 
-// Lazy load CRM integration (heavy component)
+// Lazy load CRM integration (heavy component)  
 export const LazyCRMIntegration = dynamic(
-  () => import('@/components/crm-integration').then(mod => ({ default: mod.default })),
+  () => import('@/components/crm-integration'),
   { 
     loading: LoadingComponent,
     ssr: false
@@ -55,7 +54,7 @@ export const LazyCRMIntegration = dynamic(
 
 // Lazy load calculators
 export const LazyCalculators = dynamic(
-  () => import('@/components/lazy-calculators').then(mod => ({ default: mod.default })),
+  () => import('@/components/lazy-calculators'),
   { 
     loading: LoadingComponent,
     ssr: false
