@@ -53,13 +53,45 @@ export async function POST(request: NextRequest) {
       console.log('Could not fetch schema:', e.message);
     }
 
-    // Create Airtable record - only use fields that exist in the table
-    // Currently the table has "Created" field (without space)
-    const airtableData = {
-      fields: {
-        'Created': `Restaurant: ${body.restaurant_name} | Orders: ${body.daily_orders} | Value: ${body.avg_order_value} | Email: ${body.email} | Phone: ${body.phone} | Time: ${body.timestamp}`
+    // Create Airtable record - use proper fields if they exist, fallback to Created field
+    let availableFields = [];
+    try {
+      if (schemaResponse && schemaResponse.ok) {
+        const schemaData = await schemaResponse.json();
+        availableFields = Object.keys(schemaData.records[0]?.fields || {});
       }
-    };
+    } catch (e) {
+      console.log('Could not get available fields');
+    }
+
+    // Check if proper fields exist
+    const hasProperFields = ['Restaurant Name', 'Daily Orders', 'Average Order Value', 'Email', 'Phone', 'Timestamp'].every(
+      field => availableFields.includes(field)
+    );
+
+    let airtableData;
+    if (hasProperFields) {
+      // Use proper field structure
+      airtableData = {
+        fields: {
+          'Restaurant Name': String(body.restaurant_name || ''),
+          'Daily Orders': String(body.daily_orders || ''),
+          'Average Order Value': String(body.avg_order_value || ''),
+          'Email': String(body.email || ''),
+          'Phone': String(body.phone || ''),
+          'Timestamp': String(body.timestamp || new Date().toISOString())
+        }
+      };
+      console.log('✅ Using proper field structure');
+    } else {
+      // Fallback to Created field with all data
+      airtableData = {
+        fields: {
+          'Created': `Restaurant: ${body.restaurant_name} | Orders: ${body.daily_orders} | Value: ${body.avg_order_value} | Email: ${body.email} | Phone: ${body.phone} | Time: ${body.timestamp}`
+        }
+      };
+      console.log('⚠️ Using fallback - missing fields:', ['Restaurant Name', 'Daily Orders', 'Average Order Value', 'Email', 'Phone', 'Timestamp'].filter(f => !availableFields.includes(f)));
+    }
 
     console.log('GLOVO Calculator submission:', JSON.stringify(airtableData.fields, null, 2));
 
