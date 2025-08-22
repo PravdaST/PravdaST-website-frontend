@@ -1,0 +1,91 @@
+Орежи JS над фолда (най‑големият лост)
+
+Направи Hero максимално „немълвим“: без карусели/фреймър/броячи; всичко това да се зарежда след първия render „под фолда“ чрез dynamic import.
+
+// app/page.tsx
+import dynamic from "next/dynamic";
+const Testimonials = dynamic(() => import("@/components/TestimonialsCarousel"), { ssr:false }); // heavy
+export default function Page() {
+  return (<>
+    <Hero />     {/* чист, без motion */}
+    <Benefits />
+    <Testimonials /> {/* под фолда, lazy */}
+  </>);
+}
+
+
+Конвертирай максимално много UI към Server Components и пази use client само на листа, който реално има интеракции.
+
+Импорт на икони „по име“, не „звездичка“ (tree‑shaking).
+
+Radix/Embla/Framer → само там, където са нужни, и lazy (както горе).
+
+2) Шрифтове (бърза печалба за LCP/CLS)
+
+Минавай през next/font (self‑host, display:"swap", variable weight). Това маха външни заявки и ускорява first render.
+
+3) Скриптове от трети страни
+
+Централизирай GA4/Meta/Clarity и ги пускай след интеракция/след render:
+
+import Script from "next/script";
+// GA/Meta само:
+<Script src="https://www.googletagmanager.com/gtag/js?id=G-XXXX" strategy="afterInteractive"/>
+<Script id="ga-init" strategy="afterInteractive">{`/* init */`}</Script>
+
+
+Премахни дубликати и „разпилени“ инжекции — стека вече има централни интеграции и мониторинг.
+
+4) Hero (той е LCP елемент)
+
+<Image priority sizes placeholder="blur"> с AVIF/WebP вече е активен — остави само една голяма визуализация без тежки филтри/blend; canvas/particle фонове за mobile → off.
+
+Увери се, че sizes отговаря на реалната ширина на viewport, за да не се дърпа по-голям вариант излишно.
+
+Пример:
+
+<Image
+  src="/og-images/home-hero.avif"
+  alt="Pravda ST Hero"
+  priority
+  fill
+  sizes="(max-width:768px) 100vw, (max-width:1280px) 80vw, 1200px"
+  placeholder="blur"
+  blurDataURL="/images/blur/hero-blur.jpg"
+  className="object-cover"
+/>
+
+5) Bundle анализ → махане на „тлъстини“
+
+Пусни анализатора и отстрани най‑тежките модули:
+
+ANALYZE=true npm run build
+
+
+(@next/bundle-analyzer е в проекта). Цел: ‑30…‑50% JS.
+
+6) Кеширане и доставка
+
+Дълги immutable cache headers за статични assets, Brotli + HTTP/2/3 през CDN; SW за кеширане на второстепенни ресурси (присъства в архитектурата).
+
+7) Непрекъснато измерване (реални данни, не само Lighthouse)
+
+Активен е @vercel/speed-insights → следи LCP/INP/TBT от реални потребители.
+
+Дръж нашите проектни KPI пред очи: Mobile 90+, Core Web Vitals зелено, <3s speed.
+
+Контролен списък (по ред на въздействие)
+
+Премахни motion/карусели от Hero; lazy import под фолда.
+
+next/font + variable → без външни шрифтови заявки.
+
+Централизирай и отложи всички 3rd‑party скриптове.
+
+Прегледай bundle отчета и изрежи най‑тежките модули.
+
+Проверка на sizes/priority за LCP изображението.
+
+Един edge redirect + агресивно кеширане през CDN.
+
+Потвърди подобренията през Vercel Speed Insights (ползва се вече).

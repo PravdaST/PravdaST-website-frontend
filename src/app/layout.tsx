@@ -15,7 +15,13 @@ import { Toaster } from '@/components/ui/toaster'
 import { Navigation } from '@/components/navigation'
 import { BackgroundEffects } from '@/components/background-effects'
 
-const inter = Inter({ subsets: ['latin'] })
+// Self-hosted font with optimized loading
+const inter = Inter({
+  subsets: ['latin', 'cyrillic'],
+  display: 'swap',
+  variable: '--font-inter',
+  preload: true,
+})
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.pravdast.agency'),
@@ -59,16 +65,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="bg">
-      <body className={inter.className}>
+      <body className={`${inter.variable} font-sans`}>
+        {/* Critical components only */}
+        <Navigation />
+        
+        {/* Third-party scripts - deferred */}
         <ClientOnly>
-          <BackgroundEffects />
           <KlaviyoSetup />
-          <KlaviyoIntegration />
-          <Analytics />
-          <MetaPixel />
-          <ClarityAnalytics />
-          <RetargetingPixels />
-          <ServiceWorkerSetup />
         </ClientOnly>
         {children}
         <ClientOnly>

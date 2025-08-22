@@ -1,5 +1,7 @@
 import { Metadata } from 'next'
-import HomeClient from './HomeClient'
+import { HeroSectionOptimized } from '@/components/hero-section-optimized'
+import { HomeDynamicSections } from '@/components/home-dynamic-sections'
+import { FooterServer } from '@/components/footer-server'
 
 export const metadata: Metadata = {
   title: "Правдаст - Бизнес инженеринг за предвидим растеж в България",
@@ -21,5 +23,16 @@ export const metadata: Metadata = {
 }
 
 export default function HomePage() {
-  return <HomeClient />
+  return (
+    <div className="min-h-screen bg-black text-white">
+      {/* Critical above-fold content - no JS, fast render */}
+      <HeroSectionOptimized />
+      
+      {/* Below fold - lazy loaded via Client Component */}
+      <HomeDynamicSections />
+      
+      {/* Footer - Server Component */}
+      <FooterServer />
+    </div>
+  )
 }
