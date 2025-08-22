@@ -48,7 +48,6 @@ export const Navigation = () => {
   ];
 
   const navItems = [
-    { href: "/", label: "Начало" },
     { href: "/services", label: "Услуги", hasDropdown: true },
     { href: "/campaigns", label: "Кампании" },
     { href: "/case-studies", label: "Резултати" },

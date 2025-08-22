@@ -26,10 +26,6 @@ author = "agent"
 [[workflows.workflow.tasks]]
 task = "workflow.run"
 args = "Start application"
-
-[[workflows.workflow.tasks]]
-task = "workflow.run"
-args = "Bundle Analysis"
 [[workflows.workflow]]
 name = "Start application"
 author = "agent"
@@ -38,11 +34,3 @@ author = "agent"
 task = "shell.exec"
 args = "npm run dev -- -p 5000"
 waitForPort = 5000
-
-[[workflows.workflow]]
-name = "Bundle Analysis"
-author = "agent"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "ANALYZE=true npm run build"
