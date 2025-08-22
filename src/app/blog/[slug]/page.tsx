@@ -4,6 +4,7 @@ import BlogPostClient from './BlogPostClient'
 import { readBlogPostsFromFiles, getBlogPostBySlugFromFiles } from '@/lib/blog-file-reader'
 import { getWordPressPost } from '@/lib/wordpress'
 import { decodeHtmlEntities } from '@/lib/html-decoder'
+import { getCachedWordPressPostMeta } from '@/lib/ai-meta-generator'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -25,23 +26,29 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       
       if (post) {
         // Use imported HTML entity decoder
-
         const title = decodeHtmlEntities(post.title.rendered.replace(/<[^>]*>/g, ''))
-        const description = decodeHtmlEntities(post.excerpt.rendered.replace(/<[^>]*>/g, '')).substring(0, 160)
         const featuredImage = post._embedded?.['wp:featuredmedia']?.[0]?.source_url
+
+        // Generate AI-powered meta description and keywords
+        const aiMeta = await getCachedWordPressPostMeta(
+          wpSlug,
+          post.title.rendered,
+          post.content.rendered,
+          post.excerpt.rendered
+        )
 
         // Truncate title if too long (max 60 characters for SEO)
         const shortTitle = title.length > 60 ? title.substring(0, 57) + '...' : title;
         
         return {
-          title: `${shortTitle} - Pravda Agency`,
-          description,
-          keywords: ['бизнес инженерство', 'растеж', 'маркетинг', 'SEO', 'Pravda Agency'],
+          title: `${shortTitle} - Pravda ST`,
+          description: aiMeta.description,
+          keywords: [...aiMeta.keywords, 'Pravda ST', 'бизнес инженеринг'],
           openGraph: {
             title: shortTitle,
-            description,
-            url: `https://www.pravdagency.eu/blog/${slug}`,
-            siteName: 'Pravda Agency',
+            description: aiMeta.description,
+            url: `https://www.pravdast.agency/blog/${slug}`,
+            siteName: 'Pravda ST',
             locale: 'bg_BG',
             images: featuredImage ? [
               {
@@ -52,25 +59,25 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
               }
             ] : [
               {
-                url: 'https://pravdagency.eu/pravda-og-blog.png',
+                url: 'https://www.pravdast.agency/pravda-og-blog.png',
                 width: 1200,
                 height: 630,
-                alt: 'Pravda Agency Blog',
+                alt: 'Pravda ST Blog',
               }
             ],
             type: 'article',
             publishedTime: post.date,
             modifiedTime: post.modified,
-            authors: [post._embedded?.author?.[0]?.name || 'Pravda Agency'],
+            authors: [post._embedded?.author?.[0]?.name || 'Pravda ST'],
           },
           twitter: {
             card: 'summary_large_image',
             title: shortTitle,
-            description,
-            images: [featuredImage || 'https://pravdagency.eu/pravda-og-blog.png'],
+            description: aiMeta.description,
+            images: [featuredImage || 'https://www.pravdast.agency/pravda-og-blog.png'],
           },
           alternates: {
-            canonical: `https://www.pravdagency.eu/blog/${slug}`,
+            canonical: `https://www.pravdast.agency/blog/${slug}`,
           },
         }
       }
@@ -81,7 +88,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   
   // No local blog posts - only WordPress posts
   return {
-    title: 'Статията не е намерена - Pravda Agency Blog',
+    title: 'Статията не е намерена - Pravda ST Blog',
     description: 'Статията която търсите не съществува.',
   }
 }
