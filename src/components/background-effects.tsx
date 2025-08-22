@@ -5,117 +5,133 @@ import { useState, useEffect } from 'react'
 
 export function BackgroundEffects() {
   const [particles, setParticles] = useState<Array<{ left: number; top: number }>>([])
+  const [isMobile, setIsMobile] = useState(false)
+  const [reducedMotion, setReducedMotion] = useState(false)
 
   useEffect(() => {
-    // Generate particles only on client-side after hydration
-    const newParticles = Array.from({ length: 12 }, () => ({
+    // Check for mobile devices and reduced motion preference
+    const checkMobile = () => window.innerWidth < 768 || /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
+    const checkReducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    
+    setIsMobile(checkMobile())
+    setReducedMotion(checkReducedMotion())
+
+    // Generate fewer particles for mobile
+    const particleCount = checkMobile() ? 4 : 8 // Reduced from 12
+    const newParticles = Array.from({ length: particleCount }, () => ({
       left: Math.random() * 100,
       top: Math.random() * 100,
     }))
     setParticles(newParticles)
   }, [])
+  // Skip all animations for reduced motion users or on very low-end devices
+  if (reducedMotion) {
+    return (
+      <div className="fixed inset-0 overflow-hidden pointer-events-none z-[-1]">
+        <div 
+          className="absolute inset-0 opacity-20"
+          style={{
+            background: `
+              radial-gradient(circle at 20% 30%, rgba(236, 182, 40, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 80% 70%, rgba(59, 130, 246, 0.05) 0%, transparent 50%)
+            `
+          }}
+        />
+      </div>
+    )
+  }
+
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none z-[-1]">
-      {/* Primary Yellow Orb - Large */}
+      {/* Primary Yellow Orb - Optimized for mobile */}
       <motion.div
-        className="absolute w-96 h-96 rounded-full blur-3xl opacity-20"
+        className={`absolute rounded-full opacity-20 ${
+          isMobile ? 'w-48 h-48 blur-xl' : 'w-96 h-96 blur-3xl'
+        }`}
         style={{
           background: 'radial-gradient(circle, rgba(236, 182, 40, 0.4) 0%, rgba(255, 215, 0, 0.2) 50%, transparent 100%)',
           top: '10%',
           left: '10%',
         }}
-        animate={{
+        animate={isMobile ? {
+          x: [0, 30, 0],
+          scale: [1, 1.1, 1],
+        } : {
           x: [0, 100, 0],
           y: [0, -50, 0],
           scale: [1, 1.2, 1],
         }}
         transition={{
-          duration: 15,
+          duration: isMobile ? 20 : 15,
           repeat: Infinity,
           ease: "linear",
         }}
       />
 
-      {/* Secondary Orange Orb - Medium */}
-      <motion.div
-        className="absolute w-64 h-64 rounded-full blur-2xl opacity-15"
-        style={{
-          background: 'radial-gradient(circle, rgba(255, 165, 0, 0.3) 0%, rgba(236, 182, 40, 0.15) 60%, transparent 100%)',
-          bottom: '20%',
-          right: '15%',
-        }}
-        animate={{
-          x: [0, -80, 0],
-          y: [0, 60, 0],
-          scale: [0.8, 1.1, 0.8],
-        }}
-        transition={{
-          duration: 12,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
+      {/* Secondary Orange Orb - Mobile optimized */}
+      {!isMobile && (
+        <motion.div
+          className="absolute w-64 h-64 rounded-full blur-2xl opacity-15"
+          style={{
+            background: 'radial-gradient(circle, rgba(255, 165, 0, 0.3) 0%, rgba(236, 182, 40, 0.15) 60%, transparent 100%)',
+            bottom: '20%',
+            right: '15%',
+          }}
+          animate={{
+            x: [0, -80, 0],
+            y: [0, 60, 0],
+            scale: [0.8, 1.1, 0.8],
+          }}
+          transition={{
+            duration: 12,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+      )}
 
-      {/* Tertiary Blue Orb - Small */}
-      <motion.div
-        className="absolute w-48 h-48 rounded-full blur-xl opacity-10"
-        style={{
-          background: 'radial-gradient(circle, rgba(59, 130, 246, 0.2) 0%, rgba(147, 197, 253, 0.1) 70%, transparent 100%)',
-          top: '60%',
-          left: '70%',
-        }}
-        animate={{
-          x: [0, 50, 0],
-          y: [0, -80, 0],
-          scale: [1, 0.9, 1],
-        }}
-        transition={{
-          duration: 18,
-          repeat: Infinity,
-          ease: "linear",
-        }}
-      />
+      {/* Simplified Blue Orb - Desktop only */}
+      {!isMobile && (
+        <motion.div
+          className="absolute w-48 h-48 rounded-full blur-xl opacity-10"
+          style={{
+            background: 'radial-gradient(circle, rgba(59, 130, 246, 0.2) 0%, rgba(147, 197, 253, 0.1) 70%, transparent 100%)',
+            top: '60%',
+            left: '70%',
+          }}
+          animate={{
+            scale: [1, 0.9, 1],
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+      )}
 
-      {/* Ambient Yellow Glow - Bottom Left */}
+      {/* Static ambient glow for mobile, animated for desktop */}
       <motion.div
-        className="absolute w-80 h-80 rounded-full blur-3xl opacity-8"
+        className={`absolute rounded-full ${
+          isMobile ? 'w-40 h-40 blur-xl opacity-6' : 'w-80 h-80 blur-3xl opacity-8'
+        }`}
         style={{
           background: 'radial-gradient(circle, rgba(236, 182, 40, 0.15) 0%, transparent 70%)',
           bottom: '5%',
           left: '5%',
         }}
-        animate={{
+        animate={isMobile ? {} : {
           scale: [1, 1.3, 1],
           opacity: [0.08, 0.12, 0.08],
         }}
-        transition={{
+        transition={isMobile ? {} : {
           duration: 10,
           repeat: Infinity,
           ease: "easeInOut",
         }}
       />
 
-      {/* Subtle Purple Accent - Top Right */}
-      <motion.div
-        className="absolute w-56 h-56 rounded-full blur-2xl opacity-6"
-        style={{
-          background: 'radial-gradient(circle, rgba(168, 85, 247, 0.15) 0%, rgba(196, 146, 254, 0.08) 60%, transparent 100%)',
-          top: '15%',
-          right: '20%',
-        }}
-        animate={{
-          x: [0, -30, 0],
-          y: [0, 40, 0],
-          scale: [0.9, 1.1, 0.9],
-        }}
-        transition={{
-          duration: 14,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
-
-      {/* Floating Particles Effect */}
+      {/* Optimized Floating Particles - Fewer for mobile */}
       {particles.map((particle, i) => (
         <motion.div
           key={`particle-${i}`}
@@ -124,28 +140,30 @@ export function BackgroundEffects() {
             left: `${particle.left}%`,
             top: `${particle.top}%`,
           }}
-          animate={{
+          animate={isMobile ? {
+            y: [0, -50, 0],
+            opacity: [0, 0.8, 0],
+          } : {
             y: [0, -100, 0],
             opacity: [0, 1, 0],
             scale: [0.5, 1, 0.5],
           }}
           transition={{
-            duration: 8 + (i % 3) * 2, // Use predictable variation instead of Math.random()
+            duration: isMobile ? 12 : 8 + (i % 3) * 2,
             repeat: Infinity,
-            delay: i * 0.5,
+            delay: i * 0.8, // Longer delays for smoother performance
             ease: "easeInOut",
           }}
         />
       ))}
 
-      {/* Central Gradient Overlay */}
+      {/* Simplified gradient overlay for better performance */}
       <div 
-        className="absolute inset-0 opacity-30"
+        className={`absolute inset-0 ${isMobile ? 'opacity-20' : 'opacity-30'}`}
         style={{
           background: `
             radial-gradient(circle at 50% 50%, transparent 0%, rgba(13, 13, 15, 0.8) 100%),
-            radial-gradient(circle at 20% 80%, rgba(236, 182, 40, 0.03) 0%, transparent 50%),
-            radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.02) 0%, transparent 50%)
+            radial-gradient(circle at 20% 80%, rgba(236, 182, 40, 0.03) 0%, transparent 50%)
           `
         }}
       />
