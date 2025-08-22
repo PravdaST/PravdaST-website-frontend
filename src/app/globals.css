@@ -2,43 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Performance optimizations for mobile devices */
-@media (max-width: 768px) {
-  * {
-    /* Reduce animations on mobile for better performance */
-    animation-duration: 0.2s !important;
-    transition-duration: 0.2s !important;
-  }
-  
-  /* Optimize blur effects for mobile Safari */
-  .blur-3xl {
-    backdrop-filter: blur(8px) !important;
-    filter: blur(8px) !important;
-  }
-  
-  .blur-2xl {
-    backdrop-filter: blur(6px) !important;
-    filter: blur(6px) !important;
-  }
-  
-  /* Disable expensive transforms on low-end devices */
-  .transform-gpu {
-    transform: none !important;
-  }
-}
-
-/* Reduce motion for accessibility and performance */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-}
-
 @keyframes infinite-scroll {
   0% {
     transform: translateX(0);
