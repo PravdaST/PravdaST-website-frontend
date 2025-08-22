@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: process.env.SITE_URL || 'https://pravdagency.eu',
+  siteUrl: process.env.SITE_URL || 'https://www.pravdast.agency',
   generateRobotsTxt: true,
   sitemapSize: 5000,
   changefreq: 'daily',
@@ -34,7 +34,7 @@ module.exports = {
       });
 
       // Fetch WordPress posts dynamically
-      const wpApiUrl = 'https://admin.pravdagency.eu/wp-json/wp/v2';
+      const wpApiUrl = 'https://admin.pravdast.agency/wp-json/wp/v2';
       
       // WordPress posts
       try {

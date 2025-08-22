@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const WORDPRESS_BASE_URL = 'https://admin.pravdagency.eu'
+const WORDPRESS_BASE_URL = 'https://admin.pravdast.agency'
 const WP_API_BASE = `${WORDPRESS_BASE_URL}/wp-json/wp/v2`
 
 // WordPress credentials

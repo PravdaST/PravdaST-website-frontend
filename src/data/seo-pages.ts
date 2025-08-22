@@ -20,32 +20,32 @@ export const pageSEOData: Record<string, SEOData> = {
     title: "Pravdast - Бизнес инженеринг за предвидим растеж в България",
     description: "Превръщаме хаотичния растеж в предвидими, измерими резултати чрез проверени бизнес системи. SEO оптимизация, създаване на съдържание, рекламни кампании.",
     keywords: "бизнес инженеринг българия, pravdast, seo оптимизация софия, систематичен растеж, b2b маркетинг, автоматизация продажби, предвидим растеж",
-    canonical: "https://www.pravdagency.eu",
+    canonical: "https://www.pravdast.agency",
     ogTitle: "Pravdast - Бизнес инженеринг за предвидим растеж",
     ogDescription: "Превръщаме хаоса в предсказуеми системи. Проверени методи за B2B растеж.",
-    ogImage: "https://www.pravdagency.eu/og-home.jpg",
+    ogImage: "https://www.pravdast.agency/og-home.jpg",
     ogType: "website",
     twitterCard: "summary_large_image",
     twitterTitle: "Pravdast - Бизнес инженеринг",
     twitterDescription: "Систематичен подход към B2B растеж в България.",
-    twitterImage: "https://www.pravdagency.eu/twitter-home.jpg",
+    twitterImage: "https://www.pravdast.agency/twitter-home.jpg",
     robots: "index, follow, max-snippet:-1, max-image-preview:large",
     structuredData: {
       "@context": "https://schema.org",
       "@graph": [
         {
           "@type": "Organization",
-          "@id": "https://www.pravdagency.eu/#organization",
-          "name": "Pravda Agency",
+          "@id": "https://www.pravdast.agency/#organization",
+          "name": "Pravda ST",
           "alternateName": "Pravdast",
-          "url": "https://www.pravdagency.eu",
+          "url": "https://www.pravdast.agency",
           "logo": {
             "@type": "ImageObject",
-            "url": "https://www.pravdagency.eu/logo.png",
-            "width": 300,
-            "height": 100
+            "url": "https://www.pravdast.agency/_next/image?url=/logo.png&w=256&q=75",
+            "width": 256,
+            "height": 75
           },
-          "image": "https://www.pravdagency.eu/og-home.jpg",
+          "image": "https://www.pravdast.agency/og-home.jpg",
           "description": "Бизнес инженеринг агенция за предвидим растеж в България. Специализираме се в SEO оптимизация, създаване на съдържание, рекламни кампании и автоматизация на продажбите.",
           "address": {
             "@type": "PostalAddress",
@@ -67,27 +67,65 @@ export const pageSEOData: Record<string, SEOData> = {
         },
         {
           "@type": "WebSite",
-          "@id": "https://www.pravdagency.eu/#website",
-          "url": "https://www.pravdagency.eu",
-          "name": "Pravda Agency",
+          "@id": "https://www.pravdast.agency/#website",
+          "url": "https://www.pravdast.agency",
+          "name": "Pravda ST",
           "description": "Бизнес инженеринг за предвидим растеж в България",
           "publisher": {
-            "@id": "https://www.pravdagency.eu/#organization"
+            "@id": "https://www.pravdast.agency/#organization"
           },
           "inLanguage": "bg-BG"
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://www.pravdast.agency/#faq-home",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Какво включва безплатната диагностика?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "60–90 мин анализ на данни и структура, завършващ с доклад от 3 приоритета и ориентировъчни KPI."
+              }
+            },
+            {
+              "@type": "Question", 
+              "name": "За колко време се усещат резултатите?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Кампании: първи сигнали 2–4 седмици. SEO: 8–12 седмици за стабилни трендове."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Какъв е минималният ангажимент?",
+              "acceptedAnswer": {
+                "@type": "Answer", 
+                "text": "3 месеца на система, за да има валидна диагностика, внедряване и първа оптимизация."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "За кого не е услугата?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "За екипи без капацитет за промени, без достъп до данни и без готовност да следват процес."
+              }
+            }
+          ]
         }
       ]
     }
   },
   
   contact: {
-    title: "Контакти - Pravda Agency | Свържете се с нас",
-    description: "Свържете се с Pravda Agency за консултация по бизнес инженеринг. Офис във Варна, телефон +359 879 282 299, email contact@pravdagency.eu",
-    keywords: "контакти pravda agency, консултация, бизнес инженеринг варна, телефон, email, офис",
-    canonical: "https://www.pravdagency.eu/contact",
-    ogTitle: "Контакти - Pravda Agency | Свържете се с нас",
-    ogDescription: "Свържете се с Pravda Agency за консултация по бизнес инженеринг. Офис във Варна, телефон +359 879 282 299",
-    ogImage: "https://www.pravdagency.eu/og-contact.jpg",
+    title: "Контакти - Pravda ST | Свържете се с нас",
+    description: "Свържете се с Pravda ST за консултация по бизнес инженеринг. Офис във Варна, телефон +359 879 282 299, email contact@pravdast.agency",
+    keywords: "контакти pravda st, консултация, бизнес инженеринг варна, телефон, email, офис",
+    canonical: "https://www.pravdast.agency/contact",
+    ogTitle: "Контакти - Pravda ST | Свържете се с нас",
+    ogDescription: "Свържете се с Pravda ST за консултация по бизнес инженеринг. Офис във Варна, телефон +359 879 282 299",
+    ogImage: "https://www.pravdast.agency/og-contact.jpg",
     ogType: "website",
     twitterCard: "summary_large_image",
     twitterTitle: "Контакти - Pravda Agency",
@@ -120,10 +158,10 @@ export const pageSEOData: Record<string, SEOData> = {
   },
 
   faq: {
-    title: "Често задавани въпроси - Pravda Agency | FAQ",
+    title: "Често задавани въпроси - Pravda ST | FAQ",
     description: "Отговори на най-честите въпроси за нашите бизнес системи, цени, сроки и процеси. Научете повече за SEO Struktor™, Trendlab™, Clickstarter™ и Clientomat™.",
-    keywords: "faq pravda agency, въпроси отговори, цени услуги, процеси, бизнес системи",
-    canonical: "https://www.pravdagency.eu/faq",
+    keywords: "faq pravda st, въпроси отговори, цени услуги, процеси, бизнес системи",
+    canonical: "https://www.pravdast.agency/faq",
     ogTitle: "Често задавани въпроси - Pravda Agency | FAQ",
     ogDescription: "Отговори на най-честите въпроси за нашите бизнес системи, цени, сроки и процеси",
     ogImage: "https://www.pravdagency.eu/og-faq.jpg",
@@ -166,10 +204,10 @@ export const pageSEOData: Record<string, SEOData> = {
   },
 
   services: {
-    title: "Услуги - Pravda Agency | Бизнес системи за растеж",
+    title: "Услуги - Pravda ST | Бизнес системи за растеж",
     description: "Проверени бизнес системи за предвидим растеж: SEO Struktor™, Trendlab™, Clickstarter™ и Clientomat™. Превърнете хаоса в измерими резултати.",
-    keywords: "бизнес системи, seo struktor, trendlab, clickstarter, clientomat, pravda agency услуги",
-    canonical: "https://www.pravdagency.eu/services",
+    keywords: "бизнес системи, seo struktor, trendlab, clickstarter, clientomat, pravda st услуги",
+    canonical: "https://www.pravdast.agency/services",
     ogTitle: "Услуги - Pravda Agency | Бизнес системи за растеж",
     ogDescription: "Проверени бизнес системи за предвидим растеж: SEO Struktor™, Trendlab™, Clickstarter™ и Clientomat™",
     ogImage: "https://www.pravdagency.eu/og-services.jpg",
@@ -182,17 +220,24 @@ export const pageSEOData: Record<string, SEOData> = {
     structuredData: {
       "@context": "https://schema.org",
       "@type": "Service",
-      "provider": {
-        "@id": "https://www.pravdagency.eu/#organization"
+      "@id": "https://www.pravdast.agency/services/seo-struktor#service",
+      "serviceType": "SEO Struktor™",
+      "provider": { 
+        "@id": "https://www.pravdast.agency/#organization" 
       },
-      "serviceType": "Business Engineering",
-      "name": "Бизнес инженеринг системи",
-      "description": "Превръщаме хаотичния растеж в предвидими, измерими резултати чрез проверени бизнес системи",
+      "name": "SEO Struktor™",
+      "description": "Проверена система за първи позиции в Google. Технически SEO, качествено съдържание, постоянна оптимизация.",
       "areaServed": "BG",
       "availableChannel": {
         "@type": "ServiceChannel",
-        "serviceUrl": "https://www.pravdagency.eu/contact",
+        "serviceUrl": "https://www.pravdast.agency/contact",
         "servicePhone": "+359-879-282-299"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "1980.00",
+        "priceCurrency": "BGN",
+        "url": "https://www.pravdast.agency/services/seo-struktor"
       },
       "hasOfferCatalog": {
         "@type": "OfferCatalog",

@@ -18,23 +18,23 @@ import { BackgroundEffects } from '@/components/background-effects'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://www.pravdagency.eu'),
+  metadataBase: new URL('https://www.pravdast.agency'),
   title: 'Правдаст - Бизнес инженеринг за предвидим растеж в България',
   description: 'Превръщаме хаоса в предсказуеми системи. Проверени методи за B2B растеж.',
-  keywords: ['бизнес инженеринг', 'растеж', 'маркетинг', 'SEO', 'автоматизация', 'Pravda Agency'],
+  keywords: ['бизнес инженеринг', 'растеж', 'маркетинг', 'SEO', 'автоматизация', 'Pravda ST'],
   openGraph: {
     type: 'website',
     locale: 'bg_BG',
-    url: 'https://www.pravdagency.eu/',
-    siteName: 'Pravda Agency',
+    url: 'https://www.pravdast.agency/',
+    siteName: 'Pravda ST',
     title: 'Правдаст - Бизнес инженеринг за предвидим растеж',
     description: 'Превръщаме хаоса в предсказуеми системи. Проверени методи за B2B растеж.',
     images: [
       {
-        url: 'https://pravdagency.eu/pravda-og-home.png',
+        url: 'https://www.pravdast.agency/pravda-og-home.png',
         width: 1200,
         height: 630,
-        alt: 'Pravda Agency - Business Engineering',
+        alt: 'Pravda ST - Business Engineering',
       },
     ],
   },
@@ -42,10 +42,10 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Правдаст - Бизнес инженеринг за предвидим растеж',
     description: 'Превръщаме хаоса в предсказуеми системи. Проверени методи за B2B растеж.',
-    images: ['https://pravdagency.eu/pravda-og-home.png'],
+    images: ['https://www.pravdast.agency/pravda-og-home.png'],
   },
   alternates: {
-    canonical: 'https://www.pravdagency.eu/',
+    canonical: 'https://www.pravdast.agency/',
   },
   other: {
     'fb:app_id': '1234567890123456',

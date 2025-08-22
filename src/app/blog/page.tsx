@@ -7,29 +7,29 @@ export const metadata: Metadata = {
   description: 'Научете повече за бизнес инженерството, системи за растеж и успешни стратегии за развитие на бизнеса от експертите на Pravda Agency.',
   keywords: ['бизнес инженерство', 'растеж', 'маркетинг', 'SEO', 'автоматизация', 'систем'],
   openGraph: {
-    title: 'Блог - Pravda Agency | Бизнес инженеринг и растеж',
+    title: 'Блог - Pravda ST | Бизнес инженеринг и растеж',
     description: 'Експертни статии за бизнес инженеринг, SEO оптимизация, дигитален маркетинг и растеж на компанията. Практически съвети и казуси.',
-    url: 'https://www.pravdagency.eu/blog',
-    siteName: 'Pravda Agency',
+    url: 'https://www.pravdast.agency/blog',
+    siteName: 'Pravda ST',
     locale: 'bg_BG',
     images: [
       {
-        url: 'https://pravdagency.eu/pravda-og-blog.png',
+        url: 'https://www.pravdast.agency/pravda-og-blog.png',
         width: 1200,
         height: 630,
-        alt: 'Pravda Agency Blog - Бизнес инженеринг статии',
+        alt: 'Pravda ST Blog - Бизнес инженеринг статии',
       },
     ],
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Блог - Pravda Agency | Бизнес инженеринг и растеж',
+    title: 'Блог - Pravda ST | Бизнес инженеринг и растеж',
     description: 'Експертни статии за бизнес инженеринг, SEO оптимизация, дигитален маркетинг и растеж на компанията.',
-    images: ['https://pravdagency.eu/pravda-og-blog.png'],
+    images: ['https://www.pravdast.agency/pravda-og-blog.png'],
   },
   alternates: {
-    canonical: 'https://www.pravdagency.eu/blog',
+    canonical: 'https://www.pravdast.agency/blog',
   },
   robots: {
     index: true,
