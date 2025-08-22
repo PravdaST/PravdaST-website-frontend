@@ -109,22 +109,7 @@ export default function BlogClient() {
   // Get unique categories
   const categories = ["all", ...Array.from(new Set(blogPosts.map(post => post.category)))];
 
-  if (loading) {
-    return (
-      <div className="min-h-screen text-white">
-        <Navigation />
-        <main className="flex-1 pt-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <div className="text-center">
-              <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-[#ECB629] mx-auto"></div>
-              <p className="mt-4 text-gray-400">Зарежда се...</p>
-            </div>
-          </div>
-        </main>
-        <Footer />
-      </div>
-    );
-  }
+  // Remove the full-page loading - hero section should always show
 
   return (
     <div className="min-h-screen text-white">
@@ -190,7 +175,12 @@ export default function BlogClient() {
       {/* Blog Posts Grid */}
       <section className="py-20">
         <div className="container mx-auto px-4">
-          {filteredPosts.length === 0 ? (
+          {loading ? (
+            <div className="text-center py-20">
+              <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-[#ECB629] mx-auto"></div>
+              <p className="mt-4 text-gray-400">Зарежда се съдържанието...</p>
+            </div>
+          ) : filteredPosts.length === 0 ? (
             <div className="text-center py-20">
               <BookOpen className="w-16 h-16 text-gray-600 mx-auto mb-4" />
               <h3 className="text-2xl font-bold text-gray-400 mb-2">Няма намерени статии</h3>
