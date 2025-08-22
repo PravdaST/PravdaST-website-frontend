@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next'
 import { getWordPressPosts } from '@/lib/wordpress'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = 'https://www.pravdagency.eu'
+  const baseUrl = 'https://pravdast.agency'
 
   // Static pages - include ALL indexable pages
   const staticPages = [

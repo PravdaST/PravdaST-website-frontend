@@ -13,18 +13,18 @@ export const metadata = {
     'маркетинг България',
   ],
   alternates: {
-    canonical: 'https://www.pravdagency.eu/services',
+    canonical: 'https://pravdast.agency/services',
   },
   openGraph: {
     title: 'Бизнес инженерни услуги — Pravda Agency',
     description: 'SEO Struktor™, Trendlab™, Clickstarter™ и Clientomat™ — системи за предвидим растеж на българския бизнес.',
-    url: 'https://www.pravdagency.eu/services',
+    url: 'https://pravdast.agency/services',
     siteName: 'Pravda Agency',
     locale: 'bg_BG',
     type: 'website',
     images: [
       {
-        url: 'https://www.pravdagency.eu/pravda-og-services.png',
+        url: 'https://pravdast.agency/pravda-og-services.png',
         width: 1200,
         height: 630,
         alt: 'Pravda Agency Services — Бизнес инженерни системи',
@@ -36,7 +36,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'Бизнес инженерни услуги — Pravda Agency',
     description: 'SEO Struktor™, Trendlab™, Clickstarter™ и Clientomat™ — системи за растеж.',
-    images: ['https://www.pravdagency.eu/pravda-og-services.png'],
+    images: ['https://pravdast.agency/pravda-og-services.png'],
   },
   robots: {
     index: true,

@@ -521,7 +521,7 @@ export default function GlovoCalculatorLanding() {
           <div className="text-gray-400 ">
             © {new Date().getFullYear()}{" "}
             <a
-              href="https://www.pravdagency.eu/"
+              href="https://pravdast.agency/"
               className="font-bold text-yellow-400 hover:underline"
             >
               Pravda Agency
@@ -530,7 +530,7 @@ export default function GlovoCalculatorLanding() {
           </div>
 
           <div className="mt-2 text-green-400">
-            contact@pravdagency.eu | +359 879 282 299
+            contact@pravdast.agency | +359 879 282 299
           </div>
         </div>
       </footer>

@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: process.env.SITE_URL || 'https://www.pravdast.agency',
+  siteUrl: process.env.SITE_URL || 'https://pravdast.agency',
   generateRobotsTxt: true,
   sitemapSize: 5000,
   changefreq: 'daily',

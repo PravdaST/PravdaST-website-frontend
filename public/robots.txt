@@ -7,7 +7,7 @@ Disallow: /api/
 Disallow: /_next/
 
 # Host
-Host: https://pravdagency.eu
+Host: https://pravdast.agency
 
 # Sitemaps
-Sitemap: https://pravdagency.eu/sitemap.xml
+Sitemap: https://pravdast.agency/sitemap.xml
