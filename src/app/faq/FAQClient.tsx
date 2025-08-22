@@ -205,12 +205,12 @@ export default function FAQClient() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-slate-900">
+    <div className="min-h-screen bg-black">
       <StructuredData data={pageSEOData.faq.structuredData} />
       <Navigation />
 
       {/* Hero Section */}
-      <section className="min-h-screen flex items-center relative overflow-hidden">
+      <section className="py-20 relative overflow-hidden">
         {/* Background Grid */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0" style={{
@@ -248,8 +248,8 @@ export default function FAQClient() {
           <div className="max-w-4xl mx-auto text-center">
             {/* Status Badge */}
             <motion.div
-              className="inline-flex items-center gap-3 mb-8 px-6 py-3 rounded-full bg-slate-800/80 border border-slate-600/30"
-              initial={{ opacity: 0, y: 20 }}
+              className="inline-flex items-center gap-3 mb-8 px-6 py-3 rounded-full glassmorphism"
+              initial={{ opacity: 1, y: 0 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
@@ -270,7 +270,7 @@ export default function FAQClient() {
 
             <motion.h1
               className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-white"
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 1, y: 0 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
@@ -288,7 +288,7 @@ export default function FAQClient() {
 
             <motion.p
               className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto"
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 1, y: 0 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
             >
@@ -320,7 +320,7 @@ export default function FAQClient() {
             {/* Category Filter */}
             <motion.div
               className="flex flex-wrap gap-4 justify-center mb-12"
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 1, y: 0 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
@@ -329,7 +329,7 @@ export default function FAQClient() {
                 className={`px-6 py-3 rounded-full transition-all duration-300 font-medium ${
                   selectedCategory === "Всички"
                     ? "bg-[#ECB629] text-black shadow-lg"
-                    : "bg-slate-800/80 text-gray-300 hover:bg-slate-700/80 border border-slate-700"
+                    : "glassmorphism text-gray-300 hover:border-[#ECB629]/30"
                 }`}
               >
                 Всички
@@ -341,7 +341,7 @@ export default function FAQClient() {
                   className={`px-6 py-3 rounded-full transition-all duration-300 font-medium ${
                     selectedCategory === category
                       ? "bg-[#ECB629] text-black shadow-lg"
-                      : "bg-slate-800/80 text-gray-300 hover:bg-slate-700/80 border border-slate-700"
+                      : "glassmorphism text-gray-300 hover:border-[#ECB629]/30"
                   }`}
                 >
                   {category}
@@ -353,20 +353,20 @@ export default function FAQClient() {
       </section>
 
       {/* FAQ Items */}
-      <section className="py-20 bg-slate-800/30">
+      <section className="py-20">
         <div className="container mx-auto px-6">
           <div className="max-w-7xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredFAQ.map((item, index) => (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 1, y: 0 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  transition={{ duration: 0.5, delay: index * 0.05 }}
                   viewport={{ once: true }}
                   className="h-full"
                 >
-                  <Card className="bg-slate-800/50 border-slate-700/50 hover:border-[#ECB629]/30 hover:shadow-lg hover:shadow-[#ECB629]/5 transition-all duration-300 backdrop-blur-sm h-full flex flex-col">
+                  <Card className="glassmorphism hover:border-[#ECB629]/30 transition-all duration-300 h-full flex flex-col">
                     <CardContent className="p-6 flex flex-col h-full">
                       <div className="flex items-center gap-3 mb-4">
                         <div className="w-2 h-2 bg-[#ECB629] rounded-full"></div>
@@ -407,33 +407,15 @@ export default function FAQClient() {
 
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <motion.h2
-              className="text-4xl md:text-5xl font-bold text-black mb-6"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
+            <h2 className="text-4xl md:text-5xl font-bold text-black mb-6">
               Не намерихте отговор на въпроса си?
-            </motion.h2>
+            </h2>
             
-            <motion.p
-              className="text-xl text-black/80 mb-8 max-w-2xl mx-auto"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              viewport={{ once: true }}
-            >
+            <p className="text-xl text-black/80 mb-8 max-w-2xl mx-auto">
               Свържете се с нас за персонализирана консултация и получете отговори на всички ваши въпроси за нашите бизнес инженеринг системи.
-            </motion.p>
+            </p>
 
-            <motion.div
-              className="flex flex-col sm:flex-row gap-4 justify-center"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              viewport={{ once: true }}
-            >
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <motion.a
                 href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu"
                 target="_blank"
@@ -454,7 +436,7 @@ export default function FAQClient() {
               >
                 <span>Контакти</span>
               </motion.a>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
