@@ -84,13 +84,19 @@ export async function POST(request: NextRequest) {
       };
       console.log('✅ Using proper field structure');
     } else {
-      // Fallback to Created field with all data
+      // Try with the new fields anyway - they might exist but not show in empty records
       airtableData = {
         fields: {
-          'Created': `Restaurant: ${body.restaurant_name} | Orders: ${body.daily_orders} | Value: ${body.avg_order_value} | Email: ${body.email} | Phone: ${body.phone} | Time: ${body.timestamp}`
+          'Restaurant Name': String(body.restaurant_name || ''),
+          'Daily Orders': String(body.daily_orders || ''),
+          'Average Order Value': String(body.avg_order_value || ''),
+          'Email': String(body.email || ''),
+          'Phone': String(body.phone || ''),
+          'Timestamp': String(body.timestamp || new Date().toISOString())
         }
       };
-      console.log('⚠️ Using fallback - missing fields:', ['Restaurant Name', 'Daily Orders', 'Average Order Value', 'Email', 'Phone', 'Timestamp'].filter(f => !availableFields.includes(f)));
+      console.log('🔄 Trying with new fields despite detection failure');
+      console.log('⚠️ Missing from detection:', ['Restaurant Name', 'Daily Orders', 'Average Order Value', 'Email', 'Phone', 'Timestamp'].filter(f => !availableFields.includes(f)));
     }
 
     console.log('GLOVO Calculator submission:', JSON.stringify(airtableData.fields, null, 2));
