@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import { GlovoStepForm } from "@/components/glovo-step-form";
+// import { CampaignSEO } from "@/components/campaign-seo";
 
 export default function GlovoCalculatorLanding() {
   return (
