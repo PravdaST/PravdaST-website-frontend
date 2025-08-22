@@ -7,6 +7,7 @@ import { Footer } from "@/components/footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import Image from "next/image";
 import {
   ArrowRight,
   TrendingUp,
@@ -45,7 +46,7 @@ const caseStudies = [
     systems: ["Trendlab™", "Clientomat™"],
     testimonial:
       "Pravdast ни помогна да превърнем традиционния ни бизнес в модерен бранд, без да загубим автентичността си.",
-    image: "/api/placeholder/600/400",
+    image: "/logos/bacho-iliya.svg",
   },
   {
     id: "euphoria-beauty",
@@ -66,7 +67,7 @@ const caseStudies = [
     systems: ["SEO Struktor™", "Clientomat™"],
     testimonial:
       "Благодарение на Pravdast сега имаме постоянен поток от нови клиенти.",
-    image: "/api/placeholder/600/400",
+    image: "/logos/euphoria-beauty.svg",
   },
   {
     id: "ice-tub-co",
@@ -87,7 +88,7 @@ const caseStudies = [
     systems: ["SEO Struktor™", "Clickstarter™", "Clientomat™"],
     testimonial:
       "Pravdast ни помогна да изградим предсказуема система за растеж. Резултатите превъзхождат очакванията ни.",
-    image: "/api/placeholder/600/400",
+    image: "/logos/ice-tub-co.svg",
   },
   {
     id: "dejavu-gym",
@@ -111,7 +112,7 @@ const caseStudies = [
     systems: ["Clientomat™", "Trendlab™"],
     testimonial:
       "Сега имаме ясна система, която работи автоматично. Членовете остават по-дълго и препоръчват повече приятели.",
-    image: "/api/placeholder/600/400",
+    image: "/logos/dejavu-gym.svg",
   },
 ];
 
@@ -286,6 +287,20 @@ export default function CaseStudiesClient() {
                       <div className="grid lg:grid-cols-2 gap-0">
                         {/* Content */}
                         <div className="p-8 lg:p-12">
+                          {/* Company Logo */}
+                          <div className="mb-6">
+                            <div className="w-32 h-20 glassmorphism rounded-xl flex items-center justify-center mb-4 p-1 group-hover:border-[#ECB629]/50 transition-all duration-300">
+                              <Image
+                                src={study.image}
+                                alt={`${study.company} лого`}
+                                width={120}
+                                height={80}
+                                className="rounded-lg object-contain"
+                                unoptimized
+                              />
+                            </div>
+                          </div>
+
                           <motion.div
                             className="flex flex-wrap gap-3 mb-6"
                             initial={{ opacity: 0, x: -20 }}
@@ -443,27 +458,20 @@ export default function CaseStudiesClient() {
 
         {/* CTA Section */}
         <section className="py-20 bg-[#ECB629] relative overflow-hidden">
-          {/* Animated Background Elements */}
+          {/* Static Background Pattern */}
           <div className="absolute inset-0 opacity-20">
-            {[...Array(8)].map((_, i) => (
-              <motion.div
-                key={i}
-                className="absolute w-1 h-1 bg-black rounded-full"
-                style={{
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                }}
-                animate={{
-                  scale: [1, 2, 1],
-                  opacity: [0.3, 1, 0.3],
-                }}
-                transition={{
-                  duration: 3 + Math.random(),
-                  repeat: Infinity,
-                  delay: Math.random() * 2,
-                }}
-              />
-            ))}
+            <div
+              className="absolute inset-0"
+              style={{
+                backgroundImage: `
+                  radial-gradient(circle at 20% 20%, rgba(0, 0, 0, 0.3) 1px, transparent 1px),
+                  radial-gradient(circle at 80% 40%, rgba(0, 0, 0, 0.3) 1px, transparent 1px),
+                  radial-gradient(circle at 40% 80%, rgba(0, 0, 0, 0.3) 1px, transparent 1px),
+                  radial-gradient(circle at 70% 70%, rgba(0, 0, 0, 0.3) 1px, transparent 1px)
+                `,
+                backgroundSize: "100px 100px, 120px 120px, 80px 80px, 150px 150px",
+              }}
+            />
           </div>
 
           <div className="container mx-auto px-6 text-center relative z-1">
