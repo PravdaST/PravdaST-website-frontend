@@ -44,16 +44,7 @@ export const metadata: Metadata = {
   },
 }
 
-import { Navigation } from "@/components/navigation"
-import { FooterServer } from "@/components/footer-server"
-
 // Server компонент за инициализиране на данните
 export default function BlogPage() {
-  return (
-    <div className="min-h-screen bg-black text-white">
-      <Navigation />
-      <BlogClient />
-      <FooterServer />
-    </div>
-  );
+  return <BlogClient />;
 }
