@@ -237,7 +237,7 @@ function SolutionPreviewSection() {
 export default function GlovoCalculatorLandingOptimized() {
   return (
     <div className="min-h-screen bg-black text-white">
-      {/* Hero Section - Loads immediately (priority) */}
+      {/* Hero Section - Mobile optimized with CLS prevention */}
       <GlovoHeroSection />
 
       {/* Social Proof Section - Server rendered */}

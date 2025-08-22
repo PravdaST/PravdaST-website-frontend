@@ -47,17 +47,11 @@ export const FooterServer = () => {
             backgroundSize: '60px 60px'
           }}></div>
 
-          {/* Static floating elements */}
-          {[...Array(4)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute w-3 h-3 bg-[#ECB629]/20 rounded-full"
-              style={{
-                left: `${15 + i * 20}%`,
-                top: `${25 + (i % 2) * 40}%`,
-              }}
-            />
-          ))}
+          {/* Static floating elements - fixed positions for hydration */}
+          <div className="absolute w-3 h-3 bg-[#ECB629]/20 rounded-full left-[15%] top-[25%]" />
+          <div className="absolute w-3 h-3 bg-[#ECB629]/20 rounded-full left-[35%] top-[65%]" />
+          <div className="absolute w-3 h-3 bg-[#ECB629]/20 rounded-full left-[55%] top-[25%]" />
+          <div className="absolute w-3 h-3 bg-[#ECB629]/20 rounded-full left-[75%] top-[65%]" />
         </div>
       </div>
 
