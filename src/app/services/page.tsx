@@ -23,6 +23,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { Magnet } from "@/components/reactbits";
+import ServicesJsonLd from "@/components/services-json-ld";
 
 // Systems Background Component
 const SystemsBackground = () => {
@@ -206,6 +207,8 @@ export default function Services() {
   };
 
   return (
+    <>
+      <ServicesJsonLd />
     <div className="min-h-screen bg-gray-950">
       <Navigation />
 
@@ -792,6 +795,7 @@ export default function Services() {
       </main>
 
       <Footer />
-    </div>
+      </div>
+    </>
   );
 }

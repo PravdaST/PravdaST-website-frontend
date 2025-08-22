@@ -1,6 +1,6 @@
-import { Metadata } from 'next'
+import type { Metadata } from 'next'
 
-export const metadata: Metadata = {
+export const metadata = {
   title: 'Кампании - Pravda Agency | Специализирани решения по индустрии',
   description: 'Открийте нашите специализирани кампании за различни индустрии. Персонализирани бизнес инженерни решения за максимален растеж.',
   keywords: ['кампании', 'индустрии', 'специализирани решения', 'правда агенция', 'растеж', 'маркетинг'],
@@ -29,7 +29,18 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://www.pravdagency.eu/campaigns',
   },
-}
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-snippet': -1,
+      'max-image-preview': 'large',
+      'max-video-preview': -1,
+    },
+  },
+} satisfies Metadata
 
 export default function CampaignsLayout({
   children,

@@ -1,0 +1,171 @@
+Какво бих добавил/коригирал
+
+robots / googleBot директиви (за rich previews и crawl контрол)
+
+Явно типизиране с satisfies Metadata (хваща грешки на сборка)
+
+(По желание) добави type за OG изображения
+
+Увери се, че metadataBase е сложен в root app/layout.tsx, за да работят перфектно каноникалите/OG (пример долу).
+
+Подобрен вариант на app/services/layout.tsx
+import type { Metadata } from "next";
+
+export const metadata = {
+  title: "Бизнес инженерни услуги — Pravda Agency",
+  description:
+    "SEO Struktor™, Trendlab™, Clickstarter™ и Clientomat™ — системи за предвидим растеж на българския бизнес. Проверени методи за B2B маркетинг.",
+  keywords: [
+    "бизнес услуги",
+    "SEO Struktor",
+    "Trendlab",
+    "Clickstarter",
+    "Clientomat",
+    "растеж",
+    "маркетинг България",
+  ],
+  alternates: {
+    canonical: "https://www.pravdagency.eu/services",
+  },
+  openGraph: {
+    title: "Бизнес инженерни услуги — Pravda Agency",
+    description:
+      "SEO Struktor™, Trendlab™, Clickstarter™ и Clientomat™ — системи за предвидим растеж на българския бизнес.",
+    url: "https://www.pravdagency.eu/services",
+    siteName: "Pravda Agency",
+    locale: "bg_BG",
+    type: "website",
+    images: [
+      {
+        url: "https://www.pravdagency.eu/pravda-og-services.png",
+        width: 1200,
+        height: 630,
+        alt: "Pravda Agency Services — Бизнес инженерни системи",
+        type: "image/png",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Бизнес инженерни услуги — Pravda Agency",
+    description:
+      "SEO Struktor™, Trendlab™, Clickstarter™ и Clientomat™ — системи за растеж.",
+    images: ["https://www.pravdagency.eu/pravda-og-services.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-snippet": -1,
+      "max-image-preview": "large",
+      "max-video-preview": -1,
+    },
+  },
+} satisfies Metadata;
+
+export default function ServicesLayout({ children }: { children: React.ReactNode }) {
+  return <>{children}</>;
+}
+
+(Важно) В root layout сложи metadataBase, ако още не е:
+// app/layout.tsx
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  metadataBase: new URL("https://www.pravdagency.eu"),
+  // ... останалите глобални метаданни
+};
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="bg">
+      <body>{children}</body>
+    </html>
+  );
+}
+
+Бонус: JSON-LD за услугите (повишава шанс за rich results)
+
+Ако в /services изброяваш няколко услуги на една страница, добави ItemList със Service елементи.
+(Може и на самата страница, не в layout.)
+
+// app/services/JsonLd.tsx
+"use client";
+import Script from "next/script";
+
+export default function ServicesJsonLd() {
+  const data = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@type": "Service",
+          "name": "SEO Struktor™",
+          "url": "https://www.pravdagency.eu/services#seo-struktor"
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "item": {
+          "@type": "Service",
+          "name": "Trendlab™",
+          "url": "https://www.pravdagency.eu/services#trendlab"
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@type": "Service",
+          "name": "Clickstarter™",
+          "url": "https://www.pravdagency.eu/services#clickstarter"
+        }
+      },
+      {
+        "@type": "ListItem",
+        "position": 4,
+        "item": {
+          "@type": "Service",
+          "name": "Clientomat™",
+          "url": "https://www.pravdagency.eu/services#clientomat"
+        }
+      }
+    ]
+  };
+
+  return (
+    <Script id="jsonld-services" type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }} />
+  );
+}
+
+
+И после в страницата:
+
+// app/services/page.tsx
+import ServicesJsonLd from "./JsonLd";
+
+export default function ServicesPage() {
+  return (
+    <>
+      <ServicesJsonLd />
+      {/* ...реалното съдържание... */}
+    </>
+  );
+}
+
+Финален чеклист
+
+ robots/googleBot в metadata
+
+ metadataBase в root
+
+ (по желание) JSON-LD ItemList за услугите
+
+ Тествай в: Google Rich Results, FB Sharing Debugger, Twitter Card Validator

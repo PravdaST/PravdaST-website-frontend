@@ -1,40 +1,60 @@
-import { Metadata } from 'next'
+import type { Metadata } from 'next'
 
-export const metadata: Metadata = {
-  title: 'Бизнес инженерни услуги - Pravda Agency',
-  description: 'SEO Struktor™, Trendlab™, Clickstarter™ и Clientomat™ - системи за предвидим растеж на българския бизнес. Проверени методи за B2B маркетинг.',
-  keywords: ['бизнес услуги', 'SEO Struktor', 'Trendlab', 'Clickstarter', 'Clientomat', 'растеж', 'маркетинг България'],
+export const metadata = {
+  title: 'Бизнес инженерни услуги — Pravda Agency',
+  description: 'SEO Struktor™, Trendlab™, Clickstarter™ и Clientomat™ — системи за предвидим растеж на българския бизнес. Проверени методи за B2B маркетинг.',
+  keywords: [
+    'бизнес услуги',
+    'SEO Struktor',
+    'Trendlab',
+    'Clickstarter',
+    'Clientomat',
+    'растеж',
+    'маркетинг България',
+  ],
+  alternates: {
+    canonical: 'https://www.pravdagency.eu/services',
+  },
   openGraph: {
-    title: 'Бизнес инженерни услуги - Pravda Agency',
-    description: 'SEO Struktor™, Trendlab™, Clickstarter™ и Clientomat™ - системи за предвидим растеж на българския бизнес.',
+    title: 'Бизнес инженерни услуги — Pravda Agency',
+    description: 'SEO Struktor™, Trendlab™, Clickstarter™ и Clientomat™ — системи за предвидим растеж на българския бизнес.',
     url: 'https://www.pravdagency.eu/services',
     siteName: 'Pravda Agency',
     locale: 'bg_BG',
     type: 'website',
     images: [
       {
-        url: 'https://pravdagency.eu/pravda-og-services.png',
+        url: 'https://www.pravdagency.eu/pravda-og-services.png',
         width: 1200,
         height: 630,
-        alt: 'Pravda Agency Services - Бизнес инженерни системи',
+        alt: 'Pravda Agency Services — Бизнес инженерни системи',
+        type: 'image/png',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Бизнес инженерни услуги - Pravda Agency',
-    description: 'SEO Struktor™, Trendlab™, Clickstarter™ и Clientomat™ - системи за растеж.',
-    images: ['https://pravdagency.eu/pravda-og-services.png'],
+    title: 'Бизнес инженерни услуги — Pravda Agency',
+    description: 'SEO Struktor™, Trendlab™, Clickstarter™ и Clientomat™ — системи за растеж.',
+    images: ['https://www.pravdagency.eu/pravda-og-services.png'],
   },
-  alternates: {
-    canonical: 'https://www.pravdagency.eu/services',
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-snippet': -1,
+      'max-image-preview': 'large',
+      'max-video-preview': -1,
+    },
   },
-}
+} satisfies Metadata
 
 export default function ServicesLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
-  return children
+  return <>{children}</>
 }
