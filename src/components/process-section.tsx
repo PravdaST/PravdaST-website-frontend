@@ -64,14 +64,14 @@ export const ProcessSection = () => {
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
         <motion.div
           className="text-center mb-12 sm:mb-16"
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 1, y: 0 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
           <motion.div
             className="inline-flex items-center gap-3 mb-8 px-6 py-3 rounded-full glassmorphism"
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 1, y: 0 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
@@ -87,26 +87,14 @@ export const ProcessSection = () => {
             </div>
           </motion.div>
 
-          <motion.h2
-            className="text-4xl md:text-5xl font-bold mb-6 text-white"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.1 }}
-            viewport={{ once: true }}
-          >
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
             Прозрачен процес.{" "}
             <span className="text-[#ECB629]">Предвидими резултати.</span>
-          </motion.h2>
+          </h2>
 
-          <motion.p
-            className="text-xl text-gray-300 max-w-3xl mx-auto"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
             Ние не работим с предположения. Следваме строго дефиниран инженерен процес в 3 стъпки, който гарантира, че всяко решение е базирано на данни.
-          </motion.p>
+          </p>
         </motion.div>
 
         {/* Modern Card-Based Timeline */}
@@ -114,13 +102,13 @@ export const ProcessSection = () => {
           {steps.map((step, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 1, y: 0 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
               className="relative group"
             >
-              <Card className="bg-slate-700 border-slate-600/30 h-full relative overflow-hidden group-hover:border-[#ECB629]/50 transition-all duration-300">
+              <Card className="glassmorphism h-full relative overflow-hidden group-hover:border-[#ECB629]/50 transition-all duration-300">
                 {/* Step Number Badge */}
                 <div className="absolute top-6 right-6">
                   <div className="flex items-center justify-center w-10 h-10 bg-[#ECB629] rounded-full">
