@@ -46,7 +46,7 @@ const landingPages = [
     id: 1,
     title: "Glovo – реален кейс с цифри",
     description:
-      "Помогнахме на 23+ ресторанта в София да спестят средно 1,800 лв месечно от Glovo комисионни.",
+      "Истинска история: помогнахме на 23 ресторанта в София да намалят Glovo комисионните си с 1,800 лв месечно.",
     image: "/images/glovo-landing-preview.svg",
     category: "restaurants",
     categoryDisplay: "Ресторанти",
@@ -58,7 +58,7 @@ const landingPages = [
     id: 2,
     title: "Fast Food Profit Maximizer",
     description:
-      "Специализирана система за оптимизиране на поръчките и повишаване на печалбите във fast food бизнеса.",
+      "За собствениците на fast food, които искат повече поръчки и по-големи печалби без да наемат още хора.",
     image: "/images/fast-food-preview.svg",
     category: "fast-food",
     categoryDisplay: "Fast Food",
@@ -70,7 +70,7 @@ const landingPages = [
     id: 3,
     title: "Auto Service Lead Generator",
     description:
-      "Привличане на нови клиенти за автосервизи чрез персонализирани Кампании с форми за записване.",
+      "Автосервизи постоянно търсят клиенти. Тази страница ги привлича и ги превръща в записани часове.",
     image: "/images/auto-service-preview.svg",
     category: "auto",
     categoryDisplay: "Автосервизи",
@@ -82,7 +82,7 @@ const landingPages = [
     id: 4,
     title: "E-commerce Conversion Booster",
     description:
-      "Увеличаване на продажбите в онлайн магазини чрез оптимизирани product Кампании.",
+      "За онлайн магазини, които искат повече продажби от същия трафик. Работи на психологията на купуването.",
     image: "/images/ecommerce-preview.svg",
     category: "ecommerce",
     categoryDisplay: "Онлайн магазини",
@@ -94,7 +94,7 @@ const landingPages = [
     id: 5,
     title: "Fitness Membership Generator",
     description:
-      "Специални Кампании за фитнес центрове и треньори за привличане на нови членове.",
+      "Фитнес центровете се борят за членове. Тази страница превръща посетителите в абонати.",
     image: "/images/fitness-preview.svg",
     category: "fitness",
     categoryDisplay: "Фитнес & Здраве",
@@ -106,7 +106,7 @@ const landingPages = [
     id: 6,
     title: "Service Business Amplifier",
     description:
-      "Универсални Кампании за различни видове услуги - почистване, ремонти, консултации.",
+      "За всякакви услуги - от почистване до адвокати. Адаптира се лесно за всеки бизнес.",
     image: "/images/services-preview.svg",
     category: "services",
     categoryDisplay: "Услуги",
@@ -171,7 +171,7 @@ export default function LandingPagesShowcase() {
               transition={{ duration: 1, delay: 0.2 }}
             >
               <span className="bg-gradient-to-r from-white via-[#ECB629] to-white bg-clip-text text-transparent">
-                Кампании
+                Ето какво правим
               </span>
               <br />
             </motion.h1>
@@ -182,9 +182,9 @@ export default function LandingPagesShowcase() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              Откриете нашите специализирани Кампании, създадени за максимални
-              конверсии и бизнес резултати. Всяка страница е оптимизирана за
-              конкретна цел и индустрия.
+              Всяка от тези страници е направена с една цел - да донесе
+              клиенти на бизнеса. Не просто красиви дизайни, а реални
+              инструменти за повече продажби.
             </motion.p>
 
             <motion.div
@@ -197,7 +197,7 @@ export default function LandingPagesShowcase() {
                 size="lg"
                 className="bg-[#ECB629] text-black hover:bg-[#ECB629]/90 px-8 py-4 text-lg font-semibold w-full sm:w-auto"
               >
-                Разгледай Кампании
+                Покажи ми
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
 
@@ -207,7 +207,7 @@ export default function LandingPagesShowcase() {
                   size="lg"
                   className="border-[#ECB629]/30 text-[#ECB629] hover:bg-[#ECB629]/10 px-8 py-4 text-lg w-full sm:w-auto"
                 >
-                  Поръчай Персонализирана
+                  Искам моя собствена
                 </Button>
               </Link>
             </motion.div>
@@ -225,12 +225,11 @@ export default function LandingPagesShowcase() {
             className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Наши Кампании
+              Какво имаме готово?
             </h2>
             <p className="text-gray-400 text-lg max-w-3xl mx-auto mb-8">
-              Всяка landing page е създадена с фокус върху конверсиите и
-              потребителското изживяване. Проектирани са за различни индустрии и
-              бизнес цели.
+              Вместо да почваме от нула, имаме готови страници, които вече работят.
+              Всяка е тествана с истински клиенти и дава резултат.
             </p>
 
             {/* Category Filter Pills */}
@@ -402,12 +401,11 @@ export default function LandingPagesShowcase() {
             className="text-center glassmorphism border border-[#ECB629]/20 rounded-3xl p-12 max-w-4xl mx-auto"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              Искате персонализирана Landing Page?
+              А ако искам нещо специално?
             </h2>
             <p className="text-gray-300 text-lg mb-8 max-w-2xl mx-auto">
-              Нашият екип може да създаде уникална landing page, специално
-              адаптирана към вашия бизнес и цели. Свържете се с нас за безплатна
-              консултация.
+              Никой проблем! Можем да направим страница точно за вашия бизнес.
+              Говорим първо какво ви трябва, после я правим.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/contact">
@@ -415,7 +413,7 @@ export default function LandingPagesShowcase() {
                   size="lg"
                   className="bg-[#ECB629] text-black hover:bg-[#ECB629]/90 px-8 py-4 text-lg font-semibold"
                 >
-                  Започни проект
+                  Да поговорим
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
               </Link>
@@ -425,7 +423,7 @@ export default function LandingPagesShowcase() {
                   size="lg"
                   className="border-[#ECB629]/30 text-[#ECB629] hover:bg-[#ECB629]/10 px-8 py-4 text-lg"
                 >
-                  Виж услугите ни
+                  Какво правим?
                 </Button>
               </Link>
             </div>
