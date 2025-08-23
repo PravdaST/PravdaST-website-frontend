@@ -453,7 +453,7 @@ export default function Services() {
               >
                 <GlassCard
                   padding="md"
-                  rounded="full"
+                  rounded="3xl"
                   borderOpacity="30"
                   className="inline-flex items-center gap-3 mb-8"
                 >
