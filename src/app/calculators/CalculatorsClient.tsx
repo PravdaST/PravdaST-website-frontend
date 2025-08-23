@@ -40,7 +40,6 @@ import {
 } from "@/components/ui/tooltip";
 import { Slider } from "@/components/ui/slider";
 import { Navigation } from "@/components/navigation";
-import { Footer } from "@/components/footer";
 import { BackgroundEffects } from "@/components/background-effects";
 
 interface ProfitCalculatorProps {
@@ -1016,7 +1015,6 @@ export default function CalculatorsClient() {
         </section>
       </main>
 
-      <Footer />
     </div>
   );
 }

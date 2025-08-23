@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Navigation } from "@/components/navigation";
-import { Footer } from "@/components/footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { HelpCircle } from "lucide-react";
 import { StructuredData } from "@/components/structured-data";
@@ -408,7 +407,6 @@ export default function FAQClient() {
         </div>
       </section>
 
-      <Footer />
     </div>
   );
 }

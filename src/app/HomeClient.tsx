@@ -9,7 +9,6 @@ import ProblemSection from '@/components/problem-section'
 import { SolutionSection } from '@/components/solution-section'
 // ProcessSection and SystemsSection moved to lazy loading
 import { CTASection } from '@/components/cta-section'
-import { FooterServer } from '@/components/footer-server'
 import { HelmetSEO } from '@/components/seo-helmet'
 import { pageSEOData } from '@/data/seo-pages'
 import { tracking, ConversionStage } from '@/lib/tracking'
@@ -62,7 +61,6 @@ export default function HomeClient() {
       <SystemsSection />
       <CaseStudiesSlider />
       <CTASection />
-      <FooterServer />
     </div>
   );
 }

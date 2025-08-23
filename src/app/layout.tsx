@@ -14,6 +14,7 @@ import { ServiceWorkerSetup } from '@/components/service-worker-setup'
 import { Toaster } from '@/components/ui/toaster'
 import { Navigation } from '@/components/navigation'
 import { BackgroundEffects } from '@/components/background-effects'
+import { ConditionalFooter } from '@/components/conditional-footer'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -76,6 +77,7 @@ export default function RootLayout({
           <ServiceWorkerSetup />
         </ClientOnly>
         {children}
+        <ConditionalFooter />
         <ClientOnly>
           <ScrollToTop />
         </ClientOnly>

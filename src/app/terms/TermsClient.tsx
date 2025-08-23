@@ -1,7 +1,6 @@
 'use client'
 
 import { Navigation } from "@/components/navigation";
-import { Footer } from "@/components/footer";
 import { motion } from "framer-motion";
 import { Shield, Calendar, FileText } from "lucide-react";
 import Link from "next/link";
@@ -241,7 +240,6 @@ export default function TermsClient() {
         </section>
       </main>
 
-      <Footer />
     </div>
   );
 }

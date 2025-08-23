@@ -21,7 +21,6 @@ import {
   Phone,
 } from "lucide-react";
 import { Navigation } from "@/components/navigation";
-import { Footer } from "@/components/footer";
 
 // Unique Client Network Background
 const ClientomatBackground = () => {
@@ -943,7 +942,6 @@ export default function ClientomatPage() {
         </div>
       </section>
 
-      <Footer />
     </div>
   );
 }

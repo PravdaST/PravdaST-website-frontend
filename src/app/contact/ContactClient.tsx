@@ -20,7 +20,6 @@ import {
 import { useToast } from "@/hooks/use-toast"
 import { Mail, Phone, MapPin, Clock, Send } from "lucide-react"
 import { Navigation } from "@/components/navigation"
-import { Footer } from "@/components/footer"
 import { trackContactForm, trackPhoneCall } from "@/lib/analytics"
 import { trackMetaLead, trackMetaContact } from "@/components/meta-pixel"
 import { useKlaviyo } from "@/hooks/useKlaviyo"
@@ -546,7 +545,6 @@ export default function ContactClient() {
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   )
 }

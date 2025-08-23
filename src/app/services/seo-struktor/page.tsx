@@ -2,7 +2,6 @@
 
 import { motion, useInView } from "framer-motion";
 import { Navigation } from "@/components/navigation";
-import { Footer } from "@/components/footer";
 import { Button } from "@/components/ui/button";
 import { useRef, useState, useEffect } from "react";
 import {
@@ -1139,7 +1138,6 @@ export default function SeoStruktor() {
         </div>
       </section>
 
-      <Footer />
     </div>
   );
 }

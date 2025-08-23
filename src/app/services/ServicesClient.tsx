@@ -2,7 +2,6 @@
 
 import { motion, useInView } from "framer-motion"
 import { Navigation } from "@/components/navigation"
-import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { useRef, useState, useEffect } from "react"
@@ -366,7 +365,6 @@ export default function ServicesClient() {
         </div>
       </section>
 
-      <Footer />
     </div>
   )
 }

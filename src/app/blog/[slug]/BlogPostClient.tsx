@@ -4,7 +4,6 @@ import { motion } from "framer-motion"
 import { ArrowLeft, Clock, User, Calendar, Share2, BookOpen } from "lucide-react"
 import Link from "next/link"
 import { Navigation } from "@/components/navigation"
-import { Footer } from "@/components/footer"
 import { Button } from "@/components/ui/button"
 import { useState } from "react"
 
@@ -292,7 +291,6 @@ export default function BlogPostClient({ post }: BlogPostClientProps) {
         </section>
       </main>
       
-      <Footer />
     </div>
   )
 }

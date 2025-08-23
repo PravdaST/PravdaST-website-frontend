@@ -1,7 +1,6 @@
 'use client'
 
 import { Navigation } from "@/components/navigation";
-import { Footer } from "@/components/footer";
 import { motion } from "framer-motion";
 import { Shield, Lock, Eye, Calendar } from "lucide-react";
 import Link from "next/link";
@@ -295,7 +294,6 @@ export default function PrivacyClient() {
         </section>
       </main>
 
-      <Footer />
     </div>
   );
 }

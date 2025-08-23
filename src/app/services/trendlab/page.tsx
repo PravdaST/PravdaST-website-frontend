@@ -22,7 +22,6 @@ import {
   Crown,
 } from "lucide-react";
 import { Navigation } from "@/components/navigation";
-import { Footer } from "@/components/footer";
 import Link from "next/link";
 
 // Content Creation Background
@@ -1198,7 +1197,6 @@ export default function Trendlab() {
         </div>
       </section>
 
-      <Footer />
     </div>
   );
 }

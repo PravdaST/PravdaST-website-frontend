@@ -22,7 +22,6 @@ import {
   Phone,
 } from "lucide-react";
 import { Navigation } from "@/components/navigation";
-import { Footer } from "@/components/footer";
 import Link from "next/link";
 
 // Clickstarter Background
@@ -676,7 +675,6 @@ export default function Clickstarter() {
         </div>
       </section>
 
-      <Footer />
     </div>
   );
 }
