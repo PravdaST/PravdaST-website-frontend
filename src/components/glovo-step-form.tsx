@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import PravdaHeading from "@/components/typography/PravdaHeading";
 import { ChevronLeft, ChevronRight, Calculator, Mail, Phone, CheckCircle } from "lucide-react";
 
 interface FormData {
@@ -340,9 +341,9 @@ export const GlovoStepForm = () => {
           transition={{ duration: 0.3 }}
           className="text-center"
         >
-          <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
+          <PravdaHeading as="h2" size="2xl" className="md:text-3xl mb-4">
             {currentStepData.title}
-          </h2>
+          </PravdaHeading>
           <p className="text-gray-400 mb-8">
             {currentStepData.subtitle}
           </p>

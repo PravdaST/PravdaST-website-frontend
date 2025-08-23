@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useMotionValue, useTransform, animate } from "framer-motion";
+import PravdaHeading from "@/components/typography/PravdaHeading";
 import { useEffect, useRef, useState } from "react";
 
 interface AnimatedKPIProps {
@@ -17,7 +18,7 @@ export const AnimatedKPI = ({
   suffix = "", 
   prefix = "", 
   duration = 2.5,
-  className = "text-2xl font-bold text-green-400",
+  className = "",
   decimals = 0
 }: AnimatedKPIProps) => {
   const count = useMotionValue(0);
@@ -61,9 +62,9 @@ export const AnimatedKPI = ({
 
   return (
     <motion.div ref={ref} className={className}>
-      {prefix}
-      <motion.span>{rounded}</motion.span>
-      {suffix}
+      <PravdaHeading as="span" size="2xl" className="text-green-400">
+        {prefix}<motion.span>{rounded}</motion.span>{suffix}
+      </PravdaHeading>
     </motion.div>
   );
 };

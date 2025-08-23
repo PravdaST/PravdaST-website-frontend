@@ -4,6 +4,8 @@ import { useState, useEffect, useRef } from 'react'
 import { Search, X, Filter, Clock, ArrowRight } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
+import PravdaHeading from '@/components/typography/PravdaHeading'
+import PravdaText from '@/components/typography/PravdaText'
 
 interface SearchResult {
   id: string

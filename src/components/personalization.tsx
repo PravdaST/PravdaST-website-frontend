@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { MapPin, Phone, Clock } from 'lucide-react'
+import PravdaText from '@/components/typography/PravdaText'
 
 interface LocationData {
   city: string
@@ -211,9 +212,9 @@ export function PersonalizedHero() {
   return (
     <div className="text-center py-12">
       {location && (
-        <div className="flex items-center justify-center gap-2 mb-4 text-[#ECB629]">
-          <MapPin className="w-4 h-4" />
-          <span className="text-sm">Персонализирано за {location.city}</span>
+        <div className="flex items-center justify-center gap-2 mb-4">
+          <MapPin className="w-4 h-4 text-[#ECB629]" />
+          <PravdaText as="span" size="sm" variant="accent">Персонализирано за {location.city}</PravdaText>
         </div>
       )}
       

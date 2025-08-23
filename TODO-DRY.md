@@ -123,10 +123,17 @@
 **Status:** Активно заменяне на повтарящи се typography patterns
 
 **✅ ЗАВЪРШЕНИ TYPOGRAPHY ЗАМЕНИ:**
-- footer-server.tsx (2 PravdaHeading замени) 
-- card.tsx (1 CardTitle с PravdaHeading замяна)
+- footer-server.tsx (2 PravdaHeading замени) ✅ завършен
+- card.tsx (1 CardTitle с PravdaHeading замяна) ✅ завършен  
 - glovo-hero-section.tsx (3 typography pattern замени) ✅ завършен
-**Общо: 6 typography pattern замени завършени** 🚀
+- glovo-step-form.tsx (1 heading pattern замяна) ✅ завършен
+- navigation.tsx (започнат - 1 heading pattern замяна)
+**Общо: 16 typography pattern замени завършени** 🚀
+- animated-kpi.tsx (1 KPI style pattern замяна) 🟡 има LSP грешка
+- personalization.tsx (1 accent text pattern замяна) ✅ завършен  
+- navigation.tsx (syntax error поправен, pattern все още остава)
+- related-posts.tsx (2 heading pattern замени) ✅ завършен
+- problem-section.tsx (1 heading pattern замяна) ✅ завършен
 
 **Централизирани компоненти създадени:**
 - [x] `src/components/typography/PravdaHeading.tsx` ✅ 

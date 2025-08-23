@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { TrendingUp, Clock, HelpCircle } from "lucide-react";
+import PravdaHeading from "@/components/typography/PravdaHeading";
 
 const problems = [
   {
@@ -99,13 +100,13 @@ const ProblemSection = () => {
             </div>
           </motion.div>
 
-          <motion.h2
-            className="text-4xl md:text-5xl font-bold mb-6 text-white"
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
             viewport={{ once: true }}
           >
+            <PravdaHeading as="h2" size="4xl" className="md:text-5xl mb-6">
             Още ли залагате на{" "}
             <span className="text-[#ECB629] relative">
               маркетинг
@@ -118,7 +119,8 @@ const ProblemSection = () => {
               />
             </span>
             ?
-          </motion.h2>
+            </PravdaHeading>
+          </motion.div>
 
           <motion.p
             className="text-xl text-gray-300 max-w-3xl mx-auto"

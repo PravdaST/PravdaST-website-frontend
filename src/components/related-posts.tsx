@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Calendar, Clock } from 'lucide-react';
 import { Card, CardContent } from "@/components/ui/card";
 import Link from 'next/link';
+import PravdaHeading from '@/components/typography/PravdaHeading';
 import { cleanHtmlText } from '@/lib/html-decoder';
 
 interface WordPressPost {
@@ -110,9 +111,9 @@ export default function RelatedPosts({ currentPostId, categories = [], tags = []
     return (
       <section className="py-16 relative overflow-hidden">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12 text-white">
+          <PravdaHeading as="h2" size="3xl" className="text-center mb-12">
             Свързани статии
-          </h2>
+          </PravdaHeading>
           <div className="grid md:grid-cols-3 gap-8">
             {[1, 2, 3].map((i) => (
               <Card key={i} className="bg-gray-800/50 border-gray-700 animate-pulse">
@@ -145,9 +146,9 @@ export default function RelatedPosts({ currentPostId, categories = [], tags = []
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl font-bold text-center mb-4 text-white">
+          <PravdaHeading as="h2" size="3xl" className="text-center mb-4">
             Свързани статии
-          </h2>
+          </PravdaHeading>
           <p className="text-gray-400 text-center mb-12 max-w-2xl mx-auto">
             Открийте още полезни съвети и стратегии за бизнес растеж
           </p>

@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import PravdaHeading from "@/components/typography/PravdaHeading";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { SearchTrigger } from "@/components/advanced-search";
 import { NavHoverWrapper } from "@/components/nav/NavHoverWrapper";
