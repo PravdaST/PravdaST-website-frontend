@@ -27,10 +27,10 @@ export function CompleteHomepage() {
           <div className="flex justify-between items-center">
             <div>
               <Link href="/">
-                <PravdaHeading as="div" size="2xl" className="text-[#ECB629] cursor-pointer relative">
+                <div className="text-2xl font-bold text-[#ECB629] cursor-pointer relative">
                   PRAVDA ST
                   <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#ECB629] origin-left" style={{ transform: 'scaleX(0)' }}></div>
-                </PravdaHeading>
+                </div>
               </Link>
             </div>
             <div className="hidden md:flex items-center space-x-8">
@@ -149,7 +149,7 @@ export function CompleteHomepage() {
                 <span className="text-[#ECB629] font-bold">Ново</span> - Приемаме проекти за 2025
               </span>
             </div>
-            <PravdaHeading as="h1" size="4xl" className="sm:text-5xl md:text-7xl mb-6 sm:mb-8 leading-tight px-4 sm:px-0" style={{ opacity: 1, transform: 'none' }}>
+            <PravdaHeading as="h1" size="4xl" className="sm:text-5xl md:text-7xl mb-6 sm:mb-8 leading-tight px-4 sm:px-0">
               Престанете да залагате на маркетинг.{" "}
               <span className="text-[#ECB629] relative">
                 Започнете да изграждате растеж.
