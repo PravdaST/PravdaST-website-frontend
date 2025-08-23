@@ -3,6 +3,8 @@
 import { motion } from "framer-motion";
 import { AlertTriangle, Home, ArrowLeft, Search, Settings, Target, TrendingUp } from "lucide-react";
 import Link from "next/link";
+import { FadeIn } from "@/components/motion/FadeIn";
+import { FadeInView } from "@/components/motion/FadeInView";
 
 export default function NotFound() {
   return (
@@ -54,17 +56,16 @@ export default function NotFound() {
           <div className="container mx-auto px-6 relative z-10">
             <div className="max-w-4xl mx-auto text-center">
               {/* Error Badge */}
-              <motion.div
+              <FadeIn 
+                distance={20} 
+                duration={0.6}
                 className="inline-flex items-center gap-3 mb-8 px-6 py-3 rounded-full glassmorphism border border-[#ECB629]/30"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
               >
                 <div className="flex items-center gap-2">
                   <AlertTriangle className="w-4 h-4 text-[#ECB629]" />
                   <span className="text-sm text-[#ECB629] font-bold">ГРЕШКА 404</span>
                 </div>
-              </motion.div>
+              </FadeIn>
 
               {/* Large 404 */}
               <motion.div
@@ -76,11 +77,12 @@ export default function NotFound() {
                 404
               </motion.div>
 
-              <motion.h1
+              <FadeIn
+                delay={0.4}
+                distance={20}
+                duration={0.8}
+                as="h1"
                 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
               >
                 Страницата не е <br />
                 <span className="text-[#ECB629] relative">
@@ -92,23 +94,23 @@ export default function NotFound() {
                     transition={{ duration: 1, delay: 0.8 }}
                   />
                 </span>
-              </motion.h1>
+              </FadeIn>
 
-              <motion.p
+              <FadeIn
+                delay={0.5}
+                distance={20}
+                duration={0.8}
+                as="p"
                 className="text-xl text-gray-300 mb-12 max-w-2xl mx-auto leading-relaxed"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.5 }}
               >
                 Търсената от вас страница не съществува или е била преместена. Но не се притеснявайте - в Pravda ST имаме системно решение за всичко.
-              </motion.p>
+              </FadeIn>
 
               {/* Action Buttons */}
-              <motion.div
+              <FadeIn
+                delay={0.6}
+                duration={0.8}
                 className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.6 }}
               >
                 <Link
                   href="/"
@@ -125,7 +127,7 @@ export default function NotFound() {
                   <ArrowLeft className="w-5 h-5" />
                   <span>Назад</span>
                 </button>
-              </motion.div>
+              </FadeIn>
             </div>
           </div>
         </section>
@@ -134,24 +136,21 @@ export default function NotFound() {
         <section className="py-20 bg-gradient-to-b from-black to-gray-900">
           <div className="container mx-auto px-6">
             <div className="max-w-4xl mx-auto text-center mb-12">
-              <motion.h2
+              <FadeInView
+                as="h2"
                 className="text-3xl md:text-4xl font-bold text-white mb-6"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                viewport={{ once: true }}
+                duration={0.8}
               >
                 Нашите бизнес системи
-              </motion.h2>
-              <motion.p
+              </FadeInView>
+              <FadeInView
+                as="p"
                 className="text-gray-300 text-lg"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                viewport={{ once: true }}
+                delay={0.2}
+                duration={0.8}
               >
                 Може би търсите една от нашите проверени системи?
-              </motion.p>
+              </FadeInView>
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
@@ -200,13 +199,11 @@ export default function NotFound() {
                   color: "text-[#ECB629]"
                 }
               ].map((item, index) => (
-                <motion.div
+                <FadeInView
                   key={index}
                   className="group"
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: index * 0.1 }}
-                  viewport={{ once: true }}
+                  duration={0.8}
+                  delay={index * 0.1}
                 >
                   <Link
                     href={item.href}
@@ -224,7 +221,7 @@ export default function NotFound() {
                       {item.description}
                     </p>
                   </Link>
-                </motion.div>
+                </FadeInView>
               ))}
             </div>
           </div>
@@ -236,32 +233,27 @@ export default function NotFound() {
           
           <div className="container mx-auto px-6 relative z-10">
             <div className="max-w-4xl mx-auto text-center glassmorphism border border-[#ECB629]/20 rounded-3xl p-12">
-              <motion.h2
+              <FadeInView
+                as="h2"
                 className="text-4xl md:text-5xl font-bold text-white mb-6"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                viewport={{ once: true }}
+                duration={0.8}
               >
                 Нуждаете се от помощ?
-              </motion.h2>
+              </FadeInView>
 
-              <motion.p
+              <FadeInView
+                as="p"
                 className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto leading-relaxed"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                viewport={{ once: true }}
+                duration={0.8}
+                delay={0.2}
               >
                 В Pravda ST всеки проблем е възможност за системно решение. Свържете се с нас за безплатна консултация.
-              </motion.p>
+              </FadeInView>
 
-              <motion.div
+              <FadeInView
                 className="flex flex-col sm:flex-row gap-4 justify-center"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-                viewport={{ once: true }}
+                duration={0.8}
+                delay={0.4}
               >
                 <Link
                   href="/contact"
@@ -278,7 +270,7 @@ export default function NotFound() {
                   <Home className="w-5 h-5" />
                   <span>За нас</span>
                 </Link>
-              </motion.div>
+              </FadeInView>
             </div>
           </div>
         </section>
