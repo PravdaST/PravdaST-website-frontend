@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import PravdaButton from '@/components/ui/PravdaButton'
 
 export function StaticHomepage() {
   return (
@@ -70,9 +71,13 @@ export function StaticHomepage() {
                 </Link>
               </div>
               <div>
-                <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2 bg-[#ECB629] text-black hover:bg-[#ECB629]/90 font-semibold relative overflow-hidden group">
+                <PravdaButton
+                  variant="primary"
+                  size="sm"
+                  className="relative overflow-hidden group"
+                >
                   <span className="relative z-10">ЗАПОЧНЕТЕ СЕГА</span>
-                </button>
+                </PravdaButton>
               </div>
             </div>
             <div className="md:hidden">

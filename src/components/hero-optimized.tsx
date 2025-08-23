@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import PravdaButton from '@/components/ui/PravdaButton'
 
 export function HeroOptimized() {
   return (
@@ -57,12 +58,13 @@ export function HeroOptimized() {
 
           {/* CTA with fixed dimensions */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <button
-              className="w-full sm:w-auto px-8 py-4 bg-[#ECB629] text-black font-bold rounded-lg hover:bg-[#ECB629]/90 transition-colors"
-              style={{ minHeight: '3.5rem', minWidth: '200px' }} // Prevent CLS
+            <PravdaButton
+              variant="primary"
+              size="lg"
+              className="w-full sm:w-auto rounded-lg min-h-[3.5rem] sm:min-w-[200px]"
             >
               Започни безплатно сега
-            </button>
+            </PravdaButton>
             <button
               className="w-full sm:w-auto px-8 py-4 border border-gray-600 text-white font-semibold rounded-lg hover:border-[#ECB629] hover:text-[#ECB629] transition-colors"
               style={{ minHeight: '3.5rem', minWidth: '200px' }} // Prevent CLS

@@ -6,6 +6,7 @@ import Link from "next/link";
 import { FadeIn } from "@/components/motion/FadeIn";
 import { FadeInView } from "@/components/motion/FadeInView";
 import { GlassCard } from "@/components/ui/GlassCard";
+import PravdaButton from "@/components/ui/PravdaButton";
 
 export default function NotFound() {
   return (
@@ -113,21 +114,26 @@ export default function NotFound() {
                 duration={0.8}
                 className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12"
               >
-                <Link
-                  href="/"
-                  className="inline-flex items-center gap-3 px-8 py-4 bg-[#ECB629] text-black font-bold rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-2xl"
-                >
-                  <Home className="w-5 h-5" />
-                  <span>Към началото</span>
+                <Link href="/">
+                  <PravdaButton
+                    variant="primary"
+                    size="lg"
+                    icon={Home}
+                    className="shadow-2xl"
+                  >
+                    Начална страница
+                  </PravdaButton>
                 </Link>
 
-                <button
+                <PravdaButton
+                  variant="outline"
+                  size="lg"
+                  icon={ArrowLeft}
+                  iconPosition="left"
                   onClick={() => window.history.back()}
-                  className="inline-flex items-center gap-3 px-8 py-4 bg-transparent border-2 border-[#ECB629] text-[#ECB629] hover:bg-[#ECB629] hover:text-black font-semibold rounded-lg transition-all duration-300"
                 >
-                  <ArrowLeft className="w-5 h-5" />
-                  <span>Назад</span>
-                </button>
+                  Назад
+                </PravdaButton>
               </FadeIn>
             </div>
           </div>
@@ -269,20 +275,25 @@ export default function NotFound() {
                 duration={0.8}
                 delay={0.4}
               >
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center gap-3 px-8 py-4 bg-[#ECB629] text-black font-bold rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-2xl shadow-[#ECB629]/25"
-                >
-                  <Search className="w-5 h-5" />
-                  <span>Безплатна консултация</span>
+                <Link href="/contact">
+                  <PravdaButton
+                    variant="primary"
+                    size="lg"
+                    icon={Search}
+                    className="shadow-[#ECB629]/25 hover:shadow-2xl"
+                  >
+                    Безплатна консултация
+                  </PravdaButton>
                 </Link>
                 
-                <Link
-                  href="/about"
-                  className="inline-flex items-center gap-3 px-8 py-4 border-2 border-[#ECB629] text-[#ECB629] hover:bg-[#ECB629] hover:text-black font-semibold rounded-lg transition-all duration-300"
-                >
-                  <Home className="w-5 h-5" />
-                  <span>За нас</span>
+                <Link href="/about">
+                  <PravdaButton
+                    variant="outline"
+                    size="lg"
+                    icon={Home}
+                  >
+                    За нас
+                  </PravdaButton>
                 </Link>
               </FadeInView>
             </GlassCard>

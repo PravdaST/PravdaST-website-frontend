@@ -10,6 +10,7 @@ import {
   Clock,
   Shield,
 } from "lucide-react";
+import PravdaButton from "@/components/ui/PravdaButton";
 
 export const CTASection = () => {
   return (
@@ -158,23 +159,28 @@ export const CTASection = () => {
               viewport={{ once: true }}
             >
               {/* Primary CTA */}
-              <motion.button
-                className="group relative bg-[#ECB629] text-black px-12 py-6 rounded-2xl font-bold text-xl hover:bg-[#ECB629]/90 transition-all duration-300 shadow-2xl hover:shadow-[#ECB629]/25 overflow-hidden"
+              <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.98 }}
-                onClick={() => {
-                  window.open(
-                    "https://form.typeform.com/to/GXLaGY98",
-                    "_blank",
-                  );
-                }}
               >
-                <motion.div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 group-hover:animate-pulse" />
-                <span className="relative z-10 flex items-center gap-3">
-                  Започнете с безплатна диагностика
-                  <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform duration-300" />
-                </span>
-              </motion.button>
+                <PravdaButton
+                  variant="primary"
+                  size="lg"
+                  className="group relative px-12 py-6 rounded-2xl text-xl shadow-2xl hover:shadow-[#ECB629]/25 overflow-hidden"
+                  onClick={() => {
+                    window.open(
+                      "https://form.typeform.com/to/GXLaGY98",
+                      "_blank",
+                    );
+                  }}
+                >
+                  <motion.div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 group-hover:animate-pulse" />
+                  <span className="relative z-10 flex items-center gap-3">
+                    Започнете с безплатна диагностика
+                    <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform duration-300" />
+                  </span>
+                </PravdaButton>
+              </motion.div>
 
               {/* Secondary CTA */}
               <motion.button

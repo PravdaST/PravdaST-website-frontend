@@ -25,6 +25,7 @@ import ServicesJsonLd from "@/components/services-json-ld";
 import { FadeIn } from "@/components/motion/FadeIn";
 import { FadeInView } from "@/components/motion/FadeInView";
 import { GlassCard } from "@/components/ui/GlassCard";
+import PravdaButton from "@/components/ui/PravdaButton";
 
 // Systems Background Component
 const SystemsBackground = () => {
@@ -290,14 +291,15 @@ export default function Services() {
                 >
                   <div className="group relative">
                     <div className="absolute -inset-1 bg-gradient-to-r from-[#ECB629] to-[#ECB629]/50 rounded-xl blur opacity-30 group-hover:opacity-50 transition duration-300"></div>
-                    <Button
+                    <PravdaButton
+                      variant="primary"
                       size="lg"
                       onClick={scrollToSystems}
-                      className="relative bg-[#ECB629] text-black hover:bg-[#ECB629]/90 px-8 py-4 md:px-12 md:py-6 text-base md:text-xl font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-105 cursor-pointer"
+                      icon={BarChart3}
+                      className="relative rounded-xl shadow-lg hover:shadow-xl group-hover:scale-105 cursor-pointer"
                     >
                       Разгледай системите
-                      <BarChart3 className="ml-3 h-5 w-5 md:h-6 md:w-6" />
-                    </Button>
+                    </PravdaButton>
                   </div>
                 </FadeIn>
 
@@ -572,20 +574,18 @@ export default function Services() {
                         </div>
 
                         <Link href={`/services/${service.slug}`}>
-                          <Button
-                            className="w-full bg-[#ECB629] text-black hover:bg-[#ECB629]/90 font-semibold py-3 px-6 rounded-lg transition-all duration-300 group/btn relative overflow-hidden"
+                          <PravdaButton
+                            variant="primary"
                             size="lg"
+                            icon={service.icon}
+                            className="w-full rounded-lg group/btn relative overflow-hidden"
                           >
                             <span className="relative z-1 flex items-center justify-center gap-2">
                               Научете повече
-                              <service.icon
-                                size={18}
-                                className="group-hover/btn:scale-110 transition-transform duration-300"
-                              />
                             </span>
                             {/* Button shimmer effect */}
                             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 group-hover/btn:animate-pulse"></div>
-                          </Button>
+                          </PravdaButton>
                         </Link>
                       </div>
                     </CardContent>

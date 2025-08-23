@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { GlassCard } from "@/components/ui/GlassCard";
+import PravdaButton from "@/components/ui/PravdaButton";
 
 // Category definitions
 const categories = [
@@ -194,13 +195,14 @@ export default function CampaignsClient() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
-              <Button
+              <PravdaButton
+                variant="primary"
                 size="lg"
-                className="bg-[#ECB629] text-black hover:bg-[#ECB629]/90 px-8 py-4 text-lg font-semibold w-full sm:w-auto"
+                icon={ArrowRight}
+                className="w-full sm:w-auto"
               >
                 Покажи ми
-                <ArrowRight className="ml-2 w-5 h-5" />
-              </Button>
+              </PravdaButton>
 
               <Link href="/contact">
                 <Button
@@ -359,10 +361,14 @@ export default function CampaignsClient() {
                         </Button>
                       ) : (
                         <Link href={page.href}>
-                          <Button className="w-full bg-[#ECB629] text-black hover:bg-[#ECB629]/90">
+                          <PravdaButton 
+                            variant="primary" 
+                            size="md" 
+                            icon={ArrowRight}
+                            className="w-full"
+                          >
                             Преглед
-                            <ArrowRight className="ml-2 w-4 h-4" />
-                          </Button>
+                          </PravdaButton>
                         </Link>
                       )}
                     </div>
@@ -417,13 +423,13 @@ export default function CampaignsClient() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/contact">
-                <Button
+                <PravdaButton
+                  variant="primary"
                   size="lg"
-                  className="bg-[#ECB629] text-black hover:bg-[#ECB629]/90 px-8 py-4 text-lg font-semibold"
+                  icon={ArrowRight}
                 >
                   Да поговорим
-                  <ArrowRight className="ml-2 w-5 h-5" />
-                </Button>
+                </PravdaButton>
               </Link>
               <Link href="/services">
                 <Button

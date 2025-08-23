@@ -19,6 +19,7 @@ import {
 } from "@/components/ui/form"
 import { useToast } from "@/hooks/use-toast"
 import { Mail, Phone, MapPin, Clock, Send } from "lucide-react"
+import PravdaButton from "@/components/ui/PravdaButton"
 import { trackContactForm, trackPhoneCall } from "@/lib/analytics"
 import { trackMetaLead, trackMetaContact } from "@/components/meta-pixel"
 import { useKlaviyo } from "@/hooks/useKlaviyo"
@@ -389,23 +390,23 @@ export default function ContactClient() {
                       </div>
                     </div>
 
-                    <Button
+                    <PravdaButton
                       type="submit"
+                      variant="primary"
+                      size="lg"
+                      icon={Send}
+                      className="w-full h-12 rounded-xl"
                       disabled={isSubmitting}
-                      className="w-full bg-[#ECB629] hover:bg-[#ECB629]/90 text-black font-semibold h-12 rounded-xl transition-all duration-300 transform hover:scale-[1.02] disabled:opacity-50"
                     >
                       {isSubmitting ? (
-                        <div className="flex items-center gap-2">
-                          <div className="w-4 h-4 border-2 border-black/30 border-t-black rounded-full animate-spin" />
+                        <>
+                          <div className="w-4 h-4 border-2 border-black/30 border-t-black rounded-full animate-spin mr-2" />
                           Изпращане...
-                        </div>
+                        </>
                       ) : (
-                        <div className="flex items-center gap-2">
-                          <Send className="w-4 h-4" />
-                          Изпрати съобщение
-                        </div>
+                        "Изпрати съобщение"
                       )}
-                    </Button>
+                    </PravdaButton>
                   </form>
                 </Form>
                 

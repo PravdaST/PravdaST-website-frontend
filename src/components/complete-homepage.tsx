@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import PravdaButton from '@/components/ui/PravdaButton'
 
 export function CompleteHomepage() {
   return (
@@ -79,10 +80,14 @@ export function CompleteHomepage() {
                 </Link>
               </div>
               <div tabIndex={0} style={{ opacity: 1, transform: 'none' }}>
-                <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 h-10 px-4 py-2 bg-[#ECB629] text-black hover:bg-[#ECB629]/90 font-semibold relative overflow-hidden group">
+                <PravdaButton
+                  variant="primary"
+                  size="sm"
+                  className="relative overflow-hidden group"
+                >
                   <div className="absolute inset-0 bg-gradient-to-r from-[#ECB629] via-white to-[#ECB629] opacity-0 group-hover:opacity-20" style={{ transform: 'translateX(-52.6662%)' }}></div>
                   <span className="relative z-10">ЗАПОЧНЕТЕ СЕГА</span>
-                </button>
+                </PravdaButton>
               </div>
             </div>
             <div className="md:hidden">

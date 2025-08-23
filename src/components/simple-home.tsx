@@ -3,6 +3,7 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
+import PravdaButton from "@/components/ui/PravdaButton"
 import { motion } from "framer-motion"
 import { TrendingUp, Clock, HelpCircle } from "lucide-react"
 
@@ -147,13 +148,14 @@ export function SimpleHome() {
               transition={{ duration: 0.8, delay: 0.8 }}
             >
               <Link href="https://form.typeform.com/to/GXLaGY98" target="_blank" rel="noopener noreferrer">
-                <Button
+                <PravdaButton
+                  variant="primary"
                   size="lg"
-                  className="bg-[#ECB629] text-black hover:bg-[#ECB629]/90 px-6 md:px-12 py-4 md:py-6 text-base md:text-xl font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 w-full sm:w-auto relative overflow-hidden group min-h-[56px]"
+                  className="w-full sm:w-auto min-h-[56px] shadow-xl hover:shadow-2xl relative overflow-hidden group"
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 group-hover:animate-pulse"></div>
                   <span className="relative z-10">Започнете днес</span>
-                </Button>
+                </PravdaButton>
               </Link>
 
               <Link href="/services">

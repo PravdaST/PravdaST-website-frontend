@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
+import PravdaButton from '@/components/ui/PravdaButton'
 
 export function ClientHomepage() {
   const [mounted, setMounted] = useState(false)
@@ -126,10 +127,14 @@ export function ClientHomepage() {
                 </Link>
               </div>
               <div>
-                <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2 bg-[#ECB629] text-black hover:bg-[#ECB629]/90 font-semibold relative overflow-hidden group">
+                <PravdaButton
+                  variant="primary"
+                  size="sm"
+                  className="relative overflow-hidden group"
+                >
                   <div className="absolute inset-0 bg-gradient-to-r from-[#ECB629] via-white to-[#ECB629] opacity-0 group-hover:opacity-20 -translate-x-full group-hover:translate-x-0 transition-transform duration-500" />
                   <span className="relative z-10">ЗАПОЧНЕТЕ СЕГА</span>
-                </button>
+                </PravdaButton>
               </div>
             </div>
             <div className="md:hidden">
@@ -209,12 +214,15 @@ export function ClientHomepage() {
               <Link href="/case-studies" className="text-[#ECB629] hover:underline cursor-pointer">реални резултати</Link>.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-8 sm:mb-12 px-4 sm:px-0">
-              <Link 
-                href="https://form.typeform.com/to/GXLaGY98"
-                className="inline-flex items-center justify-center gap-2 whitespace-nowrap ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-11 rounded-md bg-[#ECB629] text-black hover:bg-[#ECB629]/90 px-6 md:px-12 py-4 md:py-6 text-base md:text-xl font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 w-full sm:w-auto relative overflow-hidden group min-h-[56px]"
-              >
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 group-hover:animate-pulse" />
-                <span className="relative z-10">Започнете днес</span>
+              <Link href="https://form.typeform.com/to/GXLaGY98">
+                <PravdaButton
+                  variant="primary"
+                  size="lg"
+                  className="w-full sm:w-auto min-h-[56px] shadow-xl hover:shadow-2xl relative overflow-hidden group"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 group-hover:animate-pulse" />
+                  <span className="relative z-10">Започнете днес</span>
+                </PravdaButton>
               </Link>
               <Link 
                 href="/services"

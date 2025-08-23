@@ -17,6 +17,7 @@ import {
   Cog,
 } from "lucide-react";
 import Link from "next/link";
+import PravdaButton from "@/components/ui/PravdaButton";
 
 const systems = [
   {
@@ -334,9 +335,13 @@ export const SystemsSection = () => {
 
                   {/* CTA Button */}
                   <Link href={system.link}>
-                    <Button className="w-full bg-[#ECB629] text-black hover:bg-[#ECB629]/90 font-semibold group-hover:scale-105 transition-all duration-300">
+                    <PravdaButton 
+                      variant="primary"
+                      size="md"
+                      className="w-full group-hover:scale-105"
+                    >
                       Научете повече
-                    </Button>
+                    </PravdaButton>
                   </Link>
                 </div>
 

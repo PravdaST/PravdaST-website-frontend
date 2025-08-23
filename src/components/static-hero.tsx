@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import PravdaButton from '@/components/ui/PravdaButton'
 
 export function StaticHero() {
   return (
@@ -55,14 +56,15 @@ export function StaticHero() {
 
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <Link 
-            href="https://form.typeform.com/to/GXLaGY98" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="bg-[#ECB629] text-black hover:bg-[#ECB629]/90 px-6 md:px-12 py-4 md:py-6 text-base md:text-xl font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 w-full sm:w-auto relative overflow-hidden group min-h-[56px] rounded-lg"
-          >
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12"></div>
-            <span className="relative z-10">Започнете днес</span>
+          <Link href="https://form.typeform.com/to/GXLaGY98" target="_blank" rel="noopener noreferrer">
+            <PravdaButton
+              variant="primary"
+              size="lg"
+              className="w-full sm:w-auto min-h-[56px] shadow-xl hover:shadow-2xl relative overflow-hidden group rounded-lg"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12"></div>
+              <span className="relative z-10">Започнете днес</span>
+            </PravdaButton>
           </Link>
           
           <Link 
