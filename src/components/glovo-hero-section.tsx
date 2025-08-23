@@ -35,16 +35,16 @@ export const GlovoHeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2 }}
           >
-            <span className="text-red-500 animate-pulse">
-              Спрете да загубвате
-            </span>
-            <br />
-            <span className="bg-gradient-to-r from-red-400 via-red-500 to-red-600 bg-clip-text text-transparent font-black text-5xl sm:text-7xl md:text-8xl">
-              30%
-            </span>
-            <br />
             <span className="text-white">
-              от приходите си всеки месец
+              Знаете ли, че всеки месец
+            </span>
+            <br />
+            <span className="bg-gradient-to-r from-red-400 via-red-500 to-red-600 bg-clip-text text-transparent font-black text-4xl sm:text-6xl md:text-7xl">
+              подарявате на Glovo
+            </span>
+            <br />
+            <span className="text-yellow-400 text-4xl sm:text-6xl md:text-7xl">
+              хиляди левове?
             </span>
           </motion.h1>
 
@@ -54,11 +54,20 @@ export const GlovoHeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <p className="text-2xl md:text-3xl text-white mb-4 font-semibold">
-              Безплатен <span className="bg-gradient-to-r from-yellow-400 to-green-400 bg-clip-text text-transparent">Glovo калкулатор</span>
+            <p className="text-xl md:text-2xl text-gray-300 mb-6 leading-relaxed">
+              Точно преди 3 месеца, Димитър от "Кебапче София" ми се обади разстроен:
             </p>
-            <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
-              Вижте точно колко ви струва Glovo + получете персонализиран план за освобождаване за 90 дни
+            <div className="bg-gray-800/50 border border-red-400/30 rounded-xl p-6 mb-6 italic">
+              <p className="text-lg md:text-xl text-red-300">
+                "Стефане, проверих сметките... Само миналия месец съм дал на Glovo 2,400 лева! 
+                Това са повече пари от наема ми! Как да спра това кървене?"
+              </p>
+            </div>
+            <p className="text-lg md:text-xl text-green-400 font-semibold">
+              Днес Димитър вече запазва тези пари като чиста печалба.
+            </p>
+            <p className="text-lg text-gray-300 mt-2">
+              Ето как можете и вие за <span className="text-yellow-400 font-bold">90 дни</span>...
             </p>
           </motion.div>
 
@@ -127,8 +136,8 @@ export const GlovoHeroSection = () => {
               }
             >
               <Calculator className="mr-3 w-5 h-5 md:w-6 md:h-6 group-hover:rotate-12 transition-transform duration-300" />
-              <span className="hidden sm:inline">Изчисли моите Glovo разходи (Безплатно)</span>
-              <span className="sm:hidden">Безплатен калкулатор</span>
+              <span className="hidden sm:inline">Покажи ми колко губя всеки месец (Безплатно)</span>
+              <span className="sm:hidden">Колко губя месечно?</span>
             </Button>
             
             {/* Trust Indicators */}

@@ -79,11 +79,16 @@ function SocialProofSection() {
                       ))}
                     </div>
                   </div>
-                  <blockquote className="text-xl md:text-3xl font-light text-white leading-relaxed mb-8">
+                  <blockquote className="text-lg md:text-2xl font-light text-white leading-relaxed mb-8">
                     <span className="text-green-400 text-4xl">"</span>
-                    Плащахме на Glovo <span className="bg-red-500/20 px-2 py-1 rounded-lg font-bold text-red-400">2,200 лв всеки месец</span>. 
-                    Сега плащаме <span className="bg-green-500/20 px-2 py-1 rounded-lg font-bold text-green-400">800 лв</span> 
-                    и клиентите поръчват директно от нас.
+                    Честно казано, мислех че Glovo ни помагат. Но когато проверих сметките в края на месеца... 
+                    <span className="bg-red-500/20 px-2 py-1 rounded-lg font-bold text-red-400">2,200 лева само за комисионни!</span> 
+                    <br /><br />
+                    Повече от наема на заведението! Нямаше как да продължи така.
+                    <br /><br />
+                    Сега с новата система клиентите ни поръчват директно, а ние запазваме 
+                    <span className="bg-green-500/20 px-2 py-1 rounded-lg font-bold text-green-400">над 1,400 лева всеки месец</span>. 
+                    Най-доброто решение, което взехме за бизнеса.
                     <span className="text-green-400 text-4xl">"</span>
                   </blockquote>
                   <div className="flex flex-col md:flex-row items-center md:items-start gap-4">
@@ -106,7 +111,7 @@ function SocialProofSection() {
               {
                 icon: CheckCircle,
                 number: "23",
-                label: "Ресторанта освободени от Glovo",
+                label: "ресторанта като вашия вече са свободни от Glovo",
                 color: "green",
                 gradient: "from-green-400 to-emerald-500",
                 delay: "0s"
@@ -114,7 +119,7 @@ function SocialProofSection() {
               {
                 icon: DollarSign,
                 number: "340,000 лв",
-                label: "Спестени комисионни за 2024",
+                label: "реални пари, спестени от комисионни през 2024",
                 color: "yellow",
                 gradient: "from-yellow-400 to-orange-500",
                 delay: "0.2s"
@@ -122,7 +127,7 @@ function SocialProofSection() {
               {
                 icon: TrendingUp,
                 number: "87%",
-                label: "Намаление на разходите",
+                label: "средно намаление на разходите за доставка",
                 color: "green",
                 gradient: "from-green-400 to-teal-500",
                 delay: "0.4s"
@@ -168,10 +173,10 @@ function ProblemSolutionSection() {
           {/* Modern Problem Statement */}
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
-              Защо да дарявате <span className="bg-gradient-to-r from-red-400 to-red-600 bg-clip-text text-transparent">30%</span> всеки месец?
+              Представете си да запазвате <span className="bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent">всички тези пари</span>
             </h2>
             <p className="text-xl text-gray-300 mb-8">
-              Докато вашите конкуренти запазват тези пари като печалба
+              Вместо да ги изпращате в джоба на Glovo всеки месец...
             </p>
           </div>
 
@@ -182,21 +187,33 @@ function ProblemSolutionSection() {
               <div className="absolute inset-0 bg-gradient-to-br from-red-500/20 to-red-700/20 rounded-3xl blur-xl opacity-50"></div>
               <div className="relative bg-gray-900/90 backdrop-blur-xl border border-red-400/30 rounded-3xl p-8">
                 <div className="text-center mb-6">
-                  <div className="text-6xl mb-4">😰</div>
-                  <h3 className="text-2xl font-bold text-red-400 mb-4">Сега губите</h3>
+                  <div className="text-6xl mb-4">💸</div>
+                  <h3 className="text-2xl font-bold text-red-400 mb-4">Сега всеки месец...</h3>
                 </div>
-                <ul className="space-y-3 text-gray-300">
-                  <li className="flex items-center">
-                    <span className="text-red-500 mr-3 text-xl">❌</span>
-                    <span><strong className="text-red-400">30%</strong> от всяка поръчка</span>
+                <ul className="space-y-4 text-gray-300">
+                  <li className="flex items-start">
+                    <span className="text-red-500 mr-3 text-xl mt-1">💔</span>
+                    <div>
+                      <strong className="text-red-400">Изпращате хиляди левове</strong> 
+                      <br />
+                      <span className="text-sm text-gray-400">направо в джоба на Glovo</span>
+                    </div>
                   </li>
-                  <li className="flex items-center">
-                    <span className="text-red-500 mr-3 text-xl">❌</span>
-                    <span>Няма данни за клиентите</span>
+                  <li className="flex items-start">
+                    <span className="text-red-500 mr-3 text-xl mt-1">🔒</span>
+                    <div>
+                      <strong className="text-red-400">Те контролират вашите клиенти</strong>
+                      <br />
+                      <span className="text-sm text-gray-400">вие дори не знаете кой поръчва</span>
+                    </div>
                   </li>
-                  <li className="flex items-center">
-                    <span className="text-red-500 mr-3 text-xl">❌</span>
-                    <span>Конкуренция в приложението</span>
+                  <li className="flex items-start">
+                    <span className="text-red-500 mr-3 text-xl mt-1">⚔️</span>
+                    <div>
+                      <strong className="text-red-400">Конкурирате срещу 50+ заведения</strong>
+                      <br />
+                      <span className="text-sm text-gray-400">в едно и също приложение</span>
+                    </div>
                   </li>
                 </ul>
               </div>
@@ -207,48 +224,60 @@ function ProblemSolutionSection() {
               <div className="absolute inset-0 bg-gradient-to-br from-green-500/20 to-emerald-700/20 rounded-3xl blur-xl opacity-50"></div>
               <div className="relative bg-gray-900/90 backdrop-blur-xl border border-green-400/30 rounded-3xl p-8">
                 <div className="text-center mb-6">
-                  <div className="text-6xl mb-4">🚀</div>
-                  <h3 className="text-2xl font-bold text-green-400 mb-4">Можете да имате</h3>
+                  <div className="text-6xl mb-4">💰</div>
+                  <h3 className="text-2xl font-bold text-green-400 mb-4">Вместо това да имате...</h3>
                 </div>
-                <ul className="space-y-3 text-gray-300">
-                  <li className="flex items-center">
-                    <span className="text-green-500 mr-3 text-xl">✅</span>
-                    <span><strong className="text-green-400">Запазвате 30%</strong> като печалба</span>
+                <ul className="space-y-4 text-gray-300">
+                  <li className="flex items-start">
+                    <span className="text-green-500 mr-3 text-xl mt-1">🎯</span>
+                    <div>
+                      <strong className="text-green-400">Хилядите левове остават при вас</strong>
+                      <br />
+                      <span className="text-sm text-gray-400">вместо да отиват при Glovo</span>
+                    </div>
                   </li>
-                  <li className="flex items-center">
-                    <span className="text-green-500 mr-3 text-xl">✅</span>
-                    <span>Пълен контрол над клиентите</span>
+                  <li className="flex items-start">
+                    <span className="text-green-500 mr-3 text-xl mt-1">👥</span>
+                    <div>
+                      <strong className="text-green-400">Вашите клиенти са наистина ваши</strong>
+                      <br />
+                      <span className="text-sm text-gray-400">знаете ги, можете да ги задържите</span>
+                    </div>
                   </li>
-                  <li className="flex items-center">
-                    <span className="text-green-500 mr-3 text-xl">✅</span>
-                    <span>Директни поръчки към вас</span>
+                  <li className="flex items-start">
+                    <span className="text-green-500 mr-3 text-xl mt-1">👑</span>
+                    <div>
+                      <strong className="text-green-400">Нула конкуренция в приложението</strong>
+                      <br />
+                      <span className="text-sm text-gray-400">клиентите идват само при вас</span>
+                    </div>
                   </li>
                 </ul>
               </div>
             </div>
           </div>
 
-          {/* Simplified CTA Bridge */}
+          {/* Emotional CTA Bridge */}
           <div className="text-center">
             <div className="bg-gradient-to-r from-yellow-400/10 to-green-400/10 border border-yellow-400/30 rounded-2xl p-8">
-              <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
-                Безплатният калкулатор показва
+              <h3 className="text-2xl md:text-3xl font-bold text-white mb-6">
+                Точно като при Димитър, ще видите:
               </h3>
               <div className="grid md:grid-cols-3 gap-6 text-center">
                 <div>
-                  <div className="text-3xl mb-2">💰</div>
-                  <p className="text-green-400 font-bold">Точната сума</p>
-                  <p className="text-sm text-gray-300">която губите месечно</p>
+                  <div className="text-3xl mb-2">😱</div>
+                  <p className="text-yellow-400 font-bold">Колко пари губите</p>
+                  <p className="text-sm text-gray-300">всеки месец на Glovo<br />(повечето се изненадват)</p>
                 </div>
                 <div>
-                  <div className="text-3xl mb-2">📋</div>
-                  <p className="text-green-400 font-bold">Персонализиран план</p>
-                  <p className="text-sm text-gray-300">за 90-дневно освобождаване</p>
+                  <div className="text-3xl mb-2">🗺️</div>
+                  <p className="text-green-400 font-bold">Как да се освободите</p>
+                  <p className="text-sm text-gray-300">стъпка по стъпка за 90 дни<br />(проверен план)</p>
                 </div>
                 <div>
-                  <div className="text-3xl mb-2">⚡</div>
+                  <div className="text-3xl mb-2">🚀</div>
                   <p className="text-green-400 font-bold">Система за директни поръчки</p>
-                  <p className="text-sm text-gray-300">която се изплаща за 2 месеца</p>
+                  <p className="text-sm text-gray-300">която се изплаща от първия месец<br />(като при Димитър)</p>
                 </div>
               </div>
             </div>
@@ -280,23 +309,29 @@ export default function GlovoCalculatorLandingOptimized() {
           <div className="text-center mb-12">
             <div className="relative inline-block">
               <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/30 to-green-400/30 rounded-3xl blur-2xl"></div>
-              <h2 className="relative text-4xl md:text-6xl font-bold text-white mb-6 px-8 py-4">
-                🧮 <span className="bg-gradient-to-r from-yellow-400 to-green-400 bg-clip-text text-transparent">Безплатен</span> Калкулатор
+              <h2 className="relative text-3xl md:text-5xl font-bold text-white mb-6 px-4 py-4">
+                <span className="bg-gradient-to-r from-yellow-400 to-green-400 bg-clip-text text-transparent">Готови ли сте да разберете</span>
+                <br />
+                колко пари губите всеки месец?
               </h2>
             </div>
-            <p className="text-xl md:text-2xl text-gray-300 mb-4">
-              Вижте точно колко губите всеки месец
+            <p className="text-lg md:text-xl text-gray-300 mb-6 leading-relaxed">
+              Като Димитър, вероятно ще се изненадате от числата.<br />
+              Но това е първата стъпка към свободата от Glovo.
             </p>
-            <div className="flex justify-center items-center gap-4 text-green-400">
+            <div className="flex justify-center items-center gap-4 text-green-400 mb-2">
               <span className="text-2xl">⚡</span>
               <span className="font-semibold">90 секунди</span>
               <span>•</span>
               <span className="text-2xl">🎯</span>
-              <span className="font-semibold">Персонализиран анализ</span>
+              <span className="font-semibold">Реален анализ</span>
               <span>•</span>
               <span className="text-2xl">🆓</span>
-              <span className="font-semibold">100% безплатно</span>
+              <span className="font-semibold">Без скрити такси</span>
             </div>
+            <p className="text-sm text-gray-400 mb-6">
+              (След като видите резултатите, ще разберете защо 23 ресторанта вече са се освободили)
+            </p>
           </div>
           
           {/* Enhanced Form Container */}
