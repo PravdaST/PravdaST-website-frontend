@@ -31,8 +31,7 @@ export async function POST(request: NextRequest) {
       console.error('Missing Airtable environment variables:', {
         hasApiKey: !!AIRTABLE_API_KEY,
         hasBaseId: !!AIRTABLE_BASE_ID,
-        tableId: AIRTABLE_TABLE_ID,
-        apiKeyFormat: AIRTABLE_API_KEY ? AIRTABLE_API_KEY.substring(0, 10) + '...' : 'missing'
+        tableId: AIRTABLE_TABLE_ID
       });
       return NextResponse.json(
         { error: 'Server configuration error' },

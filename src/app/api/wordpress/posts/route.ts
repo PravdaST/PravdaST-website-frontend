@@ -1,9 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getWordPressPosts, searchWordPressPosts } from '@/lib/wordpress'
 
-// Next.js caching configuration - Cache for 1 hour to reduce WordPress API calls
-export const revalidate = 3600;
-
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url)
