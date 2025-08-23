@@ -1,7 +1,6 @@
 'use client'
 
 import { motion, useInView } from "framer-motion";
-import { Footer } from "@/components/footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { useRef, useState, useEffect } from "react";
@@ -725,8 +724,6 @@ export default function Services() {
           </div>
         </section>
       </main>
-
-      <Footer />
       </div>
     </>
   );
