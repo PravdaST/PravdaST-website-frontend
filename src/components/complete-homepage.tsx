@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import PravdaButton from '@/components/ui/PravdaButton'
+import PravdaHeading from '@/components/typography/PravdaHeading'
 
 export function CompleteHomepage() {
   return (
@@ -26,10 +27,10 @@ export function CompleteHomepage() {
           <div className="flex justify-between items-center">
             <div>
               <Link href="/">
-                <div className="text-2xl font-bold text-[#ECB629] cursor-pointer relative">
+                <PravdaHeading as="div" size="2xl" className="text-[#ECB629] cursor-pointer relative">
                   PRAVDA ST
                   <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#ECB629] origin-left" style={{ transform: 'scaleX(0)' }}></div>
-                </div>
+                </PravdaHeading>
               </Link>
             </div>
             <div className="hidden md:flex items-center space-x-8">
@@ -148,13 +149,13 @@ export function CompleteHomepage() {
                 <span className="text-[#ECB629] font-bold">Ново</span> - Приемаме проекти за 2025
               </span>
             </div>
-            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-6 sm:mb-8 leading-tight text-white px-4 sm:px-0" style={{ opacity: 1, transform: 'none' }}>
+            <PravdaHeading as="h1" size="4xl" className="sm:text-5xl md:text-7xl mb-6 sm:mb-8 leading-tight px-4 sm:px-0" style={{ opacity: 1, transform: 'none' }}>
               Престанете да залагате на маркетинг.{" "}
               <span className="text-[#ECB629] relative">
                 Започнете да изграждате растеж.
                 <div className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-[#ECB629] to-[#ECB629]/50 rounded-full" style={{ transform: 'none' }}></div>
               </span>
-            </h1>
+            </PravdaHeading>
             <p className="text-lg sm:text-xl md:text-2xl mb-8 sm:mb-12 text-gray-300 max-w-3xl mx-auto px-4 sm:px-0" style={{ opacity: 1, transform: 'none' }}>
               Изграждаме системи, които ви дават контрол, носят предвидими приходи и пестят времето ви. Разгледайте нашите{" "}
               <Link href="/services" className="text-[#ECB629] hover:underline cursor-pointer">проверени системи</Link>{" "}

@@ -4,6 +4,7 @@ import { useState, useTransition } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight, Calculator, Mail, Phone, CheckCircle } from "lucide-react";
+import PravdaHeading from "@/components/typography/PravdaHeading";
 import { submitGlovoForm, type GlovoFormData } from "@/app/actions/glovo-form";
 
 export const GlovoStepFormOptimized = () => {
@@ -239,19 +240,19 @@ export const GlovoStepFormOptimized = () => {
           <CheckCircle className="w-8 h-8 text-black" />
         </motion.div>
         
-        <h3 className="text-2xl font-bold text-green-400 mb-4">
+        <PravdaHeading as="h3" size="2xl" className="text-green-400 mb-4">
           Анализът е готов!
-        </h3>
+        </PravdaHeading>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
           <div className="bg-red-500/20 border border-red-500/30 rounded-xl p-4">
             <div className="text-lg font-bold text-red-400">Glovo комисионни</div>
-            <div className="text-2xl font-bold text-red-500">{savings.glovoCommission} лв/месец</div>
+            <span className="text-2xl font-bold text-red-500">{savings.glovoCommission} лв/месец</span>
           </div>
           
           <div className="bg-green-500/20 border border-green-500/30 rounded-xl p-4">
             <div className="text-lg font-bold text-green-400">Възможни спестявания</div>
-            <div className="text-2xl font-bold text-green-400">{savings.potentialSavings} лв/месец</div>
+            <span className="text-2xl font-bold text-green-400">{savings.potentialSavings} лв/месец</span>
           </div>
           
           <div className="bg-yellow-500/20 border border-yellow-500/30 rounded-xl p-4">

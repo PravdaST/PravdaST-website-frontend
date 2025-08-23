@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { MapPin, Phone, Clock } from 'lucide-react'
 import PravdaText from '@/components/typography/PravdaText'
+import PravdaHeading from '@/components/typography/PravdaHeading'
 
 interface LocationData {
   city: string
@@ -218,9 +219,9 @@ export function PersonalizedHero() {
         </div>
       )}
       
-      <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
+      <PravdaHeading as="h1" size="4xl" className="md:text-6xl mb-6">
         {config.hero.title}
-      </h1>
+      </PravdaHeading>
       
       <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
         {config.hero.subtitle}

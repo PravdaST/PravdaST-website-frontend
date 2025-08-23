@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
+import PravdaHeading from "@/components/typography/PravdaHeading";
 
 export const SolutionSection = () => {
   return (
@@ -73,13 +74,17 @@ export const SolutionSection = () => {
             </div>
           </motion.div>
 
-          <motion.h2 
-            className="text-4xl md:text-5xl font-bold mb-6 text-white"
+          <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
           >
+            <PravdaHeading 
+              as="h2"
+              size="4xl" 
+              className="md:text-5xl mb-6"
+            >
             Защо вашият маркетинг{" "}
             <span className="text-red-400 relative">
               не работи
@@ -91,7 +96,8 @@ export const SolutionSection = () => {
                 viewport={{ once: true }}
               />
             </span>?
-          </motion.h2>
+            </PravdaHeading>
+          </motion.div>
           <motion.p 
             className="text-xl text-gray-300 max-w-3xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
@@ -136,10 +142,10 @@ export const SolutionSection = () => {
               
               <div className="relative z-10">
                 <div className="mb-6">
-                  <h3 className="text-3xl font-bold text-white mb-2 relative">
+                  <PravdaHeading as="h3" size="3xl" className="mb-2 relative">
                     Маркетинг
                     <div className="absolute inset-0 bg-gradient-to-r from-red-500/20 to-transparent rounded-lg -z-10 blur-sm"></div>
-                  </h3>
+                  </PravdaHeading>
                   <div className="w-12 h-1 bg-red-500 rounded-full"></div>
                 </div>
                 
@@ -203,7 +209,7 @@ export const SolutionSection = () => {
               
               <div className="relative z-10">
                 <div className="mb-6">
-                  <h3 className="text-3xl font-bold text-[#ECB629] mb-2 relative">
+                  <PravdaHeading as="h3" size="3xl" className="text-[#ECB629] mb-2 relative">
                     Бизнес инженеринг
                     <motion.div
                       className="absolute inset-0 bg-gradient-to-r from-[#ECB629]/20 to-transparent rounded-lg -z-10 blur-sm"
@@ -216,7 +222,7 @@ export const SolutionSection = () => {
                         ease: "easeInOut",
                       }}
                     />
-                  </h3>
+                  </PravdaHeading>
                   <div className="w-12 h-1 bg-[#ECB629] rounded-full"></div>
                 </div>
                 
