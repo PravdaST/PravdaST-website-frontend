@@ -9,6 +9,9 @@ const partners = [
 ];
 
 export const PartnersCarousel = () => {
+  // Дублираме списъка за seamless loop
+  const loopPartners = [...partners, ...partners];
+
   return (
     <section className="py-12 sm:py-16">
       <div className="container mx-auto px-6">
@@ -22,8 +25,8 @@ export const PartnersCarousel = () => {
         </div>
 
         <div className="relative max-w-6xl mx-auto overflow-hidden">
-          <div className="flex gap-8 animate-infinite-scroll">
-            {partners.map((partner, index) => (
+          <div className="flex w-max animate-slide gap-8">
+            {loopPartners.map((partner, index) => (
               <div
                 key={index}
                 className="relative group flex-shrink-0 w-60 h-20 flex items-center justify-center glassmorphism rounded-xl p-4 hover:scale-105 hover:bg-slate-700/80 transition-all duration-300"

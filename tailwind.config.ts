@@ -86,15 +86,15 @@ const config: Config = {
             height: "0",
           },
         },
-        "infinite-scroll": {
-          from: { transform: "translateX(0)" },
-          to: { transform: "translateX(-100%)" },
+        "slide": {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" },
         },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "infinite-scroll": "infinite-scroll 30s linear infinite",
+        "slide": "slide 30s linear infinite",
       },
     },
   },
