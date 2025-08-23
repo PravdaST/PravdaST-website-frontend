@@ -67,7 +67,6 @@ export default function RootLayout({
     <html lang="bg">
       <body className={inter.className}>
         <ClientOnly>
-          <BackgroundEffects />
           <KlaviyoSetup />
           <KlaviyoIntegration />
           <Analytics />

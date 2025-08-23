@@ -25,7 +25,6 @@ import { Magnet } from "@/components/reactbits";
 import ServicesJsonLd from "@/components/services-json-ld";
 import { FadeIn } from "@/components/motion/FadeIn";
 import { FadeInView } from "@/components/motion/FadeInView";
-import { BackgroundEffects } from "@/components/background-effects";
 
 // Systems Background Component
 const SystemsBackground = () => {
@@ -212,7 +211,6 @@ export default function Services() {
     <>
       <ServicesJsonLd />
     <div className="min-h-screen bg-black">
-      <BackgroundEffects />
 
       <main>
         {/* Hero Section */}
