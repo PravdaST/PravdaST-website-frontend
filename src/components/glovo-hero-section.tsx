@@ -1,6 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
+import PravdaHeading from "@/components/typography/PravdaHeading";
+import PravdaText from "@/components/typography/PravdaText";
 import { Button } from "@/components/ui/button";
 import { Calculator } from "lucide-react";
 import Image from "next/image";
@@ -29,12 +31,17 @@ export const GlovoHeroSection = () => {
           transition={{ duration: 0.8 }}
           className="text-center max-w-6xl mx-auto"
         >
-          <motion.h1
-            className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight"
+          <motion.div 
+            className="mb-6"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2 }}
           >
+            <PravdaHeading
+              as="h1" 
+              size="7xl"
+              className="leading-tight"
+            >
             <span className="text-white">
               Знаете ли, че всеки месец
             </span>
@@ -46,7 +53,8 @@ export const GlovoHeroSection = () => {
             <span className="text-yellow-400 text-4xl sm:text-6xl md:text-7xl">
               хиляди левове?
             </span>
-          </motion.h1>
+            </PravdaHeading>
+          </motion.div>
 
           <motion.div
             className="mb-8 max-w-4xl mx-auto"
@@ -54,9 +62,9 @@ export const GlovoHeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <p className="text-xl md:text-2xl text-gray-300 mb-6 leading-relaxed">
+            <PravdaText size="xl" className="md:text-2xl mb-6 leading-relaxed">
               Точно преди 3 месеца, Димитър от "Кебапче София" ми се обади разстроен:
-            </p>
+            </PravdaText>
             <div className="bg-gray-800/50 border border-red-400/30 rounded-xl p-6 mb-6 italic">
               <p className="text-lg md:text-xl text-red-300">
                 "Стефане, проверих сметките... Само миналия месец съм дал на Glovo 2,400 лева! 

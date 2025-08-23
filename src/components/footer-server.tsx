@@ -1,4 +1,5 @@
 import Link from "next/link";
+import PravdaHeading from "@/components/typography/PravdaHeading";
 import { Mail, Phone, MapPin, Facebook, Youtube, Instagram, Linkedin, MessageCircle } from "lucide-react";
 
 export const FooterServer = () => {
@@ -60,9 +61,9 @@ export const FooterServer = () => {
           {/* Company Info */}
           <div className="lg:col-span-1">
             <div className="mb-6">
-              <h3 className="text-2xl font-bold text-[#ECB629] mb-2">
+              <PravdaHeading as="h3" size="2xl" accent className="mb-2">
                 Pravda ST
-              </h3>
+              </PravdaHeading>
               <p className="text-gray-300 text-sm leading-relaxed">
                 Бизнес инженеринг платформа за предприемачи, които искат 
                 предвидим растеж и освобождаване от операционната работа.
@@ -82,7 +83,7 @@ export const FooterServer = () => {
 
           {/* Services */}
           <div>
-            <h4 className="font-bold text-white text-lg mb-4">Системи</h4>
+            <PravdaHeading as="h4" size="lg" className="mb-4">Системи</PravdaHeading>
             <ul className="space-y-2">
               {footerLinks.services.map((link, index) => (
                 <li key={index}>

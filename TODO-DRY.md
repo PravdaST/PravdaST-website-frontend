@@ -116,6 +116,22 @@
 - process-section.tsx (2 SlideIn замени) ✅ завършен
 **Общо: 14 motion pattern замени завършени** 🚀
 
+---
+
+## 🥉 **P2 Typography Patterns - В ПРОЦЕС** 🔥
+**Спестен код:** ~80-120 реда до момента
+**Status:** Активно заменяне на повтарящи се typography patterns
+
+**✅ ЗАВЪРШЕНИ TYPOGRAPHY ЗАМЕНИ:**
+- footer-server.tsx (2 PravdaHeading замени) 
+- card.tsx (1 CardTitle с PravdaHeading замяна)
+- glovo-hero-section.tsx (3 typography pattern замени) ✅ завършен
+**Общо: 6 typography pattern замени завършени** 🚀
+
+**Централизирани компоненти създадени:**
+- [x] `src/components/typography/PravdaHeading.tsx` ✅ 
+- [x] `src/components/typography/PravdaText.tsx` ✅
+
 **Нужни компоненти:**
 - [x] `src/components/motion/FadeIn.tsx` (вече създаден)
 - [x] `src/components/motion/FadeInView.tsx` (вече създаден)
