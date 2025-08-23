@@ -64,8 +64,7 @@ export async function submitGlovoForm(formData: GlovoFormData) {
           'Average Order Value': avgOrderValue,
           'Email': email,
           'Phone': phone,
-          'Timestamp': new Date().toISOString(),
-          'Source': 'Glovo Calculator Landing Page'
+          'Timestamp': new Date().toISOString()
         }
       })
     })
