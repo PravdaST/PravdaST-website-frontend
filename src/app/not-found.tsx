@@ -5,6 +5,7 @@ import { AlertTriangle, Home, ArrowLeft, Search, Settings, Target, TrendingUp } 
 import Link from "next/link";
 import { FadeIn } from "@/components/motion/FadeIn";
 import { FadeInView } from "@/components/motion/FadeInView";
+import { GlassCard } from "@/components/ui/GlassCard";
 
 export default function NotFound() {
   return (
@@ -207,8 +208,16 @@ export default function NotFound() {
                 >
                   <Link
                     href={item.href}
-                    className="block p-6 glassmorphism border border-[#ECB629]/20 hover:border-[#ECB629]/50 transition-all duration-300 hover:transform hover:scale-105 rounded-xl"
+                    className="block"
                   >
+                    <GlassCard
+                      padding="md"
+                      rounded="md"
+                      hoverScale={true}
+                      hoverBorder={true}
+                      borderOpacity="20"
+                      className="transition-all duration-300"
+                    >
                     <div className="flex items-center gap-4 mb-4">
                       <div className={`p-3 rounded-lg bg-[#ECB629]/10 border border-[#ECB629]/20 ${item.color}`}>
                         <item.icon className="w-6 h-6" />
@@ -220,6 +229,7 @@ export default function NotFound() {
                     <p className="text-gray-300 text-sm leading-relaxed">
                       {item.description}
                     </p>
+                    </GlassCard>
                   </Link>
                 </FadeInView>
               ))}
@@ -232,7 +242,11 @@ export default function NotFound() {
           <div className="absolute inset-0 bg-gradient-to-b from-gray-900 to-black"></div>
           
           <div className="container mx-auto px-6 relative z-10">
-            <div className="max-w-4xl mx-auto text-center glassmorphism border border-[#ECB629]/20 rounded-3xl p-12">
+            <GlassCard 
+              className="max-w-4xl mx-auto text-center"
+              padding="xl"
+              rounded="3xl"
+            >
               <FadeInView
                 as="h2"
                 className="text-4xl md:text-5xl font-bold text-white mb-6"
@@ -271,7 +285,7 @@ export default function NotFound() {
                   <span>За нас</span>
                 </Link>
               </FadeInView>
-            </div>
+            </GlassCard>
           </div>
         </section>
       </main>
