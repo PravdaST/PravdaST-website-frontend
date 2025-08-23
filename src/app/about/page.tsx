@@ -1,5 +1,7 @@
 import { Metadata } from 'next'
-import AboutClient from './AboutClient'
+import { Navigation } from "@/components/navigation"
+import { FooterServer } from "@/components/footer-server"
+import { AboutHeroServer } from "@/components/about-hero-server"
 
 export const metadata: Metadata = {
   title: 'За нас - Pravda Agency | Бизнес инженери за растеж',
@@ -36,5 +38,11 @@ export const metadata: Metadata = {
 }
 
 export default function AboutPage() {
-  return <AboutClient />
+  return (
+    <div className="min-h-screen bg-black text-white">
+      <Navigation />
+      <AboutHeroServer />
+      <FooterServer />
+    </div>
+  );
 }

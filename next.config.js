@@ -15,12 +15,17 @@ const nextConfig = {
     formats: ['image/avif', 'image/webp'],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+    qualities: [75, 85, 90, 95], // Mobile optimization qualities
     minimumCacheTTL: 60,
     dangerouslyAllowSVG: true,
     contentDispositionType: 'attachment',
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
   serverExternalPackages: ['drizzle-orm', '@neondatabase/serverless', 'bcrypt'],
+  // Mobile performance optimization
+  experimental: {
+    optimizePackageImports: ['lucide-react', 'framer-motion'],
+  },
   async headers() {
     return [
       {
