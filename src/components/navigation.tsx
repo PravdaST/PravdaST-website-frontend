@@ -7,6 +7,11 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { SearchTrigger } from "@/components/advanced-search";
+import { NavHoverWrapper } from "@/components/nav/NavHoverWrapper";
+import { NavGlowEffect } from "@/components/nav/NavGlowEffect";
+import { NavUnderline } from "@/components/nav/NavUnderline";
+import { NavButton } from "@/components/nav/NavButton";
+import { NavActiveIndicator } from "@/components/nav/NavActiveIndicator";
 
 export const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -107,30 +112,15 @@ export const Navigation = () => {
 
       <div className="container mx-auto px-4 sm:px-6 py-3 sm:py-4 relative z-50">
         <div className="flex justify-between items-center">
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.2 }}
-            className="relative"
-          >
+          <NavHoverWrapper>
             <Link href="/">
               <div className="text-2xl font-bold text-[#ECB629] cursor-pointer relative group">
                 <span className="relative z-10">PRAVDA ST</span>
-                {/* Logo Background Glow */}
-                <motion.div
-                  className="absolute inset-0 bg-[#ECB629]/10 rounded-lg blur-sm opacity-0 group-hover:opacity-100 transition-all duration-300"
-                  initial={{ scale: 0.8 }}
-                  whileHover={{ scale: 1.2 }}
-                />
-                {/* Underline Effect */}
-                <motion.div
-                  className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-[#ECB629] to-[#ECB629]/50 origin-left"
-                  initial={{ scaleX: 0 }}
-                  whileHover={{ scaleX: 1 }}
-                  transition={{ duration: 0.3 }}
-                />
+                <NavGlowEffect />
+                <NavUnderline />
               </div>
             </Link>
-          </motion.div>
+          </NavHoverWrapper>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
@@ -246,11 +236,7 @@ export const Navigation = () => {
                     </div>
                   </div>
                 ) : (
-                  <motion.div
-                    whileHover={{ y: -2, scale: 1.05 }}
-                    transition={{ duration: 0.2 }}
-                    className="relative"
-                  >
+                  <NavHoverWrapper scale={1.05} className="relative group">
                     <Link
                       href={item.href}
                       className={`text-gray-300 hover:text-[#ECB629] transition-all duration-300 relative group px-3 py-2 rounded-lg ${
@@ -259,34 +245,12 @@ export const Navigation = () => {
                           : ""
                       }`}
                     >
-                      {/* Background Glow Effect */}
-                      <motion.div
-                        className="absolute inset-0 bg-[#ECB629]/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"
-                        initial={{ scale: 0.8 }}
-                        whileHover={{ scale: 1 }}
-                      />
-
+                      <NavGlowEffect />
                       <span className="relative z-10">{item.label}</span>
-
-                      {/* Underline Effect */}
-                      <motion.div
-                        className={`absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-[#ECB629] to-[#ECB629]/50 origin-left transition-transform duration-300 ${
-                          pathname === item.href
-                            ? "scale-x-100"
-                            : "scale-x-0 group-hover:scale-x-100"
-                        }`}
-                      />
-
-                      {/* Active Indicator */}
-                      {pathname === item.href && (
-                        <motion.div
-                          className="absolute -top-1 left-1/2 transform -translate-x-1/2 w-1 h-1 bg-[#ECB629] rounded-full"
-                          animate={{ scale: [1, 1.5, 1] }}
-                          transition={{ duration: 2, repeat: Infinity }}
-                        />
-                      )}
+                      <NavUnderline isActive={pathname === item.href} />
+                      <NavActiveIndicator isActive={pathname === item.href} />
                     </Link>
-                  </motion.div>
+                  </NavHoverWrapper>
                 )}
               </div>
             ))}
@@ -297,33 +261,16 @@ export const Navigation = () => {
 
           {/* CTA Button */}
           <div className="hidden md:block">
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="relative"
+            <NavButton
+              onClick={() => {
+                window.open(
+                  "https://form.typeform.com/to/GXLaGY98",
+                  "_blank",
+                );
+              }}
             >
-              <Button
-                className="bg-[#ECB629] text-black hover:bg-[#ECB629]/90 font-semibold px-6 py-3 rounded-lg transition-all duration-300 shadow-lg hover:shadow-[#ECB629]/40 relative overflow-hidden group"
-                onClick={() => {
-                  window.open(
-                    "https://form.typeform.com/to/GXLaGY98",
-                    "_blank",
-                  );
-                }}
-              >
-                {/* Button Shine Effect */}
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 group-hover:animate-shimmer"></div>
-
-                <span className="relative z-10 flex items-center gap-2">
-                  Безплатна консултация
-                  <motion.div
-                    className="w-1 h-1 bg-black rounded-full"
-                    animate={{ scale: [1, 1.5, 1] }}
-                    transition={{ duration: 1.5, repeat: Infinity }}
-                  />
-                </span>
-              </Button>
-            </motion.div>
+              Безплатна консултация
+            </NavButton>
           </div>
 
           {/* Mobile Menu Button */}
@@ -407,12 +354,10 @@ export const Navigation = () => {
               </div>
             ))}
 
-            <motion.div
-              className="pt-4 border-t border-slate-600/30"
-              whileTap={{ scale: 0.98 }}
-            >
-              <Button
-                className="w-full bg-[#ECB629] text-black hover:bg-[#ECB629]/90 font-semibold py-3 rounded-lg transition-all duration-300"
+            <div className="pt-4 border-t border-slate-600/30">
+              <NavButton
+                variant="mobile"
+                fullWidth
                 onClick={() => {
                   window.open(
                     "https://form.typeform.com/to/GXLaGY98",
@@ -422,8 +367,8 @@ export const Navigation = () => {
                 }}
               >
                 Безплатна консултация
-              </Button>
-            </motion.div>
+              </NavButton>
+            </div>
           </div>
         </motion.div>
       </div>
