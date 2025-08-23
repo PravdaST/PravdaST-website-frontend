@@ -1,6 +1,10 @@
 import { Metadata } from 'next'
 import TermsClient from './TermsClient'
 
+// Cache for 1 hour (3600 seconds) - Terms rarely change
+export const revalidate = 3600
+export const dynamic = 'force-static'
+
 export const metadata: Metadata = {
   title: 'Общи условия - Pravda Agency | Terms of Service',
   description: 'Общи условия за ползване на услугите на Pravda Agency. Прочетете правилата и условията за нашите бизнес инженеринг системи.',

@@ -1,6 +1,10 @@
 import { Metadata } from 'next'
 import PrivacyClient from './PrivacyClient'
 
+// Cache for 1 hour (3600 seconds) - Privacy policy rarely changes
+export const revalidate = 3600
+export const dynamic = 'force-static'
+
 export const metadata: Metadata = {
   title: 'Политика за поверителност - Pravda Agency | Privacy Policy',
   description: 'Политика за поверителност на Pravda Agency. Как защитаваме личните ви данни при използване на нашите бизнес инженеринг услуги.',
