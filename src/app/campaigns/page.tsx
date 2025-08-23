@@ -16,7 +16,6 @@ import {
   Pizza,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Footer } from "@/components/footer";
 
 // Category definitions
 const categories = [
@@ -434,7 +433,6 @@ export default function LandingPagesShowcase() {
         </div>
       </section>
 
-      <Footer />
     </div>
   );
 }

@@ -6,10 +6,10 @@ import { FooterServer } from './footer-server'
 export function ConditionalFooter() {
   const pathname = usePathname()
   
-  // Hide footer on landing pages (campaigns, special landing pages, etc.)
+  // Hide footer only on specific landing pages
   const hiddenPaths = [
-    '/campaigns', // All campaign pages
-    '/glovo',     // Legacy glovo landing page
+    '/campaigns/glovo', // Glovo landing page
+    '/glovo',           // Legacy glovo landing page
   ]
   
   // Check if current path should hide footer
