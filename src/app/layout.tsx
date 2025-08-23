@@ -17,11 +17,16 @@ import { BackgroundEffects } from '@/components/background-effects'
 
 const inter = Inter({ subsets: ['latin'] })
 
+export const viewport = {
+  themeColor: '#ECB628'
+}
+
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.pravdast.agency'),
   title: 'Правдаст - Бизнес инженеринг за предвидим растеж в България',
   description: 'Превръщаме хаоса в предсказуеми системи. Проверени методи за B2B растеж.',
   keywords: ['бизнес инженеринг', 'растеж', 'маркетинг', 'SEO', 'автоматизация', 'Pravda ST'],
+  manifest: '/manifest.json',
   openGraph: {
     type: 'website',
     locale: 'bg_BG',
