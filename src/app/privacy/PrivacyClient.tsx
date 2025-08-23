@@ -121,7 +121,7 @@ export default function PrivacyClient() {
                     1. Обща информация
                   </h2>
                   <p className="text-gray-300 mb-6">
-                    Pravdast Agency ("ние", "нашият", "нас") зачита поверителността на вашите лични данни и се ангажира да ги защитава в съответствие с приложимото законодателство, включително Общия регламент за защита на данните (GDPR). Научете повече <Link href="/about" className="text-[#ECB629] hover:text-[#ECB629]/80 underline">за нас</Link> и нашите ценности.
+                    Pravda ST Agency ("ние", "нашият", "нас") зачита поверителността на вашите лични данни и се ангажира да ги защитава в съответствие с приложимото законодателство, включително Общия регламент за защита на данните (GDPR). Научете повече <Link href="/about" className="text-[#ECB629] hover:text-[#ECB629]/80 underline">за нас</Link> и нашите ценности.
                   </p>
                   <p className="text-gray-300 mb-8">
                     Настоящата политика обяснява как събираме, използваме, съхраняваме и защитаваме вашите лични данни при използването на нашите <Link href="/services" className="text-[#ECB629] hover:text-[#ECB629]/80 underline">услуги</Link>. За общи условия прочетете <Link href="/terms" className="text-[#ECB629] hover:text-[#ECB629]/80 underline">условията за ползване</Link>.
