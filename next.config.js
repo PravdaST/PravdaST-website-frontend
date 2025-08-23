@@ -25,6 +25,9 @@ const nextConfig = {
   // Mobile performance optimization
   experimental: {
     optimizePackageImports: ['lucide-react', 'framer-motion'],
+    // P0.7 - Advanced performance optimizations behind feature flags
+    reactCompiler: process.env.NEXT_PUBLIC_FLAG_REACT_COMPILER === '1',
+    ppr: process.env.NEXT_PUBLIC_FLAG_PPR === '1',
   },
   async headers() {
     return [
