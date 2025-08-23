@@ -192,6 +192,24 @@ export const FooterServer = () => {
               >
                 <Youtube className="w-5 h-5" />
               </a>
+              <a 
+                href="viber://contact?number=%2B359879282299"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-[#ECB629] transition-colors"
+                aria-label="Viber"
+              >
+                <MessageCircle className="w-5 h-5" />
+              </a>
+              <a 
+                href="https://wa.me/359879282299"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-[#ECB629] transition-colors"
+                aria-label="WhatsApp"
+              >
+                <Phone className="w-5 h-5" />
+              </a>
             </div>
           </div>
         </div>
