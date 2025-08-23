@@ -304,7 +304,7 @@ function BlogContent({ content }: { content: string }) {
           return '' // Skip H1 to avoid duplicate with hero section
         }
         if (line.startsWith('## ')) {
-          return `<h2 class="text-3xl font-bold text-white mb-6 mt-10 border-l-4 border-[#ECB629] pl-4">${line.slice(3)}</h2>`
+          return `<h2 class="text-4xl font-bold text-white mb-6 mt-10 border-l-4 border-[#ECB629] pl-4">${line.slice(3)}</h2>`
         }
         if (line.startsWith('### ')) {
           return `<h3 class="text-2xl font-bold text-[#ECB629] mb-4 mt-8">${line.slice(4)}</h3>`
