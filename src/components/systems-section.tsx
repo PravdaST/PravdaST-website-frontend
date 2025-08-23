@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import PravdaButton from "@/components/ui/PravdaButton";
+import PravdaHeading from "@/components/typography/PravdaHeading";
 
 const systems = [
   {
@@ -216,13 +217,13 @@ export const SystemsSection = () => {
             </div>
           </motion.div>
 
-          <motion.h2
-            className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 text-white px-2 sm:px-0"
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
           >
+            <PravdaHeading as="h2" size="3xl" className="sm:text-4xl md:text-5xl mb-4 sm:mb-6 px-2 sm:px-0">
             Нашите{" "}
             <span className="text-[#ECB629] relative">
               системи
@@ -234,7 +235,8 @@ export const SystemsSection = () => {
                 viewport={{ once: true }}
               />
             </span>
-          </motion.h2>
+            </PravdaHeading>
+          </motion.div>
 
           <motion.p
             className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto mb-12 sm:mb-16 px-2 sm:px-0"

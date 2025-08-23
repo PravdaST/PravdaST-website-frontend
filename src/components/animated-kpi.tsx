@@ -62,9 +62,9 @@ export const AnimatedKPI = ({
 
   return (
     <motion.div ref={ref} className={className}>
-      <PravdaHeading as="span" size="2xl" className="text-green-400">
+      <div className="text-2xl font-bold text-green-400">
         {prefix}<motion.span>{rounded}</motion.span>{suffix}
-      </PravdaHeading>
+      </div>
     </motion.div>
   );
 };

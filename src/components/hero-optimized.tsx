@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import PravdaButton from '@/components/ui/PravdaButton'
+import PravdaHeading from '@/components/typography/PravdaHeading'
 
 export function HeroOptimized() {
   return (
@@ -31,10 +32,12 @@ export function HeroOptimized() {
       {/* Content with fixed dimensions to prevent CLS */}
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-6xl mx-auto text-center">
-          <h1 
-            className="text-4xl sm:text-5xl md:text-7xl font-bold mb-6 sm:mb-8 leading-tight text-white px-4 sm:px-0"
-            style={{ minHeight: '2.5rem' }} // Prevent CLS
-          >
+          <div style={{ minHeight: '2.5rem' }}>
+            <PravdaHeading 
+              as="h1"
+              size="4xl" 
+              className="sm:text-5xl md:text-7xl mb-6 sm:mb-8 leading-tight px-4 sm:px-0"
+            >
             <span className="bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text">
               Бизнес инженеринг
             </span>
@@ -42,7 +45,8 @@ export function HeroOptimized() {
             <span className="bg-gradient-to-r from-[#ECB629] to-yellow-300 bg-clip-text text-transparent">
               за предприемачи
             </span>
-          </h1>
+            </PravdaHeading>
+          </div>
 
           <div 
             className="max-w-4xl mx-auto mb-8 sm:mb-12"

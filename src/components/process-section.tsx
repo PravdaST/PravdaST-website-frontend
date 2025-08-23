@@ -5,6 +5,7 @@ import ScaleOnHover from "@/components/motion/ScaleOnHover"
 import SlideIn from "@/components/motion/SlideIn";
 import { Card, CardContent } from "@/components/ui/card";
 import { Search, Settings, TrendingUp } from "lucide-react";
+import PravdaHeading from "@/components/typography/PravdaHeading";
 
 const steps = [
   {
@@ -87,16 +88,17 @@ export const ProcessSection = () => {
             </div>
           </SlideIn>
 
-          <motion.h2
-            className="text-4xl md:text-5xl font-bold mb-6 text-white"
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
             viewport={{ once: true }}
           >
+            <PravdaHeading as="h2" size="4xl" className="md:text-5xl mb-6">
             Прозрачен процес.{" "}
             <span className="text-[#ECB629]">Предвидими резултати.</span>
-          </motion.h2>
+            </PravdaHeading>
+          </motion.div>
 
           <motion.p
             className="text-xl text-gray-300 max-w-3xl mx-auto"

@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Facebook, Youtube, Instagram, Linkedin, MessageCircle } from "lucide-react";
 import ScaleOnHover from "@/components/motion/ScaleOnHover";
 import SlideIn from "@/components/motion/SlideIn";
+import PravdaHeading from "@/components/typography/PravdaHeading";
 
 export const Footer = () => {
   const footerLinks = {
@@ -87,7 +88,7 @@ export const Footer = () => {
               scale={1.05}
             >
               <Link href="/">
-                <div className="text-2xl font-bold text-[#ECB629] mb-4 cursor-pointer relative">
+                <PravdaHeading as="h3" size="2xl" className="text-[#ECB629] mb-4 cursor-pointer relative">
                   PRAVDA ST
                   <motion.div
                     className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#ECB629] origin-left"
@@ -95,7 +96,7 @@ export const Footer = () => {
                     whileHover={{ scaleX: 1 }}
                     transition={{ duration: 0.3 }}
                   />
-                </div>
+                </PravdaHeading>
               </Link>
             </ScaleOnHover>
             <p className="text-gray-400 text-sm mb-6">
@@ -134,7 +135,7 @@ export const Footer = () => {
                 </motion.a>
               ))}
             </motion.div>
-          </motion.div>
+          </SlideIn>
 
           {/* Services */}
           <motion.div

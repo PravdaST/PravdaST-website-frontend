@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
+import PravdaHeading from "@/components/typography/PravdaHeading"
 import { motion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 import { useState, useEffect } from 'react'
@@ -148,12 +149,16 @@ export const HeroSection = () => {
             </span>
           </motion.div>
 
-          <motion.h1
-            className="text-4xl sm:text-5xl md:text-7xl font-bold mb-6 sm:mb-8 leading-tight text-white px-4 sm:px-0"
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
           >
+            <PravdaHeading 
+              as="h1"
+              size="4xl" 
+              className="sm:text-5xl md:text-7xl mb-6 sm:mb-8 leading-tight px-4 sm:px-0"
+            >
             Престанете да залагате на маркетинг.{" "}
             <span className="text-[#ECB629] relative">
               Започнете да изграждате растеж.
@@ -164,7 +169,8 @@ export const HeroSection = () => {
                 transition={{ duration: 1, delay: 0.8 }}
               />
             </span>
-          </motion.h1>
+            </PravdaHeading>
+          </motion.div>
 
           <motion.p
             className="text-lg sm:text-xl md:text-2xl mb-8 sm:mb-12 text-gray-300 max-w-3xl mx-auto px-4 sm:px-0"

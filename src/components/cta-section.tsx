@@ -13,6 +13,7 @@ import {
 import PravdaButton from "@/components/ui/PravdaButton";
 import ScaleOnHover from "@/components/motion/ScaleOnHover";
 import SlideIn from "@/components/motion/SlideIn";
+import PravdaHeading from "@/components/typography/PravdaHeading";
 
 export const CTASection = () => {
   return (
@@ -86,7 +87,7 @@ export const CTASection = () => {
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight">
+              <PravdaHeading as="h2" size="4xl" className="md:text-6xl lg:text-7xl leading-tight">
                 <span className="text-white">Готови ли сте да спрете</span>
                 <br />
                 <span className="text-white">да залагате на </span>
@@ -100,7 +101,7 @@ export const CTASection = () => {
                     viewport={{ once: true }}
                   />
                 </span>
-              </h2>
+              </PravdaHeading>
 
               <motion.div
                 className="max-w-3xl mx-auto space-y-6"

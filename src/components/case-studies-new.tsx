@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import PravdaHeading from "@/components/typography/PravdaHeading";
 import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 
 const caseStudies = [
@@ -186,9 +187,9 @@ export const CaseStudiesSlider = () => {
                     </div>
                   </div>
 
-                  <h3 className="text-4xl font-bold text-white mb-4">
+                  <PravdaHeading as="h3" size="4xl" className="mb-4">
                     {currentCase.company}
-                  </h3>
+                  </PravdaHeading>
 
                   <p className="text-lg text-gray-300 mb-6 leading-relaxed">
                     {currentCase.tagline}
@@ -217,9 +218,9 @@ export const CaseStudiesSlider = () => {
 
                 {/* Right Column - Results */}
                 <div className="p-8 lg:p-12 border-l border-white/10">
-                  <h4 className="text-2xl font-bold text-white mb-8 text-center">
+                  <PravdaHeading as="h4" size="2xl" className="mb-8 text-center">
                     Резултати
-                  </h4>
+                  </PravdaHeading>
 
                   <div className="space-y-4">
                     {currentCase.results.map((result, index) => (

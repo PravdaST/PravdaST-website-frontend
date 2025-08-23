@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import PravdaButton from '@/components/ui/PravdaButton'
+import PravdaHeading from '@/components/typography/PravdaHeading'
 
 export function StaticHero() {
   return (
@@ -32,13 +33,13 @@ export function StaticHero() {
         </div>
 
         {/* Main Headline */}
-        <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight mb-6">
+        <PravdaHeading as="h1" size="4xl" className="md:text-6xl leading-tight mb-6">
           Престанете да залагате на маркетинг.{" "}
           <span className="text-[#ECB629] relative">
             Започнете да изграждате растеж.
             <div className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-[#ECB629] to-[#ECB629]/50 rounded-full" />
           </span>
-        </h1>
+        </PravdaHeading>
 
         {/* Subheadline */}
         <p className="text-xl text-gray-300 leading-relaxed max-w-3xl mx-auto mb-12">
