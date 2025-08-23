@@ -20,7 +20,6 @@ import {
   TrendingUp,
   Phone,
 } from "lucide-react";
-import { Navigation } from "@/components/navigation";
 
 // Unique Client Network Background
 const ClientomatBackground = () => {
@@ -227,7 +226,6 @@ export default function ClientomatPage() {
 
   return (
     <div className="min-h-screen">
-      <Navigation />
 
       {/* Hero Section */}
       <section

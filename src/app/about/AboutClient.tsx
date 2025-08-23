@@ -1,6 +1,5 @@
 "use client";
 
-import { Navigation } from "@/components/navigation";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
@@ -224,7 +223,6 @@ export default function AboutClient() {
 
   return (
     <div className="min-h-screen">
-      <Navigation />
 
       <main className="pt-10">
         {/* Hero Section */}

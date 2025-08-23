@@ -1,6 +1,5 @@
 'use client'
 
-import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -219,7 +218,6 @@ export default function WordPressPostClient({ post }: Props) {
 
   return (
     <div className="min-h-screen text-white">
-      <Navigation />
       
       {/* Hero Section with Featured Image */}
       <section className="relative pt-20 pb-12 overflow-hidden">

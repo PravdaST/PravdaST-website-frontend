@@ -1,6 +1,5 @@
 'use client'
 
-import { Navigation } from "@/components/navigation";
 import { motion } from "framer-motion";
 import { AlertTriangle, Home, ArrowLeft, Search, Settings } from "lucide-react";
 import Link from "next/link";
@@ -8,7 +7,6 @@ import Link from "next/link";
 export default function NotFound() {
   return (
     <div className="min-h-screen bg-slate-900">
-      <Navigation />
 
       <main className="pt-20">
         {/* Hero Section */}

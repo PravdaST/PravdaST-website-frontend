@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Navigation } from "@/components/navigation";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -186,7 +185,6 @@ export default function BlogClient() {
 
   return (
     <div className="min-h-screen text-white">
-      <Navigation />
       
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 overflow-hidden">

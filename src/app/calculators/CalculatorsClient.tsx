@@ -39,7 +39,6 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { Slider } from "@/components/ui/slider";
-import { Navigation } from "@/components/navigation";
 import { BackgroundEffects } from "@/components/background-effects";
 
 interface ProfitCalculatorProps {
@@ -860,7 +859,6 @@ export default function CalculatorsClient() {
   return (
     <div className="min-h-screen">
       <BackgroundEffects />
-      <Navigation />
 
       <main className="pt-20">
         {/* Hero Section */}

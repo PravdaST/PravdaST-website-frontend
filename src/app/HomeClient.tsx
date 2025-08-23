@@ -2,7 +2,6 @@
 
 import { useEffect } from 'react'
 import dynamic from 'next/dynamic'
-import { Navigation } from '@/components/navigation'
 import { HeroSection } from '@/components/hero-section'
 import { PartnersCarousel } from '@/components/partners-carousel'
 import ProblemSection from '@/components/problem-section'
@@ -52,7 +51,6 @@ export default function HomeClient() {
   return (
     <div className="min-h-screen relative">
       <HelmetSEO seo={seoData} pageSlug="" />
-      <Navigation />
       <HeroSection />
       <PartnersCarousel />
       <ProblemSection />

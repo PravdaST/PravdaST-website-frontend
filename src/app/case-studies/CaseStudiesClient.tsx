@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Navigation } from "@/components/navigation";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -117,7 +116,6 @@ const caseStudies = [
 export default function CaseStudiesClient() {
   return (
     <div className="min-h-screen">
-      <Navigation />
 
       <main className="pt-10">
         {/* Hero Section */}

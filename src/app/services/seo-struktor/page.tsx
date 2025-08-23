@@ -1,7 +1,6 @@
 "use client";
 
 import { motion, useInView } from "framer-motion";
-import { Navigation } from "@/components/navigation";
 import { Button } from "@/components/ui/button";
 import { useRef, useState, useEffect } from "react";
 import {
@@ -925,7 +924,6 @@ const InvestmentSection = () => {
 export default function SeoStruktor() {
   return (
     <div className="min-h-screen text-white">
-      <Navigation />
 
       {/* Hero Section */}
       <section className="pt-10 relative min-h-screen flex items-center overflow-hidden">

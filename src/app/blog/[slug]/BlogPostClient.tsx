@@ -3,7 +3,6 @@
 import { motion } from "framer-motion"
 import { ArrowLeft, Clock, User, Calendar, Share2, BookOpen } from "lucide-react"
 import Link from "next/link"
-import { Navigation } from "@/components/navigation"
 import { Button } from "@/components/ui/button"
 import { useState } from "react"
 
@@ -63,7 +62,6 @@ export default function BlogPostClient({ post }: BlogPostClientProps) {
 
   return (
     <div className="min-h-screen bg-slate-900">
-      <Navigation />
       
       <main className="pt-20">
         {/* Hero Section with Animation */}

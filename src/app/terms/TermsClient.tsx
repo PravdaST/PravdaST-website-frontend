@@ -1,6 +1,5 @@
 'use client'
 
-import { Navigation } from "@/components/navigation";
 import { motion } from "framer-motion";
 import { Shield, Calendar, FileText } from "lucide-react";
 import Link from "next/link";
@@ -8,7 +7,6 @@ import Link from "next/link";
 export default function TermsClient() {
   return (
     <div className="min-h-screen bg-black text-white">
-      <Navigation />
 
       <main className="pt-16">
         {/* Modern Hero Section */}

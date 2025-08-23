@@ -12,8 +12,8 @@ import { ClarityAnalytics } from '@/components/clarity-analytics'
 import { RetargetingPixels } from '@/components/retargeting-pixels'
 import { ServiceWorkerSetup } from '@/components/service-worker-setup'
 import { Toaster } from '@/components/ui/toaster'
-import { Navigation } from '@/components/navigation'
 import { BackgroundEffects } from '@/components/background-effects'
+import { ConditionalNavigation } from '@/components/conditional-navigation'
 import { ConditionalFooter } from '@/components/conditional-footer'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -76,6 +76,7 @@ export default function RootLayout({
           <RetargetingPixels />
           <ServiceWorkerSetup />
         </ClientOnly>
+        <ConditionalNavigation />
         {children}
         <ConditionalFooter />
         <ClientOnly>

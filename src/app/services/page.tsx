@@ -1,7 +1,6 @@
 'use client'
 
 import { motion, useInView } from "framer-motion";
-import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -210,7 +209,6 @@ export default function Services() {
     <>
       <ServicesJsonLd />
     <div className="min-h-screen bg-gray-950">
-      <Navigation />
 
       <main>
         {/* Hero Section */}

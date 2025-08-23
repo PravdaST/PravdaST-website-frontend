@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Navigation } from "@/components/navigation";
 import { Card, CardContent } from "@/components/ui/card";
 import { HelpCircle } from "lucide-react";
 import { StructuredData } from "@/components/structured-data";
@@ -206,7 +205,6 @@ export default function FAQClient() {
   return (
     <div className="min-h-screen bg-black text-white">
       <StructuredData data={pageSEOData.faq.structuredData} />
-      <Navigation />
 
       {/* Modern Hero Section */}
       <section className="py-16 md:py-20 relative overflow-hidden">
