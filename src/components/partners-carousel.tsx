@@ -39,22 +39,16 @@ export const PartnersCarousel = () => {
             backgroundSize: '60px 60px'
           }}></div>
           
-          {/* Partnership Lines */}
+          {/* Partnership Lines - CSS optimized */}
           {[...Array(3)].map((_, i) => (
-            <motion.div
+            <div
               key={i}
-              className="absolute w-full h-px bg-gradient-to-r from-transparent via-[#ECB629] to-transparent"
+              className="absolute w-full h-px bg-gradient-to-r from-transparent via-[#ECB629] to-transparent animate-pulse opacity-20"
               style={{
                 top: `${30 + i * 20}%`,
-              }}
-              animate={{
-                opacity: [0.2, 0.6, 0.2],
-                scaleX: [0.8, 1.2, 0.8],
-              }}
-              transition={{
-                duration: 4,
-                repeat: Infinity,
-                delay: i * 1,
+                willChange: 'opacity',
+                animationDelay: `${i * 1000}ms`,
+                animationDuration: '4000ms'
               }}
             />
           ))}
@@ -76,17 +70,7 @@ export const PartnersCarousel = () => {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <motion.div
-              className="w-2 h-2 bg-[#ECB629] rounded-full"
-              animate={{
-                scale: [1, 1.2, 1],
-                opacity: [0.5, 1, 0.5],
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-              }}
-            />
+            <div className="w-2 h-2 bg-[#ECB629] rounded-full animate-pulse" />
             <span className="text-[#ECB629] font-semibold text-sm">
               ПАРТНЬОРИ И ТЕХНОЛОГИИ
             </span>
@@ -108,28 +92,22 @@ export const PartnersCarousel = () => {
                 ease: "linear",
               }}
             >
-              {[...partners, ...partners, ...partners].map((partner, index) => (
-                <motion.div
+              {[...partners, ...partners].map((partner, index) => (
+                <div
                   key={`first-${index}`}
-                  className="relative group flex-shrink-0 w-60 h-20 flex items-center justify-center glassmorphism rounded-xl p-4"
-                  whileHover={{ 
-                    scale: 1.05,
-                    backgroundColor: "rgba(30, 41, 59, 0.8)",
-                  }}
-                  transition={{ duration: 0.3 }}
+                  className="relative group flex-shrink-0 w-60 h-20 flex items-center justify-center glassmorphism rounded-xl p-4 hover:scale-105 hover:bg-slate-700/80 transition-all duration-300"
+                  style={{ willChange: 'transform' }}
                 >
-                  <motion.img
+                  <img
                     src={partner.logo}
                     alt={partner.name}
-                    className="h-8 object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300"
-                    whileHover={{ scale: 1.1 }}
+                    className="h-8 object-contain filter grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-300"
+                    loading="lazy"
                   />
                   
                   {/* Hover Glow Effect */}
-                  <motion.div
-                    className="absolute inset-0 rounded-xl bg-gradient-to-r from-[#ECB629]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  />
-                </motion.div>
+                  <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-[#ECB629]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </div>
               ))}
             </motion.div>
           </div>
