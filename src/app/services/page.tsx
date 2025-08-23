@@ -23,6 +23,9 @@ import {
 import Link from "next/link";
 import { Magnet } from "@/components/reactbits";
 import ServicesJsonLd from "@/components/services-json-ld";
+import { FadeIn } from "@/components/motion/FadeIn";
+import { FadeInView } from "@/components/motion/FadeInView";
+import { BackgroundEffects } from "@/components/background-effects";
 
 // Systems Background Component
 const SystemsBackground = () => {
@@ -208,27 +211,21 @@ export default function Services() {
   return (
     <>
       <ServicesJsonLd />
-    <div className="min-h-screen bg-gray-950">
+    <div className="min-h-screen bg-black">
+      <BackgroundEffects />
 
       <main>
         {/* Hero Section */}
-        <section className="min-h-screen flex items-center relative overflow-hidden bg-gray-950">
-          {/* Glassmorphism Background Orbs */}
-          <div className="absolute inset-0 opacity-30">
-            <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#ECB629] rounded-full blur-3xl opacity-20 animate-pulse"></div>
-            <div className="absolute bottom-1/3 right-1/4 w-64 h-64 bg-blue-500 rounded-full blur-3xl opacity-15"></div>
-            <div className="absolute top-2/3 left-2/3 w-80 h-80 bg-purple-500 rounded-full blur-3xl opacity-10"></div>
-          </div>
+        <section className="min-h-screen flex items-center relative overflow-hidden">
           <SystemsBackground />
 
           <div className="container mx-auto px-6 relative z-1 pt-10 sm:pt-0">
             <div className="max-w-5xl mx-auto">
               <div className="text-center mb-16">
-                <motion.div
-                  className="inline-flex items-center gap-3 mb-8 px-6 py-3 rounded-full glassmorphism"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6 }}
+                <FadeIn
+                  distance={20}
+                  duration={0.6}
+                  className="inline-flex items-center gap-3 mb-8 px-6 py-3 rounded-full glassmorphism border border-[#ECB629]/30"
                 >
                   <div className="flex items-center gap-2">
                     <div className="relative">
@@ -250,13 +247,13 @@ export default function Services() {
                       подход за системи
                     </span>
                   </div>
-                </motion.div>
+                </FadeIn>
 
-                <motion.h1
+                <FadeIn
+                  delay={0.2}
+                  duration={0.8}
+                  as="h1"
                   className="text-5xl md:text-7xl font-bold mb-8 text-white leading-tight"
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
                 >
                   Инженерни системи за <br />
                   <span className="text-[#ECB629] relative">
@@ -268,13 +265,13 @@ export default function Services() {
                       transition={{ duration: 1, delay: 1 }}
                     />
                   </span>
-                </motion.h1>
+                </FadeIn>
 
-                <motion.p
+                <FadeIn
+                  delay={0.4}
+                  duration={0.8}
+                  as="p"
                   className="text-xl md:text-2xl text-gray-300 mb-12 max-w-4xl mx-auto leading-relaxed"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.4 }}
                 >
                   Спрете да залагате на късмет. Изграждаме системи, които
                   работят предвидимо и носят измерими резултати за вашия бизнес. Вижте нашите{" "}
@@ -286,13 +283,12 @@ export default function Services() {
                     екипа ни
                   </Link>
                   .
-                </motion.p>
+                </FadeIn>
 
-                <motion.div
+                <FadeIn
+                  delay={0.6}
+                  duration={0.8}
                   className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-12"
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.6 }}
                 >
                   <div className="group relative">
                     <div className="absolute -inset-1 bg-gradient-to-r from-[#ECB629] to-[#ECB629]/50 rounded-xl blur opacity-30 group-hover:opacity-50 transition duration-300"></div>
@@ -305,14 +301,13 @@ export default function Services() {
                       <BarChart3 className="ml-3 h-5 w-5 md:h-6 md:w-6" />
                     </Button>
                   </div>
-                </motion.div>
+                </FadeIn>
 
                 {/* Trust indicators */}
-                <motion.div
+                <FadeIn
+                  delay={0.8}
+                  duration={0.8}
                   className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.8 }}
                 >
                   <div className="flex items-center justify-center gap-3 p-4 glass-card">
                     <div className="w-2 h-2 bg-[#ECB629] rounded-full animate-pulse"></div>
@@ -332,7 +327,7 @@ export default function Services() {
                       Без ангажименти
                     </span>
                   </div>
-                </motion.div>
+                </FadeIn>
               </div>
             </div>
           </div>
@@ -340,34 +335,14 @@ export default function Services() {
 
         {/* Philosophy Section */}
         <section
-          className="py-20 relative overflow-hidden"
+          className="py-20 relative overflow-hidden bg-gradient-to-b from-black to-gray-900"
           ref={philosophyRef}
         >
-          {/* Enhanced Glassmorphism Background */}
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-[#ECB629]/5 via-transparent to-blue-500/5"></div>
-            <div
-              className="absolute inset-0"
-              style={{
-                backgroundImage: `
-              linear-gradient(45deg, rgba(236, 182, 40, 0.1) 25%, transparent 25%),
-              linear-gradient(-45deg, rgba(236, 182, 40, 0.1) 25%, transparent 25%)
-            `,
-                backgroundSize: "30px 30px",
-              }}
-            ></div>
-            {/* Floating glass orbs */}
-            <div className="absolute top-1/4 right-1/4 w-48 h-48 bg-[#ECB629] rounded-full blur-3xl opacity-10 animate-pulse"></div>
-            <div className="absolute bottom-1/4 left-1/4 w-32 h-32 bg-white rounded-full blur-2xl opacity-5"></div>
-          </div>
 
           <div className="container mx-auto px-6 relative z-1">
-            <motion.div
+            <FadeInView
               className="text-center mb-16"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
+              duration={0.8}
             >
               <h2 className="text-4xl md:text-5xl font-bold text-white mb-8">
                 Спрете да залагате на късмет. <br />
@@ -375,23 +350,22 @@ export default function Services() {
                   Започнете да изграждате системи.
                 </span>
               </h2>
-            </motion.div>
+            </FadeInView>
 
             {/* Comparison visualization */}
             <div className="max-w-6xl mx-auto mb-16">
-              <motion.div
-                className="glass-card p-8 relative overflow-hidden shadow-2xl"
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.8, delay: 0.2 }}
+              <FadeInView
+                className="glassmorphism border border-[#ECB629]/20 p-8 relative overflow-hidden shadow-2xl rounded-3xl"
+                duration={0.8}
+                delay={0.2}
               >
                 <div className="grid md:grid-cols-2 gap-12 items-center">
                   {/* Chaos Side */}
-                  <motion.div
+                  <FadeInView
                     className="text-center"
-                    initial={{ opacity: 0, x: -50 }}
-                    animate={isInView ? { opacity: 1, x: 0 } : {}}
-                    transition={{ duration: 0.8, delay: 0.4 }}
+                    direction="left"
+                    duration={0.8}
+                    delay={0.4}
                   >
                     <div className="mb-6">
                       <div className="w-20 h-20 mx-auto bg-red-500/20 rounded-full flex items-center justify-center border border-red-500/30 mb-4 relative">
@@ -417,14 +391,14 @@ export default function Services() {
                       <p>• Неизмерима възвращаемост</p>
                       <p>• Постоянни експерименти</p>
                     </div>
-                  </motion.div>
+                  </FadeInView>
 
                   {/* Systems Side */}
-                  <motion.div
+                  <FadeInView
                     className="text-center"
-                    initial={{ opacity: 0, x: 50 }}
-                    animate={isInView ? { opacity: 1, x: 0 } : {}}
-                    transition={{ duration: 0.8, delay: 0.6 }}
+                    direction="right"
+                    duration={0.8}
+                    delay={0.6}
                   >
                     <div className="mb-6">
                       <div className="w-20 h-20 mx-auto bg-[#ECB629]/20 rounded-full flex items-center justify-center border border-[#ECB629]/30 mb-4 relative">
@@ -450,9 +424,9 @@ export default function Services() {
                       <p>• Измерим растеж</p>
                       <p>• Автоматизация</p>
                     </div>
-                  </motion.div>
+                  </FadeInView>
                 </div>
-              </motion.div>
+              </FadeInView>
             </div>
           </div>
         </section>
@@ -460,43 +434,17 @@ export default function Services() {
         {/* Systems Overview Section */}
         <section
           ref={systemsRef}
-          className="py-20 relative overflow-hidden"
+          className="py-20 relative overflow-hidden bg-gradient-to-b from-gray-900 to-black"
         >
-          {/* Enhanced Glassmorphism Background for Systems */}
-          <div className="absolute inset-0 opacity-20">
-            <div className="absolute inset-0 bg-gradient-to-br from-slate-900/70 via-transparent to-slate-800/60"></div>
-            <div className="absolute top-1/4 right-1/4 w-80 h-80 bg-[#ECB629] rounded-full blur-3xl opacity-25 animate-pulse"></div>
-            <div className="absolute bottom-1/3 left-1/4 w-64 h-64 bg-blue-500 rounded-full blur-3xl opacity-20"></div>
-            <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-purple-500 rounded-full blur-3xl opacity-15"></div>
-            <div
-              className="absolute inset-0"
-              style={{
-                backgroundImage: `
-              linear-gradient(rgba(236, 182, 40, 0.15) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(236, 182, 40, 0.15) 1px, transparent 1px)
-            `,
-                backgroundSize: "60px 60px",
-              }}
-            ></div>
-            {/* Floating glass particles */}
-            <div className="absolute top-1/3 left-1/3 w-16 h-16 bg-white rounded-full blur-xl opacity-5 animate-pulse"></div>
-            <div className="absolute bottom-1/4 right-1/3 w-12 h-12 bg-[#ECB629] rounded-full blur-lg opacity-10"></div>
-          </div>
 
           <div className="container mx-auto px-6 relative z-1">
-            <motion.div
+            <FadeInView
               className="text-center mb-16"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
+              duration={0.8}
             >
-              <motion.div
-                className="inline-flex items-center gap-3 mb-8 px-6 py-3 rounded-full glassmorphism"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
+              <FadeInView
+                className="inline-flex items-center gap-3 mb-8 px-6 py-3 rounded-full glassmorphism border border-[#ECB629]/30"
+                duration={0.6}
               >
                 <div className="flex items-center gap-2">
                   <div className="relative">
@@ -516,7 +464,7 @@ export default function Services() {
                     системи за растеж
                   </span>
                 </div>
-              </motion.div>
+              </FadeInView>
 
               <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
                 Нашите <span className="text-[#ECB629]">системи за растеж</span>
@@ -525,16 +473,14 @@ export default function Services() {
                 Всяка система е проектирана да решава конкретен проблем във
                 вашия бизнес и да генерира измерим растеж.
               </p>
-            </motion.div>
+            </FadeInView>
 
             <div className="grid lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
               {services.map((service, index) => (
-                <motion.div
+                <FadeInView
                   key={service.id}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
+                  duration={0.6}
+                  delay={index * 0.1}
                   className="group"
                 >
                   <Magnet strength={0.4} range={120}>
@@ -638,7 +584,7 @@ export default function Services() {
                     <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#ECB629] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                     </Card>
                   </Magnet>
-                </motion.div>
+                </FadeInView>
               ))}
             </div>
           </div>
@@ -670,19 +616,15 @@ export default function Services() {
           </div>
 
           <div className="container mx-auto px-6 text-center relative z-1">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
+            <FadeInView
+              duration={0.8}
             >
               {/* Urgency Badge */}
-              <motion.div
+              <FadeInView
                 className="inline-flex items-center gap-3 mb-8 px-6 py-3 rounded-full bg-black/10 backdrop-blur-sm border border-black/20"
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
+                direction="down"
+                distance={50}
+                duration={0.6}
               >
                 <div className="flex items-center gap-2">
                   <div className="relative">
@@ -693,36 +635,32 @@ export default function Services() {
                     Ограничени места за 2025
                   </span>
                 </div>
-              </motion.div>
+              </FadeInView>
 
-              <motion.h2
+              <FadeInView
+                as="h2"
                 className="text-4xl md:text-5xl font-bold text-black mb-6"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                viewport={{ once: true }}
+                duration={0.8}
+                delay={0.2}
               >
                 Готови за предвидим растеж?
-              </motion.h2>
+              </FadeInView>
 
-              <motion.p
+              <FadeInView
+                as="p"
                 className="text-xl text-black/80 mb-8 max-w-2xl mx-auto"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-                viewport={{ once: true }}
+                duration={0.8}
+                delay={0.3}
               >
                 Ние работим прецизно и внимателно преценяваме всеки случай.                Първата консултация е процес, чрез който проверяваме дали
                 клиентът е подходящ за нашия подход.
-              </motion.p>
+              </FadeInView>
 
               {/* Trust Signals */}
-              <motion.div
+              <FadeInView
                 className="flex flex-wrap justify-center gap-6 mb-8 text-sm text-black/70"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.4 }}
-                viewport={{ once: true }}
+                duration={0.8}
+                delay={0.4}
               >
                 <div className="flex items-center gap-2">
                   <div className="w-4 h-4 bg-green-500 rounded-full flex items-center justify-center">
@@ -742,14 +680,12 @@ export default function Services() {
                   </div>
                   <span>48 часа отговор</span>
                 </div>
-              </motion.div>
+              </FadeInView>
 
-              <motion.div
+              <FadeInView
                 className="flex flex-col sm:flex-row gap-4 justify-center items-center"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.5 }}
-                viewport={{ once: true }}
+                duration={0.8}
+                delay={0.5}
               >
                 <motion.a
                   href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu"
@@ -786,8 +722,8 @@ export default function Services() {
                   <Phone className="w-5 h-5" />
                   <span>Обади се сега</span>
                 </motion.a>
-              </motion.div>
-            </motion.div>
+              </FadeInView>
+            </FadeInView>
           </div>
         </section>
       </main>
