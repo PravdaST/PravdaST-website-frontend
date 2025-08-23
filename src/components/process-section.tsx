@@ -85,7 +85,7 @@ export const ProcessSection = () => {
                 <span className="text-[#ECB629] font-bold">Контролиран</span> процес за предвидими резултати
               </span>
             </div>
-          </motion.div>
+          </SlideIn>
 
           <motion.h2
             className="text-4xl md:text-5xl font-bold mb-6 text-white"
@@ -107,7 +107,7 @@ export const ProcessSection = () => {
           >
             Ние не работим с предположения. Следваме строго дефиниран инженерен процес в 3 стъпки, който гарантира, че всяко решение е базирано на данни.
           </motion.p>
-        </motion.div>
+        </SlideIn>
 
         {/* Modern Card-Based Timeline */}
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
