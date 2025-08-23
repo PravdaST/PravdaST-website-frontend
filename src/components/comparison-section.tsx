@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from "framer-motion";
+import SlideIn from '@/components/motion/SlideIn';
 
 export const ComparisonSection = () => {
   return (
@@ -41,19 +42,17 @@ export const ComparisonSection = () => {
 
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
         {/* Header */}
-        <motion.div
+        <SlideIn
+          direction="up"
+          distance={30}
+          duration={0.6}
           className="text-center mb-12 sm:mb-16"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
         >
-          <motion.div
+          <SlideIn
+            direction="up"
+            distance={20}
+            duration={0.6}
             className="inline-flex items-center gap-3 mb-8 px-6 py-3 rounded-full bg-gradient-to-r from-slate-800/80 to-slate-700/60 border border-slate-600/30 backdrop-blur-sm"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
           >
             <div className="flex items-center gap-2">
               <div className="relative">
@@ -64,7 +63,7 @@ export const ComparisonSection = () => {
                 <span className="text-[#ECB629] font-bold">Инженерен</span> подход към бизнеса
               </span>
             </div>
-          </motion.div>
+          </SlideIn>
 
           <motion.h2
             className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-center"
@@ -88,7 +87,7 @@ export const ComparisonSection = () => {
             Ние не предлагаме маркетинг. Нашият подход е бизнес инженеринг.
             Разликата е в резултата.
           </motion.p>
-        </motion.div>
+        </SlideIn>
 
         {/* Comparison Cards */}
         <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">

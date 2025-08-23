@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Facebook, Youtube, Instagram, Linkedin, MessageCircle } from "lucide-react";
+import ScaleOnHover from "@/components/motion/ScaleOnHover";
+import SlideIn from "@/components/motion/SlideIn";
 
 export const Footer = () => {
   const footerLinks = {
@@ -75,16 +77,14 @@ export const Footer = () => {
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 sm:gap-8 mb-8 sm:mb-12">
           {/* Brand Section */}
-          <motion.div 
+          <SlideIn 
+            direction="up"
+            distance={20}
+            duration={0.6}
             className="md:col-span-1"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
           >
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.2 }}
+            <ScaleOnHover
+              scale={1.05}
             >
               <Link href="/">
                 <div className="text-2xl font-bold text-[#ECB629] mb-4 cursor-pointer relative">
@@ -97,7 +97,7 @@ export const Footer = () => {
                   />
                 </div>
               </Link>
-            </motion.div>
+            </ScaleOnHover>
             <p className="text-gray-400 text-sm mb-6">
               Консултантска компания за бизнес инженеринг. Изграждаме системи за предвидим растеж.
             </p>

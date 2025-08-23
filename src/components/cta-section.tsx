@@ -11,6 +11,8 @@ import {
   Shield,
 } from "lucide-react";
 import PravdaButton from "@/components/ui/PravdaButton";
+import ScaleOnHover from "@/components/motion/ScaleOnHover";
+import SlideIn from "@/components/motion/SlideIn";
 
 export const CTASection = () => {
   return (
@@ -123,12 +125,12 @@ export const CTASection = () => {
             </motion.div>
 
             {/* Trust Indicators */}
-            <motion.div
+            <SlideIn
+              direction="up"
+              distance={30}
+              duration={0.8}
+              delay={0.2}
               className="grid md:grid-cols-4 gap-6 max-w-4xl mx-auto"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              viewport={{ once: true }}
             >
               {[
                 { icon: CheckCircle, text: "Безплатна консултация" },
@@ -136,27 +138,26 @@ export const CTASection = () => {
                 { icon: Clock, text: "Отговор в 48 часа" },
                 { icon: Zap, text: "Процес 5 минути" },
               ].map((item, index) => (
-                <motion.div
+                <ScaleOnHover
                   key={index}
+                  scale={1.05}
                   className="flex flex-col items-center gap-3 p-6 rounded-xl bg-slate-800/40 backdrop-blur-sm border border-slate-700/50 group hover:border-[#ECB629]/50 transition-all duration-300"
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.2 }}
                 >
                   <item.icon className="w-8 h-8 text-[#ECB629] group-hover:scale-110 transition-transform duration-300" />
                   <span className="text-sm text-gray-300 text-center">
                     {item.text}
                   </span>
-                </motion.div>
+                </ScaleOnHover>
               ))}
-            </motion.div>
+            </SlideIn>
 
             {/* Action Section */}
-            <motion.div
+            <SlideIn
+              direction="up"
+              distance={30}
+              duration={0.8}
+              delay={0.4}
               className="space-y-8"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              viewport={{ once: true }}
             >
               {/* Primary CTA */}
               <motion.div
@@ -195,7 +196,7 @@ export const CTASection = () => {
                   Или се обадете: +359 879 282 299
                 </span>
               </motion.button>
-            </motion.div>
+            </SlideIn>
 
             {/* Warning Section */}
             {/*<motion.div

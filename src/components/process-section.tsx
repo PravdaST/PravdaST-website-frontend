@@ -1,6 +1,8 @@
 'use client'
 
-import { motion } from "framer-motion";
+import { motion } from "framer-motion"
+import ScaleOnHover from "@/components/motion/ScaleOnHover"
+import SlideIn from "@/components/motion/SlideIn";
 import { Card, CardContent } from "@/components/ui/card";
 import { Search, Settings, TrendingUp } from "lucide-react";
 
@@ -62,19 +64,17 @@ export const ProcessSection = () => {
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
-        <motion.div
+        <SlideIn
+          direction="up"
+          distance={30}
+          duration={0.6}
           className="text-center mb-12 sm:mb-16"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
         >
-          <motion.div
+          <SlideIn
+            direction="up"
+            distance={20}
+            duration={0.6}
             className="inline-flex items-center gap-3 mb-8 px-6 py-3 rounded-full glassmorphism"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
           >
             <div className="flex items-center gap-2">
               <div className="relative">
