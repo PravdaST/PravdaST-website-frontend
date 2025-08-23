@@ -1,0 +1,68 @@
+[23:38:12.184] Running build in Washington, D.C., USA (East) – iad1
+[23:38:12.184] Build machine configuration: 2 cores, 8 GB
+[23:38:12.200] Cloning github.com/PravdaST/PravdaST-website-frontend (Branch: main, Commit: 63830f1)
+[23:38:12.838] Cloning completed: 638.000ms
+[23:38:15.007] Restored build cache from previous deployment (C9QwaQYhU3odbsYHgEAXsjB1D29Y)
+[23:38:15.786] Running "vercel build"
+[23:38:16.215] Vercel CLI 46.0.2
+[23:38:16.597] Running "install" command: `npm install`...
+[23:38:18.963] 
+[23:38:18.964] up to date, audited 575 packages in 2s
+[23:38:18.964] 
+[23:38:18.964] 184 packages are looking for funding
+[23:38:18.965]   run `npm fund` for details
+[23:38:18.986] 
+[23:38:18.987] 4 moderate severity vulnerabilities
+[23:38:18.987] 
+[23:38:18.988] To address all issues (including breaking changes), run:
+[23:38:18.988]   npm audit fix --force
+[23:38:18.988] 
+[23:38:18.988] Run `npm audit` for details.
+[23:38:19.020] Detected Next.js version: 15.5.0
+[23:38:19.021] Running "npm run build"
+[23:38:19.141] 
+[23:38:19.141] > pravdast-website-frontend@1.0.0 build
+[23:38:19.141] > next build
+[23:38:19.141] 
+[23:38:19.930]    ▲ Next.js 15.5.0
+[23:38:19.931]    - Experiments (use with caution):
+[23:38:19.931]      ⨯ reactCompiler
+[23:38:19.931]      · optimizePackageImports
+[23:38:19.931] 
+[23:38:20.028]    Creating an optimized production build ...
+[23:38:29.632] Failed to compile.
+[23:38:29.633] 
+[23:38:29.633] ./src/app/about/AboutClient.tsx
+[23:38:29.633] Error:   [31mx[0m Expression expected
+[23:38:29.634]      ,-[[36;1;4m/vercel/path0/src/app/about/AboutClient.tsx[0m:561:1]
+[23:38:29.634]  [2m558[0m |                       </Card>
+[23:38:29.634]  [2m559[0m |                     </div>
+[23:38:29.634]  [2m560[0m |                     </GlassCard>
+[23:38:29.634]  [2m561[0m |                   </motion.div>
+[23:38:29.635]      : [35;1m                  ^[0m
+[23:38:29.635]  [2m562[0m |                 ))}
+[23:38:29.635]  [2m563[0m |               </div>
+[23:38:29.635]  [2m564[0m |             </div>
+[23:38:29.635]      `----
+[23:38:29.635]   [31mx[0m Unterminated regexp literal
+[23:38:29.635]      ,-[[36;1;4m/vercel/path0/src/app/about/AboutClient.tsx[0m:561:1]
+[23:38:29.635]  [2m558[0m |                       </Card>
+[23:38:29.636]  [2m559[0m |                     </div>
+[23:38:29.636]  [2m560[0m |                     </GlassCard>
+[23:38:29.636]  [2m561[0m |                   </motion.div>
+[23:38:29.636]      : [35;1m                   ^^^^^^^^^^^^[0m
+[23:38:29.636]  [2m562[0m |                 ))}
+[23:38:29.636]  [2m563[0m |               </div>
+[23:38:29.636]  [2m564[0m |             </div>
+[23:38:29.636]      `----
+[23:38:29.637] 
+[23:38:29.637] Caused by:
+[23:38:29.637]     Syntax Error
+[23:38:29.637] 
+[23:38:29.637] Import trace for requested module:
+[23:38:29.637] ./src/app/about/AboutClient.tsx
+[23:38:29.637] ./src/app/about/page.tsx
+[23:38:29.639] 
+[23:38:29.641] 
+[23:38:29.641] > Build failed because of webpack errors
+[23:38:29.692] Error: Command "npm run build" exited with 1

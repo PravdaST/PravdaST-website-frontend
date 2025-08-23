@@ -557,7 +557,6 @@ export default function AboutClient() {
                         </CardContent>
                       </Card>
                     </div>
-                    </GlassCard>
                   </motion.div>
                 ))}
               </div>
