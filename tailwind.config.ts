@@ -86,15 +86,22 @@ const config: Config = {
             height: "0",
           },
         },
-        "slide": {
+        "marqueeL": {
           "0%": { transform: "translateX(0)" },
           "100%": { transform: "translateX(-50%)" },
+        },
+        "marqueeR": {
+          "0%": { transform: "translateX(-50%)" },
+          "100%": { transform: "translateX(0)" },
         },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "slide": "slide 30s linear infinite",
+        "marqueeL-30": "marqueeL 30s linear infinite",
+        "marqueeL-45": "marqueeL 45s linear infinite", 
+        "marqueeR-35": "marqueeR 35s linear infinite",
+        "marqueeR-50": "marqueeR 50s linear infinite",
       },
     },
   },
