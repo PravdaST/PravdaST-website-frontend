@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic'
 import { Navigation } from '@/components/navigation'
 import { HeroSection } from '@/components/hero-section'
 import { PartnersCarousel } from '@/components/partners-carousel'
+import { PushNotifications } from '@/components/push-notifications'
 import ProblemSection from '@/components/problem-section'
 import { SolutionSection } from '@/components/solution-section'
 // ProcessSection and SystemsSection moved to lazy loading
@@ -56,6 +57,9 @@ export default function HomeClient() {
       <Navigation />
       <HeroSection />
       <PartnersCarousel />
+      <div className="container mx-auto px-4 -mt-10">
+        <PushNotifications />
+      </div>
       <ProblemSection />
       <SolutionSection />
       <ProcessSection />
