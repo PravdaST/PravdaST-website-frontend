@@ -5,6 +5,7 @@ import { useRef } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { GlassCard } from "@/components/ui/GlassCard";
 import {
   ArrowRight,
   Network,
@@ -824,7 +825,11 @@ export default function ClientomatPage() {
               </p>
 
               {/* Price Card */}
-              <div className="glassmorphism rounded-2xl p-8 mb-16">
+              <GlassCard
+                padding="lg"
+                rounded="2xl"
+                className="mb-16"
+              >
                 <div className="text-sm text-[#ECB629] mb-2 tracking-wide">ЗАПОЧВА ОТ</div>
                 <div className="text-6xl md:text-7xl font-bold text-[#ECB629] mb-4">
                   2750 лв.
@@ -833,7 +838,7 @@ export default function ClientomatPage() {
                 <p className="text-gray-400">
                   *Финалната цена се определя след техническа диагностика
                 </p>
-              </div>
+              </GlassCard>
 
               {/* Principles */}
               <div className="text-left space-y-8">

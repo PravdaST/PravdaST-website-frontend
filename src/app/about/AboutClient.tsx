@@ -2,6 +2,7 @@
 
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { GlassCard } from "@/components/ui/GlassCard";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
@@ -345,14 +346,18 @@ export default function AboutClient() {
                 {stats.map((stat, index) => (
                   <motion.div
                     key={index}
-                    className="glassmorphism rounded-lg p-4"
                     whileHover={{ scale: 1.05 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <div className="text-2xl font-bold text-[#ECB629] mb-1">
-                      {stat.number}
-                    </div>
-                    <div className="text-sm text-gray-400">{stat.label}</div>
+                    <GlassCard
+                      padding="sm"
+                      rounded="lg"
+                    >
+                      <div className="text-2xl font-bold text-[#ECB629] mb-1">
+                        {stat.number}
+                      </div>
+                      <div className="text-sm text-gray-400">{stat.label}</div>
+                    </GlassCard>
                   </motion.div>
                 ))}
               </motion.div>
@@ -413,7 +418,11 @@ export default function AboutClient() {
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   viewport={{ once: true }}
                 >
-                  <Card className="relative glassmorphism hover:border-[#ECB629]/50 transition-all duration-300 group overflow-hidden h-full">
+                  <GlassCard
+                    hoverBorder={true}
+                    borderOpacity="30"
+                    className="relative group overflow-hidden h-full transition-all duration-300"
+                  >
                     {/* Hover Glow Effect */}
                     <div className="absolute inset-0 bg-gradient-to-r from-[#ECB629]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 
@@ -436,7 +445,7 @@ export default function AboutClient() {
                       </h3>
                       <p className="text-gray-300">{value.description}</p>
                     </CardContent>
-                  </Card>
+                  </GlassCard>
                 </motion.div>
               ))}
             </div>
@@ -548,6 +557,7 @@ export default function AboutClient() {
                         </CardContent>
                       </Card>
                     </div>
+                    </GlassCard>
                   </motion.div>
                 ))}
               </div>

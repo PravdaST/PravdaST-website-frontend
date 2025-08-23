@@ -12,6 +12,7 @@ import { NavGlowEffect } from "@/components/nav/NavGlowEffect";
 import { NavUnderline } from "@/components/nav/NavUnderline";
 import { NavButton } from "@/components/nav/NavButton";
 import { NavActiveIndicator } from "@/components/nav/NavActiveIndicator";
+import { GlassCard } from "@/components/ui/GlassCard";
 
 export const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -163,7 +164,6 @@ export const Navigation = () => {
                     <div className="absolute top-full left-0 pt-2 z-[9999]">
                       {isServicesDropdownOpen && (
                         <motion.div
-                          className="glassmorphism backdrop-blur-xl bg-black/30 border border-[#ECB629]/20 rounded-xl p-4 shadow-2xl shadow-[#ECB629]/10 min-w-[320px]"
                           initial={{ opacity: 0, y: -10, scale: 0.95 }}
                           animate={{
                             opacity: 1,
@@ -173,6 +173,13 @@ export const Navigation = () => {
                           exit={{ opacity: 0, y: -10, scale: 0.95 }}
                           transition={{ duration: 0.3 }}
                         >
+                          <GlassCard
+                            padding="sm"
+                            rounded="lg"
+                            borderOpacity="20"
+                            hoverShadow={true}
+                            className="backdrop-blur-xl bg-black/30 shadow-2xl min-w-[320px]"
+                          >
                           <div className="space-y-2">
                             {serviceItems.map((service) => (
                               <Link key={service.href} href={service.href}>
@@ -231,6 +238,7 @@ export const Navigation = () => {
                               </Link>
                             </div>
                           </div>
+                          </GlassCard>
                         </motion.div>
                       )}
                     </div>
@@ -285,7 +293,7 @@ export const Navigation = () => {
 
         {/* Mobile Menu */}
         <motion.div
-          className={`md:hidden mt-4 glassmorphism backdrop-blur-xl bg-black/30 rounded-xl border border-[#ECB629]/20 overflow-hidden shadow-2xl shadow-[#ECB629]/10 ${
+          className={`md:hidden mt-4 ${
             isMobileMenuOpen ? "block" : "hidden"
           }`}
           initial={{ opacity: 0, height: 0 }}
@@ -295,6 +303,13 @@ export const Navigation = () => {
           }}
           transition={{ duration: 0.3 }}
         >
+          <GlassCard
+            padding="sm"
+            rounded="lg"
+            borderOpacity="20"
+            hoverShadow={true}
+            className="backdrop-blur-xl bg-black/30 overflow-hidden shadow-2xl"
+          >
           <div className="p-4 space-y-4">
             {navItems.map((item) => (
               <div key={item.href}>
@@ -370,6 +385,7 @@ export const Navigation = () => {
               </NavButton>
             </div>
           </div>
+          </GlassCard>
         </motion.div>
       </div>
     </motion.nav>

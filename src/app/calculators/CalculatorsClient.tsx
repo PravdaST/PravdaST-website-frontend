@@ -38,6 +38,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { GlassCard } from "@/components/ui/GlassCard";
 import { Slider } from "@/components/ui/slider";
 import { BackgroundEffects } from "@/components/background-effects";
 
@@ -422,7 +423,12 @@ function ProfitCalculator({
 
         {/* Service-Specific Recommendations */}
         {recommendations.length > 0 && (
-          <div className="glassmorphism rounded-xl p-4 border border-[#ECB629]/20 max-w-2xl mx-auto">
+          <GlassCard
+            padding="sm"
+            rounded="lg"
+            borderOpacity="20"
+            className="max-w-2xl mx-auto"
+          >
             <h4 className="text-white font-semibold mb-4 flex items-center gap-2 justify-center">
               <CheckCircle className="w-5 h-5 text-[#ECB629]" />
               Препоръки за {serviceName.replace("™", "")}:
@@ -435,7 +441,7 @@ function ProfitCalculator({
                 </div>
               ))}
             </div>
-          </div>
+          </GlassCard>
         )}
       </div>
 
@@ -719,13 +725,19 @@ function ProfitCalculator({
                 {/* Personalized Advice */}
                 {personalizedAdvice && (
                    <motion.div
-                    className="glassmorphism rounded-lg p-4 border border-[#ECB629]/30 text-center"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1}}
                     transition={{ duration: 0.6, delay: 0.4 }}
                   >
+                    <GlassCard
+                      padding="sm"
+                      rounded="lg"
+                      borderOpacity="30"
+                      className="text-center"
+                    >
                     <h4 className="font-semibold text-white mb-2">Какво означава това за Вас?</h4>
                     <p className="text-gray-300 text-sm">{personalizedAdvice}</p>
+                    </GlassCard>
                    </motion.div>
                 )}
 
@@ -733,11 +745,14 @@ function ProfitCalculator({
                  {results.metric1 > 0 && (
                   <div className="grid grid-cols-1 gap-4">
                       <motion.div
-                        className="glassmorphism rounded-lg p-4"
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.6, delay: 0.6 }}
                       >
+                        <GlassCard
+                          padding="sm"
+                          rounded="lg"
+                        >
                          <div className="flex items-center justify-between">
                           <span className="text-gray-400 text-sm">
                             {serviceName === "SEO Struktor™" && "Месечен трафик"}
@@ -751,15 +766,19 @@ function ProfitCalculator({
                               <div className="text-xs text-[#ECB629]">+{Math.round(((results.metric1 - parseFloat(inputs[serviceInputs.param1.key] || "0")) / parseFloat(inputs[serviceInputs.param1.key] || "1")) * 100)}%</div>
                            </div>
                         </div>
+                        </GlassCard>
                       </motion.div>
 
                   {results.monthlyProfit > 0 && (
                     <motion.div
-                      className="glassmorphism rounded-lg p-4"
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.6, delay: 0.8 }}
                     >
+                      <GlassCard
+                        padding="sm"
+                        rounded="lg"
+                      >
                       <div className="flex items-center justify-between">
                         <span className="text-gray-400 text-sm">ROI</span>
                         <div className="text-right">
@@ -769,19 +788,24 @@ function ProfitCalculator({
                           <div className="text-xs text-[#ECB629]">месечно</div>
                         </div>
                       </div>
+                      </GlassCard>
                     </motion.div>
                   )}
 
                   <motion.div
-                    className="glassmorphism rounded-lg p-4"
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.6, delay: 1.0 }}
                   >
+                    <GlassCard
+                      padding="sm"
+                      rounded="lg"
+                    >
                     <div className="flex items-center justify-between">
                       <span className="text-gray-400 text-sm">Срок за резултати</span>
                       <div className="text-white font-semibold">{results.timeframe}</div>
                     </div>
+                    </GlassCard>
                   </motion.div>
                 </div>
                 )}

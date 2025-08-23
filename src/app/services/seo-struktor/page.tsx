@@ -3,6 +3,7 @@
 import { motion, useInView } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { useRef, useState, useEffect } from "react";
+import { GlassCard } from "@/components/ui/GlassCard";
 import {
   ArrowRight,
   ArrowLeft,
@@ -160,11 +161,15 @@ const PhilosophySection = () => {
           <div className="space-y-12">
             {/* Transformation Visualization */}
             <motion.div
-              className="relative glassmorphism rounded-2xl p-8 overflow-hidden"
               initial={{ opacity: 0, scale: 0.95 }}
               animate={isInView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
+              <GlassCard
+                padding="lg"
+                rounded="2xl"
+                className="relative overflow-hidden"
+              >
               {/* Background Pattern */}
               <div className="absolute inset-0 opacity-10">
                 <div className="grid grid-cols-8 md:grid-cols-12 gap-1 h-full p-4">
@@ -283,6 +288,7 @@ const PhilosophySection = () => {
                   />
                 </motion.div>
               </div>
+              </GlassCard>
             </motion.div>
 
             {/* Content Cards */}

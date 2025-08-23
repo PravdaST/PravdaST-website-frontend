@@ -24,6 +24,7 @@ import { Magnet } from "@/components/reactbits";
 import ServicesJsonLd from "@/components/services-json-ld";
 import { FadeIn } from "@/components/motion/FadeIn";
 import { FadeInView } from "@/components/motion/FadeInView";
+import { GlassCard } from "@/components/ui/GlassCard";
 
 // Systems Background Component
 const SystemsBackground = () => {
@@ -352,10 +353,15 @@ export default function Services() {
             {/* Comparison visualization */}
             <div className="max-w-6xl mx-auto mb-16">
               <FadeInView
-                className="glassmorphism border border-[#ECB629]/20 p-8 relative overflow-hidden shadow-2xl rounded-3xl"
                 duration={0.8}
                 delay={0.2}
               >
+                <GlassCard
+                  padding="lg"
+                  rounded="xl"
+                  borderOpacity="20"
+                  className="relative overflow-hidden shadow-2xl"
+                >
                 <div className="grid md:grid-cols-2 gap-12 items-center">
                   {/* Chaos Side */}
                   <FadeInView
@@ -423,6 +429,7 @@ export default function Services() {
                     </div>
                   </FadeInView>
                 </div>
+                </GlassCard>
               </FadeInView>
             </div>
           </div>
@@ -440,9 +447,14 @@ export default function Services() {
               duration={0.8}
             >
               <FadeInView
-                className="inline-flex items-center gap-3 mb-8 px-6 py-3 rounded-full glassmorphism border border-[#ECB629]/30"
                 duration={0.6}
               >
+                <GlassCard
+                  padding="md"
+                  rounded="full"
+                  borderOpacity="30"
+                  className="inline-flex items-center gap-3 mb-8"
+                >
                 <div className="flex items-center gap-2">
                   <div className="relative">
                     <div className="w-2 h-2 bg-[#ECB629] rounded-full"></div>
@@ -461,6 +473,7 @@ export default function Services() {
                     системи за растеж
                   </span>
                 </div>
+                </GlassCard>
               </FadeInView>
 
               <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">

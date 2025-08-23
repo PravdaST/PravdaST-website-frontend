@@ -16,6 +16,7 @@ import {
   Pizza,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { GlassCard } from "@/components/ui/GlassCard";
 
 // Category definitions
 const categories = [
@@ -302,7 +303,14 @@ export default function CampaignsClient() {
                 }}
                 className="group relative"
               >
-                <div className="glassmorphism border border-[#ECB629]/20 rounded-2xl p-8 h-full hover:border-[#ECB629]/40 transition-all duration-300 hover:shadow-2xl hover:shadow-[#ECB629]/10">
+                <GlassCard
+                  padding="lg"
+                  rounded="lg"
+                  hoverBorder={true}
+                  borderOpacity="20"
+                  hoverShadow={true}
+                  className="h-full"
+                >
                   {/* Coming Soon Badge */}
                   {page.comingSoon && (
                     <div className="absolute top-4 right-4 bg-[#ECB629] text-black px-3 py-1 rounded-full text-sm font-semibold">
@@ -359,7 +367,7 @@ export default function CampaignsClient() {
                       )}
                     </div>
                   </div>
-                </div>
+                </GlassCard>
               </motion.div>
             ))}
           </motion.div>
