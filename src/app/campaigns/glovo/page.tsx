@@ -44,189 +44,214 @@ function TestimonialLoading() {
   );
 }
 
-// Server Component - Social Proof Section
+// 2025 Modern Social Proof Section with Enhanced Trust Elements
 function SocialProofSection() {
   return (
-    <section className="py-16 bg-gradient-to-b from-black to-gray-900">
+    <section className="py-12 md:py-16 bg-gradient-to-br from-emerald-900/20 via-black to-gray-900">
       <div className="container mx-auto px-4">
-        <div className="max-w-4xl mx-auto">
-          {/* Testimonial with Image */}
-          <div className="glassmorphism border border-green-400/20 rounded-2xl p-8 mb-12">
-            <div className="grid md:grid-cols-3 gap-6 items-center">
-              <div className="md:col-span-1">
-                <Image
-                  src="/images/glovo/Happy_restaurant_owner_success_story_32c22d04.png"
-                  alt="Щастлив собственик на ресторант - история на успех"
-                  width={300}
-                  height={400}
-                  className="w-full h-auto rounded-xl"
-                  sizes="(max-width: 768px) 100vw, 300px"
-                  quality={85}
-                  loading="lazy"
-                />
-              </div>
-              <div className="md:col-span-2 text-center md:text-left">
-                <div className="text-3xl mb-4">⭐⭐⭐⭐⭐</div>
-                <blockquote className="text-xl md:text-2xl text-gray-300 italic mb-6">
-                  "Плащахме на Glovo 2,200 лв всеки месец. Сега плащаме 800 лв
-                  и клиентите ни поръчват директно от нас. Най-доброто
-                  решение, което взехме."
-                </blockquote>
-                <cite className="text-green-400 font-semibold">
-                  - Димитър П., Кебапче София
-                </cite>
-              </div>
-            </div>
-          </div>
-
-          {/* Stats */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            <div className="glassmorphism border border-green-400/20 rounded-xl p-6">
-              <div className="flex items-center justify-center mb-4">
-                <CheckCircle className="w-8 h-8 text-green-400" />
-              </div>
-              <div className="text-2xl font-bold text-green-400 mb-2">23</div>
-              <div className="text-gray-300">
-                Ресторанта в София освободени от Glovo зависимост
-              </div>
-            </div>
-
-            <div className="glassmorphism border border-yellow-400/20 rounded-xl p-6">
-              <div className="flex items-center justify-center mb-4">
-                <DollarSign className="w-8 h-8 text-yellow-400" />
-              </div>
-              <div className="text-2xl font-bold text-yellow-400 mb-2">340,000 лв</div>
-              <div className="text-gray-300">
-                Общо спестени пари от комисионни за 2024 г.
-              </div>
-            </div>
-
-            <div className="glassmorphism border border-green-400/20 rounded-xl p-6">
-              <div className="flex items-center justify-center mb-4">
-                <TrendingUp className="w-8 h-8 text-green-400" />
-              </div>
-              <div className="text-2xl font-bold text-green-400 mb-2">87%</div>
-              <div className="text-gray-300">
-                Средно намаление на разходите за доставка
+        <div className="max-w-5xl mx-auto">
+          {/* Enhanced Testimonial with Modern Design */}
+          <div className="relative group hover:scale-[1.02] transition-all duration-500">
+            <div className="absolute inset-0 bg-gradient-to-r from-green-400/20 to-emerald-600/20 rounded-3xl blur-xl opacity-50 group-hover:opacity-75 transition-opacity duration-500"></div>
+            <div className="relative bg-gray-900/80 backdrop-blur-xl border border-green-400/30 rounded-3xl p-6 md:p-10 shadow-2xl">
+              <div className="grid md:grid-cols-3 gap-8 items-center">
+                <div className="md:col-span-1 order-2 md:order-1">
+                  <div className="relative">
+                    <div className="absolute inset-0 bg-gradient-to-br from-green-400/30 to-emerald-600/30 rounded-2xl blur-lg"></div>
+                    <Image
+                      src="/images/glovo/Happy_restaurant_owner_success_story_32c22d04.png"
+                      alt="Димитър П. - Собственик на ресторант в София"
+                      width={320}
+                      height={400}
+                      className="relative w-full h-auto rounded-2xl shadow-2xl"
+                      sizes="(max-width: 768px) 100vw, 320px"
+                      quality={90}
+                      loading="eager"
+                      priority
+                    />
+                  </div>
+                </div>
+                <div className="md:col-span-2 text-center md:text-left order-1 md:order-2">
+                  <div className="flex justify-center md:justify-start mb-4">
+                    <div className="flex space-x-1">
+                      {[...Array(5)].map((_, i) => (
+                        <span key={i} className="text-yellow-400 text-2xl animate-pulse" style={{animationDelay: `${i * 0.1}s`}}>⭐</span>
+                      ))}
+                    </div>
+                  </div>
+                  <blockquote className="text-xl md:text-3xl font-light text-white leading-relaxed mb-8">
+                    <span className="text-green-400 text-4xl">"</span>
+                    Плащахме на Glovo <span className="bg-red-500/20 px-2 py-1 rounded-lg font-bold text-red-400">2,200 лв всеки месец</span>. 
+                    Сега плащаме <span className="bg-green-500/20 px-2 py-1 rounded-lg font-bold text-green-400">800 лв</span> 
+                    и клиентите поръчват директно от нас.
+                    <span className="text-green-400 text-4xl">"</span>
+                  </blockquote>
+                  <div className="flex flex-col md:flex-row items-center md:items-start gap-4">
+                    <cite className="text-green-400 font-bold text-lg">
+                      Димитър П.
+                    </cite>
+                    <div className="flex items-center gap-2 text-gray-300">
+                      <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                      <span className="text-sm">Кебапче София • Клиент от 8 месеца</span>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
-  );
-}
 
-// Server Component - Problem Section  
-function ProblemSection() {
-  return (
-    <section className="py-16 bg-gradient-to-b from-gray-900 to-black">
-      <div className="container mx-auto px-4">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-8">
-            Докато вашите конкуренти запазват тези 30%...
-          </h2>
-
-          <div className="glassmorphism border border-red-500/30 rounded-2xl p-8 mb-8">
-            <h3 className="text-2xl md:text-3xl font-bold text-red-400 mb-6">
-              Glovo ви държи в скъпа зависимост:
-            </h3>
-
-            <ul className="text-left space-y-4 text-lg text-gray-300">
-              <li className="flex items-start">
-                <span className="text-red-500 mr-3">❌</span>
-                Вземат 30% от всяка поръчка (БЕЗ ДДС = реално 36%)
-              </li>
-              <li className="flex items-start">
-                <span className="text-red-500 mr-3">❌</span>
-                Нямате достъп до данните за вашите клиенти
-              </li>
-              <li className="flex items-start">
-                <span className="text-red-500 mr-3">❌</span>
-                Конкурирате с 50+ ресторанта в същото приложение
-              </li>
-              <li className="flex items-start">
-                <span className="text-red-500 mr-3">❌</span>
-                Могат да променят комисионните всеки момент (и го правят)
-              </li>
-            </ul>
-          </div>
-
-          <div className="text-center bg-green-400/10 border border-green-400/30 rounded-xl p-6">
-            <p className="text-xl font-bold text-green-400">
-              Междувременно, вашите български конкуренти, които избягаха от
-              Glovo, запазват тези 30% като чиста печалба.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// Server Component - Solution Preview Section
-function SolutionPreviewSection() {
-  return (
-    <section className="py-16 bg-gradient-to-b from-black to-gray-900">
-      <div className="container mx-auto px-4">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-8">
-            Ето какво ще откриете в безплатния Glovo калкулатор:
-          </h2>
-
-          {/* Solution Preview with Image */}
-          <div className="mb-12">
-            <div className="glassmorphism border border-green-400/30 rounded-2xl p-6 mb-8">
-              <Image
-                src="/images/glovo/Direct_ordering_system_restaurant_a73620c0.png"
-                alt="Система за директни поръчки в ресторант"
-                width={800}
-                height={450}
-                className="w-full h-auto rounded-xl"
-                sizes="(max-width: 768px) 100vw, 800px"
-                quality={85}
-                loading="lazy"
-              />
-            </div>
-          </div>
-
-          <div className="grid md:grid-cols-1 gap-6 mb-12">
+          {/* 2025 Animated Stats with Enhanced Visual Impact */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
             {[
               {
-                icon: <DollarSign className="w-8 h-8" />,
-                title: "Точната сума",
-                description:
-                  "която платихте на Glovo миналия месец (повечето собственици подценяват с 40%)",
-                color: "yellow-400",
+                icon: CheckCircle,
+                number: "23",
+                label: "Ресторанта освободени от Glovo",
+                color: "green",
+                gradient: "from-green-400 to-emerald-500",
+                delay: "0s"
               },
               {
-                icon: <TrendingUp className="w-8 h-8" />,
-                title: "Вашия персонализиран план за освобождаване",
-                description:
-                  "3 стъпки за намаляване на Glovo зависимостта с 60% за 90 дни",
-                color: "green-400",
+                icon: DollarSign,
+                number: "340,000 лв",
+                label: "Спестени комисионни за 2024",
+                color: "yellow",
+                gradient: "from-yellow-400 to-orange-500",
+                delay: "0.2s"
               },
               {
-                icon: <Users className="w-8 h-8" />,
-                title: "Схема на система за директни поръчки",
-                description:
-                  "която се изплаща за 2 месеца със спестените комисионни",
-                color: "yellow-400",
-              },
-            ].map((item, index) => (
-              <div
-                key={index}
-                className={`glassmorphism border border-${item.color}/30 rounded-xl p-6`}
-              >
-                <div className={`flex items-center justify-center mb-4 text-${item.color}`}>
-                  {item.icon}
+                icon: TrendingUp,
+                number: "87%",
+                label: "Намаление на разходите",
+                color: "green",
+                gradient: "from-green-400 to-teal-500",
+                delay: "0.4s"
+              }
+            ].map((stat, index) => {
+              const IconComponent = stat.icon;
+              return (
+                <div 
+                  key={index}
+                  className="group relative hover:scale-105 transition-all duration-500"
+                  style={{animationDelay: stat.delay}}
+                >
+                  <div className={`absolute inset-0 bg-gradient-to-br ${stat.gradient} rounded-2xl blur-lg opacity-30 group-hover:opacity-50 transition-opacity duration-500`}></div>
+                  <div className="relative bg-gray-900/90 backdrop-blur-xl border border-white/10 rounded-2xl p-6 text-center">
+                    <div className="flex items-center justify-center mb-4">
+                      <div className={`bg-gradient-to-br ${stat.gradient} p-3 rounded-full`}>
+                        <IconComponent className="w-8 h-8 text-black" />
+                      </div>
+                    </div>
+                    <div className={`text-3xl md:text-4xl font-bold bg-gradient-to-r ${stat.gradient} bg-clip-text text-transparent mb-3`}>
+                      {stat.number}
+                    </div>
+                    <div className="text-gray-300 text-sm font-medium">
+                      {stat.label}
+                    </div>
+                  </div>
                 </div>
-                <h3 className={`text-xl font-bold text-${item.color} mb-3`}>
-                  {item.title}
-                </h3>
-                <p className="text-gray-300">{item.description}</p>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// 2025 Streamlined Problem-Solution Section  
+function ProblemSolutionSection() {
+  return (
+    <section className="py-12 md:py-16 bg-gradient-to-br from-red-900/10 via-black to-gray-900">
+      <div className="container mx-auto px-4">
+        <div className="max-w-5xl mx-auto">
+          {/* Modern Problem Statement */}
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
+              Защо да дарявате <span className="bg-gradient-to-r from-red-400 to-red-600 bg-clip-text text-transparent">30%</span> всеки месец?
+            </h2>
+            <p className="text-xl text-gray-300 mb-8">
+              Докато вашите конкуренти запазват тези пари като печалба
+            </p>
+          </div>
+
+          {/* Modern Grid Comparison */}
+          <div className="grid md:grid-cols-2 gap-8 mb-12">
+            {/* Problem Side */}
+            <div className="relative group">
+              <div className="absolute inset-0 bg-gradient-to-br from-red-500/20 to-red-700/20 rounded-3xl blur-xl opacity-50"></div>
+              <div className="relative bg-gray-900/90 backdrop-blur-xl border border-red-400/30 rounded-3xl p-8">
+                <div className="text-center mb-6">
+                  <div className="text-6xl mb-4">😰</div>
+                  <h3 className="text-2xl font-bold text-red-400 mb-4">Сега губите</h3>
+                </div>
+                <ul className="space-y-3 text-gray-300">
+                  <li className="flex items-center">
+                    <span className="text-red-500 mr-3 text-xl">❌</span>
+                    <span><strong className="text-red-400">30%</strong> от всяка поръчка</span>
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-red-500 mr-3 text-xl">❌</span>
+                    <span>Няма данни за клиентите</span>
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-red-500 mr-3 text-xl">❌</span>
+                    <span>Конкуренция в приложението</span>
+                  </li>
+                </ul>
               </div>
-            ))}
+            </div>
+
+            {/* Solution Side */}
+            <div className="relative group">
+              <div className="absolute inset-0 bg-gradient-to-br from-green-500/20 to-emerald-700/20 rounded-3xl blur-xl opacity-50"></div>
+              <div className="relative bg-gray-900/90 backdrop-blur-xl border border-green-400/30 rounded-3xl p-8">
+                <div className="text-center mb-6">
+                  <div className="text-6xl mb-4">🚀</div>
+                  <h3 className="text-2xl font-bold text-green-400 mb-4">Можете да имате</h3>
+                </div>
+                <ul className="space-y-3 text-gray-300">
+                  <li className="flex items-center">
+                    <span className="text-green-500 mr-3 text-xl">✅</span>
+                    <span><strong className="text-green-400">Запазвате 30%</strong> като печалба</span>
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-green-500 mr-3 text-xl">✅</span>
+                    <span>Пълен контрол над клиентите</span>
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-green-500 mr-3 text-xl">✅</span>
+                    <span>Директни поръчки към вас</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          {/* Simplified CTA Bridge */}
+          <div className="text-center">
+            <div className="bg-gradient-to-r from-yellow-400/10 to-green-400/10 border border-yellow-400/30 rounded-2xl p-8">
+              <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
+                Безплатният калкулатор показва
+              </h3>
+              <div className="grid md:grid-cols-3 gap-6 text-center">
+                <div>
+                  <div className="text-3xl mb-2">💰</div>
+                  <p className="text-green-400 font-bold">Точната сума</p>
+                  <p className="text-sm text-gray-300">която губите месечно</p>
+                </div>
+                <div>
+                  <div className="text-3xl mb-2">📋</div>
+                  <p className="text-green-400 font-bold">Персонализиран план</p>
+                  <p className="text-sm text-gray-300">за 90-дневно освобождаване</p>
+                </div>
+                <div>
+                  <div className="text-3xl mb-2">⚡</div>
+                  <p className="text-green-400 font-bold">Система за директни поръчки</p>
+                  <p className="text-sm text-gray-300">която се изплаща за 2 месеца</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -245,28 +270,45 @@ export default function GlovoCalculatorLandingOptimized() {
         <SocialProofSection />
       </Suspense>
 
-      {/* Problem Section - Server rendered */}
-      <ProblemSection />
+      {/* Streamlined Problem-Solution Section - 2025 Optimized */}
+      <ProblemSolutionSection />
 
-      {/* Solution Preview Section - Server rendered */}
-      <SolutionPreviewSection />
-
-      {/* Calculator Form - Streamed after other content */}
-      <section id="calculator" className="py-16 bg-gradient-to-b from-gray-900 to-black">
+      {/* 2025 Enhanced Calculator CTA Section */}
+      <section id="calculator" className="py-16 bg-gradient-to-br from-yellow-900/10 via-black to-green-900/10">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              Безплатен Glovo Калкулатор
-            </h2>
-            <p className="text-xl text-gray-300">
-              Получете персонализиран анализ за 90 секунди
+          {/* Modern CTA Header */}
+          <div className="text-center mb-12">
+            <div className="relative inline-block">
+              <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/30 to-green-400/30 rounded-3xl blur-2xl"></div>
+              <h2 className="relative text-4xl md:text-6xl font-bold text-white mb-6 px-8 py-4">
+                🧮 <span className="bg-gradient-to-r from-yellow-400 to-green-400 bg-clip-text text-transparent">Безплатен</span> Калкулатор
+              </h2>
+            </div>
+            <p className="text-xl md:text-2xl text-gray-300 mb-4">
+              Вижте точно колко губите всеки месец
             </p>
+            <div className="flex justify-center items-center gap-4 text-green-400">
+              <span className="text-2xl">⚡</span>
+              <span className="font-semibold">90 секунди</span>
+              <span>•</span>
+              <span className="text-2xl">🎯</span>
+              <span className="font-semibold">Персонализиран анализ</span>
+              <span>•</span>
+              <span className="text-2xl">🆓</span>
+              <span className="font-semibold">100% безплатно</span>
+            </div>
           </div>
           
+          {/* Enhanced Form Container */}
           <div className="max-w-2xl mx-auto">
-            <Suspense fallback={<FormLoading />}>
-              <GlovoStepFormOptimized />
-            </Suspense>
+            <div className="relative">
+              <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/20 to-green-400/20 rounded-3xl blur-xl"></div>
+              <div className="relative">
+                <Suspense fallback={<FormLoading />}>
+                  <GlovoStepFormOptimized />
+                </Suspense>
+              </div>
+            </div>
           </div>
         </div>
       </section>

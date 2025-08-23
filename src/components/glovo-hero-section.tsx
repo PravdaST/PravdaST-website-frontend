@@ -30,34 +30,37 @@ export const GlovoHeroSection = () => {
           className="text-center max-w-6xl mx-auto"
         >
           <motion.h1
-            className="text-4xl sm:text-6xl md:text-7xl font-bold mb-6 leading-tight"
+            className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2 }}
           >
-            <span className="text-red-500">
-              Спрете да плащате на Glovo 30%
+            <span className="text-red-500 animate-pulse">
+              Спрете да загубвате
+            </span>
+            <br />
+            <span className="bg-gradient-to-r from-red-400 via-red-500 to-red-600 bg-clip-text text-transparent font-black text-5xl sm:text-7xl md:text-8xl">
+              30%
             </span>
             <br />
             <span className="text-white">
-              - Този ресторант в София спести
-            </span>
-            <br />
-            <span className="bg-gradient-to-r from-green-400 to-yellow-400 bg-clip-text text-transparent">
-              1,400 лв/месец
+              от приходите си всеки месец
             </span>
           </motion.h1>
 
-          <motion.p
-            className="text-xl md:text-2xl text-gray-300 mb-8 max-w-4xl mx-auto leading-relaxed"
+          <motion.div
+            className="mb-8 max-w-4xl mx-auto"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <strong className="text-green-400">Безплатен калкулатор:</strong>{" "}
-            Вижте точно колко ви струва Glovo месечно + получете
-            персонализиран план за освобождаване
-          </motion.p>
+            <p className="text-2xl md:text-3xl text-white mb-4 font-semibold">
+              Безплатен <span className="bg-gradient-to-r from-yellow-400 to-green-400 bg-clip-text text-transparent">Glovo калкулатор</span>
+            </p>
+            <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
+              Вижте точно колко ви струва Glovo + получете персонализиран план за освобождаване за 90 дни
+            </p>
+          </motion.div>
 
           {/* Hero Visual with Generated Image */}
           <motion.div
@@ -112,19 +115,37 @@ export const GlovoHeroSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
+            className="space-y-4"
           >
             <Button
               size="lg"
-              className="bg-gradient-to-r from-yellow-400 to-green-400 text-black hover:opacity-90 px-12 py-6 text-xl font-bold shadow-2xl shadow-yellow-400/25"
+              className="group bg-gradient-to-r from-yellow-400 to-green-400 text-black hover:scale-105 transition-all duration-300 px-8 md:px-12 py-4 md:py-6 text-lg md:text-xl font-bold shadow-2xl shadow-yellow-400/25 rounded-xl"
               onClick={() =>
                 document
                   .getElementById("calculator")
                   ?.scrollIntoView({ behavior: "smooth" })
               }
             >
-              <Calculator className="mr-3 w-6 h-6" />
-              Изчисли моите Glovo разходи (Безплатно)
+              <Calculator className="mr-3 w-5 h-5 md:w-6 md:h-6 group-hover:rotate-12 transition-transform duration-300" />
+              <span className="hidden sm:inline">Изчисли моите Glovo разходи (Безплатно)</span>
+              <span className="sm:hidden">Безплатен калкулатор</span>
             </Button>
+            
+            {/* Trust Indicators */}
+            <div className="flex justify-center items-center gap-6 text-sm text-gray-400">
+              <div className="flex items-center gap-1">
+                <span className="text-green-400">✓</span>
+                <span>Без регистрация</span>
+              </div>
+              <div className="flex items-center gap-1">
+                <span className="text-green-400">✓</span>
+                <span>90 секунди</span>
+              </div>
+              <div className="flex items-center gap-1">
+                <span className="text-green-400">✓</span>
+                <span>Персонализиран анализ</span>
+              </div>
+            </div>
           </motion.div>
         </motion.div>
       </div>
