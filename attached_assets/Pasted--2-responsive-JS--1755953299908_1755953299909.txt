@@ -1,0 +1,120 @@
+Ето как можеш да направиш 2 реда с безкраен скрол на логата (отдясно наляво, responsive, без JS, чист Tailwind). Вторият ред върви с малко по-различна скорост и в обратна посока → създава плътна „стена“ от партньорски лога, която изглежда жива.
+
+1) Tailwind keyframes
+// tailwind.config.js
+module.exports = {
+  theme: {
+    extend: {
+      keyframes: {
+        marqueeL: {
+          "0%":   { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
+        marqueeR: {
+          "0%":   { transform: "translateX(-50%)" },
+          "100%": { transform: "translateX(0)" },
+        },
+      },
+      animation: {
+        "marqueeL-30": "marqueeL 30s linear infinite",
+        "marqueeL-45": "marqueeL 45s linear infinite",
+        "marqueeR-35": "marqueeR 35s linear infinite",
+        "marqueeR-50": "marqueeR 50s linear infinite",
+      },
+    },
+  },
+};
+
+2) Компонент с два реда
+// components/PartnersWall.tsx
+"use client";
+
+import Image from "next/image";
+
+const logos = [
+  { name: "Claude", src: "/partners/claude.png", width: 160, height: 48 },
+  { name: "Make", src: "/partners/make.png", width: 140, height: 48 },
+  { name: "OpenAI", src: "/partners/openai.png", width: 140, height: 48 },
+  { name: "n8n", src: "/partners/n8n.png", width: 140, height: 48 },
+  { name: "ElevenLabs", src: "/partners/elevenlabs.png", width: 160, height: 48 },
+];
+
+function LogoRow({
+  logos,
+  animation,
+}: {
+  logos: typeof logos;
+  animation: string;
+}) {
+  const loop = [...logos, ...logos]; // seamless loop
+  return (
+    <div
+      className={`
+        flex w-max gap-8 
+        ${animation}
+        motion-reduce:animate-none 
+        hover:[animation-play-state:paused]
+      `}
+      aria-hidden="true"
+    >
+      {loop.map((logo, i) => (
+        <div
+          key={i}
+          className="relative flex-shrink-0 h-16 w-[15rem] 
+                     flex items-center justify-center 
+                     glassmorphism rounded-xl p-4
+                     hover:scale-105 hover:bg-slate-700/80 transition"
+        >
+          <Image
+            src={logo.src}
+            alt={logo.name}
+            width={logo.width}
+            height={logo.height}
+            sizes="(max-width: 640px) 40vw, (max-width: 1024px) 25vw, 15rem"
+            className="h-8 w-auto object-contain grayscale group-hover:grayscale-0 transition"
+          />
+        </div>
+      ))}
+    </div>
+  );
+}
+
+export default function PartnersWall() {
+  return (
+    <section className="relative mx-auto max-w-6xl px-6">
+      {/* заглавие */}
+      <div className="text-center mb-8">
+        <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full glassmorphism">
+          <span className="w-2 h-2 rounded-full bg-[#ECB629] animate-pulse" />
+          <span className="text-[#ECB629] font-semibold text-sm">
+            ПАРТНЬОРИ И ТЕХНОЛОГИИ
+          </span>
+        </div>
+      </div>
+
+      {/* два реда с различна посока */}
+      <div className="space-y-6 overflow-hidden relative">
+        <LogoRow logos={logos} animation="animate-marqueeL-30 sm:animate-marqueeL-45" />
+        <LogoRow logos={logos} animation="animate-marqueeR-35 sm:animate-marqueeR-50" />
+      </div>
+
+      {/* fade маски */}
+      <div className="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-[#0D0D0F] to-transparent" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-[#0D0D0F] to-transparent" />
+    </section>
+  );
+}
+
+🔑 Какво получаваш
+
+∞ скрол отдясно наляво (първи ред) + наляво → дясно (втори ред).
+
+Seamless loop с дублиране на масива.
+
+Responsive скорост: мобилно по-бавно (-45s, -50s), десктоп по-бързо (-30s, -35s).
+
+Pause on hover: удобно UX.
+
+Respect reduced motion: няма анимация, ако потребителят е изключил motion.
+
+Zero JS логика → чиста CSS/Tailwind анимация.
