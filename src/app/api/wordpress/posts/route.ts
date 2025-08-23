@@ -6,7 +6,7 @@ export const revalidate = 3600;
 
 export async function GET(request: NextRequest) {
   try {
-    const { searchParams } = request.nextUrl
+    const { searchParams } = new URL(request.url)
     const page = parseInt(searchParams.get('page') || '1')
     const search = searchParams.get('search')
     const category = searchParams.get('category')
