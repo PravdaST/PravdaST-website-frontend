@@ -1,7 +1,13 @@
+import { Metadata } from 'next'
 import { Suspense } from "react";
+import { getCampaignGlovoMetadata } from './metadata'
 import { GlovoHeroSection } from "@/components/glovo-hero-section";
 import { FooterServer } from "@/components/footer-server";
 import { GlovoStepFormOptimized } from "@/components/glovo-step-form-optimized";
+
+export async function generateMetadata(): Promise<Metadata> {
+  return await getCampaignGlovoMetadata()
+}
 import {
   CheckCircle,
   Phone,
