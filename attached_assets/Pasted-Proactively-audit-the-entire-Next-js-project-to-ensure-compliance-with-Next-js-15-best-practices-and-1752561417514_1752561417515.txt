@@ -1,0 +1,49 @@
+Proactively audit the entire Next.js project to ensure compliance with Next.js 15 best practices and fix common migration issues before deployment. Your focus is on API Routes, TypeScript types, and modern conventions.
+
+Instructions:
+
+1. Audit All API Route Handlers:
+
+Action: Scan all files located in src/app/api/.
+
+Check 1 (Dynamic Routes): For every file inside a dynamic folder (e.g., [slug]/route.ts or [id]/route.ts), inspect the function signature of all exported HTTP methods (GET, POST, PUT, DELETE).
+
+Verification: The second argument must be destructured and typed correctly.
+
+Correct Pattern: (request: NextRequest, { params }: { params: { slug: string } })
+
+Incorrect Pattern: (request: Request, params: any), (request: Request, { params }: { slug: string })
+
+Fix: If an incorrect pattern is found, automatically refactor it to the correct one.
+
+2. Scan for Deprecated Request Properties:
+
+Action: Search across all server-side files (especially in src/app/api/).
+
+Check 2: Look for the usage of request.ip and request.geo.
+
+Verification: These properties are deprecated and do not exist on the NextRequest object in modern environments like Vercel.
+
+Fix: If request.ip is found, replace it with request.headers.get('x-forwarded-for'). If you need a more robust solution, create a helper function getIpAddress(request) that checks multiple headers (x-forwarded-for, x-real-ip) and import it where needed.
+
+3. Audit Third-Party Script Components (e.g., Meta Pixel, Analytics):
+
+Action: Scan files inside src/components/ or src/lib/ that seem related to third-party scripts (e.g., meta-pixel.tsx, google-analytics.tsx).
+
+Check 3: Look for manual TypeScript global declarations like declare global { interface Window { ... } }.
+
+Verification: This is often a source of type conflicts.
+
+Fix:
+
+Check package.json to see if the corresponding @types/... package is installed (e.g., @types/facebook-pixel).
+
+If it's not installed, add it to devDependencies with npm install --save-dev @types/....
+
+Remove the manual declare global block from the component file.
+
+Refactor the component to use standard React hooks (useState for loading state, useEffect for tracking events) instead of attaching custom properties directly to the window object.
+
+4. Final Report:
+
+After completing the audit and applying fixes, provide a summary of all changes made, listing each file that was modified and the reason for the change.

@@ -1,5 +1,4 @@
 import axios from 'axios'
-import { getCachedData, setCachedData } from './wordpress-cache'
 
 const WORDPRESS_BASE_URL = 'https://admin.pravdagency.eu'
 const WP_API_BASE = `${WORDPRESS_BASE_URL}/wp-json/wp/v2`
@@ -71,15 +70,6 @@ export async function getWordPressPosts(params: {
   orderby?: 'date' | 'title' | 'relevance'
   order?: 'asc' | 'desc'
 } = {}): Promise<{ posts: WordPressPost[], totalPages: number, total: number }> {
-  // Create cache key from parameters
-  const cacheKey = `wp_posts_${JSON.stringify(params)}`;
-  
-  // Try to get from cache first
-  const cachedResult = getCachedData(cacheKey);
-  if (cachedResult) {
-    return cachedResult;
-  }
-
   try {
     const queryParams = {
       page: params.page || 1,
@@ -91,16 +81,11 @@ export async function getWordPressPosts(params: {
 
     const response = await wpClient.get('/posts', { params: queryParams })
     
-    const result = {
+    return {
       posts: response.data,
       totalPages: parseInt(response.headers['x-wp-totalpages'] || '1'),
       total: parseInt(response.headers['x-wp-total'] || '0')
-    };
-    
-    // Cache for 60 minutes
-    setCachedData(cacheKey, result, 60);
-    
-    return result;
+    }
   } catch (error) {
     console.error('WordPress API Error:', error)
     throw new Error('Failed to fetch WordPress posts')
@@ -108,12 +93,6 @@ export async function getWordPressPosts(params: {
 }
 
 export async function getWordPressPost(slug: string): Promise<WordPressPost | null> {
-  const cacheKey = `wp_post_${slug}`;
-  const cachedResult = getCachedData(cacheKey);
-  if (cachedResult) {
-    return cachedResult;
-  }
-
   try {
     const response = await wpClient.get('/posts', {
       params: {
@@ -123,9 +102,7 @@ export async function getWordPressPost(slug: string): Promise<WordPressPost | nu
       }
     })
 
-    const result = response.data.length > 0 ? response.data[0] : null;
-    setCachedData(cacheKey, result, 120); // Cache for 2 hours
-    return result;
+    return response.data.length > 0 ? response.data[0] : null
   } catch (error) {
     console.error('WordPress API Error:', error)
     return null
@@ -133,12 +110,6 @@ export async function getWordPressPost(slug: string): Promise<WordPressPost | nu
 }
 
 export async function getWordPressCategories(): Promise<WordPressCategory[]> {
-  const cacheKey = 'wp_categories';
-  const cachedResult = getCachedData(cacheKey);
-  if (cachedResult) {
-    return cachedResult;
-  }
-
   try {
     const response = await wpClient.get('/categories', {
       params: {
@@ -148,8 +119,7 @@ export async function getWordPressCategories(): Promise<WordPressCategory[]> {
       }
     })
 
-    setCachedData(cacheKey, response.data, 240); // Cache categories for 4 hours
-    return response.data;
+    return response.data
   } catch (error) {
     console.error('WordPress API Error:', error)
     return []

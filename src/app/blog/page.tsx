@@ -46,5 +46,6 @@ export const metadata: Metadata = {
 
 // Server компонент за инициализиране на данните
 export default function BlogPage() {
-  return <BlogClient />;
+  // Прехвърляме всички данни към client компонента чрез API endpoint
+  return <BlogClient />
 }

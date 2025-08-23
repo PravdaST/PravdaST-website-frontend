@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="120" height="80" viewBox="0 0 120 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="120" height="80" rx="8" fill="#4FC3F7"/>
-  <rect x="40" y="25" width="40" height="30" rx="4" fill="#FFF" stroke="#000" stroke-width="2"/>
-  <text x="60" y="62" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#000">
-    ICE TUB CO
-  </text>
-</svg>

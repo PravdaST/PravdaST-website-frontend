@@ -1,15 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getWordPressPosts, searchWordPressPosts } from '@/lib/wordpress'
 
-// Use Node.js runtime for dynamic API routes
-export const dynamic = 'force-dynamic';
-
-// Next.js caching configuration - Cache for 1 hour to reduce WordPress API calls
-export const revalidate = 3600;
-
 export async function GET(request: NextRequest) {
   try {
-    const { searchParams } = request.nextUrl
+    const { searchParams } = new URL(request.url)
     const page = parseInt(searchParams.get('page') || '1')
     const search = searchParams.get('search')
     const category = searchParams.get('category')

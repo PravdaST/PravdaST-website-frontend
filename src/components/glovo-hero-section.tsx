@@ -8,16 +8,16 @@ import Image from "next/image";
 export const GlovoHeroSection = () => {
   return (
     <section className="relative py-20 overflow-hidden">
-      {/* Mobile-optimized Background - reduced blur on mobile */}
+      {/* Animated Background - GLOVO colors */}
       <div className="absolute inset-0 pointer-events-none">
         <motion.div
-          className="absolute top-20 left-10 w-32 h-32 md:w-72 md:h-72 bg-yellow-400/20 rounded-full blur-xl md:blur-3xl"
-          animate={{ x: [0, 50, 0], y: [0, -25, 0] }}
+          className="absolute top-20 left-10 w-72 h-72 bg-yellow-400/20 rounded-full blur-3xl"
+          animate={{ x: [0, 100, 0], y: [0, -50, 0] }}
           transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
         />
         <motion.div
-          className="absolute bottom-20 right-10 w-48 h-48 md:w-96 md:h-96 bg-green-500/15 rounded-full blur-xl md:blur-3xl"
-          animate={{ x: [0, -40, 0], y: [0, 30, 0] }}
+          className="absolute bottom-20 right-10 w-96 h-96 bg-green-500/15 rounded-full blur-3xl"
+          animate={{ x: [0, -80, 0], y: [0, 60, 0] }}
           transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
         />
       </div>
@@ -67,17 +67,16 @@ export const GlovoHeroSection = () => {
             transition={{ duration: 0.8, delay: 0.6 }}
           >
             <div className="glassmorphism border border-yellow-400/30 rounded-2xl p-6 mb-8">
-              <div className="relative aspect-[16/9] w-full overflow-hidden rounded-xl">
-                <Image
-                  src="/images/glovo/Glovo_commission_comparison_visual_16961ca4.png"
-                  alt="GLOVO комисионни срещу спестени пари - визуално сравнение"
-                  fill
-                  priority
-                  quality={85}
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 800px, 1200px"
-                  className="object-contain"
-                />
-              </div>
+              <Image
+                src="/images/glovo/Glovo_commission_comparison_visual_16961ca4.png"
+                alt="GLOVO комисионни срещу спестени пари - визуално сравнение"
+                width={800}
+                height={450}
+                className="w-full h-auto rounded-xl"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 800px, 1200px"
+                quality={90}
+                priority
+              />
             </div>
 
             <div className="grid md:grid-cols-2 gap-8">

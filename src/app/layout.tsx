@@ -14,8 +14,6 @@ import { ServiceWorkerSetup } from '@/components/service-worker-setup'
 import { Toaster } from '@/components/ui/toaster'
 import { Navigation } from '@/components/navigation'
 import { BackgroundEffects } from '@/components/background-effects'
-import { OrganizationSchema } from '@/components/json-ld-schema'
-import { CriticalCSS } from '@/components/critical-css'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -71,7 +69,6 @@ export default function RootLayout({
           <ClarityAnalytics />
           <RetargetingPixels />
           <ServiceWorkerSetup />
-          <OrganizationSchema />
         </ClientOnly>
         {children}
         <ClientOnly>

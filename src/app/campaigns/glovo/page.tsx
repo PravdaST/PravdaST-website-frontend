@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import { GlovoHeroSection } from "@/components/glovo-hero-section";
 import { FooterServer } from "@/components/footer-server";
-import { GlovoStepForm } from "@/components/glovo-step-form";
+import { GlovoStepFormOptimized } from "@/components/glovo-step-form-optimized";
 import {
   CheckCircle,
   Phone,
@@ -237,7 +237,7 @@ function SolutionPreviewSection() {
 export default function GlovoCalculatorLandingOptimized() {
   return (
     <div className="min-h-screen bg-black text-white">
-      {/* Hero Section - Mobile optimized with CLS prevention */}
+      {/* Hero Section - Loads immediately (priority) */}
       <GlovoHeroSection />
 
       {/* Social Proof Section - Server rendered */}
@@ -265,7 +265,7 @@ export default function GlovoCalculatorLandingOptimized() {
           
           <div className="max-w-2xl mx-auto">
             <Suspense fallback={<FormLoading />}>
-              <GlovoStepForm />
+              <GlovoStepFormOptimized />
             </Suspense>
           </div>
         </div>

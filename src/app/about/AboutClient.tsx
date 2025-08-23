@@ -272,14 +272,14 @@ export default function AboutClient() {
           <div className="container mx-auto px-6 relative z-1">
             <motion.div
               className="max-w-4xl mx-auto text-center"
-              initial={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
             >
               {/* Status Badge */}
               <motion.div
                 className="inline-flex items-center gap-3 mb-8 px-6 py-3 rounded-full glassmorphism"
-                initial={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
@@ -297,7 +297,7 @@ export default function AboutClient() {
 
               <motion.h1
                 className="text-5xl md:text-6xl font-bold mb-6 text-white"
-                initial={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
               >

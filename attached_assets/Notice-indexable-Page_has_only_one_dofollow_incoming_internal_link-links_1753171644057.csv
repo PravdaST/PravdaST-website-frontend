@@ -1,0 +1,4 @@
+Link type,Is nofollow,Source URL,Source HTTP status code,Target URL,Target HTTP status code,Anchor,No. of dofollow inlinks to target,No. of nofollow inlinks to target,Is source canonical,Is source noindex,Is target canonical,Is target noindex,Is link internal
+Href link,false,https://www.pravdagency.eu/blog,200,https://www.pravdagency.eu/blog/clickstarter-optimizatsiya-onlain-reklami,200,Прочети статията,1,0,true,false,true,false,true
+Href link,false,https://www.pravdagency.eu/blog,200,https://www.pravdagency.eu/blog/biznes-inzhenerstvo-predvidim-rastezh,200,Прочети статията,1,0,true,false,true,false,true
+Href link,false,https://www.pravdagency.eu/blog,200,https://www.pravdagency.eu/blog/trendlab-izgrazhdane-avtoritet-sdarzhanie,200,Прочети статията,1,0,true,false,true,false,true

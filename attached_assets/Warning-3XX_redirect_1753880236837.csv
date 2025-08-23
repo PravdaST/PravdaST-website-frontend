@@ -1,0 +1,8 @@
+PR,URL,Title,Content type,Is rendered page,HTTP status code,Organic traffic,Redirect chain URLs,Redirect chain URLs codes,Is redirect loop,No. of all inlinks,No. of redirect inlinks,First found at
+1,https://pravdagency.eu/,,text/plain,false,307,0,https://www.pravdagency.eu/,200,false,1,1,
+0,http://www.pravdagency.eu/,,text/plain,false,308,0,https://www.pravdagency.eu/,200,false,0,0,
+0,https://pravdagency.eu/robots.txt,,text/plain,false,307,0,https://www.pravdagency.eu/robots.txt,200,false,0,0,
+0,https://pravdagency.eu/sitemap.xml,,text/plain,false,307,0,https://www.pravdagency.eu/sitemap.xml,200,false,0,0,
+0,http://pravdagency.eu/,,text/plain,false,308,0,"https://pravdagency.eu/
+https://www.pravdagency.eu/","307
+200",false,0,0,

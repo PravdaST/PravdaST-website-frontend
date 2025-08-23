@@ -10,7 +10,7 @@ import { ProcessSection } from '@/components/process-section'
 import { SystemsSection } from '@/components/systems-section'
 import { CaseStudiesSlider } from '@/components/case-studies-new'
 import { CTASection } from '@/components/cta-section'
-import { Footer } from '@/components/footer'
+import { FooterServer } from '@/components/footer-server'
 import { HelmetSEO } from '@/components/seo-helmet'
 import { pageSEOData } from '@/data/seo-pages'
 import { tracking, ConversionStage } from '@/lib/tracking'
@@ -35,7 +35,7 @@ export default function HomeClient() {
       <SystemsSection />
       <CaseStudiesSlider />
       <CTASection />
-      <Footer />
+      <FooterServer />
     </div>
   );
 }
