@@ -55,7 +55,7 @@ export default function HomeClient() {
       <HelmetSEO seo={seoData} pageSlug="" />
       <Navigation />
       <HeroSection />
-      <PartnersCarousel />
+      {/* <PartnersCarousel /> */}
       <ProblemSection />
       <SolutionSection />
       <ProcessSection />

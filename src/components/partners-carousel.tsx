@@ -1,120 +1,47 @@
 'use client'
 
-import { motion } from "framer-motion";
-
 const partners = [
-  {
-    name: "Claude",
-    logo: "https://framerusercontent.com/images/m2Ee8qVNaUq1p30JNXzf87wtGZ4.png",
-  },
-  {
-    name: "Make",
-    logo: "https://framerusercontent.com/images/n3QeCgxiERZtWGL7E7mRbFJGPU.png",
-  },
-  {
-    name: "Open AI",
-    logo: "https://framerusercontent.com/images/Bcly3ML9TcmNxDC5rKCRKuvqODI.png",
-  },
-  {
-    name: "N8N",
-    logo: "https://framerusercontent.com/images/o3i1Dnx2WxItzPkcePIqvEQOFU.png",
-  },
-  {
-    name: "Elevenlabs",
-    logo: "https://framerusercontent.com/images/aEfuAatqNA9OPAwEZa6f4GuCgU.png",
-  },
+  { name: "Claude", logo: "https://framerusercontent.com/images/m2Ee8qVNaUq1p30JNXzf87wtGZ4.png" },
+  { name: "Make", logo: "https://framerusercontent.com/images/n3QeCgxiERZtWGL7E7mRbFJGPU.png" },
+  { name: "OpenAI", logo: "https://framerusercontent.com/images/Bcly3ML9TcmNxDC5rKCRKuvqODI.png" },
+  { name: "N8N", logo: "https://framerusercontent.com/images/o3i1Dnx2WxItzPkcePIqvEQOFU.png" },
+  { name: "Elevenlabs", logo: "https://framerusercontent.com/images/aEfuAatqNA9OPAwEZa6f4GuCgU.png" },
 ];
 
 export const PartnersCarousel = () => {
   return (
-    <section className="py-12 sm:py-16 relative overflow-hidden">
-      {/* Animated Tech Background */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute inset-0">
-          {/* Trust Pattern */}
-          <div className="absolute inset-0" style={{
-            backgroundImage: `
-              radial-gradient(circle at 2px 2px, rgba(236, 182, 40, 0.2) 1px, transparent 0)
-            `,
-            backgroundSize: '60px 60px'
-          }}></div>
-          
-          {/* Partnership Lines - CSS optimized */}
-          {[...Array(3)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute w-full h-px bg-gradient-to-r from-transparent via-[#ECB629] to-transparent animate-pulse opacity-20"
-              style={{
-                top: `${30 + i * 20}%`,
-                willChange: 'opacity',
-                animationDelay: `${i * 1000}ms`,
-                animationDuration: '4000ms'
-              }}
-            />
-          ))}
-        </div>
-      </div>
-
-      <div className="container mx-auto px-6 relative z-10">
-        <motion.div 
-          className="text-center mb-12"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          <motion.div
-            className="inline-flex items-center gap-3 mb-6 px-6 py-3 rounded-full glassmorphism"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
+    <section className="py-12 sm:py-16">
+      <div className="container mx-auto px-6">
+        <div className="text-center mb-12">
+          <div className="inline-flex items-center gap-3 mb-6 px-6 py-3 rounded-full glassmorphism">
             <div className="w-2 h-2 bg-[#ECB629] rounded-full animate-pulse" />
             <span className="text-[#ECB629] font-semibold text-sm">
               ПАРТНЬОРИ И ТЕХНОЛОГИИ
             </span>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
 
-        {/* Continuous Logo Carousel */}
         <div className="relative max-w-6xl mx-auto overflow-hidden">
-          <div className="flex">
-            {/* First Set */}
-            <motion.div
-              className="flex min-w-full gap-8 justify-between items-center"
-              animate={{
-                x: [0, -1200], // Move one full width
-              }}
-              transition={{
-                duration: 12,
-                repeat: Infinity,
-                ease: "linear",
-              }}
-            >
-              {[...partners, ...partners].map((partner, index) => (
-                <div
-                  key={`first-${index}`}
-                  className="relative group flex-shrink-0 w-60 h-20 flex items-center justify-center glassmorphism rounded-xl p-4 hover:scale-105 hover:bg-slate-700/80 transition-all duration-300"
-                  style={{ willChange: 'transform' }}
-                >
-                  <img
-                    src={partner.logo}
-                    alt={partner.name}
-                    className="h-8 object-contain filter grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-300"
-                    loading="lazy"
-                  />
-                  
-                  {/* Hover Glow Effect */}
-                  <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-[#ECB629]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                </div>
-              ))}
-            </motion.div>
+          <div className="flex gap-8 animate-infinite-scroll">
+            {partners.map((partner, index) => (
+              <div
+                key={index}
+                className="relative group flex-shrink-0 w-60 h-20 flex items-center justify-center glassmorphism rounded-xl p-4 hover:scale-105 hover:bg-slate-700/80 transition-all duration-300"
+              >
+                <img
+                  src={partner.logo}
+                  alt={partner.name}
+                  className="h-8 object-contain filter grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-300"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-[#ECB629]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              </div>
+            ))}
           </div>
 
           {/* Gradient Fade Edges */}
-          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#0D0D0F] to-transparent z-10"></div>
-          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#0D0D0F] to-transparent z-10"></div>
+          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#0D0D0F] to-transparent z-10" />
+          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#0D0D0F] to-transparent z-10" />
         </div>
       </div>
     </section>
