@@ -6,9 +6,9 @@ export const revalidate = 3600
 export const dynamic = 'force-static'
 
 export const metadata: Metadata = {
-  title: 'Политика за поверителност - Pravda Agency | Privacy Policy',
-  description: 'Политика за поверителност на Pravda Agency. Как защитаваме личните ви данни при използване на нашите бизнес инженеринг услуги.',
-  keywords: 'политика за поверителност pravda agency, privacy policy, защита на данни, GDPR, лични данни, бизнес услуги',
+  title: 'Поверителност | Защитаваме данните си като инженери',
+  description: 'Нашата политика за поверителност е системна и прозрачна. Защитаваме данните ви като инженери - не като маркетинг агенции.',
+  keywords: 'поверителност системи, данни като инженери, privacy policy pravda, защита маркетинг данни, GDPR инженеринг, бизнес сигурност',
   openGraph: {
     title: 'Политика за поверителност - Pravda Agency | Privacy Policy',
     description: 'Политика за поверителност на Pravda Agency. Как защитаваме личните ви данни при използване на нашите бизнес инженеринг услуги.',

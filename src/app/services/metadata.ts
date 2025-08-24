@@ -2,8 +2,8 @@
 import { Metadata } from 'next'
 
 export const servicesMetadata: Metadata = {
-  title: "Услуги - Pravda ST | SEO, Съдържание, Реклами, CRM",
-  description: "Проверени бизнес системи за растеж: SEO Struktor™, Trendlab™, Clickstarter™, Clientomat™. Измерими резултати за българските компании.",
+  title: "4 Системи за растеж | Край на маркетинг експериментите",
+  description: "Уморен от маркетинг тактики без резултат? Ето 4 проверени системи които работят: SEO Struktor™, Trendlab™, Clickstarter™, Clientomat™.",
   openGraph: {
     type: 'website',
     locale: 'bg_BG',
@@ -29,8 +29,8 @@ export const servicesMetadata: Metadata = {
 }
 
 export const seoStruktorMetadata: Metadata = {
-  title: "SEO Struktor™ - Pravda ST | Система за онлайн доминация",
-  description: "SEO Struktor™ - проверена система за първи позиции в Google. Технически SEO, качествено съдържание, постоянна оптимизация. От 1980 лв/месец.",
+  title: "SEO Struktor™ | Забрави маркетинг тактиките - ето система",
+  description: "Забрави маркетинг тактиките за SEO. SEO Struktor™ е първата инженерна система за доминация в Google. Проверено в България.",
   openGraph: {
     type: 'website',
     locale: 'bg_BG', 
@@ -56,8 +56,8 @@ export const seoStruktorMetadata: Metadata = {
 }
 
 export const trendlabMetadata: Metadata = {
-  title: "Trendlab™ - Pravda ST | Съдържание и авторитет",
-  description: "Trendlab™ - създаване на видео съдържание и управление на социални канали. Позиционира ви като експерт. От 3450 лв/месец.",
+  title: "Trendlab™ | Стани авторитет без рекламни бюджети",
+  description: "Да харчиш за маркетинг или да станеш авторитет? Trendlab™ те позиционира като експерт чрез съдържание и автоматизации.",
   openGraph: {
     type: 'website',
     locale: 'bg_BG',
@@ -83,8 +83,8 @@ export const trendlabMetadata: Metadata = {
 }
 
 export const clickstarterMetadata: Metadata = {
-  title: "Clickstarter™ - Pravda ST | Система за ускорен растеж",
-  description: "Clickstarter™ - прецизно насочване към аудитория и ясно измерване на възвръщаемост от реклами. От 1570 лв/месец.",
+  title: "Clickstarter™ | Реклами които работят като машина",
+  description: "Пробвал ли си всички маркетинг гурута? Clickstarter™ прави рекламите измерими и предвидими - инженерно точни.",
   openGraph: {
     type: 'website',
     locale: 'bg_BG',
@@ -110,8 +110,8 @@ export const clickstarterMetadata: Metadata = {
 }
 
 export const clientomatMetadata: Metadata = {
-  title: "Clientomat™ - Pravda ST | Автоматизация на клиенти",
-  description: "Clientomat™ - автоматизиране на комуникация с клиенти и персонализиран път за увеличение на продажбите. От 2750 лв/месец.",
+  title: "Clientomat™ | Клиенти идват сами докато спиш",
+  description: "Омразно ти е да гониш клиенти с маркетинг фокуси? Clientomat™ автоматизира целия процес - от първи контакт до продажба.",
   openGraph: {
     type: 'website',
     locale: 'bg_BG',
@@ -137,8 +137,8 @@ export const clientomatMetadata: Metadata = {
 }
 
 export const blogMetadata: Metadata = {
-  title: "Блог - Pravda ST | Бизнес инженеринг и растеж",
-  description: "Експертни статии за бизнес инженеринг, SEO оптимизация, дигитален маркетинг и растеж на компанията. Практически съвети и казуси.",
+  title: "Бизнес блог | Инженеринг вместо маркетинг митове",
+  description: "Разкриваме какво наистина работи в бизнеса. Без маркетинг приказки - само проверени системи и реални резултати от практиката.",
   openGraph: {
     type: 'website',
     locale: 'bg_BG',
@@ -164,8 +164,8 @@ export const blogMetadata: Metadata = {
 }
 
 export const aboutMetadata: Metadata = {
-  title: "За нас - Pravda Agency | Бизнес инженери за растеж",
-  description: "Запознайте се с екипа на Pravda Agency - експерти в бизнес инженеринг, които помагат на българските компании да постигат предвидим растеж.",
+  title: "Екип | Не маркетолози, а бизнес инженери",
+  description: "Ние не правим маркетинг кампании - строим системи. Запознай се с екипа който превръща бизнес хаоса в предвидими резултати.",
   openGraph: {
     type: 'website', 
     locale: 'bg_BG',

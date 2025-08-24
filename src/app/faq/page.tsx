@@ -6,9 +6,9 @@ export const revalidate = 600
 export const dynamic = 'force-static'
 
 export const metadata: Metadata = {
-  title: 'Често задавани въпроси - Pravda Agency | FAQ',
-  description: 'Отговори на най-честите въпроси за нашите бизнес системи, цени, сроки и процеси. Научете повече за SEO Struktor™, Trendlab™, Clickstarter™ и Clientomat™.',
-  keywords: 'faq pravda agency, въпроси отговори, цени услуги, процеси, бизнес системи',
+  title: 'Въпроси | Всичко за системите вместо маркетинг',
+  description: 'Всичко което искате да знаете за бизнес системите. Как се разграничават от маркетинг услугите, цени, процеси и резултати.',
+  keywords: 'faq въпроси системи, цени бизнес инженеринг, процеси автоматизация, pravda agency българия, системи vs маркетинг',
   openGraph: {
     title: 'Често задавани въпроси - Pravda Agency | FAQ',
     description: 'Отговори на най-честите въпроси за нашите бизнес системи, цени, сроки и процеси. Научете повече за SEO Struktor™, Trendlab™, Clickstarter™ и Clientomat™.',

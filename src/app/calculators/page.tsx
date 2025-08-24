@@ -2,9 +2,9 @@ import { Metadata } from 'next'
 import CalculatorsClient from './CalculatorsClient'
 
 export const metadata: Metadata = {
-  title: 'ROI Калкулатори - Pravda Agency | Изчислете печалбата',
-  description: 'Интерактивни калкулатори за ROI на SEO Struktor™, Trendlab™, Clickstarter™ и Clientomat™. Изчислете точната печалба от нашите бизнес инженеринг системи.',
-  keywords: 'roi калкулатор, seo калкулатор, печалба от маркетинг, бизнес калкулатор, pravda agency, системи за растеж',
+  title: 'ROI Калкулатори | Колко струва маркетинг хаосът?',
+  description: 'Изчисли точно колко губиш от несистематичен маркетинг. Сравни с ROI от инженерните ни системи - разликата шокира.',
+  keywords: 'roi калкулатор, маркетинг хаос, печалба от системи, бизнес калкулатор, pravda agency, инженерни системи',
   openGraph: {
     title: 'ROI Калкулатори - Pravda Agency | Изчислете печалбата',
     description: 'Интерактивни калкулатори за ROI на SEO Struktor™, Trendlab™, Clickstarter™ и Clientomat™. Изчислете точната печалба от нашите бизнес инженеринг системи.',
