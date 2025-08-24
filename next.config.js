@@ -29,6 +29,15 @@ const nextConfig = {
     reactCompiler: process.env.NEXT_PUBLIC_FLAG_REACT_COMPILER === '1',
     ppr: process.env.NEXT_PUBLIC_FLAG_PPR === '1',
   },
+  async redirects() {
+    return [
+      {
+        source: '/za-nas',
+        destination: 'https://www.pravdast.agency/about',
+        permanent: true,
+      },
+    ]
+  },
   async headers() {
     return [
       {
