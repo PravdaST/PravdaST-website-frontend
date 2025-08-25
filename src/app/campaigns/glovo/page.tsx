@@ -3,7 +3,7 @@ import { Suspense } from "react";
 import { getCampaignGlovoMetadata } from './metadata'
 import { GlovoHeroSection } from "@/components/glovo-hero-section";
 import { FooterServer } from "@/components/footer-server";
-import { GlovoStepFormOptimized } from "@/components/glovo-step-form-optimized";
+import { GlovoStepFormModernized } from "@/components/glovo-step-form-modernized";
 
 export async function generateMetadata(): Promise<Metadata> {
   return await getCampaignGlovoMetadata()
@@ -227,28 +227,24 @@ function ProblemAgitationSection() {
             <div className="grid md:grid-cols-2 gap-6">
               {[
                 {
-                  icon: "❌",
                   title: "Клиентите ви стават ТЕХНИ клиенти",
                   description: "никога не получавате контактите им"
                 },
                 {
-                  icon: "❌", 
                   title: "Една лоша Glovo оценка съсипва рейтинга ви",
                   description: "в цялата платформа"
                 },
                 {
-                  icon: "❌",
                   title: "Конкурирате с 50+ ресторанта",
                   description: "в същото приложение"
                 },
                 {
-                  icon: "❌",
                   title: "Могат да променят комисионните",
                   description: "по всяко време (и го правят)"
                 }
               ].map((item, index) => (
                 <div key={index} className="flex items-start space-x-4">
-                  <span className="text-2xl">{item.icon}</span>
+                  <div className="w-2 h-2 bg-red-400 rounded-full mt-2 flex-shrink-0" />
                   <div>
                     <h4 className="text-red-400 font-bold text-lg mb-1">{item.title}</h4>
                     <p className="text-gray-300 text-sm">({item.description})</p>
@@ -417,27 +413,22 @@ function SolutionPreviewSection() {
           <div className="grid md:grid-cols-2 gap-6">
             {[
               {
-                icon: "📊",
                 title: "Точната сума която платихте на Glovo миналия месец",
                 description: "(повечето собственици подценяват с 40%)"
               },
               {
-                icon: "🗺️",
                 title: "Вашия персонализиран план за освобождаване",
                 description: "3 стъпки за намаляване на Glovo зависимостта с 60% за 90 дни"
               },
               {
-                icon: "🔧",
                 title: "Схема за система за директни поръчки",
                 description: "която се изплаща за 2 месеца със спестените комисионни"
               },
               {
-                icon: "👥",
                 title: "План за изграждане на клиентска база",
                 description: "от хора които ще поръчват директно от вас"
               },
               {
-                icon: "📈",
                 title: "Реални примери от български ресторанти",
                 description: "които удвоиха директните си поръчки"
               }
@@ -446,9 +437,9 @@ function SolutionPreviewSection() {
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-400/10 to-purple-600/10 rounded-2xl blur-lg opacity-50"></div>
                 <div className="relative bg-gray-900/70 backdrop-blur-xl border border-blue-400/20 rounded-2xl p-6">
                   <div className="flex items-start space-x-4">
-                    <div className="text-3xl">{item.icon}</div>
+                    <div className="w-2 h-2 bg-blue-400 rounded-full mt-2 flex-shrink-0" />
                     <div>
-                      <h4 className="text-blue-400 font-bold text-lg mb-2">✅ {item.title}</h4>
+                      <h4 className="text-blue-400 font-bold text-lg mb-2">{item.title}</h4>
                       <p className="text-gray-300 text-sm">{item.description}</p>
                     </div>
                   </div>
@@ -489,7 +480,9 @@ function CredibilityGuaranteeSection() {
           <div className="relative">
             <div className="absolute inset-0 bg-gradient-to-r from-green-400/20 to-emerald-600/20 rounded-3xl blur-xl opacity-50"></div>
             <div className="relative bg-gray-900/80 backdrop-blur-xl border border-green-400/30 rounded-3xl p-8 text-center">
-              <div className="text-5xl mb-4">💡</div>
+              <div className="w-12 h-12 bg-green-400/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-6 h-6 bg-green-400 rounded-full" />
+              </div>
               <h3 className="text-2xl font-bold text-green-400 mb-4">ГАРАНЦИЯ:</h3>
               <p className="text-xl text-white leading-relaxed">
                 Ако не изградите собствена клиентска база от поне 100 директни клиента за 3 месеца, 
@@ -531,7 +524,7 @@ export default function GlovoCalculatorLandingOptimized() {
             <div className="relative inline-block">
               <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/30 to-green-400/30 rounded-3xl blur-2xl"></div>
               <h2 className="relative text-3xl md:text-5xl font-bold text-white mb-6 px-4 py-4">
-                🎁 Получете <span className="bg-gradient-to-r from-yellow-400 to-green-400 bg-clip-text text-transparent">БЕЗПЛАТНИЯ си Комплект</span>
+                Получете <span className="bg-gradient-to-r from-yellow-400 to-green-400 bg-clip-text text-transparent">БЕЗПЛАТНИЯ си Комплект</span>
                 <br />
                 за Независимост на Ресторанта
               </h2>
@@ -545,13 +538,16 @@ export default function GlovoCalculatorLandingOptimized() {
               <h3 className="text-2xl font-bold text-green-400 mb-4">Какво ще получите:</h3>
               <div className="grid md:grid-cols-2 gap-4 text-left">
                 {[
-                  "✅ Персонализиран Glovo доклад за разходи - точни числа за вашия ресторант",
-                  "✅ 3-стъпков план за освобождаване за вашия тип заведение",
-                  "✅ Схема за система за директни поръчки - готова за използване",
-                  "✅ Ръководство за изграждане на клиентска база - стъпка по стъпка",
-                  "✅ БЕЗПЛАТНА 15-минутна стратегическа консултация - персонализирани съвети"
+                  "Персонализиран Glovo доклад за разходи - точни числа за вашия ресторант",
+                  "3-стъпков план за освобождаване за вашия тип заведение",
+                  "Схема за система за директни поръчки - готова за използване",
+                  "Ръководство за изграждане на клиентска база - стъпка по стъпка",
+                  "БЕЗПЛАТНА 15-минутна стратегическа консултация - персонализирани съвети"
                 ].map((item, index) => (
-                  <div key={index} className="text-white text-sm">{item}</div>
+                  <div key={index} className="flex items-start gap-2 text-white text-sm">
+                    <div className="w-1.5 h-1.5 bg-green-400 rounded-full mt-2 flex-shrink-0" />
+                    {item}
+                  </div>
                 ))}
               </div>
               <div className="mt-4 text-center">
@@ -560,12 +556,19 @@ export default function GlovoCalculatorLandingOptimized() {
               </div>
             </div>
 
-            <div className="flex justify-center items-center gap-4 text-green-400 mb-2">
-              <span className="text-2xl">🔒</span>
-              <span className="font-semibold">НИКОГА не споделяме информацията ви</span>
-              <span>•</span>
-              <span className="text-2xl">📞</span>
-              <span className="font-semibold">Обаждаме се САМО в удобно за вас време</span>
+            <div className="flex justify-center items-center gap-6 text-green-400 mb-2 text-sm">
+              <div className="flex items-center gap-2">
+                <div className="w-4 h-4 bg-green-400/20 rounded-full flex items-center justify-center">
+                  <div className="w-2 h-2 bg-green-400 rounded-full" />
+                </div>
+                <span className="font-semibold">НИКОГА не споделяме информацията ви</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-4 h-4 bg-green-400/20 rounded-full flex items-center justify-center">
+                  <div className="w-2 h-2 bg-green-400 rounded-full" />
+                </div>
+                <span className="font-semibold">Обаждаме се САМО в удобно за вас време</span>
+              </div>
             </div>
           </div>
           
@@ -575,7 +578,7 @@ export default function GlovoCalculatorLandingOptimized() {
               <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/20 to-green-400/20 rounded-3xl blur-xl"></div>
               <div className="relative">
                 <Suspense fallback={<FormLoading />}>
-                  <GlovoStepFormOptimized />
+                  <GlovoStepFormModernized />
                 </Suspense>
               </div>
             </div>

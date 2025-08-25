@@ -62,21 +62,9 @@ export const GlovoHeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <PravdaText size="xl" className="md:text-2xl mb-6 leading-relaxed">
-              Точно преди 3 месеца, Димитър от "Кебапче София" ми се обади разстроен:
+            <PravdaText size="xl" className="md:text-2xl mb-6 leading-relaxed text-center">
+              <span className="text-yellow-400 font-bold">Безплатен калкулатор:</span> Вижте точно колко ви струва Glovo месечно + получете персонализиран план за освобождаване за 90 дни
             </PravdaText>
-            <div className="bg-gray-800/50 border border-red-400/30 rounded-xl p-6 mb-6 italic">
-              <p className="text-lg md:text-xl text-red-300">
-                "Стефане, проверих сметките... Само миналия месец съм дал на Glovo 2,400 лева! 
-                Това са повече пари от наема ми! Как да спра това кървене?"
-              </p>
-            </div>
-            <p className="text-lg md:text-xl text-green-400 font-semibold">
-              Днес Димитър вече запазва тези пари като чиста печалба.
-            </p>
-            <p className="text-lg text-gray-300 mt-2">
-              Ето как можете и вие за <span className="text-yellow-400 font-bold">90 дни</span>...
-            </p>
           </motion.div>
 
           {/* Hero Visual with Generated Image */}
@@ -144,23 +132,29 @@ export const GlovoHeroSection = () => {
               }
             >
               <Calculator className="mr-3 w-5 h-5 md:w-6 md:h-6 group-hover:rotate-12 transition-transform duration-300" />
-              <span className="hidden sm:inline">Покажи ми колко губя всеки месец (Безплатно)</span>
-              <span className="sm:hidden">Колко губя месечно?</span>
+              <span className="hidden sm:inline">Изчислете разходите си за Glovo (Безплатно)</span>
+              <span className="sm:hidden">Глово калкулатор</span>
             </Button>
             
-            {/* Trust Indicators */}
-            <div className="flex justify-center items-center gap-6 text-sm text-gray-400">
-              <div className="flex items-center gap-1">
-                <span className="text-green-400">✓</span>
-                <span>Без регистрация</span>
+            {/* Clean Trust Indicators - 2025 Style */}
+            <div className="grid grid-cols-3 gap-4 max-w-2xl mx-auto text-sm">
+              <div className="text-center">
+                <div className="w-8 h-8 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-2">
+                  <span className="text-green-400 text-lg">🔒</span>
+                </div>
+                <span className="text-gray-300">100% безплатен анализ - не се изисква плащане</span>
               </div>
-              <div className="flex items-center gap-1">
-                <span className="text-green-400">✓</span>
-                <span>90 секунди</span>
+              <div className="text-center">
+                <div className="w-8 h-8 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-2">
+                  <span className="text-blue-400 text-lg">📱</span>
+                </div>
+                <span className="text-gray-300">Резултати доставени за 2 минути</span>
               </div>
-              <div className="flex items-center gap-1">
-                <span className="text-green-400">✓</span>
-                <span>Персонализиран анализ</span>
+              <div className="text-center">
+                <div className="w-8 h-8 bg-yellow-500/20 rounded-full flex items-center justify-center mx-auto mb-2">
+                  <span className="text-yellow-400 text-lg">🇧🇬</span>
+                </div>
+                <span className="text-gray-300">Специализирани в български ресторанти</span>
               </div>
             </div>
           </motion.div>
