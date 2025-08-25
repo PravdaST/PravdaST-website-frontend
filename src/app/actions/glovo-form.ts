@@ -4,17 +4,17 @@ import { z } from 'zod'
 
 // Form validation schema
 const GlovoFormSchema = z.object({
-  restaurantName: z.string().min(2, 'Името на ресторанта трябва да е поне 2 символа'),
-  dailyOrders: z.string().min(1, 'Моля изберете брой поръчки'),
-  avgOrderValue: z.string().min(1, 'Моля изберете средна стойност'),
+  restaurantType: z.string().min(1, 'Моля изберете тип заведение'),
+  city: z.string().min(1, 'Моля изберете град'),
+  monthlyOrders: z.string().min(1, 'Моля изберете брой поръчки'),
   email: z.string().email('Моля въведете валиден имейл адрес'),
   phone: z.string().regex(/^0[0-9]{8,9}$/, 'Моля въведете валиден български телефон')
 })
 
 export interface GlovoFormData {
-  restaurantName: string
-  dailyOrders: string
-  avgOrderValue: string
+  restaurantType: string
+  city: string
+  monthlyOrders: string
   email: string
   phone: string
 }
@@ -32,7 +32,7 @@ export async function submitGlovoForm(formData: GlovoFormData) {
       }
     }
 
-    const { restaurantName, dailyOrders, avgOrderValue, email, phone } = validatedFields.data
+    const { restaurantType, city, monthlyOrders, email, phone } = validatedFields.data
 
     // Get environment variables
     const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY
@@ -59,9 +59,9 @@ export async function submitGlovoForm(formData: GlovoFormData) {
       },
       body: JSON.stringify({
         fields: {
-          'Restaurant Name': restaurantName,
-          'Daily Orders': dailyOrders,
-          'Average Order Value': avgOrderValue,
+          'Restaurant Type': restaurantType,
+          'City': city,
+          'Monthly Orders': monthlyOrders,
           'Email': email,
           'Phone': phone,
           'Timestamp': new Date().toISOString()

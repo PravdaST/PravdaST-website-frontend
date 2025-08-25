@@ -136,25 +136,16 @@ export const GlovoHeroSection = () => {
               <span className="sm:hidden">Глово калкулатор</span>
             </Button>
             
-            {/* Clean Trust Indicators - 2025 Style */}
-            <div className="grid grid-cols-3 gap-4 max-w-2xl mx-auto text-sm">
-              <div className="text-center">
-                <div className="w-8 h-8 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-2">
-                  <span className="text-green-400 text-lg">🔒</span>
-                </div>
-                <span className="text-gray-300">100% безплатен анализ - не се изисква плащане</span>
+            {/* Trust Indicators - според заданието */}
+            <div className="flex justify-center items-center gap-6 text-sm text-gray-300">
+              <div className="flex items-center gap-1">
+                🔒 <span>100% безплатен анализ - не се изисква плащане</span>
               </div>
-              <div className="text-center">
-                <div className="w-8 h-8 bg-blue-500/20 rounded-full flex items-center justify-center mx-auto mb-2">
-                  <span className="text-blue-400 text-lg">📱</span>
-                </div>
-                <span className="text-gray-300">Резултати доставени за 2 минути</span>
+              <div className="flex items-center gap-1">
+                📱 <span>Резултати доставени за 2 минути</span>
               </div>
-              <div className="text-center">
-                <div className="w-8 h-8 bg-yellow-500/20 rounded-full flex items-center justify-center mx-auto mb-2">
-                  <span className="text-yellow-400 text-lg">🇧🇬</span>
-                </div>
-                <span className="text-gray-300">Специализирани в български ресторанти</span>
+              <div className="flex items-center gap-1">
+                🇧🇬 <span>Специализирани в български ресторанти</span>
               </div>
             </div>
           </motion.div>

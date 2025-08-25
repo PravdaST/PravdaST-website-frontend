@@ -65,7 +65,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="bg">
-      <body className={inter.className}>
+      <body className={`${inter.className} bg-gray-900 text-white min-h-screen`}>
         <ClientOnly>
           <KlaviyoSetup />
           <KlaviyoIntegration />

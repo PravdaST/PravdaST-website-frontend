@@ -3,21 +3,13 @@
 import { useState, useTransition } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ChevronRight, CheckCircle, Lock, Phone, Mail } from "lucide-react";
+import { ChevronLeft, ChevronRight, Calculator, Mail, Phone, CheckCircle } from "lucide-react";
 import PravdaHeading from "@/components/typography/PravdaHeading";
+import { submitGlovoForm, type GlovoFormData } from "@/app/actions/glovo-form";
 
-// Simplified form data type for 2025 design
-type ModernGlovoFormData = {
-  restaurantType: string;
-  city: string;
-  monthlyOrders: string;
-  email: string;
-  phone: string;
-};
-
-export const GlovoStepFormModernized = () => {
+export const GlovoStepFormOptimized = () => {
   const [currentStep, setCurrentStep] = useState(0);
-  const [formData, setFormData] = useState<ModernGlovoFormData>({
+  const [formData, setFormData] = useState<GlovoFormData>({
     restaurantType: "",
     city: "",
     monthlyOrders: "",
@@ -26,6 +18,11 @@ export const GlovoStepFormModernized = () => {
   });
   const [isPending, startTransition] = useTransition();
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submitResult, setSubmitResult] = useState<{
+    success: boolean;
+    message: string;
+    errors?: Record<string, string[]>;
+  } | null>(null);
 
   const restaurantTypeOptions = [
     { value: "pizza", label: "Пицария" },
@@ -51,14 +48,21 @@ export const GlovoStepFormModernized = () => {
     { value: "300+", label: "300+ поръчки" }
   ];
 
-  const handleSubmit = async () => {
+  const handleSubmit = () => {
     startTransition(async () => {
       try {
-        // Simulate API call for now
-        await new Promise(resolve => setTimeout(resolve, 2000));
-        setIsSubmitted(true);
+        const result = await submitGlovoForm(formData);
+        setSubmitResult(result);
+        
+        if (result.success) {
+          setIsSubmitted(true);
+        }
       } catch (error) {
-        console.error("Submit error:", error);
+        setSubmitResult({
+          success: false,
+          message: "Възникна техническа грешка. Моля опитайте отново.",
+          errors: {}
+        });
       }
     });
   };
@@ -68,6 +72,12 @@ export const GlovoStepFormModernized = () => {
       setCurrentStep(currentStep + 1);
     } else {
       handleSubmit();
+    }
+  };
+
+  const prevStep = () => {
+    if (currentStep > 0) {
+      setCurrentStep(currentStep - 1);
     }
   };
 
@@ -81,26 +91,27 @@ export const GlovoStepFormModernized = () => {
     }
   };
 
-  const updateFormData = (field: keyof ModernGlovoFormData, value: string) => {
+  const updateFormData = (field: keyof GlovoFormData, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
   const steps = [
     {
       title: "Какъв тип заведение имате?",
+      subtitle: "",
       component: (
         <div className="grid grid-cols-1 gap-3">
           {restaurantTypeOptions.map((option) => (
             <button
               key={option.value}
               onClick={() => updateFormData('restaurantType', option.value)}
-              className={`p-4 rounded-xl border transition-all text-left group ${
+              className={`p-4 rounded-lg border-2 transition-all text-left ${
                 formData.restaurantType === option.value
-                  ? 'border-yellow-400 bg-yellow-400/10 text-yellow-400'
-                  : 'border-gray-700 bg-gray-900/50 text-gray-300 hover:border-yellow-400/50 hover:bg-yellow-400/5'
+                  ? 'border-yellow-400 bg-yellow-400/20 text-yellow-400'
+                  : 'border-gray-700 bg-gray-800 text-gray-300 hover:border-yellow-400/50'
               }`}
             >
-              <div className="font-medium">{option.label}</div>
+              <div className="font-semibold">{option.label}</div>
             </button>
           ))}
         </div>
@@ -108,19 +119,20 @@ export const GlovoStepFormModernized = () => {
     },
     {
       title: "В кой град се намирате?",
+      subtitle: "",
       component: (
         <div className="grid grid-cols-1 gap-3">
           {cityOptions.map((option) => (
             <button
               key={option.value}
               onClick={() => updateFormData('city', option.value)}
-              className={`p-4 rounded-xl border transition-all text-left ${
+              className={`p-4 rounded-lg border-2 transition-all text-left ${
                 formData.city === option.value
-                  ? 'border-yellow-400 bg-yellow-400/10 text-yellow-400'
-                  : 'border-gray-700 bg-gray-900/50 text-gray-300 hover:border-yellow-400/50 hover:bg-yellow-400/5'
+                  ? 'border-yellow-400 bg-yellow-400/20 text-yellow-400'
+                  : 'border-gray-700 bg-gray-800 text-gray-300 hover:border-yellow-400/50'
               }`}
             >
-              <div className="font-medium">{option.label}</div>
+              <div className="font-semibold">{option.label}</div>
             </button>
           ))}
         </div>
@@ -128,19 +140,20 @@ export const GlovoStepFormModernized = () => {
     },
     {
       title: "Приблизително колко поръчки получавате от Glovo месечно?",
+      subtitle: "",
       component: (
         <div className="grid grid-cols-1 gap-3">
           {monthlyOrderOptions.map((option) => (
             <button
               key={option.value}
               onClick={() => updateFormData('monthlyOrders', option.value)}
-              className={`p-4 rounded-xl border transition-all text-left ${
+              className={`p-4 rounded-lg border-2 transition-all text-left ${
                 formData.monthlyOrders === option.value
-                  ? 'border-yellow-400 bg-yellow-400/10 text-yellow-400'
-                  : 'border-gray-700 bg-gray-900/50 text-gray-300 hover:border-yellow-400/50 hover:bg-yellow-400/5'
+                  ? 'border-yellow-400 bg-yellow-400/20 text-yellow-400'
+                  : 'border-gray-700 bg-gray-800 text-gray-300 hover:border-yellow-400/50'
               }`}
             >
-              <div className="font-medium">{option.label}</div>
+              <div className="font-semibold">{option.label}</div>
             </button>
           ))}
         </div>
@@ -148,8 +161,13 @@ export const GlovoStepFormModernized = () => {
     },
     {
       title: "Къде да изпратим комплекта и да се свържем за консултацията?",
+      subtitle: "Това ни помага да персонализираме всичко за вашата конкретна ситуация.",
       component: (
         <div className="space-y-4">
+          <div className="text-sm text-gray-400 mb-4">
+            *Това ни помага да персонализираме всичко за вашата конкретна ситуация.*
+          </div>
+          
           <div className="relative">
             <Phone className="absolute left-3 top-4 w-5 h-5 text-gray-400" />
             <input
@@ -157,7 +175,7 @@ export const GlovoStepFormModernized = () => {
               placeholder="+359 888 123 456"
               value={formData.phone}
               onChange={(e) => updateFormData('phone', e.target.value)}
-              className="w-full pl-12 pr-4 py-4 bg-gray-900/50 border border-gray-700 rounded-xl text-white placeholder-gray-400 focus:border-yellow-400 focus:outline-none transition-colors"
+              className="w-full pl-12 pr-4 py-4 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:border-yellow-400 focus:outline-none"
             />
             <div className="text-xs text-gray-400 mt-1 ml-12">Телефон:</div>
           </div>
@@ -169,7 +187,7 @@ export const GlovoStepFormModernized = () => {
               placeholder="ваш@имейл.бг"
               value={formData.email}
               onChange={(e) => updateFormData('email', e.target.value)}
-              className="w-full pl-12 pr-4 py-4 bg-gray-900/50 border border-gray-700 rounded-xl text-white placeholder-gray-400 focus:border-yellow-400 focus:outline-none transition-colors"
+              className="w-full pl-12 pr-4 py-4 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:border-yellow-400 focus:outline-none"
             />
             <div className="text-xs text-gray-400 mt-1 ml-12">Имейл:</div>
           </div>
@@ -203,11 +221,11 @@ export const GlovoStepFormModernized = () => {
 
   return (
     <div className="max-w-2xl mx-auto">
-      {/* Progress Bar - Clean 2025 Style */}
+      {/* Progress Bar */}
       <div className="mb-8">
         <div className="flex justify-between text-sm text-gray-400 mb-2">
           <span>Стъпка {currentStep + 1} от {steps.length}</span>
-          <span>{Math.round(((currentStep + 1) / steps.length) * 100)}% завършено</span>
+          <span>({Math.round(((currentStep + 1) / steps.length) * 100)}% завършено)</span>
         </div>
         <div className="w-full bg-gray-800 rounded-full h-2">
           <motion.div
@@ -219,35 +237,13 @@ export const GlovoStepFormModernized = () => {
         </div>
       </div>
 
-      {/* Pre-Form Value Proposition */}
+      {/* Form Introduction Text */}
       {currentStep === 0 && (
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="mb-8 p-6 bg-gradient-to-r from-green-900/20 to-emerald-900/20 border border-green-400/30 rounded-2xl"
-        >
-          <div className="text-center mb-4">
-            <div className="text-2xl mb-2">🎁</div>
-            <h3 className="text-xl font-bold text-green-400 mb-2">
-              Получете БЕЗПЛАТНИЯ си Комплект за Независимост на Ресторанта
-            </h3>
-            <p className="text-gray-300 text-sm leading-relaxed">
-              Вместо да се чудите колко ви струва Glovo, получете точни числа + пълен план за намаляване на зависимостта с 60% за 90 дни.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 gap-2 text-sm">
-            <div className="text-green-400">✓ Персонализиран Glovo доклад за разходи</div>
-            <div className="text-green-400">✓ 3-стъпков план за освобождаване</div>
-            <div className="text-green-400">✓ Схема за система за директни поръчки</div>
-            <div className="text-green-400">✓ БЕЗПЛАТНА 15-минутна консултация</div>
-          </div>
-          
-          <div className="mt-4 text-center">
-            <span className="text-yellow-400 font-bold">Обща стойност: 450 лв</span>
-            <span className="text-green-400 font-bold ml-2">- Ваша безплатно днес</span>
-          </div>
-        </motion.div>
+        <div className="mb-8 text-center">
+          <h3 className="text-xl font-bold text-white mb-2">
+            "Къде да изпратим вашия Комплект за Независимост на Ресторанта?"
+          </h3>
+        </div>
       )}
 
       {/* Form Content */}
@@ -261,10 +257,8 @@ export const GlovoStepFormModernized = () => {
           <PravdaHeading as="h3" size="2xl" className="text-white mb-2">
             {steps[currentStep].title}
           </PravdaHeading>
-          {currentStep === 3 && (
-            <p className="text-gray-400 text-sm">
-              *Това ни помага да персонализираме всичко за вашата конкретна ситуация.*
-            </p>
+          {steps[currentStep].subtitle && (
+            <p className="text-gray-400 text-sm">{steps[currentStep].subtitle}</p>
           )}
         </div>
 
@@ -273,7 +267,18 @@ export const GlovoStepFormModernized = () => {
         </div>
 
         <div className="flex justify-between items-center">
-          <div></div>
+          {currentStep > 0 ? (
+            <Button
+              onClick={prevStep}
+              variant="outline"
+              className="border-gray-600 text-gray-300 hover:bg-gray-800"
+            >
+              <ChevronLeft className="mr-2 w-4 h-4" />
+              Назад
+            </Button>
+          ) : (
+            <div></div>
+          )}
           
           <Button
             onClick={nextStep}
@@ -297,16 +302,25 @@ export const GlovoStepFormModernized = () => {
         </div>
       </motion.div>
 
-      {/* Trust Signals - Clean 2025 Design */}
+      {/* Enhanced Trust Signals */}
       <div className="mt-6 text-center">
-        <div className="flex justify-center items-center gap-6 text-xs text-gray-400">
-          <div className="flex items-center gap-2">
-            <Lock className="w-3 h-3" />
-            <span>НИКОГА не споделяме информацията ви</span>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-gray-400">
+          <div className="flex items-center justify-center gap-2">
+            🔒 <span>НИКОГА не споделяме информацията ви</span>
           </div>
-          <div className="flex items-center gap-2">
-            <Phone className="w-3 h-3" />
-            <span>Обаждаме се САМО в удобно за вас време</span>
+          <div className="flex items-center justify-center gap-2">
+            📞 <span>Обаждаме се САМО в удобно за вас време</span>
+          </div>
+          <div className="flex items-center justify-center gap-2">
+            🚫 <span>Няма спам, няма натрапчиви обаждания</span>
+          </div>
+          <div className="flex items-center justify-center gap-2">
+            ✅ <span>Само ценни съвети за вашия ресторант</span>
+          </div>
+        </div>
+        <div className="mt-2 text-center">
+          <div className="flex items-center justify-center gap-2 text-xs text-gray-400">
+            📱 <span>Комплектът се изпраща веднага на телефона и имейла ви</span>
           </div>
         </div>
       </div>
