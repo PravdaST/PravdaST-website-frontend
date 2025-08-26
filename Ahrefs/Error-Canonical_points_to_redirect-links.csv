@@ -1,0 +1,6 @@
+Link type,Is nofollow,Source URL,Source HTTP status code,Target URL,Target HTTP status code,Target final redirect URL,Target final redirect HTTP status code,Target final redirect no-crawl reason,Is final redirect internal,Is final redirect indexable
+Canonical,false,https://www.pravdast.agency/services/clickstarter,200,https://pravdast.agency/services,307,https://www.pravdast.agency/services,200,,true,false
+Canonical,false,https://www.pravdast.agency/services/clientomat,200,https://pravdast.agency/services,307,https://www.pravdast.agency/services,200,,true,false
+Canonical,false,https://www.pravdast.agency/services/trendlab,200,https://pravdast.agency/services,307,https://www.pravdast.agency/services,200,,true,false
+Canonical,false,https://www.pravdast.agency/services/seo-struktor,200,https://pravdast.agency/services,307,https://www.pravdast.agency/services,200,,true,false
+Canonical,false,https://www.pravdast.agency/services,200,https://pravdast.agency/services,307,https://www.pravdast.agency/services,200,,true,false

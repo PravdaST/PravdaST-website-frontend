@@ -1,0 +1,2 @@
+Link type,Is nofollow,Source URL,Source HTTP status code,Target URL,Target HTTP status code,Anchor,Hreflang attribute,Is target redirecting,No. of href inlinks to target final redirect,Target final redirect URL,Target final redirect HTTP status code,Target final redirect no-crawl reason,Is final redirect internal,Is final redirect indexable,Is source canonical,Is source noindex
+Sitemap URL,false,https://www.pravdast.agency/sitemap.xml,200,https://pravdast.agency/calculators,307,,,true,0,https://www.pravdast.agency/calculators,200,,true,false,true,false

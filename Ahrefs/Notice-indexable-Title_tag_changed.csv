@@ -1,0 +1,4 @@
+PR,URL,Title,Content type,Is rendered page,HTTP status code,SERP title,No. of content words,Page text,Extracted text (raw <body>) (length),Text hash,Organic traffic,Is indexable page
+43,https://www.pravdast.agency/,Правдаст - Бизнес системи вместо маркетинг хаос | България,text/html; charset=utf-8,false,200,,331,<truncated>,4023,17759256765690681052,0,true
+39,https://www.pravdast.agency/campaigns,Готови решения | Спри да търсиш маркетинг агенции,text/html; charset=utf-8,false,200,,345,<truncated>,3999,2601608078436951909,0,true
+39,https://www.pravdast.agency/blog,Бизнес блог | Инженеринг вместо маркетинг митове,text/html; charset=utf-8,false,200,,145,<truncated>,1803,16390015355932437210,0,true
