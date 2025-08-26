@@ -130,14 +130,14 @@ export const pageSEOData: Record<string, SEOData> = {
     twitterCard: "summary_large_image",
     twitterTitle: "Контакти - Pravda Agency",
     twitterDescription: "Свържете се с нас за консултация по бизнес инженеринг",
-    twitterImage: "https://www.pravdagency.eu/twitter-contact.jpg",
+    twitterImage: "https://www.pravdast.agency/twitter-contact.jpg",
     robots: "index, follow",
     structuredData: {
       "@context": "https://schema.org",
       "@type": "ContactPage",
       "mainEntity": {
         "@type": "Organization",
-        "@id": "https://www.pravdagency.eu/#organization",
+        "@id": "https://www.pravdast.agency/#organization",
         "name": "Pravda Agency",
         "address": {
           "@type": "PostalAddress",
@@ -148,7 +148,7 @@ export const pageSEOData: Record<string, SEOData> = {
         "contactPoint": {
           "@type": "ContactPoint",
           "telephone": "+359-879-282-299",
-          "email": "contact@pravdagency.eu",
+          "email": "contact@pravdast.agency",
           "contactType": "customer service",
           "areaServed": "BG",
           "availableLanguage": "Bulgarian"
@@ -164,12 +164,12 @@ export const pageSEOData: Record<string, SEOData> = {
     canonical: "https://www.pravdast.agency/faq",
     ogTitle: "Често задавани въпроси - Pravda Agency | FAQ",
     ogDescription: "Отговори на най-честите въпроси за нашите бизнес системи, цени, сроки и процеси",
-    ogImage: "https://www.pravdagency.eu/og-faq.jpg",
+    ogImage: "https://www.pravdast.agency/og-faq.jpg",
     ogType: "website",
     twitterCard: "summary_large_image",
     twitterTitle: "FAQ - Pravda Agency",
     twitterDescription: "Отговори на най-честите въпроси за нашите бизнес системи",
-    twitterImage: "https://www.pravdagency.eu/twitter-faq.jpg",
+    twitterImage: "https://www.pravdast.agency/twitter-faq.jpg",
     robots: "index, follow",
     structuredData: {
       "@context": "https://schema.org",
@@ -210,12 +210,12 @@ export const pageSEOData: Record<string, SEOData> = {
     canonical: "https://www.pravdast.agency/services",
     ogTitle: "Услуги - Pravda Agency | Бизнес системи за растеж",
     ogDescription: "Проверени бизнес системи за предвидим растеж: SEO Struktor™, Trendlab™, Clickstarter™ и Clientomat™",
-    ogImage: "https://www.pravdagency.eu/og-services.jpg",
+    ogImage: "https://www.pravdast.agency/og-services.jpg",
     ogType: "website",
     twitterCard: "summary_large_image",
     twitterTitle: "Услуги - Pravda Agency",
     twitterDescription: "Проверени бизнес системи за предвидим растеж",
-    twitterImage: "https://www.pravdagency.eu/twitter-services.jpg",
+    twitterImage: "https://www.pravdast.agency/twitter-services.jpg",
     robots: "index, follow",
     structuredData: {
       "@context": "https://schema.org",

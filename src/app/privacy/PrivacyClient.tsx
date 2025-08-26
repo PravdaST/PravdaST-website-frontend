@@ -202,7 +202,7 @@ export default function PrivacyClient() {
                   <h2 className="text-3xl font-bold text-white mb-6">11. Контакт за въпроси относно данните</h2>
                   <div className="text-gray-300 space-y-2">
                     <p>За всякакви въпроси относно обработката на вашите лични данни или за да се <Link href="/contact" className="text-yellow-400 hover:text-yellow-300 underline">свържете с нас</Link>:</p>
-                    <p><strong>Email:</strong> contact@pravdagency.eu</p>
+                    <p><strong>Email:</strong> contact@pravdast.agency</p>
                     <p><strong>Телефон:</strong> +359 879 282 299</p>
                     <p><strong>Адрес:</strong> ул. Дебър №58, Варна, България</p>
                     <p>Научете повече за успешните ни проекти в <Link href="/case-studies" className="text-yellow-400 hover:text-yellow-300 underline">казусите</Link>.</p>

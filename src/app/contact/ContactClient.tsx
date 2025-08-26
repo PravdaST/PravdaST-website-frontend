@@ -153,7 +153,7 @@ export default function ContactClient() {
     {
       icon: <Mail className="w-6 h-6" />,
       title: "Имейл",
-      value: "contact@pravdagency.eu",
+      value: "contact@pravdast.agency",
       subtitle: "Отговаряме в рамките на 24 часа",
       color: "text-[#ECB629]",
     },
@@ -530,7 +530,7 @@ export default function ContactClient() {
                   <Button
                     onClick={() =>
                       window.open(
-                        "https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu",
+                        "https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdast.agency",
                         "_blank",
                       )
                     }

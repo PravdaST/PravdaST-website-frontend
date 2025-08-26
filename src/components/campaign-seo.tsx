@@ -13,7 +13,7 @@ export const CampaignSEO = ({
   campaignName, 
   ogImage = "/images/og-default.png" 
 }: CampaignSEOProps) => {
-  const url = `https://pravdagency.eu/campaigns/${campaignName}`;
+  const url = `https://www.pravdast.agency/campaigns/${campaignName}`;
   
   return (
     <NextSeo
@@ -26,7 +26,7 @@ export const CampaignSEO = ({
         description,
         images: [
           {
-            url: `https://pravdagency.eu${ogImage}`,
+            url: `https://www.pravdast.agency${ogImage}`,
             width: 1200,
             height: 630,
             alt: title,

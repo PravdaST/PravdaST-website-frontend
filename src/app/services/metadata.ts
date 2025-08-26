@@ -170,12 +170,12 @@ export const aboutMetadata: Metadata = {
     type: 'website', 
     locale: 'bg_BG',
     siteName: 'Pravda Agency',
-    url: 'https://www.pravdagency.eu/about',
+    url: 'https://www.pravdast.agency/about',
     title: "За нас - Pravda Agency | Бизнес инженери за растеж",
     description: "Запознайте се с екипа на Pravda Agency - експерти в бизнес инженеринг, които помагат на българските компании да постигат предвидим растеж.",
     images: [
       {
-        url: 'https://pravdagency.eu/pravda-og-about.png',
+        url: 'https://www.pravdast.agency/pravda-og-about.png',
         width: 1200,
         height: 630,
         alt: 'За нас - Pravda Agency екип'
@@ -186,6 +186,6 @@ export const aboutMetadata: Metadata = {
     card: 'summary_large_image',
     title: "За нас - Pravda Agency | Бизнес инженери за растеж",
     description: "Запознайте се с екипа на Pravda Agency - експерти в бизнес инженеринг за предвидим растеж.",
-    images: ['https://pravdagency.eu/pravda-og-about.png']
+    images: ['https://www.pravdast.agency/pravda-og-about.png']
   }
 }

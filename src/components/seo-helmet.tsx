@@ -25,7 +25,7 @@ interface HelmetSEOProps {
 }
 
 export function HelmetSEO({ seo, pageSlug }: HelmetSEOProps) {
-  const canonicalUrl = seo.canonical || `https://www.pravdagency.eu/${pageSlug || ''}`;
+  const canonicalUrl = seo.canonical || `https://www.pravdast.agency/${pageSlug || ''}`;
   
   useEffect(() => {
     // Update title

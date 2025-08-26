@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     description: 'Политика за поверителност на Pravda Agency. Как защитаваме личните ви данни при използване на нашите бизнес инженеринг услуги.',
     type: 'website',
     locale: 'bg_BG',
-    url: 'https://www.pravdagency.eu/privacy',
+    url: 'https://www.pravdast.agency/privacy',
     siteName: 'Pravda Agency',
   },
   twitter: {

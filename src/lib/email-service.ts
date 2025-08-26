@@ -17,7 +17,7 @@ export async function sendContactEmail(data: ContactData) {
     console.log('EMAIL PREVIEW (Development Mode):')
     console.log('====================================')
     console.log(`TO: contact@pravdast.agency`)
-    console.log(`FROM: website@pravdagency.eu`)
+    console.log(`FROM: website@pravdast.agency`)
     console.log(`SUBJECT: 🔥 Ново запитване от ${data.name} - ${data.company || 'Частно лице'}`)
     console.log(`ДАННИ:`)
     console.log(`  👤 Име: ${data.name}`)
@@ -136,7 +136,7 @@ Pravda Agency - Бизнес инженеринг за предвидим рас
 
     // Send to contact@pravdast.agency only
     const contactResponse = await resend.emails.send({
-      from: 'website@pravdagency.eu',
+      from: 'website@pravdast.agency',
       to: 'contact@pravdast.agency',
       subject: `🔥 Ново запитване от ${data.name} - ${data.company || 'Частно лице'}`,
       html: htmlContent,

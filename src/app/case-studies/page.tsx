@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     description: 'Вижте как помогнахме на клиентите си да постигнат исключителни резултати с нашите бизнес системи. Реални проекти, измерими резултати.',
     type: 'website',
     locale: 'bg_BG',
-    url: 'https://www.pravdagency.eu/case-studies',
+    url: 'https://www.pravdast.agency/case-studies',
     siteName: 'Pravda Agency',
   },
   twitter: {

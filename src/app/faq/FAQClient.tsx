@@ -381,7 +381,7 @@ export default function FAQClient() {
               viewport={{ once: true }}
             >
               <motion.a
-                href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu"
+                href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdast.agency"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-yellow-400 to-yellow-500 text-black font-bold rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg shadow-yellow-400/25"

@@ -545,7 +545,7 @@ export default function CaseStudiesClient() {
                 viewport={{ once: true }}
               >
                 <motion.a
-                  href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu"
+                  href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdast.agency"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-3 bg-black text-white px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-300"

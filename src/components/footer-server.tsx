@@ -28,7 +28,7 @@ export const FooterServer = () => {
       { href: "/privacy", label: "Политика за поверителност" }
     ],
     contact: [
-      { icon: Mail, info: "contact@pravdagency.eu" },
+      { icon: Mail, info: "contact@pravdast.agency" },
       { icon: Phone, info: "+359 879 282 299" },
       { icon: MapPin, info: "гр. Варна ул. Дебър №58" }
     ]

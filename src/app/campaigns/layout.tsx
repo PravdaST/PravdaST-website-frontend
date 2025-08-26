@@ -7,13 +7,13 @@ export const metadata = {
   openGraph: {
     title: 'Кампании - Pravda Agency | Специализирани решения',
     description: 'Открийте нашите специализирани кампании за различни индустрии. Персонализирани решения за максимален растеж.',
-    url: 'https://www.pravdagency.eu/campaigns',
+    url: 'https://www.pravdast.agency/campaigns',
     siteName: 'Pravda Agency',
     locale: 'bg_BG',
     type: 'website',
     images: [
       {
-        url: 'https://pravdagency.eu/pravda-og-campaigns.png',
+        url: 'https://www.pravdast.agency/pravda-og-campaigns.png',
         width: 1200,
         height: 630,
         alt: 'Pravda Agency Campaigns - Специализирани решения',
@@ -24,10 +24,10 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'Кампании - Pravda Agency',
     description: 'Специализирани решения за различни индустрии.',
-    images: ['https://pravdagency.eu/pravda-og-campaigns.png'],
+    images: ['https://www.pravdast.agency/pravda-og-campaigns.png'],
   },
   alternates: {
-    canonical: 'https://www.pravdagency.eu/campaigns',
+    canonical: 'https://www.pravdast.agency/campaigns',
   },
   robots: {
     index: true,

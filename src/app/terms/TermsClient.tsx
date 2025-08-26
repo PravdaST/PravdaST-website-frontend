@@ -172,7 +172,7 @@ export default function TermsClient() {
                   <div className="text-gray-300 space-y-2">
                     <p><strong>Pravda ST Agency</strong></p>
                     <p>📍 ул. Дебър №58, Варна, България</p>
-                    <p>📧 Email: contact@pravdagency.eu</p>
+                    <p>📧 Email: contact@pravdast.agency</p>
                     <p>📞 Телефон: +359 879 282 299</p>
                     <p className="text-sm mt-4 text-gray-400 italic">
                       (Отговаряме всеки ден освен неделя - офисът не работи в почивни дни)
@@ -219,7 +219,7 @@ export default function TermsClient() {
               </motion.p>
 
               <motion.a
-                href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu"
+                href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdast.agency"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-yellow-400 to-yellow-500 text-black font-bold rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg shadow-yellow-400/25"

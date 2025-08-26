@@ -650,7 +650,7 @@ export default function AboutClient() {
                     className="bg-black text-white hover:bg-black/90 font-semibold px-8 py-4 text-lg rounded-lg transition-all duration-300 shadow-lg"
                     onClick={() => {
                       window.open(
-                        "https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdagency.eu",
+                        "https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdast.agency",
                         "_blank",
                       );
                     }}
