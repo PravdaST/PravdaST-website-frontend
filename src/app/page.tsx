@@ -8,7 +8,10 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Правдаст - Бизнес инженеринг за предвидим растеж",
     description: "Превръщаме хаоса в предсказуеми системи. Проверени методи за B2B растеж.",
-    images: ['/pravda-og-home.png'],
+    url: 'https://www.pravdast.agency/',
+    siteName: 'Pravda ST Agency',
+    locale: 'bg_BG',
+    images: ['https://www.pravdast.agency/pravda-og-home.png'],
     type: 'website',
   },
   twitter: {

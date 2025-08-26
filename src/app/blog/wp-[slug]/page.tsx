@@ -19,7 +19,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       }
     }
 
-    const title = post.title.rendered.replace(/<[^>]*>/g, '')
+    // Clean title - remove HTML and line breaks
+    const title = post.title.rendered.replace(/<[^>]*>/g, '').replace(/\n/g, ' ').trim()
     const description = post.excerpt.rendered.replace(/<[^>]*>/g, '').substring(0, 160)
     const featuredImage = post._embedded?.['wp:featuredmedia']?.[0]?.source_url
 

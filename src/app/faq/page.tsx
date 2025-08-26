@@ -16,6 +16,12 @@ export const metadata: Metadata = {
     locale: 'bg_BG',
     url: 'https://www.pravdast.agency/faq',
     siteName: 'Pravda Agency',
+    images: [{
+      url: 'https://www.pravdast.agency/pravda-og-faq.png',
+      width: 1200,
+      height: 630,
+      alt: 'Pravda Agency FAQ'
+    }],
   },
   twitter: {
     card: 'summary_large_image',

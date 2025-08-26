@@ -13,7 +13,7 @@ import {
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { cleanHtmlText, addAltTextToImages, extractTextFromHtml } from "@/lib/html-decoder";
+import { cleanHtmlText, addAltTextToImages, extractTextFromHtml, cleanWordPressContent } from "@/lib/html-decoder";
 import RelatedPosts from "@/components/related-posts";
 import Breadcrumb from "@/components/breadcrumb";
 import { addContextualServiceLinks, generateContextualCTAs, createServicesRecommendationBox } from '@/lib/internal-linking';
@@ -323,7 +323,7 @@ export default function WordPressPostClient({ post }: Props) {
               <div 
                 className="text-gray-300 leading-relaxed wordpress-content"
                 dangerouslySetInnerHTML={{ 
-                  __html: addContextualServiceLinks(addAltTextToImages(post.content.rendered))
+                  __html: addContextualServiceLinks(addAltTextToImages(cleanWordPressContent(post.content.rendered)))
                 }}
               />
             </motion.div>
@@ -359,7 +359,7 @@ export default function WordPressPostClient({ post }: Props) {
               className="mt-12"
               dangerouslySetInnerHTML={{ 
                 __html: createServicesRecommendationBox(
-                  generateContextualCTAs(post.content.rendered, extractTextFromHtml(post.title.rendered))
+                  generateContextualCTAs(cleanWordPressContent(post.content.rendered), extractTextFromHtml(post.title.rendered))
                 )
               }}
             />

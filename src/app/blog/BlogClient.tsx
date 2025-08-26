@@ -186,6 +186,30 @@ export default function BlogClient() {
   return (
     <div className="min-h-screen text-white">
       
+      {/* Popular Articles Quick Links - Solves Orphan Pages Issue */}
+      {blogPosts.length > 0 && (
+        <section className="py-6 border-b border-gray-800 bg-gray-900/50">
+          <div className="container mx-auto px-4">
+            <h2 className="text-lg font-bold text-[#ECB629] mb-3 flex items-center gap-2">
+              <span>📌</span> Популярни статии
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+              {blogPosts.slice(0, 12).map((post) => (
+                <Link
+                  key={post.id}
+                  href={`/blog/${post.slug}`}
+                  className="text-gray-300 hover:text-[#ECB629] transition-colors duration-200 text-sm border-l-2 border-gray-700 hover:border-[#ECB629] pl-3 py-1 block"
+                >
+                  <span className="line-clamp-2" title={post.title}>
+                    {post.title}
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+      
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-yellow-600/20 via-transparent to-blue-600/20"></div>

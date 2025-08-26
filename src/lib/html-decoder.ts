@@ -153,6 +153,20 @@ function generateAltText(src: string): string {
   }
 }
 
+// Clean WordPress content by removing HTML document structure
+export function cleanWordPressContent(content: string): string {
+  // Remove HTML document structure that shouldn't be in content
+  let cleaned = content
+    .replace(/<!DOCTYPE[^>]*>/gi, '')
+    .replace(/<html[^>]*>/gi, '')
+    .replace(/<\/html>/gi, '')
+    .replace(/<head[^>]*>[\s\S]*?<\/head>/gi, '') // Remove entire head section with title
+    .replace(/<body[^>]*>/gi, '')
+    .replace(/<\/body>/gi, '');
+  
+  return cleaned.trim();
+}
+
 // Extract clean text from HTML (removes tags and entities)
 export function extractTextFromHtml(htmlString: string): string {
   return cleanHtmlText(htmlString);

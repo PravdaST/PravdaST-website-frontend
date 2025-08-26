@@ -41,7 +41,7 @@ export default function RelatedPosts({ currentPostId, categories = [], tags = []
       try {
         // First try to get posts by categories
         let query = new URLSearchParams({
-          per_page: '6',
+          per_page: '9', // Increased to show more related posts
           exclude: currentPostId.toString(),
           _embed: 'true'
         });
@@ -59,11 +59,11 @@ export default function RelatedPosts({ currentPostId, categories = [], tags = []
         const posts = await response.json();
 
         if (Array.isArray(posts) && posts.length >= 3) {
-          setRelatedPosts(posts.slice(0, 3));
+          setRelatedPosts(posts.slice(0, 6)); // Increased from 3 to 6
         } else {
           // If not enough posts by categories, fetch recent posts
           const fallbackQuery = new URLSearchParams({
-            per_page: '4',
+            per_page: '7', // Increased to ensure we get 6 posts
             exclude: currentPostId.toString(),
             _embed: 'true'
           });
@@ -77,7 +77,7 @@ export default function RelatedPosts({ currentPostId, categories = [], tags = []
           const fallbackPosts = await fallbackResponse.json();
           
           if (Array.isArray(fallbackPosts)) {
-            setRelatedPosts(fallbackPosts.slice(0, 3));
+            setRelatedPosts(fallbackPosts.slice(0, 6)); // Increased from 3 to 6
           } else {
             setRelatedPosts([]);
           }
@@ -154,7 +154,7 @@ export default function RelatedPosts({ currentPostId, categories = [], tags = []
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {relatedPosts.map((post, index) => (
             <motion.div
               key={post.id}
