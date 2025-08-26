@@ -23,10 +23,10 @@ export const Footer = () => {
       { href: "/contact", label: "Контакти" }
     ],
     blog: [
-      { href: "/blog/biznes-inzheneri-vs-marketing-ekip-alternativa", label: "Бизнес инженери vs екип" },
-      { href: "/blog/kak-da-optimizirate-vashiya-biznes-za-maksimalna-efektivnost", label: "Оптимизация на бизнеса" },
-      { href: "/blog/3-te-lazhi-za-privlichaneto-na-klienti-koito-vi-struvat-tsya", label: "3-те лъжи за клиенти" },
-      { href: "/blog/poznato-li-ti-e-tova-chuvstvo", label: "Познато чувство?" }
+      { href: "/blog", label: "Всички статии" },
+      { href: "/blog/wp-8-trenda-v-digitalniya-marketing-koito-ne-tryabva-da-ignorirate-prez-2025", label: "8 тренда в маркетинга" },
+      { href: "/blog/wp-narchnik-za-razshireno-seo-prez-2025", label: "SEO наръчник 2025" },
+      { href: "/blog/wp-8-stpkov-marketingov-odit-za-dohododosna-2025g", label: "Маркетингов одит" }
     ],
     legal: [
       { href: "/terms", label: "Условия за ползване" },

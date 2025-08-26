@@ -72,37 +72,85 @@ export function cleanHtmlText(html: string): string {
 
 // Function to add alt text to images that don't have it
 export function addAltTextToImages(html: string): string {
-  return html.replace(/<img([^>]*)>/gi, (match, attributes) => {
-    // Check if image already has alt attribute
-    if (attributes.includes('alt=')) {
-      return match; // Keep original if alt exists
+  return html.replace(/<img([^>]*?)(\/)?>/gi, (match, attributes, closing) => {
+    // More robust check for alt attribute (could be alt="" or alt='' or alt=something)
+    const hasAlt = /alt\s*=\s*["'][^"']*["']/i.test(attributes);
+    
+    if (hasAlt) {
+      // Check if alt is empty and replace with meaningful text
+      const emptyAltMatch = attributes.match(/alt\s*=\s*["']\s*["']/i);
+      if (emptyAltMatch) {
+        // Replace empty alt with meaningful text
+        const srcMatch = attributes.match(/src\s*=\s*["']([^"']*)["']/i);
+        const src = srcMatch ? srcMatch[1] : '';
+        const altText = generateAltText(src);
+        const updatedAttributes = attributes.replace(/alt\s*=\s*["']\s*["']/i, `alt="${altText}"`);
+        return `<img${updatedAttributes}${closing || ''}>`; 
+      }
+      return match; // Keep original if alt has content
     }
     
     // Extract src for generating alt text
-    const srcMatch = attributes.match(/src=["']([^"']*)["']/);
+    const srcMatch = attributes.match(/src\s*=\s*["']([^"']*)["']/i);
     const src = srcMatch ? srcMatch[1] : '';
+    const altText = generateAltText(src);
     
-    // Generate meaningful alt text based on filename or context
-    let altText = 'Image';
-    if (src) {
-      const filename = src.split('/').pop()?.split('.')[0] || '';
-      if (filename.includes('pravda')) {
-        altText = 'Pravda Agency - Business Engineering Image';
-      } else if (filename.includes('client')) {
-        altText = 'Client Success Story - Pravda Agency';
-      } else if (filename.includes('trend')) {
-        altText = 'Trendlab Business System - Pravda Agency';
-      } else if (filename.includes('seo')) {
-        altText = 'SEO Struktor System - Pravda Agency';
-      } else if (filename.includes('click')) {
-        altText = 'Clickstarter System - Pravda Agency';
-      } else {
-        altText = 'Business Engineering Illustration - Pravda Agency';
-      }
-    }
-    
-    return `<img${attributes} alt="${altText}">`;
+    // Add alt attribute at the beginning to ensure it's included
+    return `<img alt="${altText}"${attributes}${closing || ''}>`;
   });
+}
+
+// Helper function to generate meaningful alt text from image URL
+function generateAltText(src: string): string {
+  if (!src) return 'Pravda Agency - Business Engineering Visual';
+  
+  const filename = src.split('/').pop()?.toLowerCase() || '';
+  
+  // Handle WordPress-specific image names
+  if (src.includes('admin.pravdagency.eu')) {
+    // Extract meaningful parts from WordPress uploads
+    const cleanName = filename
+      .replace(/\-\d+x\d+/, '') // Remove dimensions like -1024x683
+      .replace(/\.webp|\.jpg|\.jpeg|\.png|\.gif/, '') // Remove extensions
+      .replace(/[_-]/g, ' ') // Replace underscores and hyphens with spaces
+      .replace(/\d{8}_\d{4}_/, '') // Remove date/time stamps
+      .trim();
+    
+    // Generate context-aware alt text
+    if (cleanName.includes('seo') || cleanName.includes('struktor')) {
+      return `SEO Struktor™ система - ${cleanName} - Pravda ST Agency`;
+    } else if (cleanName.includes('trend') || cleanName.includes('lab')) {
+      return `Trendlab™ съдържание - ${cleanName} - Pravda ST Agency`;
+    } else if (cleanName.includes('click') || cleanName.includes('starter')) {
+      return `Clickstarter™ реклами - ${cleanName} - Pravda ST Agency`;
+    } else if (cleanName.includes('client') || cleanName.includes('omat')) {
+      return `Clientomat™ автоматизация - ${cleanName} - Pravda ST Agency`;
+    } else if (cleanName.includes('marketing') || cleanName.includes('маркетинг')) {
+      return `Маркетинг стратегия - ${cleanName} - Pravda ST Agency`;
+    } else if (cleanName.includes('biznes') || cleanName.includes('бизнес')) {
+      return `Бизнес инженерство - ${cleanName} - Pravda ST Agency`;
+    } else if (cleanName.includes('image')) {
+      // Generic numbered images from WordPress
+      return 'Инфографика за бизнес растеж - Pravda ST Agency';
+    } else {
+      return `${cleanName.charAt(0).toUpperCase() + cleanName.slice(1)} - Pravda ST Agency`;
+    }
+  }
+  
+  // Handle other Pravda images
+  if (filename.includes('pravda')) {
+    return 'Pravda ST Agency - Бизнес инженерство визуализация';
+  } else if (filename.includes('client')) {
+    return 'Успешен клиентски проект - Pravda ST Agency';
+  } else if (filename.includes('trend')) {
+    return 'Trendlab™ система за съдържание - Pravda ST Agency';
+  } else if (filename.includes('seo')) {
+    return 'SEO Struktor™ система - Pravda ST Agency';
+  } else if (filename.includes('click')) {
+    return 'Clickstarter™ рекламна система - Pravda ST Agency';
+  } else {
+    return 'Бизнес инженеринг илюстрация - Pravda ST Agency';
+  }
 }
 
 // Extract clean text from HTML (removes tags and entities)

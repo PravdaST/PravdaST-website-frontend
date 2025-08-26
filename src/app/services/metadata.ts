@@ -31,6 +31,9 @@ export const servicesMetadata: Metadata = {
 export const seoStruktorMetadata: Metadata = {
   title: "SEO Struktor™ | Забрави маркетинг тактиките - ето система",
   description: "Забрави маркетинг тактиките за SEO. SEO Struktor™ е първата инженерна система за доминация в Google. Проверено в България.",
+  alternates: {
+    canonical: 'https://www.pravdast.agency/services/seo-struktor',
+  },
   openGraph: {
     type: 'website',
     locale: 'bg_BG', 
@@ -58,6 +61,9 @@ export const seoStruktorMetadata: Metadata = {
 export const trendlabMetadata: Metadata = {
   title: "Trendlab™ | Стани авторитет без рекламни бюджети",
   description: "Да харчиш за маркетинг или да станеш авторитет? Trendlab™ те позиционира като експерт чрез съдържание и автоматизации.",
+  alternates: {
+    canonical: 'https://www.pravdast.agency/services/trendlab',
+  },
   openGraph: {
     type: 'website',
     locale: 'bg_BG',
@@ -85,6 +91,9 @@ export const trendlabMetadata: Metadata = {
 export const clickstarterMetadata: Metadata = {
   title: "Clickstarter™ | Реклами които работят като машина",
   description: "Пробвал ли си всички маркетинг гурута? Clickstarter™ прави рекламите измерими и предвидими - инженерно точни.",
+  alternates: {
+    canonical: 'https://www.pravdast.agency/services/clickstarter',
+  },
   openGraph: {
     type: 'website',
     locale: 'bg_BG',
@@ -112,6 +121,9 @@ export const clickstarterMetadata: Metadata = {
 export const clientomatMetadata: Metadata = {
   title: "Clientomat™ | Клиенти идват сами докато спиш",
   description: "Омразно ти е да гониш клиенти с маркетинг фокуси? Clientomat™ автоматизира целия процес - от първи контакт до продажба.",
+  alternates: {
+    canonical: 'https://www.pravdast.agency/services/clientomat',
+  },
   openGraph: {
     type: 'website',
     locale: 'bg_BG',
