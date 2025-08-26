@@ -26,11 +26,11 @@
 
 @layer base {
   :root {
-    --background: 220 20% 5%;
+    --background: 0 0% 3%;
     --foreground: 210 40% 98%;
-    --card: 220 20% 8%;
+    --card: 0 0% 5%;
     --card-foreground: 210 40% 98%;
-    --popover: 220 20% 8%;
+    --popover: 0 0% 5%;
     --popover-foreground: 210 40% 98%;
     --primary: 51 100% 50%;
     --primary-foreground: 220 20% 5%;
@@ -54,11 +54,11 @@
   }
 
   .dark {
-    --background: 220 20% 5%;
+    --background: 0 0% 3%;
     --foreground: 210 40% 98%;
-    --card: 220 20% 8%;
+    --card: 0 0% 5%;
     --card-foreground: 210 40% 98%;
-    --popover: 220 20% 8%;
+    --popover: 0 0% 5%;
     --popover-foreground: 210 40% 98%;
     --primary: 51 100% 50%;
     --primary-foreground: 220 20% 5%;
