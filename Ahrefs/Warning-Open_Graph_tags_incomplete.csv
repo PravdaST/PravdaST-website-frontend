@@ -1,11 +1,11 @@
 PR,URL,Title,Content type,Is rendered page,HTTP status code,Organic traffic,Is valid Open graph,Open graph attributes,Open graph values,Depth,Is indexable page,No. of all inlinks
-42,https://www.pravdast.agency/,Правдаст - Бизнес системи вместо маркетинг хаос | България,text/html; charset=utf-8,false,200,0,false,"og:type
+43,https://www.pravdast.agency/,Правдаст - Бизнес системи вместо маркетинг хаос | България,text/html; charset=utf-8,false,200,0,false,"og:type
 og:image
 og:description
 og:title","website
 https://www.pravdast.agency/pravda-og-home.png
 Превръщаме хаоса в предсказуеми системи. Проверени методи за B2B растеж.
-Правдаст - Бизнес инженеринг за предвидим растеж",0,true,30
+Правдаст - Бизнес инженеринг за предвидим растеж",0,true,31
 38,https://www.pravdast.agency/terms,Условия | Как работят системите вместо маркетинг хаос,text/html; charset=utf-8,false,200,0,false,"og:type
 og:locale
 og:site_name
@@ -14,7 +14,7 @@ og:description
 og:title","website
 bg_BG
 Pravda Agency
-https://www.pravdagency.eu/terms
+https://www.pravdast.agency/terms
 Общи условия за ползване на услугите на Pravda Agency. Прочетете правилата и условията за нашите бизнес инженеринг системи.
 Общи условия - Pravda Agency | Terms of Service",0,true,28
 38,https://www.pravdast.agency/case-studies,Резултати | Маркетинг vs Инженеринг - вижте разликата,text/html; charset=utf-8,false,200,0,false,"og:type
@@ -25,7 +25,7 @@ og:description
 og:title","website
 bg_BG
 Pravda Agency
-https://www.pravdagency.eu/case-studies
+https://www.pravdast.agency/case-studies
 Вижте как помогнахме на клиентите си да постигнат исключителни резултати с нашите бизнес системи. Реални проекти, измерими резултати.
 Успешни казуси - Pravda Agency | Реални резултати",0,true,28
 38,https://www.pravdast.agency/faq,Въпроси | Всичко за системите вместо маркетинг,text/html; charset=utf-8,false,200,0,false,"og:type
@@ -36,7 +36,7 @@ og:description
 og:title","website
 bg_BG
 Pravda Agency
-https://www.pravdagency.eu/faq
+https://www.pravdast.agency/faq
 Отговори на най-честите въпроси за нашите бизнес системи, цени, сроки и процеси. Научете повече за SEO Struktor™, Trendlab™, Clickstarter™ и Clientomat™.
 Често задавани въпроси - Pravda Agency | FAQ",0,true,28
 38,https://www.pravdast.agency/privacy,Поверителност | Защитаваме данните си като инженери,text/html; charset=utf-8,false,200,0,false,"og:type
@@ -47,6 +47,6 @@ og:description
 og:title","website
 bg_BG
 Pravda Agency
-https://www.pravdagency.eu/privacy
+https://www.pravdast.agency/privacy
 Политика за поверителност на Pravda Agency. Как защитаваме личните ви данни при използване на нашите бизнес инженеринг услуги.
 Политика за поверителност - Pravda Agency | Privacy Policy",0,true,28
