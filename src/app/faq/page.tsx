@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     description: 'Отговори на най-честите въпроси за нашите бизнес системи, цени, сроки и процеси. Научете повече за SEO Struktor™, Trendlab™, Clickstarter™ и Clientomat™.',
   },
   alternates: {
-    canonical: 'https://www.pravdagency.eu/faq',
+    canonical: 'https://www.pravdast.agency/faq',
   },
 }
 

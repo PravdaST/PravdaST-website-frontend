@@ -12,13 +12,13 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'bg_BG',
-    url: 'https://www.pravdagency.eu/about',
-    siteName: 'Pravda Agency',
+    url: 'https://www.pravdast.agency/about',
+    siteName: 'Pravda ST',
     title: 'За нас - Pravda Agency | Бизнес инженери за растеж',
     description: 'Запознайте се с екипа от бизнес инженери в Pravda Agency. Нашата мисия е да превърнем хаоса в предсказуем растеж чрез инженерни системи.',
     images: [
       {
-        url: 'https://pravdagency.eu/pravda-og-home.png',
+        url: 'https://www.pravdast.agency/pravda-og-home.png',
         width: 1200,
         height: 630,
         alt: 'Pravda Agency Team - Business Engineers',
@@ -29,10 +29,10 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'За нас - Pravda Agency | Бизнес инженери за растеж',
     description: 'Запознайте се с екипа от бизнес инженери в Pravda Agency. Нашата мисия е да превърнем хаоса в предсказуем растеж чрез инженерни системи.',
-    images: ['https://pravdagency.eu/pravda-og-home.png'],
+    images: ['https://www.pravdast.agency/pravda-og-home.png'],
   },
   alternates: {
-    canonical: 'https://www.pravdagency.eu/about',
+    canonical: 'https://www.pravdast.agency/about',
   },
   other: {
     'fb:app_id': '1234567890123456',

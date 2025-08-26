@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     description: 'Вижте как помогнахме на клиентите си да постигнат исключителни резултати с нашите бизнес системи. Реални проекти, измерими резултати.',
   },
   alternates: {
-    canonical: 'https://www.pravdagency.eu/case-studies',
+    canonical: 'https://www.pravdast.agency/case-studies',
   },
 }
 

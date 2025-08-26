@@ -10,11 +10,11 @@ export const metadata: Metadata = {
     description: 'Интерактивни калкулатори за ROI на SEO Struktor™, Trendlab™, Clickstarter™ и Clientomat™. Изчислете точната печалба от нашите бизнес инженеринг системи.',
     type: 'website',
     locale: 'bg_BG',
-    url: 'https://www.pravdagency.eu/calculators',
+    url: 'https://www.pravdast.agency/calculators',
     siteName: 'Pravda Agency',
     images: [
       {
-        url: 'https://pravdagency.eu/pravda-og-calculators.png',
+        url: 'https://www.pravdast.agency/pravda-og-calculators.png',
         width: 1200,
         height: 630,
         alt: 'ROI Калкулатори - Pravda Agency',
@@ -25,10 +25,10 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'ROI Калкулатори - Pravda Agency | Изчислете печалбата',
     description: 'Интерактивни калкулатори за ROI на SEO Struktor™, Trendlab™, Clickstarter™ и Clientomat™. Изчислете точната печалба от нашите бизнес инженеринг системи.',
-    images: ['https://pravdagency.eu/pravda-og-calculators.png'],
+    images: ['https://www.pravdast.agency/pravda-og-calculators.png'],
   },
   alternates: {
-    canonical: 'https://www.pravdagency.eu/calculators',
+    canonical: 'https://www.pravdast.agency/calculators',
   },
 }
 

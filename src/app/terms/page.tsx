@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     description: 'Общи условия за ползване на услугите на Pravda Agency. Прочетете правилата и условията за нашите бизнес инженеринг системи.',
   },
   alternates: {
-    canonical: 'https://www.pravdagency.eu/terms',
+    canonical: 'https://www.pravdast.agency/terms',
   },
 }
 

@@ -10,7 +10,7 @@ type WPPost = {
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl =
     process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/+$/, "") ||
-    "https://pravdast.agency";
+    "https://www.pravdast.agency";
 
   // Статични страници – само indexable
   const staticPages = [

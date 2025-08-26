@@ -13,7 +13,7 @@ export const metadata = {
     'маркетинг България',
   ],
   alternates: {
-    canonical: 'https://pravdast.agency/services',
+    canonical: 'https://www.pravdast.agency/services',
   },
   openGraph: {
     title: 'Бизнес инженерни услуги — Pravda Agency',

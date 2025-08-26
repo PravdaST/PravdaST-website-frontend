@@ -18,6 +18,9 @@ export const metadata: Metadata = {
     images: ['/pravda-twitter-home.png'],
   },
   robots: "index, follow, max-snippet:-1, max-image-preview:large",
+  alternates: {
+    canonical: 'https://www.pravdast.agency/',
+  },
 }
 
 export default function HomePage() {

@@ -68,25 +68,25 @@ export default function WordPressPostClient({ post }: Props) {
       "@type": "Article",
       "headline": extractTextFromHtml(post.title.rendered),
       "description": extractTextFromHtml(post.excerpt.rendered).substring(0, 160),
-      "image": getFeaturedImage() ? [getFeaturedImage()] : ["https://pravdagency.eu/pravda-og-blog.png"],
+      "image": getFeaturedImage() ? [getFeaturedImage()] : ["https://www.pravdast.agency/pravda-og-blog.png"],
       "author": {
         "@type": "Person",
         "name": getAuthor(),
-        "url": "https://www.pravdagency.eu/about"
+        "url": "https://www.pravdast.agency/about"
       },
       "publisher": {
         "@type": "Organization",
         "name": "Pravda Agency",
         "logo": {
           "@type": "ImageObject",
-          "url": "https://www.pravdagency.eu/logo.png"
+          "url": "https://www.pravdast.agency/logo.png"
         }
       },
       "datePublished": post.date,
       "dateModified": post.modified,
       "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": `https://www.pravdagency.eu/blog/wp-${post.slug}`
+        "@id": `https://www.pravdast.agency/blog/wp-${post.slug}`
       },
       "articleSection": "Business Engineering",
       "keywords": ["бизнес инженерство", "растеж", "маркетинг", "SEO", "Pravda Agency"],
@@ -103,19 +103,19 @@ export default function WordPressPostClient({ post }: Props) {
           "@type": "ListItem",
           "position": 1,
           "name": "Начало",
-          "item": "https://www.pravdagency.eu"
+          "item": "https://www.pravdast.agency"
         },
         {
           "@type": "ListItem",
           "position": 2,
           "name": "Блог",
-          "item": "https://www.pravdagency.eu/blog"
+          "item": "https://www.pravdast.agency/blog"
         },
         {
           "@type": "ListItem",
           "position": 3,
           "name": extractTextFromHtml(post.title.rendered),
-          "item": `https://www.pravdagency.eu/blog/wp-${post.slug}`
+          "item": `https://www.pravdast.agency/blog/wp-${post.slug}`
         }
       ]
     };

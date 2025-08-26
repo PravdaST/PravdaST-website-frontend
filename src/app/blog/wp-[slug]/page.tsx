@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       openGraph: {
         title,
         description,
-        url: `https://www.pravdagency.eu/blog/wp-${slug}`,
+        url: `https://www.pravdast.agency/blog/wp-${slug}`,
         siteName: 'Pravda Agency',
         locale: 'bg_BG',
         images: featuredImage ? [
@@ -42,7 +42,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
           }
         ] : [
           {
-            url: 'https://pravdagency.eu/pravda-og-blog.png',
+            url: 'https://www.pravdast.agency/pravda-og-blog.png',
             width: 1200,
             height: 630,
             alt: 'Pravda Agency Blog',
@@ -57,10 +57,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         card: 'summary_large_image',
         title,
         description,
-        images: [featuredImage || 'https://pravdagency.eu/pravda-og-blog.png'],
+        images: [featuredImage || 'https://www.pravdast.agency/pravda-og-blog.png'],
       },
       alternates: {
-        canonical: `https://www.pravdagency.eu/blog/wp-${slug}`,
+        canonical: `https://www.pravdast.agency/blog/wp-${slug}`,
       },
       other: {
         'fb:app_id': '1234567890123456',

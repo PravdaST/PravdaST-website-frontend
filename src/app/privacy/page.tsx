@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     description: 'Политика за поверителност на Pravda Agency. Как защитаваме личните ви данни при използване на нашите бизнес инженеринг услуги.',
   },
   alternates: {
-    canonical: 'https://www.pravdagency.eu/privacy',
+    canonical: 'https://www.pravdast.agency/privacy',
   },
 }
 
