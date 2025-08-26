@@ -163,7 +163,7 @@ export default function RelatedPosts({ currentPostId, categories = [], tags = []
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
             >
-              <Card className="bg-gray-900/50 backdrop-blur-sm border-gray-800 hover:border-[#ECB629]/50 transition-all duration-300 group h-full">
+              <Card className="bg-black/50 backdrop-blur-sm border-gray-800 hover:border-[#ECB629]/50 transition-all duration-300 group h-full">
                 <CardContent className="p-6 h-full flex flex-col">
                   {/* Featured Image */}
                   {post._embedded?.['wp:featuredmedia']?.[0]?.source_url && (

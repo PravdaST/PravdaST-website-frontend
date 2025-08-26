@@ -14,8 +14,8 @@ export function ClientHomepage() {
   if (!mounted) {
     // Return a basic loading state that matches the final structure
     return (
-      <div className="min-h-screen bg-slate-900">
-        <nav className="w-full bg-slate-900 border-b border-[#ECB629]/20 relative">
+      <div className="min-h-screen bg-black">
+        <nav className="w-full bg-black border-b border-[#ECB629]/20 relative">
           <div className="container mx-auto px-4 sm:px-6 py-3 sm:py-4 relative z-10">
             <div className="flex justify-between items-center">
               <div className="text-2xl font-bold text-[#ECB629]">PRAVDA ST</div>
@@ -32,7 +32,7 @@ export function ClientHomepage() {
             </div>
           </div>
         </nav>
-        <section className="min-h-screen flex items-center relative overflow-hidden bg-slate-900">
+        <section className="min-h-screen flex items-center relative overflow-hidden bg-black">
           <div className="container mx-auto px-4 sm:px-6 relative z-1">
             <div className="max-w-4xl mx-auto text-center">
               <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-6 sm:mb-8 leading-tight text-white">
@@ -47,9 +47,9 @@ export function ClientHomepage() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-900">
+    <div className="min-h-screen bg-black">
       {/* Navigation */}
-      <nav className="w-full bg-slate-900 border-b border-[#ECB629]/20 relative">
+      <nav className="w-full bg-black border-b border-[#ECB629]/20 relative">
         <div className="absolute inset-0 opacity-5">
           <div className="absolute inset-0">
             <div 

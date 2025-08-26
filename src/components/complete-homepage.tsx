@@ -4,9 +4,9 @@ import PravdaHeading from '@/components/typography/PravdaHeading'
 
 export function CompleteHomepage() {
   return (
-    <div className="min-h-screen bg-slate-900">
+    <div className="min-h-screen bg-black">
       {/* Navigation */}
-      <nav className="w-full bg-slate-900 border-b border-[#ECB629]/20 relative" style={{ transform: 'none' }}>
+      <nav className="w-full bg-black border-b border-[#ECB629]/20 relative" style={{ transform: 'none' }}>
         <div className="absolute inset-0 opacity-5">
           <div className="absolute inset-0">
             <div className="absolute inset-0" style={{
@@ -105,7 +105,7 @@ export function CompleteHomepage() {
       </nav>
 
       {/* Hero Section */}
-      <section className="min-h-screen flex items-center relative overflow-hidden bg-slate-900">
+      <section className="min-h-screen flex items-center relative overflow-hidden bg-black">
         <div className="absolute inset-0 opacity-15">
           <div className="absolute inset-0">
             <div className="absolute inset-0" style={{

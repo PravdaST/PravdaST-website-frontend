@@ -248,7 +248,7 @@ export const GlovoStepFormOptimized = () => {
 
       {/* Form Content */}
       <motion.div
-        className="bg-gray-900/30 backdrop-blur-xl border border-gray-700/50 rounded-2xl p-6 md:p-8"
+        className="bg-black/30 backdrop-blur-xl border border-gray-700/50 rounded-2xl p-6 md:p-8"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         key={currentStep}
