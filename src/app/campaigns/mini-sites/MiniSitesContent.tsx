@@ -493,102 +493,205 @@ export default function MiniSitesContent() {
         </div>
       </section>
 
-      {/* Interactive Demo Menu Section */}
-      <section className="py-20 relative">
-        <div className="container mx-auto px-4">
+      {/* Modern Restaurant Menu Section - 2025 Design */}
+      <section className="py-20 relative overflow-hidden">
+        {/* Background Gradient */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black via-gray-900/50 to-black" />
+        
+        <div className="container mx-auto px-4 relative z-10">
           <motion.div 
             className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
+            <motion.div 
+              className="inline-block mb-4 px-4 py-2 bg-gradient-to-r from-orange-600/20 to-red-600/20 rounded-full"
+              whileHover={{ scale: 1.05 }}
+            >
+              <span className="text-sm font-semibold text-orange-400">DIGITAL MENU 2025</span>
+            </motion.div>
             <h2 className="text-4xl md:text-6xl font-black mb-6">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">
-                ИНТЕРАКТИВНО МЕНЮ
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-orange-200 to-white">
+                МОДЕРНО РЕСТОРАНТСКО МЕНЮ
               </span>
             </h2>
-            <p className="text-xl text-gray-400">Клиентите виждат цени и поръчват директно</p>
+            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+              Елегантен дизайн като в топ ресторант. Клиентите виждат всичко ясно и поръчват лесно.
+            </p>
           </motion.div>
 
+          {/* Modern Menu Grid Layout */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="max-w-3xl mx-auto"
+            className="max-w-6xl mx-auto"
           >
-            <Card className="bg-gray-900/80 backdrop-blur-xl border-gray-800 p-8">
-              <div className="flex items-center justify-between mb-8">
-                <h3 className="text-2xl font-bold flex items-center gap-3">
-                  <MenuIcon className="w-6 h-6 text-orange-500" />
-                  Демо Меню
-                </h3>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setIsMenuExpanded(!isMenuExpanded)}
-                  className="bg-orange-500/10 border-orange-500/30 hover:bg-orange-500/20"
+            {/* Category Tabs */}
+            <div className="flex flex-wrap justify-center gap-4 mb-12">
+              {[
+                { name: "Пици", icon: ChefHat, color: "from-orange-500 to-red-500" },
+                { name: "Салати", icon: Heart, color: "from-green-500 to-emerald-500" },
+                { name: "Напитки", icon: Coffee, color: "from-blue-500 to-cyan-500" }
+              ].map((category, index) => (
+                <motion.button
+                  key={category.name}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="group relative px-8 py-4 bg-gray-900/80 backdrop-blur-sm border border-gray-800 rounded-2xl overflow-hidden transition-all duration-300 hover:border-gray-600"
+                  onClick={() => handleMenuInteraction(category.name)}
                 >
-                  {isMenuExpanded ? 'Свий' : 'Разгъни'} всичко
-                </Button>
-              </div>
+                  <div className={`absolute inset-0 bg-gradient-to-r ${category.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`} />
+                  <div className="relative z-10 flex items-center gap-3">
+                    <category.icon className="w-5 h-5 text-gray-400 group-hover:text-white transition-colors" />
+                    <span className="font-bold text-gray-300 group-hover:text-white transition-colors">{category.name}</span>
+                  </div>
+                </motion.button>
+              ))}
+            </div>
 
-              <Accordion 
-                type="single" 
-                collapsible 
-                value={isMenuExpanded ? demoMenu[0].name : undefined}
-                className="space-y-4"
-              >
-                {demoMenu.map((category) => (
-                  <AccordionItem 
-                    key={category.name} 
-                    value={category.name}
-                    className="border border-gray-700 rounded-lg overflow-hidden"
-                  >
-                    <AccordionTrigger
-                      onClick={() => handleMenuInteraction(category.name)}
-                      className="px-6 py-4 hover:bg-gray-800/50 transition-colors"
-                    >
-                      <div className="flex items-center gap-3">
-                        <span className="text-2xl">{category.icon}</span>
-                        <span className="text-lg font-semibold">{category.name}</span>
-                      </div>
-                    </AccordionTrigger>
-                    <AccordionContent>
-                      <div className="px-6 pb-4 space-y-3">
-                        {category.items.map((item) => (
-                          <motion.div 
-                            key={item.name}
-                            className="flex justify-between items-start p-4 bg-gray-800/30 rounded-lg hover:bg-gray-800/50 transition-colors cursor-pointer"
-                            onClick={() => handleMenuInteraction(category.name, item.name)}
-                            whileHover={{ x: 5 }}
-                          >
+            {/* Menu Items Grid - Modern Restaurant Style */}
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {demoMenu.map((category, categoryIndex) => (
+                <motion.div
+                  key={category.name}
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: categoryIndex * 0.15 }}
+                  className="space-y-4"
+                >
+                  {/* Category Header */}
+                  <div className="relative">
+                    <div className="absolute inset-0 bg-gradient-to-r from-orange-600/20 to-transparent rounded-lg" />
+                    <div className="relative px-6 py-3">
+                      <h3 className="text-2xl font-black text-white flex items-center gap-3">
+                        {category.name === "Пици" && <ChefHat className="w-6 h-6 text-orange-500" />}
+                        {category.name === "Салати" && <Heart className="w-6 h-6 text-green-500" />}
+                        {category.name === "Напитки" && <Coffee className="w-6 h-6 text-blue-500" />}
+                        {category.name}
+                      </h3>
+                      <div className="h-0.5 bg-gradient-to-r from-orange-500 to-transparent mt-2" />
+                    </div>
+                  </div>
+
+                  {/* Menu Items */}
+                  <div className="space-y-3">
+                    {category.items.map((item, itemIndex) => (
+                      <motion.div
+                        key={item.name}
+                        initial={{ opacity: 0, x: -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: categoryIndex * 0.1 + itemIndex * 0.05 }}
+                        whileHover={{ scale: 1.02, x: 10 }}
+                        className="group relative bg-gradient-to-r from-gray-900/90 to-gray-800/50 backdrop-blur-sm border border-gray-800 rounded-xl p-5 cursor-pointer overflow-hidden transition-all duration-300 hover:border-gray-600 hover:shadow-2xl hover:shadow-orange-500/10"
+                        onClick={() => handleMenuInteraction(category.name, item.name)}
+                      >
+                        {/* Hover Gradient Background */}
+                        <div className="absolute inset-0 bg-gradient-to-r from-orange-600/0 to-orange-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                        
+                        {/* Content */}
+                        <div className="relative z-10">
+                          <div className="flex justify-between items-start gap-4">
                             <div className="flex-1">
-                              <div className="font-medium text-white">{item.name}</div>
+                              <h4 className="font-bold text-lg text-white group-hover:text-orange-400 transition-colors duration-300">
+                                {item.name}
+                              </h4>
                               {item.note && (
-                                <div className="text-sm text-gray-400 mt-1">{item.note}</div>
+                                <p className="text-sm text-gray-500 mt-1 group-hover:text-gray-400 transition-colors">
+                                  {item.note}
+                                </p>
                               )}
                             </div>
-                            <div className="text-lg font-bold text-orange-500">
-                              {item.price.toFixed(2)} лв
+                            
+                            {/* Price Badge */}
+                            <div className="flex items-center">
+                              <motion.div 
+                                className="px-4 py-2 bg-gradient-to-r from-orange-600 to-red-600 rounded-lg"
+                                whileHover={{ scale: 1.1 }}
+                              >
+                                <span className="text-white font-black text-lg">
+                                  {item.price.toFixed(2)}
+                                </span>
+                                <span className="text-white/80 text-xs ml-1">лв</span>
+                              </motion.div>
+                            </div>
+                          </div>
+                          
+                          {/* Add to Cart Icon (appears on hover) */}
+                          <motion.div
+                            className="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                            initial={{ scale: 0 }}
+                            whileHover={{ scale: 1.2 }}
+                          >
+                            <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                              <Check className="w-4 h-4 text-white" />
                             </div>
                           </motion.div>
-                        ))}
-                      </div>
-                    </AccordionContent>
-                  </AccordionItem>
-                ))}
-              </Accordion>
-
-              <div className="mt-8 p-4 bg-gradient-to-r from-orange-500/10 to-blue-500/10 rounded-lg border border-orange-500/20">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <ShoppingCart className="w-5 h-5 text-orange-500" />
-                    <span className="font-medium">Онлайн поръчки</span>
+                        </div>
+                      </motion.div>
+                    ))}
                   </div>
-                  <span className="text-green-400 font-semibold">Активно 24/7</span>
-                </div>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Bottom Features Bar */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-4"
+            >
+              {[
+                { icon: ShoppingCart, label: "Онлайн поръчки", value: "24/7", color: "from-green-600 to-emerald-600" },
+                { icon: Clock, label: "Бърза доставка", value: "30 мин", color: "from-blue-600 to-cyan-600" },
+                { icon: Star, label: "Рейтинг", value: "4.9/5", color: "from-yellow-600 to-orange-600" }
+              ].map((feature, index) => (
+                <motion.div
+                  key={index}
+                  whileHover={{ scale: 1.05, y: -5 }}
+                  className="relative group"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-gray-900 to-gray-800 rounded-2xl" />
+                  <div className={`absolute inset-0 bg-gradient-to-r ${feature.color} opacity-0 group-hover:opacity-10 rounded-2xl transition-opacity duration-300`} />
+                  <div className="relative p-6 flex items-center justify-between">
+                    <div className="flex items-center gap-4">
+                      <div className={`w-12 h-12 bg-gradient-to-r ${feature.color} rounded-xl flex items-center justify-center`}>
+                        <feature.icon className="w-6 h-6 text-white" />
+                      </div>
+                      <div>
+                        <p className="text-gray-400 text-sm">{feature.label}</p>
+                        <p className="text-white font-bold text-lg">{feature.value}</p>
+                      </div>
+                    </div>
+                    <ChevronRight className="w-5 h-5 text-gray-600 group-hover:text-white transition-colors" />
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+
+            {/* Special Offer Banner */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              className="mt-8 relative overflow-hidden rounded-3xl"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-orange-600 to-red-600 opacity-90" />
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent animate-pulse" />
+              <div className="relative p-8 text-center">
+                <Sparkles className="w-10 h-10 text-white mx-auto mb-4" />
+                <h3 className="text-2xl font-black text-white mb-2">СПЕЦИАЛНА ОФЕРТА</h3>
+                <p className="text-white/90">При първа поръчка през сайта -20% отстъпка с код: ONLINE20</p>
               </div>
-            </Card>
+            </motion.div>
           </motion.div>
         </div>
       </section>
