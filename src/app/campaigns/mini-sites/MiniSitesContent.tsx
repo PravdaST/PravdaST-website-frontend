@@ -93,6 +93,7 @@ export default function MiniSitesContent() {
   const [isMenuExpanded, setIsMenuExpanded] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [activeMenuFilter, setActiveMenuFilter] = useState("all");
   
   // Refs for scroll animations
   const heroRef = useRef<HTMLDivElement>(null);
@@ -493,147 +494,114 @@ export default function MiniSitesContent() {
         </div>
       </section>
 
-      {/* Modern Restaurant Menu Section - 2025 Design */}
-      <section className="py-20 relative overflow-hidden">
-        {/* Background Gradient */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black via-gray-900/50 to-black" />
-        
-        <div className="container mx-auto px-4 relative z-10">
+      {/* Light Modern Menu Section - 2025 Design */}
+      <section className="py-20 relative">
+        <div className="container mx-auto px-4">
           <motion.div 
             className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <motion.div 
-              className="inline-block mb-4 px-4 py-2 bg-gradient-to-r from-orange-600/20 to-red-600/20 rounded-full"
-              whileHover={{ scale: 1.05 }}
-            >
-              <span className="text-sm font-semibold text-orange-400">DIGITAL MENU 2025</span>
-            </motion.div>
-            <h2 className="text-4xl md:text-6xl font-black mb-6">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-orange-200 to-white">
-                МОДЕРНО РЕСТОРАНТСКО МЕНЮ
-              </span>
+            <div className="inline-block mb-4 px-4 py-2 bg-orange-500/10 rounded-full">
+              <span className="text-sm font-semibold text-orange-400">ИНТЕРАКТИВНО МЕНЮ</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
+              Лесно и бързо поръчване
             </h2>
-            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-              Елегантен дизайн като в топ ресторант. Клиентите виждат всичко ясно и поръчват лесно.
+            <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+              Клиентите виждат менюто, избират и поръчват директно от сайта
             </p>
           </motion.div>
 
-          {/* Modern Menu Grid Layout */}
+          {/* Filter Buttons */}
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="max-w-6xl mx-auto"
+            className="flex flex-wrap justify-center gap-3 mb-12"
           >
-            {/* Category Tabs */}
-            <div className="flex flex-wrap justify-center gap-4 mb-12">
-              {[
-                { name: "Пици", icon: ChefHat, color: "from-orange-500 to-red-500" },
-                { name: "Салати", icon: Heart, color: "from-green-500 to-emerald-500" },
-                { name: "Напитки", icon: Coffee, color: "from-blue-500 to-cyan-500" }
-              ].map((category, index) => (
-                <motion.button
-                  key={category.name}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="group relative px-8 py-4 bg-gray-900/80 backdrop-blur-sm border border-gray-800 rounded-2xl overflow-hidden transition-all duration-300 hover:border-gray-600"
-                  onClick={() => handleMenuInteraction(category.name)}
-                >
-                  <div className={`absolute inset-0 bg-gradient-to-r ${category.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`} />
-                  <div className="relative z-10 flex items-center gap-3">
-                    <category.icon className="w-5 h-5 text-gray-400 group-hover:text-white transition-colors" />
-                    <span className="font-bold text-gray-300 group-hover:text-white transition-colors">{category.name}</span>
-                  </div>
-                </motion.button>
-              ))}
-            </div>
+            {[
+              { id: "all", name: "Всички", icon: MenuIcon },
+              { id: "Пици", name: "Пици", icon: ChefHat },
+              { id: "Салати", name: "Салати", icon: Heart },
+              { id: "Напитки", name: "Напитки", icon: Coffee }
+            ].map((filter) => (
+              <motion.button
+                key={filter.id}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className={`flex items-center gap-2 px-6 py-3 rounded-full transition-all duration-300 ${
+                  activeMenuFilter === filter.id 
+                    ? "bg-orange-500 text-white shadow-lg" 
+                    : "bg-gray-800/50 text-gray-400 hover:bg-gray-700/50 hover:text-white"
+                }`}
+                onClick={() => {
+                  setActiveMenuFilter(filter.id);
+                  handleMenuInteraction(filter.name);
+                }}
+              >
+                <filter.icon className="w-4 h-4" />
+                <span className="font-medium">{filter.name}</span>
+              </motion.button>
+            ))}
+          </motion.div>
 
-            {/* Menu Items Grid - Modern Restaurant Style */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {demoMenu.map((category, categoryIndex) => (
+          {/* Menu Items - Simple Clean Layout */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="max-w-4xl mx-auto"
+          >
+            <div className="space-y-8">
+              {demoMenu
+                .filter(category => activeMenuFilter === "all" || category.name === activeMenuFilter)
+                .map((category, categoryIndex) => (
                 <motion.div
                   key={category.name}
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: categoryIndex * 0.15 }}
-                  className="space-y-4"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: categoryIndex * 0.1 }}
+                  className="bg-gray-900/30 backdrop-blur-sm rounded-2xl p-6 border border-gray-800/50"
                 >
-                  {/* Category Header */}
-                  <div className="relative">
-                    <div className="absolute inset-0 bg-gradient-to-r from-orange-600/20 to-transparent rounded-lg" />
-                    <div className="relative px-6 py-3">
-                      <h3 className="text-2xl font-black text-white flex items-center gap-3">
-                        {category.name === "Пици" && <ChefHat className="w-6 h-6 text-orange-500" />}
-                        {category.name === "Салати" && <Heart className="w-6 h-6 text-green-500" />}
-                        {category.name === "Напитки" && <Coffee className="w-6 h-6 text-blue-500" />}
-                        {category.name}
-                      </h3>
-                      <div className="h-0.5 bg-gradient-to-r from-orange-500 to-transparent mt-2" />
-                    </div>
+                  {/* Category Header - Simple */}
+                  <div className="flex items-center gap-3 mb-6 pb-3 border-b border-gray-800/50">
+                    {category.name === "Пици" && <ChefHat className="w-6 h-6 text-orange-500" />}
+                    {category.name === "Салати" && <Heart className="w-6 h-6 text-green-500" />}
+                    {category.name === "Напитки" && <Coffee className="w-6 h-6 text-blue-500" />}
+                    <h3 className="text-xl font-bold text-white">{category.name}</h3>
                   </div>
 
-                  {/* Menu Items */}
-                  <div className="space-y-3">
+                  {/* Menu Items - Clean Cards */}
+                  <div className="grid md:grid-cols-2 gap-4">
                     {category.items.map((item, itemIndex) => (
                       <motion.div
                         key={item.name}
                         initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: categoryIndex * 0.1 + itemIndex * 0.05 }}
-                        whileHover={{ scale: 1.02, x: 10 }}
-                        className="group relative bg-gradient-to-r from-gray-900/90 to-gray-800/50 backdrop-blur-sm border border-gray-800 rounded-xl p-5 cursor-pointer overflow-hidden transition-all duration-300 hover:border-gray-600 hover:shadow-2xl hover:shadow-orange-500/10"
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: itemIndex * 0.05 }}
+                        whileHover={{ scale: 1.02 }}
+                        className="group bg-gray-800/30 rounded-xl p-4 cursor-pointer transition-all duration-300 hover:bg-gray-800/50 hover:shadow-lg border border-gray-800/30 hover:border-gray-700"
                         onClick={() => handleMenuInteraction(category.name, item.name)}
                       >
-                        {/* Hover Gradient Background */}
-                        <div className="absolute inset-0 bg-gradient-to-r from-orange-600/0 to-orange-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                        
-                        {/* Content */}
-                        <div className="relative z-10">
-                          <div className="flex justify-between items-start gap-4">
-                            <div className="flex-1">
-                              <h4 className="font-bold text-lg text-white group-hover:text-orange-400 transition-colors duration-300">
-                                {item.name}
-                              </h4>
-                              {item.note && (
-                                <p className="text-sm text-gray-500 mt-1 group-hover:text-gray-400 transition-colors">
-                                  {item.note}
-                                </p>
-                              )}
-                            </div>
-                            
-                            {/* Price Badge */}
-                            <div className="flex items-center">
-                              <motion.div 
-                                className="px-4 py-2 bg-gradient-to-r from-orange-600 to-red-600 rounded-lg"
-                                whileHover={{ scale: 1.1 }}
-                              >
-                                <span className="text-white font-black text-lg">
-                                  {item.price.toFixed(2)}
-                                </span>
-                                <span className="text-white/80 text-xs ml-1">лв</span>
-                              </motion.div>
+                        <div className="flex justify-between items-start gap-4">
+                          <div className="flex-1">
+                            <h4 className="font-semibold text-white group-hover:text-orange-400 transition-colors">
+                              {item.name}
+                            </h4>
+                            {item.note && (
+                              <p className="text-sm text-gray-500 mt-1">{item.note}</p>
+                            )}
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <span className="text-lg font-bold text-orange-500">
+                              {item.price.toFixed(2)} лв
+                            </span>
+                            <div className="w-8 h-8 bg-orange-500/20 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                              <Check className="w-4 h-4 text-orange-500" />
                             </div>
                           </div>
-                          
-                          {/* Add to Cart Icon (appears on hover) */}
-                          <motion.div
-                            className="absolute bottom-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                            initial={{ scale: 0 }}
-                            whileHover={{ scale: 1.2 }}
-                          >
-                            <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
-                              <Check className="w-4 h-4 text-white" />
-                            </div>
-                          </motion.div>
                         </div>
                       </motion.div>
                     ))}
@@ -642,55 +610,29 @@ export default function MiniSitesContent() {
               ))}
             </div>
 
-            {/* Bottom Features Bar */}
+            {/* Simple Features */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-4"
+              className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6"
             >
               {[
-                { icon: ShoppingCart, label: "Онлайн поръчки", value: "24/7", color: "from-green-600 to-emerald-600" },
-                { icon: Clock, label: "Бърза доставка", value: "30 мин", color: "from-blue-600 to-cyan-600" },
-                { icon: Star, label: "Рейтинг", value: "4.9/5", color: "from-yellow-600 to-orange-600" }
+                { icon: ShoppingCart, label: "Онлайн поръчки 24/7", color: "text-green-500" },
+                { icon: Clock, label: "Доставка за 30 мин", color: "text-blue-500" },
+                { icon: Star, label: "Рейтинг 4.9/5", color: "text-yellow-500" }
               ].map((feature, index) => (
                 <motion.div
                   key={index}
-                  whileHover={{ scale: 1.05, y: -5 }}
-                  className="relative group"
+                  whileHover={{ y: -5 }}
+                  className="bg-gray-900/30 rounded-xl p-6 border border-gray-800/30 hover:border-gray-700 transition-all duration-300"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-r from-gray-900 to-gray-800 rounded-2xl" />
-                  <div className={`absolute inset-0 bg-gradient-to-r ${feature.color} opacity-0 group-hover:opacity-10 rounded-2xl transition-opacity duration-300`} />
-                  <div className="relative p-6 flex items-center justify-between">
-                    <div className="flex items-center gap-4">
-                      <div className={`w-12 h-12 bg-gradient-to-r ${feature.color} rounded-xl flex items-center justify-center`}>
-                        <feature.icon className="w-6 h-6 text-white" />
-                      </div>
-                      <div>
-                        <p className="text-gray-400 text-sm">{feature.label}</p>
-                        <p className="text-white font-bold text-lg">{feature.value}</p>
-                      </div>
-                    </div>
-                    <ChevronRight className="w-5 h-5 text-gray-600 group-hover:text-white transition-colors" />
+                  <div className="flex items-center gap-4">
+                    <feature.icon className={`w-8 h-8 ${feature.color}`} />
+                    <span className="text-white font-medium">{feature.label}</span>
                   </div>
                 </motion.div>
               ))}
-            </motion.div>
-
-            {/* Special Offer Banner */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              className="mt-8 relative overflow-hidden rounded-3xl"
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-orange-600 to-red-600 opacity-90" />
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent animate-pulse" />
-              <div className="relative p-8 text-center">
-                <Sparkles className="w-10 h-10 text-white mx-auto mb-4" />
-                <h3 className="text-2xl font-black text-white mb-2">СПЕЦИАЛНА ОФЕРТА</h3>
-                <p className="text-white/90">При първа поръчка през сайта -20% отстъпка с код: ONLINE20</p>
-              </div>
             </motion.div>
           </motion.div>
         </div>
