@@ -7,6 +7,7 @@ import PravdaHeading from "@/components/typography/PravdaHeading";
 import { ChevronLeft, ChevronRight, Calculator, Mail, Phone, CheckCircle } from "lucide-react";
 
 interface FormData {
+  name: string;
   restaurantName: string;
   dailyOrders: string;
   avgOrderValue: string;
@@ -17,6 +18,7 @@ interface FormData {
 export const GlovoStepForm = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const [formData, setFormData] = useState<FormData>({
+    name: "",
     restaurantName: "",
     dailyOrders: "",
     avgOrderValue: "",
@@ -51,6 +53,7 @@ export const GlovoStepForm = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
+          name: formData.name,
           restaurant_name: formData.restaurantName,
           daily_orders: formData.dailyOrders,
           avg_order_value: formData.avgOrderValue,
@@ -62,7 +65,7 @@ export const GlovoStepForm = () => {
 
       if (response.ok) {
         setIsSubmitted(true);
-        setCurrentStep(6); // Thank you screen
+        setCurrentStep(7); // Thank you screen
       } else {
         throw new Error('Failed to submit');
       }
@@ -75,7 +78,7 @@ export const GlovoStepForm = () => {
   };
 
   const nextStep = () => {
-    if (currentStep < 6) {
+    if (currentStep < 7) {
       setCurrentStep(currentStep + 1);
     }
   };
@@ -89,12 +92,14 @@ export const GlovoStepForm = () => {
   const isStepValid = () => {
     switch (currentStep) {
       case 1:
-        return formData.restaurantName.trim().length > 0;
+        return formData.name.trim().length >= 2;
       case 2:
-        return formData.dailyOrders !== "";
+        return formData.restaurantName.trim().length > 0;
       case 3:
-        return formData.avgOrderValue !== "";
+        return formData.dailyOrders !== "";
       case 4:
+        return formData.avgOrderValue !== "";
+      case 5:
         // Strict email validation
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         const isEmailValid = emailRegex.test(formData.email.trim());
@@ -110,7 +115,7 @@ export const GlovoStepForm = () => {
   };
 
   const getValidationMessage = () => {
-    if (currentStep === 4) {
+    if (currentStep === 5) {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       const phoneRegex = /^(\+359|0)[0-9]{8,9}$/;
       
@@ -156,7 +161,27 @@ export const GlovoStepForm = () => {
         </div>
       )
     },
-    // Question 1: Restaurant Name (Step 1)
+    // Question 1: Name (Step 1)  
+    {
+      title: "Как можем да се обръщаме към Вас?",
+      subtitle: "Въведете вашето име",
+      content: (
+        <div className="py-8">
+          <input
+            type="text"
+            value={formData.name}
+            onChange={(e) => setFormData({...formData, name: e.target.value})}
+            placeholder="Въведете вашето име..."
+            className="w-full px-6 py-4 bg-black/50 border border-green-400/30 rounded-xl text-white text-lg focus:border-green-400 focus:outline-none"
+            autoFocus
+          />
+          {formData.name.trim().length > 0 && formData.name.trim().length < 2 && (
+            <p className="text-red-400 text-sm mt-2">Моля въведете поне 2 символа</p>
+          )}
+        </div>
+      )
+    },
+    // Question 2: Restaurant Name (Step 2)
     {
       title: "Как се казва вашият ресторант?",
       subtitle: "Това ще ни помогне да персонализираме анализа",
@@ -173,7 +198,7 @@ export const GlovoStepForm = () => {
         </div>
       )
     },
-    // Question 2: Daily Orders (Step 2)
+    // Question 3: Daily Orders (Step 3)
     {
       title: "Колко поръчки за доставка получавате дневно средно?",
       subtitle: "Изберете най-близкия вариант",
@@ -195,7 +220,7 @@ export const GlovoStepForm = () => {
         </div>
       )
     },
-    // Question 3: Average Order Value (Step 3)
+    // Question 4: Average Order Value (Step 4)
     {
       title: "Каква е средната стойност на поръчката ви за доставка?",
       subtitle: "Изберете възможността, която най-добре описва бизнеса ви",
@@ -217,7 +242,7 @@ export const GlovoStepForm = () => {
         </div>
       )
     },
-    // Question 4: Contact Info (Step 4)
+    // Question 5: Contact Info (Step 5)
     {
       title: "Къде да изпратим персонализирания ви Glovo анализ?",
       subtitle: "Ще ви изпратим доклада незабавно по имейл и може да се свържем с допълнителни съвети за спестявания",

@@ -3,7 +3,7 @@ import { Suspense } from "react";
 import { getCampaignGlovoMetadata } from './metadata'
 import { GlovoHeroSection } from "@/components/glovo-hero-section";
 import { FooterServer } from "@/components/footer-server";
-import { GlovoStepFormOptimized } from "@/components/glovo-step-form-optimized";
+import { GlovoStepForm } from "@/components/glovo-step-form";
 
 export async function generateMetadata(): Promise<Metadata> {
   return await getCampaignGlovoMetadata()
@@ -616,7 +616,7 @@ export default function GlovoCalculatorLandingOptimized() {
               <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/20 to-green-400/20 rounded-3xl blur-xl"></div>
               <div className="relative">
                 <Suspense fallback={<FormLoading />}>
-                  <GlovoStepFormOptimized />
+                  <GlovoStepForm />
                 </Suspense>
               </div>
             </div>
