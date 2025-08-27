@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 
 const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY;
 const AIRTABLE_BASE_ID = process.env.AIRTABLE_BASE_ID || 'appkwDzbKRNTf1WZV';
-const AIRTABLE_TABLE_ID = process.env.AIRTABLE_TABLE_ID || 'tbl0fYDOCTS2PHwBP';
+const AIRTABLE_TABLE_ID = process.env.AIRTABLE_TABLE_ID || 'tblofYDOCTS2PHwBP';
 
 export async function POST(request: NextRequest) {
   try {
@@ -64,8 +64,8 @@ export async function POST(request: NextRequest) {
       console.log('Could not get available fields');
     }
 
-    // Check if proper fields exist
-    const hasProperFields = ['Restaurant Name', 'Daily Orders', 'Average Order Value', 'Email', 'Phone', 'Timestamp'].every(
+    // Check if proper fields exist  
+    const hasProperFields = ['Customer Name', 'Restaurant Name', 'City', 'Daily Orders', 'Average Order Value', 'Email', 'Phone'].every(
       field => availableFields.includes(field)
     );
 
@@ -74,12 +74,13 @@ export async function POST(request: NextRequest) {
       // Use proper field structure
       airtableData = {
         fields: {
+          'Customer Name': String(body.name || ''),
           'Restaurant Name': String(body.restaurant_name || ''),
+          'City': String(body.city || ''),
           'Daily Orders': String(body.daily_orders || ''),
           'Average Order Value': String(body.avg_order_value || ''),
           'Email': String(body.email || ''),
-          'Phone': String(body.phone || ''),
-          'Timestamp': String(body.timestamp || new Date().toISOString())
+          'Phone': String(body.phone || '')
         }
       };
       console.log('✅ Using proper field structure');
@@ -87,12 +88,13 @@ export async function POST(request: NextRequest) {
       // Try with the new fields anyway - they might exist but not show in empty records
       airtableData = {
         fields: {
+          'Customer Name': String(body.name || ''),
           'Restaurant Name': String(body.restaurant_name || ''),
+          'City': String(body.city || ''),
           'Daily Orders': String(body.daily_orders || ''),
           'Average Order Value': String(body.avg_order_value || ''),
           'Email': String(body.email || ''),
-          'Phone': String(body.phone || ''),
-          'Timestamp': String(body.timestamp || new Date().toISOString())
+          'Phone': String(body.phone || '')
         }
       };
       console.log('🔄 Trying with new fields despite detection failure');

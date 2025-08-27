@@ -75,6 +75,7 @@ export default function RootLayout({
           <RetargetingPixels />
           <ServiceWorkerSetup />
         </ClientOnly>
+        <BackgroundEffects />
         <ConditionalNavigation />
         {children}
         <ConditionalFooter />

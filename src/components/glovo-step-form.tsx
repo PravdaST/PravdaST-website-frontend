@@ -9,6 +9,7 @@ import { ChevronLeft, ChevronRight, Calculator, Mail, Phone, CheckCircle } from 
 interface FormData {
   name: string;
   restaurantName: string;
+  city: string;
   dailyOrders: string;
   avgOrderValue: string;
   email: string;
@@ -20,6 +21,7 @@ export const GlovoStepForm = () => {
   const [formData, setFormData] = useState<FormData>({
     name: "",
     restaurantName: "",
+    city: "",
     dailyOrders: "",
     avgOrderValue: "",
     email: "",
@@ -55,6 +57,7 @@ export const GlovoStepForm = () => {
         body: JSON.stringify({
           name: formData.name,
           restaurant_name: formData.restaurantName,
+          city: formData.city,
           daily_orders: formData.dailyOrders,
           avg_order_value: formData.avgOrderValue,
           email: formData.email,
@@ -65,7 +68,7 @@ export const GlovoStepForm = () => {
 
       if (response.ok) {
         setIsSubmitted(true);
-        setCurrentStep(7); // Thank you screen
+        setCurrentStep(8); // Thank you screen
       } else {
         throw new Error('Failed to submit');
       }
@@ -78,7 +81,7 @@ export const GlovoStepForm = () => {
   };
 
   const nextStep = () => {
-    if (currentStep < 7) {
+    if (currentStep < 8) {
       setCurrentStep(currentStep + 1);
     }
   };
@@ -96,10 +99,12 @@ export const GlovoStepForm = () => {
       case 2:
         return formData.restaurantName.trim().length > 0;
       case 3:
-        return formData.dailyOrders !== "";
+        return formData.city.trim().length > 0;
       case 4:
-        return formData.avgOrderValue !== "";
+        return formData.dailyOrders !== "";
       case 5:
+        return formData.avgOrderValue !== "";
+      case 6:
         // Strict email validation
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         const isEmailValid = emailRegex.test(formData.email.trim());
@@ -115,7 +120,7 @@ export const GlovoStepForm = () => {
   };
 
   const getValidationMessage = () => {
-    if (currentStep === 5) {
+    if (currentStep === 6) {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       const phoneRegex = /^(\+359|0)[0-9]{8,9}$/;
       
@@ -198,7 +203,24 @@ export const GlovoStepForm = () => {
         </div>
       )
     },
-    // Question 3: Daily Orders (Step 3)
+    // Question 3: City (Step 3)
+    {
+      title: "В кой град се намира ресторантът ви?",
+      subtitle: "Това ще ни помогне за по-точен анализ на пазара",
+      content: (
+        <div className="py-8">
+          <input
+            type="text"
+            value={formData.city}
+            onChange={(e) => setFormData({...formData, city: e.target.value})}
+            placeholder="Въведете града..."
+            className="w-full px-6 py-4 bg-black/50 border border-green-400/30 rounded-xl text-white text-lg focus:border-green-400 focus:outline-none"
+            autoFocus
+          />
+        </div>
+      )
+    },
+    // Question 4: Daily Orders (Step 4)
     {
       title: "Колко поръчки за доставка получавате дневно средно?",
       subtitle: "Изберете най-близкия вариант",
@@ -220,7 +242,7 @@ export const GlovoStepForm = () => {
         </div>
       )
     },
-    // Question 4: Average Order Value (Step 4)
+    // Question 5: Average Order Value (Step 5)
     {
       title: "Каква е средната стойност на поръчката ви за доставка?",
       subtitle: "Изберете възможността, която най-добре описва бизнеса ви",
@@ -242,7 +264,7 @@ export const GlovoStepForm = () => {
         </div>
       )
     },
-    // Question 5: Contact Info (Step 5)
+    // Question 6: Contact Info (Step 6)
     {
       title: "Къде да изпратим персонализирания ви Glovo анализ?",
       subtitle: "Ще ви изпратим доклада незабавно по имейл и може да се свържем с допълнителни съвети за спестявания",
