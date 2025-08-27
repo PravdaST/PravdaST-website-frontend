@@ -1,0 +1,180 @@
+Рут, SEO и хедър мета
+
+Route: src/app/campaigns/mini-sites/page.tsx (SSR).
+
+Използвай next-seo за Title/Description/OG и каноникал.
+
+SEO Title: Mini-Sites за малък бизнес – сайт за 24 часа | Pravda ST
+
+Meta Description (≤160): Готов one-page сайт с вградено меню, контакти и карта. Създаден за ресторанти, кафенета, услуги и салони. Стартира за 24 часа.
+
+Canonical: https://pravdast.agency/campaigns/mini-sites
+
+JSON-LD: Service (+ Organization) с оферта за „Mini-Sites“ и FAQ schema.
+
+2) Структура на секциите (в този ред)
+A. Hero
+
+Цел: Ясно обещание + бърз CTA.
+Копи:
+
+H1: „Вашият бизнес онлайн за под 24 часа“
+
+Подзаглавие: „Готови Mini-Sites с меню, контакти и карта – оптимизирани за клиенти, не за суета.“
+
+Primary CTA: „Започни сега“ (scroll към формата)
+
+Secondary CTA: „Виж демо шаблони“ (anchor към секция „Категории“)
+UI: shadcn Button (lg, rounded-2xl), фон pravda-dark, акцент --pravda-yellow. Subtle motion (fade-in, slight translateY) с framer-motion.
+Аналитика: event mini_hero_cta_click, params {cta:'primary'|'secondary'}.
+
+B. Problem (3 bullets)
+
+Копи (кратки удари):
+
+„Нямате сайт = губите клиенти всеки ден.“
+
+„Хората търсят меню и работно време, намират конкурента.“
+
+„Телефонът звъни за базови въпроси → губите време.“
+UI: 3 Card с икони (lucide), concise текст.
+
+C. Solution Preview – Категории шаблони
+
+Цел: Показваме за кого е.
+UI: Tabs (shadcn) или responsive Grid 3×2. Във всяка карта: заглавие + подкатегории + мини-превю (Embla carousel за mobile).
+Категории (пример):
+
+Ресторанти (пицарии, таверни, барове)
+
+Кафенета & Fast Food (бургер, дюнер, кафе)
+
+Услуги (автосервизи, адвокати, счетоводители)
+
+Красота & Здраве (фризьори, козметика, клиники)
+
+D. Какво включва всеки Mini-Site (Features)
+
+Bullets (икони):
+
+Mobile-first дизайн, скорост <3s, зелени CWV
+
+Вградено Меню (категории → артикули → цена)
+
+Галерия (снимки на обект/услуги)
+
+Контакти (телефон, имейл) + Google Maps
+
+Работно време (показва „Отворено/Затворено“)
+
+Ревюта (социални доказателства)
+
+CTA бутони: „Резервирай“, „Поръчай“, „Свържи се“
+(Why it works: системен подход → предвидими заявки)
+
+E. Menu Demo (интерактивен пример)
+
+UI: Аккордеон по категории (shadcn Accordion) + прост списък.
+Демо данни (локални):
+
+🍕 Пици → Маргарита (8.90), Пеперони (10.50)
+
+🥗 Салати → Шопска (6.50), Цезар (9.90)
+Аналитика: mini_menu_interaction {category, item}.
+
+F. Галерия / Превю на шаблони
+
+Responsive grid + light motion. Използвай next/image и lazy loading за performance.
+
+G. Резултати / Доверие (Social Proof)
+
+Покажи 2–3 proof точки (локални услуги):
+
+„Пицария: +40% повече поръчки за 30 дни.“
+
+„Кафене: −2 часа дневно обаждания за работно време.“
+Добави мини-таб „Какво постигаме“ със средни KPI от вашите данни за local services (повече търсения, обаждания, онлайн резервации).
+Аналитика: mini_proof_view.
+
+H. Pricing
+
+Starter Pack — 299 лв (еднократно)
+
+One-page Mini-Site
+
+SEO основа, контакти, карта
+
+Меню до 50 позиции
+Maintenance — 49 лв/месец (по желание)
+
+Хостинг + поддръжка
+
+Обновяване на меню/цени
+UI: 2 Card-а, CTA „Поръчай Mini-Site“.
+Аналитика: mini_pricing_cta_click.
+
+I. Lead Form – Step Form (интеграция с Clientomat™)
+
+Стъпки и полета (react-hook-form + zod):
+
+Категория (Select: Ресторант, Кафене, Fast food, Услуги, Красота/Здраве)
+
+Име на бизнес (text, required)
+
+Локация (city/town, required)
+
+Контакти (телефон, имейл – required/validated)
+
+Меню – брой позиции (select: до 20 / 21–50 / 50+)
+
+Допълнително съобщение (optional)
+
+Submit → POST към /api/contacts със service: 'mini-site'.
+
+Покажи toast success/error (shadcn Toast).
+Аналитика: mini_form_start, mini_form_complete + error states.
+Klaviyo/Resend: тригерни евенти за nurture.
+
+J. FAQ (+ JSON-LD)
+
+Въпроси (кратки, конкретни):
+
+Колко време отнема? → „Под 24 часа при готово съдържание/меню.“
+
+Мога ли сам да редактирам меню/цени? → „Да, през прост панел/или изпращате промени – ние обновяваме.“
+
+Ако имам само Facebook страница? → „Mini-Site е вашата стабилна „визитка“ за Google/Maps/клиенти.“
+
+Има ли хостинг и поддръжка? → „По избор – 49 лв/месец.“
+Аналитика: mini_faq_expand {q}.
+
+K. Final CTA
+
+„Готови сте да сте видими онлайн до утре?“ → CTA „Започни сега“. Anchor към формата.
+
+3) Данни и модели
+Menu schema (локален TS за демо)
+type MenuCategory = { name: string; items: { name: string; price: number; note?: string }[] }
+export const demoMenu: MenuCategory[] = [
+  { name: "Пици", items: [{ name: "Маргарита", price: 8.9 }, { name: "Пеперони", price: 10.5 }] },
+  { name: "Салати", items: [{ name: "Шопска", price: 6.5 }, { name: "Цезар", price: 9.9 }] }
+]
+
+
+В бъдеще – съвместимо с Drizzle schema при нужда.
+
+4) Аналитика и пиксели
+
+GA4 custom: mini_hero_cta_click, mini_menu_interaction, mini_pricing_cta_click, mini_form_start, mini_form_complete, mini_faq_expand.
+
+Meta Pixel: PageView, Lead (при успешен submit).
+
+5) Дизайн и достъпност
+
+Brand цветове --pravda-yellow, --pravda-dark и типографска йерархия по системата.
+
+Touch targets ≥44px; aria-labels за иконични бутони; контраст ≥ WCAG AA.
+
+Performance: next/image, lazy, без инлайн скриптове (CSP-съвместимо).
+
+Motion: subtle (duration ≤400ms), предпочитания за reduced motion.
