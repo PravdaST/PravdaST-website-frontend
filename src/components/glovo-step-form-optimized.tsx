@@ -10,6 +10,7 @@ import { submitGlovoForm, type GlovoFormData } from "@/app/actions/glovo-form";
 export const GlovoStepFormOptimized = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const [formData, setFormData] = useState<GlovoFormData>({
+    name: "",
     restaurantType: "",
     city: "",
     monthlyOrders: "",
@@ -83,10 +84,11 @@ export const GlovoStepFormOptimized = () => {
 
   const isStepValid = () => {
     switch (currentStep) {
-      case 0: return formData.restaurantType !== "";
-      case 1: return formData.city !== "";
-      case 2: return formData.monthlyOrders !== "";
-      case 3: return /\S+@\S+\.\S+/.test(formData.email) && formData.phone.length >= 9;
+      case 0: return formData.name.trim().length >= 2;
+      case 1: return formData.restaurantType !== "";
+      case 2: return formData.city !== "";
+      case 3: return formData.monthlyOrders !== "";
+      case 4: return /\S+@\S+\.\S+/.test(formData.email) && formData.phone.length >= 9;
       default: return false;
     }
   };
@@ -96,6 +98,24 @@ export const GlovoStepFormOptimized = () => {
   };
 
   const steps = [
+    {
+      title: "Как можем да се обръщаме към Вас?",
+      subtitle: "Въведете вашето име",
+      component: (
+        <div className="space-y-4">
+          <input
+            type="text"
+            placeholder="Въведете вашето име..."
+            value={formData.name}
+            onChange={(e) => updateFormData('name', e.target.value)}
+            className="w-full p-4 rounded-lg border-2 border-gray-700 bg-gray-800 text-white placeholder-gray-400 focus:border-yellow-400 focus:outline-none transition-all"
+          />
+          {formData.name.trim().length > 0 && formData.name.trim().length < 2 && (
+            <p className="text-red-400 text-sm">Моля въведете поне 2 символа</p>
+          )}
+        </div>
+      )
+    },
     {
       title: "Какъв тип заведение имате?",
       subtitle: "",
@@ -241,8 +261,11 @@ export const GlovoStepFormOptimized = () => {
       {currentStep === 0 && (
         <div className="mb-8 text-center">
           <h3 className="text-xl font-bold text-white mb-2">
-            "Къде да изпратим вашия Комплект за Независимост на Ресторанта?"
+            "Започнете пътя към независимост от Glovo"
           </h3>
+          <p className="text-gray-400 text-sm">
+            Първо се запознайте - как можем да се обръщаме към Вас?
+          </p>
         </div>
       )}
 
