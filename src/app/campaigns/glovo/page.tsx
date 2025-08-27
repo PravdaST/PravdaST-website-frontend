@@ -182,6 +182,14 @@ function SocialProofSection() {
               {
                 text: "Намалихме Glovo зависимостта от 80% на само 15% за 4 месеца. Контролираме бизнеса си.",
                 author: "Анна П., обект за бързо хранене, Стара Загора"
+              },
+              {
+                text: "Клиентите ни казват 'ще поръчам директно от вас'. Това е нашия брянд, не на Glovo.",
+                author: "Петър В., пицария, Русе"
+              },
+              {
+                text: "За първи път през зимата имахме същите продажби като през лятото. База данни работи!",
+                author: "Елена К., ресторант, Благоевград"
               }
             ].map((testimonial, index) => (
               <div key={index} className="relative group">
@@ -388,10 +396,56 @@ function BenefitsOfOwnSystemSection() {
                   <div className="text-green-400 font-bold">
                     — Мария Д., пицария, Пловдив
                   </div>
+                  
                 </div>
               </div>
             </div>
           </div>
+        </div>
+        
+        {/* Mini Testimonials Carousel */}
+        <div className="mt-12 grid md:grid-cols-2 gap-6">
+          {[
+            {
+              text: "Имаме списък от 450 клиента. Когато имаме промоция, изпращаме SMS и веднага имаме поръчки.",
+              author: "Васил Г., обект за бързо хранене, София"
+            },
+            {
+              text: "Клиентите ни казват 'харесваме да поръчваме директно от вас'. Чувстваме се като истински бизнес сега.",
+              author: "Росица М., семеен ресторант, Пловдив"
+            },
+            {
+              text: "Можем да правим специални оферти за редовни клиенти. На Glovo това беше невъзможно.",
+              author: "Николай С., пицария, Варна"
+            },
+            {
+              text: "Нашата клиентска база расте с 40-50 нови хора всеки месец. Това е активът на бизнеса ни.",
+              author: "Ивайло Д., механа, Бургас"
+            },
+            {
+              text: "Сега когато клиентите имат проблем, се обаждат директно на нас. Преди - само лоши отзиви в Glovo.",
+              author: "Светлана К., азиатски ресторант, Стара Загора"
+            },
+            {
+              text: "Вече не плащаме големи комисионни на платформи. Тези пари остават при нас и ги влагаме в по-добра храна.",
+              author: "Димитър Л., грил бар, Русе"
+            }
+          ].map((testimonial, index) => (
+            <div key={index} className="relative group">
+              <div className="absolute inset-0 bg-gradient-to-br from-green-400/10 to-emerald-600/10 rounded-2xl blur-lg opacity-50"></div>
+              <div className="relative bg-gray-900/70 backdrop-blur-xl border border-green-400/20 rounded-2xl p-6">
+                <div className="flex items-start mb-4">
+                  <span className="text-green-400 text-2xl mr-3">💬</span>
+                  <p className="text-white text-sm leading-relaxed italic">
+                    "{testimonial.text}"
+                  </p>
+                </div>
+                <div className="text-green-400 text-xs font-medium">
+                  — {testimonial.author}
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
@@ -406,7 +460,7 @@ function SolutionPreviewSection() {
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
-              Ето какво ще откриете в <span className="text-blue-400">безплатния Glovo калкулатор</span>:
+              Ето какво ще откриете в <span className="text-blue-400">безплатния ни калкулатор за Glovo</span>:
             </h2>
           </div>
 
@@ -431,6 +485,10 @@ function SolutionPreviewSection() {
               {
                 title: "Реални примери от български ресторанти",
                 description: "които удвоиха директните си поръчки"
+              },
+              {
+                title: "Формула за връщане на клиенти",
+                description: "превърнете еднократните Glovo поръчки в лоялни директни клиенти"
               }
             ].map((item, index) => (
               <div key={index} className="relative group">
@@ -539,7 +597,8 @@ export default function GlovoCalculatorLandingOptimized() {
                   "✅ 3-стъпков план за освобождаване за вашия тип заведение",
                   "✅ Схема за система за директни поръчки - готова за използване",
                   "✅ Ръководство за изграждане на клиентска база - стъпка по стъпка",
-                  "✅ БЕЗПЛАТНА 15-минутна стратегическа консултация - персонализирани съвети"
+                  "✅ БЕЗПЛАТНА 15-минутна стратегическа консултация - персонализирани съвети",
+                  "✅ Калкулатор: колко печалба ще запазите, когато клиентите поръчват директно от вас"
                 ].map((item, index) => (
                   <div key={index} className="text-white text-sm">{item}</div>
                 ))}
@@ -548,14 +607,6 @@ export default function GlovoCalculatorLandingOptimized() {
                 <span className="text-yellow-400 font-bold text-xl">Обща стойност: 450 лв</span>
                 <span className="text-green-400 font-bold text-xl ml-4">- Ваша безплатно днес</span>
               </div>
-            </div>
-
-            <div className="flex justify-center items-center gap-4 text-green-400 mb-2">
-              <span className="text-2xl">🔒</span>
-              <span className="font-semibold">НИКОГА не споделяме информацията ви</span>
-              <span>•</span>
-              <span className="text-2xl">📞</span>
-              <span className="font-semibold">Обаждаме се САМО в удобно за вас време</span>
             </div>
           </div>
           
