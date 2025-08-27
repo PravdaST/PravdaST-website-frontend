@@ -152,7 +152,7 @@ export default function MiniSitesContent() {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white overflow-x-hidden">
+    <div className="min-h-screen bg-white text-gray-900 overflow-x-hidden">
       {/* Modern Hero Section with Video Background Effect */}
       <motion.section 
         ref={heroRef}
@@ -161,11 +161,11 @@ export default function MiniSitesContent() {
       >
         {/* Animated Background */}
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black" />
+          <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-gray-100" />
           
           {/* Animated Gradient Orbs */}
           <motion.div
-            className="absolute -top-40 -left-40 w-80 h-80 bg-orange-600/20 rounded-full blur-3xl"
+            className="absolute -top-40 -left-40 w-80 h-80 bg-orange-500/10 rounded-full blur-3xl"
             animate={{
               x: [0, 50, 0],
               y: [0, 30, 0],
@@ -177,7 +177,7 @@ export default function MiniSitesContent() {
             }}
           />
           <motion.div
-            className="absolute -bottom-40 -right-40 w-80 h-80 bg-blue-600/20 rounded-full blur-3xl"
+            className="absolute -bottom-40 -right-40 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl"
             animate={{
               x: [0, -50, 0],
               y: [0, -30, 0],
@@ -190,10 +190,10 @@ export default function MiniSitesContent() {
           />
           
           {/* Grid Pattern Overlay */}
-          <div className="absolute inset-0 opacity-10" 
+          <div className="absolute inset-0 opacity-5" 
             style={{
-              backgroundImage: `linear-gradient(to right, white 1px, transparent 1px),
-                              linear-gradient(to bottom, white 1px, transparent 1px)`,
+              backgroundImage: `linear-gradient(to right, gray 1px, transparent 1px),
+                              linear-gradient(to bottom, gray 1px, transparent 1px)`,
               backgroundSize: '40px 40px'
             }}
           />
@@ -208,18 +208,18 @@ export default function MiniSitesContent() {
           >
             {/* Premium Badge */}
             <motion.div 
-              className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-orange-600/20 to-blue-600/20 rounded-full border border-white/10 mb-8"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-orange-500/10 to-blue-500/10 rounded-full border border-gray-200 mb-8"
               whileHover={{ scale: 1.05 }}
             >
               <Sparkles className="w-4 h-4 text-orange-500" />
-              <span className="text-sm font-medium">BUSINESS ENGINEERING</span>
+              <span className="text-sm font-medium text-gray-700">BUSINESS ENGINEERING</span>
               <Sparkles className="w-4 h-4 text-blue-500" />
             </motion.div>
 
             {/* Main Title with Gradient */}
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-black mb-6 leading-tight">
               <motion.span 
-                className="block text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-gray-400"
+                className="block text-transparent bg-clip-text bg-gradient-to-r from-gray-900 via-gray-800 to-gray-700"
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.2 }}
@@ -238,13 +238,13 @@ export default function MiniSitesContent() {
 
             {/* Subtitle */}
             <motion.p 
-              className="text-xl md:text-2xl text-gray-400 mb-12 max-w-3xl mx-auto"
+              className="text-xl md:text-2xl text-gray-600 mb-12 max-w-3xl mx-auto"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5 }}
             >
               Професионален one-page сайт за 24 часа.
-              <span className="block mt-2 text-white font-semibold">
+              <span className="block mt-2 text-gray-900 font-semibold">
                 Меню, контакти, Google карта — всичко готово.
               </span>
             </motion.p>
@@ -277,7 +277,7 @@ export default function MiniSitesContent() {
                 size="lg"
                 variant="outline"
                 onClick={() => handleCTAClick('secondary')}
-                className="px-8 py-6 bg-white/5 backdrop-blur-sm border-white/20 hover:bg-white/10 text-lg font-bold rounded-xl transition-all duration-300 transform hover:scale-105"
+                className="px-8 py-6 bg-gray-100 backdrop-blur-sm border-gray-300 hover:bg-gray-200 text-lg font-bold rounded-xl transition-all duration-300 transform hover:scale-105 text-gray-900"
               >
                 <Eye className="w-5 h-5 mr-2" />
                 ВИЖ ДЕМО
@@ -291,15 +291,15 @@ export default function MiniSitesContent() {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.9 }}
             >
-              <div className="flex items-center gap-2 text-sm text-gray-400">
+              <div className="flex items-center gap-2 text-sm text-gray-600">
                 <Shield className="w-4 h-4 text-green-500" />
                 <span>Гарантирано за 24ч</span>
               </div>
-              <div className="flex items-center gap-2 text-sm text-gray-400">
+              <div className="flex items-center gap-2 text-sm text-gray-600">
                 <Zap className="w-4 h-4 text-yellow-500" />
                 <span>Светкавично бързо</span>
               </div>
-              <div className="flex items-center gap-2 text-sm text-gray-400">
+              <div className="flex items-center gap-2 text-sm text-gray-600">
                 <Award className="w-4 h-4 text-blue-500" />
                 <span>Premium качество</span>
               </div>
@@ -312,8 +312,8 @@ export default function MiniSitesContent() {
             animate={{ y: [0, 10, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
           >
-            <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
-              <div className="w-1 h-3 bg-white/60 rounded-full mt-2" />
+            <div className="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-center">
+              <div className="w-1 h-3 bg-gray-600 rounded-full mt-2" />
             </div>
           </motion.div>
         </div>
@@ -504,12 +504,12 @@ export default function MiniSitesContent() {
             viewport={{ once: true }}
           >
             <div className="inline-block mb-4 px-4 py-2 bg-orange-500/10 rounded-full">
-              <span className="text-sm font-semibold text-orange-400">ИНТЕРАКТИВНО МЕНЮ</span>
+              <span className="text-sm font-semibold text-orange-600">ИНТЕРАКТИВНО МЕНЮ</span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900">
               Лесно и бързо поръчване
             </h2>
-            <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               Клиентите виждат менюто, избират и поръчват директно от сайта
             </p>
           </motion.div>
@@ -534,7 +534,7 @@ export default function MiniSitesContent() {
                 className={`flex items-center gap-2 px-6 py-3 rounded-full transition-all duration-300 ${
                   activeMenuFilter === filter.id 
                     ? "bg-orange-500 text-white shadow-lg" 
-                    : "bg-gray-800/50 text-gray-400 hover:bg-gray-700/50 hover:text-white"
+                    : "bg-gray-100 text-gray-600 hover:bg-gray-200 hover:text-gray-900"
                 }`}
                 onClick={() => {
                   setActiveMenuFilter(filter.id);
@@ -563,14 +563,14 @@ export default function MiniSitesContent() {
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: categoryIndex * 0.1 }}
-                  className="bg-gray-900/30 backdrop-blur-sm rounded-2xl p-6 border border-gray-800/50"
+                  className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200 shadow-lg"
                 >
                   {/* Category Header - Simple */}
-                  <div className="flex items-center gap-3 mb-6 pb-3 border-b border-gray-800/50">
+                  <div className="flex items-center gap-3 mb-6 pb-3 border-b border-gray-200">
                     {category.name === "Пици" && <ChefHat className="w-6 h-6 text-orange-500" />}
                     {category.name === "Салати" && <Heart className="w-6 h-6 text-green-500" />}
                     {category.name === "Напитки" && <Coffee className="w-6 h-6 text-blue-500" />}
-                    <h3 className="text-xl font-bold text-white">{category.name}</h3>
+                    <h3 className="text-xl font-bold text-gray-900">{category.name}</h3>
                   </div>
 
                   {/* Menu Items - Clean Cards */}
@@ -582,16 +582,16 @@ export default function MiniSitesContent() {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: itemIndex * 0.05 }}
                         whileHover={{ scale: 1.02 }}
-                        className="group bg-gray-800/30 rounded-xl p-4 cursor-pointer transition-all duration-300 hover:bg-gray-800/50 hover:shadow-lg border border-gray-800/30 hover:border-gray-700"
+                        className="group bg-gray-50 rounded-xl p-4 cursor-pointer transition-all duration-300 hover:bg-gray-100 hover:shadow-lg border border-gray-200 hover:border-gray-300"
                         onClick={() => handleMenuInteraction(category.name, item.name)}
                       >
                         <div className="flex justify-between items-start gap-4">
                           <div className="flex-1">
-                            <h4 className="font-semibold text-white group-hover:text-orange-400 transition-colors">
+                            <h4 className="font-semibold text-gray-900 group-hover:text-orange-500 transition-colors">
                               {item.name}
                             </h4>
                             {item.note && (
-                              <p className="text-sm text-gray-500 mt-1">{item.note}</p>
+                              <p className="text-sm text-gray-600 mt-1">{item.note}</p>
                             )}
                           </div>
                           <div className="flex items-center gap-2">
@@ -625,11 +625,11 @@ export default function MiniSitesContent() {
                 <motion.div
                   key={index}
                   whileHover={{ y: -5 }}
-                  className="bg-gray-900/30 rounded-xl p-6 border border-gray-800/30 hover:border-gray-700 transition-all duration-300"
+                  className="bg-white rounded-xl p-6 border border-gray-200 hover:border-gray-300 transition-all duration-300 shadow-lg hover:shadow-xl"
                 >
                   <div className="flex items-center gap-4">
                     <feature.icon className={`w-8 h-8 ${feature.color}`} />
-                    <span className="text-white font-medium">{feature.label}</span>
+                    <span className="text-gray-900 font-medium">{feature.label}</span>
                   </div>
                 </motion.div>
               ))}
