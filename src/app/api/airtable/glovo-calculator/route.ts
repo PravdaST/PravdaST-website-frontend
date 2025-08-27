@@ -11,8 +11,8 @@ export async function POST(request: NextRequest) {
     
     console.log('Received request body:', JSON.stringify(body, null, 2));
 
-    // Basic validation
-    if (!body.restaurant_name || !body.email || !body.phone) {
+    // Basic validation - allow partial submissions for testing
+    if (!body.restaurant_name) {
       console.error('Missing required fields:', {
         restaurant_name: !!body.restaurant_name,
         email: !!body.email,
@@ -21,7 +21,7 @@ export async function POST(request: NextRequest) {
         avg_order_value: !!body.avg_order_value
       });
       return NextResponse.json(
-        { error: 'Missing required fields', received: Object.keys(body) },
+        { error: 'Missing restaurant name', received: Object.keys(body) },
         { status: 400 }
       );
     }

@@ -74,6 +74,14 @@ export const GlovoStepForm = () => {
       }
     } catch (error) {
       console.error('Error submitting form:', error);
+      try {
+        if (response && !response.ok) {
+          const errorResponse = await response.text();
+          console.error('Response details:', errorResponse);
+        }
+      } catch (e) {
+        console.error('Could not read error response');
+      }
       alert('Възникна грешка при изпращането. Моля, опитайте отново.');
     } finally {
       setIsSubmitting(false);
