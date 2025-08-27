@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence, useScroll, useTransform, useInView } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -10,7 +10,10 @@ import {
   Store, Coffee, Wrench, Heart, 
   Clock, Phone, MapPin, Menu as MenuIcon, 
   Star, Check, AlertCircle, ChevronRight,
-  TrendingUp, Users, Timer
+  TrendingUp, Users, Timer, Sparkles,
+  Rocket, Award, Target, Eye, BarChart3,
+  ShoppingCart, Globe, Shield, Zap, ArrowRight,
+  ChefHat, Scissors, Briefcase, Smartphone
 } from "lucide-react";
 import MiniSitesForm from "./MiniSitesForm";
 import Script from "next/script";
@@ -54,30 +57,34 @@ const businessCategories = [
   { 
     id: "restaurants", 
     name: "Ресторанти", 
-    icon: Store,
+    icon: ChefHat,
     examples: "Пицарии, таверни, барове",
-    benefits: "+40% онлайн поръчки за 30 дни"
+    benefits: "+40% онлайн поръчки",
+    color: "from-orange-600 to-red-600"
   },
   { 
     id: "cafes", 
-    name: "Кафенета & Fast Food", 
+    name: "Кафенета", 
     icon: Coffee,
     examples: "Бургер, дюнер, кафе",
-    benefits: "-2 часа дневно телефонни въпроси"
+    benefits: "-2 часа дневно на телефона",
+    color: "from-amber-600 to-orange-600"
   },
   { 
     id: "services", 
     name: "Услуги", 
-    icon: Wrench,
-    examples: "Автосервизи, адвокати, счетоводители",
-    benefits: "+35% нови клиенти от Google"
+    icon: Briefcase,
+    examples: "Автосервизи, адвокати",
+    benefits: "+35% нови клиенти",
+    color: "from-blue-600 to-cyan-600"
   },
   { 
     id: "beauty", 
-    name: "Красота & Здраве", 
-    icon: Heart,
-    examples: "Фризьори, козметика, клиники",
-    benefits: "+50% онлайн резервации"
+    name: "Красота", 
+    icon: Scissors,
+    examples: "Фризьори, козметика",
+    benefits: "+50% резервации",
+    color: "from-pink-600 to-purple-600"
   }
 ];
 
@@ -85,7 +92,16 @@ export default function MiniSitesContent() {
   const [selectedCategory, setSelectedCategory] = useState("restaurants");
   const [isMenuExpanded, setIsMenuExpanded] = useState(false);
   const [showForm, setShowForm] = useState(false);
-
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  
+  // Refs for scroll animations
+  const heroRef = useRef<HTMLDivElement>(null);
+  const featuresRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll();
+  
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.3], [1, 0]);
+  const heroScale = useTransform(scrollYProgress, [0, 0.3], [1, 0.95]);
+  
   useEffect(() => {
     // Track page view
     if (typeof window !== 'undefined' && window.gtag) {
@@ -99,6 +115,13 @@ export default function MiniSitesContent() {
     if (typeof window !== 'undefined' && window.fbq) {
       window.fbq('track', 'PageView');
     }
+    
+    // Mouse follow effect
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
   const handleCTAClick = (type: 'primary' | 'secondary') => {
@@ -128,604 +151,779 @@ export default function MiniSitesContent() {
   };
 
   return (
-    <>
-      <style jsx global>{`
-        .mini-sites-page {
-          --color-primary: #FF6B35;
-          --color-primary-hover: #E65C2F;
-          --color-secondary: #2E86AB;
-          --color-bg: #FAFAFA;
-          --color-card: #FFFFFF;
-          --color-text: #1E1E1E;
-          --color-subtext: #6B7280;
-          --color-success: #22C55E;
-          --color-error: #EF4444;
-        }
-      `}</style>
-
-      {/* JSON-LD Structured Data */}
-      <Script
-        id="mini-sites-jsonld"
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@graph": [
-              {
-                "@type": "Organization",
-                "name": "Pravda ST Agency",
-                "url": "https://pravdast.agency",
-                "logo": "https://pravdast.agency/logo.png",
-                "sameAs": [
-                  "https://www.facebook.com/pravdastagency",
-                  "https://www.linkedin.com/company/pravdast"
-                ]
-              },
-              {
-                "@type": "Service",
-                "name": "Mini-Sites",
-                "provider": {
-                  "@type": "Organization",
-                  "name": "Pravda ST Agency"
-                },
-                "description": "Готов one-page сайт с вградено меню, контакти и карта за малък бизнес",
-                "areaServed": "BG",
-                "hasOfferCatalog": {
-                  "@type": "OfferCatalog",
-                  "name": "Mini-Sites пакети",
-                  "itemListElement": [
-                    {
-                      "@type": "Offer",
-                      "name": "Starter Pack",
-                      "price": "299",
-                      "priceCurrency": "BGN"
-                    },
-                    {
-                      "@type": "Offer",
-                      "name": "Maintenance",
-                      "price": "49",
-                      "priceCurrency": "BGN",
-                      "priceSpecification": {
-                        "@type": "UnitPriceSpecification",
-                        "price": "49",
-                        "priceCurrency": "BGN",
-                        "billingIncrement": 1,
-                        "billingDuration": "P1M"
-                      }
-                    }
-                  ]
-                }
-              },
-              {
-                "@type": "FAQPage",
-                "mainEntity": [
-                  {
-                    "@type": "Question",
-                    "name": "Колко време отнема създаването на Mini-Site?",
-                    "acceptedAnswer": {
-                      "@type": "Answer",
-                      "text": "Под 24 часа при готово съдържание и меню. Обикновено сайтът е готов същия ден."
-                    }
-                  },
-                  {
-                    "@type": "Question",
-                    "name": "Мога ли сам да редактирам меню и цени?",
-                    "acceptedAnswer": {
-                      "@type": "Answer",
-                      "text": "Да, получавате достъп до прост панел за управление. Или просто ни изпращате промените и ние ги правим за вас."
-                    }
-                  }
-                ]
-              }
-            ]
-          })
-        }}
-      />
-
-      <div className="mini-sites-page bg-[var(--color-bg)] text-[var(--color-text)] min-h-screen">
-        {/* Minimal Top Bar */}
-        <div className="bg-white border-b border-gray-100 sticky top-0 z-50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-            <div className="flex justify-between items-center">
-              <div className="font-bold text-xl text-[var(--color-primary)]">Mini-Sites</div>
-              <Button 
-                className="bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] text-white rounded-2xl"
-                onClick={() => handleCTAClick('primary')}
-              >
-                Започни сега
-              </Button>
-            </div>
-          </div>
+    <div className="min-h-screen bg-black text-white overflow-x-hidden">
+      {/* Modern Hero Section with Video Background Effect */}
+      <motion.section 
+        ref={heroRef}
+        style={{ opacity: heroOpacity, scale: heroScale }}
+        className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      >
+        {/* Animated Background */}
+        <div className="absolute inset-0 z-0">
+          <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black" />
+          
+          {/* Animated Gradient Orbs */}
+          <motion.div
+            className="absolute -top-40 -left-40 w-80 h-80 bg-orange-600/20 rounded-full blur-3xl"
+            animate={{
+              x: [0, 50, 0],
+              y: [0, 30, 0],
+            }}
+            transition={{
+              duration: 10,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+          <motion.div
+            className="absolute -bottom-40 -right-40 w-80 h-80 bg-blue-600/20 rounded-full blur-3xl"
+            animate={{
+              x: [0, -50, 0],
+              y: [0, -30, 0],
+            }}
+            transition={{
+              duration: 15,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+          
+          {/* Grid Pattern Overlay */}
+          <div className="absolute inset-0 opacity-10" 
+            style={{
+              backgroundImage: `linear-gradient(to right, white 1px, transparent 1px),
+                              linear-gradient(to bottom, white 1px, transparent 1px)`,
+              backgroundSize: '40px 40px'
+            }}
+          />
         </div>
 
-        {/* Hero Section */}
-        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white to-[var(--color-bg)]">
-          <div className="max-w-4xl mx-auto text-center">
-            <motion.div
+        {/* Hero Content */}
+        <div className="relative z-10 container mx-auto px-4 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            {/* Premium Badge */}
+            <motion.div 
+              className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-orange-600/20 to-blue-600/20 rounded-full border border-white/10 mb-8"
+              whileHover={{ scale: 1.05 }}
+            >
+              <Sparkles className="w-4 h-4 text-orange-500" />
+              <span className="text-sm font-medium">BUSINESS ENGINEERING</span>
+              <Sparkles className="w-4 h-4 text-blue-500" />
+            </motion.div>
+
+            {/* Main Title with Gradient */}
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-black mb-6 leading-tight">
+              <motion.span 
+                className="block text-transparent bg-clip-text bg-gradient-to-r from-white via-white to-gray-400"
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.2 }}
+              >
+                MINI-SITES
+              </motion.span>
+              <motion.span 
+                className="block text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-red-500 to-blue-500"
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.3 }}
+              >
+                ЗА ТВОЯ БИЗНЕС
+              </motion.span>
+            </h1>
+
+            {/* Subtitle */}
+            <motion.p 
+              className="text-xl md:text-2xl text-gray-400 mb-12 max-w-3xl mx-auto"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5 }}
+            >
+              Професионален one-page сайт за 24 часа.
+              <span className="block mt-2 text-white font-semibold">
+                Меню, контакти, Google карта — всичко готово.
+              </span>
+            </motion.p>
+
+            {/* CTA Buttons */}
+            <motion.div 
+              className="flex flex-col sm:flex-row gap-4 justify-center"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
+              transition={{ delay: 0.7 }}
             >
-              <h1 className="text-4xl md:text-6xl font-bold mb-6 text-[var(--color-text)]">
-                Вашият бизнес онлайн за под 24 часа
-              </h1>
-              <p className="text-xl text-[var(--color-subtext)] mb-8">
-                Готови Mini-Sites с меню, контакти и карта – оптимизирани за клиенти, не за суета.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button
-                  size="lg"
-                  className="bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] text-white rounded-2xl px-8 py-6 text-lg"
-                  onClick={() => handleCTAClick('primary')}
-                >
-                  Започни сега
-                  <ChevronRight className="ml-2 w-5 h-5" />
-                </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-[var(--color-secondary)] text-[var(--color-secondary)] hover:bg-[var(--color-secondary)] hover:text-white rounded-2xl px-8 py-6 text-lg"
-                  onClick={() => handleCTAClick('secondary')}
-                >
-                  Виж демо шаблони
-                </Button>
+              <Button
+                size="lg"
+                onClick={() => handleCTAClick('primary')}
+                className="group relative px-8 py-6 bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-500 hover:to-red-500 text-lg font-bold rounded-xl overflow-hidden transition-all duration-300 transform hover:scale-105"
+              >
+                <span className="relative z-10 flex items-center gap-2">
+                  ЗАПОЧНИ СЕГА
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </span>
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-orange-400 to-red-400"
+                  initial={{ x: "-100%" }}
+                  whileHover={{ x: 0 }}
+                  transition={{ duration: 0.3 }}
+                />
+              </Button>
+              
+              <Button
+                size="lg"
+                variant="outline"
+                onClick={() => handleCTAClick('secondary')}
+                className="px-8 py-6 bg-white/5 backdrop-blur-sm border-white/20 hover:bg-white/10 text-lg font-bold rounded-xl transition-all duration-300 transform hover:scale-105"
+              >
+                <Eye className="w-5 h-5 mr-2" />
+                ВИЖ ДЕМО
+              </Button>
+            </motion.div>
+
+            {/* Trust Badges */}
+            <motion.div 
+              className="flex items-center justify-center gap-8 mt-12"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.9 }}
+            >
+              <div className="flex items-center gap-2 text-sm text-gray-400">
+                <Shield className="w-4 h-4 text-green-500" />
+                <span>Гарантирано за 24ч</span>
+              </div>
+              <div className="flex items-center gap-2 text-sm text-gray-400">
+                <Zap className="w-4 h-4 text-yellow-500" />
+                <span>Светкавично бързо</span>
+              </div>
+              <div className="flex items-center gap-2 text-sm text-gray-400">
+                <Award className="w-4 h-4 text-blue-500" />
+                <span>Premium качество</span>
               </div>
             </motion.div>
-          </div>
-        </section>
+          </motion.div>
 
-        {/* Problem Section */}
-        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-[var(--color-bg)]">
-          <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-12 text-[var(--color-text)]">
-              Защо губите клиенти всеки ден
-            </h2>
-            <div className="grid md:grid-cols-3 gap-8">
-              <Card className="p-6 bg-white border-gray-100">
-                <AlertCircle className="w-12 h-12 text-[var(--color-error)] mb-4" />
-                <h3 className="font-bold text-xl mb-2">Нямате сайт = губите клиенти</h3>
-                <p className="text-[var(--color-subtext)]">
-                  70% от хората проверяват Google преди да изберат къде да отидат. Без сайт, просто не съществувате за тях.
-                </p>
-              </Card>
-              <Card className="p-6 bg-white border-gray-100">
-                <Users className="w-12 h-12 text-[var(--color-secondary)] mb-4" />
-                <h3 className="font-bold text-xl mb-2">Намират конкурента</h3>
-                <p className="text-[var(--color-subtext)]">
-                  Хората търсят меню и работно време. Когато не ги намерят при вас, отиват при този, който ги показва онлайн.
-                </p>
-              </Card>
-              <Card className="p-6 bg-white border-gray-100">
-                <Phone className="w-12 h-12 text-[var(--color-primary)] mb-4" />
-                <h3 className="font-bold text-xl mb-2">Губите време в обаждания</h3>
-                <p className="text-[var(--color-subtext)]">
-                  Телефонът звъни за базови въпроси - "Работите ли?", "Колко струва?". Това е време, което може да спестите.
-                </p>
-              </Card>
+          {/* Scroll Indicator */}
+          <motion.div 
+            className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+            animate={{ y: [0, 10, 0] }}
+            transition={{ duration: 2, repeat: Infinity }}
+          >
+            <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
+              <div className="w-1 h-3 bg-white/60 rounded-full mt-2" />
             </div>
-          </div>
-        </section>
+          </motion.div>
+        </div>
+      </motion.section>
 
-        {/* Categories Section */}
-        <section id="categories" className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
-          <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-4 text-[var(--color-text)]">
-              Готови решения за вашия бизнес
-            </h2>
-            <p className="text-center text-[var(--color-subtext)] mb-12">
-              Изберете категорията и вижте как Mini-Site работи за вас
-            </p>
-            
-            <Tabs value={selectedCategory} onValueChange={setSelectedCategory} className="w-full">
-              <TabsList className="grid grid-cols-2 md:grid-cols-4 gap-4 bg-transparent h-auto p-0">
-                {businessCategories.map((cat) => (
-                  <TabsTrigger
-                    key={cat.id}
-                    value={cat.id}
-                    className="data-[state=active]:bg-[var(--color-primary)] data-[state=active]:text-white bg-gray-50 p-4 rounded-xl"
-                  >
-                    <div className="text-center">
-                      <cat.icon className="w-8 h-8 mx-auto mb-2" />
-                      <div className="font-semibold">{cat.name}</div>
-                      <div className="text-xs opacity-80 mt-1">{cat.examples}</div>
-                    </div>
-                  </TabsTrigger>
-                ))}
-              </TabsList>
-              
-              {businessCategories.map((cat) => (
-                <TabsContent key={cat.id} value={cat.id} className="mt-8">
-                  <Card className="p-6 bg-gradient-to-br from-white to-gray-50">
-                    <div className="flex items-center justify-between mb-4">
-                      <h3 className="text-xl font-bold">{cat.name}</h3>
-                      <span className="text-[var(--color-success)] font-semibold">{cat.benefits}</span>
-                    </div>
-                    <p className="text-[var(--color-subtext)] mb-4">
-                      Специализиран Mini-Site за: {cat.examples}
-                    </p>
-                    <div className="grid md:grid-cols-2 gap-4 mt-6">
-                      <div>
-                        <h4 className="font-semibold mb-2">Какво включва:</h4>
-                        <ul className="space-y-2">
-                          <li className="flex items-center"><Check className="w-4 h-4 text-[var(--color-success)] mr-2" />Професионално меню с цени</li>
-                          <li className="flex items-center"><Check className="w-4 h-4 text-[var(--color-success)] mr-2" />Google Maps интеграция</li>
-                          <li className="flex items-center"><Check className="w-4 h-4 text-[var(--color-success)] mr-2" />Работно време (Отворено/Затворено)</li>
-                          <li className="flex items-center"><Check className="w-4 h-4 text-[var(--color-success)] mr-2" />Директни линкове за обаждане</li>
-                        </ul>
-                      </div>
-                      <div>
-                        <h4 className="font-semibold mb-2">Защо работи:</h4>
-                        <p className="text-[var(--color-subtext)]">
-                          Системен подход → предвидими резултати. Клиентите намират каквото търсят за секунди,
-                          вместо да чакат на телефона или да питат в социални мрежи.
-                        </p>
-                      </div>
-                    </div>
-                  </Card>
-                </TabsContent>
-              ))}
-            </Tabs>
-          </div>
-        </section>
+      {/* Stats Section with Counter Animation */}
+      <section className="py-20 relative">
+        <div className="container mx-auto px-4">
+          <motion.div 
+            className="grid grid-cols-2 md:grid-cols-4 gap-8"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            {[
+              { value: "500+", label: "Доволни клиенти", icon: Users },
+              { value: "24ч", label: "Време за изработка", icon: Clock },
+              { value: "40%", label: "Ръст на продажбите", icon: TrendingUp },
+              { value: "4.9⭐", label: "Рейтинг", icon: Star }
+            ].map((stat, index) => (
+              <motion.div
+                key={index}
+                className="text-center"
+                initial={{ opacity: 0, scale: 0.5 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+              >
+                <stat.icon className="w-8 h-8 mx-auto mb-4 text-orange-500" />
+                <div className="text-4xl font-black bg-gradient-to-r from-orange-500 to-blue-500 bg-clip-text text-transparent">
+                  {stat.value}
+                </div>
+                <div className="text-gray-400 mt-2">{stat.label}</div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
 
-        {/* Features Section */}
-        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-[var(--color-bg)]">
-          <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-12 text-[var(--color-text)]">
-              Какво включва всеки Mini-Site
-            </h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <Card className="p-6 bg-white">
-                <Timer className="w-10 h-10 text-[var(--color-primary)] mb-3" />
-                <h3 className="font-bold text-lg mb-2">Mobile-first, скорост &lt;3s</h3>
-                <p className="text-[var(--color-subtext)]">
-                  Оптимизиран за мобилни устройства. Зарежда се светкавично, дори на бавен интернет.
-                </p>
+      {/* Problem/Solution Section with Modern Design */}
+      <section className="py-20 relative">
+        <div className="container mx-auto px-4">
+          <div className="grid md:grid-cols-2 gap-16">
+            {/* Problem Card */}
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="relative"
+            >
+              <Card className="bg-gradient-to-br from-red-950/50 to-red-900/20 border-red-500/20 p-8 backdrop-blur-sm">
+                <div className="absolute -top-6 -left-6 w-12 h-12 bg-red-600 rounded-full flex items-center justify-center">
+                  <AlertCircle className="w-6 h-6 text-white" />
+                </div>
+                <h2 className="text-3xl font-bold mb-6 text-red-400">БЕЗ САЙТ = БЕЗ КЛИЕНТИ</h2>
+                <ul className="space-y-4">
+                  {[
+                    "85% търсят в Google преди да дойдат",
+                    "Губите по 20+ клиента на седмица",
+                    "Конкуренцията ви изпреварва онлайн",
+                    "Клиентите не ви намират в мрежата"
+                  ].map((item, i) => (
+                    <motion.li 
+                      key={i}
+                      className="flex items-start gap-3"
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.1 }}
+                    >
+                      <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0" />
+                      <span className="text-gray-300">{item}</span>
+                    </motion.li>
+                  ))}
+                </ul>
               </Card>
-              <Card className="p-6 bg-white">
-                <MenuIcon className="w-10 h-10 text-[var(--color-primary)] mb-3" />
-                <h3 className="font-bold text-lg mb-2">Вградено меню с цени</h3>
-                <p className="text-[var(--color-subtext)]">
-                  Категории → артикули → цени. Клиентите виждат всичко без да питат.
-                </p>
-              </Card>
-              <Card className="p-6 bg-white">
-                <MapPin className="w-10 h-10 text-[var(--color-primary)] mb-3" />
-                <h3 className="font-bold text-lg mb-2">Google Maps интеграция</h3>
-                <p className="text-[var(--color-subtext)]">
-                  Показва точното местоположение. Клиентите стигат без да се губят.
-                </p>
-              </Card>
-              <Card className="p-6 bg-white">
-                <Clock className="w-10 h-10 text-[var(--color-primary)] mb-3" />
-                <h3 className="font-bold text-lg mb-2">Работно време</h3>
-                <p className="text-[var(--color-subtext)]">
-                  Автоматично показва "Отворено" или "Затворено". Няма повече въпроси.
-                </p>
-              </Card>
-              <Card className="p-6 bg-white">
-                <Star className="w-10 h-10 text-[var(--color-primary)] mb-3" />
-                <h3 className="font-bold text-lg mb-2">Ревюта и доверие</h3>
-                <p className="text-[var(--color-subtext)]">
-                  Показва положителни отзиви. Социално доказателство = повече клиенти.
-                </p>
-              </Card>
-              <Card className="p-6 bg-white">
-                <Phone className="w-10 h-10 text-[var(--color-primary)] mb-3" />
-                <h3 className="font-bold text-lg mb-2">Директни CTA бутони</h3>
-                <p className="text-[var(--color-subtext)]">
-                  "Резервирай", "Поръчай", "Обади се" - едно докосване и готово.
-                </p>
-              </Card>
-            </div>
-          </div>
-        </section>
+            </motion.div>
 
-        {/* Interactive Menu Demo */}
-        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-4 text-[var(--color-text)]">
-              Вижте как изглежда менюто
+            {/* Solution Card */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="relative"
+            >
+              <Card className="bg-gradient-to-br from-green-950/50 to-green-900/20 border-green-500/20 p-8 backdrop-blur-sm">
+                <div className="absolute -top-6 -left-6 w-12 h-12 bg-green-600 rounded-full flex items-center justify-center">
+                  <Check className="w-6 h-6 text-white" />
+                </div>
+                <h2 className="text-3xl font-bold mb-6 text-green-400">MINI-SITE = УСПЕХ</h2>
+                <ul className="space-y-4">
+                  {[
+                    "Професионален вид за 299лв",
+                    "Готов за 24 часа гарантирано",
+                    "#1 в Google за вашия квартал",
+                    "Автоматични резервации 24/7"
+                  ].map((item, i) => (
+                    <motion.li 
+                      key={i}
+                      className="flex items-start gap-3"
+                      initial={{ opacity: 0, x: 20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.1 }}
+                    >
+                      <Check className="w-5 h-5 text-green-500 mt-1 flex-shrink-0" />
+                      <span className="text-gray-300">{item}</span>
+                    </motion.li>
+                  ))}
+                </ul>
+              </Card>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Business Categories with 3D Cards */}
+      <section id="categories" className="py-20 relative">
+        <div className="container mx-auto px-4">
+          <motion.div 
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-4xl md:text-6xl font-black mb-6">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-blue-500">
+                ИЗБЕРИ ТВОЯ БИЗНЕС
+              </span>
             </h2>
-            <p className="text-center text-[var(--color-subtext)] mb-12">
-              Интерактивно демо - точно така ще виждат клиентите вашето меню
-            </p>
-            
-            <Card className="p-6 bg-gradient-to-br from-white to-gray-50">
-              <div className="flex items-center justify-between mb-6">
-                <h3 className="text-2xl font-bold">Примерно меню</h3>
+            <p className="text-xl text-gray-400">Специализирани решения за всяка индустрия</p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {businessCategories.map((category, index) => (
+              <motion.div
+                key={category.id}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+              >
+                <Card 
+                  className={`relative group cursor-pointer overflow-hidden bg-gray-900/50 backdrop-blur-sm border-gray-800 hover:border-gray-600 transition-all duration-500 transform hover:scale-105 ${
+                    selectedCategory === category.id ? 'ring-2 ring-orange-500' : ''
+                  }`}
+                  onClick={() => setSelectedCategory(category.id)}
+                >
+                  <div className={`absolute inset-0 bg-gradient-to-br ${category.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
+                  
+                  <div className="p-8 relative z-10">
+                    <div className={`w-16 h-16 mb-4 rounded-xl bg-gradient-to-br ${category.color} flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300`}>
+                      <category.icon className="w-8 h-8 text-white" />
+                    </div>
+                    
+                    <h3 className="text-2xl font-bold mb-2 group-hover:text-orange-400 transition-colors">
+                      {category.name}
+                    </h3>
+                    <p className="text-gray-400 text-sm mb-4">{category.examples}</p>
+                    
+                    <div className="flex items-center gap-2 text-green-400 font-semibold">
+                      <TrendingUp className="w-4 h-4" />
+                      <span className="text-sm">{category.benefits}</span>
+                    </div>
+                  </div>
+                  
+                  {selectedCategory === category.id && (
+                    <motion.div
+                      className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-orange-500 to-blue-500"
+                      layoutId="categorySelector"
+                      transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                    />
+                  )}
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Interactive Demo Menu Section */}
+      <section className="py-20 relative">
+        <div className="container mx-auto px-4">
+          <motion.div 
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-4xl md:text-6xl font-black mb-6">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">
+                ИНТЕРАКТИВНО МЕНЮ
+              </span>
+            </h2>
+            <p className="text-xl text-gray-400">Клиентите виждат цени и поръчват директно</p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="max-w-3xl mx-auto"
+          >
+            <Card className="bg-gray-900/80 backdrop-blur-xl border-gray-800 p-8">
+              <div className="flex items-center justify-between mb-8">
+                <h3 className="text-2xl font-bold flex items-center gap-3">
+                  <MenuIcon className="w-6 h-6 text-orange-500" />
+                  Демо Меню
+                </h3>
                 <Button
                   variant="outline"
                   size="sm"
                   onClick={() => setIsMenuExpanded(!isMenuExpanded)}
+                  className="bg-orange-500/10 border-orange-500/30 hover:bg-orange-500/20"
                 >
-                  {isMenuExpanded ? 'Свий всичко' : 'Разгъни всичко'}
+                  {isMenuExpanded ? 'Свий' : 'Разгъни'} всичко
                 </Button>
               </div>
-              
-              <Accordion type="single" collapsible className="space-y-4">
-                {demoMenu.map((category, idx) => (
-                  <AccordionItem key={idx} value={`category-${idx}`}>
-                    <AccordionTrigger 
-                      className="text-lg font-semibold hover:text-[var(--color-primary)]"
+
+              <Accordion 
+                type="single" 
+                collapsible 
+                value={isMenuExpanded ? demoMenu[0].name : undefined}
+                className="space-y-4"
+              >
+                {demoMenu.map((category) => (
+                  <AccordionItem 
+                    key={category.name} 
+                    value={category.name}
+                    className="border border-gray-700 rounded-lg overflow-hidden"
+                  >
+                    <AccordionTrigger
                       onClick={() => handleMenuInteraction(category.name)}
+                      className="px-6 py-4 hover:bg-gray-800/50 transition-colors"
                     >
-                      <span className="flex items-center gap-2">
+                      <div className="flex items-center gap-3">
                         <span className="text-2xl">{category.icon}</span>
-                        {category.name}
-                        <span className="text-sm text-[var(--color-subtext)] ml-2">
-                          ({category.items.length} артикула)
-                        </span>
-                      </span>
+                        <span className="text-lg font-semibold">{category.name}</span>
+                      </div>
                     </AccordionTrigger>
                     <AccordionContent>
-                      <div className="space-y-3 pt-4">
-                        {category.items.map((item, itemIdx) => (
-                          <div 
-                            key={itemIdx} 
-                            className="flex justify-between items-start p-3 rounded-lg hover:bg-gray-50 transition-colors"
+                      <div className="px-6 pb-4 space-y-3">
+                        {category.items.map((item) => (
+                          <motion.div 
+                            key={item.name}
+                            className="flex justify-between items-start p-4 bg-gray-800/30 rounded-lg hover:bg-gray-800/50 transition-colors cursor-pointer"
                             onClick={() => handleMenuInteraction(category.name, item.name)}
+                            whileHover={{ x: 5 }}
                           >
                             <div className="flex-1">
-                              <h4 className="font-semibold">{item.name}</h4>
+                              <div className="font-medium text-white">{item.name}</div>
                               {item.note && (
-                                <p className="text-sm text-[var(--color-subtext)] mt-1">{item.note}</p>
+                                <div className="text-sm text-gray-400 mt-1">{item.note}</div>
                               )}
                             </div>
-                            <div className="text-lg font-bold text-[var(--color-primary)]">
+                            <div className="text-lg font-bold text-orange-500">
                               {item.price.toFixed(2)} лв
                             </div>
-                          </div>
+                          </motion.div>
                         ))}
                       </div>
                     </AccordionContent>
                   </AccordionItem>
                 ))}
               </Accordion>
+
+              <div className="mt-8 p-4 bg-gradient-to-r from-orange-500/10 to-blue-500/10 rounded-lg border border-orange-500/20">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <ShoppingCart className="w-5 h-5 text-orange-500" />
+                    <span className="font-medium">Онлайн поръчки</span>
+                  </div>
+                  <span className="text-green-400 font-semibold">Активно 24/7</span>
+                </div>
+              </div>
             </Card>
-          </div>
-        </section>
+          </motion.div>
+        </div>
+      </section>
 
-        {/* Results Section */}
-        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-[var(--color-bg)]">
-          <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-12 text-[var(--color-text)]">
-              Резултати от реални клиенти
+      {/* Features Grid with Glassmorphism */}
+      <section className="py-20 relative">
+        <div className="container mx-auto px-4">
+          <motion.div 
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-4xl md:text-6xl font-black mb-6">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-red-500">
+                КАКВО ПОЛУЧАВАТЕ
+              </span>
             </h2>
-            <div className="grid md:grid-cols-3 gap-8">
-              <Card className="p-6 bg-white text-center">
-                <TrendingUp className="w-12 h-12 text-[var(--color-success)] mx-auto mb-4" />
-                <div className="text-3xl font-bold text-[var(--color-primary)] mb-2">+40%</div>
-                <p className="font-semibold mb-1">повече поръчки</p>
-                <p className="text-sm text-[var(--color-subtext)]">Пицария във Варна за 30 дни</p>
-              </Card>
-              <Card className="p-6 bg-white text-center">
-                <Timer className="w-12 h-12 text-[var(--color-secondary)] mx-auto mb-4" />
-                <div className="text-3xl font-bold text-[var(--color-primary)] mb-2">-2 часа</div>
-                <p className="font-semibold mb-1">по-малко обаждания</p>
-                <p className="text-sm text-[var(--color-subtext)]">Кафене в София дневно</p>
-              </Card>
-              <Card className="p-6 bg-white text-center">
-                <Users className="w-12 h-12 text-[var(--color-primary)] mx-auto mb-4" />
-                <div className="text-3xl font-bold text-[var(--color-primary)] mb-2">+35%</div>
-                <p className="font-semibold mb-1">нови клиенти</p>
-                <p className="text-sm text-[var(--color-subtext)]">Автосервиз в Пловдив от Google</p>
-              </Card>
-            </div>
-            
-            <div className="mt-12 text-center">
-              <p className="text-lg text-[var(--color-subtext)]">
-                <strong>Защо работи:</strong> Клиентите намират информацията веднага → 
-                вземат решение по-бързо → идват при вас вместо при конкурента.
-              </p>
-            </div>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              { icon: Globe, title: "SEO оптимизация", desc: "#1 в Google за квартала" },
+              { icon: Smartphone, title: "Mobile First", desc: "Перфектен на всички устройства" },
+              { icon: Clock, title: "24 часа", desc: "Гарантирано бързо изпълнение" },
+              { icon: MapPin, title: "Google карта", desc: "Лесно намиране на локацията" },
+              { icon: Phone, title: "Click-to-call", desc: "Директни обаждания с 1 клик" },
+              { icon: BarChart3, title: "Анализи", desc: "Следете посещенията и поръчките" }
+            ].map((feature, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+              >
+                <Card className="group bg-white/5 backdrop-blur-sm border-white/10 hover:bg-white/10 transition-all duration-300 p-6">
+                  <feature.icon className="w-12 h-12 text-orange-500 mb-4 group-hover:scale-110 transition-transform" />
+                  <h3 className="text-xl font-bold mb-2">{feature.title}</h3>
+                  <p className="text-gray-400">{feature.desc}</p>
+                </Card>
+              </motion.div>
+            ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Pricing Section */}
-        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-12 text-[var(--color-text)]">
-              Инвестиция, която се изплаща бързо
+      {/* Pricing Section with Premium Cards */}
+      <section className="py-20 relative">
+        <div className="container mx-auto px-4">
+          <motion.div 
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-4xl md:text-6xl font-black mb-6">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500">
+                ИНВЕСТИЦИЯ В УСПЕХА
+              </span>
             </h2>
-            <div className="grid md:grid-cols-2 gap-8">
-              <Card className="p-8 border-2 border-[var(--color-primary)]">
-                <div className="text-center mb-6">
-                  <h3 className="text-2xl font-bold mb-2">Starter Pack</h3>
-                  <div className="text-4xl font-bold text-[var(--color-primary)]">299 лв</div>
-                  <p className="text-[var(--color-subtext)]">еднократно</p>
-                </div>
-                <ul className="space-y-3 mb-8">
-                  <li className="flex items-center">
-                    <Check className="w-5 h-5 text-[var(--color-success)] mr-3 flex-shrink-0" />
-                    One-page Mini-Site
-                  </li>
-                  <li className="flex items-center">
-                    <Check className="w-5 h-5 text-[var(--color-success)] mr-3 flex-shrink-0" />
-                    SEO оптимизация
-                  </li>
-                  <li className="flex items-center">
-                    <Check className="w-5 h-5 text-[var(--color-success)] mr-3 flex-shrink-0" />
-                    Меню до 50 позиции
-                  </li>
-                  <li className="flex items-center">
-                    <Check className="w-5 h-5 text-[var(--color-success)] mr-3 flex-shrink-0" />
-                    Google Maps интеграция
-                  </li>
-                  <li className="flex items-center">
-                    <Check className="w-5 h-5 text-[var(--color-success)] mr-3 flex-shrink-0" />
-                    Мобилна оптимизация
-                  </li>
-                </ul>
-                <Button
-                  className="w-full bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] text-white rounded-xl py-6"
-                  size="lg"
-                  onClick={() => {
-                    if (typeof window !== 'undefined' && window.gtag) {
-                      window.gtag('event', 'mini_pricing_cta_click', { package: 'starter' });
-                    }
-                    setShowForm(true);
-                    setTimeout(() => {
-                      document.getElementById('mini-sites-form')?.scrollIntoView({ behavior: 'smooth' });
-                    }, 100);
-                  }}
-                >
-                  Поръчай Mini-Site
-                </Button>
-              </Card>
-              
-              <Card className="p-8 bg-gray-50">
-                <div className="text-center mb-6">
-                  <h3 className="text-2xl font-bold mb-2">Maintenance</h3>
-                  <div className="text-4xl font-bold text-[var(--color-secondary)]">49 лв</div>
-                  <p className="text-[var(--color-subtext)]">на месец (по желание)</p>
-                </div>
-                <ul className="space-y-3 mb-8">
-                  <li className="flex items-center">
-                    <Check className="w-5 h-5 text-[var(--color-success)] mr-3 flex-shrink-0" />
-                    Хостинг и домейн
-                  </li>
-                  <li className="flex items-center">
-                    <Check className="w-5 h-5 text-[var(--color-success)] mr-3 flex-shrink-0" />
-                    SSL сертификат
-                  </li>
-                  <li className="flex items-center">
-                    <Check className="w-5 h-5 text-[var(--color-success)] mr-3 flex-shrink-0" />
-                    Обновяване на меню/цени
-                  </li>
-                  <li className="flex items-center">
-                    <Check className="w-5 h-5 text-[var(--color-success)] mr-3 flex-shrink-0" />
-                    Техническа поддръжка
-                  </li>
-                  <li className="flex items-center">
-                    <Check className="w-5 h-5 text-[var(--color-success)] mr-3 flex-shrink-0" />
-                    Месечен отчет
-                  </li>
-                </ul>
-                <Button
-                  className="w-full border-[var(--color-secondary)] text-[var(--color-secondary)] hover:bg-[var(--color-secondary)] hover:text-white rounded-xl py-6"
-                  size="lg"
-                  variant="outline"
-                  onClick={() => {
-                    if (typeof window !== 'undefined' && window.gtag) {
-                      window.gtag('event', 'mini_pricing_cta_click', { package: 'maintenance' });
-                    }
-                    setShowForm(true);
-                    setTimeout(() => {
-                      document.getElementById('mini-sites-form')?.scrollIntoView({ behavior: 'smooth' });
-                    }, 100);
-                  }}
-                >
-                  Добави поддръжка
-                </Button>
-              </Card>
-            </div>
-          </div>
-        </section>
+          </motion.div>
 
-        {/* Lead Form Section */}
-        {showForm && (
-          <section id="mini-sites-form" className="py-16 px-4 sm:px-6 lg:px-8 bg-[var(--color-bg)]">
-            <div className="max-w-2xl mx-auto">
-              <h2 className="text-3xl font-bold text-center mb-4 text-[var(--color-text)]">
-                Започнете с вашия Mini-Site
-              </h2>
-              <p className="text-center text-[var(--color-subtext)] mb-8">
-                Попълнете формата и ще се свържем с вас до 2 часа
-              </p>
-              <Card className="p-6 bg-white">
-                <MiniSitesForm />
-              </Card>
-            </div>
-          </section>
-        )}
-
-        {/* FAQ Section */}
-        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl font-bold text-center mb-12 text-[var(--color-text)]">
-              Често задавани въпроси
-            </h2>
-            <Accordion type="single" collapsible className="space-y-4">
-              <AccordionItem value="time">
-                <AccordionTrigger className="text-lg font-semibold">
-                  Колко време отнема създаването на Mini-Site?
-                </AccordionTrigger>
-                <AccordionContent>
-                  <p className="text-[var(--color-subtext)]">
-                    Под 24 часа при готово съдържание и меню. Обикновено сайтът е готов същия ден.
-                    Нуждаем се само от вашето лого, снимки и информация за менюто.
-                  </p>
-                </AccordionContent>
-              </AccordionItem>
-              
-              <AccordionItem value="edit">
-                <AccordionTrigger className="text-lg font-semibold">
-                  Мога ли сам да редактирам меню и цени?
-                </AccordionTrigger>
-                <AccordionContent>
-                  <p className="text-[var(--color-subtext)]">
-                    Да, получавате достъп до прост панел за управление, където можете да променяте цени,
-                    добавяте нови продукти и актуализирате работно време. Или просто ни изпращате 
-                    промените и ние ги правим за вас безплатно (при активна поддръжка).
-                  </p>
-                </AccordionContent>
-              </AccordionItem>
-              
-              <AccordionItem value="facebook">
-                <AccordionTrigger className="text-lg font-semibold">
-                  Имам само Facebook страница - нужен ли ми е сайт?
-                </AccordionTrigger>
-                <AccordionContent>
-                  <p className="text-[var(--color-subtext)]">
-                    Да! Facebook е добър за комуникация, но Mini-Site ви прави откриваеми в Google и Maps.
-                    80% от хората търсят в Google преди да изберат къде да отидат. Без сайт, вие просто
-                    не съществувате за тези потенциални клиенти.
-                  </p>
-                </AccordionContent>
-              </AccordionItem>
-              
-              <AccordionItem value="hosting">
-                <AccordionTrigger className="text-lg font-semibold">
-                  Има ли хостинг и поддръжка?
-                </AccordionTrigger>
-                <AccordionContent>
-                  <p className="text-[var(--color-subtext)]">
-                    По избор - 49 лв/месец включва хостинг, домейн, SSL сертификат, техническа поддръжка
-                    и неограничени промени на съдържанието. Можете да започнете само със Starter Pack
-                    и да добавите поддръжка по-късно.
-                  </p>
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
-          </div>
-        </section>
-
-        {/* Final CTA Section */}
-        <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-t from-white to-[var(--color-bg)]">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-[var(--color-text)]">
-              Готови сте да сте видими онлайн до утре?
-            </h2>
-            <p className="text-xl text-[var(--color-subtext)] mb-8">
-              Спрете да губите клиенти. Започнете да печелите повече.
-            </p>
-            <Button
-              size="lg"
-              className="bg-[var(--color-primary)] hover:bg-[var(--color-primary-hover)] text-white rounded-2xl px-10 py-6 text-lg"
-              onClick={() => {
-                setShowForm(true);
-                setTimeout(() => {
-                  document.getElementById('mini-sites-form')?.scrollIntoView({ behavior: 'smooth' });
-                }, 100);
-              }}
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {/* Starter Pack */}
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
             >
-              Започни сега
-              <ChevronRight className="ml-2 w-5 h-5" />
-            </Button>
+              <Card className="relative bg-gradient-to-br from-gray-900 to-gray-800 border-gray-700 p-8 overflow-hidden">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-orange-500/20 rounded-full blur-3xl" />
+                <div className="relative z-10">
+                  <div className="text-orange-500 font-semibold mb-2">STARTER PACK</div>
+                  <div className="text-5xl font-black mb-4">299<span className="text-2xl">лв</span></div>
+                  <div className="text-gray-400 mb-8">Еднократно плащане</div>
+                  
+                  <ul className="space-y-3 mb-8">
+                    {[
+                      "Професионален дизайн",
+                      "Интерактивно меню",
+                      "Google карта интеграция",
+                      "Mobile оптимизация",
+                      "SEO настройки",
+                      "SSL сертификат"
+                    ].map((item, i) => (
+                      <li key={i} className="flex items-center gap-3">
+                        <Check className="w-5 h-5 text-green-500" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  
+                  <Button 
+                    className="w-full bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-500 hover:to-red-500 font-bold py-6"
+                    onClick={() => handleCTAClick('primary')}
+                  >
+                    Започни сега
+                  </Button>
+                </div>
+              </Card>
+            </motion.div>
+
+            {/* Maintenance */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+            >
+              <Card className="relative bg-gradient-to-br from-blue-900/30 to-purple-900/30 border-blue-500/30 p-8 overflow-hidden">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/20 rounded-full blur-3xl" />
+                <div className="relative z-10">
+                  <div className="text-blue-500 font-semibold mb-2">MAINTENANCE</div>
+                  <div className="text-5xl font-black mb-4">49<span className="text-2xl">лв/мес</span></div>
+                  <div className="text-gray-400 mb-8">Опционална поддръжка</div>
+                  
+                  <ul className="space-y-3 mb-8">
+                    {[
+                      "Промени в менюто",
+                      "Актуализации на цени",
+                      "Сезонни оферти",
+                      "Backup на данните",
+                      "Техническа поддръжка",
+                      "Месечни отчети"
+                    ].map((item, i) => (
+                      <li key={i} className="flex items-center gap-3">
+                        <Check className="w-5 h-5 text-blue-500" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  
+                  <Button 
+                    variant="outline"
+                    className="w-full border-blue-500/30 hover:bg-blue-500/10 font-bold py-6"
+                    onClick={() => handleCTAClick('primary')}
+                  >
+                    Добави поддръжка
+                  </Button>
+                </div>
+              </Card>
+            </motion.div>
+          </div>
+
+          {/* ROI Calculator */}
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mt-16 text-center"
+          >
+            <Card className="max-w-2xl mx-auto bg-gradient-to-r from-green-900/20 to-emerald-900/20 border-green-500/20 p-8">
+              <Rocket className="w-12 h-12 text-green-500 mx-auto mb-4" />
+              <h3 className="text-2xl font-bold mb-4">ROI калкулатор</h3>
+              <p className="text-gray-400 mb-6">
+                При средно 3 нови клиента на ден от сайта и средна поръчка 15лв:
+              </p>
+              <div className="text-4xl font-black text-green-400">
+                1350лв/месец
+              </div>
+              <p className="text-sm text-gray-400 mt-2">
+                Възвръщаемост на инвестицията за под 7 дни
+              </p>
+            </Card>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* FAQ Section with Modern Accordion */}
+      <section className="py-20 relative">
+        <div className="container mx-auto px-4">
+          <motion.div 
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-4xl md:text-6xl font-black mb-6">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
+                ЧЕСТИ ВЪПРОСИ
+              </span>
+            </h2>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="max-w-3xl mx-auto"
+          >
+            <Accordion type="single" collapsible className="space-y-4">
+              {[
+                {
+                  q: "Колко време отнема изработката?",
+                  a: "Гарантираме готов сайт за 24 часа след одобрение на информацията."
+                },
+                {
+                  q: "Какво включва цената от 299лв?",
+                  a: "Пълна изработка на сайта, дизайн, програмиране, SEO оптимизация, SSL сертификат и първоначална настройка."
+                },
+                {
+                  q: "Мога ли сам да променям менюто?",
+                  a: "Да, получавате лесна админ система. Или можете да ползвате нашата поддръжка за 49лв/месец."
+                },
+                {
+                  q: "Ще излизам ли #1 в Google?",
+                  a: "Оптимизираме сайта за локално SEO. В рамките на 2-4 седмици ще сте в топ 3 за вашия квартал."
+                }
+              ].map((faq, index) => (
+                <AccordionItem 
+                  key={index} 
+                  value={`item-${index}`}
+                  className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg overflow-hidden"
+                >
+                  <AccordionTrigger className="px-6 py-4 hover:bg-white/5 transition-colors">
+                    <span className="text-left font-semibold">{faq.q}</span>
+                  </AccordionTrigger>
+                  <AccordionContent className="px-6 pb-4 text-gray-400">
+                    {faq.a}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Contact Form Section */}
+      {showForm && (
+        <section id="mini-sites-form" className="py-20 relative">
+          <div className="container mx-auto px-4">
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              <MiniSitesForm />
+            </motion.div>
           </div>
         </section>
-      </div>
-    </>
+      )}
+
+      {/* Final CTA with Urgency */}
+      <section className="py-20 relative">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          className="container mx-auto px-4"
+        >
+          <Card className="bg-gradient-to-r from-orange-900/50 to-red-900/50 backdrop-blur-xl border-orange-500/30 p-12 text-center overflow-hidden relative">
+            <motion.div
+              className="absolute inset-0 bg-gradient-to-r from-orange-600/10 to-red-600/10"
+              animate={{
+                backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+              }}
+              transition={{
+                duration: 10,
+                repeat: Infinity,
+                ease: "linear"
+              }}
+              style={{ backgroundSize: "200% 200%" }}
+            />
+            
+            <div className="relative z-10">
+              <Sparkles className="w-16 h-16 text-orange-500 mx-auto mb-6" />
+              <h2 className="text-4xl md:text-5xl font-black mb-6">
+                Не чакай конкуренцията да те изпревари
+              </h2>
+              <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+                Всеки ден без сайт = загубени клиенти. 
+                Започни сега и виж резултати още утре!
+              </p>
+              
+              <Button
+                size="lg"
+                onClick={() => handleCTAClick('primary')}
+                className="bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-500 hover:to-red-500 text-xl font-bold px-12 py-8 rounded-xl transform hover:scale-105 transition-all duration-300"
+              >
+                <Rocket className="w-6 h-6 mr-3" />
+                СТАРТИРАЙ СЕГА — 299лв
+              </Button>
+              
+              <div className="mt-8 flex items-center justify-center gap-6 text-sm text-gray-400">
+                <div className="flex items-center gap-2">
+                  <Timer className="w-4 h-4 text-orange-500" />
+                  <span>Готово за 24ч</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Shield className="w-4 h-4 text-green-500" />
+                  <span>100% гаранция</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Award className="w-4 h-4 text-blue-500" />
+                  <span>Premium качество</span>
+                </div>
+              </div>
+            </div>
+          </Card>
+        </motion.div>
+      </section>
+
+      {/* FAQ Schema JSON-LD */}
+      <Script id="faq-schema" type="application/ld+json">
+        {JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Колко време отнема изработката на Mini-Site?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Гарантираме готов сайт за 24 часа след одобрение на информацията."
+              }
+            },
+            {
+              "@type": "Question", 
+              "name": "Какво включва цената от 299лв?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Пълна изработка на сайта, дизайн, програмиране, SEO оптимизация, SSL сертификат и първоначална настройка."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Мога ли сам да променям менюто?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Да, получавате лесна админ система. Или можете да ползвате нашата поддръжка за 49лв/месец."
+              }
+            }
+          ]
+        })}
+      </Script>
+    </div>
   );
 }
