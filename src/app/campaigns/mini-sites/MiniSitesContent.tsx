@@ -465,6 +465,8 @@ export default function MiniSitesContent() {
                   onClick={() => {
                     if (category.id === "restaurants") {
                       router.push('/campaigns/mini-sites/restaurants');
+                    } else if (category.id === "cafes") {
+                      router.push('/campaigns/mini-sites/cafes');
                     } else {
                       setSelectedCategory(category.id);
                     }
