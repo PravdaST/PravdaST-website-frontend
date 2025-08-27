@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence, useScroll, useTransform, useInView } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -89,6 +90,7 @@ const businessCategories = [
 ];
 
 export default function MiniSitesContent() {
+  const router = useRouter();
   const [selectedCategory, setSelectedCategory] = useState("restaurants");
   const [isMenuExpanded, setIsMenuExpanded] = useState(false);
   const [showForm, setShowForm] = useState(false);
@@ -460,7 +462,13 @@ export default function MiniSitesContent() {
                   className={`relative group cursor-pointer overflow-hidden bg-white border-gray-200 hover:border-gray-300 transition-all duration-500 transform hover:scale-105 shadow-lg hover:shadow-xl ${
                     selectedCategory === category.id ? 'ring-2 ring-orange-500' : ''
                   }`}
-                  onClick={() => setSelectedCategory(category.id)}
+                  onClick={() => {
+                    if (category.id === "restaurants") {
+                      router.push('/campaigns/mini-sites/restaurants');
+                    } else {
+                      setSelectedCategory(category.id);
+                    }
+                  }}
                 >
                   <div className={`absolute inset-0 bg-gradient-to-br ${category.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500`} />
                   
