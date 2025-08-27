@@ -147,8 +147,8 @@ export const GlovoStepForm = () => {
   const steps = [
     // Welcome Screen (Step 0)
     {
-      title: "Безплатен Glovo калкулатор на разходи",
-      subtitle: "Вижте колко наистина плащате",
+      title: "Къде да изпратим вашия Комплект за Независимост на Ресторанта?",
+      subtitle: "Това ни помага да персонализираме всичко за вашата конкретна ситуация. Вижте колко наистина плащате",
       content: (
         <div className="text-center py-8">
           <div className="mb-8">
@@ -157,14 +157,18 @@ export const GlovoStepForm = () => {
               Открийте точните си Glovo разходи за под 2 минути и получете персонализиран план за спестявания.
             </p>
           </div>
-          <div className="flex items-center justify-center space-x-4 text-green-400 mb-8">
-            <CheckCircle className="w-5 h-5" />
-            <span>100% безплатно</span>
-            <CheckCircle className="w-5 h-5" />
-            <span>Без регистрация</span>
-            <CheckCircle className="w-5 h-5" />
-            <span>Моментални резултати</span>
+          <div className="flex items-center justify-center space-x-4 text-green-400 mb-6 text-sm">
+            <span>💯 безплатно</span>
+            <span>🔒 НИКОГА не споделяме информацията ви</span>
+            <span>📞 Обаждаме се САМО в удобно за вас време</span>
           </div>
+
+          <div className="flex items-center justify-center space-x-4 text-green-400 mb-6 text-sm">
+            <span>🚫 Няма спам, няма натрапчиви обаждания</span>
+            <span>✅ Само ценни съвети за вашия ресторант</span>
+            <span>📱 Комплектът се изпраща веднага на телефона и имейла ви</span>
+          </div>
+
           <Button
             onClick={nextStep}
             size="lg"
@@ -317,7 +321,6 @@ export const GlovoStepForm = () => {
     // Question 6: Contact Info (Step 6)
     {
       title: "Къде да изпратим персонализирания ви Glovo анализ?",
-      subtitle: "Ще ви изпратим доклада незабавно по имейл и може да се свържем с допълнителни съвети за спестявания",
       content: (
         <div className="py-8 space-y-6">
           <div>
@@ -362,7 +365,7 @@ export const GlovoStepForm = () => {
             </div>
           )}
           <div className="text-sm text-gray-400 bg-yellow-400/10 border border-yellow-400/30 rounded-lg p-4">
-            💡 Ще ви изпратим доклада по имейл незабавно и може да се свържем с допълнителни съвети за пестене на пари
+            💡 Ще ви изпратим доклада по имейл до 5 мин. Може да се свържем с допълнителни съвети за пестене на пари.
           </div>
         </div>
       )
