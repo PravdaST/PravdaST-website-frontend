@@ -27,22 +27,23 @@ export const GlovoStepForm = () => {
     email: "",
     phone: ""
   });
+  const [customDailyOrders, setCustomDailyOrders] = useState("");
+  const [customAvgOrderValue, setCustomAvgOrderValue] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const dailyOrderOptions = [
-    { value: "5-10", label: "5-10 поръчки" },
-    { value: "11-20", label: "11-20 поръчки" },
-    { value: "21-35", label: "21-35 поръчки" },
-    { value: "36-50", label: "36-50 поръчки" },
-    { value: "50+", label: "50+ поръчки" }
+    { value: "8", label: "8 поръчки дневно" },
+    { value: "15", label: "15 поръчки дневно" },
+    { value: "28", label: "28 поръчки дневно" },
+    { value: "43", label: "43 поръчки дневно" }
   ];
 
   const avgOrderValueOptions = [
-    { value: "15-25", label: "15-25 лв" },
-    { value: "26-35", label: "26-35 лв" },
-    { value: "36-50", label: "36-50 лв" },
-    { value: "50+", label: "50+ лв" }
+    { value: "20", label: "20 лв средна стойност" },
+    { value: "30", label: "30 лв средна стойност" },
+    { value: "43", label: "43 лв средна стойност" },
+    { value: "60", label: "60 лв средна стойност" }
   ];
 
   const submitToAirtable = async () => {
@@ -109,9 +110,9 @@ export const GlovoStepForm = () => {
       case 3:
         return formData.city.trim().length > 0;
       case 4:
-        return formData.dailyOrders !== "";
+        return formData.dailyOrders !== "" && Number(formData.dailyOrders) > 0;
       case 5:
-        return formData.avgOrderValue !== "";
+        return formData.avgOrderValue !== "" && Number(formData.avgOrderValue) > 0;
       case 6:
         // Strict email validation
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -231,13 +232,16 @@ export const GlovoStepForm = () => {
     // Question 4: Daily Orders (Step 4)
     {
       title: "Колко поръчки за доставка получавате дневно средно?",
-      subtitle: "Изберете най-близкия вариант",
+      subtitle: "Изберете най-близкия вариант или въведете точно число",
       content: (
         <div className="py-8 space-y-4">
           {dailyOrderOptions.map((option) => (
             <button
               key={option.value}
-              onClick={() => setFormData({...formData, dailyOrders: option.value})}
+              onClick={() => {
+                setFormData({...formData, dailyOrders: option.value});
+                setCustomDailyOrders("");
+              }}
               className={`w-full p-4 rounded-xl border text-left transition-all ${
                 formData.dailyOrders === option.value
                   ? 'border-green-400 bg-green-400/10 text-green-400'
@@ -247,19 +251,39 @@ export const GlovoStepForm = () => {
               <div className="text-lg font-semibold">{option.label}</div>
             </button>
           ))}
+          <div className="mt-6">
+            <label className="block text-green-400 font-semibold mb-2">
+              Или въведете точен брой поръчки дневно:
+            </label>
+            <input
+              type="number"
+              value={customDailyOrders}
+              onChange={(e) => {
+                setCustomDailyOrders(e.target.value);
+                setFormData({...formData, dailyOrders: e.target.value});
+              }}
+              placeholder="напр. 25"
+              min="1"
+              max="200"
+              className="w-full px-6 py-4 bg-black/50 border border-green-400/30 rounded-xl text-white text-lg focus:border-green-400 focus:outline-none"
+            />
+          </div>
         </div>
       )
     },
     // Question 5: Average Order Value (Step 5)
     {
       title: "Каква е средната стойност на поръчката ви за доставка?",
-      subtitle: "Изберете възможността, която най-добре описва бизнеса ви",
+      subtitle: "Изберете най-близкия вариант или въведете точна сума",
       content: (
         <div className="py-8 space-y-4">
           {avgOrderValueOptions.map((option) => (
             <button
               key={option.value}
-              onClick={() => setFormData({...formData, avgOrderValue: option.value})}
+              onClick={() => {
+                setFormData({...formData, avgOrderValue: option.value});
+                setCustomAvgOrderValue("");
+              }}
               className={`w-full p-4 rounded-xl border text-left transition-all ${
                 formData.avgOrderValue === option.value
                   ? 'border-green-400 bg-green-400/10 text-green-400'
@@ -269,6 +293,23 @@ export const GlovoStepForm = () => {
               <div className="text-lg font-semibold">{option.label}</div>
             </button>
           ))}
+          <div className="mt-6">
+            <label className="block text-green-400 font-semibold mb-2">
+              Или въведете точна средна стойност (в лева):
+            </label>
+            <input
+              type="number"
+              value={customAvgOrderValue}
+              onChange={(e) => {
+                setCustomAvgOrderValue(e.target.value);
+                setFormData({...formData, avgOrderValue: e.target.value});
+              }}
+              placeholder="напр. 35"
+              min="5"
+              max="300"
+              className="w-full px-6 py-4 bg-black/50 border border-green-400/30 rounded-xl text-white text-lg focus:border-green-400 focus:outline-none"
+            />
+          </div>
         </div>
       )
     },
