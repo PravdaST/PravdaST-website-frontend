@@ -320,7 +320,7 @@ export default function MiniSitesContent() {
       </motion.section>
 
       {/* Stats Section with Counter Animation */}
-      <section className="py-20 relative">
+      <section className="py-20 relative bg-gray-50">
         <div className="container mx-auto px-4">
           <motion.div 
             className="grid grid-cols-2 md:grid-cols-4 gap-8"
@@ -346,7 +346,7 @@ export default function MiniSitesContent() {
                 <div className="text-4xl font-black bg-gradient-to-r from-orange-500 to-blue-500 bg-clip-text text-transparent">
                   {stat.value}
                 </div>
-                <div className="text-gray-400 mt-2">{stat.label}</div>
+                <div className="text-gray-600 mt-2">{stat.label}</div>
               </motion.div>
             ))}
           </motion.div>
@@ -364,11 +364,11 @@ export default function MiniSitesContent() {
               viewport={{ once: true }}
               className="relative"
             >
-              <Card className="bg-gradient-to-br from-red-950/50 to-red-900/20 border-red-500/20 p-8 backdrop-blur-sm">
-                <div className="absolute -top-6 -left-6 w-12 h-12 bg-red-600 rounded-full flex items-center justify-center">
+              <Card className="bg-gradient-to-br from-red-50 to-red-100 border-red-200 p-8 shadow-lg">
+                <div className="absolute -top-6 -left-6 w-12 h-12 bg-red-500 rounded-full flex items-center justify-center">
                   <AlertCircle className="w-6 h-6 text-white" />
                 </div>
-                <h2 className="text-3xl font-bold mb-6 text-red-400">БЕЗ САЙТ = БЕЗ КЛИЕНТИ</h2>
+                <h2 className="text-3xl font-bold mb-6 text-red-600">БЕЗ САЙТ = БЕЗ КЛИЕНТИ</h2>
                 <ul className="space-y-4">
                   {[
                     "85% търсят в Google преди да дойдат",
@@ -385,7 +385,7 @@ export default function MiniSitesContent() {
                       transition={{ delay: i * 0.1 }}
                     >
                       <div className="w-2 h-2 bg-red-500 rounded-full mt-2 flex-shrink-0" />
-                      <span className="text-gray-300">{item}</span>
+                      <span className="text-gray-700">{item}</span>
                     </motion.li>
                   ))}
                 </ul>
@@ -399,11 +399,11 @@ export default function MiniSitesContent() {
               viewport={{ once: true }}
               className="relative"
             >
-              <Card className="bg-gradient-to-br from-green-950/50 to-green-900/20 border-green-500/20 p-8 backdrop-blur-sm">
-                <div className="absolute -top-6 -left-6 w-12 h-12 bg-green-600 rounded-full flex items-center justify-center">
+              <Card className="bg-gradient-to-br from-green-50 to-green-100 border-green-200 p-8 shadow-lg">
+                <div className="absolute -top-6 -left-6 w-12 h-12 bg-green-500 rounded-full flex items-center justify-center">
                   <Check className="w-6 h-6 text-white" />
                 </div>
-                <h2 className="text-3xl font-bold mb-6 text-green-400">MINI-SITE = УСПЕХ</h2>
+                <h2 className="text-3xl font-bold mb-6 text-green-600">MINI-SITE = УСПЕХ</h2>
                 <ul className="space-y-4">
                   {[
                     "Професионален вид за 299лв",
@@ -420,7 +420,7 @@ export default function MiniSitesContent() {
                       transition={{ delay: i * 0.1 }}
                     >
                       <Check className="w-5 h-5 text-green-500 mt-1 flex-shrink-0" />
-                      <span className="text-gray-300">{item}</span>
+                      <span className="text-gray-700">{item}</span>
                     </motion.li>
                   ))}
                 </ul>
@@ -431,7 +431,7 @@ export default function MiniSitesContent() {
       </section>
 
       {/* Business Categories with 3D Cards */}
-      <section id="categories" className="py-20 relative">
+      <section id="categories" className="py-20 relative bg-gray-50">
         <div className="container mx-auto px-4">
           <motion.div 
             className="text-center mb-16"
@@ -444,7 +444,7 @@ export default function MiniSitesContent() {
                 ИЗБЕРИ ТВОЯ БИЗНЕС
               </span>
             </h2>
-            <p className="text-xl text-gray-400">Специализирани решения за всяка индустрия</p>
+            <p className="text-xl text-gray-600">Специализирани решения за всяка индустрия</p>
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -457,24 +457,24 @@ export default function MiniSitesContent() {
                 transition={{ delay: index * 0.1 }}
               >
                 <Card 
-                  className={`relative group cursor-pointer overflow-hidden bg-gray-900/50 backdrop-blur-sm border-gray-800 hover:border-gray-600 transition-all duration-500 transform hover:scale-105 ${
+                  className={`relative group cursor-pointer overflow-hidden bg-white border-gray-200 hover:border-gray-300 transition-all duration-500 transform hover:scale-105 shadow-lg hover:shadow-xl ${
                     selectedCategory === category.id ? 'ring-2 ring-orange-500' : ''
                   }`}
                   onClick={() => setSelectedCategory(category.id)}
                 >
-                  <div className={`absolute inset-0 bg-gradient-to-br ${category.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
+                  <div className={`absolute inset-0 bg-gradient-to-br ${category.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500`} />
                   
                   <div className="p-8 relative z-10">
                     <div className={`w-16 h-16 mb-4 rounded-xl bg-gradient-to-br ${category.color} flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300`}>
                       <category.icon className="w-8 h-8 text-white" />
                     </div>
                     
-                    <h3 className="text-2xl font-bold mb-2 group-hover:text-orange-400 transition-colors">
+                    <h3 className="text-2xl font-bold mb-2 group-hover:text-orange-500 transition-colors text-gray-900">
                       {category.name}
                     </h3>
-                    <p className="text-gray-400 text-sm mb-4">{category.examples}</p>
+                    <p className="text-gray-600 text-sm mb-4">{category.examples}</p>
                     
-                    <div className="flex items-center gap-2 text-green-400 font-semibold">
+                    <div className="flex items-center gap-2 text-green-500 font-semibold">
                       <TrendingUp className="w-4 h-4" />
                       <span className="text-sm">{category.benefits}</span>
                     </div>
@@ -638,7 +638,7 @@ export default function MiniSitesContent() {
         </div>
       </section>
 
-      {/* Features Grid with Glassmorphism */}
+      {/* Features Grid with Clean Design */}
       <section className="py-20 relative">
         <div className="container mx-auto px-4">
           <motion.div 
@@ -670,10 +670,10 @@ export default function MiniSitesContent() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
               >
-                <Card className="group bg-white/5 backdrop-blur-sm border-white/10 hover:bg-white/10 transition-all duration-300 p-6">
+                <Card className="group bg-white border-gray-200 hover:border-gray-300 transition-all duration-300 p-6 shadow-lg hover:shadow-xl">
                   <feature.icon className="w-12 h-12 text-orange-500 mb-4 group-hover:scale-110 transition-transform" />
-                  <h3 className="text-xl font-bold mb-2">{feature.title}</h3>
-                  <p className="text-gray-400">{feature.desc}</p>
+                  <h3 className="text-xl font-bold mb-2 text-gray-900">{feature.title}</h3>
+                  <p className="text-gray-600">{feature.desc}</p>
                 </Card>
               </motion.div>
             ))}
@@ -681,8 +681,8 @@ export default function MiniSitesContent() {
         </div>
       </section>
 
-      {/* Pricing Section with Premium Cards */}
-      <section className="py-20 relative">
+      {/* Pricing Section with Clean Cards */}
+      <section className="py-20 relative bg-gray-50">
         <div className="container mx-auto px-4">
           <motion.div 
             className="text-center mb-16"
@@ -691,7 +691,7 @@ export default function MiniSitesContent() {
             viewport={{ once: true }}
           >
             <h2 className="text-4xl md:text-6xl font-black mb-6">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-blue-500">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-500 to-blue-500">
                 ИНВЕСТИЦИЯ В УСПЕХА
               </span>
             </h2>
@@ -704,12 +704,12 @@ export default function MiniSitesContent() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <Card className="relative bg-gradient-to-br from-gray-900 to-gray-800 border-gray-700 p-8 overflow-hidden">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-orange-500/20 rounded-full blur-3xl" />
+              <Card className="relative bg-white border-gray-200 p-8 shadow-xl">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-orange-500/10 rounded-full blur-3xl" />
                 <div className="relative z-10">
                   <div className="text-orange-500 font-semibold mb-2">STARTER PACK</div>
-                  <div className="text-5xl font-black mb-4">299<span className="text-2xl">лв</span></div>
-                  <div className="text-gray-400 mb-8">Еднократно плащане</div>
+                  <div className="text-5xl font-black mb-4 text-gray-900">299<span className="text-2xl">лв</span></div>
+                  <div className="text-gray-600 mb-8">Еднократно плащане</div>
                   
                   <ul className="space-y-3 mb-8">
                     {[
@@ -722,7 +722,7 @@ export default function MiniSitesContent() {
                     ].map((item, i) => (
                       <li key={i} className="flex items-center gap-3">
                         <Check className="w-5 h-5 text-green-500" />
-                        <span>{item}</span>
+                        <span className="text-gray-900">{item}</span>
                       </li>
                     ))}
                   </ul>
@@ -743,12 +743,12 @@ export default function MiniSitesContent() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <Card className="relative bg-gradient-to-br from-blue-900/30 to-purple-900/30 border-blue-500/30 p-8 overflow-hidden">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/20 rounded-full blur-3xl" />
+              <Card className="relative bg-white border-gray-200 p-8 shadow-xl">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 rounded-full blur-3xl" />
                 <div className="relative z-10">
                   <div className="text-blue-500 font-semibold mb-2">MAINTENANCE</div>
-                  <div className="text-5xl font-black mb-4">49<span className="text-2xl">лв/мес</span></div>
-                  <div className="text-gray-400 mb-8">Опционална поддръжка</div>
+                  <div className="text-5xl font-black mb-4 text-gray-900">49<span className="text-2xl">лв/мес</span></div>
+                  <div className="text-gray-600 mb-8">Опционална поддръжка</div>
                   
                   <ul className="space-y-3 mb-8">
                     {[
@@ -761,14 +761,14 @@ export default function MiniSitesContent() {
                     ].map((item, i) => (
                       <li key={i} className="flex items-center gap-3">
                         <Check className="w-5 h-5 text-blue-500" />
-                        <span>{item}</span>
+                        <span className="text-gray-900">{item}</span>
                       </li>
                     ))}
                   </ul>
                   
                   <Button 
                     variant="outline"
-                    className="w-full border-blue-500/30 hover:bg-blue-500/10 font-bold py-6"
+                    className="w-full border-blue-500 hover:bg-blue-50 font-bold py-6 text-blue-600"
                     onClick={() => handleCTAClick('primary')}
                   >
                     Добави поддръжка
@@ -785,16 +785,16 @@ export default function MiniSitesContent() {
             viewport={{ once: true }}
             className="mt-16 text-center"
           >
-            <Card className="max-w-2xl mx-auto bg-gradient-to-r from-green-900/20 to-emerald-900/20 border-green-500/20 p-8">
+            <Card className="max-w-2xl mx-auto bg-gradient-to-r from-green-50 to-emerald-50 border-green-200 p-8 shadow-lg">
               <Rocket className="w-12 h-12 text-green-500 mx-auto mb-4" />
-              <h3 className="text-2xl font-bold mb-4">ROI калкулатор</h3>
-              <p className="text-gray-400 mb-6">
+              <h3 className="text-2xl font-bold mb-4 text-gray-900">ROI калкулатор</h3>
+              <p className="text-gray-600 mb-6">
                 При средно 3 нови клиента на ден от сайта и средна поръчка 15лв:
               </p>
-              <div className="text-4xl font-black text-green-400">
+              <div className="text-4xl font-black text-green-500">
                 1350лв/месец
               </div>
-              <p className="text-sm text-gray-400 mt-2">
+              <p className="text-sm text-gray-600 mt-2">
                 Възвръщаемост на инвестицията за под 7 дни
               </p>
             </Card>
@@ -802,7 +802,7 @@ export default function MiniSitesContent() {
         </div>
       </section>
 
-      {/* FAQ Section with Modern Accordion */}
+      {/* FAQ Section with Clean Accordion */}
       <section className="py-20 relative">
         <div className="container mx-auto px-4">
           <motion.div 
@@ -812,7 +812,7 @@ export default function MiniSitesContent() {
             viewport={{ once: true }}
           >
             <h2 className="text-4xl md:text-6xl font-black mb-6">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500">
                 ЧЕСТИ ВЪПРОСИ
               </span>
             </h2>
@@ -846,12 +846,12 @@ export default function MiniSitesContent() {
                 <AccordionItem 
                   key={index} 
                   value={`item-${index}`}
-                  className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-lg overflow-hidden"
+                  className="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-lg"
                 >
-                  <AccordionTrigger className="px-6 py-4 hover:bg-white/5 transition-colors">
-                    <span className="text-left font-semibold">{faq.q}</span>
+                  <AccordionTrigger className="px-6 py-4 hover:bg-gray-50 transition-colors">
+                    <span className="text-left font-semibold text-gray-900">{faq.q}</span>
                   </AccordionTrigger>
-                  <AccordionContent className="px-6 pb-4 text-gray-400">
+                  <AccordionContent className="px-6 pb-4 text-gray-600">
                     {faq.a}
                   </AccordionContent>
                 </AccordionItem>
@@ -876,17 +876,17 @@ export default function MiniSitesContent() {
         </section>
       )}
 
-      {/* Final CTA with Urgency */}
-      <section className="py-20 relative">
+      {/* Final CTA with Clean Design */}
+      <section className="py-20 relative bg-gray-50">
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           className="container mx-auto px-4"
         >
-          <Card className="bg-gradient-to-r from-orange-900/50 to-red-900/50 backdrop-blur-xl border-orange-500/30 p-12 text-center overflow-hidden relative">
+          <Card className="bg-gradient-to-r from-orange-50 to-red-50 border-orange-200 p-12 text-center shadow-xl relative">
             <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-orange-600/10 to-red-600/10"
+              className="absolute inset-0 bg-gradient-to-r from-orange-100/50 to-red-100/50"
               animate={{
                 backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
               }}
@@ -900,10 +900,10 @@ export default function MiniSitesContent() {
             
             <div className="relative z-10">
               <Sparkles className="w-16 h-16 text-orange-500 mx-auto mb-6" />
-              <h2 className="text-4xl md:text-5xl font-black mb-6">
+              <h2 className="text-4xl md:text-5xl font-black mb-6 text-gray-900">
                 Не чакай конкуренцията да те изпревари
               </h2>
-              <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+              <p className="text-xl text-gray-700 mb-8 max-w-2xl mx-auto">
                 Всеки ден без сайт = загубени клиенти. 
                 Започни сега и виж резултати още утре!
               </p>
@@ -917,7 +917,7 @@ export default function MiniSitesContent() {
                 СТАРТИРАЙ СЕГА — 299лв
               </Button>
               
-              <div className="mt-8 flex items-center justify-center gap-6 text-sm text-gray-400">
+              <div className="mt-8 flex items-center justify-center gap-6 text-sm text-gray-600">
                 <div className="flex items-center gap-2">
                   <Timer className="w-4 h-4 text-orange-500" />
                   <span>Готово за 24ч</span>
