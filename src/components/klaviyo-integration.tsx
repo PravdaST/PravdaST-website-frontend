@@ -59,8 +59,8 @@ export const KlaviyoIntegration = () => {
   const pathname = usePathname()
 
   useEffect(() => {
-    // Skip Klaviyo tracking for GLOVO landing page
-    if (pathname === '/glovo') {
+    // Skip Klaviyo tracking for all campaign pages
+    if (pathname === '/glovo' || pathname.startsWith('/campaigns')) {
       return
     }
     

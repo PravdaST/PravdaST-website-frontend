@@ -6,8 +6,17 @@ import { Navigation } from './navigation'
 export function ConditionalNavigation() {
   const pathname = usePathname()
   
-  // Navigation should appear on all pages - no special hiding logic needed for now
-  // Could add custom logic here in the future if needed
+  // Hide navigation on campaign pages to maintain clean, standalone branding
+  const hiddenPaths = [
+    '/campaigns', // All campaign pages
+    '/glovo',     // Legacy glovo landing page
+  ]
+  
+  const shouldHideNavigation = hiddenPaths.some(path => pathname.startsWith(path))
+  
+  if (shouldHideNavigation) {
+    return null
+  }
   
   return <Navigation />
 }
