@@ -47,10 +47,11 @@ export const GlovoStepForm = () => {
   ];
 
   const submitToAirtable = async () => {
+    let response: Response | undefined;
     try {
       setIsSubmitting(true);
       
-      const response = await fetch('/api/airtable/glovo-calculator', {
+      response = await fetch('/api/airtable/glovo-calculator', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
