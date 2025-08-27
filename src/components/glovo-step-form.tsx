@@ -68,7 +68,7 @@ export const GlovoStepForm = () => {
 
       if (response.ok) {
         setIsSubmitted(true);
-        setCurrentStep(8); // Thank you screen
+        setCurrentStep(7); // Thank you screen
       } else {
         throw new Error('Failed to submit');
       }
@@ -89,7 +89,7 @@ export const GlovoStepForm = () => {
   };
 
   const nextStep = () => {
-    if (currentStep < 8) {
+    if (currentStep < 7) {
       setCurrentStep(currentStep + 1);
     }
   };
@@ -371,16 +371,16 @@ export const GlovoStepForm = () => {
   return (
     <div className="min-h-[600px] relative">
       {/* Progress Bar */}
-      {currentStep > 0 && currentStep < 6 && (
+      {currentStep > 0 && currentStep < 7 && (
         <div className="mb-8">
           <div className="flex justify-between items-center mb-2">
             <span className="text-sm text-gray-400">Прогрес</span>
-            <span className="text-sm text-green-400">{currentStep}/5</span>
+            <span className="text-sm text-green-400">{currentStep}/6</span>
           </div>
           <div className="w-full bg-gray-700 rounded-full h-2">
             <div 
               className="bg-gradient-to-r from-yellow-400 to-green-400 h-2 rounded-full transition-all duration-500"
-              style={{ width: `${(currentStep / 5) * 100}%` }}
+              style={{ width: `${(currentStep / 6) * 100}%` }}
             ></div>
           </div>
         </div>
@@ -408,7 +408,7 @@ export const GlovoStepForm = () => {
       </AnimatePresence>
 
       {/* Navigation Buttons */}
-      {currentStep > 0 && currentStep < 6 && !isSubmitted && (
+      {currentStep > 0 && currentStep < 7 && !isSubmitted && (
         <div className="flex justify-between items-center mt-8">
           <Button
             onClick={prevStep}
@@ -419,7 +419,7 @@ export const GlovoStepForm = () => {
             Назад
           </Button>
 
-          {currentStep === 4 ? (
+          {currentStep === 6 ? (
             <Button
               onClick={submitToAirtable}
               disabled={!isStepValid() || isSubmitting}
