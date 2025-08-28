@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { UtensilsCrossed, Coffee, ShoppingBag, Wrench, Scissors, GraduationCap, ArrowRight, CheckCircle, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const BusinessCategorySelector = () => {
+  const router = useRouter();
   const [hoveredCategory, setHoveredCategory] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState(null);
 
@@ -95,10 +97,18 @@ const BusinessCategorySelector = () => {
 
   const handleCategorySelect = (category) => {
     setSelectedCategory(category);
-    // В реален проект тук би се извикал navigation към следващата стъпка
-    setTimeout(() => {
-      setSelectedCategory(null);
-    }, 2000);
+    
+    // Навигация към демо страницата за ресторанти
+    if (category.id === 'restaurant') {
+      setTimeout(() => {
+        router.push('/restaurant-template-demo-page');
+      }, 1000);
+    } else {
+      // За останалите категории показваме временно съобщение
+      setTimeout(() => {
+        setSelectedCategory(null);
+      }, 2000);
+    }
   };
 
   return (
