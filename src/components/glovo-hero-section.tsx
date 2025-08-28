@@ -6,6 +6,7 @@ import PravdaText from "@/components/typography/PravdaText";
 import { Button } from "@/components/ui/button";
 import { Calculator } from "lucide-react";
 import Image from "next/image";
+import { BulgarianCitiesSlider } from "@/components/bulgarian-cities-slider";
 
 export const GlovoHeroSection = () => {
   return (
@@ -148,6 +149,21 @@ export const GlovoHeroSection = () => {
                 🇧🇬 <span>Специализирани в български ресторанти</span>
               </div>
             </div>
+
+            {/* Bulgarian Cities Slider */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1.0 }}
+              className="relative mt-8"
+            >
+              <div className="text-center mb-4">
+                <p className="text-sm text-gray-400">
+                  Работим с ресторанти в цялата страна:
+                </p>
+              </div>
+              <BulgarianCitiesSlider />
+            </motion.div>
           </motion.div>
         </motion.div>
       </div>
