@@ -1,7 +1,5 @@
-"use client";
-
 import React, { useState, useEffect } from 'react';
-import { TrendingUp } from 'lucide-react';
+import { TrendingUp, ArrowRight, Play, User } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const HeroSection = () => {
@@ -47,19 +45,19 @@ const HeroSection = () => {
   };
 
   return (
-    <section id="hero" className="relative min-h-screen bg-gradient-to-br from-yellow-500 via-yellow-600 to-orange-500 overflow-hidden">
+    <section id="hero" className="relative min-h-screen bg-gradient-to-br from-blue-600 via-blue-700 to-purple-700 overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-20 left-10 w-32 h-32 bg-white rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 right-10 w-40 h-40 bg-white rounded-full blur-3xl"></div>
-        <div className="absolute top-1/2 left-1/3 w-24 h-24 bg-white rounded-full blur-2xl"></div>
+        <div className="absolute top-20 left-10 w-32 h-32 bg-yellow-400 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 right-10 w-40 h-40 bg-orange-400 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/2 left-1/3 w-24 h-24 bg-green-400 rounded-full blur-2xl"></div>
       </div>
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 lg:pt-32 pb-16">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-[80vh]">
           {/* Left Side - Content */}
           <div className="text-center lg:text-left">
             <div className="mb-6">
-              <span className="inline-flex items-center px-4 py-2 bg-white/20 text-white rounded-full text-sm font-medium backdrop-blur-sm">
+              <span className="inline-flex items-center px-4 py-2 bg-yellow-400/20 text-yellow-300 rounded-full text-sm font-medium backdrop-blur-sm">
                 <TrendingUp size={16} className="mr-2" />
                 Само 20 места този месец
               </span>
@@ -67,15 +65,15 @@ const HeroSection = () => {
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
               Получете{' '}
-              <span className="text-yellow-200">40% повече</span>
+              <span className="text-yellow-300">40% повече</span>
               <br />
               клиенти за{' '}
-              <span className="text-orange-200">24 часа</span>
+              <span className="text-orange-300">24 часа</span>
             </h1>
 
             <p className="text-xl lg:text-2xl text-white/90 mb-8 leading-relaxed">
               Професионален мини-сайт с QR меню система за само{' '}
-              <span className="font-bold text-yellow-200">299 лв</span>, 
+              <span className="font-bold text-yellow-300">299 лв</span>, 
               докато конкурентите ви губят клиенти всеки ден
             </p>
 
@@ -83,68 +81,89 @@ const HeroSection = () => {
               <Button
                 onClick={handleStartNow}
                 size="lg"
-                className="bg-white hover:bg-gray-100 text-yellow-600 font-semibold px-8 py-4 text-lg shadow-lg"
+                className="bg-yellow-400 hover:bg-yellow-500 text-blue-900 font-semibold px-8 py-4 text-lg conversion-shadow"
               >
-                Започни сега - Безплатно
+                <span>Започнете сега</span>
+                <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
+              
               <Button
                 onClick={handleViewDemo}
                 variant="outline"
                 size="lg"
-                className="border-white/30 text-white hover:bg-white/10 px-8 py-4 text-lg"
+                className="border-white text-white hover:bg-white hover:text-blue-700 font-semibold px-8 py-4 text-lg"
               >
-                Виж демо
+                <Play className="mr-2 w-5 h-5" />
+                <span>Вижте демо</span>
               </Button>
             </div>
 
-            {/* Live Stats */}
-            <div className="grid grid-cols-3 gap-6 mb-8">
-              <div className="text-center">
-                <div className="text-2xl font-bold text-white">{clientCount}+</div>
-                <div className="text-sm text-white/80">Доволни клиенти</div>
+            {/* Trust Bar */}
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
+              <div className="flex items-center justify-center lg:justify-start mb-4">
+                <div className="flex items-center space-x-2">
+                  <div className="flex -space-x-2">
+                    {[1, 2, 3, 4, 5].map((i) => (
+                      <div key={i} className="w-8 h-8 bg-yellow-400 rounded-full border-2 border-white flex items-center justify-center">
+                        <User size={14} color="white" />
+                      </div>
+                    ))}
+                  </div>
+                  <div className="text-white font-semibold">
+                    <span className="text-2xl text-yellow-300">{clientCount}+</span> доволни клиенти
+                  </div>
+                </div>
               </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-white">24ч</div>
-                <div className="text-sm text-white/80">Време за старт</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-white">299лв</div>
-                <div className="text-sm text-white/80">Еднократна цена</div>
-              </div>
-            </div>
-
-            {/* Rotating Client Testimonials */}
-            <div className="p-4 bg-white/10 rounded-lg backdrop-blur-sm">
-              <div className="text-sm text-white/90 mb-2">Последно доволен клиент:</div>
-              <div className="text-white font-medium transition-all duration-500">
-                {satisfiedClients[currentClient]}
+              
+              <div className="text-center lg:text-left">
+                <p className="text-white/80 text-sm mb-2">Последно се присъедини:</p>
+                <p className="text-white font-medium transition-all duration-500">
+                  {satisfiedClients[currentClient]}
+                </p>
               </div>
             </div>
           </div>
 
-          {/* Right Side - Visual */}
+          {/* Right Side - QR Demo */}
           <div className="relative">
-            <div className="relative z-10">
-              {/* Large "404" Background Number */}
-              <div className="text-9xl md:text-[12rem] lg:text-[14rem] font-bold mb-6 text-white/10">
-                404
+            <div className="bg-white/10 backdrop-blur-sm rounded-3xl p-8 border border-white/20 demo-card-shadow">
+              <div className="text-center mb-6">
+                <h3 className="text-2xl font-bold text-white mb-2">
+                  Сканирайте QR кода
+                </h3>
+                <p className="text-white/80">
+                  Вижте как работи мобилното меню
+                </p>
               </div>
-              
-              {/* Main Visual Content */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-center">
-                  <div className="text-6xl mb-4">📱</div>
-                  <div className="bg-white/90 p-6 rounded-lg shadow-2xl backdrop-blur-sm">
-                    <div className="text-lg font-semibold text-gray-800 mb-2">
-                      QR Меню Система
-                    </div>
-                    <div className="text-sm text-gray-600">
-                      Сканирай → Разгледай → Поръчай
-                    </div>
-                    <div className="mt-4 bg-yellow-500 p-2 rounded text-white text-xs font-medium">
-                      +45% повече поръчки
+
+              {/* QR Code */}
+              <div className="bg-white rounded-2xl p-8 mb-6 flex items-center justify-center">
+                <div className="w-48 h-48 bg-gray-900 rounded-xl flex items-center justify-center relative">
+                  <div className="grid grid-cols-8 gap-1 w-40 h-40">
+                    {Array.from({ length: 64 }).map((_, i) => (
+                      <div
+                        key={i}
+                        className={`w-full h-full ${
+                          Math.random() > 0.6 ? 'bg-white' : 'bg-gray-900'
+                        } rounded-sm`}
+                      />
+                    ))}
+                  </div>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-8 h-8 bg-yellow-400 rounded-lg flex items-center justify-center">
+                      <span className="text-gray-900 font-bold text-sm">QR</span>
                     </div>
                   </div>
+                </div>
+              </div>
+
+              <div className="text-center">
+                <p className="text-white/80 text-sm mb-4">
+                  Насочете камерата към QR кода за да видите демо
+                </p>
+                <div className="inline-flex items-center px-4 py-2 bg-green-500/20 text-green-300 rounded-full text-sm">
+                  <div className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></div>
+                  Активен QR код
                 </div>
               </div>
             </div>
