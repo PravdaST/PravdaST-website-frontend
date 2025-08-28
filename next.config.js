@@ -4,6 +4,16 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Exclude docs folder from compilation
+  webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
+    // Ignore docs folder entirely
+    config.plugins.push(new webpack.IgnorePlugin({
+      resourceRegExp: /^\.\/docs/,
+      contextRegExp: /$/,
+    }));
+    
+    return config;
+  },
   images: {
     remotePatterns: [
       {
