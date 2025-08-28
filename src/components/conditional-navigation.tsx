@@ -10,7 +10,8 @@ export function ConditionalNavigation() {
   // Exception: Show navigation on main /campaigns page
   const hiddenPaths = [
     '/campaigns/glovo',        // Glovo landing page
-    '/campaigns/mini-sites',   // Mini-sites landing pages  
+    '/campaigns/mini-sites',   // Mini-sites landing pages
+    '/campaigns/landing-page', // Landing page campaign
     '/glovo',                  // Legacy glovo landing page
   ]
   
