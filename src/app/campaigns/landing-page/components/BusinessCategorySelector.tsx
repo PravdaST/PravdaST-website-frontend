@@ -98,10 +98,14 @@ const BusinessCategorySelector = () => {
   const handleCategorySelect = (category) => {
     setSelectedCategory(category);
     
-    // Навигация към демо страницата за ресторанти
+    // Навигация към демо страниците  
     if (category.id === 'restaurant') {
       setTimeout(() => {
         router.push('/campaigns/landing-page/restaurant-template-demo-page');
+      }, 1000);
+    } else if (category.id === 'cafe') {
+      setTimeout(() => {
+        router.push('/campaigns/landing-page/cafe-template-demo-page');
       }, 1000);
     } else {
       // За останалите категории показваме временно съобщение
