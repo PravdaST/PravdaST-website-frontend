@@ -18,6 +18,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { GlassCard } from "@/components/ui/GlassCard";
 import PravdaButton from "@/components/ui/PravdaButton";
+import { FooterServer } from "@/components/footer-server";
 
 // Category definitions
 const categories = [
@@ -445,6 +446,8 @@ export default function CampaignsClient() {
         </div>
       </section>
 
+      {/* Footer */}
+      <FooterServer />
     </div>
   );
 }
