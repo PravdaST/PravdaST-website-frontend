@@ -4,11 +4,9 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { Eye, ArrowLeft } from 'lucide-react';
 import { Button } from "@/components/ui/button";
-import HeroSection from './components/HeroSection';
-import MenuSection from './components/MenuSection';
-import AtmosphereSection from './components/AtmosphereSection';
-import LocationSection from './components/LocationSection';
-import ReviewsSection from './components/ReviewsSection';
+
+// Import from the original structure  
+import CafeComponent from '../cafe-template-landing-page/index';
 
 const CafeNewTemplate: React.FC = () => {
   const [showOrderModal, setShowOrderModal] = useState(false);
@@ -30,9 +28,10 @@ const CafeNewTemplate: React.FC = () => {
     }
   };
 
+  // Use the original cafe component with navigation override
   return (
-    <div className="min-h-screen bg-white">
-      {/* Demo Notice Banner */}
+    <div>
+      {/* Custom Navigation Banner */}
       <div className="bg-gradient-to-r from-amber-600 to-orange-600 text-white py-3 px-4 text-center">
         <div className="flex items-center justify-center space-x-2 max-w-4xl mx-auto">
           <Eye size={20} />
@@ -49,71 +48,8 @@ const CafeNewTemplate: React.FC = () => {
         </div>
       </div>
       
-      <main>
-        <HeroSection 
-          onOrderOnline={handleOrderOnline}
-          onViewMenu={handleViewMenu}
-        />
-        
-        <MenuSection 
-          onMenuItemClick={handleMenuItemClick}
-        />
-        
-        <AtmosphereSection />
-        
-        <ReviewsSection />
-        
-        <LocationSection />
-      </main>
-
-      {/* Order Online Modal */}
-      {showOrderModal && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-md mx-auto">
-            <h3 className="text-2xl font-bold text-gray-900 mb-6">
-              Онлайн поръчка
-            </h3>
-            <div className="space-y-4">
-              <div className="text-center">
-                <div className="text-6xl mb-4">☕</div>
-                <p className="text-gray-600 mb-6">
-                  Вашето кафе ще бъде готово за 10 минути
-                </p>
-              </div>
-              <input 
-                type="text" 
-                placeholder="Вашето име"
-                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
-              />
-              <input 
-                type="tel" 
-                placeholder="Телефон"
-                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
-              />
-              <textarea 
-                placeholder="Специални указания..."
-                rows={3}
-                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
-              />
-            </div>
-            <div className="flex gap-4 mt-6">
-              <Button 
-                variant="outline"
-                onClick={() => setShowOrderModal(false)}
-                className="flex-1"
-              >
-                Отказ
-              </Button>
-              <Button 
-                onClick={() => setShowOrderModal(false)}
-                className="flex-1 bg-amber-600 hover:bg-amber-700"
-              >
-                Поръчай
-              </Button>
-            </div>
-          </div>
-        </div>
-      )}
+      {/* Original Cafe Component */}
+      <CafeComponent />
     </div>
   );
 };
