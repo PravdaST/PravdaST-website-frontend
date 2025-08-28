@@ -101,7 +101,7 @@ const BusinessCategorySelector = () => {
     // Навигация към демо страницата за ресторанти
     if (category.id === 'restaurant') {
       setTimeout(() => {
-        router.push('/restaurant-template-demo-page');
+        router.push('/campaigns/landing-page/restaurant-template-demo-page');
       }, 1000);
     } else {
       // За останалите категории показваме временно съобщение
