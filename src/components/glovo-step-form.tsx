@@ -4,7 +4,14 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import PravdaHeading from "@/components/typography/PravdaHeading";
-import { ChevronLeft, ChevronRight, Calculator, Mail, Phone, CheckCircle } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  Calculator,
+  Mail,
+  Phone,
+  CheckCircle,
+} from "lucide-react";
 
 interface FormData {
   name: string;
@@ -25,7 +32,7 @@ export const GlovoStepForm = () => {
     dailyOrders: "",
     avgOrderValue: "",
     email: "",
-    phone: ""
+    phone: "",
   });
   const [customDailyOrders, setCustomDailyOrders] = useState("");
   const [customAvgOrderValue, setCustomAvgOrderValue] = useState("");
@@ -36,25 +43,25 @@ export const GlovoStepForm = () => {
     { value: "8", label: "8 поръчки дневно" },
     { value: "15", label: "15 поръчки дневно" },
     { value: "28", label: "28 поръчки дневно" },
-    { value: "43", label: "43 поръчки дневно" }
+    { value: "43", label: "43 поръчки дневно" },
   ];
 
   const avgOrderValueOptions = [
     { value: "20", label: "20 лв средна стойност" },
     { value: "30", label: "30 лв средна стойност" },
     { value: "43", label: "43 лв средна стойност" },
-    { value: "60", label: "60 лв средна стойност" }
+    { value: "60", label: "60 лв средна стойност" },
   ];
 
   const submitToAirtable = async () => {
     let response: Response | undefined;
     try {
       setIsSubmitting(true);
-      
-      response = await fetch('/api/airtable/glovo-calculator', {
-        method: 'POST',
+
+      response = await fetch("/api/airtable/glovo-calculator", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           name: formData.name,
@@ -64,7 +71,7 @@ export const GlovoStepForm = () => {
           avg_order_value: formData.avgOrderValue,
           email: formData.email,
           phone: formData.phone,
-          timestamp: new Date().toISOString()
+          timestamp: new Date().toISOString(),
         }),
       });
 
@@ -72,19 +79,19 @@ export const GlovoStepForm = () => {
         setIsSubmitted(true);
         setCurrentStep(7); // Thank you screen
       } else {
-        throw new Error('Failed to submit');
+        throw new Error("Failed to submit");
       }
     } catch (error) {
-      console.error('Error submitting form:', error);
+      console.error("Error submitting form:", error);
       try {
         if (response && !response.ok) {
           const errorResponse = await response.text();
-          console.error('Response details:', errorResponse);
+          console.error("Response details:", errorResponse);
         }
       } catch (e) {
-        console.error('Could not read error response');
+        console.error("Could not read error response");
       }
-      alert('Възникна грешка при изпращането. Моля, опитайте отново.');
+      alert("Възникна грешка при изпращането. Моля, опитайте отново.");
     } finally {
       setIsSubmitting(false);
     }
@@ -113,16 +120,18 @@ export const GlovoStepForm = () => {
       case 4:
         return formData.dailyOrders !== "" && Number(formData.dailyOrders) > 0;
       case 5:
-        return formData.avgOrderValue !== "" && Number(formData.avgOrderValue) > 0;
+        return (
+          formData.avgOrderValue !== "" && Number(formData.avgOrderValue) > 0
+        );
       case 6:
         // Strict email validation
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         const isEmailValid = emailRegex.test(formData.email.trim());
-        
+
         // Bulgarian phone validation
         const phoneRegex = /^(\+359|0)[0-9]{8,9}$/;
         const isPhoneValid = phoneRegex.test(formData.phone.trim());
-        
+
         return isEmailValid && isPhoneValid;
       default:
         return true;
@@ -133,7 +142,7 @@ export const GlovoStepForm = () => {
     if (currentStep === 6) {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       const phoneRegex = /^(\+359|0)[0-9]{8,9}$/;
-      
+
       if (!emailRegex.test(formData.email.trim())) {
         return "Моля въведете валиден имейл адрес";
       }
@@ -148,13 +157,15 @@ export const GlovoStepForm = () => {
     // Welcome Screen (Step 0)
     {
       title: "Къде да изпратим вашия Комплект за Независимост на Ресторанта?",
-      subtitle: "Това ни помага да персонализираме всичко за вашата конкретна ситуация. Вижте колко наистина плащате",
+      subtitle:
+        "Това ни помага да персонализираме всичко за вашата конкретна ситуация. Вижте колко наистина плащате",
       content: (
         <div className="text-center py-8">
           <div className="mb-8">
             <Calculator className="w-20 h-20 text-yellow-400 mx-auto mb-4" />
             <p className="text-xl text-gray-300 leading-relaxed">
-              Открийте точните си Glovo разходи за под 2 минути и получете персонализиран план за спестявания.
+              Открийте точните си Glovo разходи за под 2 минути и получете
+              персонализиран план за спестявания.
             </p>
           </div>
           {/* Trust Elements - Better Layout */}
@@ -167,25 +178,35 @@ export const GlovoStepForm = () => {
               </div>
               <div className="flex items-center justify-center md:justify-start space-x-2 text-green-400 text-sm">
                 <span className="text-lg">🔒</span>
-                <span className="font-medium">НИКОГА не споделяме информацията ви</span>
+                <span className="font-medium">
+                  НИКОГА не споделяме информацията ви
+                </span>
               </div>
               <div className="flex items-center justify-center md:justify-start space-x-2 text-green-400 text-sm">
                 <span className="text-lg">📞</span>
-                <span className="font-medium">Обаждаме се САМО в удобно за вас време</span>
+                <span className="font-medium">
+                  Обаждаме се САМО в удобно за вас време
+                </span>
               </div>
-              
+
               {/* Row 2 */}
               <div className="flex items-center justify-center md:justify-start space-x-2 text-green-400 text-sm">
                 <span className="text-lg">🚫</span>
-                <span className="font-medium">Няма спам, няма натрапчиви обаждания</span>
+                <span className="font-medium">
+                  Няма спам, няма натрапчиви обаждания
+                </span>
               </div>
               <div className="flex items-center justify-center md:justify-start space-x-2 text-green-400 text-sm">
                 <span className="text-lg">✅</span>
-                <span className="font-medium">Само ценни съвети за вашия ресторант</span>
+                <span className="font-medium">
+                  Само ценни съвети за вашия ресторант
+                </span>
               </div>
               <div className="flex items-center justify-center md:justify-start space-x-2 text-green-400 text-sm">
                 <span className="text-lg">📱</span>
-                <span className="font-medium">Комплектът се изпраща веднага на телефона и имейла ви</span>
+                <span className="font-medium">
+                  Комплектът се изпраща веднага на телефона и имейла ви
+                </span>
               </div>
             </div>
           </div>
@@ -199,9 +220,9 @@ export const GlovoStepForm = () => {
             <ChevronRight className="ml-2 w-5 h-5" />
           </Button>
         </div>
-      )
+      ),
     },
-    // Question 1: Name (Step 1)  
+    // Question 1: Name (Step 1)
     {
       title: "Как можем да се обръщаме към Вас?",
       subtitle: "Въведете вашето име",
@@ -210,16 +231,19 @@ export const GlovoStepForm = () => {
           <input
             type="text"
             value={formData.name}
-            onChange={(e) => setFormData({...formData, name: e.target.value})}
+            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
             placeholder="Въведете вашето име..."
             className="w-full px-6 py-4 bg-black/50 border border-green-400/30 rounded-xl text-white text-lg focus:border-green-400 focus:outline-none"
             autoFocus
           />
-          {formData.name.trim().length > 0 && formData.name.trim().length < 2 && (
-            <p className="text-red-400 text-sm mt-2">Моля въведете поне 2 символа</p>
-          )}
+          {formData.name.trim().length > 0 &&
+            formData.name.trim().length < 2 && (
+              <p className="text-red-400 text-sm mt-2">
+                Моля въведете поне 2 символа
+              </p>
+            )}
         </div>
-      )
+      ),
     },
     // Question 2: Restaurant Name (Step 2)
     {
@@ -230,13 +254,15 @@ export const GlovoStepForm = () => {
           <input
             type="text"
             value={formData.restaurantName}
-            onChange={(e) => setFormData({...formData, restaurantName: e.target.value})}
+            onChange={(e) =>
+              setFormData({ ...formData, restaurantName: e.target.value })
+            }
             placeholder="Въведете името на ресторанта"
             className="w-full px-6 py-4 bg-black/50 border border-green-400/30 rounded-xl text-white text-lg focus:border-green-400 focus:outline-none"
             autoFocus
           />
         </div>
-      )
+      ),
     },
     // Question 3: City (Step 3)
     {
@@ -247,13 +273,13 @@ export const GlovoStepForm = () => {
           <input
             type="text"
             value={formData.city}
-            onChange={(e) => setFormData({...formData, city: e.target.value})}
+            onChange={(e) => setFormData({ ...formData, city: e.target.value })}
             placeholder="Въведете града..."
             className="w-full px-6 py-4 bg-black/50 border border-green-400/30 rounded-xl text-white text-lg focus:border-green-400 focus:outline-none"
             autoFocus
           />
         </div>
-      )
+      ),
     },
     // Question 4: Daily Orders (Step 4)
     {
@@ -265,13 +291,13 @@ export const GlovoStepForm = () => {
             <button
               key={option.value}
               onClick={() => {
-                setFormData({...formData, dailyOrders: option.value});
+                setFormData({ ...formData, dailyOrders: option.value });
                 setCustomDailyOrders("");
               }}
               className={`w-full p-4 rounded-xl border text-left transition-all ${
                 formData.dailyOrders === option.value
-                  ? 'border-green-400 bg-green-400/10 text-green-400'
-                  : 'border-gray-600 bg-black/30 text-gray-300 hover:border-green-400/50'
+                  ? "border-green-400 bg-green-400/10 text-green-400"
+                  : "border-gray-600 bg-black/30 text-gray-300 hover:border-green-400/50"
               }`}
             >
               <div className="text-lg font-semibold">{option.label}</div>
@@ -286,7 +312,7 @@ export const GlovoStepForm = () => {
               value={customDailyOrders}
               onChange={(e) => {
                 setCustomDailyOrders(e.target.value);
-                setFormData({...formData, dailyOrders: e.target.value});
+                setFormData({ ...formData, dailyOrders: e.target.value });
               }}
               placeholder="напр. 25"
               min="1"
@@ -295,7 +321,7 @@ export const GlovoStepForm = () => {
             />
           </div>
         </div>
-      )
+      ),
     },
     // Question 5: Average Order Value (Step 5)
     {
@@ -307,13 +333,13 @@ export const GlovoStepForm = () => {
             <button
               key={option.value}
               onClick={() => {
-                setFormData({...formData, avgOrderValue: option.value});
+                setFormData({ ...formData, avgOrderValue: option.value });
                 setCustomAvgOrderValue("");
               }}
               className={`w-full p-4 rounded-xl border text-left transition-all ${
                 formData.avgOrderValue === option.value
-                  ? 'border-green-400 bg-green-400/10 text-green-400'
-                  : 'border-gray-600 bg-black/30 text-gray-300 hover:border-green-400/50'
+                  ? "border-green-400 bg-green-400/10 text-green-400"
+                  : "border-gray-600 bg-black/30 text-gray-300 hover:border-green-400/50"
               }`}
             >
               <div className="text-lg font-semibold">{option.label}</div>
@@ -328,7 +354,7 @@ export const GlovoStepForm = () => {
               value={customAvgOrderValue}
               onChange={(e) => {
                 setCustomAvgOrderValue(e.target.value);
-                setFormData({...formData, avgOrderValue: e.target.value});
+                setFormData({ ...formData, avgOrderValue: e.target.value });
               }}
               placeholder="напр. 35"
               min="5"
@@ -337,7 +363,7 @@ export const GlovoStepForm = () => {
             />
           </div>
         </div>
-      )
+      ),
     },
     // Question 6: Contact Info (Step 6)
     {
@@ -352,12 +378,15 @@ export const GlovoStepForm = () => {
             <input
               type="email"
               value={formData.email}
-              onChange={(e) => setFormData({...formData, email: e.target.value})}
+              onChange={(e) =>
+                setFormData({ ...formData, email: e.target.value })
+              }
               placeholder="your@email.com"
               className={`w-full px-6 py-4 bg-black/50 border rounded-xl text-white text-lg focus:outline-none ${
-                formData.email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim())
-                  ? 'border-red-400 focus:border-red-400'
-                  : 'border-green-400/30 focus:border-green-400'
+                formData.email.trim() &&
+                !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim())
+                  ? "border-red-400 focus:border-red-400"
+                  : "border-green-400/30 focus:border-green-400"
               }`}
               required
             />
@@ -370,12 +399,15 @@ export const GlovoStepForm = () => {
             <input
               type="tel"
               value={formData.phone}
-              onChange={(e) => setFormData({...formData, phone: e.target.value})}
+              onChange={(e) =>
+                setFormData({ ...formData, phone: e.target.value })
+              }
               placeholder="0888 123 456 или +359888123456"
               className={`w-full px-6 py-4 bg-black/50 border rounded-xl text-white text-lg focus:outline-none ${
-                formData.phone.trim() && !/^(\+359|0)[0-9]{8,9}$/.test(formData.phone.trim())
-                  ? 'border-red-400 focus:border-red-400'
-                  : 'border-green-400/30 focus:border-green-400'
+                formData.phone.trim() &&
+                !/^(\+359|0)[0-9]{8,9}$/.test(formData.phone.trim())
+                  ? "border-red-400 focus:border-red-400"
+                  : "border-green-400/30 focus:border-green-400"
               }`}
               required
             />
@@ -386,39 +418,32 @@ export const GlovoStepForm = () => {
             </div>
           )}
           <div className="text-sm text-gray-400 bg-yellow-400/10 border border-yellow-400/30 rounded-lg p-4">
-            💡 Ще ви изпратим доклада по имейл до 5 мин. Може да се свържем с допълнителни съвети за пестене на пари.
+            💡 Ще ви изпратим доклада по имейл до 5 мин. Може да се свържем с
+            допълнителни съвети за пестене на пари.
           </div>
         </div>
-      )
+      ),
     },
     // Processing Screen (Step 5)
-    {
-      title: "Изчисляваме вашия Glovo анализ...",
-      subtitle: "Моля, изчакайте докато обработваме данните",
-      content: (
-        <div className="text-center py-8">
-          <div className="mb-8">
-            <div className="animate-spin w-16 h-16 border-4 border-yellow-400 border-t-transparent rounded-full mx-auto mb-4"></div>
-            <p className="text-xl text-gray-300">
-              Анализираме вашите данни и подготвяме персонализиран доклад...
-            </p>
-          </div>
-        </div>
-      )
-    },
     // Thank You Screen (Step 6)
     {
       title: "Вашият Glovo анализ се изчислява...",
-      subtitle: "Проверете имейла си след 2 минути!",
       content: (
         <div className="text-center py-8">
           <div className="mb-8">
             <CheckCircle className="w-20 h-20 text-green-400 mx-auto mb-4" />
             <p className="text-xl text-gray-300 leading-relaxed mb-6">
-              Благодарим ви! Вашият персонализиран Glovo анализ ще бъде изпратен до <strong className="text-green-400">{formData.email}</strong>
+              Благодарим ви! Вашият персонализиран Glovo анализ ще бъде изпратен
+              до 5 мин. на имейла: <strong className="text-green-400">
+                {formData.email}
+              </strong>
+              <strong className="text-green-400">{formData.email}</strong>{" "} <br></br>
+              (проверете и спам папката)
             </p>
             <div className="bg-green-400/10 border border-green-400/30 rounded-xl p-6">
-              <h3 className="text-lg font-bold text-green-400 mb-2">Какво ще получите:</h3>
+              <h3 className="text-lg font-bold text-green-400 mb-2">
+                Какво ще получите:
+              </h3>
               <ul className="text-left text-gray-300 space-y-2">
                 <li>✅ Точната сума, която плащате на Glovo месечно</li>
                 <li>✅ Персонализиран план за намаляване на разходите</li>
@@ -428,8 +453,8 @@ export const GlovoStepForm = () => {
             </div>
           </div>
         </div>
-      )
-    }
+      ),
+    },
   ];
 
   const currentStepData = steps[currentStep];
@@ -444,7 +469,7 @@ export const GlovoStepForm = () => {
             <span className="text-sm text-green-400">{currentStep}/6</span>
           </div>
           <div className="w-full bg-gray-700 rounded-full h-2">
-            <div 
+            <div
               className="bg-gradient-to-r from-yellow-400 to-green-400 h-2 rounded-full transition-all duration-500"
               style={{ width: `${(currentStep / 6) * 100}%` }}
             ></div>
@@ -465,10 +490,8 @@ export const GlovoStepForm = () => {
           <PravdaHeading as="h2" size="2xl" className="md:text-3xl mb-4">
             {currentStepData.title}
           </PravdaHeading>
-          <p className="text-gray-400 mb-8">
-            {currentStepData.subtitle}
-          </p>
-          
+          <p className="text-gray-400 mb-8">{currentStepData.subtitle}</p>
+
           {currentStepData.content}
         </motion.div>
       </AnimatePresence>
