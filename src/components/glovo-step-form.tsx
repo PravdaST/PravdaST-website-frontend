@@ -69,7 +69,6 @@ export const GlovoStepForm = () => {
       });
 
       if (response.ok) {
-        console.log('✅ Form submitted successfully, setting step to 7');
         setIsSubmitted(true);
         setCurrentStep(7); // Thank you screen
       } else {
@@ -392,58 +391,17 @@ export const GlovoStepForm = () => {
         </div>
       )
     },
-    // Average Order Value Screen (Step 5)
+    // Processing Screen (Step 5)
     {
-      title: "Каква е средната стойност на една поръчка?",
-      subtitle: "Изберете най-близката до вашата реална стойност",
+      title: "Изчисляваме вашия Glovo анализ...",
+      subtitle: "Моля, изчакайте докато обработваме данните",
       content: (
-        <div className="space-y-4">
-          {avgOrderValueOptions.map((option) => (
-            <button
-              key={option.value}
-              onClick={() => {
-                setFormData(prev => ({ ...prev, avgOrderValue: option.value }));
-                setCustomAvgOrderValue("");
-              }}
-              className="w-full text-left p-4 bg-gray-800/50 border border-gray-600 rounded-xl hover:border-green-400 hover:bg-gray-700/50 transition-all duration-300 group"
-            >
-              <div className="text-lg font-semibold text-white group-hover:text-green-400">
-                {option.label}
-              </div>
-              <div className="text-sm text-gray-400">
-                За заведения с подобни цени
-              </div>
-            </button>
-          ))}
-
-          {/* Custom Input */}
-          <div className="mt-6">
-            <input
-              type="number"
-              value={customAvgOrderValue}
-              onChange={(e) => {
-                setCustomAvgOrderValue(e.target.value);
-                setFormData(prev => ({ ...prev, avgOrderValue: e.target.value }));
-              }}
-              placeholder="Друга стойност (лв.)"
-              className="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-xl text-white placeholder-gray-400 focus:border-green-400 focus:outline-none"
-            />
-          </div>
-
-          <div className="bg-blue-900/20 border border-blue-400/30 rounded-xl p-4 mt-6">
-            <div className="flex items-start space-x-3">
-              <div className="text-blue-400 mt-0.5">💡</div>
-              <div>
-                <p className="text-blue-400 font-medium text-sm">Съвет:</p>
-                <p className="text-gray-300 text-sm">
-                  Включете ДДС, доставка и всичко което клиентът плаща. Това ни помага да изчислим точните ви разходи към Glovo.
-                </p>
-                <ul className="text-gray-400 text-xs mt-2 space-y-1">
-                  <li>✅ Сравнение с директни поръчки</li>
-                  <li>✅ Стъпки за 60% намаляване на Glovo зависимостта</li>
-                </ul>
-              </div>
-            </div>
+        <div className="text-center py-8">
+          <div className="mb-8">
+            <div className="animate-spin w-16 h-16 border-4 border-yellow-400 border-t-transparent rounded-full mx-auto mb-4"></div>
+            <p className="text-xl text-gray-300">
+              Анализираме вашите данни и подготвяме персонализиран доклад...
+            </p>
           </div>
         </div>
       )
@@ -467,51 +425,6 @@ export const GlovoStepForm = () => {
                 <li>✅ Сравнение с директни поръчки</li>
                 <li>✅ Стъпки за 60% намаляване на Glovo зависимостта</li>
               </ul>
-            </div>
-          </div>
-        </div>
-      )
-    },
-    // Step 7 - Simple Success Screen
-    {
-      title: "Благодарим ви!",
-      subtitle: "Вашата заявка е успешно изпратена",
-      content: (
-        <div className="text-center py-8">
-          {/* Success Icon */}
-          <div className="mb-8">
-            <div className="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
-              <CheckCircle className="w-12 h-12 text-white" />
-            </div>
-          </div>
-
-          {/* Main Message */}
-          <div className="bg-gradient-to-r from-green-900/30 to-emerald-900/30 border border-green-400/30 rounded-2xl p-8 max-w-2xl mx-auto">
-            <h3 className="text-2xl font-bold text-white mb-6">
-              Резултатите ти се обработват
-            </h3>
-            
-            <div className="space-y-4 text-lg">
-              <p className="text-white">
-                <strong>Очаквай имейл до 5 минути!</strong>
-              </p>
-              
-              <p className="text-gray-300">
-                Ще получиш пълен анализ на: <span className="text-green-400 font-medium">{formData.email}</span>
-              </p>
-              
-              <p className="text-yellow-400 font-medium">
-                Провери СПАМ папката си ако не получиш съобщение до 5 мин.
-              </p>
-              
-              <div className="mt-6 pt-4 border-t border-green-400/20">
-                <p className="text-green-400 font-bold text-xl">
-                  🎁 Комплектът за Независимост на Ресторанта е на път!
-                </p>
-                <p className="text-gray-300 text-sm mt-2">
-                  Стойност 450лв - безплатно за теб днес
-                </p>
-              </div>
             </div>
           </div>
         </div>
