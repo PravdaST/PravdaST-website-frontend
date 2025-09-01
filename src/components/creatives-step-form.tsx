@@ -172,7 +172,7 @@ export const CreativesStepForm = () => {
         <div className="text-center py-8">
           <div className="mb-8">
             <Palette className="w-20 h-20 text-yellow-400 mx-auto mb-4" />
-            <p className="text-xl text-gray-300 leading-relaxed">
+            <p className="text-xl text-gray-800 leading-relaxed">
               Открийте кои креативи ще работят най-добре за вашия бизнес за под 3 минути.
               Получете персонализирани примери и пълна стратегия.
             </p>
