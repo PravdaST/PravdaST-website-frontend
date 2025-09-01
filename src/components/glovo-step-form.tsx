@@ -69,6 +69,7 @@ export const GlovoStepForm = () => {
       });
 
       if (response.ok) {
+        console.log('✅ Form submitted successfully, setting step to 7');
         setIsSubmitted(true);
         setCurrentStep(7); // Thank you screen
       } else {
@@ -403,7 +404,6 @@ export const GlovoStepForm = () => {
               onClick={() => {
                 setFormData(prev => ({ ...prev, avgOrderValue: option.value }));
                 setCustomAvgOrderValue("");
-                nextStep();
               }}
               className="w-full text-left p-4 bg-gray-800/50 border border-gray-600 rounded-xl hover:border-green-400 hover:bg-gray-700/50 transition-all duration-300 group"
             >
