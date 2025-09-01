@@ -326,93 +326,29 @@ function SocialProofSection() {
 export default function CreativesPage() {
   return (
     <div className="bg-white text-gray-900 min-h-screen">
-      {/* Hero Section */}
-      <CreativesHeroSection />
+      {/* Simple Test Content */}
+      <div className="container mx-auto px-4 py-16">
+        <h1 className="text-4xl font-bold text-gray-900 mb-8 text-center">
+          Креативни Услуги - Тест Страница
+        </h1>
+        
+        <div className="bg-gray-100 p-8 rounded-lg mb-8">
+          <p className="text-lg text-gray-700 mb-4">
+            Тестова версия на страницата за проверка на рендирането.
+          </p>
+        </div>
 
-      {/* Creative Types Showcase */}
-      <CreativeTypesSection />
-
-      {/* Pricing Section */}
-      <PricingSection />
-
-      {/* Problem Agitation */}
-      <ProblemAgitationSection />
-
-      {/* Social Proof */}
-      <SocialProofSection />
-
-      {/* Calculator CTA with Value Stack */}
-      <section
-        id="calculator"
-        className="py-16 bg-gradient-to-br from-yellow-50 via-white to-green-50"
-      >
-        <div className="container mx-auto px-4">
-          {/* Value Stack Header */}
-          <div className="text-center mb-12">
-            <div className="relative inline-block">
-              <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/30 to-green-400/30 rounded-3xl blur-2xl"></div>
-              <h2 className="relative text-3xl md:text-5xl font-bold text-gray-900 mb-6 px-4 py-4">
-                🎨 Получете{" "}
-                <span className="bg-gradient-to-r from-yellow-400 to-green-400 bg-clip-text text-transparent">
-                  БЕЗПЛАТНАТА си Креативна Стратегия
-                </span>
-                <br />
-                и Персонализиран План за 3x Повече Продажби
-              </h2>
-            </div>
-            <p className="text-lg md:text-xl text-gray-600 mb-6 leading-relaxed">
-              Получете готов-за-изпълнение план за креативи, които генерират реални резултати - 
-              без догадки, без експерименти, само доказани стратегии за вашата индустрия.
-            </p>
-
-            {/* Value Stack */}
-            <div className="bg-gradient-to-r from-green-50 to-emerald-50 border border-green-300 rounded-2xl p-6 mb-8">
-              <h3 className="text-2xl font-bold text-green-700 mb-4">
-                Вашата БЕЗПЛАТНА Креативна Стратегия включва:
-              </h3>
-              <div className="grid md:grid-cols-2 gap-4 text-left">
-                {[
-                  "🎯 Персонализирана roadmap за креативи базирана на вашата аудитория",
-                  "📊 Готов план за първите 5 креатива, които да стартирате",
-                  "🎥 Конкретни примери и референции от вашата индустрия",
-                  "📈 ROI прогноза и очаквани резултати за първите 90 дни",
-                  "💡 Точни инструкции за UGC контент, който конвертира",
-                  "⚡ 30-дневна стъпка-по-стъпка имплементация стратегия",
-                ].map((item, index) => (
-                  <div key={index} className="text-gray-700 text-sm font-medium">
-                    {item}
-                  </div>
-                ))}
-              </div>
-              <div className="mt-6 text-center bg-gradient-to-r from-red-50 to-orange-50 border border-red-200 rounded-xl p-4">
-                <div className="text-gray-800 text-lg mb-2">
-                  <span className="line-through text-red-500 font-bold">Обичайна цена: 850 лв</span>
-                </div>
-                <div className="text-3xl font-bold">
-                  <span className="text-green-600">БЕЗПЛАТНО</span>
-                  <span className="text-gray-600 text-sm ml-2">само днес</span>
-                </div>
-                <p className="text-red-600 text-sm font-medium mt-2">
-                  ⏰ Ограничена оферта - само първите 50 заявки този месец
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Form Container */}
-          <div className="max-w-2xl mx-auto">
+        {/* Form Container */}
+        <div className="max-w-2xl mx-auto">
+          <div className="relative">
             <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/20 to-green-400/20 rounded-3xl blur-xl"></div>
-              <div className="relative">
-                <Suspense fallback={<FormLoading />}>
-                  <CreativesStepForm />
-                </Suspense>
-              </div>
+              <Suspense fallback={<FormLoading />}>
+                <CreativesStepForm />
+              </Suspense>
             </div>
           </div>
         </div>
-      </section>
-
+      </div>
     </div>
   );
 }

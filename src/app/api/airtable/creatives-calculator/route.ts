@@ -61,16 +61,16 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Prepare data for Airtable - trying with capitalized field names
+    // Prepare data for Airtable - using exact field names from screenshot
     const airtableData = {
       fields: {
-        'Name': formData.name,
-        'Business_name': formData.business_name,
-        'Industry': formData.industry,
-        'Current_marketing': formData.current_marketing,
-        'Monthly_budget': formData.monthly_budget,
-        'Email': formData.email,
-        'Phone': formData.phone
+        'name': formData.name,
+        'business_name': formData.business_name,
+        'industry': formData.industry,
+        'current_marketing': formData.current_marketing,
+        'monthly_budget': parseInt(formData.monthly_budget) || 0, // Convert to number
+        'email': formData.email,
+        'phone': formData.phone
       }
     };
 
