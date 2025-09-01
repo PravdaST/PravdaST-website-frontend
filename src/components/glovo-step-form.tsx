@@ -430,101 +430,46 @@ export const GlovoStepForm = () => {
         </div>
       )
     },
-    // Step 7 - Success/Processing Screen
+    // Step 7 - Simple Success Screen
     {
-      title: "Изчисляваме вашия Glovo анализ...",
-      subtitle: "Моля, изчакайте докато обработваме данните",
+      title: "Благодарим ви!",
+      subtitle: "Вашата заявка е успешно изпратена",
       content: (
-        <div className="text-center py-12">
-          {/* Loading Animation */}
-          <div className="mb-12">
-            <div className="relative inline-block">
-              {/* Outer spinning ring */}
-              <div className="w-24 h-24 border-4 border-yellow-400/30 rounded-full animate-spin border-t-yellow-400 mx-auto"></div>
-              {/* Inner pulsing circle */}
-              <div className="absolute inset-4 bg-gradient-to-r from-yellow-400/20 to-green-400/20 rounded-full animate-pulse"></div>
+        <div className="text-center py-8">
+          {/* Success Icon */}
+          <div className="mb-8">
+            <div className="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+              <CheckCircle className="w-12 h-12 text-white" />
             </div>
           </div>
 
-          {/* Processing Steps */}
-          <div className="space-y-6 max-w-lg mx-auto mb-12">
-            <div className="flex items-center space-x-4 text-left">
-              <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
-                <CheckCircle className="w-5 h-5 text-white" />
-              </div>
-              <div>
-                <div className="font-semibold text-white">Данните получени</div>
-                <div className="text-sm text-gray-400">Вашата информация е успешно записана</div>
-              </div>
-            </div>
-
-            <div className="flex items-center space-x-4 text-left">
-              <div className="w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center flex-shrink-0 animate-pulse">
-                <div className="w-3 h-3 bg-black rounded-full"></div>
-              </div>
-              <div>
-                <div className="font-semibold text-white">Анализираме вашите данни</div>
-                <div className="text-sm text-gray-400">Изчисляваме Glovo разходи и потенциални спестявания</div>
-              </div>
-            </div>
-
-            <div className="flex items-center space-x-4 text-left opacity-60">
-              <div className="w-8 h-8 border-2 border-gray-600 rounded-full flex items-center justify-center flex-shrink-0">
-                <div className="w-3 h-3 border border-gray-600 rounded-full"></div>
-              </div>
-              <div>
-                <div className="font-semibold text-gray-300">Подготвяме персонализиран доклад</div>
-                <div className="text-sm text-gray-500">Създаваме план за намаляване на зависимостта</div>
-              </div>
-            </div>
-          </div>
-
-          {/* Email Instructions */}
-          <div className="bg-gradient-to-r from-green-900/30 to-emerald-900/30 border border-green-400/30 rounded-2xl p-6 max-w-2xl mx-auto">
-            <div className="flex items-center justify-center space-x-2 mb-4">
-              <Mail className="w-6 h-6 text-green-400" />
-              <h3 className="text-xl font-bold text-white">Резултатите се обработват</h3>
-            </div>
+          {/* Main Message */}
+          <div className="bg-gradient-to-r from-green-900/30 to-emerald-900/30 border border-green-400/30 rounded-2xl p-8 max-w-2xl mx-auto">
+            <h3 className="text-2xl font-bold text-white mb-6">
+              Резултатите ти се обработват
+            </h3>
             
-            <div className="space-y-3 text-left">
-              <div className="flex items-start space-x-3">
-                <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                  <span className="text-white text-sm font-bold">1</span>
-                </div>
-                <div>
-                  <p className="text-white font-medium">Очаквайте имейл до 5 минути!</p>
-                  <p className="text-gray-300 text-sm">Ще получите пълен анализ на {formData.email}</p>
-                </div>
-              </div>
-
-              <div className="flex items-start space-x-3">
-                <div className="w-6 h-6 bg-yellow-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                  <span className="text-black text-sm font-bold">2</span>
-                </div>
-                <div>
-                  <p className="text-white font-medium">Проверете СПАМ папката си</p>
-                  <p className="text-gray-300 text-sm">Ако не получите съобщение до 5 минути</p>
-                </div>
-              </div>
-
-              <div className="flex items-start space-x-3">
-                <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                  <Phone className="w-3 h-3 text-white" />
-                </div>
-                <div>
-                  <p className="text-white font-medium">Обаждаме се в удобно за вас време</p>
-                  <p className="text-gray-300 text-sm">За персонализирана консултация на {formData.phone}</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="mt-6 pt-4 border-t border-green-400/20">
-              <p className="text-center text-green-400 font-bold text-lg">
-                🎁 Комплектът за Независимост на Ресторанта е на път!
+            <div className="space-y-4 text-lg">
+              <p className="text-white">
+                <strong>Очаквай имейл до 5 минути!</strong>
               </p>
-              <p className="text-center text-gray-300 text-sm mt-2">
-                Стойност 450лв - безплатно за вас днес
+              
+              <p className="text-gray-300">
+                Ще получиш пълен анализ на: <span className="text-green-400 font-medium">{formData.email}</span>
               </p>
+              
+              <p className="text-yellow-400 font-medium">
+                Провери СПАМ папката си ако не получиш съобщение до 5 мин.
+              </p>
+              
+              <div className="mt-6 pt-4 border-t border-green-400/20">
+                <p className="text-green-400 font-bold text-xl">
+                  🎁 Комплектът за Независимост на Ресторанта е на път!
+                </p>
+                <p className="text-gray-300 text-sm mt-2">
+                  Стойност 450лв - безплатно за теб днес
+                </p>
+              </div>
             </div>
           </div>
         </div>
