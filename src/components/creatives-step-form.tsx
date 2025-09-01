@@ -82,16 +82,14 @@ export const CreativesStepForm = () => {
           industry: formData.industry,
           current_marketing: formData.currentMarketing,
           monthly_budget: formData.monthlyBudget,
-          main_goal: formData.mainGoal,
           email: formData.email,
-          phone: formData.phone,
-          timestamp: new Date().toISOString()
+          phone: formData.phone
         }),
       });
 
       if (response.ok) {
         setIsSubmitted(true);
-        setCurrentStep(8); // Thank you screen
+        setCurrentStep(7); // Thank you screen
       } else {
         throw new Error('Failed to submit');
       }
@@ -112,7 +110,7 @@ export const CreativesStepForm = () => {
   };
 
   const nextStep = () => {
-    if (currentStep < 8) {
+    if (currentStep < 7) {
       setCurrentStep(currentStep + 1);
     }
   };
@@ -136,8 +134,6 @@ export const CreativesStepForm = () => {
       case 5:
         return formData.monthlyBudget !== "" && Number(formData.monthlyBudget) > 0;
       case 6:
-        return formData.mainGoal !== "";
-      case 7:
         // Strict email validation
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         const isEmailValid = emailRegex.test(formData.email.trim());
@@ -153,7 +149,7 @@ export const CreativesStepForm = () => {
   };
 
   const getValidationMessage = () => {
-    if (currentStep === 7) {
+    if (currentStep === 6) {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       const phoneRegex = /^(\+359|0)[0-9]{8,9}$/;
       
@@ -367,29 +363,7 @@ export const CreativesStepForm = () => {
       )
     },
 
-    // Step 6: Main Goal
-    {
-      title: "Каква е главната ви цел с креативите?",
-      subtitle: "За да фокусираме стратегията точно там където имате нужда",
-      content: (
-        <div className="grid gap-3">
-          {mainGoalOptions.map((option) => (
-            <button
-              key={option.value}
-              onClick={() => {
-                setFormData(prev => ({ ...prev, mainGoal: option.value }));
-                setTimeout(nextStep, 300);
-              }}
-              className="w-full p-4 rounded-xl border text-left transition-all hover:scale-105 border-gray-600 bg-black/30 text-gray-300 hover:border-green-400/50 hover:bg-green-400/5"
-            >
-              {option.label}
-            </button>
-          ))}
-        </div>
-      )
-    },
-
-    // Step 7: Contact Info
+    // Step 6: Contact Info
     {
       title: "Почти готово! Къде да изпратим анализа?",
       subtitle: "Ще получите персонализирания анализ до 5 минути",
@@ -430,7 +404,7 @@ export const CreativesStepForm = () => {
       )
     },
 
-    // Step 8: Thank You
+    // Step 7: Thank You
     {
       title: "Благодарим ви! Анализът е на път! 🎉",
       subtitle: "Получихме информацията и подготвяме персонализирания ви креативен анализ",
@@ -485,18 +459,18 @@ export const CreativesStepForm = () => {
   return (
     <div className="bg-white/95 backdrop-blur-xl border border-yellow-300 rounded-2xl p-8 shadow-xl">
       {/* Progress Bar */}
-      {currentStep > 0 && currentStep < 8 && (
+      {currentStep > 0 && currentStep < 7 && (
         <div className="mb-8">
           <div className="flex justify-between items-center mb-2">
-            <span className="text-sm text-gray-600">Стъпка {currentStep} от 7</span>
+            <span className="text-sm text-gray-600">Стъпка {currentStep} от 6</span>
             <span className="text-sm text-yellow-600">
-              {Math.round((currentStep / 7) * 100)}% завършено
+              {Math.round((currentStep / 6) * 100)}% завършено
             </span>
           </div>
           <div className="w-full bg-gray-200 rounded-full h-2">
             <div 
               className="bg-gradient-to-r from-yellow-400 to-green-400 h-2 rounded-full transition-all duration-300"
-              style={{ width: `${(currentStep / 7) * 100}%` }}
+              style={{ width: `${(currentStep / 6) * 100}%` }}
             />
           </div>
         </div>
@@ -523,7 +497,7 @@ export const CreativesStepForm = () => {
           {currentStepData.content}
 
           {/* Navigation Buttons */}
-          {currentStep > 0 && currentStep < 7 && (
+          {currentStep > 0 && currentStep < 6 && (
             <div className="flex justify-between items-center mt-8 pt-6 border-t border-gray-300">
               <Button
                 variant="outline"
@@ -535,12 +509,12 @@ export const CreativesStepForm = () => {
               </Button>
 
               <Button
-                onClick={currentStep === 6 ? submitToAirtable : nextStep}
+                onClick={currentStep === 5 ? submitToAirtable : nextStep}
                 disabled={!isStepValid() || isSubmitting}
                 className="bg-gradient-to-r from-yellow-400 to-green-400 text-black hover:opacity-90 disabled:opacity-50 flex items-center space-x-2"
               >
                 <span>
-                  {currentStep === 6 
+                  {currentStep === 5 
                     ? (isSubmitting ? "Изпращане..." : "Получи стратегията")
                     : "Продължи"
                   }
@@ -550,7 +524,7 @@ export const CreativesStepForm = () => {
             </div>
           )}
 
-          {currentStep === 7 && (
+          {currentStep === 6 && (
             <div className="flex justify-center mt-8 pt-6 border-t border-gray-300">
               <Button
                 onClick={submitToAirtable}
