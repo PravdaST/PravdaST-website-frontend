@@ -3,6 +3,7 @@ import { Suspense } from "react";
 import { getCampaignCreativesMetadata } from "./metadata";
 import { CreativesHeroSection } from "@/components/creatives-hero-section";
 import { CreativesStepForm } from "@/components/creatives-step-form";
+import { PortfolioSection } from "@/components/portfolio-section";
 import { PricingSection } from "./components/pricing-section";
 import {
   CheckCircle,
@@ -50,6 +51,8 @@ function TestimonialLoading() {
     </div>
   );
 }
+
+
 
 // Creative Types Showcase Section
 function CreativeTypesSection() {
@@ -329,6 +332,9 @@ export default function CreativesPage() {
       {/* Hero Section */}
       <CreativesHeroSection />
 
+      {/* Portfolio Section - Existing Creatives */}
+      <PortfolioSection />
+
       {/* Creative Types Showcase */}
       <CreativeTypesSection />
 
@@ -344,9 +350,9 @@ export default function CreativesPage() {
       {/* Calculator CTA with Value Stack */}
       <section
         id="calculator"
-        className="py-16 bg-gradient-to-br from-yellow-50 via-white to-green-50"
+        className="py-20 bg-gradient-to-br from-yellow-50 via-white to-green-50"
       >
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-6">
           {/* Value Stack Header */}
           <div className="text-center mb-12">
             <div className="relative inline-block">
