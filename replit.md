@@ -58,6 +58,35 @@ Project organization: Documentation files organized in `/docs` folder for cleane
 - **next-seo** - Dynamic meta tag management
 - **next-sitemap** - Automatic sitemap generation
 
+## Recent New Features (January 2025)
+
+### ✅ New Creatives Services Page - COMPLETED
+**Location:** `/campaigns/creatives`
+**Purpose:** Professional creative services offering for Carousels, Video & UGC content
+
+**Key Features:**
+- **Light Theme Design:** Modern white background with gradient accents
+- **Service Pricing:** Three professional packages (Basic 299лв, Standard 599лв, Premium 999лв)
+- **Multi-Step Form:** 8-step personalized calculator for custom quotes
+- **Airtable Integration:** Automated lead capture with proper field mapping
+- **Service Showcase:** Clear presentation of Carousels, Video & UGC offerings
+- **Social Proof:** Case studies with real performance metrics (+320% sales growth)
+- **Responsive Design:** Mobile-optimized with professional styling
+
+**Technical Implementation:**
+- Next.js 15 App Router with TypeScript
+- Framer Motion animations
+- Airtable API integration (Base: appkwDzbKRNTf1WZV, Table: tbl8OOQkbiArX7znY)
+- Form validation with Bulgarian phone/email formats
+- Light theme conversion from previous dark design
+- Component architecture: CreativesHeroSection, PricingSection, CreativesStepForm
+
+**Business Impact:**
+- Positioned Pravda ST as professional creative services provider
+- Clear pricing structure for client acquisition
+- Automated lead qualification system
+- Professional service differentiation from competitors
+
 ## Recent Performance Optimizations (January 2025)
 
 ### P0 Safe Optimizations - COMPLETED ✅

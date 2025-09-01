@@ -483,17 +483,17 @@ export const CreativesStepForm = () => {
   const currentStepData = steps[currentStep];
 
   return (
-    <div className="glassmorphism border border-yellow-400/30 rounded-2xl p-8">
+    <div className="bg-white/95 backdrop-blur-xl border border-yellow-300 rounded-2xl p-8 shadow-xl">
       {/* Progress Bar */}
       {currentStep > 0 && currentStep < 8 && (
         <div className="mb-8">
           <div className="flex justify-between items-center mb-2">
-            <span className="text-sm text-gray-400">Стъпка {currentStep} от 7</span>
-            <span className="text-sm text-yellow-400">
+            <span className="text-sm text-gray-600">Стъпка {currentStep} от 7</span>
+            <span className="text-sm text-yellow-600">
               {Math.round((currentStep / 7) * 100)}% завършено
             </span>
           </div>
-          <div className="w-full bg-gray-700 rounded-full h-2">
+          <div className="w-full bg-gray-200 rounded-full h-2">
             <div 
               className="bg-gradient-to-r from-yellow-400 to-green-400 h-2 rounded-full transition-all duration-300"
               style={{ width: `${(currentStep / 7) * 100}%` }}
@@ -512,10 +512,10 @@ export const CreativesStepForm = () => {
           transition={{ duration: 0.3 }}
         >
           <div className="text-center mb-8">
-            <PravdaHeading as="h2" size="xl" className="md:text-2xl text-white mb-4">
+            <PravdaHeading as="h2" size="xl" className="md:text-2xl text-gray-900 mb-4">
               {currentStepData.title}
             </PravdaHeading>
-            <p className="text-gray-300">
+            <p className="text-gray-600">
               {currentStepData.subtitle}
             </p>
           </div>
@@ -524,7 +524,7 @@ export const CreativesStepForm = () => {
 
           {/* Navigation Buttons */}
           {currentStep > 0 && currentStep < 7 && (
-            <div className="flex justify-between items-center mt-8 pt-6 border-t border-gray-700">
+            <div className="flex justify-between items-center mt-8 pt-6 border-t border-gray-300">
               <Button
                 variant="outline"
                 onClick={prevStep}
@@ -551,7 +551,7 @@ export const CreativesStepForm = () => {
           )}
 
           {currentStep === 7 && (
-            <div className="flex justify-center mt-8 pt-6 border-t border-gray-700">
+            <div className="flex justify-center mt-8 pt-6 border-t border-gray-300">
               <Button
                 onClick={submitToAirtable}
                 disabled={!isStepValid() || isSubmitting}

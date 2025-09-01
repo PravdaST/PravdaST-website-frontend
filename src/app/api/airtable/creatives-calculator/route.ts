@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 const AIRTABLE_API_KEY = process.env.AIRTABLE_API_KEY;
-const AIRTABLE_BASE_ID = 'appNVUGOJPXJzdvYf';
-const AIRTABLE_TABLE_NAME = 'tblCreativesCalculator';
+const AIRTABLE_BASE_ID = 'appkwDzbKRNTf1WZV';
+const AIRTABLE_TABLE_NAME = 'tbl8OOQkbiArX7znY';
 
 interface CreativesFormData {
   name: string;

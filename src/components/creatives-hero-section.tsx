@@ -48,14 +48,14 @@ export const CreativesHeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Dynamic Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-900">
-        <div className="absolute inset-0 bg-black/30" />
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-gray-100">
+        <div className="absolute inset-0 bg-white/80" />
       </div>
 
       {/* Animated Orbs */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
-          className="absolute -top-40 -right-40 w-96 h-96 bg-yellow-500/10 rounded-full blur-3xl"
+          className="absolute -top-40 -right-40 w-96 h-96 bg-yellow-400/20 rounded-full blur-3xl"
           animate={{
             scale: [1, 1.2, 1],
             opacity: [0.3, 0.5, 0.3],
@@ -67,7 +67,7 @@ export const CreativesHeroSection = () => {
           }}
         />
         <motion.div
-          className="absolute -bottom-40 -left-40 w-96 h-96 bg-green-500/10 rounded-full blur-3xl"
+          className="absolute -bottom-40 -left-40 w-96 h-96 bg-green-400/20 rounded-full blur-3xl"
           animate={{
             scale: [1.2, 1, 1.2],
             opacity: [0.3, 0.5, 0.3],
@@ -80,7 +80,7 @@ export const CreativesHeroSection = () => {
           }}
         />
         <motion.div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-purple-400/15 rounded-full blur-3xl"
           animate={{
             scale: [1, 1.3, 1],
             opacity: [0.2, 0.4, 0.2],
@@ -110,7 +110,7 @@ export const CreativesHeroSection = () => {
           <PravdaHeading 
             as="h1" 
             size="4xl" 
-            className="md:text-7xl font-bold text-white mb-6 leading-tight"
+            className="md:text-7xl font-bold text-gray-900 mb-6 leading-tight"
           >
             Къде да изпратим вашия{" "}
             <span className="bg-gradient-to-r from-yellow-400 to-green-400 bg-clip-text text-transparent">
@@ -120,7 +120,7 @@ export const CreativesHeroSection = () => {
             за 3x повече продажби?
           </PravdaHeading>
           
-          <p className="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed mb-12">
+          <p className="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed mb-12">
             Открийте точно кои типове креативи ще работят най-добре за вашия бизнес.
             Получете персонализиран план за{" "}
             <span className="text-yellow-400 font-semibold">Carousels, Video и UGC</span>{" "}
@@ -135,23 +135,23 @@ export const CreativesHeroSection = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="mb-12"
         >
-          <div className="bg-gray-800/60 backdrop-blur-xl border border-gray-700 rounded-2xl p-8 max-w-2xl mx-auto">
+          <div className="bg-white/90 backdrop-blur-xl border border-gray-200 rounded-2xl p-8 max-w-2xl mx-auto shadow-xl">
             <div className="flex items-center justify-center mb-6">
               <div className={`w-20 h-20 bg-gradient-to-r ${creativeExamples[currentExample].color} rounded-2xl flex items-center justify-center`}>
                 <Play size={32} className="text-white ml-1" />
               </div>
             </div>
             
-            <h3 className="text-2xl font-bold text-white mb-2">
+            <h3 className="text-2xl font-bold text-gray-900 mb-2">
               {creativeExamples[currentExample].type}
             </h3>
             
-            <p className="text-gray-300 mb-4">
+            <p className="text-gray-600 mb-4">
               {creativeExamples[currentExample].description}
             </p>
             
-            <div className="bg-green-500/20 rounded-lg py-2 px-4 inline-block">
-              <span className="text-green-400 font-bold">
+            <div className="bg-green-100 rounded-lg py-2 px-4 inline-block">
+              <span className="text-green-600 font-bold">
                 {creativeExamples[currentExample].impact}
               </span>
             </div>
@@ -187,8 +187,8 @@ export const CreativesHeroSection = () => {
               <div className="w-12 h-12 bg-yellow-400/20 rounded-full flex items-center justify-center mx-auto mb-3">
                 <item.icon size={20} className="text-yellow-400" />
               </div>
-              <div className="text-2xl font-bold text-white mb-1">{item.stat}</div>
-              <div className="text-sm text-gray-400">{item.label}</div>
+              <div className="text-2xl font-bold text-gray-900 mb-1">{item.stat}</div>
+              <div className="text-sm text-gray-600">{item.label}</div>
             </div>
           ))}
         </motion.div>
@@ -208,7 +208,7 @@ export const CreativesHeroSection = () => {
             Получи креативния анализ БЕЗПЛАТНО
           </Button>
           
-          <div className="flex items-center space-x-2 text-gray-400 text-sm">
+          <div className="flex items-center space-x-2 text-gray-600 text-sm">
             <span>⚡ Готов за под 5 минути</span>
             <span>•</span>
             <span>🔒 100% безплатно</span>

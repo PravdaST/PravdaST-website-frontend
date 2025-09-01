@@ -4,6 +4,7 @@ import { getCampaignCreativesMetadata } from "./metadata";
 import { CreativesHeroSection } from "@/components/creatives-hero-section";
 import { FooterServer } from "@/components/footer-server";
 import { CreativesStepForm } from "@/components/creatives-step-form";
+import { PricingSection } from "./components/pricing-section";
 import {
   CheckCircle,
   Play,
@@ -93,17 +94,17 @@ function CreativeTypesSection() {
   ];
 
   return (
-    <section className="py-16 bg-gradient-to-br from-gray-900 to-black">
+    <section className="py-16 bg-gradient-to-br from-gray-50 to-white">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
               Трите типа креативи, които{" "}
               <span className="bg-gradient-to-r from-yellow-400 to-green-400 bg-clip-text text-transparent">
                 удвояват продажбите
               </span>
             </h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Всеки тип креатив има специфично приложение и различна конверсия. 
               Открийте кой е най-подходящ за вашия бизнес.
             </p>
@@ -120,33 +121,33 @@ function CreativeTypesSection() {
                     background: `linear-gradient(135deg, ${creative.color.split(' ')[1]}, ${creative.color.split(' ')[3]})`
                   }}
                 ></div>
-                <div className="relative bg-gray-800/80 backdrop-blur-xl border border-gray-700 rounded-2xl p-8 h-full">
+                <div className="relative bg-white/90 backdrop-blur-xl border border-gray-200 rounded-2xl p-8 h-full shadow-lg">
                   <div className={`w-16 h-16 bg-gradient-to-r ${creative.color} rounded-xl flex items-center justify-center mb-6`}>
                     <creative.icon size={32} className="text-white" />
                   </div>
                   
-                  <h3 className="text-2xl font-bold text-white mb-4">
+                  <h3 className="text-2xl font-bold text-gray-900 mb-4">
                     {creative.type}
                   </h3>
                   
-                  <p className="text-gray-300 mb-4">
+                  <p className="text-gray-600 mb-4">
                     {creative.description}
                   </p>
                   
-                  <div className="bg-green-500/20 rounded-lg p-3 mb-6">
-                    <p className="text-green-400 font-bold text-sm">
+                  <div className="bg-green-100 rounded-lg p-3 mb-6">
+                    <p className="text-green-600 font-bold text-sm">
                       {creative.stats}
                     </p>
                   </div>
                   
                   <div className="space-y-2">
-                    <p className="text-sm font-medium text-gray-400 mb-3">
+                    <p className="text-sm font-medium text-gray-700 mb-3">
                       Примери за приложение:
                     </p>
                     {creative.examples.map((example, idx) => (
                       <div key={idx} className="flex items-center space-x-2">
-                        <CheckCircle size={16} className="text-green-400" />
-                        <span className="text-sm text-gray-300">{example}</span>
+                        <CheckCircle size={16} className="text-green-600" />
+                        <span className="text-sm text-gray-600">{example}</span>
                       </div>
                     ))}
                   </div>
@@ -163,17 +164,17 @@ function CreativeTypesSection() {
 // Problem Agitation Section  
 function ProblemAgitationSection() {
   return (
-    <section className="py-16 bg-gradient-to-br from-red-900/20 via-black to-gray-900">
+    <section className="py-16 bg-gradient-to-br from-red-50 via-gray-50 to-white">
       <div className="container mx-auto px-4">
         <div className="max-w-5xl mx-auto text-center">
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-8">
+          <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-8">
             Защо вашите реклами{" "}
-            <span className="text-red-400">не работят?</span>
+            <span className="text-red-600">не работят?</span>
           </h2>
           
           <div className="grid md:grid-cols-2 gap-8 mb-12">
-            <div className="bg-red-900/20 border border-red-500/30 rounded-xl p-6">
-              <h3 className="text-xl font-bold text-red-400 mb-4">
+            <div className="bg-red-50 border border-red-200 rounded-xl p-6">
+              <h3 className="text-xl font-bold text-red-600 mb-4">
                 Проблемите с обикновените реклами:
               </h3>
               <div className="space-y-3 text-left">
@@ -186,14 +187,14 @@ function ProblemAgitationSection() {
                 ].map((problem, index) => (
                   <div key={index} className="flex items-start space-x-3">
                     <span className="text-red-500 mt-1">❌</span>
-                    <span className="text-gray-300">{problem}</span>
+                    <span className="text-gray-700">{problem}</span>
                   </div>
                 ))}
               </div>
             </div>
             
-            <div className="bg-green-900/20 border border-green-500/30 rounded-xl p-6">
-              <h3 className="text-xl font-bold text-green-400 mb-4">
+            <div className="bg-green-50 border border-green-200 rounded-xl p-6">
+              <h3 className="text-xl font-bold text-green-600 mb-4">
                 Как креативните решения помагат:
               </h3>
               <div className="space-y-3 text-left">
@@ -206,22 +207,22 @@ function ProblemAgitationSection() {
                 ].map((solution, index) => (
                   <div key={index} className="flex items-start space-x-3">
                     <span className="text-green-500 mt-1">✅</span>
-                    <span className="text-gray-300">{solution}</span>
+                    <span className="text-gray-700">{solution}</span>
                   </div>
                 ))}
               </div>
             </div>
           </div>
 
-          <div className="bg-gradient-to-r from-yellow-900/20 to-red-900/20 border border-yellow-400/30 rounded-2xl p-8">
-            <h3 className="text-2xl font-bold text-yellow-400 mb-4">
+          <div className="bg-gradient-to-r from-yellow-100 to-orange-100 border border-yellow-300 rounded-2xl p-8">
+            <h3 className="text-2xl font-bold text-yellow-700 mb-4">
               Факт от индустрията:
             </h3>
-            <p className="text-xl text-white leading-relaxed">
+            <p className="text-xl text-gray-900 leading-relaxed">
               Бизнесите, които използват комбинация от{" "}
-              <span className="text-yellow-400 font-bold">видео, карусели и UGC</span>,
+              <span className="text-yellow-600 font-bold">видео, карусели и UGC</span>,
               виждат средно{" "}
-              <span className="text-green-400 font-bold text-2xl">+280% ръст</span>{" "}
+              <span className="text-green-600 font-bold text-2xl">+280% ръст</span>{" "}
               в продажбите за първите 90 дни.
             </p>
           </div>
@@ -234,14 +235,14 @@ function ProblemAgitationSection() {
 // Social Proof Section
 function SocialProofSection() {
   return (
-    <section className="py-16 bg-gradient-to-br from-emerald-900/20 via-black to-gray-900">
+    <section className="py-16 bg-gradient-to-br from-emerald-50 via-white to-gray-50">
       <div className="container mx-auto px-4">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
               Резултати от нашите креативни кампании
             </h2>
-            <p className="text-xl text-gray-300">
+            <p className="text-xl text-gray-600">
               Проверени стратегии, които работят за български бизнеси
             </p>
           </div>
@@ -258,53 +259,57 @@ function SocialProofSection() {
                 <div className="w-16 h-16 bg-gradient-to-r from-yellow-400 to-green-400 rounded-full flex items-center justify-center mx-auto mb-4">
                   <stat.icon size={24} className="text-black" />
                 </div>
-                <div className="text-3xl font-bold text-white mb-2">{stat.number}</div>
-                <div className="text-sm text-gray-300">{stat.label}</div>
+                <div className="text-3xl font-bold text-gray-900 mb-2">{stat.number}</div>
+                <div className="text-sm text-gray-600">{stat.label}</div>
               </div>
             ))}
           </div>
 
           {/* Case Study */}
-          <div className="bg-gray-900/80 backdrop-blur-xl border border-green-400/30 rounded-3xl p-8">
+          <div className="bg-white/90 backdrop-blur-xl border border-green-200 rounded-3xl p-8 shadow-xl">
             <div className="grid md:grid-cols-3 gap-8 items-center">
               <div className="md:col-span-1">
                 <div className="relative">
-                  <div className="absolute inset-0 bg-gradient-to-br from-green-400/30 to-blue-600/30 rounded-2xl blur-lg"></div>
-                  <Image
-                    src="/images/testimonials/creative-success-story.png"
-                    alt="Успешна креативна кампания - case study"
-                    width={300}
-                    height={400}
-                    className="relative w-full h-auto rounded-2xl shadow-2xl"
-                    sizes="300px"
-                    quality={90}
-                  />
+                  <div className="absolute inset-0 bg-gradient-to-br from-green-200/50 to-blue-200/50 rounded-2xl blur-lg"></div>
+                  <div className="relative w-full bg-gradient-to-br from-green-100 to-blue-100 rounded-2xl p-8 shadow-2xl">
+                    <div className="text-center">
+                      <div className="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span className="text-white text-2xl font-bold">MP</span>
+                      </div>
+                      <h4 className="text-xl font-bold text-gray-900 mb-2">Мария Петрова</h4>
+                      <p className="text-gray-600 text-sm mb-4">Онлайн магазин за козметика</p>
+                      <div className="bg-green-600 text-white px-4 py-2 rounded-lg text-2xl font-bold">
+                        +320%
+                      </div>
+                      <p className="text-gray-600 text-xs mt-2">ръст в продажбите</p>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div className="md:col-span-2">
                 <div className="flex justify-start mb-4">
                   <div className="flex space-x-1">
                     {[...Array(5)].map((_, i) => (
-                      <span key={i} className="text-yellow-400 text-2xl">⭐</span>
+                      <span key={i} className="text-yellow-500 text-2xl">⭐</span>
                     ))}
                   </div>
                 </div>
-                <blockquote className="text-lg md:text-xl font-light text-white leading-relaxed mb-6">
-                  <span className="text-green-400 text-3xl">"</span>
+                <blockquote className="text-lg md:text-xl font-light text-gray-800 leading-relaxed mb-6">
+                  <span className="text-green-600 text-3xl">"</span>
                   След като започнахме да използваме UGC и видео креативи от Правда, 
                   продажбите ни се увеличиха с{" "}
-                  <span className="bg-green-500/20 px-2 py-1 rounded-lg font-bold text-green-400">
+                  <span className="bg-green-100 px-2 py-1 rounded-lg font-bold text-green-700">
                     320% за 2 месеца
                   </span>
                   . Клиентите най-накрая почувстваха доверие към нас.
-                  <span className="text-green-400 text-3xl">"</span>
+                  <span className="text-green-600 text-3xl">"</span>
                 </blockquote>
                 <div className="flex flex-col md:flex-row items-start md:items-center gap-4">
-                  <cite className="text-green-400 font-bold text-lg">
+                  <cite className="text-green-600 font-bold text-lg">
                     Мария Петрова
                   </cite>
-                  <div className="flex items-center gap-2 text-gray-300">
-                    <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                  <div className="flex items-center gap-2 text-gray-600">
+                    <div className="w-2 h-2 bg-green-600 rounded-full"></div>
                     <span className="text-sm">
                       собственик на онлайн магазин за козметика
                     </span>
@@ -321,12 +326,15 @@ function SocialProofSection() {
 
 export default function CreativesPage() {
   return (
-    <div className="bg-black text-white min-h-screen">
+    <div className="bg-white text-gray-900 min-h-screen">
       {/* Hero Section */}
       <CreativesHeroSection />
 
       {/* Creative Types Showcase */}
       <CreativeTypesSection />
+
+      {/* Pricing Section */}
+      <PricingSection />
 
       {/* Problem Agitation */}
       <ProblemAgitationSection />
@@ -337,14 +345,14 @@ export default function CreativesPage() {
       {/* Calculator CTA with Value Stack */}
       <section
         id="calculator"
-        className="py-16 bg-gradient-to-br from-yellow-900/10 via-black to-green-900/10"
+        className="py-16 bg-gradient-to-br from-yellow-50 via-white to-green-50"
       >
         <div className="container mx-auto px-4">
           {/* Value Stack Header */}
           <div className="text-center mb-12">
             <div className="relative inline-block">
               <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/30 to-green-400/30 rounded-3xl blur-2xl"></div>
-              <h2 className="relative text-3xl md:text-5xl font-bold text-white mb-6 px-4 py-4">
+              <h2 className="relative text-3xl md:text-5xl font-bold text-gray-900 mb-6 px-4 py-4">
                 🎨 Получете{" "}
                 <span className="bg-gradient-to-r from-yellow-400 to-green-400 bg-clip-text text-transparent">
                   БЕЗПЛАТНИЯ си Креативен Анализ
@@ -353,14 +361,14 @@ export default function CreativesPage() {
                 и План за Увеличение на Продажбите
               </h2>
             </div>
-            <p className="text-lg md:text-xl text-gray-300 mb-6 leading-relaxed">
+            <p className="text-lg md:text-xl text-gray-600 mb-6 leading-relaxed">
               Открийте кои креативи ще работят най-добре за вашия бизнес и получете
               персонализирана стратегия за 3x повече продажби.
             </p>
 
             {/* Value Stack */}
-            <div className="bg-gradient-to-r from-green-900/20 to-emerald-900/20 border border-green-400/30 rounded-2xl p-6 mb-8">
-              <h3 className="text-2xl font-bold text-green-400 mb-4">
+            <div className="bg-gradient-to-r from-green-50 to-emerald-50 border border-green-300 rounded-2xl p-6 mb-8">
+              <h3 className="text-2xl font-bold text-green-700 mb-4">
                 Какво ще получите БЕЗПЛАТНО:
               </h3>
               <div className="grid md:grid-cols-2 gap-4 text-left">
@@ -372,16 +380,16 @@ export default function CreativesPage() {
                   "💡 Персонализирани идеи за ваш UGC контент",
                   "⚡ Стратегия за първите 30 дни - стъпка по стъпка",
                 ].map((item, index) => (
-                  <div key={index} className="text-white text-sm">
+                  <div key={index} className="text-gray-700 text-sm">
                     {item}
                   </div>
                 ))}
               </div>
               <div className="mt-4 text-center">
-                <span className="text-yellow-400 font-bold text-xl">
+                <span className="text-yellow-600 font-bold text-xl">
                   Обща стойност: 650 лв
                 </span>
-                <span className="text-green-400 font-bold text-xl ml-4">
+                <span className="text-green-600 font-bold text-xl ml-4">
                   - За вас БЕЗПЛАТНО днес
                 </span>
               </div>
