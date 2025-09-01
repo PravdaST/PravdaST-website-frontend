@@ -7,36 +7,38 @@
 
 ## Необходими полета в Airtable таблицата
 
+**ВАЖНО:** Полетата трябва да се казват ТОЧНО както са изписани тук (case-sensitive):
+
 ### Основни полета (Required)
-1. **Name** - Single line text
+1. **name** - Single line text
    - Име на клиента 
 
-2. **Business Name** - Single line text
+2. **business_name** - Single line text
    - Име на бизнеса
 
-3. **Industry** - Single select
-   - Опции: E-commerce, Services, Restaurant, Beauty, Fitness, Real Estate, Education, Other
+3. **industry** - Single select
+   - Опции: ecommerce, services, restaurant, beauty, fitness, real-estate, education, other
    - Индустрия на бизнеса
 
-4. **Current Marketing** - Single select или Long text
-   - Опции: Facebook/Instagram ads, Google ads, Organic social media, None, Custom (other)
+4. **current_marketing** - Single select
+   - Опции: facebook-ads, google-ads, social-media, none, other
    - Текущ маркетинг метод
 
-5. **Monthly Budget** - Number или Single line text
+5. **monthly_budget** - Number
    - Месечен маркетингов бюджет в лева
 
-6. **Main Goal** - Single select
-   - Опции: Increase sales, Brand awareness, Lead generation, Customer engagement
+6. **main_goal** - Single select
+   - Опции: increase-sales, brand-awareness, lead-generation, customer-engagement
    - Основна цел с креативите
 
-7. **Email** - Email
+7. **email** - Email
    - Имейл за контакт
 
-8. **Phone** - Phone number
+8. **phone** - Phone number
    - Телефон за контакт
 
 ### Системни полета (Auto-generated)
-9. **Timestamp** - Date and time
+9. **timestamp** - Date and time
    - Автоматично време на подаване
 
 10. **Status** - Single select

@@ -170,8 +170,8 @@ export const CreativesStepForm = () => {
   const steps = [
     // Welcome Screen (Step 0)
     {
-      title: "Къде да изпратим вашия Креативен Анализ?",
-      subtitle: "Персонализиран план за Carousels, Video и UGC креативи, които ще утроят вашите продажби",
+      title: "Къде да изпратим вашата Креативна Стратегия?",
+      subtitle: "Готов-за-действие план за креативи, които генерират продажби от първия ден",
       content: (
         <div className="text-center py-8">
           <div className="mb-8">
@@ -468,10 +468,10 @@ export const CreativesStepForm = () => {
             </p>
           </div>
           
-          <div className="bg-green-900/20 border border-green-400/30 rounded-xl p-6">
-            <p className="text-green-400 text-center">
+          <div className="bg-green-100 border border-green-300 rounded-xl p-6">
+            <p className="text-green-700 text-center font-medium">
               ✅ Успешно изпратихме данните ви<br/>
-              ⏰ Очаквайте анализа в имейла си до 5 минути<br/>
+              ⏰ Очаквайте вашата креативна стратегия в имейла си до 5 минути<br/>
               📱 Може да затворите този прозорец
             </p>
           </div>
@@ -541,7 +541,7 @@ export const CreativesStepForm = () => {
               >
                 <span>
                   {currentStep === 6 
-                    ? (isSubmitting ? "Изпращане..." : "Получи анализа")
+                    ? (isSubmitting ? "Изпращане..." : "Получи стратегията")
                     : "Продължи"
                   }
                 </span>
@@ -557,7 +557,7 @@ export const CreativesStepForm = () => {
                 disabled={!isStepValid() || isSubmitting}
                 className="bg-gradient-to-r from-yellow-400 to-green-400 text-black hover:opacity-90 disabled:opacity-50 px-8 py-3 text-lg font-bold"
               >
-                {isSubmitting ? "Изпращане..." : "Изпрати анализа 🚀"}
+                {isSubmitting ? "Изпращане..." : "Получи стратегията 🚀"}
               </Button>
             </div>
           )}

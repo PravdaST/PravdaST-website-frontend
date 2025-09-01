@@ -2,7 +2,6 @@ import { Metadata } from "next";
 import { Suspense } from "react";
 import { getCampaignCreativesMetadata } from "./metadata";
 import { CreativesHeroSection } from "@/components/creatives-hero-section";
-import { FooterServer } from "@/components/footer-server";
 import { CreativesStepForm } from "@/components/creatives-step-form";
 import { PricingSection } from "./components/pricing-section";
 import {
@@ -355,43 +354,47 @@ export default function CreativesPage() {
               <h2 className="relative text-3xl md:text-5xl font-bold text-gray-900 mb-6 px-4 py-4">
                 🎨 Получете{" "}
                 <span className="bg-gradient-to-r from-yellow-400 to-green-400 bg-clip-text text-transparent">
-                  БЕЗПЛАТНИЯ си Креативен Анализ
+                  БЕЗПЛАТНАТА си Креативна Стратегия
                 </span>
                 <br />
-                и План за Увеличение на Продажбите
+                и Персонализиран План за 3x Повече Продажби
               </h2>
             </div>
             <p className="text-lg md:text-xl text-gray-600 mb-6 leading-relaxed">
-              Открийте кои креативи ще работят най-добре за вашия бизнес и получете
-              персонализирана стратегия за 3x повече продажби.
+              Получете готов-за-изпълнение план за креативи, които генерират реални резултати - 
+              без догадки, без експерименти, само доказани стратегии за вашата индустрия.
             </p>
 
             {/* Value Stack */}
             <div className="bg-gradient-to-r from-green-50 to-emerald-50 border border-green-300 rounded-2xl p-6 mb-8">
               <h3 className="text-2xl font-bold text-green-700 mb-4">
-                Какво ще получите БЕЗПЛАТНО:
+                Вашата БЕЗПЛАТНА Креативна Стратегия включва:
               </h3>
               <div className="grid md:grid-cols-2 gap-4 text-left">
                 {[
-                  "🎯 Персонализиран креативен анализ за вашата аудитория",
-                  "📊 Детайлен план кои креативи да използвате първо",
-                  "🎥 Примери от успешни кампании в вашата индустрия",
-                  "📈 ROI калкулатор за различните типове креативи",
-                  "💡 Персонализирани идеи за ваш UGC контент",
-                  "⚡ Стратегия за първите 30 дни - стъпка по стъпка",
+                  "🎯 Персонализирана roadmap за креативи базирана на вашата аудитория",
+                  "📊 Готов план за първите 5 креатива, които да стартирате",
+                  "🎥 Конкретни примери и референции от вашата индустрия",
+                  "📈 ROI прогноза и очаквани резултати за първите 90 дни",
+                  "💡 Точни инструкции за UGC контент, който конвертира",
+                  "⚡ 30-дневна стъпка-по-стъпка имплементация стратегия",
                 ].map((item, index) => (
-                  <div key={index} className="text-gray-700 text-sm">
+                  <div key={index} className="text-gray-700 text-sm font-medium">
                     {item}
                   </div>
                 ))}
               </div>
-              <div className="mt-4 text-center">
-                <span className="text-yellow-600 font-bold text-xl">
-                  Обща стойност: 650 лв
-                </span>
-                <span className="text-green-600 font-bold text-xl ml-4">
-                  - За вас БЕЗПЛАТНО днес
-                </span>
+              <div className="mt-6 text-center bg-gradient-to-r from-red-50 to-orange-50 border border-red-200 rounded-xl p-4">
+                <div className="text-gray-800 text-lg mb-2">
+                  <span className="line-through text-red-500 font-bold">Обичайна цена: 850 лв</span>
+                </div>
+                <div className="text-3xl font-bold">
+                  <span className="text-green-600">БЕЗПЛАТНО</span>
+                  <span className="text-gray-600 text-sm ml-2">само днес</span>
+                </div>
+                <p className="text-red-600 text-sm font-medium mt-2">
+                  ⏰ Ограничена оферта - само първите 50 заявки този месец
+                </p>
               </div>
             </div>
           </div>
@@ -410,8 +413,6 @@ export default function CreativesPage() {
         </div>
       </section>
 
-      {/* Footer - Server Component */}
-      <FooterServer />
     </div>
   );
 }
