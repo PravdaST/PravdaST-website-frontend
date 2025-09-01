@@ -12,6 +12,7 @@ export function ConditionalNavigation() {
     '/campaigns/glovo',        // Glovo landing page
     '/campaigns/mini-sites',   // Mini-sites landing pages
     '/campaigns/landing-page', // Landing page campaign
+    '/campaigns/creatives',    // Creatives services landing page
     '/glovo',                  // Legacy glovo landing page
   ]
   
