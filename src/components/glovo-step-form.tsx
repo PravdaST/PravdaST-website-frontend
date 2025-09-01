@@ -157,16 +157,37 @@ export const GlovoStepForm = () => {
               Открийте точните си Glovo разходи за под 2 минути и получете персонализиран план за спестявания.
             </p>
           </div>
-          <div className="flex items-center justify-center space-x-4 text-green-400 mb-6 text-sm">
-            <span>💯 безплатно</span>
-            <span>🔒 НИКОГА не споделяме информацията ви</span>
-            <span>📞 Обаждаме се САМО в удобно за вас време</span>
-          </div>
-
-          <div className="flex items-center justify-center space-x-4 text-green-400 mb-6 text-sm">
-            <span>🚫 Няма спам, няма натрапчиви обаждания</span>
-            <span>✅ Само ценни съвети за вашия ресторант</span>
-            <span>📱 Комплектът се изпраща веднага на телефона и имейла ви</span>
+          {/* Trust Elements - Better Layout */}
+          <div className="bg-gray-900/50 border border-green-400/20 rounded-2xl p-6 mb-8">
+            <div className="grid md:grid-cols-3 gap-4">
+              {/* Row 1 */}
+              <div className="flex items-center justify-center md:justify-start space-x-2 text-green-400 text-sm">
+                <span className="text-lg">💯</span>
+                <span className="font-medium">безплатно</span>
+              </div>
+              <div className="flex items-center justify-center md:justify-start space-x-2 text-green-400 text-sm">
+                <span className="text-lg">🔒</span>
+                <span className="font-medium">НИКОГА не споделяме информацията ви</span>
+              </div>
+              <div className="flex items-center justify-center md:justify-start space-x-2 text-green-400 text-sm">
+                <span className="text-lg">📞</span>
+                <span className="font-medium">Обаждаме се САМО в удобно за вас време</span>
+              </div>
+              
+              {/* Row 2 */}
+              <div className="flex items-center justify-center md:justify-start space-x-2 text-green-400 text-sm">
+                <span className="text-lg">🚫</span>
+                <span className="font-medium">Няма спам, няма натрапчиви обаждания</span>
+              </div>
+              <div className="flex items-center justify-center md:justify-start space-x-2 text-green-400 text-sm">
+                <span className="text-lg">✅</span>
+                <span className="font-medium">Само ценни съвети за вашия ресторант</span>
+              </div>
+              <div className="flex items-center justify-center md:justify-start space-x-2 text-green-400 text-sm">
+                <span className="text-lg">📱</span>
+                <span className="font-medium">Комплектът се изпраща веднага на телефона и имейла ви</span>
+              </div>
+            </div>
           </div>
 
           <Button
