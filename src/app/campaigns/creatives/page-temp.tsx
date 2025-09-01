@@ -4,7 +4,6 @@ import { Suspense } from "react";
 import { getCampaignCreativesMetadata } from "./metadata";
 import { CreativesHeroSection } from "@/components/creatives-hero-section";
 import { CreativesStepForm } from "@/components/creatives-step-form";
-import { CreativePortfolioSection } from "@/components/creative-portfolio-section";
 import { PricingSection } from "./components/pricing-section";
 import {
   CheckCircle,
@@ -349,9 +348,6 @@ export default function CreativesPage() {
 
       {/* Creative Types Showcase */}
       <CreativeTypesSection />
-
-      {/* Portfolio/Gallery Section - NEW! */}
-      <CreativePortfolioSection />
 
       {/* Pricing Section */}
       <PricingSection />
