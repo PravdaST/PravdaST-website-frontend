@@ -4,6 +4,7 @@ import { getCampaignGlovoMetadata } from "./metadata";
 import { GlovoHeroSection } from "@/components/glovo-hero-section";
 import { FooterServer } from "@/components/footer-server";
 import { GlovoStepForm } from "@/components/glovo-step-form";
+import GlovoMetaPixel from "@/components/glovo-meta-pixel";
 
 export async function generateMetadata(): Promise<Metadata> {
   return await getCampaignGlovoMetadata();
@@ -702,6 +703,9 @@ export default function GlovoCalculatorLandingOptimized() {
 
       {/* Footer - Server Component */}
       <FooterServer />
+      
+      {/* Glovo-specific Meta Pixel */}
+      <GlovoMetaPixel />
     </div>
   );
 }
