@@ -176,7 +176,7 @@ export const FooterServer = () => {
                 <Linkedin className="w-5 h-5" />
               </a>
               <a 
-                href="https://instagram.com/pravda.agency"
+                href="https://instagram.com/pravdast.agency"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-[#ECB629] transition-colors"
