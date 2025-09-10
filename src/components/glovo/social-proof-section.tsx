@@ -1,6 +1,7 @@
 'use client'
 
 import { memo } from 'react'
+import { Star } from 'lucide-react'
 import { motion } from "framer-motion"
 import Image from "next/image"
 import { CheckCircle, DollarSign, TrendingUp } from "lucide-react"
@@ -87,13 +88,11 @@ const SocialProofSection = memo(() => {
                   <div className="flex justify-center md:justify-start mb-4">
                     <div className="flex space-x-1">
                       {[...Array(5)].map((_, i) => (
-                        <span
+                        <Star
                           key={i}
-                          className="text-yellow-400 text-2xl animate-pulse"
+                          className="w-6 h-6 text-yellow-400 fill-current animate-pulse"
                           style={{ animationDelay: `${i * 0.1}s` }}
-                        >
-                          ⭐
-                        </span>
+                        />
                       ))}
                     </div>
                   </div>

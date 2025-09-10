@@ -98,7 +98,7 @@ export const GlovoHeroSection = () => {
                   <div className="text-4xl font-bold text-green-600 mb-2">
                     1,000 лв
                   </div>
-                  <div className="text-gray-600">Запазени приходи</div>
+                  <div className="text-gray-400">Запазени приходи</div>
                 </div>
               </div>
             </div>
@@ -125,7 +125,7 @@ export const GlovoHeroSection = () => {
             </Button>
             
             {/* Trust Indicators - професионални икони */}
-            <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 text-sm text-gray-600">
+            <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 text-sm text-gray-400">
               <div className="flex items-center gap-2">
                 <Shield className="w-4 h-4 text-green-600" />
                 <span>100% безплатен анализ - не се изисква плащане</span>

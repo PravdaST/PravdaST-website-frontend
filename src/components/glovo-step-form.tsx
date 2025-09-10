@@ -417,11 +417,11 @@ export const GlovoStepForm = () => {
           </div>
           {getValidationMessage() && (
             <div className="text-red-400 text-sm bg-red-400/10 border border-red-400/30 rounded-lg p-3">
-              ⚠️ {getValidationMessage()}
+              {getValidationMessage()}
             </div>
           )}
           <div className="text-sm text-gray-400 bg-yellow-400/10 border border-yellow-400/30 rounded-lg p-4">
-            💡 Ще ви изпратим доклада по имейл до 5 мин. Може да се свържем с
+            Ще ви изпратим доклада по имейл до 5 мин. Може да се свържем с
             допълнителни съвети за пестене на пари.
           </div>
         </div>
@@ -448,10 +448,10 @@ export const GlovoStepForm = () => {
                 Какво ще получите:
               </h3>
               <ul className="text-left text-gray-300 space-y-2">
-                <li>✅ Точната сума, която плащате на Glovo месечно</li>
-                <li>✅ Персонализиран план за намаляване на разходите</li>
-                <li>✅ Сравнение с директни поръчки</li>
-                <li>✅ Стъпки за 60% намаляване на Glovo зависимостта</li>
+                <li>• Точната сума, която плащате на Glovo месечно</li>
+                <li>• Персонализиран план за намаляване на разходите</li>
+                <li>• Сравнение с директни поръчки</li>
+                <li>• Стъпки за 60% намаляване на Glovo зависимостта</li>
               </ul>
             </div>
           </div>
