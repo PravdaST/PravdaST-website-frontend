@@ -1,5 +1,6 @@
 'use client'
 
+import { MotionDiv } from '@/hooks/useSharedFramerMotion';
 import { motion, MotionProps } from "framer-motion";
 import { ReactNode } from "react";
 
@@ -44,11 +45,11 @@ export function FadeInView({
     }
   };
 
-  const MotionComponent = motion[as] as any;
+  const DynamicMotionComponent = motion[as] as any;
 
   return (
-    <MotionComponent
-      className={className}
+    <DynamicMotionComponent
+      className={`${className} performance-animated-element`}
       initial={getInitialPosition()}
       whileInView={getFinalPosition()}
       transition={{ duration, delay }}
@@ -56,6 +57,6 @@ export function FadeInView({
       {...props}
     >
       {children}
-    </MotionComponent>
+    </DynamicMotionComponent>
   );
 }

@@ -1,7 +1,8 @@
 
 'use client';
 
-import { motion, Variants } from 'framer-motion';
+import { MotionDiv, sharedVariants } from '@/hooks/useSharedFramerMotion';
+import { Variants } from 'framer-motion';
 import { ReactNode } from 'react';
 
 interface SlideInProps {
@@ -41,8 +42,8 @@ const SlideIn = ({
   };
 
   return (
-    <motion.div
-      className={className}
+    <MotionDiv
+      className={`${className} performance-animated-element`}
       initial="hidden"
       animate="visible"
       variants={directionVariants[direction]}
@@ -53,7 +54,7 @@ const SlideIn = ({
       }}
     >
       {children}
-    </motion.div>
+    </MotionDiv>
   );
 };
 
