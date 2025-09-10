@@ -149,9 +149,8 @@ const TrendlabBackground = () => {
         xmlns="http://www.w3.org/2000/svg"
       >
         {Array.from({ length: 3 }).map((_, i) => (
-          <MotionDiv
+          <motion.path
             key={i}
-            as="path"
             d={`M ${i * 400 + 100} 100 Q ${i * 400 + 300} 200 ${i * 400 + 500} 300 Q ${i * 400 + 700} 400 ${i * 400 + 900} 200`}
             fill="none"
             stroke="url(#dataFlow)"
@@ -194,7 +193,7 @@ const TrendlabBackground = () => {
             <div className="absolute inset-2 rounded-full bg-[#ECB629]/10" />
           </div>
         </div>
-      </MotionDiv>
+      </motion.div>
     </div>
   );
 };
@@ -261,7 +260,7 @@ export default function Trendlab() {
                   Системен подход към съдържанието
                 </span>
               </span>
-            </MotionDiv>
+            </motion.div>
 
             <MotionH1
               className="text-5xl md:text-7xl font-bold mb-8 leading-tight performance-animated-element"
@@ -315,8 +314,8 @@ export default function Trendlab() {
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </a>
               </Button>
-            </MotionDiv>
-          </MotionDiv>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
@@ -389,7 +388,7 @@ export default function Trendlab() {
                       <p className="text-sm text-gray-400">
                         Знания, опит, факти
                       </p>
-                    </MotionDiv>
+                    </motion.div>
 
                     {/* Process */}
                     <MotionDiv
@@ -422,12 +421,12 @@ export default function Trendlab() {
                             }}
                           />
                         ))}
-                      </MotionDiv>
+                      </motion.div>
                       <h4 className="text-lg font-semibold text-[#ECB629] mb-2">
                         Trendlab™ Система
                       </h4>
                       <p className="text-sm text-gray-400">AI + Креативност</p>
-                    </MotionDiv>
+                    </motion.div>
 
                     {/* Output */}
                     <MotionDiv
@@ -459,7 +458,7 @@ export default function Trendlab() {
                       <p className="text-sm text-gray-400">
                         Видео, статии, визии
                       </p>
-                    </MotionDiv>
+                    </motion.div>
                   </div>
 
                   {/* Flow arrows */}
@@ -477,7 +476,7 @@ export default function Trendlab() {
                       }}
                     >
                       <ArrowRight className="h-6 w-6 text-[#ECB629]" />
-                    </MotionDiv>
+                    </motion.div>
                   </div>
 
                   <div className="hidden md:block absolute top-1/2 right-1/4 transform -translate-y-1/2">
@@ -495,7 +494,7 @@ export default function Trendlab() {
                       }}
                     >
                       <ArrowRight className="h-6 w-6 text-[#ECB629]" />
-                    </MotionDiv>
+                    </motion.div>
                   </div>
                 </div>
               </Card>
@@ -520,7 +519,7 @@ export default function Trendlab() {
                 </div>
               </div>
             </div>
-          </MotionDiv>
+          </motion.div>
         </div>
       </section>
 
@@ -656,7 +655,7 @@ export default function Trendlab() {
                   </span>{" "}
                   за съдържание
                 </span>
-              </MotionDiv>
+              </motion.div>
 
               <h2 className="text-4xl md:text-6xl font-bold mb-6 text-white">
                 Нашата поточна линия за съдържание: <br />
@@ -670,7 +669,7 @@ export default function Trendlab() {
                   />
                 </span>
               </h2>
-            </MotionDiv>
+            </motion.div>
 
             {/* Ultra-Modern Timeline Cards */}
             <div className="relative">
@@ -830,7 +829,7 @@ export default function Trendlab() {
                             <div className="w-16 h-16 bg-gradient-to-br from-[#ECB629]/20 to-[#ECB629]/40 rounded-full flex items-center justify-center">
                               <phase.icon className="w-8 h-8 text-[#ECB629]" />
                             </div>
-                          </MotionDiv>
+                          </motion.div>
                         </div>
 
                         {/* Content */}
@@ -866,11 +865,11 @@ export default function Trendlab() {
                         </div>
                       </div>
                     </div>
-                  </MotionDiv>
+                  </motion.div>
                 ))}
               </div>
             </div>
-          </MotionDiv>
+          </motion.div>
         </div>
       </section>
 
@@ -893,7 +892,7 @@ export default function Trendlab() {
                 <span className="text-[#ECB629] text-sm font-medium tracking-wide">
                   ИЗМЕРИМИ РЕЗУЛТАТИ
                 </span>
-              </MotionDiv>
+              </motion.div>
 
               <h2 className="text-4xl md:text-5xl font-bold text-white mb-8">
                 Когато изградите правилния авторитет
@@ -944,7 +943,7 @@ export default function Trendlab() {
                           whileHover={{ scale: 1.1 }}
                         >
                           <CheckCircle className="h-6 w-6 text-[#ECB629]" />
-                        </MotionDiv>
+                        </motion.div>
                       </div>
                       <div className="flex-1">
                         <h3 className="text-xl font-bold mb-3 text-white">
@@ -956,10 +955,10 @@ export default function Trendlab() {
                       </div>
                     </div>
                   </Card>
-                </MotionDiv>
+                </motion.div>
               ))}
             </div>
-          </MotionDiv>
+          </motion.div>
         </div>
       </section>
 
@@ -1013,7 +1012,7 @@ export default function Trendlab() {
                 Инженерно проектиране изисква прецизност и в техническата
                 спецификация
               </p>
-            </MotionDiv>
+            </motion.div>
 
             {/* Price Display */}
             <motion.div
@@ -1037,8 +1036,8 @@ export default function Trendlab() {
                     *Финалната цена се определя след техническа диагностика
                   </div>
                 </div>
-              </MotionDiv>
-            </MotionDiv>
+              </motion.div>
+            </motion.div>
 
             {/* Principles Grid */}
             <div className="grid gap-8 md:gap-12">
@@ -1092,7 +1091,7 @@ export default function Trendlab() {
                           />
                         )}
                       </div>
-                    </MotionDiv>
+                    </motion.div>
 
                     {/* Content Card */}
                     <div className="flex-1 w-full">
@@ -1119,11 +1118,11 @@ export default function Trendlab() {
                             animate={investmentInView ? { width: "100%" } : {}}
                             transition={{ duration: 1.5, delay: index * 0.2 + 1 }}
                           />
-                        </MotionDiv>
-                      </MotionDiv>
+                        </motion.div>
+                      </motion.div>
                     </div>
-                  </MotionDiv>
-                </MotionDiv>
+                  </motion.div>
+                </motion.div>
               ))}
             </div>
           </div>
