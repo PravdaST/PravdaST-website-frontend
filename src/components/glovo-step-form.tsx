@@ -11,6 +11,9 @@ import {
   Mail,
   Phone,
   CheckCircle,
+  Shield,
+  Users,
+  X,
 } from "lucide-react";
 
 interface FormData {
@@ -162,48 +165,48 @@ export const GlovoStepForm = () => {
       content: (
         <div className="text-center py-8">
           <div className="mb-8">
-            <Calculator className="w-20 h-20 text-yellow-400 mx-auto mb-4" />
-            <p className="text-xl text-gray-300 leading-relaxed">
+            <Calculator className="w-20 h-20 text-blue-600 mx-auto mb-4" />
+            <p className="text-xl text-gray-600 leading-relaxed">
               Открийте точните си Glovo разходи за под 2 минути и получете
               персонализиран план за спестявания.
             </p>
           </div>
           {/* Trust Elements - Better Layout */}
-          <div className="bg-gray-900/50 border border-green-400/20 rounded-2xl p-6 mb-8">
+          <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 mb-8">
             <div className="grid md:grid-cols-3 gap-4">
               {/* Row 1 */}
-              <div className="flex items-center justify-center md:justify-start space-x-2 text-green-400 text-sm">
-                <span className="text-lg">💯</span>
+              <div className="flex items-center justify-center md:justify-start space-x-2 text-green-600 text-sm">
+                <CheckCircle className="w-4 h-4" />
                 <span className="font-medium">безплатно</span>
               </div>
-              <div className="flex items-center justify-center md:justify-start space-x-2 text-green-400 text-sm">
-                <span className="text-lg">🔒</span>
+              <div className="flex items-center justify-center md:justify-start space-x-2 text-blue-600 text-sm">
+                <Shield className="w-4 h-4" />
                 <span className="font-medium">
                   НИКОГА не споделяме информацията ви
                 </span>
               </div>
-              <div className="flex items-center justify-center md:justify-start space-x-2 text-green-400 text-sm">
-                <span className="text-lg">📞</span>
+              <div className="flex items-center justify-center md:justify-start space-x-2 text-blue-600 text-sm">
+                <Phone className="w-4 h-4" />
                 <span className="font-medium">
                   Обаждаме се САМО в удобно за вас време
                 </span>
               </div>
 
               {/* Row 2 */}
-              <div className="flex items-center justify-center md:justify-start space-x-2 text-green-400 text-sm">
-                <span className="text-lg">🚫</span>
+              <div className="flex items-center justify-center md:justify-start space-x-2 text-red-600 text-sm">
+                <X className="w-4 h-4" />
                 <span className="font-medium">
                   Няма спам, няма натрапчиви обаждания
                 </span>
               </div>
-              <div className="flex items-center justify-center md:justify-start space-x-2 text-green-400 text-sm">
-                <span className="text-lg">✅</span>
+              <div className="flex items-center justify-center md:justify-start space-x-2 text-green-600 text-sm">
+                <CheckCircle className="w-4 h-4" />
                 <span className="font-medium">
                   Само ценни съвети за вашия ресторант
                 </span>
               </div>
-              <div className="flex items-center justify-center md:justify-start space-x-2 text-green-400 text-sm">
-                <span className="text-lg">📱</span>
+              <div className="flex items-center justify-center md:justify-start space-x-2 text-blue-600 text-sm">
+                <Users className="w-4 h-4" />
                 <span className="font-medium">
                   Комплектът се изпраща веднага на телефона и имейла ви
                 </span>
@@ -214,7 +217,7 @@ export const GlovoStepForm = () => {
           <Button
             onClick={nextStep}
             size="lg"
-            className="bg-gradient-to-r from-yellow-400 to-green-400 text-black hover:opacity-90 px-8 py-4 text-lg font-bold"
+            className="bg-blue-900 hover:bg-blue-800 text-white px-8 py-4 text-lg font-bold"
           >
             Започни калкулатора
             <ChevronRight className="ml-2 w-5 h-5" />
@@ -233,7 +236,7 @@ export const GlovoStepForm = () => {
             value={formData.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
             placeholder="Въведете вашето име..."
-            className="w-full px-6 py-4 bg-black/50 border border-green-400/30 rounded-xl text-white text-lg focus:border-green-400 focus:outline-none"
+            className="w-full px-6 py-4 bg-white border border-gray-300 rounded-lg text-gray-900 text-lg focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
             autoFocus
           />
           {formData.name.trim().length > 0 &&
@@ -258,7 +261,7 @@ export const GlovoStepForm = () => {
               setFormData({ ...formData, restaurantName: e.target.value })
             }
             placeholder="Въведете името на ресторанта"
-            className="w-full px-6 py-4 bg-black/50 border border-green-400/30 rounded-xl text-white text-lg focus:border-green-400 focus:outline-none"
+            className="w-full px-6 py-4 bg-white border border-gray-300 rounded-lg text-gray-900 text-lg focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
             autoFocus
           />
         </div>
@@ -275,7 +278,7 @@ export const GlovoStepForm = () => {
             value={formData.city}
             onChange={(e) => setFormData({ ...formData, city: e.target.value })}
             placeholder="Въведете града..."
-            className="w-full px-6 py-4 bg-black/50 border border-green-400/30 rounded-xl text-white text-lg focus:border-green-400 focus:outline-none"
+            className="w-full px-6 py-4 bg-white border border-gray-300 rounded-lg text-gray-900 text-lg focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
             autoFocus
           />
         </div>
@@ -317,7 +320,7 @@ export const GlovoStepForm = () => {
               placeholder="напр. 25"
               min="1"
               max="200"
-              className="w-full px-6 py-4 bg-black/50 border border-green-400/30 rounded-xl text-white text-lg focus:border-green-400 focus:outline-none"
+              className="w-full px-6 py-4 bg-white border border-gray-300 rounded-lg text-gray-900 text-lg focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
             />
           </div>
         </div>
@@ -359,7 +362,7 @@ export const GlovoStepForm = () => {
               placeholder="напр. 35"
               min="5"
               max="300"
-              className="w-full px-6 py-4 bg-black/50 border border-green-400/30 rounded-xl text-white text-lg focus:border-green-400 focus:outline-none"
+              className="w-full px-6 py-4 bg-white border border-gray-300 rounded-lg text-gray-900 text-lg focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
             />
           </div>
         </div>

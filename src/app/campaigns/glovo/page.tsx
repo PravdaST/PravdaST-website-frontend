@@ -32,23 +32,22 @@ import Image from "next/image";
 // Solution Preview Section
 function SolutionPreviewSection() {
   return (
-    <section className="py-12 md:py-16 bg-gradient-to-br from-blue-900/10 via-black to-purple-900/10">
+    <section className="py-12 md:py-16 bg-white">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 glovo-large-heading glovo-contained">
-            Как изглежда <span className="text-blue-400">вашата собствена система</span>?
+          <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6">
+            Как изглежда <span className="text-blue-900">вашата собствена система</span>?
           </h2>
-          <p className="text-xl text-gray-300 mb-8">
+          <p className="text-xl text-gray-600 mb-8">
             Ето какво получавате за 48 часа:
           </p>
 
           <div className="grid md:grid-cols-2 gap-8">
             {/* Before Glovo */}
             <div className="relative group">
-              <div className="absolute inset-0 bg-gradient-to-br from-red-500/20 to-orange-500/20 rounded-3xl blur-xl opacity-50"></div>
-              <div className="relative bg-gray-900/90 border border-red-400/30 rounded-3xl p-6" style={{boxShadow: 'inset 0 0 30px rgba(0,0,0,0.4), 0 8px 24px rgba(0,0,0,0.3)'}}>
-                <h3 className="text-2xl font-bold text-red-400 mb-4">❌ Преди (с Glovo)</h3>
-                <ul className="text-left space-y-3 text-gray-300">
+              <div className="relative bg-white border border-red-200 rounded-lg p-6 shadow-sm">
+                <h3 className="text-2xl font-bold text-red-600 mb-4">Преди (с Glovo)</h3>
+                <ul className="text-left space-y-3 text-gray-700">
                   <li>• Плащате 30% комисионна</li>
                   <li>• Нямате контакти на клиентите</li>
                   <li>• Зависите от техните правила</li>
@@ -60,10 +59,9 @@ function SolutionPreviewSection() {
 
             {/* After - Own System */}
             <div className="relative group">
-              <div className="absolute inset-0 bg-gradient-to-br from-green-500/20 to-emerald-500/20 rounded-3xl blur-xl opacity-50"></div>
-              <div className="relative bg-gray-900/90 border border-green-400/30 rounded-3xl p-6" style={{boxShadow: 'inset 0 0 30px rgba(0,0,0,0.4), 0 8px 24px rgba(0,0,0,0.3)'}}>
-                <h3 className="text-2xl font-bold text-green-400 mb-4">✅ След (собствена система)</h3>
-                <ul className="text-left space-y-3 text-gray-300">
+              <div className="relative bg-white border border-green-200 rounded-lg p-6 shadow-sm">
+                <h3 className="text-2xl font-bold text-green-600 mb-4">След (собствена система)</h3>
+                <ul className="text-left space-y-3 text-gray-700">
                   <li>• Запазвате 100% от приходите</li>
                   <li>• Имате база от верни клиенти</li>
                   <li>• Контролирате всичко</li>
@@ -82,30 +80,30 @@ function SolutionPreviewSection() {
 // Credibility & Guarantee Section
 function CredibilityGuaranteeSection() {
   return (
-    <section className="py-12 md:py-16 bg-gradient-to-br from-purple-900/10 via-black to-indigo-900/10">
+    <section className="py-12 md:py-16 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-8 glovo-large-heading glovo-contained">
-            🔒 <span className="text-purple-400">Гарантираме</span> резултата
+          <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-8">
+            <span className="text-blue-900">Гарантираме</span> резултата
           </h2>
           
           <div className="grid md:grid-cols-3 gap-6 mb-8">
-            <div className="bg-gray-900/50 border border-purple-400/30 rounded-2xl p-6">
-              <div className="text-4xl mb-3">🎯</div>
-              <h3 className="text-lg font-bold text-purple-400 mb-2">100% Гаранция</h3>
-              <p className="text-gray-300 text-sm">Ако не спестите поне 1000 лв за първия месец - връщаме парите</p>
+            <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
+              <Award className="w-8 h-8 text-blue-600 mx-auto mb-3" />
+              <h3 className="text-lg font-bold text-blue-900 mb-2">100% Гаранция</h3>
+              <p className="text-gray-600 text-sm">Ако не спестите поне 1000 лв за първия месец - връщаме парите</p>
             </div>
             
-            <div className="bg-gray-900/50 border border-blue-400/30 rounded-2xl p-6">
-              <div className="text-4xl mb-3">⚡</div>
-              <h3 className="text-lg font-bold text-blue-400 mb-2">48 часа</h3>
-              <p className="text-gray-300 text-sm">Системата е готова за използване до 48 часа</p>
+            <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
+              <TrendingUp className="w-8 h-8 text-green-600 mx-auto mb-3" />
+              <h3 className="text-lg font-bold text-blue-900 mb-2">48 часа</h3>
+              <p className="text-gray-600 text-sm">Системата е готова за използване до 48 часа</p>
             </div>
             
-            <div className="bg-gray-900/50 border border-green-400/30 rounded-2xl p-6">
-              <div className="text-4xl mb-3">🛡️</div>
-              <h3 className="text-lg font-bold text-green-400 mb-2">Пълна поддръжка</h3>
-              <p className="text-gray-300 text-sm">Безплатна поддръжка и обновления за 6 месеца</p>
+            <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
+              <Shield className="w-8 h-8 text-blue-600 mx-auto mb-3" />
+              <h3 className="text-lg font-bold text-blue-900 mb-2">Пълна поддръжка</h3>
+              <p className="text-gray-600 text-sm">Безплатна поддръжка и обновления за 6 месеца</p>
             </div>
           </div>
         </div>
@@ -116,7 +114,7 @@ function CredibilityGuaranteeSection() {
 
 export default function GlovoCalculatorLandingOptimized() {
   return (
-    <div className="min-h-screen bg-black text-white overflow-x-hidden">
+    <div className="min-h-screen bg-white text-gray-900 overflow-x-hidden">
       {/* Hero Section */}
       <GlovoHeroSection />
 
@@ -133,29 +131,29 @@ export default function GlovoCalculatorLandingOptimized() {
       <SolutionPreviewSection />
 
       {/* Call to Action - Calculator Section */}
-      <section className="py-16 md:py-20 bg-gradient-to-br from-yellow-900/10 via-black to-green-900/10">
+      <section className="py-16 md:py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto text-center mb-12">
-            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 glovo-large-heading glovo-contained">
-              🧮 <span className="text-yellow-400">Безплатен калкулатор</span> за спестявания
+            <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6">
+              <span className="text-blue-900">Безплатен калкулатор</span> за спестявания
             </h2>
-            <p className="text-xl text-gray-300 mb-8">
+            <p className="text-xl text-gray-600 mb-8">
               Разберете точно колко ще спестите всеки месец с наша система
             </p>
             
-            <div className="bg-gradient-to-r from-yellow-400/10 to-green-400/10 border border-yellow-400/30 rounded-3xl p-8 mb-8">
+            <div className="bg-gray-50 border border-gray-200 rounded-lg p-8 mb-8">
               <div className="grid md:grid-cols-3 gap-6 text-center">
                 <div>
-                  <div className="text-3xl font-bold text-yellow-400 mb-2">⚡ Бързо</div>
-                  <div className="text-gray-300">Попълни за 2 минути</div>
+                  <div className="text-2xl font-bold text-gray-900 mb-2">Бързо</div>
+                  <div className="text-gray-600">Попълни за 2 минути</div>
                 </div>
                 <div>
-                  <div className="text-3xl font-bold text-green-400 mb-2">🎁 Безплатно</div>
-                  <div className="text-gray-300">Анализът е напълно безплатен</div>
+                  <div className="text-2xl font-bold text-gray-900 mb-2">Безплатно</div>
+                  <div className="text-gray-600">Анализът е напълно безплатен</div>
                 </div>
                 <div>
-                  <div className="text-3xl font-bold text-blue-400 mb-2">📊 Точно</div>
-                  <div className="text-gray-300">Реален анализ на спестяванията</div>
+                  <div className="text-2xl font-bold text-gray-900 mb-2">Точно</div>
+                  <div className="text-gray-600">Реален анализ на спестяванията</div>
                 </div>
               </div>
               <div className="mt-4 text-center">
