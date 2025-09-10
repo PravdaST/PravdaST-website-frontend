@@ -1,7 +1,7 @@
 "use client";
 
 import useEmblaCarousel from 'embla-carousel-react';
-import { motion } from 'framer-motion';
+import { MotionDiv } from '@/hooks/useSharedFramerMotion';
 import Image from 'next/image';
 import { useCallback } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
@@ -45,9 +45,9 @@ export const TestimonialsCarousel = ({
       <div className="overflow-hidden" ref={emblaRef}>
         <div className="flex">
           {testimonials.map((testimonial, index) => (
-            <motion.div
+            <MotionDiv
               key={testimonial.id}
-              className="flex-[0_0_100%] md:flex-[0_0_50%] lg:flex-[0_0_33.333%] px-4"
+              className="flex-[0_0_100%] md:flex-[0_0_50%] lg:flex-[0_0_33.333%] px-4 performance-animated-element"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
@@ -92,7 +92,7 @@ export const TestimonialsCarousel = ({
                   </p>
                 </div>
               </div>
-            </motion.div>
+            </MotionDiv>
           ))}
         </div>
       </div>

@@ -1,7 +1,11 @@
 'use client'
 
 import { useState, useEffect } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { 
+  MotionDiv,
+  AnimatePresence,
+  sharedVariants 
+} from '@/hooks/useSharedFramerMotion'
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { ChevronLeft, ChevronRight, TrendingUp, Users, BarChart } from "lucide-react"
@@ -115,9 +119,9 @@ export const CaseStudiesSlider = () => {
         
         {/* Static success indicators */}
         {mounted && [...Array(8)].map((_, i) => (
-          <motion.div
+          <MotionDiv
             key={i}
-            className="absolute w-2 h-2 bg-green-400 rounded-full opacity-20"
+            className="absolute w-2 h-2 bg-green-400 rounded-full opacity-20 performance-animated-element"
             style={{
               left: `${20 + i * 10}%`,
               top: `${20 + (i % 3) * 20}%`,
@@ -138,12 +142,12 @@ export const CaseStudiesSlider = () => {
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
-          <motion.div
+          <MotionDiv
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="text-center mb-16 performance-animated-element"
           >
             <div className="inline-flex items-center space-x-2 bg-green-500/20 text-green-400 px-4 py-2 rounded-full border border-green-500/30 mb-6">
               <TrendingUp className="w-4 h-4" />
@@ -155,14 +159,15 @@ export const CaseStudiesSlider = () => {
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
               Ето как нашите системи трансформираха бизнесите на клиентите ни
             </p>
-          </motion.div>
+          </MotionDiv>
 
           {/* Case Study Card */}
           <div className="relative">
             <AnimatePresence mode="wait">
-              <motion.div
+              <MotionDiv
                 key={currentIndex}
                 initial={{ opacity: 0, x: 100 }}
+                className="performance-animated-element"
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -100 }}
                 transition={{ duration: 0.5 }}
@@ -198,7 +203,7 @@ export const CaseStudiesSlider = () => {
                         <h4 className="text-2xl font-bold text-white mb-6">Резултати</h4>
                         <div className="space-y-4">
                           {Object.entries(currentCase.results).map(([key, result], index) => (
-                            <motion.div
+                            <MotionDiv
                               key={key}
                               initial={{ opacity: 0, scale: 0.8 }}
                               animate={{ opacity: 1, scale: 1 }}
@@ -216,14 +221,14 @@ export const CaseStudiesSlider = () => {
                                   <div className="text-gray-300">{result.label}</div>
                                 </div>
                               </div>
-                            </motion.div>
+                            </MotionDiv>
                           ))}
                         </div>
                       </div>
                     </div>
                   </CardContent>
                 </Card>
-              </motion.div>
+              </MotionDiv>
             </AnimatePresence>
 
             {/* Navigation */}
