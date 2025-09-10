@@ -23,7 +23,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/services/clientomat",
     "/campaigns",
     "/campaigns/glovo",
-    "/calculators",
     "/blog",
     "/case-studies",
     "/contact",

@@ -56,11 +56,6 @@ export function CompleteHomepage() {
                 </div>
               </div>
               <div className="relative" style={{ opacity: 1, transform: 'none' }}>
-                <Link href="/calculators">
-                  <span className="cursor-pointer transition-colors relative text-white hover:text-[#ECB629]">Калкулатори</span>
-                </Link>
-              </div>
-              <div className="relative" style={{ opacity: 1, transform: 'none' }}>
                 <Link href="/case-studies">
                   <span className="cursor-pointer transition-colors relative text-white hover:text-[#ECB629]">Резултати</span>
                 </Link>
