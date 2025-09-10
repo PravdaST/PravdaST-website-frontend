@@ -288,13 +288,13 @@ export const Navigation = () => {
           </div>
 
           {/* Mobile Menu Button */}
-          <motion.button
+          <MotionDiv
             className="md:hidden text-[#ECB629]"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             whileTap={{ scale: 0.95 }}
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </motion.button>
+          </MotionDiv>
         </div>
 
         {/* Mobile Menu */}
@@ -321,7 +321,7 @@ export const Navigation = () => {
               <div key={item.href}>
                 {item.hasDropdown ? (
                   <div>
-                    <motion.button
+                    <MotionDiv
                       className="flex items-center justify-between w-full text-gray-300 hover:text-[#ECB629] transition-colors py-2"
                       onClick={() =>
                         setIsMobileServicesOpen(!isMobileServicesOpen)
@@ -334,7 +334,7 @@ export const Navigation = () => {
                           isMobileServicesOpen ? "rotate-180" : ""
                         }`}
                       />
-                    </motion.button>
+                    </MotionDiv>
 
                     <MotionDiv
                       className={`mt-2 space-y-2 pl-4 ${isMobileServicesOpen ? "block" : "hidden"}`}
