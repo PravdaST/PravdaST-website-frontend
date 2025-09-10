@@ -1,6 +1,7 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
+import { MotionDiv, MotionSection, MotionH1, MotionH2, MotionP } from "@/hooks/useSharedFramerMotion";
+import { useInView } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { useRef, useState, useEffect } from "react";
 import { GlassCard } from "@/components/ui/GlassCard";
@@ -51,7 +52,7 @@ const SeoStruktorBackground = () => {
       {/* SEO Keywords floating */}
       {["SEO", "STRUCTURE", "SYSTEM", "RANKING", "TRAFFIC", "AUTHORITY"].map(
         (keyword, i) => (
-          <motion.div
+          <MotionDiv
             key={keyword}
             className="absolute text-[#ECB629] font-mono text-xs opacity-20"
             style={{
@@ -71,7 +72,7 @@ const SeoStruktorBackground = () => {
             }}
           >
             {keyword}
-          </motion.div>
+          </MotionDiv>
         ),
       )}
 
@@ -141,19 +142,19 @@ const PhilosophySection = () => {
     <section ref={ref} className="py-12 sm:py-16 md:py-20 glass-section">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="max-w-4xl mx-auto">
-          <motion.h2
+          <MotionH2
             className="text-3xl md:text-4xl font-bold mb-16 text-center text-white"
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8 }}
           >
             За да е стабилна една сграда, тя се нуждае от инженерен план.
-          </motion.h2>
+          </MotionH2>
 
           {/* Mobile-first single column design */}
           <div className="space-y-12">
             {/* Transformation Visualization */}
-            <motion.div
+            <MotionDiv
               initial={{ opacity: 0, scale: 0.95 }}
               animate={isInView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.8, delay: 0.2 }}
@@ -167,7 +168,7 @@ const PhilosophySection = () => {
               <div className="absolute inset-0 opacity-10">
                 <div className="grid grid-cols-8 md:grid-cols-12 gap-1 h-full p-4">
                   {Array.from({ length: 96 }).map((_, i) => (
-                    <motion.div
+                    <MotionDiv
                       key={i}
                       className={`rounded-sm h-2 ${
                         currentStep === 0 ? "bg-red-400" : "bg-[#ECB629]"
@@ -200,7 +201,7 @@ const PhilosophySection = () => {
 
               {/* Status Indicator */}
               <div className="relative z-10 text-center mb-8">
-                <motion.div
+                <MotionDiv
                   className={`inline-flex items-center px-4 py-2 rounded-full text-sm font-semibold ${
                     currentStep === 0
                       ? "bg-red-500/20 text-red-300 border border-red-500/30"
@@ -214,7 +215,7 @@ const PhilosophySection = () => {
                   }}
                   transition={{ duration: 1 }}
                 >
-                  <motion.div
+                  <MotionDiv
                     className={`w-2 h-2 rounded-full mr-2 ${
                       currentStep === 0 ? "bg-red-400" : "bg-[#ECB629]"
                     }`}
@@ -227,18 +228,18 @@ const PhilosophySection = () => {
                     transition={{ duration: 1 }}
                   />
                   {currentStep === 0 ? "БЕЗ СИСТЕМА" : "СЪС СИСТЕМА"}
-                </motion.div>
+                </MotionDiv>
               </div>
 
               {/* Progress Arrow */}
               <div className="relative z-10 flex justify-center mb-8">
-                <motion.div
+                <MotionDiv
                   className="flex items-center space-x-4"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 1 }}
                 >
-                  <motion.div
+                  <MotionDiv
                     className="w-16 h-0.5"
                     animate={{
                       background:
@@ -248,7 +249,7 @@ const PhilosophySection = () => {
                     }}
                     transition={{ duration: 1.5 }}
                   />
-                  <motion.div
+                  <MotionDiv
                     animate={{
                       x: currentStep === 1 ? [0, 10, 0] : [0, -10, 0],
                       color:
@@ -268,8 +269,8 @@ const PhilosophySection = () => {
                     ) : (
                       <ArrowLeft className="w-6 h-6" />
                     )}
-                  </motion.div>
-                  <motion.div
+                  </MotionDiv>
+                  <MotionDiv
                     className="w-16 h-0.5"
                     animate={{
                       background:
@@ -279,15 +280,15 @@ const PhilosophySection = () => {
                     }}
                     transition={{ duration: 1.5 }}
                   />
-                </motion.div>
+                </MotionDiv>
               </div>
               </GlassCard>
-            </motion.div>
+            </MotionDiv>
 
             {/* Content Cards */}
             <div className="grid gap-8 md:grid-cols-2">
               {/* Problem Card */}
-              <motion.div
+              <MotionDiv
                 className="glassmorphism rounded-xl p-6 border border-red-500/20"
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -303,10 +304,10 @@ const PhilosophySection = () => {
                   Точно това е причината резултатите да са непредсказуеми и
                   краткотрайни.
                 </p>
-              </motion.div>
+              </MotionDiv>
 
               {/* Solution Card */}
-              <motion.div
+              <MotionDiv
                 className="glassmorphism rounded-xl p-6 border border-[#ECB629]/20"
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -325,7 +326,7 @@ const PhilosophySection = () => {
                   елемент работи в синхрон с останалите, за да се постигне
                   крайната цел – доминация в Google.
                 </p>
-              </motion.div>
+              </MotionDiv>
             </div>
           </div>
         </div>
@@ -383,7 +384,7 @@ const EngineeringProcessSection = () => {
       <div className="absolute inset-0 opacity-3">
         <div className="grid grid-cols-12 gap-4 h-full p-8">
           {Array.from({ length: 144 }).map((_, i) => (
-            <motion.div
+            <MotionDiv
               key={i}
               className="bg-[#ECB629] rounded-sm h-1"
               initial={{ opacity: 0, scale: 0 }}
@@ -409,7 +410,7 @@ const EngineeringProcessSection = () => {
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-6xl mx-auto">
-          <motion.div
+          <MotionDiv
             className="text-center mb-20"
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -426,12 +427,12 @@ const EngineeringProcessSection = () => {
             <p className="text-gray-300 text-lg mt-6 max-w-3xl mx-auto">
               Нашият четирифазен инженерен процес на изграждане
             </p>
-          </motion.div>
+          </MotionDiv>
 
           {/* Modern Card-Based Timeline */}
           <div className="grid gap-8 md:gap-12">
             {phases.map((phase, index) => (
-              <motion.div
+              <MotionDiv
                 key={phase.number}
                 className="relative"
                 initial={{ opacity: 0, y: 50 }}
@@ -440,7 +441,7 @@ const EngineeringProcessSection = () => {
               >
                 {/* Connection Line */}
                 {index < phases.length - 1 && (
-                  <motion.div
+                  <MotionDiv
                     className="absolute left-6 md:left-10 top-24 w-0.5 h-20 bg-gradient-to-b from-[#ECB629] to-slate-600 z-0"
                     initial={{ scaleY: 0 }}
                     animate={isInView ? { scaleY: 1 } : {}}
@@ -448,11 +449,11 @@ const EngineeringProcessSection = () => {
                   />
                 )}
 
-                <motion.div className="glassmorphism rounded-2xl overflow-hidden transition-all duration-300">
+                <MotionDiv className="glassmorphism rounded-2xl overflow-hidden transition-all duration-300">
                   <div className="p-6 md:p-8">
                     <div className="flex flex-col md:flex-row md:items-start gap-6">
                       {/* Phase Number Circle */}
-                      <motion.div className="flex-shrink-0">
+                      <MotionDiv className="flex-shrink-0">
                         <div className="relative">
                           <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-[#ECB629] to-yellow-600 rounded-full flex items-center justify-center shadow-lg">
                             <span className="text-black font-bold text-xl md:text-2xl">
@@ -460,7 +461,7 @@ const EngineeringProcessSection = () => {
                             </span>
                           </div>
                         </div>
-                      </motion.div>
+                      </MotionDiv>
 
                       {/* Content */}
                       <div className="flex-1 space-y-4">
@@ -498,7 +499,7 @@ const EngineeringProcessSection = () => {
 
                       {/* Progress indicator */}
                       <div className="flex-shrink-0 hidden md:block">
-                        <motion.div
+                        <MotionDiv
                           className="w-1 h-20 glassmorphism rounded-full overflow-hidden"
                           initial={{ height: 0 }}
                           animate={isInView ? { height: 80 } : {}}
@@ -507,7 +508,7 @@ const EngineeringProcessSection = () => {
                             delay: index * 0.15 + 0.8,
                           }}
                         >
-                          <motion.div
+                          <MotionDiv
                             className="w-full bg-gradient-to-t from-[#ECB629] to-yellow-400"
                             initial={{ height: "0%" }}
                             animate={isInView ? { height: "100%" } : {}}
@@ -516,17 +517,17 @@ const EngineeringProcessSection = () => {
                               delay: index * 0.15 + 1,
                             }}
                           />
-                        </motion.div>
+                        </MotionDiv>
                       </div>
                     </div>
                   </div>
-                </motion.div>
-              </motion.div>
+                </MotionDiv>
+              </MotionDiv>
             ))}
           </div>
 
           {/* Connection line from last phase */}
-          <motion.div
+          <MotionDiv
             className="w-0.5 h-16 bg-gradient-to-b from-[#ECB629] to-slate-600 mx-auto"
             initial={{ scaleY: 0 }}
             animate={isInView ? { scaleY: 1 } : {}}
@@ -587,7 +588,7 @@ const ResultsSection = () => {
       <div className="absolute inset-0 opacity-10">
         <div className="grid grid-cols-8 md:grid-cols-16 gap-2 h-full p-6">
           {Array.from({ length: 128 }).map((_, i) => (
-            <motion.div
+            <MotionDiv
               key={i}
               className="bg-[#ECB629] rounded-full"
               style={{ height: Math.random() * 4 + 1 + "px" }}
@@ -614,7 +615,7 @@ const ResultsSection = () => {
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-7xl mx-auto">
-          <motion.div
+          <MotionDiv
             className="text-center mb-20"
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -632,31 +633,31 @@ const ResultsSection = () => {
               Системата SEO Struktor™ създава дълготрайна стойност за вашия
               бизнес
             </p>
-          </motion.div>
+          </MotionDiv>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {benefits.map((benefit, index) => (
-              <motion.div
+              <MotionDiv
                 key={index}
                 className="relative group"
                 initial={{ opacity: 0, y: 50 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.8, delay: index * 0.15 }}
               >
-                <motion.div className="glassmorphism p-8 rounded-3xl h-full transition-all duration-300 overflow-hidden relative">
+                <MotionDiv className="glassmorphism p-8 rounded-3xl h-full transition-all duration-300 overflow-hidden relative">
                   {/* Floating elements background */}
                   <div className="absolute top-0 right-0 w-20 h-20 bg-[#ECB629]/5 rounded-full -translate-y-10 translate-x-10" />
 
                   <div className="relative z-10">
                     {/* Icon with enhanced styling */}
-                    <motion.div className="relative mb-6">
+                    <MotionDiv className="relative mb-6">
                       <div className="w-16 h-16 bg-gradient-to-br from-[#ECB629] to-yellow-600 rounded-2xl flex items-center justify-center shadow-lg relative">
                         <div className="text-black">{benefit.icon}</div>
                       </div>
-                    </motion.div>
+                    </MotionDiv>
 
                     {/* Metric badge */}
-                    <motion.div
+                    <MotionDiv
                       className="inline-block px-3 py-1 bg-[#ECB629]/20 border border-[#ECB629]/30 rounded-full mb-4"
                       initial={{ scale: 0 }}
                       animate={isInView ? { scale: 1 } : {}}
@@ -665,7 +666,7 @@ const ResultsSection = () => {
                       <span className="text-[#ECB629] text-xs font-semibold">
                         {benefit.metric}
                       </span>
-                    </motion.div>
+                    </MotionDiv>
 
                     <h3 className="text-xl font-bold text-white mb-3 leading-tight">
                       {benefit.title}
@@ -690,7 +691,7 @@ const ResultsSection = () => {
                           </span>
                         </div>
                         <div className="w-full bg-slate-700 rounded-full h-2">
-                          <motion.div
+                          <MotionDiv
                             className="h-2 bg-gradient-to-r from-red-500 to-red-400 rounded-full"
                             initial={{ width: "0%" }}
                             animate={
@@ -715,7 +716,7 @@ const ResultsSection = () => {
                           </span>
                         </div>
                         <div className="w-full bg-slate-700 rounded-full h-2">
-                          <motion.div
+                          <MotionDiv
                             className="h-2 bg-gradient-to-r from-[#ECB629] to-yellow-400 rounded-full"
                             initial={{ width: "0%" }}
                             animate={
@@ -732,8 +733,8 @@ const ResultsSection = () => {
                       </div>
                     </div>
                   </div>
-                </motion.div>
-              </motion.div>
+                </MotionDiv>
+              </MotionDiv>
             ))}
           </div>
         </div>
@@ -777,7 +778,7 @@ const InvestmentSection = () => {
       <div className="absolute inset-0 opacity-5">
         <div className="grid grid-cols-16 gap-2 h-full p-4">
           {Array.from({ length: 256 }).map((_, i) => (
-            <motion.div
+            <MotionDiv
               key={i}
               className="bg-[#ECB629] rounded-sm"
               style={{ height: Math.random() * 6 + 2 + "px" }}
@@ -804,7 +805,7 @@ const InvestmentSection = () => {
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-6xl mx-auto">
-          <motion.div
+          <MotionDiv
             className="text-center mb-16"
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -822,16 +823,16 @@ const InvestmentSection = () => {
               Инженерно проектиране изисква прецизност и в техническата
               спецификация
             </p>
-          </motion.div>
+          </MotionDiv>
 
           {/* Price Display */}
-          <motion.div
+          <MotionDiv
             className="text-center mb-16"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <motion.div className="inline-block p-8 bg-slate-800/60 backdrop-blur-sm rounded-3xl border border-slate-600/30 relative overflow-hidden">
+            <MotionDiv className="inline-block p-8 bg-slate-800/60 backdrop-blur-sm rounded-3xl border border-slate-600/30 relative overflow-hidden">
               <div className="relative z-10">
                 <div className="text-sm text-[#ECB629] font-semibold mb-2 tracking-wider">
                   ЗАПОЧВА ОТ
@@ -844,26 +845,26 @@ const InvestmentSection = () => {
                   *Финалната цена се определя след техническа диагностика
                 </div>
               </div>
-            </motion.div>
-          </motion.div>
+            </MotionDiv>
+          </MotionDiv>
 
           {/* Principles Grid */}
           <div className="grid gap-8 md:gap-12">
             {principles.map((principle, index) => (
-              <motion.div
+              <MotionDiv
                 key={principle.number}
                 className="relative"
                 initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
                 animate={isInView ? { opacity: 1, x: 0 } : {}}
                 transition={{ duration: 0.8, delay: index * 0.2 }}
               >
-                <motion.div
+                <MotionDiv
                   className={`flex flex-col md:flex-row items-center gap-8 ${
                     index % 2 === 1 ? "md:flex-row-reverse" : ""
                   }`}
                 >
                   {/* Number Circle */}
-                  <motion.div className="flex-shrink-0">
+                  <MotionDiv className="flex-shrink-0">
                     <div className="relative">
                       <div className="w-20 h-20 bg-gradient-to-br from-[#ECB629] to-yellow-600 rounded-full flex items-center justify-center shadow-xl">
                         <span className="text-black font-bold text-2xl">
@@ -872,7 +873,7 @@ const InvestmentSection = () => {
                       </div>
                       {/* Connection line to next */}
                       {index < principles.length - 1 && (
-                        <motion.div
+                        <MotionDiv
                           className="absolute top-20 left-1/2 w-0.5 h-16 bg-gradient-to-b from-[#ECB629] to-slate-600 hidden md:block"
                           initial={{ scaleY: 0 }}
                           animate={isInView ? { scaleY: 1 } : {}}
@@ -880,11 +881,11 @@ const InvestmentSection = () => {
                         />
                       )}
                     </div>
-                  </motion.div>
+                  </MotionDiv>
 
                   {/* Content Card */}
                   <div className="flex-1 w-full">
-                    <motion.div className="bg-slate-800/60 backdrop-blur-sm p-8 rounded-2xl border border-slate-600/30 transition-all duration-300">
+                    <MotionDiv className="bg-slate-800/60 backdrop-blur-sm p-8 rounded-2xl border border-slate-600/30 transition-all duration-300">
                       <div className="flex items-center gap-4 mb-4">
                         <h3 className="text-xl md:text-2xl font-bold text-white">
                           {principle.title}
@@ -895,23 +896,23 @@ const InvestmentSection = () => {
                       </p>
 
                       {/* Decorative element */}
-                      <motion.div
+                      <MotionDiv
                         className="mt-6 w-full h-1 bg-slate-700 rounded-full overflow-hidden"
                         initial={{ width: 0 }}
                         animate={isInView ? { width: "100%" } : {}}
                         transition={{ duration: 1, delay: index * 0.2 + 0.8 }}
                       >
-                        <motion.div
+                        <MotionDiv
                           className="h-full bg-gradient-to-r from-[#ECB629] to-yellow-400"
                           initial={{ width: "0%" }}
                           animate={isInView ? { width: "100%" } : {}}
                           transition={{ duration: 1.5, delay: index * 0.2 + 1 }}
                         />
-                      </motion.div>
-                    </motion.div>
+                      </MotionDiv>
+                    </MotionDiv>
                   </div>
-                </motion.div>
-              </motion.div>
+                </MotionDiv>
+              </MotionDiv>
             ))}
           </div>
         </div>
@@ -945,7 +946,7 @@ export default function SeoStruktor() {
         <div className="container mx-auto px-6 relative z-1">
           <div className="max-w-4xl mx-auto text-center">
             {/* Status badge */}
-            <motion.div
+            <MotionDiv
               className="inline-flex items-center gap-3 px-6 py-3 glassmorphism rounded-full mb-8"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -959,9 +960,9 @@ export default function SeoStruktor() {
                 <span className="text-[#ECB629]">Ново</span> - Приемаме проекти
                 за 2025
               </span>
-            </motion.div>
+            </MotionDiv>
 
-            <motion.h1
+            <MotionH1
               className="text-5xl md:text-7xl font-bold mb-8 leading-tight text-white"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -971,7 +972,7 @@ export default function SeoStruktor() {
               <span className="text-[#ECB629]">
                 Просто имат по-добра система.
               </span>
-            </motion.h1>
+            </MotionH1>
 
             <motion.p
               className="text-xl md:text-2xl text-gray-300 mb-12 leading-relaxed max-w-3xl mx-auto"
@@ -992,7 +993,7 @@ export default function SeoStruktor() {
               .
             </motion.p>
 
-            <motion.div
+            <MotionDiv
               className="flex flex-col sm:flex-row gap-4 justify-center"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -1012,7 +1013,7 @@ export default function SeoStruktor() {
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </a>
               </Button>
-            </motion.div>
+            </MotionDiv>
           </div>
         </div>
       </section>
@@ -1032,7 +1033,7 @@ export default function SeoStruktor() {
       {/* CTA Section */}
       <section className="py-20 bg-[#ECB629] relative overflow-hidden">
         <div className="container mx-auto px-6 text-center relative z-10">
-          <motion.div
+          <MotionDiv
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -1045,7 +1046,7 @@ export default function SeoStruktor() {
               </span>
             </div>
 
-            <motion.h2
+            <MotionH2
               className="text-4xl md:text-5xl font-bold text-black mb-6"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -1053,7 +1054,7 @@ export default function SeoStruktor() {
               viewport={{ once: true }}
             >
               Готови ли сте да спрете да импровизирате?
-            </motion.h2>
+            </MotionH2>
 
             <motion.p
               className="text-xl text-black/80 mb-8 max-w-2xl mx-auto"
@@ -1067,7 +1068,7 @@ export default function SeoStruktor() {
             </motion.p>
 
             {/* Trust Signals */}
-            <motion.div
+            <MotionDiv
               className="flex flex-wrap justify-center gap-6 mb-8 text-sm text-black/70"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -1086,9 +1087,9 @@ export default function SeoStruktor() {
                 <CheckCircle className="w-4 h-4 text-green-600" />
                 <span>48 часа отговор</span>
               </div>
-            </motion.div>
+            </MotionDiv>
 
-            <motion.div
+            <MotionDiv
               className="flex flex-col sm:flex-row gap-4 justify-center items-center"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -1130,8 +1131,8 @@ export default function SeoStruktor() {
                 <Phone className="w-5 h-5" />
                 <span>Обади се сега</span>
               </motion.a>
-            </motion.div>
-          </motion.div>
+            </MotionDiv>
+          </MotionDiv>
         </div>
       </section>
 

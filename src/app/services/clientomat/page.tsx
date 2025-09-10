@@ -1,6 +1,7 @@
 'use client'
 
-import { motion, useInView } from "framer-motion";
+import { MotionDiv, MotionSection, MotionH1, MotionH2, MotionP } from "@/hooks/useSharedFramerMotion";
+import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -150,7 +151,7 @@ const ClientomatBackground = () => {
       {/* Floating Client Touchpoints */}
       <div className="absolute inset-0">
         {Array.from({ length: 12 }).map((_, i) => (
-          <motion.div
+          <MotionDiv
             key={i}
             className="absolute"
             style={{
@@ -178,7 +179,7 @@ const ClientomatBackground = () => {
                 <Handshake className="w-3 h-3 text-[#ECB629]/60" />
               )}
             </div>
-          </motion.div>
+          </MotionDiv>
         ))}
       </div>
 
@@ -240,14 +241,14 @@ export default function ClientomatPage() {
         <div className="container mx-auto px-6 relative z-1">
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-16">
-              <motion.div
+              <MotionDiv
                 className="inline-flex items-center gap-3 mb-8 px-6 py-3 rounded-full glassmorphism"
                 initial={{ opacity: 0, y: 20 }}
                 animate={heroInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6 }}
               >
                 <div className="flex items-center gap-2">
-                  <motion.div
+                  <MotionDiv
                     className="w-2 h-2 bg-[#ECB629] rounded-full"
                     animate={{
                       boxShadow: [
@@ -263,9 +264,9 @@ export default function ClientomatPage() {
                     <span className="text-[#ECB629] font-bold">система</span>
                   </span>
                 </div>
-              </motion.div>
+              </MotionDiv>
 
-              <motion.h1
+              <MotionH1
                 className="text-5xl md:text-7xl font-bold mb-8 text-white leading-tight"
                 initial={{ opacity: 0, y: 30 }}
                 animate={heroInView ? { opacity: 1, y: 0 } : {}}
@@ -273,7 +274,7 @@ export default function ClientomatPage() {
               >
                 Превърнете всеки контакт <br />в{" "}
                 <span className="text-[#ECB629]">лоялен клиент</span>
-              </motion.h1>
+              </MotionH1>
 
               <motion.p
                 className="text-xl md:text-2xl text-gray-300 mb-12 max-w-4xl mx-auto leading-relaxed"
@@ -285,7 +286,7 @@ export default function ClientomatPage() {
                 екосистема - от първия контакт до доживотна лоялност.
               </motion.p>
 
-              <motion.div
+              <MotionDiv
                 className="flex flex-col sm:flex-row gap-6 justify-center items-center"
                 initial={{ opacity: 0, y: 30 }}
                 animate={heroInView ? { opacity: 1, y: 0 } : {}}
@@ -305,7 +306,7 @@ export default function ClientomatPage() {
                       Заявете експертна диагностика
                     </span>
                     <ArrowRight className="ml-2 w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" />
-                    <motion.div
+                    <MotionDiv
                       className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
                       initial={{ x: "-100%" }}
                       whileHover={{ x: "100%" }}
@@ -325,7 +326,7 @@ export default function ClientomatPage() {
                     <span>Обади се сега</span>
                   </a>
                 </Button>
-              </motion.div>
+              </MotionDiv>
             </div>
           </div>
         </div>
@@ -334,14 +335,14 @@ export default function ClientomatPage() {
       {/* Philosophy Section */}
       <section ref={philosophyRef} className="py-20 relative overflow-hidden glass-section">
         <div className="container mx-auto px-6">
-          <motion.div
+          <MotionDiv
             className="max-w-6xl mx-auto"
             initial={{ opacity: 0, y: 30 }}
             animate={philosophyInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8 }}
           >
             <div className="text-center mb-16">
-              <motion.div
+              <MotionDiv
                 className="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full bg-[#ECB629]/10 border border-[#ECB629]/20"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={philosophyInView ? { opacity: 1, scale: 1 } : {}}
@@ -351,16 +352,16 @@ export default function ClientomatPage() {
                 <span className="text-[#ECB629] font-semibold text-sm">
                   СИСТЕМА
                 </span>
-              </motion.div>
+              </MotionDiv>
 
-              <motion.h2
+              <MotionH2
                 className="text-4xl md:text-5xl font-bold text-white mb-8"
                 initial={{ opacity: 0, y: 20 }}
                 animate={philosophyInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.8, delay: 0.2 }}
               >
                 Защо губите клиенти?
-              </motion.h2>
+              </MotionH2>
 
               <motion.p
                 className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed"
@@ -396,7 +397,7 @@ export default function ClientomatPage() {
                   icon: Users,
                 },
               ].map((problem, index) => (
-                <motion.div
+                <MotionDiv
                   key={index}
                   initial={{ opacity: 0, y: 30 }}
                   animate={philosophyInView ? { opacity: 1, y: 0 } : {}}
@@ -421,11 +422,11 @@ export default function ClientomatPage() {
                       <p className="text-gray-300">{problem.description}</p>
                     </div>
                   </Card>
-                </motion.div>
+                </MotionDiv>
               ))}
             </div>
 
-            <motion.div
+            <MotionDiv
               initial={{ opacity: 0, y: 30 }}
               animate={philosophyInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.8 }}
@@ -494,22 +495,22 @@ export default function ClientomatPage() {
                   </div>
                 </div>
               </Card>
-            </motion.div>
-          </motion.div>
+            </MotionDiv>
+          </MotionDiv>
         </div>
       </section>
 
       {/* Process Section */}
       <section ref={processRef} className="py-20 glass-section relative overflow-hidden">
         <div className="container mx-auto px-6">
-          <motion.div
+          <MotionDiv
             className="max-w-6xl mx-auto"
             initial={{ opacity: 0, y: 30 }}
             animate={processInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8 }}
           >
             <div className="text-center mb-16">
-              <motion.div
+              <MotionDiv
                 className="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full bg-[#ECB629]/10 border border-[#ECB629]/20"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={processInView ? { opacity: 1, scale: 1 } : {}}
@@ -519,16 +520,16 @@ export default function ClientomatPage() {
                 <span className="text-[#ECB629] font-semibold text-sm">
                   ИНЖЕНЕРЕН ПРОЦЕС
                 </span>
-              </motion.div>
+              </MotionDiv>
 
-              <motion.h2
+              <MotionH2
                 className="text-4xl md:text-5xl font-bold text-white mb-8"
                 initial={{ opacity: 0, y: 20 }}
                 animate={processInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.8, delay: 0.2 }}
               >
                 Как работи Clientomat™?
-              </motion.h2>
+              </MotionH2>
 
               <motion.p
                 className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed"
@@ -596,7 +597,7 @@ export default function ClientomatPage() {
                   ],
                 },
               ].map((step, index) => (
-                <motion.div
+                <MotionDiv
                   key={index}
                   initial={{ opacity: 0, y: 30 }}
                   animate={processInView ? { opacity: 1, y: 0 } : {}}
@@ -638,24 +639,24 @@ export default function ClientomatPage() {
                       </div>
                     </div>
                   </Card>
-                </motion.div>
+                </MotionDiv>
               ))}
             </div>
-          </motion.div>
+          </MotionDiv>
         </div>
       </section>
 
       {/* Results Section */}
       <section ref={resultsRef} className="py-20 relative overflow-hidden">
         <div className="container mx-auto px-6">
-          <motion.div
+          <MotionDiv
             className="max-w-6xl mx-auto"
             initial={{ opacity: 0, y: 30 }}
             animate={resultsInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8 }}
           >
             <div className="text-center mb-16">
-              <motion.div
+              <MotionDiv
                 className="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full bg-green-600/10 border border-green-600/20"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={resultsInView ? { opacity: 1, scale: 1 } : {}}
@@ -665,16 +666,16 @@ export default function ClientomatPage() {
                 <span className="text-green-400 font-semibold text-sm">
                   ПРОВЕРЕНИ РЕЗУЛТАТИ
                 </span>
-              </motion.div>
+              </MotionDiv>
 
-              <motion.h2
+              <MotionH2
                 className="text-4xl md:text-5xl font-bold text-white mb-8"
                 initial={{ opacity: 0, y: 20 }}
                 animate={resultsInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.8, delay: 0.2 }}
               >
                 Какви резултати да очаквате?
-              </motion.h2>
+              </MotionH2>
 
               <motion.p
                 className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed"
@@ -714,7 +715,7 @@ export default function ClientomatPage() {
                   color: "purple",
                 },
               ].map((result, index) => (
-                <motion.div
+                <MotionDiv
                   key={index}
                   initial={{ opacity: 0, y: 30 }}
                   animate={resultsInView ? { opacity: 1, y: 0 } : {}}
@@ -722,14 +723,14 @@ export default function ClientomatPage() {
                 >
                   <Card className="glassmorphism h-full text-center group hover:border-[#ECB629]/50 transition-all duration-300">
                     <div className="p-8">
-                      <motion.div
+                      <MotionDiv
                         className="text-5xl font-bold text-[#ECB629] mb-4"
                         initial={{ scale: 0.5, opacity: 0 }}
                         animate={resultsInView ? { scale: 1, opacity: 1 } : {}}
                         transition={{ duration: 0.6, delay: 0.5 + index * 0.2 }}
                       >
                         {result.metric}
-                      </motion.div>
+                      </MotionDiv>
                       <h3 className="text-xl font-bold text-white mb-4">
                         {result.label}
                       </h3>
@@ -742,11 +743,11 @@ export default function ClientomatPage() {
                       </Badge>
                     </div>
                   </Card>
-                </motion.div>
+                </MotionDiv>
               ))}
             </div>
 
-            <motion.div
+            <MotionDiv
               initial={{ opacity: 0, y: 30 }}
               animate={resultsInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.8 }}
@@ -790,8 +791,8 @@ export default function ClientomatPage() {
                   </div>
                 </div>
               </Card>
-            </motion.div>
-          </motion.div>
+            </MotionDiv>
+          </MotionDiv>
         </div>
       </section>
 
@@ -806,7 +807,7 @@ export default function ClientomatPage() {
 
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <motion.div
+            <MotionDiv
               initial={{ opacity: 0, y: 30 }}
               animate={investmentInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8 }}
@@ -861,7 +862,7 @@ export default function ClientomatPage() {
                     description: "Финалната инвестиция се определя след задължителна техническа диагностика. Вие получавате детайлно инженерно предложение, в което всеки компонент е ясно описан и стойностен."
                   }
                 ].map((principle, index) => (
-                  <motion.div
+                  <MotionDiv
                     key={principle.number}
                     className="flex gap-6"
                     initial={{ opacity: 0, x: -30 }}
@@ -884,10 +885,10 @@ export default function ClientomatPage() {
                         {principle.description}
                       </p>
                     </div>
-                  </motion.div>
+                  </MotionDiv>
                 ))}
               </div>
-            </motion.div>
+            </MotionDiv>
           </div>
         </div>
       </section>

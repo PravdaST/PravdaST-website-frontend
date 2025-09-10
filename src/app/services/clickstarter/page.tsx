@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { MotionDiv, MotionH1, MotionH2, MotionP, MotionSection, MotionA } from "@/hooks/useSharedFramerMotion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -44,7 +44,7 @@ const ClickstarterBackground = () => {
         {/* Tech Lines for Ad Flow */}
         <div className="tech-lines">
           {[...Array(6)].map((_, i) => (
-            <motion.div
+            <MotionDiv
               key={i}
               className="absolute h-px bg-gradient-to-r from-transparent via-[#ECB629] to-transparent"
               style={{
@@ -77,7 +77,7 @@ const ClickstarterBackground = () => {
           "CONVERT",
           "OPTIMIZE",
         ].map((keyword, i) => (
-          <motion.div
+          <MotionDiv
             key={keyword}
             className="absolute text-[#ECB629] font-bold text-xs tracking-wider opacity-30"
             style={{
@@ -96,12 +96,12 @@ const ClickstarterBackground = () => {
             }}
           >
             {keyword}
-          </motion.div>
+          </MotionDiv>
         ))}
 
         {/* Floating Tech Elements */}
         {[...Array(12)].map((_, i) => (
-          <motion.div
+          <MotionDiv
             key={i}
             className="absolute w-1 h-1 bg-[#ECB629] rounded-full"
             style={{
@@ -141,7 +141,7 @@ export default function Clickstarter() {
         <div className="container mx-auto px-6 relative z-1">
           <div className="max-w-4xl mx-auto text-center">
             {/* Enhanced Status Badge */}
-            <motion.div
+            <MotionDiv
               className="inline-flex items-center gap-3 px-6 py-3 rounded-full mb-8 bg-gradient-to-r from-slate-800/80 to-slate-700/60 border border-[#ECB629]/20 backdrop-blur-sm"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -149,7 +149,7 @@ export default function Clickstarter() {
             >
               <div className="relative">
                 <div className="w-3 h-3 bg-[#ECB629] rounded-full"></div>
-                <motion.div
+                <MotionDiv
                   className="absolute inset-0 w-3 h-3 bg-[#ECB629] rounded-full opacity-30"
                   animate={{ scale: [1, 1.2, 1] }}
                   transition={{
@@ -163,9 +163,9 @@ export default function Clickstarter() {
                 <span className="text-[#ECB629] font-bold">Прецизна</span>{" "}
                 оптимизация
               </span>
-            </motion.div>
+            </MotionDiv>
 
-            <motion.h1
+            <MotionH1
               className="text-5xl md:text-7xl font-bold mb-8 leading-tight text-white"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -174,16 +174,16 @@ export default function Clickstarter() {
               Двигателят на вашия растеж има нужда от{" "}
               <span className="text-[#ECB629] relative">
                 настройка, а не само от повече гориво.
-                <motion.div
+                <MotionDiv
                   className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-[#ECB629] to-[#ECB629]/50 rounded-full"
                   initial={{ scaleX: 0 }}
                   animate={{ scaleX: 1 }}
                   transition={{ duration: 1, delay: 0.8 }}
                 />
               </span>
-            </motion.h1>
+            </MotionH1>
 
-            <motion.p
+            <MotionP
               className="text-xl md:text-2xl mb-12 text-gray-300 max-w-3xl mx-auto"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -195,15 +195,15 @@ export default function Clickstarter() {
               Това прилича на форсиране на автомобилен двигател, без да сте
               включили на скорост – създава шум, изразходва гориво, но не ви
               придвижва напред.
-            </motion.p>
+            </MotionP>
 
-            <motion.div
+            <MotionDiv
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
               className="flex flex-col sm:flex-row gap-4 justify-center mb-12"
             >
-              <motion.div
+              <MotionDiv
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 transition={{ type: "spring", stiffness: 400, damping: 17 }}
@@ -225,8 +225,8 @@ export default function Clickstarter() {
                     </span>
                   </a>
                 </Button>
-              </motion.div>
-            </motion.div>
+              </MotionDiv>
+            </MotionDiv>
           </div>
         </div>
       </section>
@@ -239,7 +239,7 @@ export default function Clickstarter() {
 
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-6xl mx-auto">
-            <motion.div
+            <MotionDiv
               className="text-center mb-16"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -249,11 +249,11 @@ export default function Clickstarter() {
               <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
                 Нашият подход
               </h2>
-            </motion.div>
+            </MotionDiv>
 
             <div className="grid lg:grid-cols-1 gap-12 items-center">
               {/* Problem vs Solution Visualization */}
-              <motion.div
+              <MotionDiv
                 className="space-y-8"
                 initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -312,10 +312,10 @@ export default function Clickstarter() {
                     </p>
                   </CardContent>
                 </Card>
-              </motion.div>
+              </MotionDiv>
 
               {/* Content */}
-              <motion.div
+              <MotionDiv
                 initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8 }}
@@ -335,7 +335,7 @@ export default function Clickstarter() {
                     </p>
                   </GlassCard>
                 </div>
-              </motion.div>
+              </MotionDiv>
             </div>
           </div>
         </div>
@@ -349,7 +349,7 @@ export default function Clickstarter() {
 
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-6xl mx-auto">
-            <motion.div
+            <MotionDiv
               className="text-center mb-16"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -359,7 +359,7 @@ export default function Clickstarter() {
               <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
                 Нашата техническа инспекция: Процесът на настройка в 4 фази
               </h2>
-            </motion.div>
+            </MotionDiv>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
               {[
@@ -396,7 +396,7 @@ export default function Clickstarter() {
                   color: "from-[#ECB629] to-yellow-500",
                 },
               ].map((phase, index) => (
-                <motion.div
+                <MotionDiv
                   key={phase.phase}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -424,7 +424,7 @@ export default function Clickstarter() {
                       </p>
                     </CardContent>
                   </Card>
-                </motion.div>
+                </MotionDiv>
               ))}
             </div>
           </div>
@@ -439,7 +439,7 @@ export default function Clickstarter() {
 
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-6xl mx-auto">
-            <motion.div
+            <MotionDiv
               className="text-center mb-16"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -449,7 +449,7 @@ export default function Clickstarter() {
               <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
                 Спрете да се надявате. Започнете да изчислявате.
               </h2>
-            </motion.div>
+            </MotionDiv>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
               {[
@@ -475,7 +475,7 @@ export default function Clickstarter() {
                     "и бързо валидиране на пазарни хипотези с минимален риск",
                 },
               ].map((result, index) => (
-                <motion.div
+                <MotionDiv
                   key={index}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -499,7 +499,7 @@ export default function Clickstarter() {
                       </p>
                     </CardContent>
                   </Card>
-                </motion.div>
+                </MotionDiv>
               ))}
             </div>
           </div>
@@ -514,7 +514,7 @@ export default function Clickstarter() {
 
         <div className="container mx-auto px-6 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <motion.div
+            <MotionDiv
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
@@ -576,7 +576,7 @@ export default function Clickstarter() {
                       "Финалната инвестиция се определя след задължителна техническа диагностика. Вие получавате детайлно инженерно предложение, в което всеки компонент е ясно описан и стойностен.",
                   },
                 ].map((principle, index) => (
-                  <motion.div
+                  <MotionDiv
                     key={principle.number}
                     className="flex gap-6"
                     initial={{ opacity: 0, x: -30 }}
@@ -600,10 +600,10 @@ export default function Clickstarter() {
                         {principle.description}
                       </p>
                     </div>
-                  </motion.div>
+                  </MotionDiv>
                 ))}
               </div>
-            </motion.div>
+            </MotionDiv>
           </div>
         </div>
       </section>
@@ -641,7 +641,7 @@ export default function Clickstarter() {
             </div>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <motion.a
+              <MotionA
                 href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdast.agency"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -658,9 +658,9 @@ export default function Clickstarter() {
               >
                 <span>Запишете консултация</span>
                 <ArrowRight className="w-5 h-5" />
-              </motion.a>
+              </MotionA>
               
-              <motion.a
+              <MotionA
                 href="tel:+359879282299"
                 className="inline-flex items-center gap-3 border-2 border-black text-black px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-300 hover:bg-black hover:text-white"
                 whileHover={{
@@ -675,7 +675,7 @@ export default function Clickstarter() {
               >
                 <Phone className="w-5 h-5" />
                 <span>Обади се сега</span>
-              </motion.a>
+              </MotionA>
             </div>
           </div>
         </div>
