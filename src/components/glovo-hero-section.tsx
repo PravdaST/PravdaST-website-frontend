@@ -38,7 +38,7 @@ export const GlovoHeroSection = () => {
               подарявате на Glovo
             </span>
             <br />
-            <span className="text-blue-900 text-4xl sm:text-6xl md:text-7xl">
+            <span className="text-orange-500 text-4xl sm:text-6xl md:text-7xl">
               хиляди левове?
             </span>
             </PravdaHeading>
@@ -51,7 +51,7 @@ export const GlovoHeroSection = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
           >
             <PravdaText size="xl" className="md:text-2xl mb-6 leading-relaxed text-center text-gray-300">
-              <span className="text-blue-400 font-bold">Калкулатор за разходи:</span> Анализирайте месечните си разходи за Glovo и получете персонализиран план за оптимизация
+              <span className="text-orange-400 font-bold">Калкулатор за разходи:</span> Анализирайте месечните си разходи за Glovo и получете персонализиран план за оптимизация
             </PravdaText>
           </motion.div>
 
@@ -112,10 +112,10 @@ export const GlovoHeroSection = () => {
           >
             <Button
               size="lg"
-              className="group bg-blue-900 hover:bg-blue-800 text-white transition-all duration-300 px-8 md:px-12 py-4 md:py-6 text-lg md:text-xl font-bold shadow-sm rounded-lg"
+              className="group bg-orange-600 hover:bg-orange-700 text-white transition-all duration-300 px-8 md:px-12 py-4 md:py-6 text-lg md:text-xl font-bold shadow-sm rounded-lg"
               onClick={() =>
                 document
-                  .getElementById("calculator")
+                  .getElementById("calculator-section")
                   ?.scrollIntoView({ behavior: "smooth" })
               }
             >
@@ -131,7 +131,7 @@ export const GlovoHeroSection = () => {
                 <span>Детайлен анализ - без задължения</span>
               </div>
               <div className="flex items-center gap-2">
-                <Smartphone className="w-4 h-4 text-blue-600" />
+                <Smartphone className="w-4 h-4 text-orange-400" />
                 <span>Резултати доставени за 2 минути</span>
               </div>
               <div className="flex items-center gap-2">

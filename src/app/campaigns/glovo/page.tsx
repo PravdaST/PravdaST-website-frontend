@@ -38,7 +38,7 @@ function SolutionPreviewSection() {
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
-            Как изглежда <span className="text-blue-400">вашата собствена система</span>?
+            Как изглежда <span className="text-orange-400">вашата собствена система</span>?
           </h2>
           <p className="text-xl text-gray-300 mb-8">
             Ето какво получавате за 48 часа:
@@ -86,13 +86,13 @@ function CredibilityGuaranteeSection() {
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-5xl font-bold text-white mb-8">
-            <span className="text-blue-400">Гарантираме</span> резултата
+            <span className="text-orange-400">Гарантираме</span> резултата
           </h2>
           
           <div className="grid md:grid-cols-3 gap-6 mb-8">
             <div className="bg-black border border-gray-700 rounded-lg p-6">
-              <Award className="w-8 h-8 text-blue-400 mx-auto mb-3" />
-              <h3 className="text-lg font-bold text-blue-400 mb-2">100% Гаранция</h3>
+              <Award className="w-8 h-8 text-orange-400 mx-auto mb-3" />
+              <h3 className="text-lg font-bold text-orange-400 mb-2">100% Гаранция</h3>
               <p className="text-gray-300 text-sm">Ако не спестите поне 1000 лв за първия месец - връщаме парите</p>
             </div>
             
@@ -124,7 +124,7 @@ export default function GlovoCalculatorLandingOptimized() {
           speed={0.3}
           borderColor="#1a1a1a"
           squareSize={60}
-          hoverFillColor="#0ea5e9"
+          hoverFillColor="#f97316"
           className="opacity-40"
         />
       </div>
@@ -148,7 +148,7 @@ export default function GlovoCalculatorLandingOptimized() {
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto text-center mb-12">
             <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
-              <span className="text-blue-400">Безплатен калкулатор</span> за спестявания
+              <span className="text-orange-400">Безплатен калкулатор</span> за спестявания
             </h2>
             <p className="text-xl text-gray-300 mb-8">
               Разберете точно колко ще спестите всеки месец с наша система
@@ -157,7 +157,7 @@ export default function GlovoCalculatorLandingOptimized() {
             <div className="bg-black border border-gray-700 rounded-lg p-8 mb-8">
               <div className="grid md:grid-cols-3 gap-6 text-center">
                 <div>
-                  <div className="text-2xl font-bold text-blue-400 mb-2">Бързо</div>
+                  <div className="text-2xl font-bold text-orange-400 mb-2">Бързо</div>
                   <div className="text-gray-300">Попълни за 2 минути</div>
                 </div>
                 <div>

@@ -39,7 +39,7 @@ export function GlovoStickyCTA() {
         >
           <button
             onClick={scrollToCalculator}
-            className="group bg-blue-500 hover:bg-blue-600 text-white rounded-full p-4 shadow-2xl transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-blue-400/30"
+            className="group bg-orange-500 hover:bg-orange-600 text-white rounded-full p-4 shadow-2xl transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-4 focus:ring-orange-400/30"
             aria-label="Отиди до калкулатора"
           >
             <div className="flex items-center space-x-3">
@@ -52,7 +52,7 @@ export function GlovoStickyCTA() {
           </button>
           
           {/* Pulsing effect */}
-          <div className="absolute inset-0 bg-blue-400 rounded-full animate-ping opacity-20 pointer-events-none"></div>
+          <div className="absolute inset-0 bg-orange-400 rounded-full animate-ping opacity-20 pointer-events-none"></div>
         </motion.div>
       )}
     </AnimatePresence>

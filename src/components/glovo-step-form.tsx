@@ -179,13 +179,13 @@ export const GlovoStepForm = () => {
                 <CheckCircle className="w-4 h-4" />
                 <span className="font-medium">безплатно</span>
               </div>
-              <div className="flex items-center justify-center md:justify-start space-x-2 text-blue-600 text-sm">
+              <div className="flex items-center justify-center md:justify-start space-x-2 text-orange-400 text-sm">
                 <Shield className="w-4 h-4" />
                 <span className="font-medium">
                   НИКОГА не споделяме информацията ви
                 </span>
               </div>
-              <div className="flex items-center justify-center md:justify-start space-x-2 text-blue-600 text-sm">
+              <div className="flex items-center justify-center md:justify-start space-x-2 text-orange-400 text-sm">
                 <Phone className="w-4 h-4" />
                 <span className="font-medium">
                   Обаждаме се САМО в удобно за вас време
@@ -205,7 +205,7 @@ export const GlovoStepForm = () => {
                   Само ценни съвети за вашия ресторант
                 </span>
               </div>
-              <div className="flex items-center justify-center md:justify-start space-x-2 text-blue-600 text-sm">
+              <div className="flex items-center justify-center md:justify-start space-x-2 text-orange-400 text-sm">
                 <Users className="w-4 h-4" />
                 <span className="font-medium">
                   Анализът се изпраща на посочените от вас контакти
@@ -473,7 +473,7 @@ export const GlovoStepForm = () => {
           </div>
           <div className="w-full bg-gray-700 rounded-full h-2">
             <div
-              className="bg-blue-500 h-2 rounded-full transition-all duration-500"
+              className="bg-orange-500 h-2 rounded-full transition-all duration-500"
               style={{ width: `${(currentStep / 6) * 100}%` }}
             ></div>
           </div>
@@ -515,7 +515,7 @@ export const GlovoStepForm = () => {
             <Button
               onClick={submitToAirtable}
               disabled={!isStepValid() || isSubmitting}
-              className="bg-blue-500 text-white hover:bg-blue-600 disabled:opacity-50"
+              className="bg-orange-500 text-white hover:bg-orange-600 disabled:opacity-50"
             >
               {isSubmitting ? (
                 <>
@@ -533,7 +533,7 @@ export const GlovoStepForm = () => {
             <Button
               onClick={nextStep}
               disabled={!isStepValid()}
-              className="bg-blue-500 text-white hover:bg-blue-600 disabled:opacity-50"
+              className="bg-orange-500 text-white hover:bg-orange-600 disabled:opacity-50"
             >
               Напред
               <ChevronRight className="ml-2 w-4 h-4" />
