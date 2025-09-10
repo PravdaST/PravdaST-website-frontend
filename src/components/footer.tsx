@@ -117,24 +117,28 @@ export const Footer = () => {
                 { icon: Instagram, href: "https://www.instagram.com/pravdast.agency/" },
                 { icon: Linkedin, href: "https://www.linkedin.com/company/pravda-st/" }
               ].map((social, index) => (
-                <motion.a
+                <a
                   key={index}
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-gray-400 hover:text-[#ECB629] transition-colors relative"
-                  whileHover={{ y: -2, scale: 1.1 }}
-                  transition={{ duration: 0.2 }}
                 >
+                  <MotionDiv
+                    className="performance-animated-element"
+                    whileHover={{ y: -2, scale: 1.1 }}
+                    transition={{ duration: 0.2 }}
+                  >
                   <social.icon size={20} />
                   <MotionDiv
                     className="absolute inset-0 bg-[#ECB629] rounded-full opacity-0"
                     whileHover={{ opacity: 0.1 }}
                     transition={{ duration: 0.2 }}
                   />
-                </motion.a>
+                  </MotionDiv>
+                </a>
               ))}
-            </motion.div>
+            </MotionDiv>
           </SlideIn>
 
           {/* Services */}
@@ -156,13 +160,14 @@ export const Footer = () => {
             </h4>
             <ul className="space-y-3">
               {footerLinks.services.map((link, index) => (
-                <motion.li
-                  key={index}
-                  initial={{ opacity: 0, x: -10 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.4, delay: 0.2 + index * 0.1 }}
-                  viewport={{ once: true }}
-                >
+                <li key={index}>
+                  <MotionDiv
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.4, delay: 0.2 + index * 0.1 }}
+                    viewport={{ once: true }}
+                    className="performance-animated-element"
+                  >
                   <Link
                     href={link.href}
                     className="text-gray-400 hover:text-[#ECB629] transition-colors text-sm relative group"
@@ -172,10 +177,11 @@ export const Footer = () => {
                       className="absolute -bottom-1 left-0 right-0 h-px bg-[#ECB629] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
                     />
                   </Link>
-                </motion.li>
+                </MotionDiv>
+                </li>
               ))}
             </ul>
-          </motion.div>
+          </MotionDiv>
 
           {/* Company */}
           <MotionDiv
@@ -196,13 +202,14 @@ export const Footer = () => {
             </h4>
             <ul className="space-y-3">
               {footerLinks.company.map((link, index) => (
-                <motion.li
-                  key={index}
-                  initial={{ opacity: 0, x: -10 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
-                  viewport={{ once: true }}
-                >
+                <li key={index}>
+                  <MotionDiv
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
+                    viewport={{ once: true }}
+                    className="performance-animated-element"
+                  >
                   <Link
                     href={link.href}
                     className="text-gray-400 hover:text-[#ECB629] transition-colors text-sm relative group"
@@ -212,10 +219,11 @@ export const Footer = () => {
                       className="absolute -bottom-1 left-0 right-0 h-px bg-[#ECB629] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
                     />
                   </Link>
-                </motion.li>
+                </MotionDiv>
+                </li>
               ))}
             </ul>
-          </motion.div>
+          </MotionDiv>
 
           {/* Blog Posts */}
           <MotionDiv
@@ -251,7 +259,7 @@ export const Footer = () => {
                 </Link>
               </li>
             </ul>
-          </motion.div>
+          </MotionDiv>
 
           {/* Contact Info */}
           <MotionDiv
@@ -272,19 +280,20 @@ export const Footer = () => {
             </h4>
             <ul className="space-y-3">
               {footerLinks.contact.map((contact, index) => (
-                <motion.li
-                  key={index}
-                  className="flex items-start gap-3"
-                  initial={{ opacity: 0, x: -10 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.4, delay: 0.4 + index * 0.1 }}
-                  viewport={{ once: true }}
-                >
+                <li key={index}>
+                  <MotionDiv
+                    className="flex items-start gap-3 performance-animated-element"
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.4, delay: 0.4 + index * 0.1 }}
+                    viewport={{ once: true }}
+                  >
                   <contact.icon className="w-4 h-4 text-[#ECB629] mt-0.5 flex-shrink-0" />
-                  <span className="text-gray-400 text-sm">
-                    {contact.info}
-                  </span>
-                </motion.li>
+                    <span className="text-gray-400 text-sm">
+                      {contact.info}
+                    </span>
+                  </MotionDiv>
+                </li>
               ))}
             </ul>
 
@@ -299,51 +308,60 @@ export const Footer = () => {
               <h5 className="text-gray-300 text-sm font-medium mb-3">Бързи контакти</h5>
               <div className="flex items-center gap-4">
                 {/* Viber Button */}
-                <motion.a
+                <a
                   href="viber://chat?number=%2B359879282299"
                   className="flex items-center gap-2 px-3 py-2 bg-[#665CAC] hover:bg-[#5548A3] text-white text-xs rounded-lg transition-colors"
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  transition={{ duration: 0.2 }}
                 >
+                  <MotionDiv
+                    className="performance-animated-element flex items-center gap-2 w-full h-full"
+                    whileHover={{ scale: 1.05, y: -2 }}
+                    transition={{ duration: 0.2 }}
+                  >
                   <MessageCircle size={14} />
                   <span>Viber</span>
-                </motion.a>
+                  </MotionDiv>
+                </a>
 
                 {/* WhatsApp Button */}
-                <motion.a
+                <a
                   href="https://wa.me/359879282299"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 px-3 py-2 bg-[#25D366] hover:bg-[#1DA851] text-white text-xs rounded-lg transition-colors"
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  transition={{ duration: 0.2 }}
                 >
+                  <MotionDiv
+                    className="performance-animated-element flex items-center gap-2 w-full h-full"
+                    whileHover={{ scale: 1.05, y: -2 }}
+                    transition={{ duration: 0.2 }}
+                  >
                   <MessageCircle size={14} />
                   <span>WhatsApp</span>
-                </motion.a>
+                  </MotionDiv>
+                </a>
               </div>
-            </motion.div>
-          </motion.div>
+            </MotionDiv>
+          </MotionDiv>
         </div>
 
         {/* Bottom Section */}
-        <motion.div
-          className="border-t border-slate-700/50 pt-8"
+        <MotionDiv
+          className="border-t border-slate-700/50 pt-8 performance-animated-element"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
           viewport={{ once: true }}
         >
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <motion.p
-              className="text-gray-400 text-sm"
+            <MotionDiv
+              className="text-gray-400 text-sm performance-animated-element"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.5 }}
               viewport={{ once: true }}
+              as="p"
             >
               © 2025 Pravda ST. Всички права запазени.
-            </motion.p>
+            </MotionDiv>
 
             <MotionDiv
               className="flex items-center gap-6"
@@ -364,9 +382,9 @@ export const Footer = () => {
                   />
                 </Link>
               ))}
-            </motion.div>
+            </MotionDiv>
           </div>
-        </motion.div>
+        </MotionDiv>
       </div>
     </footer>
   );
