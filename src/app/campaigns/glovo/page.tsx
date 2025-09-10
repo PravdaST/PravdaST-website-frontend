@@ -88,19 +88,19 @@ function CredibilityGuaranteeSection() {
           </h2>
           
           <div className="grid md:grid-cols-3 gap-6 mb-8">
-            <div className="bg-gray-900/50 border border-gray-700 rounded-lg p-6">
+            <div className="bg-black border border-gray-700 rounded-lg p-6">
               <Award className="w-8 h-8 text-blue-400 mx-auto mb-3" />
               <h3 className="text-lg font-bold text-blue-400 mb-2">100% Гаранция</h3>
               <p className="text-gray-300 text-sm">Ако не спестите поне 1000 лв за първия месец - връщаме парите</p>
             </div>
             
-            <div className="bg-gray-900/50 border border-gray-700 rounded-lg p-6">
+            <div className="bg-black border border-gray-700 rounded-lg p-6">
               <TrendingUp className="w-8 h-8 text-green-400 mx-auto mb-3" />
               <h3 className="text-lg font-bold text-green-400 mb-2">48 часа</h3>
               <p className="text-gray-300 text-sm">Системата е готова за използване до 48 часа</p>
             </div>
             
-            <div className="bg-gray-900/50 border border-gray-700 rounded-lg p-6">
+            <div className="bg-black border border-gray-700 rounded-lg p-6">
               <Shield className="w-8 h-8 text-purple-400 mx-auto mb-3" />
               <h3 className="text-lg font-bold text-purple-400 mb-2">Пълна поддръжка</h3>
               <p className="text-gray-300 text-sm">Безплатна поддръжка и обновления за 6 месеца</p>
@@ -141,7 +141,7 @@ export default function GlovoCalculatorLandingOptimized() {
               Разберете точно колко ще спестите всеки месец с наша система
             </p>
             
-            <div className="bg-gray-900/50 border border-gray-700 rounded-lg p-8 mb-8">
+            <div className="bg-black border border-gray-700 rounded-lg p-8 mb-8">
               <div className="grid md:grid-cols-3 gap-6 text-center">
                 <div>
                   <div className="text-2xl font-bold text-blue-400 mb-2">Бързо</div>
@@ -168,7 +168,6 @@ export default function GlovoCalculatorLandingOptimized() {
           {/* Form Container - запазвам оригиналната STEP форма */}
           <div className="max-w-2xl mx-auto">
             <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/20 to-green-400/20 rounded-3xl blur-xl"></div>
               <div className="relative">
                 <Suspense fallback={<FormLoading />}>
                   <GlovoStepForm />
