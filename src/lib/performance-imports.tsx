@@ -1,7 +1,7 @@
 // Performance-optimized dynamic imports for heavy components
 // This will dramatically reduce bundle size by code-splitting
 
-import { lazy } from 'react'
+import React, { lazy } from 'react'
 
 // Heavy service pages - load only when needed  
 export const TrendlabPageLazy = lazy(() => import('../app/services/trendlab/page'))
