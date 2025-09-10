@@ -227,14 +227,14 @@ export const HeroSection = () => {
           </MotionDiv>
 
           {/* Trust indicators */}
-          <motion.div
-            className="grid grid-cols-1 sm:grid-cols-1 gap-3 sm:gap-6 max-w-3xl mx-auto px-4 sm:px-0"
+          <MotionDiv
+            className="grid grid-cols-1 sm:grid-cols-1 gap-3 sm:gap-6 max-w-3xl mx-auto px-4 sm:px-0 performance-animated-element"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
           >
-            <motion.div
-              className="relative flex items-center justify-center gap-3 p-4 bg-gradient-to-r from-slate-800/50 to-slate-700/50 backdrop-blur-sm rounded-xl border border-[var(--pravdast-yellow)]/30 overflow-hidden group"
+            <MotionDiv
+              className="relative flex items-center justify-center gap-3 p-4 bg-gradient-to-r from-slate-800/50 to-slate-700/50 backdrop-blur-sm rounded-xl border border-[var(--pravdast-yellow)]/30 overflow-hidden group performance-animated-element"
               animate={{
                 borderColor: [
                   "rgba(236, 182, 40, 0.3)",
@@ -252,8 +252,8 @@ export const HeroSection = () => {
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[var(--pravdast-yellow)]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 
               {/* Animated background pulse */}
-              <motion.div
-                className="absolute inset-0 bg-[var(--pravdast-yellow)]/5 rounded-xl"
+              <MotionDiv
+                className="absolute inset-0 bg-[var(--pravdast-yellow)]/5 rounded-xl performance-animated-element"
                 animate={{
                   scale: [1, 1.05, 1],
                   opacity: [0.5, 1, 0.5],
@@ -267,8 +267,8 @@ export const HeroSection = () => {
 
               {/* Pulsing dot with ring */}
               <div className="relative">
-                <motion.div
-                  className="w-2 h-2 bg-[var(--pravdast-yellow)] rounded-full relative z-10"
+                <MotionDiv
+                  className="w-2 h-2 bg-[var(--pravdast-yellow)] rounded-full relative z-10 performance-animated-element"
                   animate={{
                     scale: [1, 1.2, 1],
                   }}
@@ -278,8 +278,8 @@ export const HeroSection = () => {
                     ease: "easeInOut",
                   }}
                 />
-                <motion.div
-                  className="absolute inset-0 w-2 h-2 bg-[var(--pravdast-yellow)] rounded-full"
+                <MotionDiv
+                  className="absolute inset-0 w-2 h-2 bg-[var(--pravdast-yellow)] rounded-full performance-animated-element"
                   animate={{
                     scale: [1, 2, 2.5],
                     opacity: [0.8, 0.4, 0],
