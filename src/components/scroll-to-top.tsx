@@ -3,9 +3,11 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowUp } from 'lucide-react'
+import { usePathname } from 'next/navigation'
 
 export const ScrollToTop = () => {
   const [isVisible, setIsVisible] = useState(false)
+  const pathname = usePathname()
 
   useEffect(() => {
     const toggleVisibility = () => {
@@ -31,6 +33,11 @@ export const ScrollToTop = () => {
       top: 0,
       behavior: 'smooth'
     })
+  }
+
+  // Don't show scroll to top button on Glovo campaign page
+  if (pathname === '/campaigns/glovo') {
+    return null
   }
 
   return (
