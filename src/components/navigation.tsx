@@ -119,9 +119,9 @@ export const Navigation = () => {
 
       <div className="container mx-auto px-4 sm:px-6 py-3 sm:py-4 relative z-50">
         <div className="flex justify-between items-center">
-          <NavHoverWrapper>
+          <NavHoverWrapper className="group">
             <Link href="/">
-              <div className="text-2xl font-bold text-[#ECB629] cursor-pointer relative group">
+              <div className="text-2xl font-bold text-[#ECB629] cursor-pointer relative">
                 <span className="relative z-10">PRAVDA ST</span>
                 <NavGlowEffect />
                 <NavUnderline />
@@ -253,7 +253,7 @@ export const Navigation = () => {
                   <NavHoverWrapper scale={1.05} className="relative group">
                     <Link
                       href={item.href}
-                      className={`text-gray-300 hover:text-[#ECB629] transition-all duration-300 relative group px-3 py-2 rounded-lg ${
+                      className={`text-gray-300 hover:text-[#ECB629] transition-all duration-300 relative px-3 py-2 rounded-lg ${
                         pathname === item.href
                           ? "text-[#ECB629] font-semibold"
                           : ""
