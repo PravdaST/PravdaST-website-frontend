@@ -122,10 +122,10 @@ export default function GlovoCalculatorLandingOptimized() {
         <Squares
           direction="diagonal"
           speed={0.5}
-          borderColor="#333"
-          squareSize={60}
+          borderColor="#555"
+          squareSize={80}
           hoverFillColor="#f97316"
-          className="opacity-40"
+          className="opacity-60"
         />
       </div>
       {/* Hero Section */}
