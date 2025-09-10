@@ -18,7 +18,47 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: '**',
+        hostname: 'images.unsplash.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'framerusercontent.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.pravdast.agency',
+      },
+      {
+        protocol: 'https',
+        hostname: 'admin.pravdagency.eu',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.facebook.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'px.ads.linkedin.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.clarity.ms',
+      },
+      {
+        protocol: 'https',
+        hostname: 'd3k81ch9hvuctc.cloudfront.net',
+      },
+      {
+        protocol: 'https',
+        hostname: 'static.klaviyo.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.google-analytics.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'analytics.google.com',
       },
     ],
     // Enable Next.js built-in image optimization
@@ -28,8 +68,6 @@ const nextConfig = {
     qualities: [75, 85, 90, 95], // Mobile optimization qualities
     minimumCacheTTL: 60,
     dangerouslyAllowSVG: true,
-    contentDispositionType: 'attachment',
-    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
   serverExternalPackages: ['drizzle-orm', '@neondatabase/serverless', 'bcrypt'],
   // Mobile performance optimization
