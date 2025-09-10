@@ -11,6 +11,7 @@ import {
   slideUpProps,
   sharedVariants
 } from "@/hooks/useSharedFramerMotion";
+import { motion } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
