@@ -9,6 +9,8 @@ import { SocialProofSection } from "@/components/glovo/social-proof-section";
 import { FormLoading, TestimonialLoading } from "@/components/glovo/loading-components";
 import { ProblemAgitationSection } from "@/components/glovo/problem-agitation-section";
 import { BenefitsOfOwnSystemSection } from "@/components/glovo/benefits-of-own-system-section";
+import { GlovoStickyCTA } from "@/components/glovo-sticky-cta";
+import { Squares } from "@/components/ui/squares";
 
 export async function generateMetadata(): Promise<Metadata> {
   return await getCampaignGlovoMetadata();
@@ -114,7 +116,18 @@ function CredibilityGuaranteeSection() {
 
 export default function GlovoCalculatorLandingOptimized() {
   return (
-    <div className="min-h-screen bg-black text-white overflow-x-hidden">
+    <div className="min-h-screen bg-black text-white overflow-x-hidden relative">
+      {/* Animated Background */}
+      <div className="fixed inset-0 -z-10">
+        <Squares
+          direction="diagonal"
+          speed={0.3}
+          borderColor="#1a1a1a"
+          squareSize={60}
+          hoverFillColor="#0ea5e9"
+          className="opacity-40"
+        />
+      </div>
       {/* Hero Section */}
       <GlovoHeroSection />
 
@@ -131,7 +144,7 @@ export default function GlovoCalculatorLandingOptimized() {
       <SolutionPreviewSection />
 
       {/* Call to Action - Calculator Section */}
-      <section className="py-16 md:py-20 bg-black">
+      <section id="calculator-section" className="py-16 md:py-20 bg-black relative">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto text-center mb-12">
             <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
@@ -186,6 +199,9 @@ export default function GlovoCalculatorLandingOptimized() {
       
       {/* Glovo-specific Meta Pixel */}
       <GlovoMetaPixel />
+      
+      {/* Sticky CTA Button */}
+      <GlovoStickyCTA />
     </div>
   );
 }
