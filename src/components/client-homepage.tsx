@@ -102,11 +102,6 @@ export function ClientHomepage() {
                 </div>
               </div>
               <div className="relative">
-                <Link href="/calculators">
-                  <span className="cursor-pointer transition-colors relative text-white hover:text-[#ECB629]">Калкулатори</span>
-                </Link>
-              </div>
-              <div className="relative">
                 <Link href="/case-studies">
                   <span className="cursor-pointer transition-colors relative text-white hover:text-[#ECB629]">Резултати</span>
                 </Link>

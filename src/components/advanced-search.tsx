@@ -50,15 +50,6 @@ const searchableContent: SearchResult[] = [
     url: '/services/clientomat',
     relevance: 7
   },
-  // Calculators
-  {
-    id: 'calculators',
-    title: 'ROI Калкулатори - Изчисли възвращаемостта',
-    description: 'Интерактивни калкулатори за всяка бизнес система',
-    category: 'calculator',
-    url: '/calculators',
-    relevance: 6
-  },
   // Pages
   {
     id: 'case-studies',
