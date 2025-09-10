@@ -24,6 +24,16 @@ export function GlovoStickyCTA() {
         behavior: 'smooth', 
         block: 'center' 
       })
+      
+      // Add a slight delay to ensure scroll completes, then focus for accessibility
+      setTimeout(() => {
+        const formElement = calculatorSection.querySelector('input, button, select, textarea')
+        if (formElement) {
+          (formElement as HTMLElement).focus()
+        }
+      }, 800)
+    } else {
+      console.warn('Calculator section not found')
     }
   }
 
