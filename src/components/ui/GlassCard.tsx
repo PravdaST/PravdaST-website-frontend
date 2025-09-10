@@ -71,11 +71,11 @@ export function GlassCard({
     blue: `border-blue-400/${borderOpacity}`
   }
   
-  // Glass variant classes
+  // Glass variant classes - Performance optimized
   const variantClasses = {
-    default: 'glassmorphism',
-    navigation: 'glassmorphism backdrop-blur-xl bg-black/30',
-    overlay: 'glass-overlay'
+    default: 'performance-glassmorphism performance-card',
+    navigation: 'performance-glassmorphism performance-nav bg-black/30',
+    overlay: 'performance-glassmorphism glass-overlay'
   }
   
   // Hover effects

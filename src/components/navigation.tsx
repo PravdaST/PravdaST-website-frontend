@@ -2,7 +2,12 @@
 
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { motion } from "framer-motion";
+import { 
+  MotionDiv, 
+  MotionSection,
+  fadeInProps,
+  slideUpProps 
+} from "@/hooks/useSharedFramerMotion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import PravdaHeading from "@/components/typography/PravdaHeading";
@@ -64,7 +69,7 @@ export const Navigation = () => {
   ];
 
   return (
-    <motion.nav
+    <MotionDiv
       className={`w-full transition-all duration-500 border-b border-[#ECB629]/30 relative z-50 ${
         isScrolled
           ? "glassmorphism backdrop-blur-xl bg-black/20 shadow-2xl shadow-[#ECB629]/10"
@@ -91,7 +96,7 @@ export const Navigation = () => {
 
           {/* Status Indicators */}
           {[...Array(8)].map((_, i) => (
-            <motion.div
+            <MotionDiv
               key={i}
               className="absolute w-1 h-1 bg-[#ECB629] rounded-full"
               style={{
@@ -135,7 +140,7 @@ export const Navigation = () => {
                     onMouseLeave={() => setIsServicesDropdownOpen(false)}
                   >
                     <Link href={item.href}>
-                      <motion.span
+                      <MotionDiv
                         className={`cursor-pointer transition-colors relative flex items-center gap-1 ${
                           pathname === item.href ||
                           pathname?.startsWith("/services/")
@@ -153,18 +158,18 @@ export const Navigation = () => {
                         />
                         {(pathname === item.href ||
                           pathname?.startsWith("/services/")) && (
-                          <motion.div
+                          <MotionDiv
                             className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#ECB629]"
                             layoutId="activeTab"
                           />
                         )}
-                      </motion.span>
+                      </MotionDiv>
                     </Link>
 
                     {/* Dropdown Menu */}
                     <div className="absolute top-full left-0 pt-2 z-[9999]">
                       {isServicesDropdownOpen && (
-                        <motion.div
+                        <MotionDiv
                           initial={{ opacity: 0, y: -10, scale: 0.95 }}
                           animate={{
                             opacity: 1,
@@ -184,7 +189,7 @@ export const Navigation = () => {
                           <div className="space-y-2">
                             {serviceItems.map((service) => (
                               <Link key={service.href} href={service.href}>
-                                <motion.div
+                                <MotionDiv
                                   className="p-3 rounded-lg hover:bg-[#ECB629]/10 transition-all duration-300 cursor-pointer group relative overflow-hidden"
                                   whileHover={{ x: 4, scale: 1.02 }}
                                   transition={{ duration: 0.2 }}
@@ -196,7 +201,7 @@ export const Navigation = () => {
                                     <div>
                                       <h3 className="text-white font-semibold group-hover:text-[#ECB629] transition-colors duration-300 flex items-center gap-2">
                                         {service.label}
-                                        <motion.div
+                                        <MotionDiv
                                           className="w-1 h-1 bg-[#ECB629] rounded-full opacity-0 group-hover:opacity-100"
                                           animate={{ scale: [1, 1.5, 1] }}
                                           transition={{
@@ -210,12 +215,12 @@ export const Navigation = () => {
                                       </p>
                                     </div>
                                   </div>
-                                </motion.div>
+                                </MotionDiv>
                               </Link>
                             ))}
                             <div className="border-t border-[#ECB629]/20 pt-3 mt-3">
                               <Link href="/services">
-                                <motion.div
+                                <MotionDiv
                                   className="p-3 rounded-lg hover:bg-[#ECB629]/20 transition-all duration-300 cursor-pointer text-center relative overflow-hidden group"
                                   whileHover={{ scale: 1.02 }}
                                 >
@@ -224,7 +229,7 @@ export const Navigation = () => {
 
                                   <span className="text-[#ECB629] font-semibold text-sm relative z-10 flex items-center justify-center gap-2">
                                     Всички услуги
-                                    <motion.span
+                                    <MotionDiv
                                       className="inline-block"
                                       animate={{ x: [0, 4, 0] }}
                                       transition={{
@@ -233,14 +238,14 @@ export const Navigation = () => {
                                       }}
                                     >
                                       →
-                                    </motion.span>
+                                    </MotionDiv>
                                   </span>
-                                </motion.div>
+                                </MotionDiv>
                               </Link>
                             </div>
                           </div>
                           </GlassCard>
-                        </motion.div>
+                        </MotionDiv>
                       )}
                     </div>
                   </div>
@@ -293,7 +298,7 @@ export const Navigation = () => {
         </div>
 
         {/* Mobile Menu */}
-        <motion.div
+        <MotionDiv
           className={`md:hidden mt-4 ${
             isMobileMenuOpen ? "block" : "hidden"
           }`}
@@ -331,7 +336,7 @@ export const Navigation = () => {
                       />
                     </motion.button>
 
-                    <motion.div
+                    <MotionDiv
                       className={`mt-2 space-y-2 pl-4 ${isMobileServicesOpen ? "block" : "hidden"}`}
                       initial={{ opacity: 0 }}
                       animate={{ opacity: isMobileServicesOpen ? 1 : 0 }}
@@ -354,7 +359,7 @@ export const Navigation = () => {
                           {service.label}
                         </Link>
                       ))}
-                    </motion.div>
+                    </MotionDiv>
                   </div>
                 ) : (
                   <Link
@@ -387,8 +392,8 @@ export const Navigation = () => {
             </div>
           </div>
           </GlassCard>
-        </motion.div>
+        </MotionDiv>
       </div>
-    </motion.nav>
+    </MotionDiv>
   );
 };

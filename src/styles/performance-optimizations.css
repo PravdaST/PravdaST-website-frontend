@@ -1,8 +1,9 @@
-/* Performance CSS Optimizations for Glovo page - NO visual changes */
+/* Site-wide Performance CSS Optimizations - NO visual changes */
 
 /* Font Display Optimization for Large Text */
-.glovo-hero-text,
-.glovo-large-heading {
+.performance-optimized-text,
+.hero-text,
+.large-heading {
   font-display: swap;
   text-rendering: optimizeSpeed;
   -webkit-font-smoothing: antialiased;
@@ -10,7 +11,7 @@
 }
 
 /* Hardware Acceleration for Animations */
-.glovo-animated-element {
+.performance-animated-element {
   will-change: transform;
   transform: translateZ(0);
   backface-visibility: hidden;
@@ -18,34 +19,122 @@
 }
 
 /* Hover Performance Optimization */
-.glovo-hover-optimized {
+.performance-hover-optimized {
   will-change: transform, opacity;
   transition: transform 0.2s ease-out, opacity 0.2s ease-out;
 }
 
-.glovo-hover-optimized:hover {
+.performance-hover-optimized:hover {
   transform: translateZ(0) scale(1.02);
 }
 
 /* Layout Containment for Performance */
-.glovo-contained {
+.performance-contained {
   contain: layout style;
 }
 
 /* Optimized Background Effects */
-.glovo-bg-effect {
+.performance-bg-effect {
   transform: translateZ(0);
   will-change: opacity;
   opacity: 0.3;
   transition: opacity 0.3s ease;
 }
 
+/* SITE-WIDE PERFORMANCE OPTIMIZATIONS */
+
+/* Backdrop-blur Performance Alternative */
+.performance-glassmorphism {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.1),
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    0 4px 16px rgba(0, 0, 0, 0.2);
+  /* No backdrop-blur for better performance */
+  transform: translateZ(0);
+}
+
+/* Card Performance Optimization */
+.performance-card {
+  will-change: transform;
+  transform: translateZ(0);
+  contain: layout style;
+}
+
+/* Navigation Performance */
+.performance-nav {
+  will-change: transform;
+  transform: translateZ(0);
+  contain: layout style paint;
+}
+
+/* Button Performance */
+.performance-button {
+  will-change: transform;
+  transform: translateZ(0);
+  contain: layout style;
+  transition: transform 0.15s ease-out;
+}
+
+.performance-button:hover {
+  transform: translateZ(0) translateY(-2px);
+}
+
+/* Section Performance */
+.performance-section {
+  contain: layout style;
+  will-change: contents;
+}
+
+/* Hero Section Optimizations */
+.performance-hero {
+  contain: layout style;
+  transform: translateZ(0);
+  will-change: contents;
+}
+
+/* Form Performance */
+.performance-form {
+  contain: layout style;
+  will-change: contents;
+}
+
+/* Image Performance */
+.performance-image {
+  will-change: transform;
+  transform: translateZ(0);
+  image-rendering: optimizeQuality;
+}
+
 /* Reduced Motion for Better Performance */
 @media (prefers-reduced-motion: reduce) {
-  .glovo-animated-element,
-  .glovo-hover-optimized {
+  .performance-animated-element,
+  .performance-hover-optimized,
+  .performance-button {
     animation: none;
     transition: none;
     will-change: auto;
   }
+}
+
+/* Critical path optimizations */
+.performance-critical {
+  contain: strict;
+  content-visibility: auto;
+  contain-intrinsic-size: 300px;
+}
+
+/* Scroll performance */
+.performance-scroll {
+  scroll-behavior: smooth;
+  overscroll-behavior: contain;
+}
+
+/* Text selection performance */
+.performance-text {
+  user-select: text;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
 }
