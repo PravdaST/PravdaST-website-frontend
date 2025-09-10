@@ -10,7 +10,7 @@ import { BulgarianCitiesSlider } from "@/components/bulgarian-cities-slider";
 
 export const GlovoHeroSection = () => {
   return (
-    <section className="relative py-20 bg-white">
+    <section className="relative py-20 bg-black">
 
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
@@ -30,7 +30,7 @@ export const GlovoHeroSection = () => {
               size="7xl"
               className="leading-tight"
             >
-            <span className="text-gray-900">
+            <span className="text-white">
               Знаете ли, че всеки месец
             </span>
             <br />
@@ -50,8 +50,8 @@ export const GlovoHeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <PravdaText size="xl" className="md:text-2xl mb-6 leading-relaxed text-center text-gray-600">
-              <span className="text-blue-900 font-bold">Безплатен калкулатор:</span> Вижте точно колко ви струва Glovo месечно + получете персонализиран план за освобождаване за 90 дни
+            <PravdaText size="xl" className="md:text-2xl mb-6 leading-relaxed text-center text-gray-300">
+              <span className="text-blue-400 font-bold">Безплатен калкулатор:</span> Вижте точно колко ви струва Glovo месечно + получете персонализиран план за освобождаване за 90 дни
             </PravdaText>
           </motion.div>
 
@@ -62,7 +62,7 @@ export const GlovoHeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
-            <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 mb-8">
+            <div className="bg-gray-900 border border-gray-700 rounded-lg p-6 mb-8">
               <div className="relative aspect-[16/9] w-full overflow-hidden rounded-xl">
                 <Image
                   src="/images/glovo/Glovo_commission_comparison_visual_16961ca4.png"
@@ -77,7 +77,7 @@ export const GlovoHeroSection = () => {
             </div>
 
             <div className="grid md:grid-cols-2 gap-8">
-              <div className="bg-white border border-red-200 rounded-lg p-6 shadow-sm">
+              <div className="bg-gray-900 border border-red-400/30 rounded-lg p-6">
                 <h3 className="text-red-600 font-bold text-lg mb-4">
                   Преди - Glovo фактура
                 </h3>
@@ -85,12 +85,12 @@ export const GlovoHeroSection = () => {
                   <div className="text-4xl font-bold text-red-600 mb-2">
                     2,400 лв
                   </div>
-                  <div className="text-gray-600">
+                  <div className="text-gray-400">
                     Месечни комисионни (30%)
                   </div>
                 </div>
               </div>
-              <div className="bg-white border border-green-200 rounded-lg p-6 shadow-sm">
+              <div className="bg-gray-900 border border-green-400/30 rounded-lg p-6">
                 <h3 className="text-green-600 font-bold text-lg mb-4">
                   След - Директни поръчки
                 </h3>
