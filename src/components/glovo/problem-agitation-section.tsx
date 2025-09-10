@@ -1,6 +1,7 @@
 'use client'
 
 import { memo } from 'react'
+import { AlertCircle } from 'lucide-react'
 
 // Мемоизиран Problem Agitation компонент
 const ProblemAgitationSection = memo(() => {
@@ -29,7 +30,7 @@ const ProblemAgitationSection = memo(() => {
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
-              <span className="text-red-400">Glovo капанът</span>, който убива печалбите ви
+              Как <span className="text-red-400">Glovo комисионните</span> влияят на печалбите ви
             </h2>
             <p className="text-xl text-gray-300 leading-relaxed">
               Всеки месец предавате 30% комисионна от доставките си на Glovo.
@@ -40,12 +41,12 @@ const ProblemAgitationSection = memo(() => {
 
           <div className="bg-gradient-to-r from-red-900/20 to-gray-900/30 border border-red-400/30 rounded-3xl p-8 mb-8">
             <h3 className="text-2xl font-bold text-red-400 mb-6 text-center">
-              Но ето какво е по-лошо:
+              Основните предизвикателства:
             </h3>
             <div className="grid md:grid-cols-2 gap-6">
               {problems.map((item, index) => (
                 <div key={index} className="flex items-start space-x-4">
-                  <span className="text-2xl">❌</span>
+                  <AlertCircle className="w-6 h-6 text-red-400 mt-1 flex-shrink-0" />
                   <div>
                     <h4 className="text-red-400 font-bold text-lg mb-1">
                       {item.title}

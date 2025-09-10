@@ -51,7 +51,7 @@ export const GlovoHeroSection = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
           >
             <PravdaText size="xl" className="md:text-2xl mb-6 leading-relaxed text-center text-gray-300">
-              <span className="text-blue-400 font-bold">Безплатен калкулатор:</span> Вижте точно колко ви струва Glovo месечно + получете персонализиран план за освобождаване за 90 дни
+              <span className="text-blue-400 font-bold">Калкулатор за разходи:</span> Анализирайте месечните си разходи за Glovo и получете персонализиран план за оптимизация
             </PravdaText>
           </motion.div>
 
@@ -128,7 +128,7 @@ export const GlovoHeroSection = () => {
             <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 text-sm text-gray-400">
               <div className="flex items-center gap-2">
                 <Shield className="w-4 h-4 text-green-600" />
-                <span>100% безплатен анализ - не се изисква плащане</span>
+                <span>Детайлен анализ - без задължения</span>
               </div>
               <div className="flex items-center gap-2">
                 <Smartphone className="w-4 h-4 text-blue-600" />

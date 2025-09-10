@@ -208,7 +208,7 @@ export const GlovoStepForm = () => {
               <div className="flex items-center justify-center md:justify-start space-x-2 text-blue-600 text-sm">
                 <Users className="w-4 h-4" />
                 <span className="font-medium">
-                  Комплектът се изпраща веднага на телефона и имейла ви
+                  Анализът се изпраща на посочените от вас контакти
                 </span>
               </div>
             </div>
