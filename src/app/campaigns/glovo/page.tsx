@@ -121,8 +121,8 @@ export default function GlovoCalculatorLandingOptimized() {
       <div className="fixed inset-0 -z-10">
         <Squares
           direction="diagonal"
-          speed={0.3}
-          borderColor="#1a1a1a"
+          speed={0.5}
+          borderColor="#333"
           squareSize={60}
           hoverFillColor="#f97316"
           className="opacity-40"
