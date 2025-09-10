@@ -62,7 +62,7 @@ export const GlovoHeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
-            <div className="bg-gray-900 border border-gray-700 rounded-lg p-6 mb-8">
+            <div className="bg-black border border-gray-700 rounded-lg p-6 mb-8">
               <div className="relative aspect-[16/9] w-full overflow-hidden rounded-xl">
                 <Image
                   src="/images/glovo/Glovo_commission_comparison_visual_16961ca4.png"
@@ -77,7 +77,7 @@ export const GlovoHeroSection = () => {
             </div>
 
             <div className="grid md:grid-cols-2 gap-8">
-              <div className="bg-gray-900 border border-red-400/30 rounded-lg p-6">
+              <div className="bg-black border border-red-400/30 rounded-lg p-6">
                 <h3 className="text-red-600 font-bold text-lg mb-4">
                   Преди - Glovo фактура
                 </h3>
@@ -90,7 +90,7 @@ export const GlovoHeroSection = () => {
                   </div>
                 </div>
               </div>
-              <div className="bg-gray-900 border border-green-400/30 rounded-lg p-6">
+              <div className="bg-black border border-green-400/30 rounded-lg p-6">
                 <h3 className="text-green-600 font-bold text-lg mb-4">
                   След - Директни поръчки
                 </h3>

@@ -15,7 +15,7 @@ type Benefit = {
 // BenefitCard компонент за по-добър DRY принцип
 const BenefitCard = memo(({ benefit }: { benefit: Benefit }) => (
   <div className="relative group">
-    <div className="relative bg-gray-900 border border-gray-700 rounded-lg p-6 h-full">
+    <div className="relative bg-black border border-gray-700 rounded-lg p-6 h-full">
       <div className="text-center mb-6">
         <div className="flex justify-center mb-4">
           <div className={`${benefit.bgColor} p-4 rounded-full`}>
@@ -42,7 +42,7 @@ BenefitCard.displayName = 'BenefitCard'
 
 // TestimonialCard компонент за по-добър DRY принцип  
 const TestimonialCard = memo(({ text, author }: { text: string, author: string }) => (
-  <div className="relative bg-gray-900/90 border border-green-400/20 rounded-lg p-8">
+  <div className="relative bg-black border border-green-400/20 rounded-lg p-8">
     <div className="flex items-start">
       <div className="bg-green-500/10 p-3 rounded-full mr-4 flex-shrink-0">
         <MessageCircle className="w-6 h-6 text-green-400" />
@@ -158,7 +158,7 @@ const BenefitsOfOwnSystemSection = memo(() => {
           {/* Mini Testimonials */}
           <div className="grid md:grid-cols-2 gap-6">
             {miniTestimonials.map((testimonial, index) => (
-              <div key={index} className="bg-gray-900/60 border border-gray-700/50 rounded-lg p-6">
+              <div key={index} className="bg-black border border-gray-700/50 rounded-lg p-6">
                 <div className="flex items-start mb-4">
                   <div className="bg-green-500/10 p-2 rounded-full mr-3 flex-shrink-0">
                     <MessageCircle className="w-4 h-4 text-green-400" />

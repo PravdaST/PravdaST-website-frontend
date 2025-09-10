@@ -39,7 +39,7 @@ const ProblemAgitationSection = memo(() => {
             </p>
           </div>
 
-          <div className="bg-gray-900 border border-red-400/50 rounded-lg p-8 mb-8">
+          <div className="bg-black border border-red-400/50 rounded-lg p-8 mb-8">
             <h3 className="text-2xl font-bold text-red-400 mb-6 text-center">
               Основните предизвикателства:
             </h3>
@@ -61,7 +61,7 @@ const ProblemAgitationSection = memo(() => {
           </div>
 
           <div className="text-center">
-            <div className="bg-gray-900 border border-green-400/50 rounded-lg p-6">
+            <div className="bg-black border border-green-400/50 rounded-lg p-6">
               <p className="text-xl text-white mb-2">
                 Междувременно, българските ви конкуренти, които избягаха от Glovo,
               </p>

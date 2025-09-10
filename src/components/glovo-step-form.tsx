@@ -172,7 +172,7 @@ export const GlovoStepForm = () => {
             </p>
           </div>
           {/* Trust Elements - Better Layout */}
-          <div className="bg-gray-900/50 border border-gray-700 rounded-lg p-6 mb-8">
+          <div className="bg-black border border-gray-700 rounded-lg p-6 mb-8">
             <div className="grid md:grid-cols-3 gap-4">
               {/* Row 1 */}
               <div className="flex items-center justify-center md:justify-start space-x-2 text-green-600 text-sm">
@@ -236,7 +236,7 @@ export const GlovoStepForm = () => {
             value={formData.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
             placeholder="Въведете вашето име..."
-            className="w-full px-6 py-4 bg-gray-900/50 border border-gray-700 rounded-lg text-white text-lg focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-blue-400"
+            className="w-full px-6 py-4 bg-black border border-gray-700 rounded-lg text-white text-lg focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-blue-400"
             autoFocus
           />
           {formData.name.trim().length > 0 &&
@@ -261,7 +261,7 @@ export const GlovoStepForm = () => {
               setFormData({ ...formData, restaurantName: e.target.value })
             }
             placeholder="Въведете името на ресторанта"
-            className="w-full px-6 py-4 bg-gray-900/50 border border-gray-700 rounded-lg text-white text-lg focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-blue-400"
+            className="w-full px-6 py-4 bg-black border border-gray-700 rounded-lg text-white text-lg focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-blue-400"
             autoFocus
           />
         </div>
@@ -278,7 +278,7 @@ export const GlovoStepForm = () => {
             value={formData.city}
             onChange={(e) => setFormData({ ...formData, city: e.target.value })}
             placeholder="Въведете града..."
-            className="w-full px-6 py-4 bg-gray-900/50 border border-gray-700 rounded-lg text-white text-lg focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-blue-400"
+            className="w-full px-6 py-4 bg-black border border-gray-700 rounded-lg text-white text-lg focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-blue-400"
             autoFocus
           />
         </div>
@@ -320,7 +320,7 @@ export const GlovoStepForm = () => {
               placeholder="напр. 25"
               min="1"
               max="200"
-              className="w-full px-6 py-4 bg-gray-900/50 border border-gray-700 rounded-lg text-white text-lg focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-blue-400"
+              className="w-full px-6 py-4 bg-black border border-gray-700 rounded-lg text-white text-lg focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-blue-400"
             />
           </div>
         </div>
@@ -362,7 +362,7 @@ export const GlovoStepForm = () => {
               placeholder="напр. 35"
               min="5"
               max="300"
-              className="w-full px-6 py-4 bg-gray-900/50 border border-gray-700 rounded-lg text-white text-lg focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-blue-400"
+              className="w-full px-6 py-4 bg-black border border-gray-700 rounded-lg text-white text-lg focus:border-blue-400 focus:outline-none focus:ring-1 focus:ring-blue-400"
             />
           </div>
         </div>

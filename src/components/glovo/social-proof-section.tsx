@@ -67,7 +67,7 @@ const SocialProofSection = memo(() => {
         <div className="max-w-5xl mx-auto">
           {/* Main Testimonial */}
           <div className="relative">
-            <div className="relative bg-gray-900/90 border border-gray-700 rounded-lg p-6 md:p-10">
+            <div className="relative bg-black border border-gray-700 rounded-lg p-6 md:p-10">
               <div className="grid md:grid-cols-3 gap-8 items-center">
                 <div className="md:col-span-1 order-2 md:order-1">
                   <div className="relative">
@@ -136,7 +136,7 @@ const SocialProofSection = memo(() => {
                   className="group relative hover:scale-105 transition-all duration-500"
                   style={{ animationDelay: stat.delay }}
                 >
-                  <div className="relative bg-gray-900/90 border border-gray-700 rounded-lg p-6 text-center">
+                  <div className="relative bg-black border border-gray-700 rounded-lg p-6 text-center">
                     <div className="flex items-center justify-center mb-4">
                       <div className={`${stat.bgColor} p-3 rounded-full`}>
                         <IconComponent className={`w-8 h-8 text-${stat.color}-400`} />
@@ -156,7 +156,7 @@ const SocialProofSection = memo(() => {
           <div className="mt-12 grid md:grid-cols-2 gap-6">
             {miniTestimonials.map((testimonial, index) => (
               <div key={index} className="relative group">
-                <div className="relative bg-gray-900/90 border border-gray-700 rounded-lg p-6">
+                <div className="relative bg-black border border-gray-700 rounded-lg p-6">
                   <div className="flex items-start mb-4">
                     <div className="bg-blue-500/10 p-2 rounded-full mr-3 flex-shrink-0">
                       <MessageCircle className="w-4 h-4 text-blue-400" />
