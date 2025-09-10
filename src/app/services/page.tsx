@@ -1,6 +1,17 @@
 'use client'
 
-import { motion, useInView } from "framer-motion";
+import { 
+  MotionDiv, 
+  MotionSection, 
+  MotionH1, 
+  MotionH2,
+  MotionA,
+  useScrollAnimation,
+  fadeInProps,
+  slideUpProps,
+  scaleProps,
+  sharedVariants
+} from "@/hooks/useSharedFramerMotion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { useRef, useState, useEffect } from "react";
@@ -75,7 +86,7 @@ const SystemsBackground = () => {
         "RESULTS",
         "SCALE",
       ].map((keyword, i) => (
-        <motion.div
+        <MotionDiv
           key={keyword}
           className="absolute text-[#ECB629] font-mono text-xs opacity-20"
           style={{
@@ -95,11 +106,11 @@ const SystemsBackground = () => {
           }}
         >
           {keyword}
-        </motion.div>
+        </MotionDiv>
       ))}
 
       {/* Network connections representing system architecture */}
-      <motion.svg
+      <MotionDiv
         className="absolute inset-0 w-full h-full"
         animate={{
           x: mousePosition.x * 0.008,
@@ -132,7 +143,7 @@ const SystemsBackground = () => {
           strokeWidth="1"
           opacity="0.3"
         />
-      </motion.svg>
+      </MotionDiv>
     </div>
   );
 };
@@ -199,7 +210,7 @@ const services = [
 export default function Services() {
   const philosophyRef = useRef(null);
   const systemsRef = useRef<HTMLElement>(null);
-  const isInView = useInView(philosophyRef);
+  const isInView = useScrollAnimation(philosophyRef);
 
   const scrollToSystems = () => {
     systemsRef.current?.scrollIntoView({
@@ -229,7 +240,7 @@ export default function Services() {
                   <div className="flex items-center gap-2">
                     <div className="relative">
                       <div className="w-2 h-2 bg-[#ECB629] rounded-full"></div>
-                      <motion.div
+                      <MotionDiv
                         className="absolute inset-0 w-2 h-2 bg-[#ECB629] rounded-full opacity-20"
                         animate={{ scale: [1, 1.3, 1] }}
                         transition={{
@@ -257,7 +268,7 @@ export default function Services() {
                   Инженерни системи за <br />
                   <span className="text-[#ECB629] relative">
                     предвидим растеж
-                    <motion.div
+                    <MotionDiv
                       className="absolute -bottom-3 left-0 right-0 h-2 bg-gradient-to-r from-[#ECB629] to-[#ECB629]/50 rounded-full"
                       initial={{ scaleX: 0 }}
                       animate={{ scaleX: 1 }}
@@ -375,7 +386,7 @@ export default function Services() {
                     <div className="mb-6">
                       <div className="w-20 h-20 mx-auto bg-red-500/20 rounded-full flex items-center justify-center border border-red-500/30 mb-4 relative">
                         <TrendingDown className="text-red-400" size={40} />
-                        <motion.div
+                        <MotionDiv
                           className="absolute inset-0 bg-red-500 rounded-full opacity-10"
                           animate={{ scale: [1.1, 1.3, 1.1] }}
                           transition={{
@@ -408,7 +419,7 @@ export default function Services() {
                     <div className="mb-6">
                       <div className="w-20 h-20 mx-auto bg-[#ECB629]/20 rounded-full flex items-center justify-center border border-[#ECB629]/30 mb-4 relative">
                         <BarChart3 className="text-[#ECB629]" size={40} />
-                        <motion.div
+                        <MotionDiv
                           className="absolute inset-0 bg-[#ECB629] rounded-full opacity-10"
                           animate={{ scale: [1.1, 1.3, 1.1] }}
                           transition={{
@@ -460,7 +471,7 @@ export default function Services() {
                 <div className="flex items-center gap-2">
                   <div className="relative">
                     <div className="w-2 h-2 bg-[#ECB629] rounded-full"></div>
-                    <motion.div
+                    <MotionDiv
                       className="absolute inset-0 w-2 h-2 bg-[#ECB629] rounded-full opacity-20"
                       animate={{ scale: [1, 1.3, 1] }}
                       transition={{
@@ -510,7 +521,7 @@ export default function Services() {
                               size={32}
                             />
                           </div>
-                          <motion.div
+                          <MotionDiv
                             className="absolute inset-0 bg-[#ECB629] rounded-full opacity-5"
                             animate={{ scale: [1.1, 1.3, 1.1] }}
                             transition={{
@@ -605,7 +616,7 @@ export default function Services() {
           {/* Animated Background Elements */}
           <div className="absolute inset-0 opacity-20">
             {[...Array(6)].map((_, i) => (
-              <motion.div
+              <MotionDiv
                 key={i}
                 className="absolute w-1 h-1 bg-black rounded-full"
                 style={{
@@ -697,7 +708,7 @@ export default function Services() {
                 duration={0.8}
                 delay={0.5}
               >
-                <motion.a
+                <MotionA
                   href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdast.agency"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -714,9 +725,9 @@ export default function Services() {
                 >
                   <span>Безплатна консултация</span>
                   <ArrowRight className="w-5 h-5" />
-                </motion.a>
+                </MotionA>
 
-                <motion.a
+                <MotionA
                   href="tel:+359879282299"
                   className="inline-flex items-center gap-3 border-2 border-black text-black px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-300 hover:bg-black hover:text-white"
                   whileHover={{
@@ -731,7 +742,7 @@ export default function Services() {
                 >
                   <Phone className="w-5 h-5" />
                   <span>Обади се сега</span>
-                </motion.a>
+                </MotionA>
               </FadeInView>
             </FadeInView>
           </div>

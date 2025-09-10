@@ -1,6 +1,16 @@
 'use client'
 
-import { motion, useInView } from "framer-motion";
+import { 
+  MotionDiv, 
+  MotionSection, 
+  MotionH1, 
+  MotionH2, 
+  MotionP,
+  useScrollAnimation,
+  fadeInProps,
+  slideUpProps,
+  sharedVariants
+} from "@/hooks/useSharedFramerMotion";
 import { useRef, useState, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -194,10 +204,10 @@ export default function Trendlab() {
   const investmentRef = useRef(null);
   const ctaRef = useRef(null);
 
-  const heroInView = useInView(heroRef, { once: true });
-  const philosophyInView = useInView(philosophyRef, { once: true });
-  const processInView = useInView(processRef, { once: true });
-  const resultsInView = useInView(resultsRef, { once: true });
+  const { ref: heroRef, isInView: heroInView } = useScrollAnimation();
+  const { ref: philosophyRef, isInView: philosophyInView } = useScrollAnimation();
+  const { ref: processRef, isInView: processInView } = useScrollAnimation(); 
+  const { ref: resultsRef, isInView: resultsInView } = useScrollAnimation();
   const investmentInView = useInView(investmentRef, { once: true });
   const ctaInView = useInView(ctaRef, { once: true });
 

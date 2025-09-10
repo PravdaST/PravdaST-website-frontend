@@ -1,7 +1,17 @@
 'use client'
 
 import { useState, useEffect, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { 
+  MotionDiv, 
+  MotionSection,
+  MotionH2,
+  MotionCircle,
+  AnimatePresence,
+  useScrollAnimation,
+  fadeInProps,
+  slideUpProps,
+  sharedVariants
+} from "@/hooks/useSharedFramerMotion";
 import {
   Calculator,
   TrendingUp,
@@ -409,14 +419,14 @@ function ProfitCalculator({
     <div className="space-y-8">
       {/* Service Description */}
       <div className="text-center mb-8">
-        <motion.div
+        <MotionDiv
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className="inline-flex items-center gap-2 glassmorphism rounded-full px-4 py-2 mb-4"
         >
           {icon}
           <span className="text-sm text-gray-300">{serviceName}</span>
-        </motion.div>
+        </MotionDiv>
         <p className="text-gray-300 text-lg max-w-2xl mx-auto mb-4">
           {description}
         </p>
@@ -464,7 +474,7 @@ function ProfitCalculator({
             <div className="p-4 sm:p-6 border-b lg:border-b-0 lg:border-r border-slate-700/30 relative overflow-hidden">
               {/* Animated Background Pattern */}
               <div className="absolute inset-0 opacity-5">
-                <motion.div
+                <MotionDiv
                   className="absolute inset-0 bg-gradient-to-br from-[#ECB629]/5 via-transparent to-blue-500/5"
                   animate={{
                     backgroundPosition: ["0% 0%", "100% 100%"],
@@ -478,23 +488,23 @@ function ProfitCalculator({
                 />
               </div>
 
-              <motion.h3
+              <MotionH2
                 className="text-white font-semibold mb-6 flex items-center gap-3 relative z-10"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5 }}
               >
-                <motion.div
+                <MotionDiv
                   className="p-2 bg-[#ECB629]/20 rounded-lg"
                   whileHover={{ scale: 1.1, rotate: 5 }}
                   transition={{ type: "spring", stiffness: 400, damping: 10 }}
                 >
                   <Calculator className="w-5 h-5 text-[#ECB629]" />
-                </motion.div>
+                </MotionDiv>
                 <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
                   Въведете данни за анализ
                 </span>
-              </motion.h3>
+              </MotionH2>
 
               <div className="space-y-5 relative z-10">
                 {[1, 2, 3].map((index) => {
@@ -511,7 +521,7 @@ function ProfitCalculator({
                     if (serviceName === "Clientomat™") max = 5000;
 
                     return (
-                       <motion.div
+                       <MotionDiv
                         key={index}
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -523,7 +533,7 @@ function ProfitCalculator({
                           className="text-white text-sm block mb-3 flex items-center justify-between font-medium"
                         >
                           <span className="flex items-center gap-2">
-                             <motion.div
+                             <MotionDiv
                               className="w-2 h-2 bg-[#ECB629] rounded-full"
                               animate={{ scale: [1, 1.2, 1] }}
                               transition={{ duration: 2, repeat: Infinity, delay: index * 0.5 }}
@@ -542,12 +552,12 @@ function ProfitCalculator({
                             onValueChange={(value) => setInputs({ ...inputs, [inputConfig.key]: String(value[0]) })}
                             className="mt-5"
                         />
-                      </motion.div>
+                      </MotionDiv>
                     )
                   }
                   
                   return (
-                    <motion.div
+                    <MotionDiv
                       key={index}
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -558,7 +568,7 @@ function ProfitCalculator({
                         htmlFor={`param${index}`}
                         className="text-white text-sm block mb-3 flex items-center gap-2 font-medium"
                       >
-                        <motion.div
+                        <MotionDiv
                           className="w-2 h-2 bg-[#ECB629] rounded-full"
                           animate={{ scale: [1, 1.2, 1] }}
                           transition={{ duration: 2, repeat: Infinity, delay: index * 0.5 }}
@@ -579,7 +589,7 @@ function ProfitCalculator({
                           }
                           className="glassmorphism text-white h-12 text-base transition-all duration-300 focus:border-[#ECB629] focus:shadow-lg focus:shadow-[#ECB629]/10 group-hover:border-[#ECB629]/30"
                         />
-                        <motion.div
+                        <MotionDiv
                           className="absolute inset-0 rounded-md bg-gradient-to-r from-[#ECB629]/0 via-[#ECB629]/5 to-[#ECB629]/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
                           animate={{
                             backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
@@ -592,11 +602,11 @@ function ProfitCalculator({
                           }}
                         />
                       </div>
-                    </motion.div>
+                    </MotionDiv>
                   );
                 })}
 
-                <motion.div
+                <MotionDiv
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.4 }}
@@ -606,7 +616,7 @@ function ProfitCalculator({
                     htmlFor="industry"
                     className="text-white text-sm block mb-3 flex items-center gap-2 font-medium"
                   >
-                    <motion.div
+                    <MotionDiv
                       className="w-2 h-2 bg-[#ECB629] rounded-full"
                       animate={{ scale: [1, 1.2, 1] }}
                       transition={{ duration: 2, repeat: Infinity, delay: 1.5 }}
@@ -647,7 +657,7 @@ function ProfitCalculator({
                       ))}
                     </SelectContent>
                   </Select>
-                </motion.div>
+                </MotionDiv>
               </div>
             </div>
 
@@ -655,7 +665,7 @@ function ProfitCalculator({
             <div className="p-4 sm:p-6 bg-slate-900/20 relative overflow-hidden">
               <div className="space-y-6">
                 {/* Main Score Circle */}
-                <motion.div
+                <MotionDiv
                   className="text-center"
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
@@ -679,7 +689,7 @@ function ProfitCalculator({
                               strokeWidth="12"
                               className="text-slate-700/50"
                             />
-                            <motion.circle
+                            <MotionCircle
                               cx="60"
                               cy="60"
                               r="54"
@@ -697,14 +707,14 @@ function ProfitCalculator({
                           </svg>
                           <div className="absolute inset-0 flex items-center justify-center">
                             <div className="text-center">
-                              <motion.div
+                              <MotionDiv
                                 className="text-3xl font-bold text-white"
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                                 transition={{ delay: 1 }}
                               >
                                 {Math.round(results.score)}
-                              </motion.div>
+                              </MotionDiv>
                               <div className="text-xs text-gray-400">от 100</div>
                             </div>
                           </div>
@@ -720,11 +730,11 @@ function ProfitCalculator({
                       </TooltipContent>
                     </Tooltip>
                   </TooltipProvider>
-                </motion.div>
+                </MotionDiv>
                 
                 {/* Personalized Advice */}
                 {personalizedAdvice && (
-                   <motion.div
+                   <MotionDiv
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1}}
                     transition={{ duration: 0.6, delay: 0.4 }}
@@ -738,13 +748,13 @@ function ProfitCalculator({
                     <h4 className="font-semibold text-white mb-2">Какво означава това за Вас?</h4>
                     <p className="text-gray-300 text-sm">{personalizedAdvice}</p>
                     </GlassCard>
-                   </motion.div>
+                   </MotionDiv>
                 )}
 
                 {/* Metrics */}
                  {results.metric1 > 0 && (
                   <div className="grid grid-cols-1 gap-4">
-                      <motion.div
+                      <MotionDiv
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.6, delay: 0.6 }}
@@ -767,10 +777,10 @@ function ProfitCalculator({
                            </div>
                         </div>
                         </GlassCard>
-                      </motion.div>
+                      </MotionDiv>
 
                   {results.monthlyProfit > 0 && (
-                    <motion.div
+                    <MotionDiv
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.6, delay: 0.8 }}
@@ -789,10 +799,10 @@ function ProfitCalculator({
                         </div>
                       </div>
                       </GlassCard>
-                    </motion.div>
+                    </MotionDiv>
                   )}
 
-                  <motion.div
+                  <MotionDiv
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.6, delay: 1.0 }}
@@ -806,7 +816,7 @@ function ProfitCalculator({
                       <div className="text-white font-semibold">{results.timeframe}</div>
                     </div>
                     </GlassCard>
-                  </motion.div>
+                  </MotionDiv>
                 </div>
                 )}
               </div>
@@ -908,21 +918,21 @@ export default function CalculatorsClient() {
                 Спрете да гадаете - започнете да планирате с реални числа.
               </motion.p>
 
-              <motion.div
+              <MotionDiv
                 className="inline-flex items-center gap-3 mb-8 px-6 py-3 rounded-full bg-red-500/10 border border-red-500/30"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
               >
                 <div className="flex items-center gap-2">
-                  <motion.div
+                  <MotionDiv
                     className="w-2 h-2 bg-red-400 rounded-full"
                     animate={{ scale: [1, 1.2, 1], opacity: [0.7, 1, 0.7] }}
                     transition={{ duration: 2, repeat: Infinity }}
                   />
                   <span className="text-sm text-red-400 font-bold">Остават 3 места за 2025</span>
                 </div>
-              </motion.div>
+              </MotionDiv>
             </div>
           </div>
         </section>
@@ -967,21 +977,21 @@ export default function CalculatorsClient() {
         <section className="py-20 relative overflow-hidden">
           <div className="container mx-auto px-6 relative z-10">
             <div className="max-w-4xl mx-auto text-center">
-              <motion.div
+              <MotionDiv
                 className="inline-flex items-center gap-3 mb-8 px-6 py-3 rounded-full bg-red-500/10 border border-red-500/30"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
               >
                 <div className="flex items-center gap-2">
-                  <motion.div
+                  <MotionDiv
                     className="w-2 h-2 bg-red-400 rounded-full"
                     animate={{ scale: [1, 1.2, 1], opacity: [0.7, 1, 0.7] }}
                     transition={{ duration: 2, repeat: Infinity }}
                   />
                   <span className="text-sm text-red-400 font-bold">Остават 3 места за 2025</span>
                 </div>
-              </motion.div>
+              </MotionDiv>
 
               <motion.h2
                 className="text-4xl md:text-5xl font-bold text-white mb-6"

@@ -93,6 +93,10 @@ export const scaleProps = {
   transition: { duration: 0.5, ease: 'easeOut' }
 }
 
+// Additional motion components for specific elements
+export const MotionCircle = motion.circle
+export const MotionA = motion.a
+
 // Export all motion utilities from single source
 export { 
   motion, 
