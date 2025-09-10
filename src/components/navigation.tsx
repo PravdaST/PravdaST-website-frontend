@@ -395,7 +395,6 @@ export const Navigation = () => {
                 Безплатна консултация
               </NavButton>
             </div>
-          </div>
           </GlassCard>
         </MotionDiv>
       </div>
