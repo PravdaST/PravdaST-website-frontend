@@ -3,6 +3,62 @@
 import { memo } from 'react'
 import { Crown, Target, DollarSign, Check, MessageCircle, Trophy } from 'lucide-react'
 
+// Types за по-добро типизиране
+type Benefit = {
+  icon: React.ComponentType<{ className?: string }>
+  title: string
+  color: string
+  bgColor: string
+  features: string[]
+}
+
+// BenefitCard компонент за по-добър DRY принцип
+const BenefitCard = memo(({ benefit }: { benefit: Benefit }) => (
+  <div className="relative group">
+    <div className="relative bg-gray-900 border border-gray-700 rounded-lg p-6 h-full">
+      <div className="text-center mb-6">
+        <div className="flex justify-center mb-4">
+          <div className={`${benefit.bgColor} p-4 rounded-full`}>
+            <benefit.icon className={`w-8 h-8 text-${benefit.color}-400`} />
+          </div>
+        </div>
+        <h3 className={`text-xl font-bold text-${benefit.color}-400 mb-4`}>
+          {benefit.title}
+        </h3>
+      </div>
+      <ul className="space-y-3 text-gray-300 text-sm">
+        {benefit.features.map((feature, index) => (
+          <li key={index} className="flex items-start">
+            <Check className={`w-4 h-4 text-${benefit.color}-500 mr-2 mt-0.5 flex-shrink-0`} />
+            {feature}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+))
+
+BenefitCard.displayName = 'BenefitCard'
+
+// TestimonialCard компонент за по-добър DRY принцип  
+const TestimonialCard = memo(({ text, author }: { text: string, author: string }) => (
+  <div className="relative bg-gray-900/90 border border-green-400/20 rounded-lg p-8">
+    <div className="flex items-start">
+      <div className="bg-green-500/10 p-3 rounded-full mr-4 flex-shrink-0">
+        <MessageCircle className="w-6 h-6 text-green-400" />
+      </div>
+      <div>
+        <p className="text-white text-lg italic leading-relaxed mb-4">
+          "{text}"
+        </p>
+        <div className="text-green-400 font-bold">— {author}</div>
+      </div>
+    </div>
+  </div>
+))
+
+TestimonialCard.displayName = 'TestimonialCard'
+
 // Мемоизиран Benefits компонент
 const BenefitsOfOwnSystemSection = memo(() => {
   const benefits = [
@@ -85,48 +141,18 @@ const BenefitsOfOwnSystemSection = memo(() => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 mb-12">
+          <div className="grid md:grid-cols-3 gap-6 mb-12">
             {benefits.map((benefit, index) => (
-              <div key={index} className="relative group">
-                <div className="relative bg-gray-900 border border-gray-700 rounded-lg p-6 h-full">
-                  <div className="text-center mb-6">
-                    <div className="flex justify-center mb-4">
-                      <div className={`${benefit.bgColor} p-4 rounded-full`}>
-                        <benefit.icon className={`w-8 h-8 text-${benefit.color}-400`} />
-                      </div>
-                    </div>
-                    <h3 className={`text-2xl font-bold text-${benefit.color}-400 mb-4`}>
-                      {benefit.title}
-                    </h3>
-                  </div>
-                  <ul className="space-y-3 text-gray-300 text-sm">
-                    {benefit.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className="flex items-start">
-                        <Check className={`w-4 h-4 text-${benefit.color}-500 mr-2 mt-0.5 flex-shrink-0`} />
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
+              <BenefitCard key={index} benefit={benefit} />
             ))}
           </div>
 
           {/* Featured Testimonial */}
-          <div className="relative mb-12">
-            <div className="relative bg-gray-900/90 border border-green-400/20 rounded-lg p-8">
-              <div className="flex items-start">
-                <div className="bg-green-500/10 p-3 rounded-full mr-4 flex-shrink-0">
-                  <MessageCircle className="w-6 h-6 text-green-400" />
-                </div>
-                <div>
-                  <p className="text-white text-lg italic leading-relaxed mb-4">
-                    "Сега нашите 280 клиента поръчват директно от нас. Знаем ги по име, знаем какво обичат. Това е НАШИЯТ бизнес, не на Glovo."
-                  </p>
-                  <div className="text-green-400 font-bold">— Мария Д., пицария, Пловдив</div>
-                </div>
-              </div>
-            </div>
+          <div className="mb-12">
+            <TestimonialCard 
+              text="Сега нашите 280 клиента поръчват директно от нас. Знаем ги по име, знаем какво обичат. Това е НАШИЯТ бизнес, не на Glovo."
+              author="Мария Д., пицария, Пловдив"
+            />
           </div>
 
           {/* Mini Testimonials */}
