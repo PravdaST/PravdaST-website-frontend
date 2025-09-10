@@ -1,74 +1,60 @@
-"use client";
 
-import React from "react";
-import { motion, HTMLMotionProps } from "framer-motion";
-import { cn } from "@/lib/utils";
+'use client';
 
-interface SlideInProps extends Omit<HTMLMotionProps<"div">, "initial" | "whileInView" | "transition" | "viewport"> {
-  children: React.ReactNode;
-  direction?: "up" | "down" | "left" | "right";
-  distance?: number;
-  duration?: number;
+import { motion, Variants } from 'framer-motion';
+import { ReactNode } from 'react';
+
+interface SlideInProps {
+  children: ReactNode;
+  direction?: 'up' | 'down' | 'left' | 'right';
   delay?: number;
+  duration?: number;
+  distance?: number;
   className?: string;
-  once?: boolean;
 }
 
-const SlideIn = React.forwardRef<HTMLDivElement, SlideInProps>(
-  ({ 
-    children, 
-    direction = "up", 
-    distance = 20, 
-    duration = 0.6, 
-    delay = 0, 
-    className, 
-    once = true,
-    ...props 
-  }, ref) => {
-    const getInitialPosition = () => {
-      switch (direction) {
-        case "up":
-          return { opacity: 0, y: distance };
-        case "down":
-          return { opacity: 0, y: -distance };
-        case "left":
-          return { opacity: 0, x: distance };
-        case "right":
-          return { opacity: 0, x: -distance };
-        default:
-          return { opacity: 0, y: distance };
-      }
-    };
+const SlideIn = ({ 
+  children, 
+  direction = 'up', 
+  delay = 0, 
+  duration = 0.8,
+  distance = 20,
+  className = '' 
+}: SlideInProps) => {
+  const directionVariants: Record<string, Variants> = {
+    up: {
+      hidden: { opacity: 0, y: distance },
+      visible: { opacity: 1, y: 0 }
+    },
+    down: {
+      hidden: { opacity: 0, y: -distance },
+      visible: { opacity: 1, y: 0 }
+    },
+    left: {
+      hidden: { opacity: 0, x: distance },
+      visible: { opacity: 1, x: 0 }
+    },
+    right: {
+      hidden: { opacity: 0, x: -distance },
+      visible: { opacity: 1, x: 0 }
+    }
+  };
 
-    const getFinalPosition = () => {
-      switch (direction) {
-        case "up":
-        case "down":
-          return { opacity: 1, y: 0 };
-        case "left":
-        case "right":
-          return { opacity: 1, x: 0 };
-        default:
-          return { opacity: 1, y: 0 };
-      }
-    };
-
-    return (
-      <motion.div
-        ref={ref}
-        className={cn(className)}
-        initial={getInitialPosition()}
-        whileInView={getFinalPosition()}
-        transition={{ duration, delay }}
-        viewport={{ once }}
-        {...props}
-      >
-        {children}
-      </motion.div>
-    );
-  }
-);
-
-SlideIn.displayName = "SlideIn";
+  return (
+    <motion.div
+      className={className}
+      initial="hidden"
+      animate="visible"
+      variants={directionVariants[direction]}
+      transition={{ 
+        duration,
+        delay,
+        ease: "easeOut"
+      }}
+    >
+      {children}
+    </motion.div>
+  );
+};
 
 export default SlideIn;

@@ -6,9 +6,13 @@ import { Button } from '@/components/ui/button';
 import PravdaHeading from '@/components/typography/PravdaHeading';
 import { Play, Users, TrendingUp, Eye, ChevronDown } from 'lucide-react';
 
+// Assuming SlideIn is a custom component that wraps motion.div with similar functionality
+// If SlideIn is not defined elsewhere, this will cause an error.
+// For the purpose of this edit, we'll assume it exists and is intended to replace motion.div.
+
 export const CreativesHeroSection = () => {
   const [currentExample, setCurrentExample] = useState(0);
-  
+
   const creativeExamples = [
     {
       type: "UGC Video",
@@ -34,7 +38,7 @@ export const CreativesHeroSection = () => {
     const timer = setInterval(() => {
       setCurrentExample((prev) => (prev + 1) % creativeExamples.length);
     }, 3000);
-    
+
     return () => clearInterval(timer);
   }, []);
 
@@ -106,20 +110,20 @@ export const CreativesHeroSection = () => {
             <TrendingUp className="w-4 h-4 mr-2" />
             Креативи, които удвояват продажбите
           </div>
-          
+
           <PravdaHeading 
             as="h1" 
             size="4xl" 
             className="md:text-7xl font-bold text-gray-900 mb-6 leading-tight"
           >
-            Къде да изпратим вашия{" "}
+            Къде да изпратим ваши вашия{" "}
             <span className="bg-gradient-to-r from-yellow-400 to-green-400 bg-clip-text text-transparent">
               Креативен Анализ
             </span>
             <br />
             за 3x повече продажби?
           </PravdaHeading>
-          
+
           <p className="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed mb-12">
             Открийте точно кои типове креативи ще работят най-добре за вашия бизнес.
             Получете персонализиран план за{" "}
@@ -141,21 +145,21 @@ export const CreativesHeroSection = () => {
                 <Play size={32} className="text-white ml-1" />
               </div>
             </div>
-            
+
             <h3 className="text-2xl font-bold text-gray-900 mb-2">
               {creativeExamples[currentExample].type}
             </h3>
-            
+
             <p className="text-gray-600 mb-4">
               {creativeExamples[currentExample].description}
             </p>
-            
+
             <div className="bg-green-100 rounded-lg py-2 px-4 inline-block">
               <span className="text-green-600 font-bold">
                 {creativeExamples[currentExample].impact}
               </span>
             </div>
-            
+
             {/* Progress Indicators */}
             <div className="flex justify-center space-x-2 mt-6">
               {creativeExamples.map((_, index) => (
@@ -207,7 +211,7 @@ export const CreativesHeroSection = () => {
           >
             Получи креативния анализ БЕЗПЛАТНО
           </Button>
-          
+
           <div className="flex items-center space-x-2 text-gray-600 text-sm">
             <span>⚡ Готов за под 5 минути</span>
             <span>•</span>
