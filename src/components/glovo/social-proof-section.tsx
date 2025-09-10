@@ -3,7 +3,7 @@
 import { memo } from 'react'
 import { motion } from "framer-motion"
 import Image from "next/image"
-import { CheckCircle, DollarSign, TrendingUp } from "lucide-react"
+import { CheckCircle, DollarSign, TrendingUp, MessageCircle } from "lucide-react"
 
 // Мемоизиран компонент за по-добър performance
 const SocialProofSection = memo(() => {
@@ -13,23 +13,23 @@ const SocialProofSection = memo(() => {
       number: "47",
       label: "ресторанта освободени от Glovo зависимост",
       color: "green",
-      gradient: "from-green-400 to-emerald-500",
+      bgColor: "bg-green-500/10",
       delay: "0s",
     },
     {
       icon: DollarSign,
       number: "1,800 лв",
       label: "средно спестени месечно",
-      color: "yellow",
-      gradient: "from-blue-400 to-blue-600",
+      color: "blue",
+      bgColor: "bg-blue-500/10",
       delay: "0.2s",
     },
     {
       icon: TrendingUp,
       number: "85%",
       label: "директни поръчки вместо Glovo",
-      color: "green",
-      gradient: "from-gray-400 to-gray-600",
+      color: "gray",
+      bgColor: "bg-gray-500/10",
       delay: "0.4s",
     },
   ]
@@ -138,11 +138,11 @@ const SocialProofSection = memo(() => {
                 >
                   <div className="relative bg-gray-900/90 border border-gray-700 rounded-lg p-6 text-center">
                     <div className="flex items-center justify-center mb-4">
-                      <div className="bg-gray-700 p-3 rounded-full">
-                        <IconComponent className="w-8 h-8 text-blue-400" />
+                      <div className={`${stat.bgColor} p-3 rounded-full`}>
+                        <IconComponent className={`w-8 h-8 text-${stat.color}-400`} />
                       </div>
                     </div>
-                    <div className="text-3xl md:text-4xl font-bold text-blue-400 mb-3">
+                    <div className={`text-3xl md:text-4xl font-bold text-${stat.color}-400 mb-3`}>
                       {stat.number}
                     </div>
                     <div className="text-gray-300 text-sm font-medium">{stat.label}</div>
@@ -158,7 +158,9 @@ const SocialProofSection = memo(() => {
               <div key={index} className="relative group">
                 <div className="relative bg-gray-900/90 border border-gray-700 rounded-lg p-6">
                   <div className="flex items-start mb-4">
-                    <span className="text-blue-400 text-2xl mr-3">💬</span>
+                    <div className="bg-blue-500/10 p-2 rounded-full mr-3 flex-shrink-0">
+                      <MessageCircle className="w-4 h-4 text-blue-400" />
+                    </div>
                     <p className="text-white text-sm leading-relaxed italic">"{testimonial.text}"</p>
                   </div>
                   <div className="text-blue-400 text-xs font-medium">— {testimonial.author}</div>

@@ -217,7 +217,7 @@ export const GlovoStepForm = () => {
           <Button
             onClick={nextStep}
             size="lg"
-            className="bg-gradient-to-r from-yellow-400 to-orange-400 text-black hover:opacity-90 px-8 py-4 text-lg font-bold"
+            className="bg-yellow-500 text-black hover:bg-yellow-600 px-8 py-4 text-lg font-bold"
           >
             Започни калкулатора
             <ChevronRight className="ml-2 w-5 h-5" />
@@ -473,7 +473,7 @@ export const GlovoStepForm = () => {
           </div>
           <div className="w-full bg-gray-700 rounded-full h-2">
             <div
-              className="bg-gradient-to-r from-yellow-400 to-green-400 h-2 rounded-full transition-all duration-500"
+              className="bg-blue-500 h-2 rounded-full transition-all duration-500"
               style={{ width: `${(currentStep / 6) * 100}%` }}
             ></div>
           </div>
@@ -515,7 +515,7 @@ export const GlovoStepForm = () => {
             <Button
               onClick={submitToAirtable}
               disabled={!isStepValid() || isSubmitting}
-              className="bg-gradient-to-r from-yellow-400 to-green-400 text-black hover:opacity-90 disabled:opacity-50"
+              className="bg-blue-500 text-white hover:bg-blue-600 disabled:opacity-50"
             >
               {isSubmitting ? (
                 <>
@@ -533,7 +533,7 @@ export const GlovoStepForm = () => {
             <Button
               onClick={nextStep}
               disabled={!isStepValid()}
-              className="bg-gradient-to-r from-yellow-400 to-green-400 text-black hover:opacity-90 disabled:opacity-50"
+              className="bg-blue-500 text-white hover:bg-blue-600 disabled:opacity-50"
             >
               Напред
               <ChevronRight className="ml-2 w-4 h-4" />
