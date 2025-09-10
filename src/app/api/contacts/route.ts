@@ -1,9 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { sendContactEmail } from '@/lib/email-service'
+import { storage } from '../../../../server/storage'
 import { z } from 'zod'
-
-// Rate limiting store (in production, use Redis or database)
-const rateLimitStore = new Map<string, { count: number; resetTime: number }>()
 
 const contactSchema = z.object({
   name: z.string().min(2, "Името трябва да бъде поне 2 символа"),
@@ -12,26 +10,6 @@ const contactSchema = z.object({
   website: z.string().url("Невалиден URL").optional().or(z.literal("")),
   message: z.string().min(10, "Съобщението трябва да бъде поне 10 символа"),
 })
-
-// Rate limiting: 5 messages per hour per IP
-function checkRateLimit(ip: string): boolean {
-  const now = Date.now()
-  const hourMs = 60 * 60 * 1000
-  
-  const record = rateLimitStore.get(ip)
-  
-  if (!record || now > record.resetTime) {
-    rateLimitStore.set(ip, { count: 1, resetTime: now + hourMs })
-    return true
-  }
-  
-  if (record.count >= 5) {
-    return false
-  }
-  
-  record.count++
-  return true
-}
 
 // Input sanitization
 function sanitizeInput(input: string): string {
@@ -49,15 +27,35 @@ export async function POST(request: NextRequest) {
     const realIp = request.headers.get('x-real-ip')
     const clientIp = forwardedFor?.split(',')[0] || realIp || 'unknown'
     
-    // Check rate limit
-    if (!checkRateLimit(clientIp)) {
-      console.log(`Rate limit exceeded for IP: ${clientIp}`)
+    // Check rate limit using database-based system
+    // Allow maximum 5 requests per 60 minutes per IP
+    const rateLimitResult = await storage.checkRateLimit(clientIp, '/api/contacts', 60, 5)
+    
+    if (!rateLimitResult.allowed) {
+      console.log(`Rate limit exceeded for IP: ${clientIp}`, {
+        resetTime: rateLimitResult.resetTime,
+        endpoint: '/api/contacts'
+      })
+      
+      const resetTimeStr = rateLimitResult.resetTime 
+        ? ` Моля опитайте отново след ${rateLimitResult.resetTime.toLocaleTimeString('bg-BG')}.`
+        : ' Моля опитайте отново по-късно.'
+      
       return NextResponse.json(
         { 
           success: false, 
-          message: "Превишен лимит за изпращане. Моля опитайте отново след час." 
+          message: "Превишен лимит за изпращане на съобщения." + resetTimeStr,
+          rateLimited: true,
+          resetTime: rateLimitResult.resetTime
         },
         { status: 429 }
+      )
+    }
+    
+    // Clean up expired rate limit records periodically (1% chance)
+    if (Math.random() < 0.01) {
+      storage.cleanupExpiredRateLimits().catch(err => 
+        console.warn('Rate limit cleanup failed:', err)
       )
     }
 

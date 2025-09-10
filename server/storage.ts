@@ -3,14 +3,17 @@ import {
   adminSessions,
   blogPosts,
   contacts,
+  rateLimits,
   type AdminUser,
   type AdminSession,
   type BlogPost,
   type Contact,
+  type RateLimit,
   type InsertAdminUser,
   type InsertAdminSession,
   type InsertBlogPost,
   type InsertContact,
+  type InsertRateLimit,
 } from "../shared/schema";
 import { db } from "./db";
 import { eq, desc, and, gte, lt } from "drizzle-orm";
@@ -42,6 +45,11 @@ export interface IStorage {
   // Contact operations
   getAllContacts(): Promise<Contact[]>;
   createContact(contact: InsertContact): Promise<Contact>;
+  
+  // Rate limiting operations
+  checkRateLimit(ipAddress: string, endpoint: string, windowMinutes: number, maxRequests: number): Promise<{ allowed: boolean; resetTime?: Date }>;
+  recordRequest(ipAddress: string, endpoint: string): Promise<void>;
+  cleanupExpiredRateLimits(): Promise<void>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -213,6 +221,82 @@ export class DatabaseStorage implements IStorage {
       })
       .returning();
     return newContact;
+  }
+
+  // Rate limiting operations
+  async checkRateLimit(ipAddress: string, endpoint: string, windowMinutes: number, maxRequests: number): Promise<{ allowed: boolean; resetTime?: Date }> {
+    try {
+      const windowStart = new Date(Date.now() - windowMinutes * 60 * 1000);
+      
+      // Get existing rate limit record within the window
+      const [existingRecord] = await db
+        .select()
+        .from(rateLimits)
+        .where(and(
+          eq(rateLimits.ipAddress, ipAddress),
+          eq(rateLimits.endpoint, endpoint),
+          gte(rateLimits.windowStart, windowStart)
+        ))
+        .orderBy(desc(rateLimits.windowStart))
+        .limit(1);
+
+      if (!existingRecord) {
+        // No existing record, create new one
+        await this.recordRequest(ipAddress, endpoint);
+        return { allowed: true };
+      }
+
+      if (existingRecord.requestCount >= maxRequests) {
+        // Rate limit exceeded
+        const resetTime = new Date(existingRecord.windowStart.getTime() + windowMinutes * 60 * 1000);
+        return { allowed: false, resetTime };
+      }
+
+      // Within limit, increment counter
+      await db
+        .update(rateLimits)
+        .set({
+          requestCount: existingRecord.requestCount + 1,
+          updatedAt: new Date(),
+        })
+        .where(eq(rateLimits.id, existingRecord.id));
+
+      return { allowed: true };
+    } catch (error) {
+      console.error('Rate limit check failed:', error);
+      // Fallback to allow request if database fails
+      return { allowed: true };
+    }
+  }
+
+  async recordRequest(ipAddress: string, endpoint: string): Promise<void> {
+    try {
+      await db
+        .insert(rateLimits)
+        .values({
+          ipAddress,
+          endpoint,
+          requestCount: 1,
+          windowStart: new Date(),
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        });
+    } catch (error) {
+      console.error('Failed to record rate limit request:', error);
+      // Silently fail if unable to record
+    }
+  }
+
+  async cleanupExpiredRateLimits(): Promise<void> {
+    try {
+      // Clean up records older than 24 hours
+      const cutoffTime = new Date(Date.now() - 24 * 60 * 60 * 1000);
+      await db
+        .delete(rateLimits)
+        .where(lt(rateLimits.createdAt, cutoffTime));
+    } catch (error) {
+      console.error('Failed to cleanup expired rate limits:', error);
+    }
   }
 }
 

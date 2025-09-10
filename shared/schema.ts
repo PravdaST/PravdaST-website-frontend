@@ -70,6 +70,20 @@ export const contacts = pgTable("contacts", {
   createdAt: timestamp("created_at").defaultNow(),
 });
 
+// Rate limiting table for spam protection
+export const rateLimits = pgTable("rate_limits", {
+  id: integer("id").primaryKey().generatedAlwaysAsIdentity(),
+  ipAddress: varchar("ip_address", { length: 45 }).notNull(), // IPv6 compatible
+  endpoint: varchar("endpoint", { length: 100 }).notNull(),
+  requestCount: integer("request_count").notNull().default(1),
+  windowStart: timestamp("window_start").notNull().defaultNow(),
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+}, (table) => [
+  index("idx_rate_limits_ip_endpoint").on(table.ipAddress, table.endpoint),
+  index("idx_rate_limits_window").on(table.windowStart),
+]);
+
 // Types
 export type AdminUser = typeof adminUsers.$inferSelect;
 export type InsertAdminUser = typeof adminUsers.$inferInsert;
@@ -83,11 +97,16 @@ export type InsertBlogPost = typeof blogPosts.$inferInsert;
 export type Contact = typeof contacts.$inferSelect;
 export type InsertContact = typeof contacts.$inferInsert;
 
+export type RateLimit = typeof rateLimits.$inferSelect;
+export type InsertRateLimit = typeof rateLimits.$inferInsert;
+
 // Validation schemas
 export const insertAdminUserSchema = createInsertSchema(adminUsers);
 export const insertAdminSessionSchema = createInsertSchema(adminSessions);
 export const insertBlogPostSchema = createInsertSchema(blogPosts);
 export const insertContactSchema = createInsertSchema(contacts);
+export const insertRateLimitSchema = createInsertSchema(rateLimits);
 
 export type InsertBlogPostInput = z.infer<typeof insertBlogPostSchema>;
 export type InsertContactInput = z.infer<typeof insertContactSchema>;
+export type InsertRateLimitInput = z.infer<typeof insertRateLimitSchema>;
