@@ -158,15 +158,14 @@ const BenefitsOfOwnSystemSection = memo(() => {
           {/* Mini Testimonials */}
           <div className="grid md:grid-cols-2 gap-6">
             {miniTestimonials.map((testimonial, index) => (
-              <div key={index} className="relative group">
-                <div className="absolute inset-0 bg-gradient-to-br from-green-400/10 to-emerald-600/10 rounded-2xl blur-lg opacity-50"></div>
-                <div className="relative bg-gray-900/70 backdrop-blur-xl border border-green-400/20 rounded-2xl p-6">
-                  <div className="flex items-start mb-4">
-                    <span className="text-green-400 text-2xl mr-3">💬</span>
-                    <p className="text-white text-sm leading-relaxed italic">"{testimonial.text}"</p>
+              <div key={index} className="bg-gray-900/60 border border-gray-700/50 rounded-lg p-6">
+                <div className="flex items-start mb-4">
+                  <div className="bg-green-500/10 p-2 rounded-full mr-3 flex-shrink-0">
+                    <MessageCircle className="w-4 h-4 text-green-400" />
                   </div>
-                  <div className="text-green-400 text-xs font-medium">— {testimonial.author}</div>
+                  <p className="text-gray-300 text-sm leading-relaxed italic">"{testimonial.text}"</p>
                 </div>
+                <div className="text-green-400 text-xs font-medium">— {testimonial.author}</div>
               </div>
             ))}
           </div>
