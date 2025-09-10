@@ -1,6 +1,9 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { 
+  MotionDiv,
+  sharedVariants 
+} from '@/hooks/useSharedFramerMotion'
 import { useState, useEffect } from 'react'
 
 export function BackgroundEffects() {
@@ -17,8 +20,8 @@ export function BackgroundEffects() {
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none z-[-1]">
       {/* Primary Yellow Orb - Large */}
-      <motion.div
-        className="absolute w-96 h-96 rounded-full blur-3xl opacity-20"
+      <MotionDiv
+        className="absolute w-96 h-96 rounded-full blur-3xl opacity-20 performance-animated-element"
         style={{
           background: 'radial-gradient(circle, rgba(236, 182, 40, 0.4) 0%, rgba(255, 215, 0, 0.2) 50%, transparent 100%)',
           top: '10%',
@@ -37,8 +40,8 @@ export function BackgroundEffects() {
       />
 
       {/* Secondary Orange Orb - Medium */}
-      <motion.div
-        className="absolute w-64 h-64 rounded-full blur-2xl opacity-15"
+      <MotionDiv
+        className="absolute w-64 h-64 rounded-full blur-2xl opacity-15 performance-animated-element"
         style={{
           background: 'radial-gradient(circle, rgba(255, 165, 0, 0.3) 0%, rgba(236, 182, 40, 0.15) 60%, transparent 100%)',
           bottom: '20%',
@@ -57,8 +60,8 @@ export function BackgroundEffects() {
       />
 
       {/* Tertiary Blue Orb - Small */}
-      <motion.div
-        className="absolute w-48 h-48 rounded-full blur-xl opacity-10"
+      <MotionDiv
+        className="absolute w-48 h-48 rounded-full blur-xl opacity-10 performance-animated-element"
         style={{
           background: 'radial-gradient(circle, rgba(59, 130, 246, 0.2) 0%, rgba(147, 197, 253, 0.1) 70%, transparent 100%)',
           top: '60%',
@@ -77,8 +80,8 @@ export function BackgroundEffects() {
       />
 
       {/* Ambient Yellow Glow - Bottom Left */}
-      <motion.div
-        className="absolute w-80 h-80 rounded-full blur-3xl opacity-8"
+      <MotionDiv
+        className="absolute w-80 h-80 rounded-full blur-3xl opacity-8 performance-animated-element"
         style={{
           background: 'radial-gradient(circle, rgba(236, 182, 40, 0.15) 0%, transparent 70%)',
           bottom: '5%',
@@ -96,8 +99,8 @@ export function BackgroundEffects() {
       />
 
       {/* Subtle Purple Accent - Top Right */}
-      <motion.div
-        className="absolute w-56 h-56 rounded-full blur-2xl opacity-6"
+      <MotionDiv
+        className="absolute w-56 h-56 rounded-full blur-2xl opacity-6 performance-animated-element"
         style={{
           background: 'radial-gradient(circle, rgba(168, 85, 247, 0.15) 0%, rgba(196, 146, 254, 0.08) 60%, transparent 100%)',
           top: '15%',
@@ -117,9 +120,9 @@ export function BackgroundEffects() {
 
       {/* Floating Particles Effect */}
       {particles.map((particle, i) => (
-        <motion.div
+        <MotionDiv
           key={`particle-${i}`}
-          className="absolute w-1 h-1 rounded-full bg-[#ECB628]/20"
+          className="absolute w-1 h-1 rounded-full bg-[#ECB628]/20 performance-animated-element"
           style={{
             left: `${particle.left}%`,
             top: `${particle.top}%`,
@@ -156,8 +159,8 @@ export function BackgroundEffects() {
 export function GradientOrbs() {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      <motion.div
-        className="absolute w-96 h-96 bg-gradient-to-r from-[#ECB628]/10 to-orange-500/10 rounded-full blur-3xl"
+      <MotionDiv
+        className="absolute w-96 h-96 bg-gradient-to-r from-[#ECB628]/10 to-orange-500/10 rounded-full blur-3xl performance-animated-element"
         animate={{
           x: [0, 100, 0],
           y: [0, -50, 0],
