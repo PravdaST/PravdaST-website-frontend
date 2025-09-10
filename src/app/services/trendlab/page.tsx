@@ -104,9 +104,9 @@ const TrendlabBackground = () => {
       {/* Floating Content Blocks */}
       <div className="absolute inset-0">
         {Array.from({ length: 12 }).map((_, i) => (
-          <motion.div
+          <MotionDiv
             key={i}
-            className="absolute"
+            className="absolute performance-animated-element"
             style={{
               left: `${10 + i * 8}%`,
               top: `${15 + (i % 4) * 20}%`,
@@ -138,7 +138,7 @@ const TrendlabBackground = () => {
                 <div className="w-4 h-1 bg-[#ECB629]/40 rounded-full" />
               )}
             </div>
-          </motion.div>
+          </MotionDiv>
         ))}
       </div>
 
@@ -148,8 +148,9 @@ const TrendlabBackground = () => {
         xmlns="http://www.w3.org/2000/svg"
       >
         {Array.from({ length: 3 }).map((_, i) => (
-          <motion.path
+          <MotionDiv
             key={i}
+            as="path"
             d={`M ${i * 400 + 100} 100 Q ${i * 400 + 300} 200 ${i * 400 + 500} 300 Q ${i * 400 + 700} 400 ${i * 400 + 900} 200`}
             fill="none"
             stroke="url(#dataFlow)"
@@ -165,13 +166,14 @@ const TrendlabBackground = () => {
               delay: i * 1.5,
               ease: "easeInOut",
             }}
+            className="performance-animated-element"
           />
         ))}
       </svg>
 
       {/* Interactive Content Bubble */}
-      <motion.div
-        className="absolute w-24 h-24 pointer-events-none"
+      <MotionDiv
+        className="absolute w-24 h-24 pointer-events-none performance-animated-element"
         style={{
           left: mousePosition.x - 48,
           top: mousePosition.y - 48,
@@ -191,7 +193,7 @@ const TrendlabBackground = () => {
             <div className="absolute inset-2 rounded-full bg-[#ECB629]/10" />
           </div>
         </div>
-      </motion.div>
+      </MotionDiv>
     </div>
   );
 };
@@ -223,24 +225,24 @@ export default function Trendlab() {
         <TrendlabBackground />
 
         <div className="container mx-auto px-6 relative z-1">
-          <motion.div
+          <MotionDiv
             ref={heroRef}
-            className="max-w-5xl mx-auto text-center"
+            className="max-w-5xl mx-auto text-center performance-animated-element"
             initial={{ opacity: 0, y: 30 }}
             animate={heroInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8 }}
           >
             {/* Status Badge */}
-            <motion.div
-              className="inline-flex items-center gap-2 glassmorphism rounded-full px-6 py-3 mb-8"
+            <MotionDiv
+              className="inline-flex items-center gap-2 glassmorphism rounded-full px-6 py-3 mb-8 performance-animated-element"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={heroInView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
               <div className="relative">
                 <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                <motion.div
-                  className="absolute inset-0 w-2 h-2 bg-green-500 rounded-full"
+                <MotionDiv
+                  className="absolute inset-0 w-2 h-2 bg-green-500 rounded-full performance-animated-element"
                   animate={{
                     scale: [1, 2, 1],
                     opacity: [1, 0, 1],
@@ -258,10 +260,10 @@ export default function Trendlab() {
                   Системен подход към съдържанието
                 </span>
               </span>
-            </motion.div>
+            </MotionDiv>
 
-            <motion.h1
-              className="text-5xl md:text-7xl font-bold mb-8 leading-tight"
+            <MotionH1
+              className="text-5xl md:text-7xl font-bold mb-8 leading-tight performance-animated-element"
               initial={{ opacity: 0, y: 30 }}
               animate={heroInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.4 }}
@@ -271,10 +273,10 @@ export default function Trendlab() {
                 вашата
               </span>
               . Време е да я разкажем.
-            </motion.h1>
+            </MotionH1>
 
-            <motion.p
-              className="text-xl md:text-2xl text-gray-300 mb-12 max-w-4xl mx-auto leading-relaxed"
+            <MotionP
+              className="text-xl md:text-2xl text-gray-300 mb-12 max-w-4xl mx-auto leading-relaxed performance-animated-element"
               initial={{ opacity: 0, y: 30 }}
               animate={heroInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.6 }}
@@ -290,10 +292,10 @@ export default function Trendlab() {
                 нашите резултати
               </Link>{" "}
               от съдържанието.
-            </motion.p>
+            </MotionP>
 
-            <motion.div
-              className="flex flex-col sm:flex-row gap-6 justify-center items-center"
+            <MotionDiv
+              className="flex flex-col sm:flex-row gap-6 justify-center items-center performance-animated-element"
               initial={{ opacity: 0, y: 30 }}
               animate={heroInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.8 }}
@@ -312,17 +314,17 @@ export default function Trendlab() {
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </a>
               </Button>
-            </motion.div>
-          </motion.div>
+            </MotionDiv>
+          </MotionDiv>
         </div>
       </section>
 
       {/* Philosophy Section */}
       <section className="py-20 glass-section relative overflow-hidden">
         <div className="container mx-auto px-6">
-          <motion.div
+          <MotionDiv
             ref={philosophyRef}
-            className="max-w-6xl mx-auto"
+            className="max-w-6xl mx-auto performance-animated-element"
             initial={{ opacity: 0, y: 30 }}
             animate={philosophyInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8 }}
@@ -367,8 +369,8 @@ export default function Trendlab() {
 
                   <div className="grid md:grid-cols-3 gap-8 items-center">
                     {/* Input */}
-                    <motion.div
-                      className="text-center"
+                    <MotionDiv
+                      className="text-center performance-animated-element"
                       initial={{ opacity: 0, x: -50 }}
                       animate={philosophyInView ? { opacity: 1, x: 0 } : {}}
                       transition={{ duration: 0.8, delay: 0.2 }}
@@ -386,17 +388,17 @@ export default function Trendlab() {
                       <p className="text-sm text-gray-400">
                         Знания, опит, факти
                       </p>
-                    </motion.div>
+                    </MotionDiv>
 
                     {/* Process */}
-                    <motion.div
-                      className="text-center relative"
+                    <MotionDiv
+                      className="text-center relative performance-animated-element"
                       initial={{ opacity: 0, y: 30 }}
                       animate={philosophyInView ? { opacity: 1, y: 0 } : {}}
                       transition={{ duration: 0.8, delay: 0.4 }}
                     >
-                      <motion.div
-                        className="w-24 h-24 mx-auto bg-[#ECB629]/20 rounded-full flex items-center justify-center mb-4 border-2 border-[#ECB629]/30 relative"
+                      <MotionDiv
+                        className="w-24 h-24 mx-auto bg-[#ECB629]/20 rounded-full flex items-center justify-center mb-4 border-2 border-[#ECB629]/30 relative performance-animated-element"
                         animate={{
                           rotate: [0, 360],
                         }}
@@ -419,23 +421,23 @@ export default function Trendlab() {
                             }}
                           />
                         ))}
-                      </motion.div>
+                      </MotionDiv>
                       <h4 className="text-lg font-semibold text-[#ECB629] mb-2">
                         Trendlab™ Система
                       </h4>
                       <p className="text-sm text-gray-400">AI + Креативност</p>
-                    </motion.div>
+                    </MotionDiv>
 
                     {/* Output */}
-                    <motion.div
-                      className="text-center"
+                    <MotionDiv
+                      className="text-center performance-animated-element"
                       initial={{ opacity: 0, x: 50 }}
                       animate={philosophyInView ? { opacity: 1, x: 0 } : {}}
                       transition={{ duration: 0.8, delay: 0.6 }}
                     >
                       <div className="w-20 h-20 mx-auto bg-[#ECB629]/20 rounded-xl flex items-center justify-center mb-4 border border-[#ECB629]/30 relative overflow-hidden">
-                        <motion.div
-                          className="absolute inset-0 bg-gradient-to-r from-transparent via-[#ECB629]/20 to-transparent"
+                        <MotionDiv
+                          className="absolute inset-0 bg-gradient-to-r from-transparent via-[#ECB629]/20 to-transparent performance-animated-element"
                           animate={{
                             x: [-100, 100],
                           }}
@@ -456,12 +458,13 @@ export default function Trendlab() {
                       <p className="text-sm text-gray-400">
                         Видео, статии, визии
                       </p>
-                    </motion.div>
+                    </MotionDiv>
                   </div>
 
                   {/* Flow arrows */}
                   <div className="hidden md:block absolute top-1/2 left-1/4 transform -translate-y-1/2">
-                    <motion.div
+                    <MotionDiv
+                      className="performance-animated-element"
                       animate={{
                         x: [0, 10, 0],
                         opacity: [0.5, 1, 0.5],
@@ -473,11 +476,12 @@ export default function Trendlab() {
                       }}
                     >
                       <ArrowRight className="h-6 w-6 text-[#ECB629]" />
-                    </motion.div>
+                    </MotionDiv>
                   </div>
 
                   <div className="hidden md:block absolute top-1/2 right-1/4 transform -translate-y-1/2">
-                    <motion.div
+                    <MotionDiv
+                      className="performance-animated-element"
                       animate={{
                         x: [0, 10, 0],
                         opacity: [0.5, 1, 0.5],
@@ -490,7 +494,7 @@ export default function Trendlab() {
                       }}
                     >
                       <ArrowRight className="h-6 w-6 text-[#ECB629]" />
-                    </motion.div>
+                    </MotionDiv>
                   </div>
                 </div>
               </Card>
@@ -515,7 +519,7 @@ export default function Trendlab() {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </MotionDiv>
         </div>
       </section>
 
@@ -622,21 +626,21 @@ export default function Trendlab() {
             transition={{ duration: 0.8 }}
           >
             {/* Enhanced Header */}
-            <motion.div
-              className="text-center mb-20"
+            <MotionDiv
+              className="text-center mb-20 performance-animated-element"
               initial={{ opacity: 0, y: 20 }}
               animate={processInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <motion.div
-                className="inline-flex items-center gap-3 mb-8 px-6 py-3 rounded-full bg-gradient-to-r from-slate-800/80 to-slate-700/60 border border-[#ECB629]/30 backdrop-blur-sm"
+              <MotionDiv
+                className="inline-flex items-center gap-3 mb-8 px-6 py-3 rounded-full bg-gradient-to-r from-slate-800/80 to-slate-700/60 border border-[#ECB629]/30 backdrop-blur-sm performance-animated-element"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={processInView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ duration: 0.6, delay: 0.3 }}
               >
                 <div className="w-2 h-2 bg-[#ECB629] rounded-full">
-                  <motion.div
-                    className="absolute inset-0 w-2 h-2 bg-[#ECB629] rounded-full opacity-40"
+                  <MotionDiv
+                    className="absolute inset-0 w-2 h-2 bg-[#ECB629] rounded-full opacity-40 performance-animated-element"
                     animate={{ scale: [1, 1.5, 1] }}
                     transition={{
                       duration: 2,
@@ -651,21 +655,21 @@ export default function Trendlab() {
                   </span>{" "}
                   за съдържание
                 </span>
-              </motion.div>
+              </MotionDiv>
 
               <h2 className="text-4xl md:text-6xl font-bold mb-6 text-white">
                 Нашата поточна линия за съдържание: <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ECB629] to-[#F59E0B] relative">
                   Процес в 4 фази
-                  <motion.div
-                    className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-[#ECB629] to-[#F59E0B] rounded-full"
+                  <MotionDiv
+                    className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-[#ECB629] to-[#F59E0B] rounded-full performance-animated-element"
                     initial={{ scaleX: 0 }}
                     animate={processInView ? { scaleX: 1 } : {}}
                     transition={{ duration: 1, delay: 0.8 }}
                   />
                 </span>
               </h2>
-            </motion.div>
+            </MotionDiv>
 
             {/* Ultra-Modern Timeline Cards */}
             <div className="relative">
@@ -676,12 +680,14 @@ export default function Trendlab() {
                   viewBox="0 0 1200 800"
                   preserveAspectRatio="none"
                 >
-                  <motion.path
+                  <MotionDiv
+                    as="path"
                     d="M200,200 Q400,100 600,200 Q800,300 1000,200"
                     stroke="url(#gradient)"
                     strokeWidth="2"
                     fill="none"
                     strokeDasharray="10,5"
+                    className="performance-animated-element"
                     initial={{ pathLength: 0 }}
                     animate={processInView ? { pathLength: 1 } : {}}
                     transition={{ duration: 2, delay: 0.5 }}
@@ -808,7 +814,7 @@ export default function Trendlab() {
                           <span className="text-xs text-[#ECB629] font-bold">
                             ФАЗА {phase.phase}
                           </span>
-                        </motion.div>
+                        </MotionDiv>
                       </div>
 
                       <div className="relative z-10">
@@ -823,7 +829,7 @@ export default function Trendlab() {
                             <div className="w-16 h-16 bg-gradient-to-br from-[#ECB629]/20 to-[#ECB629]/40 rounded-full flex items-center justify-center">
                               <phase.icon className="w-8 h-8 text-[#ECB629]" />
                             </div>
-                          </motion.div>
+                          </MotionDiv>
                         </div>
 
                         {/* Content */}
@@ -859,11 +865,11 @@ export default function Trendlab() {
                         </div>
                       </div>
                     </div>
-                  </motion.div>
+                  </MotionDiv>
                 ))}
               </div>
             </div>
-          </motion.div>
+          </MotionDiv>
         </div>
       </section>
 
@@ -886,7 +892,7 @@ export default function Trendlab() {
                 <span className="text-[#ECB629] text-sm font-medium tracking-wide">
                   ИЗМЕРИМИ РЕЗУЛТАТИ
                 </span>
-              </motion.div>
+              </MotionDiv>
 
               <h2 className="text-4xl md:text-5xl font-bold text-white mb-8">
                 Когато изградите правилния авторитет
@@ -937,7 +943,7 @@ export default function Trendlab() {
                           whileHover={{ scale: 1.1 }}
                         >
                           <CheckCircle className="h-6 w-6 text-[#ECB629]" />
-                        </motion.div>
+                        </MotionDiv>
                       </div>
                       <div className="flex-1">
                         <h3 className="text-xl font-bold mb-3 text-white">
@@ -949,10 +955,10 @@ export default function Trendlab() {
                       </div>
                     </div>
                   </Card>
-                </motion.div>
+                </MotionDiv>
               ))}
             </div>
-          </motion.div>
+          </MotionDiv>
         </div>
       </section>
 
@@ -1006,7 +1012,7 @@ export default function Trendlab() {
                 Инженерно проектиране изисква прецизност и в техническата
                 спецификация
               </p>
-            </motion.div>
+            </MotionDiv>
 
             {/* Price Display */}
             <motion.div
@@ -1030,8 +1036,8 @@ export default function Trendlab() {
                     *Финалната цена се определя след техническа диагностика
                   </div>
                 </div>
-              </motion.div>
-            </motion.div>
+              </MotionDiv>
+            </MotionDiv>
 
             {/* Principles Grid */}
             <div className="grid gap-8 md:gap-12">
@@ -1085,7 +1091,7 @@ export default function Trendlab() {
                           />
                         )}
                       </div>
-                    </motion.div>
+                    </MotionDiv>
 
                     {/* Content Card */}
                     <div className="flex-1 w-full">
@@ -1112,11 +1118,11 @@ export default function Trendlab() {
                             animate={investmentInView ? { width: "100%" } : {}}
                             transition={{ duration: 1.5, delay: index * 0.2 + 1 }}
                           />
-                        </motion.div>
-                      </motion.div>
+                        </MotionDiv>
+                      </MotionDiv>
                     </div>
-                  </motion.div>
-                </motion.div>
+                  </MotionDiv>
+                </MotionDiv>
               ))}
             </div>
           </div>
