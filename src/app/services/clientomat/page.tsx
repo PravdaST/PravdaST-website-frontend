@@ -6,6 +6,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { GlassCard } from "@/components/ui/GlassCard";
+import { useMouseTracking } from "@/hooks/useMouseTracking";
 import {
   ArrowRight,
   Network,
@@ -22,8 +23,9 @@ import {
   Phone,
 } from "lucide-react";
 
-// Unique Client Network Background
+// Unique Client Network Background  
 const ClientomatBackground = () => {
+  const mousePosition = useMouseTracking();
   return (
     <div className="absolute inset-0 overflow-hidden opacity-10">
       {/* Client Ecosystem Network */}

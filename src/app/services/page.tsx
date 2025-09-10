@@ -37,18 +37,11 @@ import { FadeIn } from "@/components/motion/FadeIn";
 import { FadeInView } from "@/components/motion/FadeInView";
 import { GlassCard } from "@/components/ui/GlassCard";
 import PravdaButton from "@/components/ui/PravdaButton";
+import { useMouseTracking } from "@/hooks/useMouseTracking";
 
 // Systems Background Component
 const SystemsBackground = () => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-
-  useEffect(() => {
-    const updateMousePosition = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-    window.addEventListener("mousemove", updateMousePosition);
-    return () => window.removeEventListener("mousemove", updateMousePosition);
-  }, []);
+  const mousePosition = useMouseTracking();
 
   return (
     <div className="absolute inset-0 overflow-hidden opacity-15">

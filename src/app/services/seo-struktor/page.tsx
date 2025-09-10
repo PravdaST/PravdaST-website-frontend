@@ -4,6 +4,7 @@ import { motion, useInView } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { useRef, useState, useEffect } from "react";
 import { GlassCard } from "@/components/ui/GlassCard";
+import { useMouseTracking } from "@/hooks/useMouseTracking";
 import {
   ArrowRight,
   ArrowLeft,
@@ -18,15 +19,7 @@ import Link from "next/link";
 
 // SEO Struktor Background Component
 const SeoStruktorBackground = () => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-
-  useEffect(() => {
-    const updateMousePosition = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
-    };
-    window.addEventListener("mousemove", updateMousePosition);
-    return () => window.removeEventListener("mousemove", updateMousePosition);
-  }, []);
+  const mousePosition = useMouseTracking();
 
   return (
     <div className="absolute inset-0 overflow-hidden opacity-15">
