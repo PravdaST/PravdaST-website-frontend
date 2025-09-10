@@ -1,0 +1,51 @@
+/* Performance CSS Optimizations for Glovo page - NO visual changes */
+
+/* Font Display Optimization for Large Text */
+.glovo-hero-text,
+.glovo-large-heading {
+  font-display: swap;
+  text-rendering: optimizeSpeed;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Hardware Acceleration for Animations */
+.glovo-animated-element {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Hover Performance Optimization */
+.glovo-hover-optimized {
+  will-change: transform, opacity;
+  transition: transform 0.2s ease-out, opacity 0.2s ease-out;
+}
+
+.glovo-hover-optimized:hover {
+  transform: translateZ(0) scale(1.02);
+}
+
+/* Layout Containment for Performance */
+.glovo-contained {
+  contain: layout style;
+}
+
+/* Optimized Background Effects */
+.glovo-bg-effect {
+  transform: translateZ(0);
+  will-change: opacity;
+  opacity: 0.3;
+  transition: opacity 0.3s ease;
+}
+
+/* Reduced Motion for Better Performance */
+@media (prefers-reduced-motion: reduce) {
+  .glovo-animated-element,
+  .glovo-hover-optimized {
+    animation: none;
+    transition: none;
+    will-change: auto;
+  }
+}

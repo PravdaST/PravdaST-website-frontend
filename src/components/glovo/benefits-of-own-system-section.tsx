@@ -75,7 +75,7 @@ const BenefitsOfOwnSystemSection = memo(() => {
       <div className="container mx-auto px-4">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6" style={{fontDisplay: 'swap', contain: 'layout style'}}>
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6" style={{contain: 'layout style'}}>
               🏆 Защо собствената система е{" "}
               <span className="text-green-400">по-добра от Glovo</span>
             </h2>

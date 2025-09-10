@@ -35,7 +35,7 @@ function SolutionPreviewSection() {
     <section className="py-12 md:py-16 bg-gradient-to-br from-blue-900/10 via-black to-purple-900/10">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6" style={{fontDisplay: 'swap', contain: 'layout style'}}>
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 glovo-large-heading glovo-contained">
             Как изглежда <span className="text-blue-400">вашата собствена система</span>?
           </h2>
           <p className="text-xl text-gray-300 mb-8">
@@ -85,7 +85,7 @@ function CredibilityGuaranteeSection() {
     <section className="py-12 md:py-16 bg-gradient-to-br from-purple-900/10 via-black to-indigo-900/10">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-8" style={{fontDisplay: 'swap', contain: 'layout style'}}>
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-8 glovo-large-heading glovo-contained">
             🔒 <span className="text-purple-400">Гарантираме</span> резултата
           </h2>
           
@@ -136,7 +136,7 @@ export default function GlovoCalculatorLandingOptimized() {
       <section className="py-16 md:py-20 bg-gradient-to-br from-yellow-900/10 via-black to-green-900/10">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto text-center mb-12">
-            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6" style={{fontDisplay: 'swap', contain: 'layout style'}}>
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 glovo-large-heading glovo-contained">
               🧮 <span className="text-yellow-400">Безплатен калкулатор</span> за спестявания
             </h2>
             <p className="text-xl text-gray-300 mb-8">
