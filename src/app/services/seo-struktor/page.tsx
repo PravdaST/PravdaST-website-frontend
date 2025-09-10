@@ -1,6 +1,6 @@
 "use client";
 
-import { MotionDiv, MotionSection, MotionH1, MotionH2, MotionP } from "@/hooks/useSharedFramerMotion";
+import { MotionDiv, MotionSection, MotionH1, MotionH2, MotionP, MotionA, MotionSvg } from "@/hooks/useSharedFramerMotion";
 import { useInView } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { useRef, useState, useEffect } from "react";
@@ -77,7 +77,7 @@ const SeoStruktorBackground = () => {
       )}
 
       {/* Network connections representing SEO structure */}
-      <motion.svg
+      <MotionSvg
         className="absolute inset-0 w-full h-full"
         animate={{
           x: mousePosition.x * 0.008,
@@ -117,7 +117,7 @@ const SeoStruktorBackground = () => {
           strokeWidth="1"
           opacity="0.3"
         />
-      </motion.svg>
+      </MotionSvg>
     </div>
   );
 };
@@ -974,7 +974,7 @@ export default function SeoStruktor() {
               </span>
             </MotionH1>
 
-            <motion.p
+            <MotionP
               className="text-xl md:text-2xl text-gray-300 mb-12 leading-relaxed max-w-3xl mx-auto"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -991,7 +991,7 @@ export default function SeoStruktor() {
                 реални резултати
               </Link>
               .
-            </motion.p>
+            </MotionP>
 
             <MotionDiv
               className="flex flex-col sm:flex-row gap-4 justify-center"
@@ -1056,7 +1056,7 @@ export default function SeoStruktor() {
               Готови ли сте да спрете да импровизирате?
             </MotionH2>
 
-            <motion.p
+            <MotionP
               className="text-xl text-black/80 mb-8 max-w-2xl mx-auto"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -1065,7 +1065,7 @@ export default function SeoStruktor() {
             >
               Започнете систематичния подход към SEO с безплатна техническа
               диагностика.
-            </motion.p>
+            </MotionP>
 
             {/* Trust Signals */}
             <MotionDiv
@@ -1096,7 +1096,7 @@ export default function SeoStruktor() {
               transition={{ duration: 0.8, delay: 0.5 }}
               viewport={{ once: true }}
             >
-              <motion.a
+              <MotionA
                 href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdast.agency"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -1113,9 +1113,9 @@ export default function SeoStruktor() {
               >
                 <span>Започнете диагностиката</span>
                 <ArrowRight className="w-5 h-5" />
-              </motion.a>
+              </MotionA>
 
-              <motion.a
+              <MotionA
                 href="tel:+359879282299"
                 className="inline-flex items-center gap-3 border-2 border-black text-black px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-300 hover:bg-black hover:text-white"
                 whileHover={{
@@ -1130,7 +1130,7 @@ export default function SeoStruktor() {
               >
                 <Phone className="w-5 h-5" />
                 <span>Обади се сега</span>
-              </motion.a>
+              </MotionA>
             </MotionDiv>
           </MotionDiv>
         </div>

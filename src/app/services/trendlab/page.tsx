@@ -10,7 +10,9 @@ import {
   fadeInProps,
   slideUpProps,
   scaleProps,
-  sharedVariants
+  sharedVariants,
+  MotionA,
+  MotionPath
 } from "@/hooks/useSharedFramerMotion";
 import { motion } from "framer-motion";
 import { useMouseTracking } from "@/hooks/useMouseTracking";
@@ -143,7 +145,7 @@ const TrendlabBackground = () => {
         xmlns="http://www.w3.org/2000/svg"
       >
         {Array.from({ length: 3 }).map((_, i) => (
-          <motion.path
+          <MotionPath
             key={i}
             d={`M ${i * 400 + 100} 100 Q ${i * 400 + 300} 200 ${i * 400 + 500} 300 Q ${i * 400 + 700} 400 ${i * 400 + 900} 200`}
             fill="none"
@@ -674,8 +676,7 @@ export default function Trendlab() {
                   viewBox="0 0 1200 800"
                   preserveAspectRatio="none"
                 >
-                  <MotionDiv
-                    as="path"
+                  <MotionPath
                     d="M200,200 Q400,100 600,200 Q800,300 1000,200"
                     stroke="url(#gradient)"
                     strokeWidth="2"
@@ -1159,7 +1160,7 @@ export default function Trendlab() {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <motion.a
+              <MotionA
                 href="https://form.typeform.com/to/GXLaGY98?typeform-source=www.pravdast.agency"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -1176,9 +1177,9 @@ export default function Trendlab() {
               >
                 <span>Обърнете се към нас</span>
                 <ArrowRight className="w-5 h-5" />
-              </motion.a>
+              </MotionA>
 
-              <motion.a
+              <MotionA
                 href="tel:+359879282299"
                 className="inline-flex items-center gap-3 border-2 border-black text-black px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-300 hover:bg-black hover:text-white"
                 whileHover={{
@@ -1193,7 +1194,7 @@ export default function Trendlab() {
               >
                 <Phone className="w-5 h-5" />
                 <span>Обади се сега</span>
-              </motion.a>
+              </MotionA>
             </div>
           </div>
         </div>

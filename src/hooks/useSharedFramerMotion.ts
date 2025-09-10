@@ -96,6 +96,8 @@ export const scaleProps = {
 // Additional motion components for specific elements
 export const MotionCircle = motion.circle
 export const MotionA = motion.a
+export const MotionPath = motion.path
+export const MotionSvg = motion.svg
 
 // Export all motion utilities from single source
 export { 

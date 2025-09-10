@@ -1,6 +1,6 @@
 'use client'
 
-import { MotionDiv, MotionSection, MotionH1, MotionH2, MotionP } from "@/hooks/useSharedFramerMotion";
+import { MotionDiv, MotionSection, MotionH1, MotionH2, MotionP, MotionA, MotionPath } from "@/hooks/useSharedFramerMotion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { Card } from "@/components/ui/card";
@@ -189,7 +189,7 @@ const ClientomatBackground = () => {
         xmlns="http://www.w3.org/2000/svg"
       >
         {Array.from({ length: 3 }).map((_, i) => (
-          <motion.path
+          <MotionPath
             key={i}
             d={`M ${i * 300 + 50} 150 Q ${i * 300 + 200} 250 ${i * 300 + 350} 150 Q ${i * 300 + 500} 50 ${i * 300 + 650} 150`}
             fill="none"
@@ -276,7 +276,7 @@ export default function ClientomatPage() {
                 <span className="text-[#ECB629]">лоялен клиент</span>
               </MotionH1>
 
-              <motion.p
+              <MotionP
                 className="text-xl md:text-2xl text-gray-300 mb-12 max-w-4xl mx-auto leading-relaxed"
                 initial={{ opacity: 0, y: 20 }}
                 animate={heroInView ? { opacity: 1, y: 0 } : {}}
@@ -284,7 +284,7 @@ export default function ClientomatPage() {
               >
                 Clientomat™ е системата, която автоматизира цялата клиентска
                 екосистема - от първия контакт до доживотна лоялност.
-              </motion.p>
+              </MotionP>
 
               <MotionDiv
                 className="flex flex-col sm:flex-row gap-6 justify-center items-center"
@@ -363,14 +363,14 @@ export default function ClientomatPage() {
                 Защо губите клиенти?
               </MotionH2>
 
-              <motion.p
+              <MotionP
                 className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed"
                 initial={{ opacity: 0, y: 20 }}
                 animate={philosophyInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.8, delay: 0.4 }}
               >
                 Повечето компании фокусират само върху привличането на нови клиенти. Истинският растеж идва от системното управление на целия клиентски цикъл.
-              </motion.p>
+              </MotionP>
             </div>
 
             <div className="grid md:grid-cols-3 gap-8 mb-16">
@@ -531,7 +531,7 @@ export default function ClientomatPage() {
                 Как работи Clientomat™?
               </MotionH2>
 
-              <motion.p
+              <MotionP
                 className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed"
                 initial={{ opacity: 0, y: 20 }}
                 animate={processInView ? { opacity: 1, y: 0 } : {}}
@@ -539,7 +539,7 @@ export default function ClientomatPage() {
               >
                 Четири инженерни етапа, които превръщат всеки touchpoint в
                 система за растеж
-              </motion.p>
+              </MotionP>
             </div>
 
             <div className="grid md:grid-cols-2 gap-8">
@@ -677,7 +677,7 @@ export default function ClientomatPage() {
                 Какви резултати да очаквате?
               </MotionH2>
 
-              <motion.p
+              <MotionP
                 className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed"
                 initial={{ opacity: 0, y: 20 }}
                 animate={resultsInView ? { opacity: 1, y: 0 } : {}}
@@ -685,7 +685,7 @@ export default function ClientomatPage() {
               >
                 Реални метрики от клиенти, които вече използват Clientomat™
                 системата
-              </motion.p>
+              </MotionP>
             </div>
 
             <div className="grid md:grid-cols-3 gap-8 mb-16">
