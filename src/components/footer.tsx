@@ -1,7 +1,7 @@
 'use client'
 
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { MotionDiv } from '@/hooks/useSharedFramerMotion';
 import { Mail, Phone, MapPin, Facebook, Youtube, Instagram, Linkedin, MessageCircle } from "lucide-react";
 import ScaleOnHover from "@/components/motion/ScaleOnHover";
 import SlideIn from "@/components/motion/SlideIn";
@@ -55,9 +55,9 @@ export const Footer = () => {
 
           {/* Connection Lines */}
           {[...Array(4)].map((_, i) => (
-            <motion.div
+            <MotionDiv
               key={i}
-              className="absolute w-full h-px bg-gradient-to-r from-transparent via-[#ECB629] to-transparent"
+              className="absolute w-full h-px bg-gradient-to-r from-transparent via-[#ECB629] to-transparent performance-animated-element"
               style={{
                 top: `${25 + i * 25}%`,
               }}
@@ -90,8 +90,8 @@ export const Footer = () => {
               <Link href="/">
                 <PravdaHeading as="h3" size="2xl" className="text-[#ECB629] mb-4 cursor-pointer relative">
                   PRAVDA ST
-                  <motion.div
-                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#ECB629] origin-left"
+                  <MotionDiv
+                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#ECB629] origin-left performance-animated-element"
                     initial={{ scaleX: 0 }}
                     whileHover={{ scaleX: 1 }}
                     transition={{ duration: 0.3 }}
@@ -104,8 +104,8 @@ export const Footer = () => {
             </p>
 
             {/* Social Media Links */}
-            <motion.div 
-              className="flex items-center space-x-4 mb-6"
+            <MotionDiv 
+              className="flex items-center space-x-4 mb-6 performance-animated-element"
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
@@ -127,7 +127,7 @@ export const Footer = () => {
                   transition={{ duration: 0.2 }}
                 >
                   <social.icon size={20} />
-                  <motion.div
+                  <MotionDiv
                     className="absolute inset-0 bg-[#ECB629] rounded-full opacity-0"
                     whileHover={{ opacity: 0.1 }}
                     transition={{ duration: 0.2 }}
@@ -138,7 +138,7 @@ export const Footer = () => {
           </SlideIn>
 
           {/* Services */}
-          <motion.div
+          <MotionDiv
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
@@ -146,7 +146,7 @@ export const Footer = () => {
           >
             <h4 className="text-white font-semibold mb-4 relative">
               Услуги
-              <motion.div
+              <MotionDiv
                 className="absolute -bottom-1 left-0 w-8 h-0.5 bg-[#ECB629]"
                 initial={{ scaleX: 0 }}
                 whileInView={{ scaleX: 1 }}
@@ -168,7 +168,7 @@ export const Footer = () => {
                     className="text-gray-400 hover:text-[#ECB629] transition-colors text-sm relative group"
                   >
                     {link.label}
-                    <motion.div
+                    <MotionDiv
                       className="absolute -bottom-1 left-0 right-0 h-px bg-[#ECB629] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
                     />
                   </Link>
@@ -178,7 +178,7 @@ export const Footer = () => {
           </motion.div>
 
           {/* Company */}
-          <motion.div
+          <MotionDiv
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -186,7 +186,7 @@ export const Footer = () => {
           >
             <h4 className="text-white font-semibold mb-4 relative">
               Компания
-              <motion.div
+              <MotionDiv
                 className="absolute -bottom-1 left-0 w-8 h-0.5 bg-[#ECB629]"
                 initial={{ scaleX: 0 }}
                 whileInView={{ scaleX: 1 }}
@@ -208,7 +208,7 @@ export const Footer = () => {
                     className="text-gray-400 hover:text-[#ECB629] transition-colors text-sm relative group"
                   >
                     {link.label}
-                    <motion.div
+                    <MotionDiv
                       className="absolute -bottom-1 left-0 right-0 h-px bg-[#ECB629] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
                     />
                   </Link>
@@ -218,7 +218,7 @@ export const Footer = () => {
           </motion.div>
 
           {/* Blog Posts */}
-          <motion.div
+          <MotionDiv
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.25 }}
@@ -226,7 +226,7 @@ export const Footer = () => {
           >
             <h4 className="text-white font-semibold mb-4 relative">
               Популярни статии
-              <motion.div
+              <MotionDiv
                 className="absolute -bottom-1 left-0 w-8 h-0.5 bg-[#ECB629]"
                 initial={{ scaleX: 0 }}
                 whileInView={{ scaleX: 1 }}
@@ -254,7 +254,7 @@ export const Footer = () => {
           </motion.div>
 
           {/* Contact Info */}
-          <motion.div
+          <MotionDiv
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
@@ -262,7 +262,7 @@ export const Footer = () => {
           >
             <h4 className="text-white font-semibold mb-4 relative">
               Контакти
-              <motion.div
+              <MotionDiv
                 className="absolute -bottom-1 left-0 w-8 h-0.5 bg-[#ECB629]"
                 initial={{ scaleX: 0 }}
                 whileInView={{ scaleX: 1 }}
@@ -289,7 +289,7 @@ export const Footer = () => {
             </ul>
 
             {/* Viber and WhatsApp Contacts */}
-            <motion.div 
+            <MotionDiv 
               className="mt-6 pt-4 border-t border-slate-700/30"
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -345,7 +345,7 @@ export const Footer = () => {
               © 2025 Pravda ST. Всички права запазени.
             </motion.p>
 
-            <motion.div
+            <MotionDiv
               className="flex items-center gap-6"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
@@ -359,7 +359,7 @@ export const Footer = () => {
                   className="text-gray-400 hover:text-[#ECB629] transition-colors text-sm relative group"
                 >
                   {link.label}
-                  <motion.div
+                  <MotionDiv
                     className="absolute -bottom-1 left-0 right-0 h-px bg-[#ECB629] origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
                   />
                 </Link>

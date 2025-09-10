@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import PravdaHeading from "@/components/typography/PravdaHeading"
-import { motion } from "framer-motion"
+import { MotionDiv } from '@/hooks/useSharedFramerMotion'
 import { ArrowRight } from "lucide-react"
 import { useState, useEffect } from 'react'
 
@@ -38,9 +38,9 @@ export const HeroSection = () => {
           {/* Tech Lines */}
           <div className="tech-lines">
             {[...Array(6)].map((_, i) => (
-              <motion.div
+              <MotionDiv
                 key={i}
-                className="absolute h-px bg-gradient-to-r from-transparent via-[#ECB629] to-transparent"
+                className="absolute h-px bg-gradient-to-r from-transparent via-[#ECB629] to-transparent performance-animated-element"
                 style={{
                   top: `${20 + i * 15}%`,
                   width: `${200 + i * 50}px`,
@@ -62,9 +62,9 @@ export const HeroSection = () => {
 
           {/* Floating Tech Elements */}
           {particles.map((particle, i) => (
-            <motion.div
+            <MotionDiv
               key={i}
-              className="absolute w-1 h-1 bg-[#ECB629] rounded-full"
+              className="absolute w-1 h-1 bg-[#ECB629] rounded-full performance-animated-element"
               style={{
                 left: `${particle.left}%`,
                 top: `${particle.top}%`,
@@ -92,9 +92,9 @@ export const HeroSection = () => {
             { keyword: "CONVERT", left: "30%", top: "40%" },
             { keyword: "OPTIMIZE", left: "80%", top: "55%" },
           ].map((item, i) => (
-            <motion.div
+            <MotionDiv
               key={item.keyword}
-              className="absolute text-[#ECB629] font-bold text-xs tracking-wider opacity-30"
+              className="absolute text-[#ECB629] font-bold text-xs tracking-wider opacity-30 performance-animated-element"
               style={{
                 left: item.left,
                 top: item.top,
@@ -111,7 +111,7 @@ export const HeroSection = () => {
               }}
             >
               {item.keyword}
-            </motion.div>
+            </MotionDiv>
           ))}
         </div>
       </div>
@@ -125,16 +125,16 @@ export const HeroSection = () => {
       <div className="container mx-auto px-4 sm:px-6 relative z-1 pt-10 sm:pt-0">
         <div className="max-w-4xl mx-auto text-center">
           {/* Enhanced Status Badge */}
-          <motion.div
-            className="inline-flex items-center gap-3 px-6 py-3 rounded-full mb-8 bg-gradient-to-r from-slate-800/80 to-slate-700/60 border border-[#ECB629]/20 backdrop-blur-sm"
+          <MotionDiv
+            className="inline-flex items-center gap-3 px-6 py-3 rounded-full mb-8 bg-gradient-to-r from-slate-800/80 to-slate-700/60 border border-[#ECB629]/20 backdrop-blur-sm performance-animated-element"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
             <div className="relative">
               <div className="w-3 h-3 bg-green-400 rounded-full"></div>
-              <motion.div
-                className="absolute inset-0 w-3 h-3 bg-green-400 rounded-full opacity-30"
+              <MotionDiv
+                className="absolute inset-0 w-3 h-3 bg-green-400 rounded-full opacity-30 performance-animated-element"
                 animate={{ scale: [1, 1.2, 1] }}
                 transition={{
                   duration: 3,
@@ -147,12 +147,13 @@ export const HeroSection = () => {
               <span className="text-[#ECB629] font-bold">Ново</span> - Приемаме
               проекти за 2025
             </span>
-          </motion.div>
+          </MotionDiv>
 
-          <motion.div
+          <MotionDiv
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
+            className="performance-animated-element"
           >
             <PravdaHeading 
               as="h1"
@@ -162,17 +163,17 @@ export const HeroSection = () => {
             Престанете да залагате на маркетинг.{" "}
             <span className="text-[#ECB629] relative">
               Започнете да изграждате растеж.
-              <motion.div
-                className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-[#ECB629] to-[#ECB629]/50 rounded-full"
+              <MotionDiv
+                className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-[#ECB629] to-[#ECB629]/50 rounded-full performance-animated-element"
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: 1 }}
                 transition={{ duration: 1, delay: 0.8 }}
               />
             </span>
             </PravdaHeading>
-          </motion.div>
+          </MotionDiv>
 
-          <motion.p
+          <MotionDiv
             className="text-lg sm:text-xl md:text-2xl mb-8 sm:mb-12 text-gray-300 max-w-3xl mx-auto px-4 sm:px-0"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -188,18 +189,19 @@ export const HeroSection = () => {
               реални резултати
             </Link>
             .
-          </motion.p>
+          </MotionDiv>
 
-          <motion.div
+          <MotionDiv
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-8 sm:mb-12 px-4 sm:px-0"
+            className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-8 sm:mb-12 px-4 sm:px-0 performance-animated-element"
           >
-            <motion.div
+            <MotionDiv
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               transition={{ type: "spring", stiffness: 400, damping: 17 }}
+              className="performance-animated-element"
             >
               <Button
                 size="lg"
@@ -212,7 +214,7 @@ export const HeroSection = () => {
                   <span className="relative z-10">Започнете днес</span>
                 </a>
               </Button>
-            </motion.div>
+            </MotionDiv>
 
             <Button
               size="lg"
@@ -222,7 +224,7 @@ export const HeroSection = () => {
             >
               <Link href="/services">Научи повече</Link>
             </Button>
-          </motion.div>
+          </MotionDiv>
 
           {/* Trust indicators */}
           <motion.div
@@ -296,8 +298,8 @@ export const HeroSection = () => {
                   3
                 </span>
               </span>
-            </motion.div>
-          </motion.div>
+            </MotionDiv>
+          </MotionDiv>
         </div>
       </div>
     </section>
