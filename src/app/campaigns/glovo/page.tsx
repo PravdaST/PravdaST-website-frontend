@@ -80,30 +80,30 @@ function SolutionPreviewSection() {
 // Credibility & Guarantee Section
 function CredibilityGuaranteeSection() {
   return (
-    <section className="py-12 md:py-16 bg-gray-50">
+    <section className="py-12 md:py-16 bg-black">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-8">
-            <span className="text-blue-900">Гарантираме</span> резултата
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-8">
+            <span className="text-blue-400">Гарантираме</span> резултата
           </h2>
           
           <div className="grid md:grid-cols-3 gap-6 mb-8">
-            <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
-              <Award className="w-8 h-8 text-blue-600 mx-auto mb-3" />
-              <h3 className="text-lg font-bold text-blue-900 mb-2">100% Гаранция</h3>
-              <p className="text-gray-600 text-sm">Ако не спестите поне 1000 лв за първия месец - връщаме парите</p>
+            <div className="bg-gray-900/50 border border-gray-700 rounded-lg p-6">
+              <Award className="w-8 h-8 text-blue-400 mx-auto mb-3" />
+              <h3 className="text-lg font-bold text-blue-400 mb-2">100% Гаранция</h3>
+              <p className="text-gray-300 text-sm">Ако не спестите поне 1000 лв за първия месец - връщаме парите</p>
             </div>
             
-            <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
-              <TrendingUp className="w-8 h-8 text-green-600 mx-auto mb-3" />
-              <h3 className="text-lg font-bold text-blue-900 mb-2">48 часа</h3>
-              <p className="text-gray-600 text-sm">Системата е готова за използване до 48 часа</p>
+            <div className="bg-gray-900/50 border border-gray-700 rounded-lg p-6">
+              <TrendingUp className="w-8 h-8 text-green-400 mx-auto mb-3" />
+              <h3 className="text-lg font-bold text-green-400 mb-2">48 часа</h3>
+              <p className="text-gray-300 text-sm">Системата е готова за използване до 48 часа</p>
             </div>
             
-            <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
-              <Shield className="w-8 h-8 text-blue-600 mx-auto mb-3" />
-              <h3 className="text-lg font-bold text-blue-900 mb-2">Пълна поддръжка</h3>
-              <p className="text-gray-600 text-sm">Безплатна поддръжка и обновления за 6 месеца</p>
+            <div className="bg-gray-900/50 border border-gray-700 rounded-lg p-6">
+              <Shield className="w-8 h-8 text-purple-400 mx-auto mb-3" />
+              <h3 className="text-lg font-bold text-purple-400 mb-2">Пълна поддръжка</h3>
+              <p className="text-gray-300 text-sm">Безплатна поддръжка и обновления за 6 месеца</p>
             </div>
           </div>
         </div>
@@ -114,7 +114,7 @@ function CredibilityGuaranteeSection() {
 
 export default function GlovoCalculatorLandingOptimized() {
   return (
-    <div className="min-h-screen bg-white text-gray-900 overflow-x-hidden">
+    <div className="min-h-screen bg-black text-white overflow-x-hidden">
       {/* Hero Section */}
       <GlovoHeroSection />
 
@@ -131,29 +131,29 @@ export default function GlovoCalculatorLandingOptimized() {
       <SolutionPreviewSection />
 
       {/* Call to Action - Calculator Section */}
-      <section className="py-16 md:py-20 bg-white">
+      <section className="py-16 md:py-20 bg-black">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto text-center mb-12">
-            <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6">
-              <span className="text-blue-900">Безплатен калкулатор</span> за спестявания
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
+              <span className="text-blue-400">Безплатен калкулатор</span> за спестявания
             </h2>
-            <p className="text-xl text-gray-600 mb-8">
+            <p className="text-xl text-gray-300 mb-8">
               Разберете точно колко ще спестите всеки месец с наша система
             </p>
             
-            <div className="bg-gray-50 border border-gray-200 rounded-lg p-8 mb-8">
+            <div className="bg-gray-900/50 border border-gray-700 rounded-lg p-8 mb-8">
               <div className="grid md:grid-cols-3 gap-6 text-center">
                 <div>
-                  <div className="text-2xl font-bold text-gray-900 mb-2">Бързо</div>
-                  <div className="text-gray-600">Попълни за 2 минути</div>
+                  <div className="text-2xl font-bold text-blue-400 mb-2">Бързо</div>
+                  <div className="text-gray-300">Попълни за 2 минути</div>
                 </div>
                 <div>
-                  <div className="text-2xl font-bold text-gray-900 mb-2">Безплатно</div>
-                  <div className="text-gray-600">Анализът е напълно безплатен</div>
+                  <div className="text-2xl font-bold text-green-400 mb-2">Безплатно</div>
+                  <div className="text-gray-300">Анализът е напълно безплатен</div>
                 </div>
                 <div>
-                  <div className="text-2xl font-bold text-gray-900 mb-2">Точно</div>
-                  <div className="text-gray-600">Реален анализ на спестяванията</div>
+                  <div className="text-2xl font-bold text-purple-400 mb-2">Точно</div>
+                  <div className="text-gray-300">Реален анализ на спестяванията</div>
                 </div>
               </div>
               <div className="mt-4 text-center">
