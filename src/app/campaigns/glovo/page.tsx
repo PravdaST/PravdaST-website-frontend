@@ -32,22 +32,22 @@ import Image from "next/image";
 // Solution Preview Section
 function SolutionPreviewSection() {
   return (
-    <section className="py-12 md:py-16 bg-white">
+    <section className="py-12 md:py-16 bg-black">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6">
-            Как изглежда <span className="text-blue-900">вашата собствена система</span>?
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
+            Как изглежда <span className="text-blue-400">вашата собствена система</span>?
           </h2>
-          <p className="text-xl text-gray-600 mb-8">
+          <p className="text-xl text-gray-300 mb-8">
             Ето какво получавате за 48 часа:
           </p>
 
           <div className="grid md:grid-cols-2 gap-8">
             {/* Before Glovo */}
             <div className="relative group">
-              <div className="relative bg-white border border-red-200 rounded-lg p-6 shadow-sm">
-                <h3 className="text-2xl font-bold text-red-600 mb-4">Преди (с Glovo)</h3>
-                <ul className="text-left space-y-3 text-gray-700">
+              <div className="relative bg-black border border-red-400/50 rounded-lg p-6">
+                <h3 className="text-2xl font-bold text-red-400 mb-4">Преди (с Glovo)</h3>
+                <ul className="text-left space-y-3 text-gray-300">
                   <li>• Плащате 30% комисионна</li>
                   <li>• Нямате контакти на клиентите</li>
                   <li>• Зависите от техните правила</li>
@@ -59,9 +59,9 @@ function SolutionPreviewSection() {
 
             {/* After - Own System */}
             <div className="relative group">
-              <div className="relative bg-white border border-green-200 rounded-lg p-6 shadow-sm">
-                <h3 className="text-2xl font-bold text-green-600 mb-4">След (собствена система)</h3>
-                <ul className="text-left space-y-3 text-gray-700">
+              <div className="relative bg-black border border-green-400/50 rounded-lg p-6">
+                <h3 className="text-2xl font-bold text-green-400 mb-4">След (собствена система)</h3>
+                <ul className="text-left space-y-3 text-gray-300">
                   <li>• Запазвате 100% от приходите</li>
                   <li>• Имате база от верни клиенти</li>
                   <li>• Контролирате всичко</li>
