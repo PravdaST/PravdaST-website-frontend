@@ -197,19 +197,13 @@ const TrendlabBackground = () => {
 };
 
 export default function Trendlab() {
-  const heroRef = useRef(null);
-  const philosophyRef = useRef(null);
-  const processRef = useRef(null);
-  const resultsRef = useRef(null);
-  const investmentRef = useRef(null);
-  const ctaRef = useRef(null);
-
+  // Animation refs and state from useScrollAnimation hook
   const { ref: heroRef, isInView: heroInView } = useScrollAnimation();
   const { ref: philosophyRef, isInView: philosophyInView } = useScrollAnimation();
   const { ref: processRef, isInView: processInView } = useScrollAnimation(); 
   const { ref: resultsRef, isInView: resultsInView } = useScrollAnimation();
-  const investmentInView = useInView(investmentRef, { once: true });
-  const ctaInView = useInView(ctaRef, { once: true });
+  const { ref: investmentRef, isInView: investmentInView } = useScrollAnimation();
+  const { ref: ctaRef, isInView: ctaInView } = useScrollAnimation();
 
   const [isTransitioning, setIsTransitioning] = useState(false);
 

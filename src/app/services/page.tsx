@@ -208,9 +208,8 @@ const services = [
 ];
 
 export default function Services() {
-  const philosophyRef = useRef(null);
+  const { ref: philosophyRef, isInView } = useScrollAnimation();
   const systemsRef = useRef<HTMLElement>(null);
-  const isInView = useScrollAnimation(philosophyRef);
 
   const scrollToSystems = () => {
     systemsRef.current?.scrollIntoView({
