@@ -9,7 +9,7 @@ const BenefitsOfOwnSystemSection = memo(() => {
       emoji: "👑",
       title: "ВАШИТЕ КЛИЕНТИ ОСТАВАТ ВАШИ",
       color: "green",
-      gradient: "from-green-400 to-emerald-600",
+      gradient: "from-blue-400 to-blue-600",
       features: [
         "Получавате техните телефони и имейли",
         "Можете да ги канете за специални събития", 
@@ -21,7 +21,7 @@ const BenefitsOfOwnSystemSection = memo(() => {
       emoji: "🎯",
       title: "КОНТРОЛИРАТЕ ВСИЧКО",
       color: "blue",
-      gradient: "from-blue-400 to-cyan-600",
+      gradient: "from-gray-400 to-gray-600",
       features: [
         "Промоции когато ВИЕ решите",
         "Цени които ВИЕ определяте",
@@ -33,7 +33,7 @@ const BenefitsOfOwnSystemSection = memo(() => {
       emoji: "💰",
       title: "ДЪЛГОСРОЧНИ ПРИХОДИ",
       color: "yellow",
-      gradient: "from-yellow-400 to-orange-600",
+      gradient: "from-purple-400 to-purple-600",
       features: [
         "База от клиенти която расте всеки месец",
         "Редовни поръчки от същите хора години наред",
@@ -71,13 +71,13 @@ const BenefitsOfOwnSystemSection = memo(() => {
   ]
 
   return (
-    <section className="py-12 md:py-16 bg-gradient-to-br from-green-900/10 via-black to-gray-900">
+    <section className="py-12 md:py-16 bg-black">
       <div className="container mx-auto px-4">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-5xl font-bold text-white mb-6" style={{contain: 'layout style'}}>
               🏆 Защо собствената система е{" "}
-              <span className="text-green-400">по-добра от Glovo</span>
+              <span className="text-blue-400">по-добра от Glovo</span>
             </h2>
             <p className="text-xl text-gray-300">
               Когато имате собствена система за поръчки:

@@ -24,7 +24,7 @@ const ProblemAgitationSection = memo(() => {
   ]
 
   return (
-    <section className="py-12 md:py-16 bg-gradient-to-br from-red-900/10 via-black to-gray-900">
+    <section className="py-12 md:py-16 bg-black">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
