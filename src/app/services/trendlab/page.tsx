@@ -193,7 +193,7 @@ const TrendlabBackground = () => {
             <div className="absolute inset-2 rounded-full bg-[#ECB629]/10" />
           </div>
         </div>
-      </motion.div>
+      </MotionDiv>
     </div>
   );
 };
@@ -260,7 +260,7 @@ export default function Trendlab() {
                   Системен подход към съдържанието
                 </span>
               </span>
-            </motion.div>
+            </MotionDiv>
 
             <MotionH1
               className="text-5xl md:text-7xl font-bold mb-8 leading-tight performance-animated-element"
@@ -314,8 +314,8 @@ export default function Trendlab() {
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </a>
               </Button>
-            </motion.div>
-          </motion.div>
+            </MotionDiv>
+          </MotionDiv>
         </div>
       </section>
 
@@ -388,7 +388,7 @@ export default function Trendlab() {
                       <p className="text-sm text-gray-400">
                         Знания, опит, факти
                       </p>
-                    </motion.div>
+                    </MotionDiv>
 
                     {/* Process */}
                     <MotionDiv
@@ -421,12 +421,12 @@ export default function Trendlab() {
                             }}
                           />
                         ))}
-                      </motion.div>
+                      </MotionDiv>
                       <h4 className="text-lg font-semibold text-[#ECB629] mb-2">
                         Trendlab™ Система
                       </h4>
                       <p className="text-sm text-gray-400">AI + Креативност</p>
-                    </motion.div>
+                    </MotionDiv>
 
                     {/* Output */}
                     <MotionDiv
@@ -458,7 +458,7 @@ export default function Trendlab() {
                       <p className="text-sm text-gray-400">
                         Видео, статии, визии
                       </p>
-                    </motion.div>
+                    </MotionDiv>
                   </div>
 
                   {/* Flow arrows */}
@@ -476,7 +476,7 @@ export default function Trendlab() {
                       }}
                     >
                       <ArrowRight className="h-6 w-6 text-[#ECB629]" />
-                    </motion.div>
+                    </MotionDiv>
                   </div>
 
                   <div className="hidden md:block absolute top-1/2 right-1/4 transform -translate-y-1/2">
@@ -494,7 +494,7 @@ export default function Trendlab() {
                       }}
                     >
                       <ArrowRight className="h-6 w-6 text-[#ECB629]" />
-                    </motion.div>
+                    </MotionDiv>
                   </div>
                 </div>
               </Card>
@@ -519,7 +519,7 @@ export default function Trendlab() {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </MotionDiv>
         </div>
       </section>
 
@@ -655,7 +655,7 @@ export default function Trendlab() {
                   </span>{" "}
                   за съдържание
                 </span>
-              </motion.div>
+              </MotionDiv>
 
               <h2 className="text-4xl md:text-6xl font-bold mb-6 text-white">
                 Нашата поточна линия за съдържание: <br />
@@ -669,7 +669,7 @@ export default function Trendlab() {
                   />
                 </span>
               </h2>
-            </motion.div>
+            </MotionDiv>
 
             {/* Ultra-Modern Timeline Cards */}
             <div className="relative">
@@ -865,11 +865,11 @@ export default function Trendlab() {
                         </div>
                       </div>
                     </div>
-                  </motion.div>
+                  </MotionDiv>
                 ))}
               </div>
             </div>
-          </motion.div>
+          </MotionDiv>
         </div>
       </section>
 
@@ -892,7 +892,7 @@ export default function Trendlab() {
                 <span className="text-[#ECB629] text-sm font-medium tracking-wide">
                   ИЗМЕРИМИ РЕЗУЛТАТИ
                 </span>
-              </motion.div>
+              </MotionDiv>
 
               <h2 className="text-4xl md:text-5xl font-bold text-white mb-8">
                 Когато изградите правилния авторитет
@@ -943,7 +943,7 @@ export default function Trendlab() {
                           whileHover={{ scale: 1.1 }}
                         >
                           <CheckCircle className="h-6 w-6 text-[#ECB629]" />
-                        </motion.div>
+                        </MotionDiv>
                       </div>
                       <div className="flex-1">
                         <h3 className="text-xl font-bold mb-3 text-white">
@@ -955,10 +955,10 @@ export default function Trendlab() {
                       </div>
                     </div>
                   </Card>
-                </motion.div>
+                </MotionDiv>
               ))}
             </div>
-          </motion.div>
+          </MotionDiv>
         </div>
       </section>
 
@@ -1012,7 +1012,7 @@ export default function Trendlab() {
                 Инженерно проектиране изисква прецизност и в техническата
                 спецификация
               </p>
-            </motion.div>
+            </MotionDiv>
 
             {/* Price Display */}
             <motion.div
@@ -1036,8 +1036,8 @@ export default function Trendlab() {
                     *Финалната цена се определя след техническа диагностика
                   </div>
                 </div>
-              </motion.div>
-            </motion.div>
+              </MotionDiv>
+            </MotionDiv>
 
             {/* Principles Grid */}
             <div className="grid gap-8 md:gap-12">
@@ -1091,7 +1091,7 @@ export default function Trendlab() {
                           />
                         )}
                       </div>
-                    </motion.div>
+                    </MotionDiv>
 
                     {/* Content Card */}
                     <div className="flex-1 w-full">
@@ -1118,11 +1118,11 @@ export default function Trendlab() {
                             animate={investmentInView ? { width: "100%" } : {}}
                             transition={{ duration: 1.5, delay: index * 0.2 + 1 }}
                           />
-                        </motion.div>
-                      </motion.div>
+                        </MotionDiv>
+                      </MotionDiv>
                     </div>
-                  </motion.div>
-                </motion.div>
+                  </MotionDiv>
+                </MotionDiv>
               ))}
             </div>
           </div>
