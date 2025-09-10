@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { MotionDiv } from '@/hooks/useSharedFramerMotion'
 import { Button } from '@/components/ui/button'
 import { ReactNode } from 'react'
 
@@ -29,10 +29,10 @@ export function NavButton({
   const widthStyle = fullWidth ? "w-full" : ""
 
   return (
-    <motion.div
+    <MotionDiv
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
-      className="relative"
+      className="relative performance-animated-element"
     >
       <Button
         className={`${baseStyles} ${variantStyles[variant]} ${widthStyle} ${className}`}
@@ -44,14 +44,14 @@ export function NavButton({
         <span className="relative z-10 flex items-center gap-2">
           {children}
           {variant === 'primary' && (
-            <motion.div
-              className="w-1 h-1 bg-black rounded-full"
+            <MotionDiv
+              className="w-1 h-1 bg-black rounded-full performance-animated-element"
               animate={{ scale: [1, 1.5, 1] }}
               transition={{ duration: 1.5, repeat: Infinity }}
             />
           )}
         </span>
       </Button>
-    </motion.div>
+    </MotionDiv>
   )
 }

@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { MotionDiv } from '@/hooks/useSharedFramerMotion'
 import { ReactNode } from 'react'
 
 interface NavHoverWrapperProps {
@@ -19,13 +19,13 @@ export function NavHoverWrapper({
   className = ""
 }: NavHoverWrapperProps) {
   return (
-    <motion.div
+    <MotionDiv
       whileHover={{ scale }}
       whileTap={{ scale: tapScale }}
       transition={{ duration }}
-      className={`relative ${className}`}
+      className={`relative performance-animated-element ${className}`}
     >
       {children}
-    </motion.div>
+    </MotionDiv>
   )
 }

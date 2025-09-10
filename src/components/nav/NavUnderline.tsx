@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { MotionDiv } from '@/hooks/useSharedFramerMotion'
 
 interface NavUnderlineProps {
   isActive?: boolean
@@ -14,8 +14,8 @@ export function NavUnderline({
   className = ""
 }: NavUnderlineProps) {
   return (
-    <motion.div
-      className={`absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r ${gradient} origin-left transition-transform duration-300 ${
+    <MotionDiv
+      className={`absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r ${gradient} origin-left transition-transform duration-300 performance-animated-element ${
         isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
       } ${className}`}
     />
