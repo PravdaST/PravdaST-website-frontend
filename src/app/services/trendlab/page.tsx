@@ -814,7 +814,7 @@ export default function Trendlab() {
                           <span className="text-xs text-[#ECB629] font-bold">
                             ФАЗА {phase.phase}
                           </span>
-                        </MotionDiv>
+                        </motion.div>
                       </div>
 
                       <div className="relative z-10">
