@@ -119,52 +119,52 @@ export const Navigation = () => {
 
       <div className="container mx-auto px-4 sm:px-6 py-3 sm:py-4 relative z-50">
         <div className="flex justify-between items-center">
-          <NavHoverWrapper className="group">
-            <Link href="/">
-              <div className="text-2xl font-bold text-[#ECB629] cursor-pointer relative">
-                <span className="relative z-10">PRAVDA ST</span>
-                <NavGlowEffect />
-                <NavUnderline />
-              </div>
-            </Link>
-          </NavHoverWrapper>
+          <Link href="/">
+            <div className="text-2xl font-bold text-[#ECB629] cursor-pointer relative hover:scale-105 transition-transform duration-200">
+              <span className="relative z-10">PRAVDA ST</span>
+            </div>
+          </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            {navItems.map((item, index) => (
-              <div key={item.href} className="relative">
-                {item.hasDropdown ? (
-                  <div
-                    className="relative"
-                    onMouseEnter={() => setIsServicesDropdownOpen(true)}
-                    onMouseLeave={() => setIsServicesDropdownOpen(false)}
-                  >
-                    <Link href={item.href}>
-                      <MotionDiv
-                        className={`cursor-pointer transition-colors relative flex items-center gap-1 ${
-                          pathname === item.href ||
-                          pathname?.startsWith("/services/")
-                            ? "text-[#ECB629] font-semibold"
-                            : "text-white hover:text-[#ECB629]"
-                        }`}
-                        whileHover={{ y: -2 }}
-                        transition={{ duration: 0.2 }}
-                      >
-                        {item.label}
-                        <ChevronDown
-                          className={`w-4 h-4 transition-transform ${
-                            isServicesDropdownOpen ? "rotate-180" : ""
-                          }`}
-                        />
-                        {(pathname === item.href ||
-                          pathname?.startsWith("/services/")) && (
-                          <MotionDiv
-                            className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#ECB629]"
-                            layoutId="activeTab"
+          {/* Desktop Navigation - Modern Pill Style */}
+          <div className="hidden md:flex items-center">
+            {/* Pill Navigation Container */}
+            <div className="flex items-center gap-1 bg-black/10 backdrop-blur-lg border border-[#ECB629]/20 rounded-full px-2 py-1 mr-8">
+              {navItems.map((item, index) => (
+                <div key={item.href} className="relative">
+                  {item.hasDropdown ? (
+                    <div
+                      className="relative"
+                      onMouseEnter={() => setIsServicesDropdownOpen(true)}
+                      onMouseLeave={() => setIsServicesDropdownOpen(false)}
+                    >
+                      <Link href={item.href}>
+                        <div className="relative px-4 py-2 text-sm font-medium transition-colors rounded-full cursor-pointer flex items-center gap-1">
+                          {/* Moving Background Highlight for Services */}
+                          {(pathname === item.href || pathname?.startsWith("/services/")) && (
+                            <MotionDiv
+                              layoutId="activeNavPill"
+                              className="absolute inset-0 bg-[#ECB629] rounded-full"
+                              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                            />
+                          )}
+                          <span className={`relative z-10 ${
+                            pathname === item.href || pathname?.startsWith("/services/")
+                              ? "text-black font-semibold"
+                              : "text-white hover:text-[#ECB629]"
+                          }`}>
+                            {item.label}
+                          </span>
+                          <ChevronDown
+                            className={`w-4 h-4 transition-transform relative z-10 ${
+                              isServicesDropdownOpen ? "rotate-180" : ""
+                            } ${
+                              pathname === item.href || pathname?.startsWith("/services/")
+                                ? "text-black"
+                                : "text-white"
+                            }`}
                           />
-                        )}
-                      </MotionDiv>
-                    </Link>
+                        </div>
+                      </Link>
 
                     {/* Dropdown Menu */}
                     <div className="absolute top-full left-0 pt-2 z-[9999]">
@@ -249,25 +249,30 @@ export const Navigation = () => {
                       )}
                     </div>
                   </div>
-                ) : (
-                  <NavHoverWrapper scale={1.05} className="relative group">
-                    <Link
-                      href={item.href}
-                      className={`text-gray-300 hover:text-[#ECB629] transition-all duration-300 relative px-3 py-2 rounded-lg ${
-                        pathname === item.href
-                          ? "text-[#ECB629] font-semibold"
-                          : ""
-                      }`}
-                    >
-                      <NavGlowEffect />
-                      <span className="relative z-10">{item.label}</span>
-                      <NavUnderline isActive={pathname === item.href} />
-                      <NavActiveIndicator isActive={pathname === item.href} />
+                  ) : (
+                    <Link href={item.href}>
+                      <div className="relative px-4 py-2 text-sm font-medium transition-colors rounded-full cursor-pointer">
+                        {/* Moving Background Highlight for Regular Items */}
+                        {pathname === item.href && (
+                          <MotionDiv
+                            layoutId="activeNavPill"
+                            className="absolute inset-0 bg-[#ECB629] rounded-full"
+                            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                          />
+                        )}
+                        <span className={`relative z-10 ${
+                          pathname === item.href
+                            ? "text-black font-semibold"
+                            : "text-white hover:text-[#ECB629]"
+                        }`}>
+                          {item.label}
+                        </span>
+                      </div>
                     </Link>
-                  </NavHoverWrapper>
-                )}
-              </div>
-            ))}
+                  )}
+                </div>
+              ))}
+            </div>
 
             {/* Search Button */}
             <SearchTrigger />
