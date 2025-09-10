@@ -524,7 +524,7 @@ export default function Trendlab() {
       </section>
 
       {/* Ultra-Modern Process Section */}
-      <section className="py-20 bg-slate-900 relative overflow-hidden">
+      <section className="py-20 bg-black/95 relative overflow-hidden">
         {/* Advanced Background System */}
         <div className="absolute inset-0 opacity-15">
           <div className="absolute inset-0">
@@ -633,7 +633,7 @@ export default function Trendlab() {
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               <motion.div
-                className="inline-flex items-center gap-3 mb-8 px-6 py-3 rounded-full bg-gradient-to-r from-slate-800/80 to-slate-700/60 border border-[#ECB629]/30 backdrop-blur-sm performance-animated-element"
+                className="inline-flex items-center gap-3 mb-8 px-6 py-3 rounded-full bg-gradient-to-r from-black/80 to-gray-700/60 border border-[#ECB629]/30 backdrop-blur-sm performance-animated-element"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={processInView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ duration: 0.6, delay: 0.3 }}
@@ -778,7 +778,7 @@ export default function Trendlab() {
                     />
 
                     {/* Main Card */}
-                    <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-slate-800/80 to-slate-900/90 border border-[#ECB629]/20 backdrop-blur-sm p-8 hover:border-[#ECB629]/40 transition-all duration-300">
+                    <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-black/80 to-black/95 border border-[#ECB629]/20 backdrop-blur-sm p-8 hover:border-[#ECB629]/40 transition-all duration-300">
                       {/* Animated Background Pattern */}
                       <div className="absolute inset-0 opacity-5">
                         <div
@@ -842,7 +842,7 @@ export default function Trendlab() {
                           </p>
 
                           {/* Details Grid */}
-                          <div className="grid grid-cols-1 gap-3 pt-4 border-t border-slate-600/30">
+                          <div className="grid grid-cols-1 gap-3 pt-4 border-t border-gray-600/30">
                             <div className="flex items-center space-x-2">
                               <div className="w-2 h-2 bg-[#ECB629] rounded-full"></div>
                               <span className="text-sm text-gray-400">
@@ -874,7 +874,7 @@ export default function Trendlab() {
       </section>
 
       {/* Results Section */}
-      <section ref={resultsRef} className="py-20 bg-slate-800/30 relative overflow-hidden">
+      <section ref={resultsRef} className="py-20 bg-black/30 relative overflow-hidden">
         <div className="container mx-auto px-6">
           <motion.div
             className="max-w-6xl mx-auto"
@@ -884,7 +884,7 @@ export default function Trendlab() {
           >
             <div className="text-center mb-16">
               <motion.div
-                className="inline-flex items-center px-6 py-2 bg-slate-800/80 border border-[#ECB629] rounded-full mb-8"
+                className="inline-flex items-center px-6 py-2 bg-black/80 border border-[#ECB629] rounded-full mb-8"
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={resultsInView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ duration: 0.6, delay: 0.2 }}
@@ -935,7 +935,7 @@ export default function Trendlab() {
                   animate={resultsInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.8, delay: index * 0.2 }}
                 >
-                  <Card className="bg-slate-800/30 border-slate-600/30 p-8 backdrop-blur-sm h-full hover:bg-slate-800/50 transition-all duration-300 group">
+                  <Card className="bg-black/30 border-gray-600/30 p-8 backdrop-blur-sm h-full hover:bg-black/50 transition-all duration-300 group">
                     <div className="flex items-start space-x-4">
                       <div className="flex-shrink-0">
                         <motion.div
@@ -963,7 +963,7 @@ export default function Trendlab() {
       </section>
 
       {/* Investment Structure */}
-      <section ref={investmentRef} className="py-20 bg-slate-900/60 relative overflow-hidden">
+      <section ref={investmentRef} className="py-20 bg-black/95/60 relative overflow-hidden">
         <div className="absolute inset-0 opacity-5">
           <div className="grid grid-cols-16 gap-2 h-full p-4">
             {Array.from({ length: 256 }).map((_, i) => (
@@ -1021,7 +1021,7 @@ export default function Trendlab() {
               animate={investmentInView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <motion.div className="inline-block p-8 bg-slate-800/60 backdrop-blur-sm rounded-3xl border border-slate-600/30 relative overflow-hidden">
+              <motion.div className="inline-block p-8 bg-black/60 backdrop-blur-sm rounded-3xl border border-gray-600/30 relative overflow-hidden">
                 <div className="relative z-10">
                   <div className="text-sm text-[#ECB629] font-semibold mb-2 tracking-wider">
                     ЗАПОЧВА ОТ
@@ -1084,7 +1084,7 @@ export default function Trendlab() {
                         {/* Connection line to next */}
                         {index < 2 && (
                           <motion.div
-                            className="absolute top-20 left-1/2 w-0.5 h-16 bg-gradient-to-b from-[#ECB629] to-slate-600 hidden md:block"
+                            className="absolute top-20 left-1/2 w-0.5 h-16 bg-gradient-to-b from-[#ECB629] to-gray-600 hidden md:block"
                             initial={{ scaleY: 0 }}
                             animate={investmentInView ? { scaleY: 1 } : {}}
                             transition={{ duration: 1, delay: index * 0.3 + 0.5 }}
@@ -1095,7 +1095,7 @@ export default function Trendlab() {
 
                     {/* Content Card */}
                     <div className="flex-1 w-full">
-                      <motion.div className="bg-slate-800/60 backdrop-blur-sm p-8 rounded-2xl border border-slate-600/30 transition-all duration-300">
+                      <motion.div className="bg-black/60 backdrop-blur-sm p-8 rounded-2xl border border-gray-600/30 transition-all duration-300">
                         <div className="flex items-center gap-4 mb-4">
                           <h3 className="text-xl md:text-2xl font-bold text-white">
                             {principle.title}
@@ -1107,7 +1107,7 @@ export default function Trendlab() {
 
                         {/* Decorative element */}
                         <motion.div
-                          className="mt-6 w-full h-1 bg-slate-700 rounded-full overflow-hidden"
+                          className="mt-6 w-full h-1 bg-gray-700 rounded-full overflow-hidden"
                           initial={{ width: 0 }}
                           animate={investmentInView ? { width: "100%" } : {}}
                           transition={{ duration: 1, delay: index * 0.2 + 0.8 }}
