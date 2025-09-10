@@ -166,85 +166,38 @@ export const Navigation = () => {
                         </div>
                       </Link>
 
-                    {/* Dropdown Menu */}
+                    {/* Clean Dropdown Menu */}
                     <div className="absolute top-full left-0 pt-2 z-[9999]">
                       {isServicesDropdownOpen && (
                         <MotionDiv
-                          initial={{ opacity: 0, y: -10, scale: 0.95 }}
-                          animate={{
-                            opacity: 1,
-                            y: 0,
-                            scale: 1,
-                          }}
-                          exit={{ opacity: 0, y: -10, scale: 0.95 }}
-                          transition={{ duration: 0.3 }}
+                          initial={{ opacity: 0, y: -5 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -5 }}
+                          transition={{ duration: 0.2 }}
                         >
-                          <GlassCard
-                            padding="sm"
-                            rounded="lg"
-                            borderOpacity="20"
-                            hoverShadow={true}
-                            className="backdrop-blur-xl bg-black/30 shadow-2xl min-w-[320px]"
-                          >
-                          <div className="space-y-2">
+                          <div className="bg-white/95 backdrop-blur-lg border border-gray-200/50 rounded-xl shadow-lg py-2 min-w-[280px]">
                             {serviceItems.map((service) => (
                               <Link key={service.href} href={service.href}>
-                                <MotionDiv
-                                  className="p-3 rounded-lg hover:bg-[#ECB629]/10 transition-all duration-300 cursor-pointer group relative overflow-hidden"
-                                  whileHover={{ x: 4, scale: 1.02 }}
-                                  transition={{ duration: 0.2 }}
-                                >
-                                  {/* Hover Glow Effect */}
-                                  <div className="absolute inset-0 bg-gradient-to-r from-[#ECB629]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-                                  <div className="flex justify-between items-start relative z-10">
-                                    <div>
-                                      <h3 className="text-white font-semibold group-hover:text-[#ECB629] transition-colors duration-300 flex items-center gap-2">
-                                        {service.label}
-                                        <MotionDiv
-                                          className="w-1 h-1 bg-[#ECB629] rounded-full opacity-0 group-hover:opacity-100"
-                                          animate={{ scale: [1, 1.5, 1] }}
-                                          transition={{
-                                            duration: 2,
-                                            repeat: Infinity,
-                                          }}
-                                        />
-                                      </h3>
-                                      <p className="text-gray-400 text-sm mt-1 group-hover:text-gray-300 transition-colors duration-300">
-                                        {service.description}
-                                      </p>
-                                    </div>
-                                  </div>
-                                </MotionDiv>
+                                <div className="px-4 py-3 hover:bg-gray-50/80 transition-colors duration-200 cursor-pointer">
+                                  <h3 className="font-medium text-gray-900 text-sm">
+                                    {service.label}
+                                  </h3>
+                                  <p className="text-gray-600 text-xs mt-1 leading-relaxed">
+                                    {service.description}
+                                  </p>
+                                </div>
                               </Link>
                             ))}
-                            <div className="border-t border-[#ECB629]/20 pt-3 mt-3">
+                            <div className="border-t border-gray-200/60 mt-1 pt-1">
                               <Link href="/services">
-                                <MotionDiv
-                                  className="p-3 rounded-lg hover:bg-[#ECB629]/20 transition-all duration-300 cursor-pointer text-center relative overflow-hidden group"
-                                  whileHover={{ scale: 1.02 }}
-                                >
-                                  {/* Button Glow Effect */}
-                                  <div className="absolute inset-0 bg-gradient-to-r from-[#ECB629]/10 to-[#ECB629]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-                                  <span className="text-[#ECB629] font-semibold text-sm relative z-10 flex items-center justify-center gap-2">
-                                    Всички услуги
-                                    <MotionDiv
-                                      className="inline-block"
-                                      animate={{ x: [0, 4, 0] }}
-                                      transition={{
-                                        duration: 1.5,
-                                        repeat: Infinity,
-                                      }}
-                                    >
-                                      →
-                                    </MotionDiv>
+                                <div className="px-4 py-3 hover:bg-[#ECB629]/10 transition-colors duration-200 cursor-pointer text-center">
+                                  <span className="text-[#ECB629] font-medium text-sm">
+                                    Всички услуги →
                                   </span>
-                                </MotionDiv>
+                                </div>
                               </Link>
                             </div>
                           </div>
-                          </GlassCard>
                         </MotionDiv>
                       )}
                     </div>
