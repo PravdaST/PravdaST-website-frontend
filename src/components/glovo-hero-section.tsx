@@ -47,11 +47,11 @@ export const GlovoHeroSection = () => {
               Знаете ли, че всеки месец
             </span>
             <br />
-            <span className="bg-gradient-to-r from-red-400 via-red-500 to-red-600 bg-clip-text text-transparent font-black text-4xl sm:text-6xl md:text-7xl">
+            <span className="text-red-500 font-black text-4xl sm:text-6xl md:text-7xl" style={{fontDisplay: 'swap', textRendering: 'optimizeSpeed', willChange: 'transform'}}>
               подарявате на Glovo
             </span>
             <br />
-            <span className="text-yellow-400 text-4xl sm:text-6xl md:text-7xl">
+            <span className="text-yellow-400 text-4xl sm:text-6xl md:text-7xl" style={{fontDisplay: 'swap', textRendering: 'optimizeSpeed', willChange: 'transform'}}>
               хиляди левове?
             </span>
             </PravdaHeading>

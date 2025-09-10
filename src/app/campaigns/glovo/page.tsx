@@ -35,7 +35,7 @@ function SolutionPreviewSection() {
     <section className="py-12 md:py-16 bg-gradient-to-br from-blue-900/10 via-black to-purple-900/10">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6" style={{fontDisplay: 'swap', contain: 'layout style'}}>
             Как изглежда <span className="text-blue-400">вашата собствена система</span>?
           </h2>
           <p className="text-xl text-gray-300 mb-8">
@@ -46,7 +46,7 @@ function SolutionPreviewSection() {
             {/* Before Glovo */}
             <div className="relative group">
               <div className="absolute inset-0 bg-gradient-to-br from-red-500/20 to-orange-500/20 rounded-3xl blur-xl opacity-50"></div>
-              <div className="relative bg-gray-900/80 backdrop-blur-xl border border-red-400/30 rounded-3xl p-6">
+              <div className="relative bg-gray-900/90 border border-red-400/30 rounded-3xl p-6" style={{boxShadow: 'inset 0 0 30px rgba(0,0,0,0.4), 0 8px 24px rgba(0,0,0,0.3)'}}>
                 <h3 className="text-2xl font-bold text-red-400 mb-4">❌ Преди (с Glovo)</h3>
                 <ul className="text-left space-y-3 text-gray-300">
                   <li>• Плащате 30% комисионна</li>
@@ -61,7 +61,7 @@ function SolutionPreviewSection() {
             {/* After - Own System */}
             <div className="relative group">
               <div className="absolute inset-0 bg-gradient-to-br from-green-500/20 to-emerald-500/20 rounded-3xl blur-xl opacity-50"></div>
-              <div className="relative bg-gray-900/80 backdrop-blur-xl border border-green-400/30 rounded-3xl p-6">
+              <div className="relative bg-gray-900/90 border border-green-400/30 rounded-3xl p-6" style={{boxShadow: 'inset 0 0 30px rgba(0,0,0,0.4), 0 8px 24px rgba(0,0,0,0.3)'}}>
                 <h3 className="text-2xl font-bold text-green-400 mb-4">✅ След (собствена система)</h3>
                 <ul className="text-left space-y-3 text-gray-300">
                   <li>• Запазвате 100% от приходите</li>
@@ -85,7 +85,7 @@ function CredibilityGuaranteeSection() {
     <section className="py-12 md:py-16 bg-gradient-to-br from-purple-900/10 via-black to-indigo-900/10">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-8">
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-8" style={{fontDisplay: 'swap', contain: 'layout style'}}>
             🔒 <span className="text-purple-400">Гарантираме</span> резултата
           </h2>
           
@@ -136,7 +136,7 @@ export default function GlovoCalculatorLandingOptimized() {
       <section className="py-16 md:py-20 bg-gradient-to-br from-yellow-900/10 via-black to-green-900/10">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto text-center mb-12">
-            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6" style={{fontDisplay: 'swap', contain: 'layout style'}}>
               🧮 <span className="text-yellow-400">Безплатен калкулатор</span> за спестявания
             </h2>
             <p className="text-xl text-gray-300 mb-8">

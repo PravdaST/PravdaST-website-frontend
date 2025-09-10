@@ -75,7 +75,7 @@ const BenefitsOfOwnSystemSection = memo(() => {
       <div className="container mx-auto px-4">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6" style={{fontDisplay: 'swap', contain: 'layout style'}}>
               🏆 Защо собствената система е{" "}
               <span className="text-green-400">по-добра от Glovo</span>
             </h2>
@@ -87,8 +87,8 @@ const BenefitsOfOwnSystemSection = memo(() => {
           <div className="grid md:grid-cols-3 gap-8 mb-12">
             {benefits.map((benefit, index) => (
               <div key={index} className="relative group">
-                <div className={`absolute inset-0 bg-gradient-to-br ${benefit.gradient}/20 rounded-3xl blur-xl opacity-50`}></div>
-                <div className="relative bg-gray-900/90 backdrop-blur-xl border border-white/10 rounded-3xl p-8 h-full">
+                <div className={`absolute inset-0 rounded-3xl opacity-30`} style={{background: `linear-gradient(135deg, ${benefit.gradient === 'from-green-400 to-emerald-600' ? '#22c55e20' : benefit.gradient === 'from-blue-400 to-cyan-600' ? '#3b82f620' : '#eab30820'})`, filter: 'blur(8px)', willChange: 'opacity'}}></div>
+                <div className="relative bg-gray-900/95 border border-white/10 rounded-3xl p-8 h-full" style={{boxShadow: 'inset 0 0 40px rgba(0,0,0,0.3), 0 8px 32px rgba(0,0,0,0.3)'}}>
                   <div className="text-center mb-6">
                     <div className="text-5xl mb-4">{benefit.emoji}</div>
                     <h3 className={`text-2xl font-bold text-${benefit.color}-400 mb-4`}>
