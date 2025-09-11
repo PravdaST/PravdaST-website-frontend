@@ -16,6 +16,8 @@ const LeadGenerationForm = () => {
   
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [orderInfo, setOrderInfo] = useState<{ id: number; status: string } | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   const businessTypes = [
     'Ресторант',
@@ -30,15 +32,87 @@ const LeadGenerationForm = () => {
     'Друго'
   ];
 
+  // Map business types to template types for the API
+  const getTemplateType = (businessType: string): string => {
+    const mapping: Record<string, string> = {
+      'Ресторант': 'restaurant',
+      'Кафене/Бар': 'cafe',
+      'Фаст фууд': 'restaurant',
+      'Пицария': 'restaurant',
+      'Автосервиз': 'services',
+      'Фризьорски салон': 'beauty',
+      'Козметичен салон': 'beauty',
+      'Фитнес център': 'services',
+      'Магазин': 'shop',
+      'Друго': 'services'
+    };
+    return mapping[businessType] || 'services';
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setError(null);
 
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      // Validate required fields
+      if (!formData.name || !formData.email || !formData.phone || !formData.businessName || !formData.businessType) {
+        throw new Error('Моля попълнете всички задължителни полета');
+      }
+
+      // Prepare order data for API
+      const orderData = {
+        customerName: formData.name,
+        customerEmail: formData.email,
+        customerPhone: formData.phone,
+        businessName: formData.businessName,
+        businessType: formData.businessType,
+        message: formData.message,
+        templateType: getTemplateType(formData.businessType),
+        customizationData: {
+          source: 'landing-page-form',
+          submittedAt: new Date().toISOString()
+        }
+      };
+
+      // Submit order to API
+      const response = await fetch('/api/orders', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(orderData),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.message || 'Възникна грешка при изпращане на заявката');
+      }
+
+      if (!result.success) {
+        throw new Error(result.message || 'Възникна грешка при обработка на заявката');
+      }
+
+      // Success - store order info and show success state
+      setOrderInfo({
+        id: result.orderId,
+        status: result.order?.status || 'pending'
+      });
       setIsSubmitted(true);
-    }, 2000);
+      
+      console.log('Order submitted successfully:', {
+        orderId: result.orderId,
+        customerEmail: formData.email,
+        businessName: formData.businessName
+      });
+
+    } catch (error) {
+      console.error('Order submission error:', error);
+      setError(error instanceof Error ? error.message : 'Възникна грешка при изпращане на заявката');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
@@ -62,9 +136,17 @@ const LeadGenerationForm = () => {
               Благодарим ви за заявката!
             </h2>
             
-            <p className="text-xl text-gray-600 mb-8">
+            <p className="text-xl text-gray-600 mb-4">
               Ще се свържем с вас в рамките на 15 минути, за да обсъдим детайлите за вашия професионален уебсайт.
             </p>
+            
+            {orderInfo && (
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+                <p className="text-sm text-blue-800">
+                  <strong>Номер на поръчката:</strong> #{orderInfo.id} | <strong>Статус:</strong> {orderInfo.status === 'pending' ? 'В обработка' : orderInfo.status}
+                </p>
+              </div>
+            )}
             
             <div className="grid md:grid-cols-3 gap-6 text-center">
               <div>
@@ -262,6 +344,33 @@ const LeadGenerationForm = () => {
                   placeholder="Разкажете ни повече за нуждите на вашия бизнес..."
                 />
               </div>
+
+              {/* Error Display */}
+              {error && (
+                <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+                  <div className="flex items-center">
+                    <div className="flex-shrink-0">
+                      <svg className="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                    <div className="ml-3">
+                      <p className="text-sm text-red-800">{error}</p>
+                    </div>
+                    <div className="ml-auto pl-3">
+                      <button
+                        type="button"
+                        onClick={() => setError(null)}
+                        className="inline-flex rounded-md bg-red-50 p-1.5 text-red-500 hover:bg-red-100"
+                      >
+                        <svg className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                          <path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z" />
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )}
 
               <Button
                 type="submit"

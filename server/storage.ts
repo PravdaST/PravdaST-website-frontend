@@ -4,16 +4,20 @@ import {
   blogPosts,
   contacts,
   rateLimits,
+  orders,
   type AdminUser,
   type AdminSession,
   type BlogPost,
   type Contact,
   type RateLimit,
+  type Order,
   type InsertAdminUser,
   type InsertAdminSession,
   type InsertBlogPost,
   type InsertContact,
   type InsertRateLimit,
+  type InsertOrder,
+  OrderStatus,
 } from "../shared/schema";
 import { db } from "./db";
 import { eq, desc, and, gte, lt } from "drizzle-orm";
@@ -51,6 +55,18 @@ export interface IStorage {
   checkRateLimit(ipAddress: string, endpoint: string, windowMinutes: number, maxRequests: number): Promise<{ allowed: boolean; resetTime?: Date }>;
   recordRequest(ipAddress: string, endpoint: string): Promise<void>;
   cleanupExpiredRateLimits(): Promise<void>;
+  
+  // Order operations
+  getAllOrders(): Promise<Order[]>;
+  getOrder(id: number): Promise<Order | undefined>;
+  getOrdersByCustomerEmail(email: string): Promise<Order[]>;
+  getOrdersByStatus(status: string): Promise<Order[]>;
+  createOrder(order: InsertOrder): Promise<Order>;
+  updateOrder(id: number, order: Partial<InsertOrder>): Promise<Order>;
+  updateOrderStatus(id: number, status: string, adminNotes?: string): Promise<Order>;
+  deleteOrder(id: number): Promise<void>;
+  assignOrderToAdmin(orderId: number, adminId: number): Promise<Order>;
+  completeOrder(id: number, projectUrl?: string, finalPrice?: number): Promise<Order>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -314,6 +330,122 @@ export class DatabaseStorage implements IStorage {
     } catch (error) {
       console.error('Failed to cleanup expired rate limits:', error);
     }
+  }
+
+  // Order operations
+  async getAllOrders(): Promise<Order[]> {
+    return await db.select().from(orders).orderBy(desc(orders.createdAt));
+  }
+
+  async getOrder(id: number): Promise<Order | undefined> {
+    const [order] = await db.select().from(orders).where(eq(orders.id, id));
+    return order;
+  }
+
+  async getOrdersByCustomerEmail(email: string): Promise<Order[]> {
+    return await db
+      .select()
+      .from(orders)
+      .where(eq(orders.customerEmail, email))
+      .orderBy(desc(orders.createdAt));
+  }
+
+  async getOrdersByStatus(status: string): Promise<Order[]> {
+    return await db
+      .select()
+      .from(orders)
+      .where(eq(orders.status, status))
+      .orderBy(desc(orders.createdAt));
+  }
+
+  async createOrder(order: InsertOrder): Promise<Order> {
+    const [newOrder] = await db
+      .insert(orders)
+      .values({
+        ...order,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      })
+      .returning();
+    return newOrder;
+  }
+
+  async updateOrder(id: number, order: Partial<InsertOrder>): Promise<Order> {
+    const [updatedOrder] = await db
+      .update(orders)
+      .set({
+        ...order,
+        updatedAt: new Date(),
+      })
+      .where(eq(orders.id, id))
+      .returning();
+    return updatedOrder;
+  }
+
+  async updateOrderStatus(id: number, status: string, adminNotes?: string): Promise<Order> {
+    const updateData: Partial<InsertOrder> = {
+      status,
+      updatedAt: new Date(),
+    };
+    
+    if (adminNotes) {
+      updateData.adminNotes = adminNotes;
+    }
+    
+    // Set specific timestamps based on status
+    if (status === OrderStatus.APPROVED) {
+      updateData.approvedAt = new Date();
+    } else if (status === OrderStatus.COMPLETED) {
+      updateData.completedAt = new Date();
+      updateData.actualCompletionDate = new Date();
+    }
+
+    const [updatedOrder] = await db
+      .update(orders)
+      .set(updateData)
+      .where(eq(orders.id, id))
+      .returning();
+    return updatedOrder;
+  }
+
+  async deleteOrder(id: number): Promise<void> {
+    await db.delete(orders).where(eq(orders.id, id));
+  }
+
+  async assignOrderToAdmin(orderId: number, adminId: number): Promise<Order> {
+    const [updatedOrder] = await db
+      .update(orders)
+      .set({
+        assignedTo: adminId,
+        updatedAt: new Date(),
+      })
+      .where(eq(orders.id, orderId))
+      .returning();
+    return updatedOrder;
+  }
+
+  async completeOrder(id: number, projectUrl?: string, finalPrice?: number): Promise<Order> {
+    const updateData: Partial<InsertOrder> = {
+      status: OrderStatus.COMPLETED,
+      completedAt: new Date(),
+      actualCompletionDate: new Date(),
+      updatedAt: new Date(),
+    };
+    
+    if (projectUrl) {
+      updateData.projectUrl = projectUrl;
+    }
+    
+    if (finalPrice) {
+      updateData.finalPrice = finalPrice;
+    }
+
+    const [completedOrder] = await db
+      .update(orders)
+      .set(updateData)
+      .where(eq(orders.id, id))
+      .returning();
+    return completedOrder;
   }
 }
 
