@@ -1,8 +1,7 @@
-// Use dynamic imports for ES modules since we're dealing with TypeScript files
-const { createRequire } = require('module');
-const require_esm = createRequire(import.meta.url);
-const bcrypt = require('bcrypt');
-const { eq, count } = require('drizzle-orm');
+import { db } from './server/db.ts';
+import { adminUsers } from './shared/schema.ts';
+import bcrypt from 'bcrypt';
+import { eq, count } from 'drizzle-orm';
 
 // Admin user configuration
 const ADMIN_CONFIG = {
@@ -102,16 +101,7 @@ async function main() {
 }
 
 // Handle script execution
-if (require.main === module) {
-  main().catch((error) => {
-    console.error('Fatal error during admin setup:', error);
-    process.exit(1);
-  });
-}
-
-// Export functions for programmatic use
-module.exports = {
-  setupFirstAdmin,
-  checkAdminSetup,
-  ADMIN_CONFIG
-};
+main().catch((error) => {
+  console.error('Fatal error during admin setup:', error);
+  process.exit(1);
+});
