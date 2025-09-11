@@ -1,5 +1,5 @@
-import { neon } from '@neondatabase/serverless';
-import { drizzle } from 'drizzle-orm/neon-http';
+import postgres from 'postgres';
+import { drizzle } from 'drizzle-orm/postgres-js';
 import * as schema from "../shared/schema";
 
 if (!process.env.DATABASE_URL) {
@@ -10,13 +10,16 @@ if (!process.env.DATABASE_URL) {
 
 // Global connection cache to survive Next.js HMR restarts
 declare global {
-  var __drizzleClient: ReturnType<typeof neon> | undefined;
+  var __drizzleClient: ReturnType<typeof postgres> | undefined;
   var __drizzleDb: ReturnType<typeof drizzle> | undefined;
 }
 
-// Create HTTP-based connection (more reliable for serverless)
+// Create postgres connection (compatible with Supabase)
 function createClient() {
-  return neon(process.env.DATABASE_URL!);
+  return postgres(process.env.DATABASE_URL!, {
+    prepare: false, // Required for Supabase connection pooling
+    ssl: 'require', // Required for Supabase
+  });
 }
 
 // Reuse client and db instances globally
@@ -28,7 +31,7 @@ if (process.env.NODE_ENV !== 'production') {
   globalThis.__drizzleDb = db;
 }
 
-// Test connection function with HTTP-based approach
+// Test connection function with postgres
 export async function testConnection(retries = 3): Promise<boolean> {
   for (let attempt = 1; attempt <= retries; attempt++) {
     try {
