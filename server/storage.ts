@@ -78,11 +78,47 @@ export class DatabaseStorage implements IStorage {
 
   async getAdminUserByUsername(username: string): Promise<AdminUser | undefined> {
     try {
+      console.log('🔍 Searching for admin user:', username);
       const [user] = await db.select().from(adminUsers).where(eq(adminUsers.username, username));
+      console.log('📊 Found user:', user ? 'YES' : 'NO');
+      if (user) {
+        console.log('👤 User details:', { id: user.id, username: user.username, email: user.email });
+      }
       return user;
     } catch (error) {
-      console.error('Database error in getAdminUserByUsername:', error);
-      return undefined;
+      console.error('❌ Database error in getAdminUserByUsername:', error);
+      
+      // Try Supabase REST API as fallback
+      console.log('🔄 Trying Supabase REST API fallback...');
+      try {
+        const { createClient } = require('@supabase/supabase-js');
+        const supabase = createClient(
+          process.env.NEXT_PUBLIC_SUPABASE_URL!,
+          process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+        );
+        
+        const { data: users, error: supabaseError } = await supabase
+          .from('admin_users')
+          .select('*')
+          .eq('username', username);
+          
+        if (supabaseError) {
+          console.log('❌ Supabase fallback error:', supabaseError.message);
+          return undefined;
+        }
+        
+        console.log('📊 Supabase returned:', users ? users.length : 0, 'users');
+        if (users && users.length > 0) {
+          console.log('✅ Supabase fallback success:', users[0].username);
+          return users[0];
+        } else {
+          console.log('❌ No users found in Supabase for username:', username);
+          return undefined;
+        }
+      } catch (fallbackError) {
+        console.log('❌ Fallback failed:', fallbackError);
+        return undefined;
+      }
     }
   }
 
