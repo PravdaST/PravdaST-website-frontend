@@ -19,7 +19,6 @@ import {
 
 interface TemplateData {
   templateId: string;
-  previewUrl: string;
   deploymentUrl?: string;
   generatedAt: string;
   templateType: string;
@@ -80,8 +79,8 @@ export default function TemplateGenerationControls({
 
       const result = await response.json();
       
-      if (result.success && result.data.previewUrl) {
-        setPreviewUrl(result.data.previewUrl);
+      if (result.success && result.data.template) {
+        // Since we generate preview content directly, we'll show it in the UI
         setShowPreview(true);
         
         toast({
@@ -134,12 +133,11 @@ export default function TemplateGenerationControls({
         // Update order with new template data
         const updatedOrder = {
           ...order,
-          projectUrl: result.data.template.previewUrl,
+          projectUrl: `/api/admin/orders/${order.id}/preview/view`,
           customizationData: {
             ...order.customizationData,
             template: {
               templateId: result.data.template.id,
-              previewUrl: result.data.template.previewUrl,
               deploymentUrl: result.data.template.deploymentUrl,
               generatedAt: result.data.template.metadata.generatedAt,
               templateType: result.data.template.templateType,
@@ -192,12 +190,11 @@ export default function TemplateGenerationControls({
         // Update order with regenerated template data
         const updatedOrder = {
           ...order,
-          projectUrl: result.data.template.previewUrl,
+          projectUrl: `/api/admin/orders/${order.id}/preview/view`,
           customizationData: {
             ...order.customizationData,
             template: {
               templateId: result.data.template.id,
-              previewUrl: result.data.template.previewUrl,
               deploymentUrl: result.data.template.deploymentUrl,
               generatedAt: result.data.template.metadata.generatedAt,
               templateType: result.data.template.templateType,
@@ -315,11 +312,11 @@ export default function TemplateGenerationControls({
           )}
 
           {/* View Template Button */}
-          {hasTemplate && templateData?.previewUrl && (
+          {hasTemplate && (
             <Button
               variant="outline"
               size="sm"
-              onClick={() => window.open(templateData.previewUrl, '_blank')}
+              onClick={() => window.open(`/api/admin/orders/${order.id}/preview/view`, '_blank')}
               className="flex items-center gap-2"
             >
               <ExternalLink className="w-4 h-4" />
@@ -357,11 +354,11 @@ export default function TemplateGenerationControls({
 
             {/* Action Links */}
             <div className="flex gap-2 pt-2">
-              {templateData.previewUrl && (
+              {hasTemplate && (
                 <Button
                   variant="link"
                   size="sm"
-                  onClick={() => window.open(templateData.previewUrl, '_blank')}
+                  onClick={() => window.open(`/api/admin/orders/${order.id}/preview/view`, '_blank')}
                   className="p-0 h-auto text-blue-600"
                 >
                   <Globe className="w-3 h-3 mr-1" />

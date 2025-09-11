@@ -88,7 +88,6 @@ export async function POST(
     // Store the generated template data in the order
     const templateData = {
       templateId: generatedTemplate.id,
-      previewUrl: generatedTemplate.previewUrl,
       deploymentUrl: generatedTemplate.deploymentUrl,
       generatedAt: generatedTemplate.metadata.generatedAt,
       templateType: generatedTemplate.templateType,
@@ -97,7 +96,7 @@ export async function POST(
 
     // Update order with template information
     await storage.updateOrder(orderId, {
-      projectUrl: generatedTemplate.previewUrl,
+      projectUrl: `/api/admin/orders/${orderId}/preview/view`,
       customizationData: {
         ...order.customizationData,
         template: templateData
@@ -288,7 +287,6 @@ export async function PUT(
     // Store the regenerated template data in the order
     const templateData = {
       templateId: regeneratedTemplate.id,
-      previewUrl: regeneratedTemplate.previewUrl,
       deploymentUrl: regeneratedTemplate.deploymentUrl,
       generatedAt: regeneratedTemplate.metadata.generatedAt,
       templateType: regeneratedTemplate.templateType,
@@ -298,7 +296,7 @@ export async function PUT(
 
     // Update order with new template information
     await storage.updateOrder(orderId, {
-      projectUrl: regeneratedTemplate.previewUrl,
+      projectUrl: `/api/admin/orders/${orderId}/preview/view`,
       customizationData: {
         ...updatedCustomizationData,
         template: templateData

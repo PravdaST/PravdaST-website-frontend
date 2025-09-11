@@ -62,15 +62,11 @@ export class TemplateGenerator {
       // Generate unique template ID
       const templateId = this.generateTemplateId(businessData);
       
-      // Create preview URL
-      const previewUrl = `${this.config.baseUrl}/preview/${templateId}`;
-      
       const generatedTemplate: GeneratedTemplate = {
         id: templateId,
         businessName: businessData.name,
         templateType: businessData.templateType,
         files: allFiles,
-        previewUrl,
         metadata: {
           generatedAt: new Date(),
           orderId: 0, // Will be set by caller
@@ -106,14 +102,12 @@ export class TemplateGenerator {
       const previewFiles = await handler.generateTemplate(content, businessData);
       
       const templateId = this.generateTemplateId(businessData) + '-preview';
-      const previewUrl = `${this.config.baseUrl}/preview/${templateId}`;
       
       return {
         id: templateId,
         businessName: businessData.name,
         templateType: businessData.templateType,
         files: previewFiles,
-        previewUrl,
         metadata: {
           generatedAt: new Date(),
           orderId: 0,

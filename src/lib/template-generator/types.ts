@@ -87,7 +87,6 @@ export interface GeneratedTemplate {
   businessName: string;
   templateType: string;
   files: TemplateFile[];
-  previewUrl: string;
   deploymentUrl?: string;
   metadata: {
     generatedAt: Date;
