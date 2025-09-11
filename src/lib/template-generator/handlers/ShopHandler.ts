@@ -480,7 +480,4 @@ console.log('${businessData.name} Shop Template - Powered by Pravda Agency');`;
     return iconMap[iconName] || '🛒';
   }
 
-  private extractLocation(businessData: BusinessData): string {
-    return businessData.customizationData?.location || 'София';
-  }
 }

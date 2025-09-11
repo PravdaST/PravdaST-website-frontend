@@ -570,7 +570,4 @@ console.log('${businessData.name} Services Template - Powered by Pravda Agency')
     return iconMap[iconName] || '🔧';
   }
 
-  private extractLocation(businessData: BusinessData): string {
-    return businessData.customizationData?.location || 'София';
-  }
 }

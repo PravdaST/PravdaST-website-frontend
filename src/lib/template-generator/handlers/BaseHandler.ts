@@ -471,7 +471,7 @@ function formatPhoneNumber(phone) {
   /**
    * Extract location from business data
    */
-  private extractLocation(businessData: BusinessData): string {
+  protected extractLocation(businessData: BusinessData): string {
     return businessData.customizationData?.location || 'София';
   }
 

@@ -705,7 +705,4 @@ console.log('${businessData.name} Beauty Salon Template - Powered by Pravda Agen
     return iconMap[iconName] || '✨';
   }
 
-  private extractLocation(businessData: BusinessData): string {
-    return businessData.customizationData?.location || 'София';
-  }
 }

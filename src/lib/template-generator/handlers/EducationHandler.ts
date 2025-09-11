@@ -817,7 +817,4 @@ console.log('${businessData.name} Education Template - Powered by Pravda Agency'
     return iconMap[iconName] || '🎓';
   }
 
-  private extractLocation(businessData: BusinessData): string {
-    return businessData.customizationData?.location || 'София';
-  }
 }

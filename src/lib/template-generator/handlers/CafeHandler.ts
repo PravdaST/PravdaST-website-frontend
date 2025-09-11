@@ -815,10 +815,4 @@ console.log('${businessData.name} Cafe Template - Powered by Pravda Agency');`;
     return iconMap[iconName] || '☕';
   }
 
-  /**
-   * Extract location from business data
-   */
-  private extractLocation(businessData: BusinessData): string {
-    return businessData.customizationData?.location || 'София';
-  }
 }

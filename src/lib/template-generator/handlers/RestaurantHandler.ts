@@ -1270,10 +1270,4 @@ console.log('${businessData.name} Restaurant Template - Powered by Pravda Agency
     return iconMap[iconName] || '⭐';
   }
 
-  /**
-   * Extract location from business data
-   */
-  private extractLocation(businessData: BusinessData): string {
-    return businessData.customizationData?.location || 'София';
-  }
 }
