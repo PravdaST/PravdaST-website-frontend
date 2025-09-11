@@ -36,7 +36,7 @@ export const adminUsers = pgTable("admin_users", {
 export const adminSessions = pgTable("admin_sessions", {
   id: integer("id").primaryKey().generatedAlwaysAsIdentity(),
   userId: integer("user_id").references(() => adminUsers.id),
-  token: varchar("token", { length: 255 }).unique().notNull(),
+  tokenHash: varchar("token_hash", { length: 60 }).unique().notNull(), // bcrypt hash length
   expiresAt: timestamp("expires_at").notNull(),
   createdAt: timestamp("created_at").defaultNow(),
 });

@@ -17,6 +17,7 @@ import {
 } from "../shared/schema";
 import { db } from "./db";
 import { eq, desc, and, gte, lt } from "drizzle-orm";
+import { verifyToken, createSecureSessionToken } from "./auth-utils";
 
 // Interface for storage operations
 export interface IStorage {
@@ -102,7 +103,7 @@ export class DatabaseStorage implements IStorage {
       return {
         id: Date.now(),
         userId: session.userId,
-        token: session.token,
+        tokenHash: session.tokenHash,
         expiresAt: session.expiresAt,
         createdAt: new Date()
       };
@@ -110,18 +111,34 @@ export class DatabaseStorage implements IStorage {
   }
 
   async getAdminSession(token: string): Promise<AdminSession | undefined> {
-    const [session] = await db
+    // Get all non-expired sessions and verify token against each hash
+    const sessions = await db
       .select()
       .from(adminSessions)
-      .where(and(
-        eq(adminSessions.token, token),
-        gte(adminSessions.expiresAt, new Date())
-      ));
-    return session;
+      .where(gte(adminSessions.expiresAt, new Date()));
+    
+    // Verify token against each stored hash
+    for (const session of sessions) {
+      const isValid = await verifyToken(token, session.tokenHash);
+      if (isValid) {
+        return session;
+      }
+    }
+    
+    return undefined;
   }
 
   async deleteAdminSession(token: string): Promise<void> {
-    await db.delete(adminSessions).where(eq(adminSessions.token, token));
+    // Find the session by verifying token against hashes
+    const sessions = await db.select().from(adminSessions);
+    
+    for (const session of sessions) {
+      const isValid = await verifyToken(token, session.tokenHash);
+      if (isValid) {
+        await db.delete(adminSessions).where(eq(adminSessions.id, session.id));
+        break;
+      }
+    }
   }
 
   async deleteExpiredSessions(): Promise<void> {
