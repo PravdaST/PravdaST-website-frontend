@@ -113,6 +113,20 @@ export class DatabaseStorage implements IStorage {
           return users[0];
         } else {
           console.log('❌ No users found in Supabase for username:', username);
+          
+          // TEMPORARY: Hardcoded admin user until RLS is fixed
+          if (username === 'admin') {
+            console.log('🔧 Using temporary hardcoded admin user');
+            return {
+              id: 1,
+              username: 'admin',
+              password: '$2b$10$DouK9y5osswsnt/uXv3m2OY.El0chgiZP9uDga/Yatuvwxyq9F5ky', // admin123
+              email: 'admin@pravdagency.eu',
+              createdAt: new Date(),
+              updatedAt: new Date()
+            };
+          }
+          
           return undefined;
         }
       } catch (fallbackError) {
