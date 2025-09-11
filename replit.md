@@ -58,6 +58,82 @@ Project organization: Documentation files organized in `/docs` folder for cleane
 - **next-seo** - Dynamic meta tag management
 - **next-sitemap** - Automatic sitemap generation
 
+## Recent MVP Landing Page Generator System (January 2025)
+
+### ✅ COMPLETE LANDING PAGE GENERATOR MVP - PRODUCTION READY
+**Location:** `/campaigns/landing-page`
+**Purpose:** Automated landing page generation system for Pravda ST Agency clients
+
+**🚀 COMPLETE SYSTEM WORKFLOW:**
+1. **Client Order Form** → Customer submits business details with category selection
+2. **Admin Authentication** → Secure admin login with bcrypt protection  
+3. **Order Management** → Admin dashboard for order review and approval
+4. **Template Generation** → Automated mini-site creation from order data
+5. **Preview & Deploy** → Admin preview and approval for client delivery
+
+**📊 SYSTEM COMPONENTS:**
+
+**✅ Orders Management System**
+- Complete PostgreSQL schema with all necessary fields
+- Real-time order processing with form validation
+- Customer data collection (business name, type, contact info)
+- Order status tracking (pending → approved → generated → deployed)
+- Secure customer PII protection with authenticated admin-only access
+
+**✅ Admin Authentication & Dashboard**  
+- Secure admin login system with bcrypt password protection
+- IP-based rate limiting (5 attempts per 15 minutes)
+- HttpOnly secure cookies with proper expiration
+- Complete admin dashboard for order management
+- Order filtering, sorting, pagination, and status updates
+- Admin middleware protection for all sensitive routes
+
+**✅ Template Generation Engine**
+- Automated template creation from order data
+- **6 Business Type Support**: Restaurant, Cafe, Shop, Services, Beauty, Education
+- **Bulgarian Language Content**: Automatic content generation with cultural context
+- **Mobile-Responsive Design**: Professional layouts optimized for all devices
+- **Business-Specific Features**: Menus, services, contact forms, galleries
+- **Static File Generation**: HTML/CSS/JS packages ready for deployment
+
+**✅ Admin Preview System**
+- Live template preview functionality in admin dashboard
+- Generate/Regenerate capabilities with version management
+- Direct HTML preview via `/api/admin/orders/[id]/preview/view`
+- Template customization and iteration workflow
+
+**🔧 TECHNICAL ARCHITECTURE:**
+
+**Database Layer:**
+- Orders table with complete customer and business data
+- Admin users with secure authentication
+- Template metadata storage with customization options
+- Proper database relationships and constraints
+
+**API Layer:**
+- `/api/orders` - Customer order submission (POST only)
+- `/api/admin/orders` - Admin order management (authenticated)
+- `/api/admin/orders/[id]/generate` - Template generation (POST/PUT)
+- `/api/admin/orders/[id]/preview` - Template preview (GET/POST)
+- `/api/admin/orders/[id]/preview/view` - HTML preview rendering
+- `/api/admin/login|logout|me` - Admin authentication endpoints
+
+**Template System:**
+- `TemplateGenerator.ts` - Main orchestration engine
+- `ContentAutomation.ts` - Bulgarian content generation
+- `BusinessTypeHandlers` - Specialized generators for each business type
+- Static file generation for Cloudflare deployment readiness
+
+**🎯 BUSINESS IMPACT:**
+- **Automated Client Acquisition**: Streamlined order-to-delivery workflow
+- **Professional Mini-Sites**: High-quality templates for all business types
+- **Admin Efficiency**: Complete management dashboard for order processing
+- **Scalable Architecture**: Ready for expansion and Cloudflare deployment
+- **Security-First Design**: Customer data protection and admin access control
+
+**💡 MVP STATUS: PRODUCTION READY**
+The system successfully implements the complete workflow from client order submission through admin approval to automated template generation. All critical security issues have been resolved, database systems are stable, and the template engine produces professional Bulgarian business sites ready for deployment.
+
 ## Recent New Features (January 2025)
 
 ### ✅ New Creatives Services Page - COMPLETED
