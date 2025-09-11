@@ -32,10 +32,11 @@ function sanitizeInput(input: string): string {
 // GET - Fetch specific order
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const orderId = parseInt(params.id);
+    const resolvedParams = await params;
+    const orderId = parseInt(resolvedParams.id);
     
     if (isNaN(orderId)) {
       return NextResponse.json(
@@ -80,10 +81,11 @@ export async function GET(
 // PUT - Update specific order (admin operations)
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const orderId = parseInt(params.id);
+    const resolvedParams = await params;
+    const orderId = parseInt(resolvedParams.id);
     
     if (isNaN(orderId)) {
       return NextResponse.json(
@@ -189,10 +191,11 @@ export async function PUT(
 // DELETE - Delete specific order (admin only)
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const orderId = parseInt(params.id);
+    const resolvedParams = await params;
+    const orderId = parseInt(resolvedParams.id);
     
     if (isNaN(orderId)) {
       return NextResponse.json(

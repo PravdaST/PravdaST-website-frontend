@@ -1,14 +1,13 @@
 import { notFound } from 'next/navigation';
-import { getServerSession } from 'next-auth/next';
 import OrderDetailsClient from './OrderDetailsClient';
 import { DatabaseStorage } from '../../../../../server/storage';
 
 const storage = new DatabaseStorage();
 
 interface OrderPageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 async function getOrder(id: number) {
@@ -22,7 +21,8 @@ async function getOrder(id: number) {
 }
 
 export default async function OrderPage({ params }: OrderPageProps) {
-  const orderId = parseInt(params.id, 10);
+  const resolvedParams = await params;
+  const orderId = parseInt(resolvedParams.id, 10);
   
   if (isNaN(orderId)) {
     notFound();
@@ -34,11 +34,12 @@ export default async function OrderPage({ params }: OrderPageProps) {
     notFound();
   }
 
-  return <OrderDetailsClient order={order} />;
+  return <OrderDetailsClient order={order as any} />;
 }
 
 export async function generateMetadata({ params }: OrderPageProps) {
-  const orderId = parseInt(params.id, 10);
+  const resolvedParams = await params;
+  const orderId = parseInt(resolvedParams.id, 10);
   
   if (isNaN(orderId)) {
     return {

@@ -23,10 +23,11 @@ const templateGenerator = new TemplateGenerator(generatorConfig);
  */
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const orderId = parseInt(params.id, 10);
+    const resolvedParams = await params;
+    const orderId = parseInt(resolvedParams.id, 10);
     
     if (isNaN(orderId)) {
       return NextResponse.json(
@@ -112,10 +113,11 @@ export async function GET(
  */
 export async function POST(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const orderId = parseInt(params.id, 10);
+    const resolvedParams = await params;
+    const orderId = parseInt(resolvedParams.id, 10);
     
     if (isNaN(orderId)) {
       return NextResponse.json(

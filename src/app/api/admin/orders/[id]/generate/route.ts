@@ -23,10 +23,11 @@ const templateGenerator = new TemplateGenerator(generatorConfig);
  */
 export async function POST(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const orderId = parseInt(params.id, 10);
+    const resolvedParams = await params;
+    const orderId = parseInt(resolvedParams.id, 10);
     
     if (isNaN(orderId)) {
       return NextResponse.json(
@@ -133,20 +134,59 @@ export async function POST(
  */
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const resolvedParams = await params;
     const { searchParams } = new URL(request.url);
     const isPreview = searchParams.get('preview') === 'true';
+    const isStatus = searchParams.get('status') === 'true';
+    
+    // Handle status check request
+    if (isStatus) {
+      const orderId = parseInt(resolvedParams.id, 10);
+      
+      if (isNaN(orderId)) {
+        return NextResponse.json(
+          { error: 'Invalid order ID' },
+          { status: 400 }
+        );
+      }
+
+      const order = await storage.getOrder(orderId);
+      if (!order) {
+        return NextResponse.json(
+          { error: 'Order not found' },
+          { status: 404 }
+        );
+      }
+
+      const templateData = order.customizationData?.template;
+      const hasTemplate = !!templateData;
+
+      return NextResponse.json({
+        success: true,
+        data: {
+          orderId,
+          hasTemplate,
+          templateData: templateData || null,
+          projectUrl: order.projectUrl,
+          orderStatus: order.status,
+          canGenerate: order.status === 'approved',
+          businessType: order.businessType,
+          businessName: order.businessName
+        }
+      });
+    }
     
     if (!isPreview) {
       return NextResponse.json(
-        { error: 'Use POST for full generation or add preview=true parameter' },
+        { error: 'Use POST for full generation, add preview=true for preview, or status=true for status' },
         { status: 400 }
       );
     }
 
-    const orderId = parseInt(params.id, 10);
+    const orderId = parseInt(resolvedParams.id, 10);
     
     if (isNaN(orderId)) {
       return NextResponse.json(
@@ -227,10 +267,11 @@ export async function GET(
  */
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const orderId = parseInt(params.id, 10);
+    const resolvedParams = await params;
+    const orderId = parseInt(resolvedParams.id, 10);
     
     if (isNaN(orderId)) {
       return NextResponse.json(
@@ -327,62 +368,7 @@ export async function PUT(
   }
 }
 
-/**
- * Get generation status and template info
- * GET /api/admin/orders/[id]/generate
- */
-export async function GET_STATUS(
-  request: NextRequest,
-  { params }: { params: { id: string } }
-) {
-  try {
-    const orderId = parseInt(params.id, 10);
-    
-    if (isNaN(orderId)) {
-      return NextResponse.json(
-        { error: 'Invalid order ID' },
-        { status: 400 }
-      );
-    }
-
-    // Get the order from database
-    const order = await storage.getOrder(orderId);
-    if (!order) {
-      return NextResponse.json(
-        { error: 'Order not found' },
-        { status: 404 }
-      );
-    }
-
-    const templateData = order.customizationData?.template;
-    const hasTemplate = !!templateData;
-
-    return NextResponse.json({
-      success: true,
-      data: {
-        orderId,
-        hasTemplate,
-        templateData: templateData || null,
-        projectUrl: order.projectUrl,
-        orderStatus: order.status,
-        canGenerate: order.status === 'approved',
-        businessType: order.businessType,
-        businessName: order.businessName
-      }
-    });
-
-  } catch (error) {
-    console.error('Failed to get generation status:', error);
-    
-    return NextResponse.json(
-      { 
-        error: 'Failed to get generation status',
-        details: error instanceof Error ? error.message : 'Unknown error'
-      },
-      { status: 500 }
-    );
-  }
-}
+// Status functionality moved to existing GET method with status=true parameter
 
 /**
  * Map business type to template type for the generator

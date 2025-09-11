@@ -42,9 +42,10 @@ async function verifyAdminSession(request: NextRequest) {
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const resolvedParams = await params;
     // Verify admin authentication
     const admin = await verifyAdminSession(request);
     if (!admin) {
@@ -57,7 +58,7 @@ export async function GET(
       );
     }
 
-    const orderId = parseInt(params.id);
+    const orderId = parseInt(resolvedParams.id);
     if (isNaN(orderId)) {
       return NextResponse.json(
         { 
@@ -100,9 +101,10 @@ export async function GET(
 
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const resolvedParams = await params;
     // Verify admin authentication
     const admin = await verifyAdminSession(request);
     if (!admin) {
@@ -115,7 +117,7 @@ export async function PATCH(
       );
     }
 
-    const orderId = parseInt(params.id);
+    const orderId = parseInt(resolvedParams.id);
     if (isNaN(orderId)) {
       return NextResponse.json(
         { 
@@ -188,8 +190,16 @@ export async function PATCH(
       timestamp: new Date().toISOString()
     });
 
+    // Convert string dates to Date objects if needed
+    const convertedUpdateData = {
+      ...updateData,
+      ...(updateData.estimatedCompletionDate && {
+        estimatedCompletionDate: new Date(updateData.estimatedCompletionDate)
+      })
+    };
+
     // Update order
-    const updatedOrder = await storage.updateOrder(orderId, updateData);
+    const updatedOrder = await storage.updateOrder(orderId, convertedUpdateData as any);
     
     console.log('Order updated successfully:', {
       orderId: updatedOrder.id,
@@ -221,9 +231,10 @@ export async function PATCH(
 // DELETE endpoint for order deletion (admin only)
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const resolvedParams = await params;
     // Verify admin authentication
     const admin = await verifyAdminSession(request);
     if (!admin) {
@@ -236,7 +247,7 @@ export async function DELETE(
       );
     }
 
-    const orderId = parseInt(params.id);
+    const orderId = parseInt(resolvedParams.id);
     if (isNaN(orderId)) {
       return NextResponse.json(
         { 

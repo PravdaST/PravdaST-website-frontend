@@ -36,9 +36,10 @@ async function verifyAdminSession(request: NextRequest) {
 
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const resolvedParams = await params;
     // Verify admin authentication
     const admin = await verifyAdminSession(request);
     if (!admin) {
@@ -51,7 +52,7 @@ export async function PATCH(
       );
     }
 
-    const orderId = parseInt(params.id);
+    const orderId = parseInt(resolvedParams.id);
     if (isNaN(orderId)) {
       return NextResponse.json(
         { 
