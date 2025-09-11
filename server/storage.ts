@@ -79,27 +79,9 @@ export class DatabaseStorage implements IStorage {
   async getAdminUserByUsername(username: string): Promise<AdminUser | undefined> {
     try {
       const [user] = await db.select().from(adminUsers).where(eq(adminUsers.username, username));
-      
-      // Temporary: Force fallback to reset password
-      if (username === 'admin' && user) {
-        console.log('Using fallback admin for password reset');
-        throw new Error('Force fallback for password reset');
-      }
-      
       return user;
     } catch (error) {
       console.error('Database error in getAdminUserByUsername:', error);
-      // Fallback for admin user if database fails
-      if (username === 'admin') {
-        return {
-          id: 1,
-          username: 'admin',
-          password: '$2b$10$DouK9y5osswsnt/uXv3m2OY.El0chgiZP9uDga/Yatuvwxyq9F5ky', // admin123
-          email: 'admin@pravdagency.eu',
-          createdAt: new Date(),
-          updatedAt: new Date()
-        };
-      }
       return undefined;
     }
   }
