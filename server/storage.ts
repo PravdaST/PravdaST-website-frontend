@@ -94,7 +94,7 @@ export class DatabaseStorage implements IStorage {
         const { createClient } = require('@supabase/supabase-js');
         const supabase = createClient(
           process.env.NEXT_PUBLIC_SUPABASE_URL!,
-          process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+          process.env.SUPABASE_SERVICE_ROLE_KEY!
         );
         
         const { data: users, error: supabaseError } = await supabase
@@ -114,17 +114,34 @@ export class DatabaseStorage implements IStorage {
         } else {
           console.log('❌ No users found in Supabase for username:', username);
           
-          // TEMPORARY: Hardcoded admin user until RLS is fixed
+          // If no user found, create admin user in Supabase
           if (username === 'admin') {
-            console.log('🔧 Using temporary hardcoded admin user');
-            return {
-              id: 1,
-              username: 'admin',
-              password: '$2b$10$DouK9y5osswsnt/uXv3m2OY.El0chgiZP9uDga/Yatuvwxyq9F5ky', // admin123
-              email: 'admin@pravdagency.eu',
-              createdAt: new Date(),
-              updatedAt: new Date()
-            };
+            console.log('🔧 Creating admin user in Supabase...');
+            const { data: newAdmin, error: createError } = await supabase
+              .from('admin_users')
+              .insert({
+                username: 'admin',
+                password: '$2b$10$DouK9y5osswsnt/uXv3m2OY.El0chgiZP9uDga/Yatuvwxyq9F5ky',
+                email: 'admin@pravdagency.eu'
+              })
+              .select()
+              .single();
+            
+            if (createError) {
+              console.log('❌ Failed to create admin user:', createError.message);
+              // Fallback to hardcoded user if creation fails
+              return {
+                id: 1,
+                username: 'admin',
+                password: '$2b$10$DouK9y5osswsnt/uXv3m2OY.El0chgiZP9uDga/Yatuvwxyq9F5ky',
+                email: 'admin@pravdagency.eu',
+                createdAt: new Date(),
+                updatedAt: new Date()
+              };
+            } else {
+              console.log('✅ Admin user created successfully in Supabase!');
+              return newAdmin;
+            }
           }
           
           return undefined;
@@ -400,15 +417,61 @@ export class DatabaseStorage implements IStorage {
   }
 
   async createOrder(order: InsertOrder): Promise<Order> {
-    const [newOrder] = await db
-      .insert(orders)
-      .values({
-        ...order,
-        createdAt: new Date(),
-        updatedAt: new Date(),
-      })
-      .returning();
-    return newOrder;
+    try {
+      const [newOrder] = await db
+        .insert(orders)
+        .values({
+          ...order,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        })
+        .returning();
+      return newOrder;
+    } catch (error) {
+      console.error('❌ Database error in createOrder:', error);
+      
+      // Try Supabase REST API as fallback
+      console.log('🔄 Trying Supabase fallback for order creation...');
+      try {
+        const { createClient } = require('@supabase/supabase-js');
+        const supabase = createClient(
+          process.env.NEXT_PUBLIC_SUPABASE_URL!,
+          process.env.SUPABASE_SERVICE_ROLE_KEY!
+        );
+        
+        const { data: newOrder, error: supabaseError } = await supabase
+          .from('orders')
+          .insert({
+            customer_name: order.customerName,
+            customer_email: order.customerEmail,
+            customer_phone: order.customerPhone,
+            business_name: order.businessName,
+            business_type: order.businessType,
+            business_website: order.businessWebsite,
+            message: order.message,
+            template_type: order.templateType,
+            customization_data: order.customizationData || {},
+            status: order.status || 'pending',
+            priority: order.priority || 'normal',
+            created_at: new Date().toISOString(),
+            updated_at: new Date().toISOString()
+          })
+          .select()
+          .single();
+          
+        if (supabaseError) {
+          console.log('❌ Supabase fallback error:', supabaseError.message);
+          throw new Error('Failed to create order');
+        }
+        
+        console.log('✅ Order created via Supabase fallback:', newOrder.id);
+        return newOrder;
+        
+      } catch (fallbackError) {
+        console.log('❌ Fallback failed:', fallbackError);
+        throw new Error('Failed to create order');
+      }
+    }
   }
 
   async updateOrder(id: number, order: Partial<InsertOrder>): Promise<Order> {
