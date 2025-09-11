@@ -141,40 +141,9 @@ export async function POST(request: NextRequest) {
   }
 }
 
-// GET endpoint for listing orders (admin only - would need authentication in full implementation)
-export async function GET(request: NextRequest) {
-  try {
-    const { searchParams } = new URL(request.url);
-    const status = searchParams.get('status');
-    const customerEmail = searchParams.get('customerEmail');
-    
-    let orders;
-    
-    if (status) {
-      orders = await storage.getOrdersByStatus(status);
-    } else if (customerEmail) {
-      orders = await storage.getOrdersByCustomerEmail(customerEmail);
-    } else {
-      orders = await storage.getAllOrders();
-    }
-    
-    return NextResponse.json({
-      success: true,
-      orders: orders
-    });
-    
-  } catch (error) {
-    console.error('Error fetching orders:', error);
-    
-    return NextResponse.json(
-      { 
-        success: false, 
-        message: "Грешка при зареждане на поръчките" 
-      },
-      { status: 500 }
-    );
-  }
-}
+// GET endpoint removed for security reasons.
+// Orders listing is now available only through /api/admin/orders with authentication.
+// This prevents unauthorized access to customer data.
 
 // CORS headers
 export async function OPTIONS(request: NextRequest) {
@@ -182,7 +151,7 @@ export async function OPTIONS(request: NextRequest) {
     status: 200,
     headers: {
       'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+      'Access-Control-Allow-Methods': 'POST, OPTIONS',
       'Access-Control-Allow-Headers': 'Content-Type',
     },
   });

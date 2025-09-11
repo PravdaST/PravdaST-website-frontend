@@ -103,10 +103,14 @@ export default function AdminDashboardClient() {
   const fetchOrders = async () => {
     setLoading(true);
     try {
-      const response = await fetch('/api/orders');
+      const response = await fetch('/api/admin/orders');
       if (response.ok) {
         const data = await response.json();
         setOrders(data.orders || []);
+      } else if (response.status === 401) {
+        // Authentication failed, redirect to login
+        router.push('/admin/login');
+        return;
       } else {
         toast({
           title: 'Error',
