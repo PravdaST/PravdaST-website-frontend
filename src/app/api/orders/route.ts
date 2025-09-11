@@ -3,6 +3,9 @@ import { storage } from '../../../../server/storage';
 import { insertOrderSchema, OrderStatus } from '../../../../shared/schema';
 import { z } from 'zod';
 
+// Force Node runtime for database compatibility
+export const runtime = 'nodejs';
+
 // Order creation schema with validation
 const createOrderSchema = z.object({
   customerName: z.string().min(2, "Името трябва да бъде поне 2 символа"),

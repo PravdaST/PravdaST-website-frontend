@@ -262,7 +262,7 @@ export class DatabaseStorage implements IStorage {
       const windowStart = new Date(Date.now() - windowMinutes * 60 * 1000);
       
       // Get existing rate limit record within the window
-      const [existingRecord] = await db
+      const existingRecords = await db
         .select()
         .from(rateLimits)
         .where(and(
@@ -272,6 +272,8 @@ export class DatabaseStorage implements IStorage {
         ))
         .orderBy(desc(rateLimits.windowStart))
         .limit(1);
+      
+      const existingRecord = existingRecords[0];
 
       if (!existingRecord) {
         // No existing record, create new one

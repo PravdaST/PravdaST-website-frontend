@@ -3,6 +3,9 @@ import { storage } from '../../../../../server/storage';
 import { OrderStatus, OrderPriority, PaymentStatus } from '../../../../../shared/schema';
 import { z } from 'zod';
 
+// Force Node runtime for database compatibility
+export const runtime = 'nodejs';
+
 // Update order schema for admin operations
 const updateOrderSchema = z.object({
   status: z.enum(['pending', 'approved', 'in_progress', 'completed', 'rejected']).optional(),
