@@ -187,10 +187,31 @@ const caseStudies = [
 
 export default function CaseStudiesClient() {
   const [mounted, setMounted] = useState(false);
+  const [activeFilter, setActiveFilter] = useState("Всички");
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  // Define canonical categories in fixed order
+  const CATEGORIES = ["Всички", "Ресторантьорство", "Фитнес", "Млечна индустрия", "Козметични услуги"];
+  
+  // Map industry variants to canonical categories
+  const mapIndustryToCategory = (industry: string) => {
+    if (industry === "Фитнес оборудване") return "Фитнес";
+    return industry;
+  };
+  
+  // Filter case studies based on active filter
+  const filteredCaseStudies = activeFilter === "Всички" 
+    ? caseStudies 
+    : caseStudies.filter(study => mapIndustryToCategory(study.industry) === activeFilter);
+    
+  // Calculate category counts
+  const getCategoryCount = (category: string) => {
+    if (category === "Всички") return caseStudies.length;
+    return caseStudies.filter(study => mapIndustryToCategory(study.industry) === category).length;
+  };
 
   return (
     <div className="min-h-screen">
@@ -335,6 +356,56 @@ export default function CaseStudiesClient() {
           </div>
         </section>
 
+        {/* Filter Pills */}
+        <section className="py-10 relative">
+          <div className="container mx-auto px-6">
+            <motion.div
+              className="flex flex-wrap justify-center gap-3 mb-12"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              {CATEGORIES.map((category, index) => (
+                <motion.button
+                  key={category}
+                  onClick={() => setActiveFilter(category)}
+                  className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 ${
+                    activeFilter === category
+                      ? "bg-[#ECB629] text-black shadow-lg shadow-[#ECB629]/25"
+                      : "bg-slate-800/50 text-gray-300 hover:bg-slate-700/50 hover:text-white border border-slate-700"
+                  }`}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.3, delay: index * 0.1 }}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  {category}
+                  <span className="ml-2 text-xs opacity-70">
+                    ({getCategoryCount(category)})
+                  </span>
+                </motion.button>
+              ))}
+            </motion.div>
+
+            {/* Results count */}
+            <motion.div
+              className="text-center mb-8"
+              key={activeFilter}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.3 }}
+            >
+              <p className="text-gray-400 text-sm">
+                Показани {filteredCaseStudies.length} от {caseStudies.length} резултата
+                {activeFilter !== "Всички" && (
+                  <span className="text-[#ECB629] ml-1">в "{activeFilter}"</span>
+                )}
+              </p>
+            </motion.div>
+          </div>
+        </section>
+
         {/* Case Studies Grid */}
         <section className="py-20 relative">
           {/* Background Elements */}
@@ -345,7 +416,7 @@ export default function CaseStudiesClient() {
 
           <div className="container mx-auto px-6 relative z-1">
             <div className="space-y-16">
-              {caseStudies.map((study, index) => (
+              {filteredCaseStudies.map((study, index) => (
                 <motion.div
                   key={study.id}
                   initial={{ opacity: 0, y: 50 }}
