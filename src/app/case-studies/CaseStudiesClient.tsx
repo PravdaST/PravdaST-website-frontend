@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -16,17 +17,70 @@ import {
   Eye,
   Star,
   Phone,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 import Link from "next/link";
 import { caseStudies, type CaseStudy } from "./data";
 
 export default function CaseStudiesClient() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const [mounted, setMounted] = useState(false);
   const [activeFilter, setActiveFilter] = useState("Всички");
+  const [currentPage, setCurrentPage] = useState(1);
 
+  const ITEMS_PER_PAGE = 10;
+
+  // URL normalization effect - runs on mount and when filter changes
   useEffect(() => {
     setMounted(true);
-  }, []);
+    
+    // Calculate total pages for current filter
+    const currentFilteredStudies = activeFilter === "Всички" 
+      ? caseStudies 
+      : caseStudies.filter(study => mapIndustryToCategory(study.industry) === activeFilter);
+    const currentTotalPages = Math.ceil(currentFilteredStudies.length / ITEMS_PER_PAGE) || 1;
+    
+    // Parse page from URL params
+    const pageParam = searchParams.get('page');
+    let targetPage = 1; // Default to page 1
+    
+    if (pageParam) {
+      const parsed = parseInt(pageParam, 10);
+      if (!isNaN(parsed) && parsed > 0) {
+        targetPage = parsed;
+      }
+    }
+    
+    // Clamp to valid range for current filter
+    targetPage = Math.min(Math.max(1, targetPage), currentTotalPages);
+    
+    // Update state
+    setCurrentPage(targetPage);
+    
+    // Determine if URL normalization is needed
+    const currentParam = searchParams.get('page');
+    const needsNormalization = 
+      !currentParam ||                                    // No page param
+      currentParam !== targetPage.toString() ||           // Wrong page number
+      isNaN(parseInt(currentParam, 10)) ||                // Invalid number
+      parseInt(currentParam, 10) <= 0 ||                  // Zero or negative
+      parseInt(currentParam, 10) > currentTotalPages;     // Beyond max pages
+    
+    if (needsNormalization && mounted) {
+      const url = new URL(window.location.href);
+      url.searchParams.set('page', targetPage.toString());
+      router.replace(url.pathname + url.search);
+    }
+  }, [searchParams, activeFilter, mounted]);
+
+  // Update URL when page changes - always include page parameter
+  const updateURL = (page: number) => {
+    const url = new URL(window.location.href);
+    url.searchParams.set('page', page.toString());
+    router.push(url.pathname + url.search);
+  };
 
   // Define canonical categories in fixed order
   const CATEGORIES = ["Всички", "Хранителни добавки", "Ресторантьорство", "Фитнес", "Млечна индустрия", "Козметични услуги"];
@@ -45,6 +99,26 @@ export default function CaseStudiesClient() {
   const filteredCaseStudies = activeFilter === "Всички" 
     ? caseStudies 
     : caseStudies.filter(study => mapIndustryToCategory(study.industry) === activeFilter);
+
+  // Pagination calculations with validation
+  const totalPages = Math.ceil(filteredCaseStudies.length / ITEMS_PER_PAGE) || 1;
+  
+  // Current page is already validated in the main effect
+  const validatedCurrentPage = currentPage;
+  
+  const startIndex = (validatedCurrentPage - 1) * ITEMS_PER_PAGE;
+  const endIndex = startIndex + ITEMS_PER_PAGE;
+  const currentCaseStudies = filteredCaseStudies.slice(startIndex, endIndex);
+
+  // Handle page change with validation
+  const handlePageChange = (page: number) => {
+    // Validate page number
+    const validPage = Math.min(Math.max(1, page), totalPages);
+    setCurrentPage(validPage);
+    updateURL(validPage);
+    // Scroll to top when changing pages
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
     
   // Calculate category counts
   const getCategoryCount = (category: string) => {
@@ -174,7 +248,7 @@ export default function CaseStudiesClient() {
               >
                 {[
                   { label: "Средно увеличение", value: "+250%" },
-                  { label: "Успешни проекта", value: "47+" },
+                  { label: "Успешни проекта", value: `${caseStudies.length}+` },
                   { label: "Възвърната инвестиция", value: "380%" },
                   { label: "Време за резултат", value: "3-6м" },
                 ].map((stat, index) => (
@@ -236,7 +310,11 @@ export default function CaseStudiesClient() {
               transition={{ duration: 0.3 }}
             >
               <p className="text-gray-400 text-sm">
-                Показани {filteredCaseStudies.length} от {caseStudies.length} резултата
+                {filteredCaseStudies.length === 0 ? (
+                  <>Показани 0-0 от 0 резултата</>
+                ) : (
+                  <>Показани {startIndex + 1}-{Math.min(endIndex, filteredCaseStudies.length)} от {filteredCaseStudies.length} резултата</>
+                )}
                 {activeFilter !== "Всички" && (
                   <span className="text-[#ECB629] ml-1">в "{activeFilter}"</span>
                 )}
@@ -255,7 +333,7 @@ export default function CaseStudiesClient() {
 
           <div className="container mx-auto px-6 relative z-1">
             <div className="space-y-16">
-              {filteredCaseStudies.map((study, index) => (
+              {currentCaseStudies.map((study, index) => (
                 <motion.div
                   key={study.id}
                   initial={{ opacity: 0, y: 50 }}
@@ -423,6 +501,82 @@ export default function CaseStudiesClient() {
                 </motion.div>
               ))}
             </div>
+
+            {/* Pagination */}
+            {totalPages > 1 && (
+              <motion.div
+                className="flex justify-center items-center gap-2 mt-16"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+              >
+                {/* Previous Button */}
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => handlePageChange(validatedCurrentPage - 1)}
+                  disabled={validatedCurrentPage === 1}
+                  className="border-slate-600 text-gray-300 hover:bg-[#ECB629] hover:text-black hover:border-[#ECB629] disabled:opacity-50"
+                >
+                  <ChevronLeft className="w-4 h-4 mr-1" />
+                  Назад
+                </Button>
+
+                {/* Page Numbers */}
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+                  (page) => {
+                    // Show first, last, current and adjacent pages
+                    const showPage =
+                      page === 1 ||
+                      page === totalPages ||
+                      (page >= validatedCurrentPage - 1 && page <= validatedCurrentPage + 1);
+
+                    if (!showPage) {
+                      // Show ellipsis for gaps
+                      if (
+                        (page === validatedCurrentPage - 2 && validatedCurrentPage > 3) ||
+                        (page === validatedCurrentPage + 2 && validatedCurrentPage < totalPages - 2)
+                      ) {
+                        return (
+                          <span key={page} className="px-2 text-gray-500">
+                            ...
+                          </span>
+                        );
+                      }
+                      return null;
+                    }
+
+                    return (
+                      <Button
+                        key={page}
+                        variant={validatedCurrentPage === page ? "default" : "outline"}
+                        size="sm"
+                        onClick={() => handlePageChange(page)}
+                        className={
+                          validatedCurrentPage === page
+                            ? "bg-[#ECB629] text-black hover:bg-[#ECB629]/80"
+                            : "border-slate-600 text-gray-300 hover:bg-[#ECB629] hover:text-black hover:border-[#ECB629]"
+                        }
+                      >
+                        {page}
+                      </Button>
+                    );
+                  }
+                )}
+
+                {/* Next Button */}
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => handlePageChange(validatedCurrentPage + 1)}
+                  disabled={validatedCurrentPage === totalPages}
+                  className="border-slate-600 text-gray-300 hover:bg-[#ECB629] hover:text-black hover:border-[#ECB629] disabled:opacity-50"
+                >
+                  Напред
+                  <ChevronRight className="w-4 h-4 ml-1" />
+                </Button>
+              </motion.div>
+            )}
           </div>
         </section>
 
