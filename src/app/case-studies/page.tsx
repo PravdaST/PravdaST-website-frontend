@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+import { Suspense } from 'react'
 import CaseStudiesClient from './CaseStudiesClient'
 
 export const metadata: Metadata = {
@@ -30,5 +31,9 @@ export const metadata: Metadata = {
 }
 
 export default function CaseStudiesPage() {
-  return <CaseStudiesClient />
+  return (
+    <Suspense fallback={<div className="flex justify-center items-center min-h-screen"><div className="text-white">Loading...</div></div>}>
+      <CaseStudiesClient />
+    </Suspense>
+  )
 }
